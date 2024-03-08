@@ -1,0 +1,10 @@
+.cache
+.DS_Store
+node_modules/
+npm*
+.npmrc
+dist/
+.nyc_output/
+docs/
+web/
+bun.lock*
