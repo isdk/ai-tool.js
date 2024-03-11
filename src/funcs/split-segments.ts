@@ -41,7 +41,7 @@ export const splitSegments = new ToolFunc('splitSegments', {
     {name: 'model', type: 'string', description: 'the embedding model name used'},
     {name: 'passingScore', type: 'number', description: 'the min passing score'},
   ],
-  result: 'number',
+  result: 'array',
   scope: {truncTo: _truncTo, splitSentence: _splitSentence},
   setup(this: ToolFunc) {
     this.modelId = 'Xenova/distiluse-base-multilingual-cased-v2'

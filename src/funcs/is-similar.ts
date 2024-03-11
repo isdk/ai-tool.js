@@ -38,7 +38,7 @@ export const isSimilar = new ToolFunc('isSimilar', {
     {name: 'model', type: 'string', description: 'the embedding model name used'},
     {name: 'passingScore', type: 'number', description: 'the min passing score'},
   ],
-  result: 'number',
+  result: 'boolean',
   scope: {truncTo: _truncTo},
   setup(this: ToolFunc) {
     this.getDefaultPassingScore = getDefaultSimilarPassingScore;

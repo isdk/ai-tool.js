@@ -20,5 +20,5 @@ export const segments = new ToolFunc('segments', {
     {name: 'model', type: 'string', description: 'the embedding model name used'},
     {name: 'passingScore', type: 'number', description: 'the min passing score'},
   ],
-  result: 'number',
+  result: 'array',
 })

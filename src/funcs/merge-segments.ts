@@ -36,7 +36,7 @@ export const mergeSegments = new ToolFunc('mergeSegments', {
     {name: 'segments', type: 'array', required: true, description: 'the segments to merge'},
     {name: 'model', type: 'string', description: 'the embedding model name used'},
   ],
-  result: 'number',
+  result: 'array',
   setup(this: ToolFunc) {
     this.modelId = 'Xenova/distiluse-base-multilingual-cased-v2'
   },
