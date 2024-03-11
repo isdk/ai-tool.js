@@ -1,9 +1,9 @@
-import { LRUCache as _LRUCache } from 'secondary-cache'
-import type { ILRUCacheOptions } from 'secondary-cache'
+import { Cache as _Cache } from 'secondary-cache'
+import type { ICacheOptions } from 'secondary-cache'
 import { ToolFunc } from '../tool-func'
 
 
-export function _lrucache(this: ToolFunc, key: string, value?: any, options?: ILRUCacheOptions|number): _LRUCache {
+export function _lrucache(this: ToolFunc, key: string, value?: any, options?: ICacheOptions|number): _Cache {
   if (key === undefined) {
     if (options) this.cache.setDefaultOptions(options)
   } else if (value === null) {
@@ -20,7 +20,7 @@ export function _lrucache(this: ToolFunc, key: string, value?: any, options?: IL
   return this.cache;
 }
 
-export function createLRUCache(name: string, options?: ILRUCacheOptions|number) {
+export function createLRUCache(name: string, options?: ICacheOptions|number) {
   const result = ToolFunc.get(name) ?? new ToolFunc(name, {
     func: _lrucache,
     description: 'get/set LRU cache or return the LRUCache object',
@@ -30,9 +30,8 @@ export function createLRUCache(name: string, options?: ILRUCacheOptions|number) 
       {name: 'options', type: 'object|number', description: 'the optional cache options:{capacity,expires,cleanInterval} or expires'},
     ],
     result: 'number',
-    scope: {LRUCache: _LRUCache},
   })
-  result.cache = new _LRUCache(options)
+  result.cache = new _Cache(options)
   return result
 }
 
