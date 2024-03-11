@@ -28,6 +28,7 @@ export declare interface ToolFunc extends FuncItem {
 
 export class ToolFunc extends AdvancePropertyManager {
   static items: Funcs = {};
+  static dataPath: string;
 
   static get(name: string) {
     return this.items[name]
