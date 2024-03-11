@@ -35,7 +35,7 @@ describe('BaseError', () => {
 
 describe('throwError', () => {
   it('should throwError with message', ()=>{
-    const expectedErr = new BaseError('hello message', 404, 'BaseError').toJSON()
+    const expectedErr = new BaseError('hello message', 500, 'BaseError').toJSON()
     delete expectedErr.stack
     let error
     try {
@@ -48,7 +48,7 @@ describe('throwError', () => {
   })
 
   it('should throwError with message and name', ()=>{
-    const expectedErr = new BaseError('hello message', 404, 'CustomErr').toJSON()
+    const expectedErr = new BaseError('hello message', 500, 'CustomErr').toJSON()
     delete expectedErr.stack
     let error
     try {
