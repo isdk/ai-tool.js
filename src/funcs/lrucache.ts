@@ -29,7 +29,7 @@ export function createLRUCache(name: string, options?: ICacheOptions|number) {
       {name: 'value', type: 'any', description: 'the value to store, if value is null means remove the key'},
       {name: 'options', type: 'object|number', description: 'the optional cache options:{capacity,expires,cleanInterval} or expires'},
     ],
-    result: 'number',
+    result: 'any',
   })
   result.cache = new _Cache(options)
   return result
