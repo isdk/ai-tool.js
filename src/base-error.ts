@@ -106,10 +106,10 @@ export class BaseError extends Error {
  * Create an error object
  * @param message - Error message
  * @param name - Error name, optional
- * @param status - Error status code, default to 404
+ * @param status - Error status code, default to 500
  * @returns Error object
  */
-export function createError(message: string, name?: string|object, status = 404) {
+export function createError(message: string, name?: string|object, status = 500) {
   const error = new BaseError(message, status, name)
   if (typeof error.code !== 'number')
     error.code = status
@@ -120,10 +120,10 @@ export function createError(message: string, name?: string|object, status = 404)
  * Throw an error
  * @param message - Error message
  * @param name - Error name, optional
- * @param status - Error status code, default to 404
+ * @param status - Error status code, default to 500
  * @throws {BaseError} Throws a BaseError object
  */
-export function throwError(message: string, name?: string|object, status = 404) {
+export function throwError(message: string, name?: string|object, status = 500) {
   const error = createError(message, name, status)
   throw error
 }

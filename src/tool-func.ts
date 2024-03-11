@@ -29,21 +29,63 @@ export declare interface ToolFunc extends FuncItem {
 export class ToolFunc extends AdvancePropertyManager {
   static items: Funcs = {};
 
-  static async run(name: string, params?: any[]) {
+  static get(name: string) {
+    return this.items[name]
+  }
+
+  static async run(name: string, ...params: any[]) {
     const func = this.items[name]
     if (func) {
-      return await func.run(params)
+      return await func.run(...params)
     }
     throw new NotFoundError(`${name} to run`, 'ToolFunc');
   }
 
-  static register(item: ToolFunc) {
-    let result = !!this.items[item.name!]
-    if (!result) {
-      this.items[item.name!] = item
-      result = true
+  static runSync(name: string, ...params: any[]) {
+    const func = this.items[name]
+    if (func) {
+      return func.runSync(...params)
     }
+    throw new NotFoundError(`${name} to run`, 'ToolFunc');
+  }
+
+  static getFunc(name: string) {
+    const func = this.items[name]
+    if (func) {
+      return func.func.bind(func)
+    }
+  }
+
+  static register(item: ToolFunc|FuncItem): boolean
+  static register(name: string, options: FuncItem): boolean
+  static register(func: Function, options: FuncItem): boolean
+  static register(name: ToolFunc|string|Function|FuncItem, options: FuncItem|any = {}) {
+    switch (typeof name) {
+      case 'string':
+        options.name = name
+        break
+      case 'function':
+        options.func = name
+        break
+      case 'object':
+        options = name
+        break
+    }
+
+    name = options.name as string
+
+    let result = !!this.items[name!]
+    // console.log('🚀 ~ ToolFunc ~ register ~ result:',name, result)
+    if (!result) {
+      if (!(options instanceof ToolFunc)) { options = new ToolFunc(options) }
+      this.items[name] = options
+      result = true
+    } else {result = false}
     return result
+  }
+
+  static unregister(name: string) {
+    delete this.items[name]
   }
 
   constructor(name: string|Function|FuncItem, options: FuncItem|any = {}) {
@@ -70,10 +112,33 @@ export class ToolFunc extends AdvancePropertyManager {
 
     // initialize ProperManager
     this.initialize(options)
+    // ToolFunc.items[name] = this
   }
 
-  async run(params?: any[]) {
-    return await this.func.apply(this, params)
+  register() {return ToolFunc.register(this)}
+
+  runSync(...params:any[]) {
+    return this.func(...params)
+  }
+
+  runAsSync(name: string, ...params: any[]) {
+    return ToolFunc.runSync(name, ...params)
+  }
+
+  async run(...params: any[]) {
+    // console.log('🚀 ~ ToolFunc ~ run ~ params:', this.name, params)
+    const result = await (Array.isArray(params) ? this.func(...params) : this.func())
+    return result
+  }
+
+  async runAs(name:string, ...params: any[]) {
+    const result = await ToolFunc.run(name, ...params)
+    return result
+  }
+
+  getFunc(name?: string) {
+    const result = name ? ToolFunc.getFunc(name) : this.func.bind(this)
+    return result
   }
 }
 
@@ -91,7 +156,7 @@ export const ToolFuncSchema = {
         result = valueType === 'function' ? value.toString() : value;
       } else {
         if (valueType !== 'string') {value = value.toString()}
-        result =  _createFunction(value as string, dest.scope)
+        result = _createFunction(value as string, dest.scope)
       }
       return result;
     },

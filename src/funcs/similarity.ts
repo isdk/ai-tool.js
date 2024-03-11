@@ -1,8 +1,14 @@
 import { NotFoundError } from '../base-error';
-import { pipeline as pipeline2, cos_sim as cos_sim2 } from '@xenova/transformers';
-import type { FeatureExtractionPipeline } from '@xenova/transformers';
+import { env as _env, pipeline as _pipeline, cos_sim as _cos_sim } from '@xenova/transformers';
+import type { FeatureExtractionPipeline, PipelineType, PretrainedOptions, AllTasks } from '@xenova/transformers';
+import type { LRUCache } from 'secondary-cache';
 
 import { ToolFunc } from "../tool-func";
+import { createLRUCache } from './lrucache';
+
+const ModelsCache = createLRUCache('ModelsCache', {capacity: 2, expires: 6*60*1000})
+ToolFunc.register(ModelsCache)
+const cache = ModelsCache.runSync() as LRUCache
 
 function average(arr: number[]) {
   if (arr.length === 0) {
@@ -12,13 +18,16 @@ function average(arr: number[]) {
   return sum / arr.length;
 }
 
+declare function pipeline<T extends PipelineType>(task: T, model?: string, { quantized, progress_callback, config, cache_dir, local_files_only, revision, }?: PretrainedOptions): Promise<AllTasks[T]>
+declare function cos_sim(arr1: number[], arr2: number[]): number
+
 // TODO: workaround the vitest added `__vite_ssr_import_1__` to `pipeline` and `cos_sim`, it raise `ReferenceError: __vite_ssr_import_1__ is not defined`
-async function _similarity(this: ToolFunc, query:string, texts: string|string[], model = 'Xenova/distiluse-base-multilingual-cased-v2', maxExtractors = 2) {
-  let extractor = this.extractor.get(model) as FeatureExtractionPipeline
+async function _similarity(this: ToolFunc, query:string, texts: string|string[], model?: string) {
+  if (!model) { model = this.modelId }
+  let extractor = cache.get(model) as FeatureExtractionPipeline
   if (!extractor) {
-    if (this.extractor.size > maxExtractors) {this.extractor.clear()}
     extractor = await pipeline('feature-extraction', model);
-    this.extractor.set(model, extractor);
+    cache.set(model, extractor);
   }
   if (texts && query) {
     if (!Array.isArray(texts)) { texts = [texts] }
@@ -39,11 +48,11 @@ export const similarity = new ToolFunc('similarity', {
     {name: 'query', type: 'string', required: true},
     {name: 'texts', type: ['string', 'array'], required: true},
     {name: 'model', type: 'string', description: 'the embedding model name used'},
-    {name: 'maxExtractors', type: 'number', description: 'the max cached embedding model count'},
+    // {name: 'maxExtractors', type: 'number', description: 'the max cached embedding model count'},
   ],
   result: 'number',
-  scope: {pipeline: pipeline2, cos_sim: cos_sim2, average},
+  scope: {env: _env, pipeline: _pipeline, cos_sim: _cos_sim, average, cache},
   setup(this: ToolFunc) {
-    this.extractor = new Map<String, FeatureExtractionPipeline>() // cache the embedding model
+    this.modelId = 'Xenova/distiluse-base-multilingual-cased-v2'
   }
 })
