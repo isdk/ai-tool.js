@@ -1,18 +1,18 @@
 import { NotFoundError } from '../base-error';
 import { env as _env, pipeline as _pipeline, cos_sim as _cos_sim } from '@xenova/transformers';
 import type { FeatureExtractionPipeline, PipelineType, PretrainedOptions, AllTasks } from '@xenova/transformers';
-import type { LRUCache } from 'secondary-cache';
+import type { Cache } from 'secondary-cache';
 
 import { ToolFunc } from "../tool-func";
 import { createLRUCache } from './lrucache';
 
-const ModelsCache = createLRUCache('ModelsCache', {capacity: 2, expires: 6*60*1000})
+const ModelsCache = createLRUCache('ModelsCache', { capacity: 2, expires: 6 * 60 * 1000 })
 ToolFunc.register(ModelsCache)
-const cache = ModelsCache.runSync() as LRUCache
+const cache = ModelsCache.runSync() as Cache
 
 function average(arr: number[]) {
   if (arr.length === 0) {
-      throw new NotFoundError('Array must not be empty');
+    throw new NotFoundError('Array must not be empty');
   }
   const sum = arr.reduce((a, b) => a + b, 0);
   return sum / arr.length;
@@ -22,7 +22,7 @@ declare function pipeline<T extends PipelineType>(task: T, model?: string, { qua
 declare function cos_sim(arr1: number[], arr2: number[]): number
 
 // TODO: workaround the vitest added `__vite_ssr_import_1__` to `pipeline` and `cos_sim`, it raise `ReferenceError: __vite_ssr_import_1__ is not defined`
-async function _similarity(this: ToolFunc, query:string, texts: string|string[], model?: string) {
+async function _similarity(this: ToolFunc, query: string, texts: string | string[], model?: string) {
   if (!model) { model = this.modelId }
   let extractor = cache.get(model) as FeatureExtractionPipeline
   if (!extractor) {
@@ -45,13 +45,13 @@ export const similarity = new ToolFunc('similarity', {
   func: _similarity,
   description: 'Calculate the similarity between the query and the texts.',
   params: [
-    {name: 'query', type: 'string', required: true},
-    {name: 'texts', type: ['string', 'array'], required: true},
-    {name: 'model', type: 'string', description: 'the embedding model name used'},
+    { name: 'query', type: 'string', required: true },
+    { name: 'texts', type: ['string', 'array'], required: true },
+    { name: 'model', type: 'string', description: 'the embedding model name used' },
     // {name: 'maxExtractors', type: 'number', description: 'the max cached embedding model count'},
   ],
   result: 'number',
-  scope: {env: _env, pipeline: _pipeline, cos_sim: _cos_sim, average, cache},
+  scope: { env: _env, pipeline: _pipeline, cos_sim: _cos_sim, average, cache },
   setup(this: ToolFunc) {
     this.modelId = 'Xenova/distiluse-base-multilingual-cased-v2'
   }
