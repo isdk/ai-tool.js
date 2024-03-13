@@ -4,6 +4,9 @@
   "author": "Riceball LEE <snowyu.lee@gmail.com>",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
+  "exports": {
+    ".": "./dist/index.mjs"
+  },
   "dependencies": {
     "@xenova/transformers": "^2.16.0",
     "property-manager": "2.0.0-alpha.5",
