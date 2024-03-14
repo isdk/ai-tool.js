@@ -22,6 +22,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-tsdoc": "^0.2.17",
     "fastify": "^4.26.2",
+    "onnxruntime-web": "^1.17.1",
     "prettier": "^3.2.5",
     "tsup": "^8.0.2",
     "typedoc": "^0.25.11",
