@@ -8,7 +8,7 @@ import { createLRUCache } from './lrucache';
 
 const ModelsCache = createLRUCache('ModelsCache', { capacity: 2, expires: 6 * 60 * 1000 })
 ToolFunc.register(ModelsCache)
-const cache = ModelsCache.runSync() as Cache
+const cache = ModelsCache.runWithPosSync() as Cache
 
 function average(arr: number[]) {
   if (arr.length === 0) {
@@ -22,7 +22,10 @@ declare function pipeline<T extends PipelineType>(task: T, model?: string, { qua
 declare function cos_sim(arr1: number[], arr2: number[]): number
 
 // TODO: workaround the vitest added `__vite_ssr_import_1__` to `pipeline` and `cos_sim`, it raise `ReferenceError: __vite_ssr_import_1__ is not defined`
-async function _similarity(this: ToolFunc, query: string, texts: string | string[], model?: string) {
+async function _similarity(
+  this: ToolFunc,
+  {query, texts, model}: {query?: string, texts?: string | string[], model?: string} = {},
+) {
   if (!model) { model = this.modelId }
   let extractor = cache.get(model) as FeatureExtractionPipeline
   if (!extractor) {
@@ -44,12 +47,12 @@ async function _similarity(this: ToolFunc, query: string, texts: string | string
 export const similarity = new ToolFunc('similarity', {
   func: _similarity,
   description: 'Calculate the similarity between the query and the texts.',
-  params: [
-    { name: 'query', type: 'string', required: true },
-    { name: 'texts', type: ['string', 'array'], required: true },
-    { name: 'model', type: 'string', description: 'the embedding model name used' },
+  params: {
+    query: { name: 'query', type: 'string', required: true },
+    texts: { name: 'texts', type: ['string', 'array'], required: true },
+    model: { name: 'model', type: 'string', description: 'the embedding model name used' },
     // {name: 'maxExtractors', type: 'number', description: 'the max cached embedding model count'},
-  ],
+  },
   result: 'number',
   scope: { env: _env, pipeline: _pipeline, cos_sim: _cos_sim, average, cache },
   setup(this: ToolFunc) {

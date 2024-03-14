@@ -18,11 +18,14 @@ export function getDefaultSimilarPassingScore(modelId: string): number {
   return result
 }
 
-async function _isSimilar(this: ToolFunc, query:string, texts: string|string[], model?: string, passingScore?: number) {
+async function _isSimilar(
+  this: ToolFunc,
+  {query, texts, model, passingScore}: {query?:string, texts?: string|string[], model?: string, passingScore?: number} = {},
+) {
   if (passingScore == null && model) {
     passingScore = this.getDefaultPassingScore(model)
   }
-  const similarity = this.getFunc('similarity');
+  const similarity = this.getFuncWithPos('similarity');
   const average_score = truncTo(await similarity(query, texts, model || this.modelId));
   if (passingScore == null) { passingScore = this.passingScore }
 
@@ -32,12 +35,12 @@ async function _isSimilar(this: ToolFunc, query:string, texts: string|string[], 
 export const isSimilar = new ToolFunc('isSimilar', {
   func: _isSimilar,
   description: 'merge Segments in same topics simply',
-  params: [
-    {name: 'query', type: 'string', required: true},
-    {name: 'texts', type: ['string', 'array'], required: true},
-    {name: 'model', type: 'string', description: 'the embedding model name used'},
-    {name: 'passingScore', type: 'number', description: 'the min passing score'},
-  ],
+  params: {
+    query: {name: 'query', type: 'string', required: true},
+    texts: {name: 'texts', type: ['string', 'array'], required: true},
+    model: {name: 'model', type: 'string', description: 'the embedding model name used'},
+    passingScore: {name: 'passingScore', type: 'number', description: 'the min passing score'},
+  },
   result: 'boolean',
   scope: {truncTo: _truncTo},
   setup(this: ToolFunc) {

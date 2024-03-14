@@ -4,10 +4,14 @@ import { isSimilar } from "./is-similar";
 
 isSimilar.register()
 
-async function _mergeSegments(this: ToolFunc, segments: string[][], model?: string) {
+async function _mergeSegments(
+  this: ToolFunc,
+  {segments, model}:{segments?: string[][], model?: string} = {},
+) {
   if (!model) { model = this.modelId }
+  if (!segments || segments.length === 0) { return []}
 
-  const isSimilar = this.getFunc('isSimilar')
+  const isSimilar = this.getFuncWithPos('isSimilar')
   let i = 0
   const result = []
   while (i < segments.length) {
@@ -32,10 +36,10 @@ async function _mergeSegments(this: ToolFunc, segments: string[][], model?: stri
 export const mergeSegments = new ToolFunc('mergeSegments', {
   func: _mergeSegments,
   description: 'merge Segments in same topics simply',
-  params: [
-    {name: 'segments', type: 'array', required: true, description: 'the segments to merge'},
-    {name: 'model', type: 'string', description: 'the embedding model name used'},
-  ],
+  params: {
+    segments: {name: 'segments', type: 'array', required: true, description: 'the segments to merge'},
+    model: {name: 'model', type: 'string', description: 'the embedding model name used'},
+  },
   result: 'array',
   setup(this: ToolFunc) {
     this.modelId = 'Xenova/distiluse-base-multilingual-cased-v2'
