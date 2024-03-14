@@ -92,7 +92,7 @@ describe('ServerTools', () => {
 
 })
 
-describe.only('server api', () => {
+describe('server api', () => {
   const apiRoot = 'http://localhost:3000/api'
   const server = fastify()
 
