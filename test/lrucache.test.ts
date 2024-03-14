@@ -6,7 +6,7 @@ ToolFunc.register(lrucache)
 
 describe('tool.lrucache', () => {
   it('should set lrucache options', async() => {
-    let result = await ToolFunc.run('lrucache',
+    let result = await ToolFunc.runWithPos('lrucache',
       undefined, undefined,
       {capacity: 2, expires:120000, cleanInterval: 0}
     )
@@ -16,21 +16,24 @@ describe('tool.lrucache', () => {
   })
 
   it('should get lrucache key', async() => {
-    const cache = await ToolFunc.run('lrucache');
+    const cache = await ToolFunc.runWithPos('lrucache');
     cache.set('key', 'ValueMy')
-    let result = await ToolFunc.run('lrucache', 'key')
+    let result = await ToolFunc.runWithPos('lrucache', 'key')
     expect(result).toBe('ValueMy')
   })
 
   it('should set lrucache key', async() => {
-    await ToolFunc.run('lrucache', 'key2', 'value2')
-    expect(ToolFunc.runSync('lrucache', 'key2')).toBe('value2')
+    await ToolFunc.runWithPos('lrucache', 'key2', 'value2')
+    expect(ToolFunc.runWithPosSync('lrucache', 'key2')).toBe('value2')
+
+    await ToolFunc.run('lrucache', {key: 'key2', value:'value2'})
+    expect(ToolFunc.runSync('lrucache', {key: 'key2'})).toBe('value2')
   })
 
   it('should set lrucache key with expires', async() => {
-    const cache = await ToolFunc.run('lrucache');
-    await ToolFunc.run('lrucache', 'key_expires', 'value2', 1000)
-    expect(ToolFunc.runSync('lrucache', 'key2')).toBe('value2')
+    const cache = await ToolFunc.runWithPos('lrucache');
+    await ToolFunc.runWithPos('lrucache', 'key_expires', 'value2', 1000)
+    expect(ToolFunc.runWithPosSync('lrucache', 'key2')).toBe('value2')
     await sleep(500)
     expect(cache.isExists('key_expires')).toBeTruthy()
     await sleep(500)
@@ -38,11 +41,11 @@ describe('tool.lrucache', () => {
   })
 
   it('should del lrucache key', async() => {
-    const cache = ToolFunc.runSync('lrucache');
-    await ToolFunc.run('lrucache', 'key2', 'value2')
-    expect(ToolFunc.runSync('lrucache', 'key2')).toBe('value2')
-    await ToolFunc.run('lrucache', 'key2', null)
-    expect(ToolFunc.runSync('lrucache', 'key2')).toBeUndefined()
+    const cache = ToolFunc.runWithPosSync('lrucache');
+    await ToolFunc.runWithPos('lrucache', 'key2', 'value2')
+    expect(ToolFunc.runWithPosSync('lrucache', 'key2')).toBe('value2')
+    await ToolFunc.runWithPos('lrucache', 'key2', null)
+    expect(ToolFunc.runWithPosSync('lrucache', 'key2')).toBeUndefined()
     expect(cache.isExists('key2')).toBeFalsy()
   })
 })

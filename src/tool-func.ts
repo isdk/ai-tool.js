@@ -1,24 +1,29 @@
 import { AdvancePropertyManager } from 'property-manager';
 import { _createFunction } from 'util-ex';
-import { AlreadyExistsError, NotFoundError } from './base-error';
+import { NotFoundError, throwError } from './base-error';
 
-interface FuncParam {
+export type FuncParamType = string
+export interface FuncParam {
   name: string;
-  type?: string;
+  type?: FuncParamType;
   required?: boolean;
   description?: string;
 }
 
-interface FuncItem {
+export interface FuncParams {
+  [name: string]: FuncParam|FuncParamType;
+}
+
+export interface FuncItem {
   func: Function;
   name?: string;
-  params?: FuncParam[];
+  params?: FuncParams | FuncParam[];
   result?: string;
   scope?: any;
   setup?: (this: ToolFunc, options?: FuncItem) => void;
 }
 
-interface Funcs {
+export interface Funcs {
   [name: string]: ToolFunc
 }
 
@@ -34,32 +39,52 @@ export class ToolFunc extends AdvancePropertyManager {
     return this.items[name]
   }
 
-  static async run(name: string, ...params: any[]) {
+  static async run(name: string, params: any) {
     const func = this.items[name]
     if (func) {
-      return await func.run(...params)
+      return await func.run(params)
     }
     throw new NotFoundError(`${name} to run`, 'ToolFunc');
   }
 
-  static runSync(name: string, ...params: any[]) {
+  static runSync(name: string, params: any) {
     const func = this.items[name]
     if (func) {
-      return func.runSync(...params)
+      return func.runSync(params)
     }
     throw new NotFoundError(`${name} to run`, 'ToolFunc');
   }
 
   static getFunc(name: string) {
     const func = this.items[name]
-    if (func) {
-      return func.func.bind(func)
-    }
+    return func?.getFunc()
   }
 
-  static register(item: ToolFunc|FuncItem): boolean
-  static register(name: string, options: FuncItem): boolean
-  static register(func: Function, options: FuncItem): boolean
+  static async runWithPos(name: string, ...params: any[]) {
+    const func = this.items[name]
+    if (func) {
+      return await func.runWithPos(...params)
+    }
+    throw new NotFoundError(`${name} to run`, 'ToolFunc');
+  }
+
+  static runWithPosSync(name: string, ...params: any[]) {
+    const func = this.items[name]
+    if (func) {
+      return func.runWithPosSync(...params)
+    }
+    throw new NotFoundError(`${name} to run`, 'ToolFunc');
+  }
+
+  static getFuncWithPos(name: string) {
+    const func = this.items[name]
+    return func?.getFuncWithPos()
+  }
+
+  static register(item: ToolFunc|FuncItem): boolean|ToolFunc
+  static register(name: string, options: FuncItem): boolean|ToolFunc
+  static register(func: Function, options: FuncItem): boolean|ToolFunc
+  static register(name: ToolFunc|string|Function|FuncItem, options: FuncItem|any): boolean|ToolFunc
   static register(name: ToolFunc|string|Function|FuncItem, options: FuncItem|any = {}) {
     switch (typeof name) {
       case 'string':
@@ -76,17 +101,20 @@ export class ToolFunc extends AdvancePropertyManager {
     name = options.name as string
 
     let result = !!this.items[name!]
-    // console.log('🚀 ~ ToolFunc ~ register ~ result:',name, result)
     if (!result) {
       if (!(options instanceof ToolFunc)) { options = new ToolFunc(options) }
       this.items[name] = options
-      result = true
+      result = options
     } else {result = false}
     return result
   }
 
-  static unregister(name: string) {
-    delete this.items[name]
+  static unregister(name: string): ToolFunc|undefined {
+    const result = this.items[name]
+    if (result) {
+      delete this.items[name]
+    }
+    return result
   }
 
   constructor(name: string|Function|FuncItem, options: FuncItem|any = {}) {
@@ -105,9 +133,9 @@ export class ToolFunc extends AdvancePropertyManager {
     }
     this.name = name = options.name as string
     // const ctor = this.constructor as unknown as typeof ToolFunc;
-    if (ToolFunc.items[name]) {
-      throw new AlreadyExistsError(`Function ${name}`, ToolFunc.name)
-    }
+    // if (ctor.items[name]) {
+    //   throw new AlreadyExistsError(`Function ${name}`, ToolFunc.name)
+    // }
     if (options.scope) {this.scope = options.scope}
     if (typeof options.setup === 'function') {options.setup.call(this, options)}
 
@@ -116,29 +144,96 @@ export class ToolFunc extends AdvancePropertyManager {
     // ToolFunc.items[name] = this
   }
 
-  register() {return ToolFunc.register(this)}
-
-  runSync(...params:any[]) {
-    return this.func(...params)
+  register() {
+    return (this.constructor as any).register(this)
   }
 
-  runAsSync(name: string, ...params: any[]) {
-    return ToolFunc.runSync(name, ...params)
+  unregister() {
+    return (this.constructor as any).unregister(this.name)
   }
 
-  async run(...params: any[]) {
-    // console.log('🚀 ~ ToolFunc ~ run ~ params:', this.name, params)
-    const result = await (Array.isArray(params) ? this.func(...params) : this.func())
+  arr2ObjParams(params: any[]) {
+    if (this.params && (params.length > 1 || Array.isArray(params[0]) || (params[0] && typeof params[0] !== 'object'))) {
+      const _p: any = {}
+      const keys = Object.keys(this.params)
+      let len = Math.min(keys.length, params.length)
+      for (let i = 0; i < len; i++) {
+        _p[keys[i]] = params[i]
+      }
+      params=[_p]
+    }
+    return params
+  }
+
+  obj2ArrParams(params: any): any[] {
+    const result: any[] = []
+    if (params && this.params && Array.isArray(this.params)) {
+      const keys = Object.keys(params)
+      let len = Math.min(keys.length, this.params.length)
+      for (let i = 0; i < len; i++) {
+        result.push(params[keys[i]])
+      }
+    }
+    return result;
+
+  }
+
+  runSync(params: any) {
+    const isPosParams = this.params && Array.isArray(this.params)
+    if (Array.isArray(params)) {
+      if (isPosParams) return this.func(...params)
+      throwError('the function is not support array params, the params must be object!', this.name)
+    }
+    if (isPosParams) {
+      params = this.obj2ArrParams(params) as any[]
+      console.warn('Use runWithPos() instead of run() for the "'+this.name+'" is function with position params')
+      return this.func(...params)
+    }
+    return this.func(params)
+  }
+
+  async run(params: any) {
+    return await this.runSync(params)
+  }
+
+  async runAs(name:string, params: any) {
+    const result = await (this.constructor as any).run(name, params)
     return result
   }
 
-  async runAs(name:string, ...params: any[]) {
-    const result = await ToolFunc.run(name, ...params)
+  runAsSync(name:string, params: any) {
+    const result = (this.constructor as any).runSync(name, params)
     return result
   }
 
   getFunc(name?: string) {
-    const result = name ? ToolFunc.getFunc(name) : this.func.bind(this)
+    const result = name ? (this.constructor as any).getFunc(name) : this.runSync.bind(this)
+    return result
+  }
+
+  runWithPosSync(...params:any[]) {
+    if (this.params && !Array.isArray(this.params)) {
+      params = this.arr2ObjParams(params)
+    }
+    return this.func(...params)
+  }
+
+  runWithPosAsSync(name: string, ...params: any[]) {
+    return (this.constructor as any).runWithPosSync(name, ...params)
+  }
+
+  async runWithPos(...params: any[]) {
+    const result = await this.runWithPosSync(...params)
+    return result
+  }
+
+  async runWithPosAs(name:string, ...params: any[]) {
+    const result = await (this.constructor as any).runWithPos(name, ...params)
+    return result
+  }
+
+  getFuncWithPos(name?: string) {
+    const result = name ? (this.constructor as any).getFuncWithPos(name) : this.runWithPosSync.bind(this)
     return result
   }
 }
@@ -162,8 +257,8 @@ export const ToolFuncSchema = {
       return result;
     },
   },
-  params: {type: 'array'},
-  result: {type: 'array'},
+  params: {type: 'object'},
+  result: {type: 'any'},
 }
 
 ToolFunc.defineProperties(ToolFunc, ToolFuncSchema)
