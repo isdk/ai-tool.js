@@ -1,5 +1,4 @@
-import { ClientTools } from "../client-tools";
-import { ToolFunc } from "../tool-func";
+import { ServerTools as ToolFunc } from '../server-tools';
 import { mergeSegments } from "./merge-segments";
 import { splitSegments } from "./split-segments";
 

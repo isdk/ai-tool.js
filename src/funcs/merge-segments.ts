@@ -1,4 +1,4 @@
-import { ToolFunc } from "../tool-func";
+import { ServerTools as ToolFunc } from '../server-tools';
 import { truncTo as _truncTo } from "../utils/trunc-to";
 import { isSimilar } from "./is-similar";
 

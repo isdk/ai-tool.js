@@ -3,11 +3,12 @@ import { env as _env, pipeline as _pipeline, cos_sim as _cos_sim } from '@xenova
 import type { FeatureExtractionPipeline, PipelineType, PretrainedOptions, AllTasks } from '@xenova/transformers';
 import type { Cache } from 'secondary-cache';
 
-import { ToolFunc } from "../tool-func";
+// import { ToolFunc } from "../tool-func";
 import { createLRUCache } from './lrucache';
+import { ServerTools as ToolFunc } from '../server-tools';
 
 const ModelsCache = createLRUCache('ModelsCache', { capacity: 2, expires: 6 * 60 * 1000 })
-ToolFunc.register(ModelsCache)
+ToolFunc.register(ModelsCache, {disableClient: true})
 const cache = ModelsCache.runWithPosSync() as Cache
 
 function average(arr: number[]) {

@@ -15,7 +15,7 @@ export interface FuncParams {
 }
 
 export interface FuncItem {
-  func: Function;
+  func?: Function;
   name?: string;
   params?: FuncParams | FuncParam[];
   result?: string;
@@ -40,7 +40,7 @@ export class ToolFunc extends AdvancePropertyManager {
   }
 
   static async run(name: string, params: any) {
-    const func = this.items[name]
+    const func = this.get(name)
     if (func) {
       return await func.run(params)
     }
@@ -48,7 +48,7 @@ export class ToolFunc extends AdvancePropertyManager {
   }
 
   static runSync(name: string, params: any) {
-    const func = this.items[name]
+    const func = this.get(name)
     if (func) {
       return func.runSync(params)
     }
@@ -56,12 +56,12 @@ export class ToolFunc extends AdvancePropertyManager {
   }
 
   static getFunc(name: string) {
-    const func = this.items[name]
+    const func = this.get(name)
     return func?.getFunc()
   }
 
   static async runWithPos(name: string, ...params: any[]) {
-    const func = this.items[name]
+    const func = this.get(name)
     if (func) {
       return await func.runWithPos(...params)
     }
@@ -69,7 +69,7 @@ export class ToolFunc extends AdvancePropertyManager {
   }
 
   static runWithPosSync(name: string, ...params: any[]) {
-    const func = this.items[name]
+    const func = this.get(name)
     if (func) {
       return func.runWithPosSync(...params)
     }
@@ -77,15 +77,15 @@ export class ToolFunc extends AdvancePropertyManager {
   }
 
   static getFuncWithPos(name: string) {
-    const func = this.items[name]
+    const func = this.get(name)
     return func?.getFuncWithPos()
   }
 
   static register(item: ToolFunc|FuncItem): boolean|ToolFunc
   static register(name: string, options: FuncItem): boolean|ToolFunc
   static register(func: Function, options: FuncItem): boolean|ToolFunc
-  static register(name: ToolFunc|string|Function|FuncItem, options: FuncItem|any): boolean|ToolFunc
-  static register(name: ToolFunc|string|Function|FuncItem, options: FuncItem|any = {}) {
+  static register(name: ToolFunc|string|Function|FuncItem, options: FuncItem): boolean|ToolFunc
+  static register(name: ToolFunc|string|Function|FuncItem, options: FuncItem = {} as any) {
     switch (typeof name) {
       case 'string':
         options.name = name
@@ -100,11 +100,11 @@ export class ToolFunc extends AdvancePropertyManager {
 
     name = options.name as string
 
-    let result = !!this.items[name!]
+    let result: boolean|ToolFunc = !!this.get(name)
     if (!result) {
-      if (!(options instanceof ToolFunc)) { options = new ToolFunc(options) }
-      this.items[name] = options
-      result = options
+      if (!(options instanceof ToolFunc)) { options = new this(options) }
+      this.items[name] = options as ToolFunc
+      result = options as ToolFunc
     } else {result = false}
     return result
   }
@@ -181,15 +181,15 @@ export class ToolFunc extends AdvancePropertyManager {
   runSync(params: any) {
     const isPosParams = this.params && Array.isArray(this.params)
     if (Array.isArray(params)) {
-      if (isPosParams) return this.func(...params)
+      if (isPosParams) return this.func!(...params)
       throwError('the function is not support array params, the params must be object!', this.name)
     }
     if (isPosParams) {
       params = this.obj2ArrParams(params) as any[]
       console.warn('Use runWithPos() instead of run() for the "'+this.name+'" is function with position params')
-      return this.func(...params)
+      return this.func!(...params)
     }
-    return this.func(params)
+    return this.func!(params)
   }
 
   async run(params: any) {
@@ -215,7 +215,7 @@ export class ToolFunc extends AdvancePropertyManager {
     if (this.params && !Array.isArray(this.params)) {
       params = this.arr2ObjParams(params)
     }
-    return this.func(...params)
+    return this.func!(...params)
   }
 
   runWithPosAsSync(name: string, ...params: any[]) {
