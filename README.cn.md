@@ -27,6 +27,15 @@ run/runSync
 
 所有本地执行的，注册在这里
 
+* func: 执行的工具函数主体
+* name： 工具函数的名称
+* params: 工具函数的参数描述schema
+* result: 工具函数返回结果类型
+* scope: 作用域
+* description: 工具函数说明
+* setup: 将在ctor ToolFunc实例的时候被执行
+* depends: ToolFunc[], 放在这里的将会被自动注册
+
 ### ServerTools
 
 服务器端至少需要两个入口，一个获得所有tools api，另一个执行指定的tool api.
