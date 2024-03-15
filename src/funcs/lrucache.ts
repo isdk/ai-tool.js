@@ -20,17 +20,20 @@ export function _lrucache(
 }
 
 export function createLRUCache(name: string, options?: ICacheOptions | number) {
-  const result = ToolFunc.get(name) ?? new ToolFunc(name, {
-    func: _lrucache,
-    description: 'get/set LRU cache or return the LRUCache object',
-    params: {
-      key: { name: 'key', type: 'string', description: 'the key is undefined means change the default cache options' },
-      value: { name: 'value', type: 'any', description: 'the value to store, if value is null means remove the key' },
-      options: { name: 'options', type: 'object|number', description: 'the optional cache options:{capacity,expires,cleanInterval} or expires' },
-    },
-    result: 'any',
-  })
-  result.cache = new _Cache(options)
+  let result = ToolFunc.get(name)
+  if (!result) {
+    result = new ToolFunc(name, {
+      func: _lrucache,
+      description: 'get/set LRU cache or return the LRUCache object',
+      params: {
+        key: { name: 'key', type: 'string', description: 'the key is undefined means change the default cache options' },
+        value: { name: 'value', type: 'any', description: 'the value to store, if value is null means remove the key' },
+        options: { name: 'options', type: 'object|number', description: 'the optional cache options:{capacity,expires,cleanInterval} or expires' },
+      },
+      result: 'any',
+    })
+    result.cache = new _Cache(options)
+  }
   return result
 }
 
