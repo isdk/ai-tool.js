@@ -4,6 +4,10 @@ import { RemoteToolFuncSchema, RemoteFuncItem } from "./utils/consts";
 export interface ClientFuncItem extends RemoteFuncItem {
 }
 
+export declare interface ClientTools extends ClientFuncItem {
+  [name: string]: any;
+}
+
 export class ClientTools extends ToolFunc {
   static items: Funcs = {};
   static get(name: string) {
@@ -29,11 +33,19 @@ export class ClientTools extends ToolFunc {
         //   .join('&');
         objParam = 'p='+encodeURIComponent(JSON.stringify(objParam))
       }
-      res = await fetch(`${this.apiRoot}/${this.name}?${objParam}`, fetchOptions)
+      res = await fetch(`${this.apiRoot}/${this.name}?${objParam}`, {
+        ...fetchOptions,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
     } else {
       // defaults to post
       res = await fetch(`${this.apiRoot}/${this.name}`, {
         ...fetchOptions,
+        headers: {
+          "Content-Type": "application/json",
+        },
         method: 'POST',
         body: JSON.stringify(objParam),
       })

@@ -141,7 +141,10 @@ describe('server api', () => {
       if (!func) {
         reply.code(404).send({error: toolId + ' Not Found'})
       }
-      const result = JSON.stringify(await func.run(JSON.parse(request.body as string)))
+      let body: any = request.body;
+      if (typeof body === 'string') {body = JSON.parse(body)}
+      let result = await func.run(body)
+      result = JSON.stringify(result)
       reply.send(result)
       // reply.send({params: request.params as any, query: request.query, url: request.url})
     })
