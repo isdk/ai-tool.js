@@ -104,7 +104,10 @@ export class ToolFunc extends AdvancePropertyManager {
 
     let result: boolean|ToolFunc = !!this.get(name)
     if (!result) {
-      if (!(options instanceof ToolFunc)) { options = new this(options) }
+      if (!(options instanceof ToolFunc)) {
+        options = new this(options)
+        return options.register()
+      }
       this.items[name] = options as ToolFunc
       result = options as ToolFunc
     } else {result = false}
