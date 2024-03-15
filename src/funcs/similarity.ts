@@ -5,10 +5,13 @@ import type { Cache } from 'secondary-cache';
 
 // import { ToolFunc } from "../tool-func";
 import { createLRUCache } from './lrucache';
-import { ServerTools as ToolFunc } from '../server-tools';
+import { ServerTools } from '../server-tools';
+import { ToolFunc } from '../tool-func';
 
 const ModelsCache = createLRUCache('ModelsCache', { capacity: 2, expires: 6 * 60 * 1000 })
-ToolFunc.register(ModelsCache, {disableClient: true})
+
+ToolFunc.register(ModelsCache)
+
 const cache = ModelsCache.runWithPosSync() as Cache
 
 function average(arr: number[]) {
@@ -24,7 +27,7 @@ declare function cos_sim(arr1: number[], arr2: number[]): number
 
 // TODO: workaround the vitest added `__vite_ssr_import_1__` to `pipeline` and `cos_sim`, it raise `ReferenceError: __vite_ssr_import_1__ is not defined`
 async function _similarity(
-  this: ToolFunc,
+  this: ServerTools,
   {query, texts, model}: {query?: string, texts?: string | string[], model?: string} = {},
 ) {
   if (!model) { model = this.modelId }
@@ -45,7 +48,7 @@ async function _similarity(
   }
 }
 
-export const similarity = new ToolFunc('similarity', {
+export const similarity = new ServerTools('similarity', {
   func: _similarity,
   description: 'Calculate the similarity between the query and the texts.',
   params: {
@@ -56,7 +59,7 @@ export const similarity = new ToolFunc('similarity', {
   },
   result: 'number',
   scope: { env: _env, pipeline: _pipeline, cos_sim: _cos_sim, average, cache },
-  setup(this: ToolFunc) {
+  setup(this: ServerTools) {
     this.modelId = 'Xenova/distiluse-base-multilingual-cased-v2'
   }
 })
