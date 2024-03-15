@@ -106,17 +106,43 @@ describe('server api', () => {
       action: 'get',
       func: ({a, b}: {a: number, b: any}) => {
         return a >15 ? b : a
-      }
+      },
+      result: 'number',
     })
+
+    ToolFunc.register({
+      name: 'test-post',
+      params,
+      func: ({a, b}: {a: number, b: any}) => {
+        return a >15 ? b : a
+      },
+      result: 'number',
+    })
+    ClientTools.loadFrom(ToolFunc.toJSON())
 
     server.get('/api/:toolId', async function(request, reply){
       const { toolId } = request.params as any;
       const func = ToolFunc.get(toolId)
-      console.log('TCL:: ~ server.post ~ func:', toolId, func);
       if (!func) {
         reply.code(404).send({error: toolId + ' Not Found'})
       }
-      reply.send(await func.run(request.query))
+      let params: any = (request.query as any).p
+      if (params) {
+        params = JSON.parse(params)
+      }
+      const result = JSON.stringify(await func.run(params))
+      reply.send(result)
+      // reply.send({params: request.params as any, query: request.query, url: request.url})
+    })
+
+    server.post('/api/:toolId', async function(request, reply){
+      const { toolId } = request.params as any;
+      const func = ToolFunc.get(toolId)
+      if (!func) {
+        reply.code(404).send({error: toolId + ' Not Found'})
+      }
+      const result = JSON.stringify(await func.run(JSON.parse(request.body as string)))
+      reply.send(result)
       // reply.send({params: request.params as any, query: request.query, url: request.url})
     })
     const result = await server.listen({port: 3000})
@@ -131,6 +157,19 @@ describe('server api', () => {
     const result = ClientTools.get('test-get')
     expect(result).toBeInstanceOf(ClientTools)
     expect(await result.run({a: 10})).toStrictEqual(10)
+    expect(await result.run({a: 18, b: 'hi world'})).toStrictEqual('hi world')
+
+    // const res = await fetch(apiRoot + '/test?as=1&toolId=6', {
+    // });
+    // console.log(await res.json())
+  })
+
+  it('should work on post', async () => {
+    const result = ClientTools.get('test-post')
+    expect(result).toBeInstanceOf(ClientTools)
+    expect(await result.run({a: 10})).toStrictEqual(10)
+    expect(await result.run({a: 18, b: 5})).toStrictEqual(5)
+    expect(await result.run({a: 18, b: 'hi world'})).toStrictEqual('hi world')
 
     // const res = await fetch(apiRoot + '/test?as=1&toolId=6', {
     // });

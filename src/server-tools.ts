@@ -1,38 +1,10 @@
-import { FuncItem, ToolFunc } from "./tool-func";
-import { ClientTools } from "./client-tools";
-import { throwError } from "./base-error";
-
-interface ServerFuncItem extends FuncItem {
-  apiRoot?: string
-  action?: 'get'|'post'
-  fetchOptions?: any
-  disableClient?: boolean
-}
-
-async function runClient(this: ClientTools, objParam: any) {
-  let res: Response
-  const fetchOptions = this.fetchOptions || {}
-  if (this.action === 'get') {
-    if (objParam) {
-      objParam = Object.entries(objParam)
-        .map(([key, value]: any[]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
-        .join('&');
-    }
-    res = await fetch(`${this.apiRoot}/${this.name}?${objParam}`, fetchOptions)
-  } else {
-    // defaults to post
-    res = await fetch(`${this.apiRoot}/${this.name}`, {
-      ...fetchOptions,
-      method: 'POST',
-      body: JSON.stringify(objParam),
-    })
-  }
-  return res.json()
-}
+import { ToolFunc } from "./tool-func";
+import { RemoteToolFuncSchema } from "./utils/consts";
 
 export class ServerTools extends ToolFunc {
   declare apiRoot: string;
   declare action: string;
+  declare allowExportFunc: boolean;
 
   static apiRoot?: string;
   static items: {[name:string]: ServerTools} = {}
@@ -42,58 +14,20 @@ export class ServerTools extends ToolFunc {
     return result;
   }
 
-  static register(name: ToolFunc|string|Function|ServerFuncItem, options: ServerFuncItem = {} as any): ServerTools {
-    let result: boolean|ServerTools = ToolFunc.register.call(this, name, options) as ServerTools
-    if (result && !result.disableClient) {
-      const clientFn = ClientTools.register(result.name!, {
-        func: runClient,
-        params: result.params,
-        result: result.result,
-      }) as ToolFunc
-      if (clientFn) {
-        clientFn.apiRoot = result.apiRoot
-        clientFn.action = result.action
-        clientFn.fetchOptions = result.fetchOptions
-      } else {
-        result.unregister()
-        throwError('can not register "' + result.name! + '" to ClientTools', 'ServerTools')
+  static toJSON() {
+    const result:{[name:string]: ServerTools} = {}
+    for (const name in this.items) {
+      let item = this.items[name];
+      if (!item.allowExportFunc) {
+        item = item.toJSON()
+        delete item.func;
       }
+      result[name] = item;
     }
     return result
   }
-
-  static unregister(name: string): ServerTools | undefined {
-    const result = ToolFunc.unregister.call(this, name) as ServerTools
-    if (result && !result.disableClient) {
-      ClientTools.unregister(name)
-    }
-    return result
-  }
-
-  constructor(name: string|Function|ServerFuncItem, options: ServerFuncItem|any = {}) {
-    super(name, options)
-    if (this.action == null) {this.action = 'post' }
-  }
 }
 
-export const ServerToolFuncSchema = {
-  apiRoot: {
-    type: 'string',
-    get(this: ServerTools){
-      return this._apiRoot ?? (this.constructor as any).apiRoot
-    },
-    set(this: ServerTools, value: string) {
-      this._apiRoot = value
-    },
-  },
-  action: {
-    type: 'string',
-    assign(value: string, dest:ServerTools, src?:ToolFunc, name?: string, options?: any) {
-      return value || 'post'
-    },
-  },
-  fetchOptions: { type: 'string' },
-  disableClient: { type: 'boolean' },
-}
+export const ServerToolFuncSchema = { ...RemoteToolFuncSchema }
 
 ServerTools.defineProperties(ServerTools, ServerToolFuncSchema)

@@ -14,8 +14,10 @@ export interface FuncParams {
   [name: string]: FuncParam|FuncParamType;
 }
 
+export type TFunc = (this:ToolFunc, ...params:any[]) => any
+
 export interface FuncItem {
-  func?: Function;
+  func?: TFunc;
   name?: string;
   params?: FuncParams | FuncParam[];
   result?: string;
@@ -27,7 +29,7 @@ export interface Funcs {
   [name: string]: ToolFunc
 }
 
-export declare interface ToolFunc extends FuncItem {
+export declare interface ToolFunc {
   [name: string]: any;
 }
 
@@ -81,17 +83,16 @@ export class ToolFunc extends AdvancePropertyManager {
     return func?.getFuncWithPos()
   }
 
-  static register(item: ToolFunc|FuncItem): boolean|ToolFunc
   static register(name: string, options: FuncItem): boolean|ToolFunc
   static register(func: Function, options: FuncItem): boolean|ToolFunc
-  static register(name: ToolFunc|string|Function|FuncItem, options: FuncItem): boolean|ToolFunc
-  static register(name: ToolFunc|string|Function|FuncItem, options: FuncItem = {} as any) {
+  static register(name: string|ToolFunc|Function|FuncItem, options?: FuncItem): boolean|ToolFunc
+  static register(name: ToolFunc|string|Function|FuncItem, options: FuncItem|ToolFunc = {} as any) {
     switch (typeof name) {
       case 'string':
         options.name = name
         break
       case 'function':
-        options.func = name
+        options.func = name as TFunc
         break
       case 'object':
         options = name
@@ -186,7 +187,7 @@ export class ToolFunc extends AdvancePropertyManager {
     }
     if (isPosParams) {
       params = this.obj2ArrParams(params) as any[]
-      console.warn('Use runWithPos() instead of run() for the "'+this.name+'" is function with position params')
+      console.warn('Warning:Use runWithPos() instead of run() for the "'+this.name+'" is function with position params')
       return this.func!(...params)
     }
     return this.func!(params)
@@ -243,14 +244,13 @@ export const ToolFuncSchema = {
   description: {type: 'string'},
   func: {
     type: 'function',
-    required: true,
     assign(value: Function|string, dest:ToolFunc, src?:ToolFunc, name?: string, options?: any) {
       let result = value;
       const valueType = typeof value;
       const isExported = options.isExported
       if (isExported) {
         result = valueType === 'function' ? value.toString() : value;
-      } else {
+      } else if (value) {
         if (valueType !== 'string') {value = value.toString()}
         result = _createFunction(value as string, dest.scope)
       }

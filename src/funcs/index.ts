@@ -1,4 +1,5 @@
 import { ToolFunc } from "../tool-func";
+import { ServerTools } from "../server-tools";
 import { isSimilar } from "./is-similar";
 import { lrucache } from "./lrucache";
 import { mergeSegments } from "./merge-segments";
@@ -15,9 +16,9 @@ export * from './segments';
 
 export function registerCoreTools() {
   ToolFunc.register(lrucache);
-  ToolFunc.register(similarity);
-  ToolFunc.register(isSimilar);
-  ToolFunc.register(splitSegments);
-  ToolFunc.register(mergeSegments);
-  ToolFunc.register(segments);
+  ServerTools.register(similarity);
+  ServerTools.register(isSimilar);
+  ServerTools.register(splitSegments);
+  ServerTools.register(mergeSegments);
+  ServerTools.register(segments);
 }
