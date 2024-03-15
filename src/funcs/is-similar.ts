@@ -2,8 +2,6 @@ import { ServerTools as ToolFunc } from '../server-tools';
 import { similarity as Similarity } from "./similarity";
 import { truncTo as _truncTo } from "../utils/trunc-to";
 
-Similarity.register()
-
 declare const truncTo: (n: number, dec?: number)=>number;
 
 export function getDefaultSimilarPassingScore(modelId: string): number {
@@ -43,6 +41,8 @@ export const isSimilar = new ToolFunc('isSimilar', {
   },
   result: 'boolean',
   scope: {truncTo: _truncTo},
+
+  depends: [ Similarity ],
   setup(this: ToolFunc) {
     this.getDefaultPassingScore = getDefaultSimilarPassingScore;
     Object.defineProperty(this, 'modelId', {

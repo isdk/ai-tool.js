@@ -3,8 +3,6 @@ import { ServerTools as ToolFunc } from '../server-tools';
 import { splitSentence as _splitSentence } from '../utils/split-sentence';
 import { isSimilar as _isSimilar } from "./is-similar";
 
-_isSimilar.register()
-
 declare const splitSentence: (text: string, best?: boolean)=> string[];
 declare function throwError(message: string, name?: string | object | undefined, status?: number): void;
 
@@ -50,6 +48,7 @@ export const splitSegments = new ToolFunc('splitSegments', {
   },
   result: 'array',
   scope: {splitSentence: _splitSentence, throwError: _throwError},
+  depends: [ _isSimilar ],
   setup(this: ToolFunc) {
     this.modelId = 'Xenova/distiluse-base-multilingual-cased-v2'
   }

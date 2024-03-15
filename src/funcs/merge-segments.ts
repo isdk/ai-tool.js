@@ -2,8 +2,6 @@ import { ServerTools as ToolFunc } from '../server-tools';
 import { truncTo as _truncTo } from "../utils/trunc-to";
 import { isSimilar } from "./is-similar";
 
-isSimilar.register()
-
 async function _mergeSegments(
   this: ToolFunc,
   {segments, model}:{segments?: string[][], model?: string} = {},
@@ -41,6 +39,7 @@ export const mergeSegments = new ToolFunc('mergeSegments', {
     model: {name: 'model', type: 'string', description: 'the embedding model name used'},
   },
   result: 'array',
+  depends: [ isSimilar ],
   setup(this: ToolFunc) {
     this.modelId = 'Xenova/distiluse-base-multilingual-cased-v2'
   },

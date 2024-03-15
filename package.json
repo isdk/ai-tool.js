@@ -9,9 +9,9 @@
   },
   "dependencies": {
     "@xenova/transformers": "^2.16.0",
-    "property-manager": "2.0.0-alpha.5",
-    "secondary-cache": "^2.0.0-alpha.1",
-    "util-ex": "2.0.0-alpha.8"
+    "property-manager": "^2.0.0-alpha.5",
+    "secondary-cache": "^2.0.0-alpha.3",
+    "util-ex": "2.0.0-alpha.10"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.8.0",

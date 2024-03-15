@@ -8,6 +8,7 @@ export interface FuncParam {
   type?: FuncParamType;
   required?: boolean;
   description?: string;
+  depends?: ToolFunc[];
 }
 
 export interface FuncParams {
@@ -146,7 +147,13 @@ export class ToolFunc extends AdvancePropertyManager {
   }
 
   register() {
-    return (this.constructor as any).register(this)
+    const Tools = (this.constructor as unknown as typeof ToolFunc)
+    if (Array.isArray(this.depends)) {
+      for (const dep of this.depends) {
+        if (dep instanceof ToolFunc) { dep.register() }
+      }
+    }
+    return Tools.register(this)
   }
 
   unregister() {
@@ -259,6 +266,7 @@ export const ToolFuncSchema = {
   },
   params: {type: 'object'},
   result: {type: 'any'},
+  depends: {type: 'array'},
 }
 
 ToolFunc.defineProperties(ToolFunc, ToolFuncSchema)

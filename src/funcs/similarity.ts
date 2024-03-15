@@ -6,12 +6,8 @@ import type { Cache } from 'secondary-cache';
 // import { ToolFunc } from "../tool-func";
 import { createLRUCache } from './lrucache';
 import { ServerTools } from '../server-tools';
-import { ToolFunc } from '../tool-func';
 
 const ModelsCache = createLRUCache('ModelsCache', { capacity: 2, expires: 6 * 60 * 1000 })
-
-ToolFunc.register(ModelsCache)
-
 const cache = ModelsCache.runWithPosSync() as Cache
 
 function average(arr: number[]) {
@@ -59,6 +55,7 @@ export const similarity = new ServerTools('similarity', {
   },
   result: 'number',
   scope: { env: _env, pipeline: _pipeline, cos_sim: _cos_sim, average, cache },
+  depends: [ModelsCache],
   setup(this: ServerTools) {
     this.modelId = 'Xenova/distiluse-base-multilingual-cased-v2'
   }

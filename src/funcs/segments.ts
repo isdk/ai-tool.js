@@ -2,9 +2,6 @@ import { ServerTools as ToolFunc } from '../server-tools';
 import { mergeSegments } from "./merge-segments";
 import { splitSegments } from "./split-segments";
 
-splitSegments.register()
-mergeSegments.register()
-
 async function _segments(
   this: ToolFunc,
   {texts, model = 'Xenova/distiluse-base-multilingual-cased-v2'}: {texts?: string|string[], model?:string} = {},
@@ -22,5 +19,6 @@ export const segments = new ToolFunc('segments', {
     texts: {name: 'texts', type: ['string', 'array'], required: true},
     model: {name: 'model', type: 'string', description: 'the embedding model name used'},
   },
+  depends: [ splitSegments, mergeSegments ],
   result: 'array',
 })
