@@ -1,3 +1,4 @@
+import { throwError } from "./base-error";
 import { Funcs, ToolFunc } from "./tool-func";
 import { RemoteToolFuncSchema, RemoteFuncItem } from "./utils/consts";
 
@@ -17,7 +18,19 @@ export class ClientTools extends ToolFunc {
     return result;
   }
 
-  static loadFrom(items: Funcs) {
+  static async loadFrom() {
+    if (this.apiRoot) {
+      const res = await fetch(this.apiRoot, {headers: {
+        "Content-Type": "application/json",
+      },})
+      const items = await res.json()
+      if (items) this.loadFromSync(items)
+    } else {
+      throwError('missing apiRoot to load tools', 'ClientTools')
+    }
+  }
+
+  static loadFromSync(items: Funcs) {
     for (const name in items) {
       const funcItem = items[name] as ClientFuncItem;
       ToolFunc.register.call(this, funcItem);
