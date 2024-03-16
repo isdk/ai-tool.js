@@ -9,14 +9,12 @@ export declare interface ServerTools extends ServerFuncItem {
   [name: string]: any;
 }
 
+const ServerToolItems: {[name:string]: ServerTools} = {}
+Object.setPrototypeOf(ServerToolItems, ToolFunc.items)
+
 export class ServerTools extends ToolFunc {
   static apiRoot?: string;
-  static items: {[name:string]: ServerTools} = {}
-
-  static get(name: string) {
-    const result = ToolFunc.get(name) || this.items[name];
-    return result;
-  }
+  static items = ServerToolItems;
 
   static toJSON() {
     const result:{[name:string]: ServerTools} = {}
