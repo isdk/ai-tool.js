@@ -70,8 +70,8 @@ interface ServerFuncItem extends FuncItem {
 
 所有的远程调用没有真正的执行体，都是统一的远程API调用。
 
-
-* 增加 `static loadFrom(items)` 加载所有的远程调用，如果有item上有func，那么就是server调用的本地化，还是注册在ClientTools上。
+* 增加 `static loadFromSync(items)` 加载所有的远程调用，如果有item上有func，那么就是server调用的本地化，还是注册在ClientTools上。
+  * `static async loadFrom()` 如果没有items,那么从 `ClientTools.apiRoot` 上 fetch items. 所以是异步
 * 本地执行优先：先找本地调用，没有再找远程调用
 
 特有属性:

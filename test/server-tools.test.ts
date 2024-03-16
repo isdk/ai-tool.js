@@ -118,7 +118,10 @@ describe('server api', () => {
       },
       result: 'number',
     })
-    ClientTools.loadFrom(ToolFunc.toJSON())
+
+    server.get('/api', async function(request, reply){
+      reply.send(ToolFunc.toJSON())
+    })
 
     server.get('/api/:toolId', async function(request, reply){
       const { toolId } = request.params as any;
@@ -150,6 +153,9 @@ describe('server api', () => {
     })
     const result = await server.listen({port: 3000})
     console.log('server listening on ', result)
+
+    ClientTools.apiRoot = apiRoot
+    await ClientTools.loadFrom()
   })
 
   afterAll(() => {
