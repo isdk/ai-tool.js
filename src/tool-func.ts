@@ -17,20 +17,28 @@ export interface FuncParams {
 
 export type TFunc = (this:ToolFunc, ...params:any[]) => any
 
-export interface FuncItem {
-  func?: TFunc;
+export interface BaseFuncItem {
   name?: string;
   params?: FuncParams | FuncParam[];
   result?: string;
   scope?: any;
+  tags?: string|string[];
   setup?: (this: ToolFunc, options?: FuncItem) => void;
+}
+
+export interface FuncItem extends BaseFuncItem {
+  func?: TFunc;
+}
+
+export interface BaseFunc extends BaseFuncItem {
+  func(...params: any): any;
 }
 
 export interface Funcs {
   [name: string]: ToolFunc
 }
 
-export declare interface ToolFunc {
+export declare interface ToolFunc extends BaseFunc {
   [name: string]: any;
 }
 
@@ -40,6 +48,44 @@ export class ToolFunc extends AdvancePropertyManager {
 
   static get(name: string) {
     return this.items[name]
+  }
+
+  static getByTag(tagName: string) {
+    let result: ToolFunc|undefined;
+    for (const name in this.items) {
+      const item = this.get(name)
+      let tags = item.tags
+      if (typeof tags === 'string') {
+        if (tags === tagName) {
+          result = item
+          break
+        }
+      } else if (Array.isArray(tags)) {
+        if (tags.indexOf(tagName) >= 0) {
+          result = item
+          break
+        }
+      }
+    }
+    return result
+  }
+
+  static getAllByTag(tagName: string) {
+    let result: ToolFunc[] = [];
+    for (const name in this.items) {
+      const item = this.get(name)
+      let tags = item.tags
+      if (typeof tags === 'string') {
+        if (tags === tagName) {
+          result.push(item)
+        }
+      } else if (Array.isArray(tags)) {
+        if (tags.indexOf(tagName) >= 0) {
+          result.push(item)
+        }
+      }
+    }
+    return result
   }
 
   static async run(name: string, params: any) {
@@ -105,8 +151,8 @@ export class ToolFunc extends AdvancePropertyManager {
     let result: boolean|ToolFunc = !!this.get(name)
     if (!result) {
       if (!(options instanceof ToolFunc)) {
-        options = new this(options)
-        return options.register()
+        result = new this(options)
+        return result.register()
       }
       this.items[name] = options as ToolFunc
       result = options as ToolFunc
@@ -270,6 +316,7 @@ export const ToolFuncSchema = {
   params: {type: 'object'},
   result: {type: 'any'},
   depends: {type: 'array'},
+  tags: {type: ['array', 'string']},
 }
 
 ToolFunc.defineProperties(ToolFunc, ToolFuncSchema)
