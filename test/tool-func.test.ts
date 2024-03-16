@@ -5,8 +5,11 @@ import { ToolFunc } from "../src/tool-func"
 
 describe('ToolFunc', () => {
   beforeEach(()=>{
-    ToolFunc.items = {}
+    for (const n of Object.keys(ToolFunc.items)) {
+      delete ToolFunc.items[n]
+    }
   })
+
   it('should register a func with named params', async () => {
     const params = {"a": "any", b: "any"}
     ToolFunc.register({
@@ -86,4 +89,35 @@ describe('ToolFunc', () => {
 
     ToolFunc.unregister('test')
   })
+
+  it('should get ByTag', async () => {
+    // const params = {"a": "any", b: "any"}
+    registerFuncs(3)
+    const result = ToolFunc.getByTag('tag2')
+    expect(result).toBeInstanceOf(ToolFunc)
+    expect(result).toHaveProperty('name', 'name2')
+  })
+
+  it('should get all ByTag', async () => {
+    // const params = {"a": "any", b: "any"}
+    registerFuncs(3)
+    const result = ToolFunc.getAllByTag('tag0')
+    expect(result).toBeInstanceOf(Array)
+    expect(result.map(it=>it.name)).toEqual(['name0', 'name'])
+  })
 })
+
+function registerFuncs(count = 3,name='name', tag='tag', options = {}) {
+  for(let i=0; i<count;i++) {
+    ToolFunc.register({
+      ...options,
+      name: name+i,
+      tags: tag+i,
+    })
+  }
+  ToolFunc.register({
+    ...options,
+    name: name,
+    tags: [tag, tag + 0],
+  })
+}

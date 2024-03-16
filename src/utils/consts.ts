@@ -1,4 +1,4 @@
-import { FuncItem } from "../tool-func"
+import { BaseFuncItem } from "../tool-func"
 
 export const PASSING_SCORE = 0.618
 
@@ -22,7 +22,7 @@ export const RemoteToolFuncSchema = {
   allowExportFunc: { type: 'boolean' },
 }
 
-export interface RemoteFuncItem extends FuncItem {
+export interface RemoteFuncItem extends BaseFuncItem {
   apiRoot?: string
   action?: 'get'|'post'
   fetchOptions?: any

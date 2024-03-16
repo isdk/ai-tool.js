@@ -19,7 +19,7 @@ export class ServerTools extends ToolFunc {
   static toJSON() {
     const result:{[name:string]: ServerTools} = {}
     for (const name in this.items) {
-      let item = this.items[name];
+      let item: any = this.items[name];
       if (!item.allowExportFunc) {
         item = item.toJSON()
         delete item.func;
