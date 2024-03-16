@@ -9,6 +9,8 @@ export declare interface ClientTools extends ClientFuncItem {
 }
 
 export class ClientTools extends ToolFunc {
+  declare static apiRoot: string|undefined
+
   static items: Funcs = {};
   static get(name: string) {
     const result = ToolFunc.get(name) || this.items[name];

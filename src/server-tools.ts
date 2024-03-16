@@ -1,11 +1,15 @@
 import { ToolFunc } from "./tool-func";
-import { RemoteToolFuncSchema } from "./utils/consts";
+import { RemoteToolFuncSchema, RemoteFuncItem } from "./utils/consts";
+
+export interface ServerFuncItem extends RemoteFuncItem {
+  allowExportFunc?: boolean
+}
+
+export declare interface ServerTools extends ServerFuncItem {
+  [name: string]: any;
+}
 
 export class ServerTools extends ToolFunc {
-  declare apiRoot: string;
-  declare action: string;
-  declare allowExportFunc: boolean;
-
   static apiRoot?: string;
   static items: {[name:string]: ServerTools} = {}
 
