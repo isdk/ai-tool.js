@@ -9,14 +9,13 @@ export declare interface ClientTools extends ClientFuncItem {
   [name: string]: any;
 }
 
+const ClientToolItems: Funcs = {}
+Object.setPrototypeOf(ClientToolItems, ToolFunc.items)
+
 export class ClientTools extends ToolFunc {
   declare static apiRoot: string|undefined
 
-  static items: Funcs = {};
-  static get(name: string) {
-    const result = ToolFunc.get(name) || this.items[name];
-    return result;
-  }
+  static items = ClientToolItems;
 
   static async loadFrom() {
     if (this.apiRoot) {
