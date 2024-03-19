@@ -1,5 +1,5 @@
 // import { describe, expect, it } from 'vitest'
-import { AlreadyExistsError, BaseError, NotFoundError, NotImplementationError, throwError } from "../src/base-error"
+import { AlreadyExistsError, BaseError, NotFoundError, NotImplementationError, throwError } from "../src/utils/base-error"
 
 describe('BaseError', () => {
 

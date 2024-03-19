@@ -1,4 +1,4 @@
-import { throwError as _throwError } from "../base-error";
+import { throwError as _throwError } from "../utils/base-error";
 import { ServerTools as ToolFunc } from '../server-tools';
 import { splitSentence as _splitSentence } from '../utils/split-sentence';
 import { isSimilar as _isSimilar } from "./is-similar";

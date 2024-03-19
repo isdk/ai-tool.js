@@ -1,4 +1,4 @@
-import { NotFoundError } from '../base-error';
+import { NotFoundError } from '../utils/base-error';
 import { env as _env, pipeline as _pipeline, cos_sim as _cos_sim } from '@xenova/transformers';
 import type { FeatureExtractionPipeline, PipelineType, PretrainedOptions, AllTasks } from '@xenova/transformers';
 import type { Cache } from 'secondary-cache';

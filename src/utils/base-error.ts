@@ -33,7 +33,7 @@ export class BaseError extends Error {
   declare static code: ErrorCodeType
   declare caller: string
   declare code: ErrorCodeType
-  declare data: any
+  declare data?: any
 
   /**
    * Constructs a new BaseError instance.
