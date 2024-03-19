@@ -1,6 +1,6 @@
 import { AdvancePropertyManager } from 'property-manager';
 import { _createFunction } from 'util-ex';
-import { NotFoundError, throwError } from './base-error';
+import { NotFoundError, throwError } from './utils/base-error';
 
 export type FuncParamType = string
 export interface FuncParam {
