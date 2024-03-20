@@ -8,7 +8,7 @@ export interface FuncParam {
   type?: FuncParamType;
   required?: boolean;
   description?: string;
-  depends?: ToolFunc[];
+  depends?: {[name: string]: ToolFunc};
 }
 
 export interface FuncParams {
@@ -88,7 +88,7 @@ export class ToolFunc extends AdvancePropertyManager {
     return result
   }
 
-  static async run(name: string, params: any) {
+  static async run(name: string, params?: any) {
     const func = this.get(name)
     if (func) {
       return await func.run(params)
@@ -96,7 +96,7 @@ export class ToolFunc extends AdvancePropertyManager {
     throw new NotFoundError(`${name} to run`, 'ToolFunc');
   }
 
-  static runSync(name: string, params: any) {
+  static runSync(name: string, params?: any) {
     const func = this.get(name)
     if (func) {
       return func.runSync(params)
@@ -197,8 +197,11 @@ export class ToolFunc extends AdvancePropertyManager {
 
   register() {
     const Tools = (this.constructor as unknown as typeof ToolFunc)
-    if (Array.isArray(this.depends)) {
-      for (const dep of this.depends) {
+    const depends = this.depends
+    if (depends) {
+      const keys = Object.keys(depends)
+      for (const k of keys) {
+        const dep = depends[k]
         if (dep instanceof ToolFunc) { dep.register() }
       }
     }
@@ -222,7 +225,7 @@ export class ToolFunc extends AdvancePropertyManager {
     return params
   }
 
-  obj2ArrParams(params: any): any[] {
+  obj2ArrParams(params?: any): any[] {
     const result: any[] = []
     if (params && this.params && Array.isArray(this.params)) {
       const keys = Object.keys(params)
@@ -235,7 +238,7 @@ export class ToolFunc extends AdvancePropertyManager {
 
   }
 
-  runSync(params: any) {
+  runSync(params?: any) {
     const isPosParams = this.params && Array.isArray(this.params)
     if (Array.isArray(params)) {
       if (isPosParams) return this.func!(...params)
@@ -249,16 +252,16 @@ export class ToolFunc extends AdvancePropertyManager {
     return this.func!(params)
   }
 
-  async run(params: any) {
+  async run(params?: any) {
     return await this.runSync(params)
   }
 
-  async runAs(name:string, params: any) {
+  async runAs(name:string, params?: any) {
     const result = await (this.constructor as any).run(name, params)
     return result
   }
 
-  runAsSync(name:string, params: any) {
+  runAsSync(name:string, params?: any) {
     const result = (this.constructor as any).runSync(name, params)
     return result
   }
@@ -315,7 +318,8 @@ export const ToolFuncSchema = {
   },
   params: {type: 'object'},
   result: {type: 'any'},
-  depends: {type: 'array'},
+  setup: {type: 'function'},
+  depends: {type: 'object'},
   tags: {type: ['array', 'string']},
 }
 

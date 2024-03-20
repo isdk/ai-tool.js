@@ -9,13 +9,19 @@
   },
   "dependencies": {
     "@xenova/transformers": "^2.16.0",
+    "custom-ability": "^2.0.0-alpha.6",
+    "events-ex": "^2.0.0-alpha.8",
     "property-manager": "^2.0.0-alpha.5",
     "secondary-cache": "^2.0.0-alpha.3",
-    "util-ex": "2.0.0-alpha.10"
+    "secure-json-parse": "^2.7.0",
+    "util-ex": "2.0.0-alpha.10",
+    "zod": "^3.22.4",
+    "zod-to-json-schema": "^3.22.4"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.8.0",
     "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.29",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "bumpp": "^9.4.0",
     "eslint": "^8.57.0",
@@ -25,6 +31,7 @@
     "onnxruntime-web": "^1.17.1",
     "prettier": "^3.2.5",
     "tsup": "^8.0.2",
+    "type-fest": "^4.13.0",
     "typedoc": "^0.25.11",
     "typedoc-plugin-markdown": "^3.17.1",
     "typescript": "^5.4.2",

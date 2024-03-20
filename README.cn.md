@@ -34,7 +34,7 @@ run/runSync
 * scope: 作用域
 * description: 工具函数说明
 * setup: 将在ctor ToolFunc实例的时候被执行
-* depends: ToolFunc[], 放在这里的将会被自动注册
+* depends: `{[name: string]: ToolFunc}`, 放在这里的将会被自动注册
 
 ### ServerTools
 
