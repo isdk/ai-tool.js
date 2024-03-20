@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es2020",
+    "target": "es2021",
+    "lib": ["ES2022", "DOM"],
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
@@ -10,12 +11,15 @@
       "./node_modules/@microsoft"
     ],
 
+    "strictPropertyInitialization": false,
+    "allowJs": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "noUnusedLocals": true,
     "noImplicitAny": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
   },
+  "include": ["src/**/*"],
   "exclude": [
     "node_modules",
     "**/*.spec.ts"

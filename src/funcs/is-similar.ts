@@ -23,7 +23,7 @@ async function _isSimilar(
   if (passingScore == null && model) {
     passingScore = this.getDefaultPassingScore(model)
   }
-  const similarity = this.getFuncWithPos('similarity');
+  const similarity = this.depends.similarity.getFuncWithPos();
   const average_score = truncTo(await similarity(query, texts, model || this.modelId));
   if (passingScore == null) { passingScore = this.passingScore }
 
@@ -42,7 +42,7 @@ export const isSimilar = new ToolFunc('isSimilar', {
   result: 'boolean',
   scope: {truncTo: _truncTo},
 
-  depends: [ Similarity ],
+  depends: { similarity: Similarity },
   setup(this: ToolFunc) {
     this.getDefaultPassingScore = getDefaultSimilarPassingScore;
     Object.defineProperty(this, 'modelId', {

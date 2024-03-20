@@ -55,7 +55,7 @@ export const similarity = new ServerTools('similarity', {
   },
   result: 'number',
   scope: { env: _env, pipeline: _pipeline, cos_sim: _cos_sim, average, cache },
-  depends: [ModelsCache],
+  depends: { ModelsCache },
   setup(this: ServerTools) {
     this.modelId = 'Xenova/distiluse-base-multilingual-cased-v2'
   }

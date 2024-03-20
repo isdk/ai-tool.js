@@ -6,8 +6,8 @@ async function _segments(
   this: ToolFunc,
   {texts, model = 'Xenova/distiluse-base-multilingual-cased-v2'}: {texts?: string|string[], model?:string} = {},
 ) {
-  const splitSegments = this.getFuncWithPos('splitSegments')
-  const mergeSegments = this.getFuncWithPos('mergeSegments')
+  const splitSegments = this.depends.splitSegments.getFuncWithPos()
+  const mergeSegments = this.depends.mergeSegments.getFuncWithPos()
   const segments = await mergeSegments(await splitSegments(texts, model), model)
   return segments;
 }
@@ -19,6 +19,6 @@ export const segments = new ToolFunc('segments', {
     texts: {name: 'texts', type: ['string', 'array'], required: true},
     model: {name: 'model', type: 'string', description: 'the embedding model name used'},
   },
-  depends: [ splitSegments, mergeSegments ],
+  depends: { splitSegments, mergeSegments },
   result: 'array',
 })

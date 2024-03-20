@@ -19,7 +19,7 @@ async function _splitSegments(
 
   if (!model) { model = this.modelId }
 
-  const isSimilar = this.getFuncWithPos('isSimilar');
+  const isSimilar = this.depends.isSimilar.getFuncWithPos();
 
   const segment = [];
   const segments= [];
@@ -48,7 +48,7 @@ export const splitSegments = new ToolFunc('splitSegments', {
   },
   result: 'array',
   scope: {splitSentence: _splitSentence, throwError: _throwError},
-  depends: [ _isSimilar ],
+  depends: { isSimilar: _isSimilar },
   setup(this: ToolFunc) {
     this.modelId = 'Xenova/distiluse-base-multilingual-cased-v2'
   }

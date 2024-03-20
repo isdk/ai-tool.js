@@ -9,7 +9,7 @@ async function _mergeSegments(
   if (!model) { model = this.modelId }
   if (!segments || segments.length === 0) { return []}
 
-  const isSimilar = this.getFuncWithPos('isSimilar')
+  const isSimilar = this.depends.isSimilar.getFuncWithPos()
   let i = 0
   const result = []
   while (i < segments.length) {
@@ -39,7 +39,7 @@ export const mergeSegments = new ToolFunc('mergeSegments', {
     model: {name: 'model', type: 'string', description: 'the embedding model name used'},
   },
   result: 'array',
-  depends: [ isSimilar ],
+  depends: { isSimilar },
   setup(this: ToolFunc) {
     this.modelId = 'Xenova/distiluse-base-multilingual-cased-v2'
   },
