@@ -11,6 +11,7 @@
     "@xenova/transformers": "^2.16.0",
     "custom-ability": "^2.0.0-alpha.6",
     "events-ex": "^2.0.0-alpha.8",
+    "eventsource-parser": "^1.1.2",
     "property-manager": "^2.0.0-alpha.5",
     "secondary-cache": "^2.0.0-alpha.3",
     "secure-json-parse": "^2.7.0",
