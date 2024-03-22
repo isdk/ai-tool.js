@@ -102,6 +102,8 @@ export class BaseError extends Error {
   }
 }
 
+export const InternalErrorCode = 500
+
 /**
  * Create an error object
  * @param message - Error message
@@ -109,7 +111,7 @@ export class BaseError extends Error {
  * @param status - Error status code, default to 500
  * @returns Error object
  */
-export function createError(message: string, name?: string|object, status = 500) {
+export function createError(message: string, name?: string|object, status = InternalErrorCode) {
   const error = new BaseError(message, status, name)
   if (typeof error.code !== 'number')
     error.code = status
@@ -123,7 +125,7 @@ export function createError(message: string, name?: string|object, status = 500)
  * @param status - Error status code, default to 500
  * @throws {BaseError} Throws a BaseError object
  */
-export function throwError(message: string, name?: string|object, status = 500) {
+export function throwError(message: string, name?: string|object, status = InternalErrorCode) {
   const error = createError(message, name, status)
   throw error
 }
@@ -140,9 +142,11 @@ export function throwError(message: string, name?: string|object, status = 500) 
 export class NotImplementationError extends BaseError {
   constructor() {
     const msg = `Not Implementation.`
-    super(msg, 500)
+    super(msg, InternalErrorCode)
   }
 }
+
+export const NotFoundErrorCode = 404
 
 /**
  * Represents an error when a requested resource is not found.
@@ -154,14 +158,14 @@ export class NotImplementationError extends BaseError {
 * @extends BaseError
 */
 export class NotFoundError extends BaseError {
-  static code = 404;
+  static code = NotFoundErrorCode;
   constructor(what: string, name?: string|object) {
-    super(`Could not find ${what}.`, undefined, name)
+    super(`Could not find ${what}.`, NotFoundErrorCode, name)
     this.data = { what }
   }
 }
 
-const AlreadyExistsErrorCode = 409
+export const AlreadyExistsErrorCode = 409
 /**
  * Represents an error when a requested resource already exists.
  * Inherits from BaseError.
@@ -174,7 +178,15 @@ const AlreadyExistsErrorCode = 409
 export class AlreadyExistsError extends BaseError {
   static code = AlreadyExistsErrorCode;
   constructor(what: string, name?: string) {
-    super(`The ${what} already exists.`, undefined, name)
+    super(`The ${what} already exists.`, AlreadyExistsErrorCode, name)
     this.data = { what }
+  }
+}
+
+export const AbortErrorCode = 499
+export class AbortError extends BaseError {
+  static code = AbortErrorCode;
+  constructor(message = "Aborted", name?: string) {
+    super(message, AbortErrorCode, name);
   }
 }
