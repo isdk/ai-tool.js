@@ -54,6 +54,9 @@
   "maintainers": [
     "Riceball LEE <snowyu.lee@gmail.com>"
   ],
+  "engines": {
+    "node": ">=20.11.1"
+  },
   "packageManager": "pnpm@7.27.1",
   "publishConfig": {
     "access": "public"

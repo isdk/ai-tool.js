@@ -235,7 +235,7 @@ export function AIStream<T=any, TOptions=any>(
   // if (response.stream)
   let responseBodyStream = response.body || createEmptyReadableStream();
   if (!(responseBodyStream instanceof ReadableStream)) {
-    // for NODEJS
+    // for NODEJS >= 20
     responseBodyStream = (ReadableStream as any).from(responseBodyStream)
   }
 
