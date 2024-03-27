@@ -4,7 +4,7 @@ import { NotFoundError, throwError } from './utils/base-error';
 
 export type FuncParamType = string
 export interface FuncParam {
-  name: string;
+  name?: string;
   type?: FuncParamType;
   required?: boolean;
   description?: string;
