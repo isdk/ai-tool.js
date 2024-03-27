@@ -20,10 +20,12 @@ export const RemoteToolFuncSchema = {
   },
   fetchOptions: { type: 'object' },
   allowExportFunc: { type: 'boolean' },
+  stream: { type: 'boolean' },
 }
 
 export interface RemoteFuncItem extends BaseFuncItem {
   apiRoot?: string
   action?: 'get'|'post'
   fetchOptions?: any
+  stream?: boolean
 }
