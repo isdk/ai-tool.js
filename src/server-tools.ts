@@ -1,6 +1,15 @@
+import type { IncomingMessage, ServerResponse } from "http";
 import { ToolFunc } from "./tool-func";
 import { RemoteToolFuncSchema, RemoteFuncItem } from "./utils/consts";
 
+/**
+ * Convention: Always pass _req, _res
+ */
+export interface ServerFuncParams {
+  _req: IncomingMessage
+  _res: ServerResponse
+  [name: string]: any
+}
 export interface ServerFuncItem extends RemoteFuncItem {
   allowExportFunc?: boolean
 }
@@ -28,6 +37,8 @@ export class ServerTools extends ToolFunc {
     }
     return result
   }
+
+  func({}): Promise<any>|any {}
 }
 
 export const ServerToolFuncSchema = { ...RemoteToolFuncSchema }
