@@ -31,39 +31,49 @@ export class ClientTools extends ToolFunc {
 
   static loadFromSync(items: Funcs) {
     for (const name in items) {
-      const funcItem = items[name] as ClientFuncItem;
-      ToolFunc.register.call(this, funcItem);
+      if (!this.get(name)) {
+        const funcItem = items[name] as ClientFuncItem;
+        this.register(funcItem);
+      }
     }
   }
 
-  async func(objParam: any) {
-    let res: Response
-    const fetchOptions = this.fetchOptions || {}
-    if (this.action === 'get') {
-      if (objParam) {
-        // all params change to string here
-        // objParam = Object.entries(objParam)
-        //   .map(([key, value]: any[]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
-        //   .join('&');
-        objParam = 'p='+encodeURIComponent(JSON.stringify(objParam))
-      }
-      res = await fetch(`${this.apiRoot}/${this.name}?${objParam}`, {
-        ...fetchOptions,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-    } else {
-      // defaults to post
-      res = await fetch(`${this.apiRoot}/${this.name}`, {
-        ...fetchOptions,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: 'POST',
-        body: JSON.stringify(objParam),
-      })
+  static async fetch(name: string, objParam?: any) {
+    const func = this.get(name)
+    if (func && func.fetch) {
+      return func.fetch(objParam)
     }
+  }
+
+  getUrlParams(objParam: any) {
+    return objParam !== undefined ? '?p=' + encodeURIComponent(JSON.stringify(objParam)) : ''
+  }
+
+  async fetch(objParam?: any) {
+    const fetchOptions = {...this.fetchOptions}
+    if (!fetchOptions.headers || !fetchOptions.headers['Content-Type']) {
+      fetchOptions.headers = {
+        "Content-Type": "application/json",
+        ...fetchOptions.headers,
+      }
+    }
+    let urlPart: string
+    if (this.action === 'get') {
+      urlPart  = this.name + this.getUrlParams(objParam)
+    } else {
+      fetchOptions.method = 'POST'
+      fetchOptions.body = JSON.stringify(objParam)
+      urlPart = this.name!
+      // defaults to post
+    }
+
+    console.log('🚀 ~ ClientTools ~ fetch:', `${this.apiRoot}/${urlPart}`)
+    const res = await fetch(`${this.apiRoot}/${urlPart}`, fetchOptions)
+    return res
+  }
+
+  async func(objParam: any) {
+    const res = await this.fetch(objParam)
     const result = await res.json()
     return result
   }
