@@ -46,7 +46,7 @@ describe('event-ability', ()=>{
     })
     t.on('test', function(this: Event, who: string, a:number,b:string) {
       called++
-      expect(who).toEqual('event')
+      expect(who).toEqual(EventBusName)
       expect(a).toEqual(pa)
       expect(b).toEqual(pb)
       this.result = 123
@@ -58,7 +58,7 @@ describe('event-ability', ()=>{
     called = 0
     t.on('test', function(this: Event, who: string, a:number,b:string) {
       called++
-      expect(who).toEqual('event')
+      expect(who).toEqual(EventBusName)
       expect(a).toEqual(pa)
       expect(b).toEqual(pb)
       expect(this.result).toEqual(123)
@@ -82,6 +82,6 @@ describe('event-ability', ()=>{
     expect(pb).toEqual('myTest')
     t.emit('test2')
     expect(called).toEqual(2);
-    expect(pb).toEqual('event')
+    expect(pb).toEqual(EventBusName)
   })
 })
