@@ -13,6 +13,8 @@ export * from './is-similar';
 export * from './split-segments';
 export * from './merge-segments';
 export * from './segments';
+export * from './event-client';
+export * from './event-server';
 
 export function registerCoreTools() {
   event.register();
