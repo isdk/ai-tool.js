@@ -3,20 +3,26 @@ import type { Event, EventEmitter } from 'events-ex';
 import type { ToolFunc } from '../../tool-func'
 
 
-export const EventBusName = 'event'
+export const EventBusName = 'event-bus'
 export type EventListenerFn = (this: Event, name: string, ...args: any) => any;
+export type EventErrorListenerFn = (this: Event, err: Error, name: string, ...args: any) => any;
 
 function getEventableClass(Backend: any) {
 
   class BackendEventable {
     declare name: string
+    declare _events: any
+
     // the event bus
     static _emitter: any;
 
     static get emitter() {
       if (!this._emitter) {
         const emitter = (this as unknown as typeof ToolFunc).get(EventBusName)?.emitter
-        if (emitter) this._emitter = emitter;
+        if (emitter) {
+          this._emitter = emitter;
+          this.prototype._events = emitter._events;
+        }
       }
       return this._emitter;
     }
@@ -51,20 +57,20 @@ function getEventableClass(Backend: any) {
       const emitter = Backend.emitter;
       if (!emitter) {throw new TypeError('EventBackend required')}
       if (eventName === 'error') { return this.emitError.apply(this, args as any)}
-      return emitter.emit(eventName, this.name, ...args);
+      return emitter.emit.call(this, eventName, this.name, ...args);
     }
 
     emitError(err: any, ...args: any[]): any {
       const emitter = Backend.emitter;
       const eventName = 'error';
       if (!emitter) {throw new TypeError('EventBackend required')}
-      return emitter.emit(eventName, err, this.name, ...args);
+      return emitter.emit.call(this, eventName, err, this.name, ...args);
     }
 
     async emitAsync(eventName: string, ...args: any[]): Promise<any> {
       const emitter = Backend.emitter;
       if (!emitter) {throw new TypeError('EventBackend required')}
-      return emitter.emitAsync(eventName, this.name, ...args);
+      return emitter.emitAsync.call(this, eventName, this.name, ...args);
     }
   }
 
