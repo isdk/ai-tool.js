@@ -132,7 +132,12 @@ describe('server api', () => {
       let params: any = (request.query as any).p
       if (params) {
         params = JSON.parse(params)
+      } else {
+        params = {}
       }
+      params._req = request.raw
+      params._res = reply.raw
+
       const result = JSON.stringify(await func.run(params))
       reply.send(result)
       // reply.send({params: request.params as any, query: request.query, url: request.url})
@@ -146,6 +151,8 @@ describe('server api', () => {
       }
       let body: any = request.body;
       if (typeof body === 'string') {body = JSON.parse(body)}
+      body._req = request.raw
+      body._res = reply.raw
       let result = await func.run(body)
       result = JSON.stringify(result)
       reply.send(result)
