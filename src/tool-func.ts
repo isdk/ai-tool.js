@@ -190,7 +190,7 @@ export class ToolFunc extends AdvancePropertyManager {
     if (options.scope) {this.scope = options.scope}
     if (typeof options.setup === 'function') {options.setup.call(this, options)}
 
-    // initialize ProperManager
+    // initialize PropertyManager
     this.initialize(options)
     // ToolFunc.items[name] = this
   }
