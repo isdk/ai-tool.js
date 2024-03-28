@@ -3,6 +3,7 @@ import type { Event, EventEmitter } from 'events-ex';
 import type { ToolFunc } from '../../tool-func'
 
 
+export const EventName = 'event'
 export const EventBusName = 'event-bus'
 export type EventListenerFn = (this: Event, name: string, ...args: any) => any;
 export type EventErrorListenerFn = (this: Event, err: Error, name: string, ...args: any) => any;
