@@ -1,4 +1,4 @@
-import { EventBusName } from '../utils/event';
+import { EventName, EventBusName } from '../utils/event';
 import { event } from './event'
 import { SSEChannel } from '../utils/event/sse-channel';
 import { type ServerFuncParams, ServerTools } from '../server-tools';
@@ -16,7 +16,7 @@ export interface EventServerFuncParams extends ServerFuncParams {
 export class EventServer extends ServerTools {
   static sse: SSEChannel = new SSEChannel()
 
-  name = 'event'
+  name = EventName
   description = 'subscribe server sent event'
   params = {
     event: { type: 'string' },
@@ -104,8 +104,9 @@ export class EventServer extends ServerTools {
 
     // for new client coming on server
     if (_req && _res) {
-      console.log('🚀 ~ EventServer ~ func ~ e:', events)
       this.subscribeSSE(_req, _res, events as any)
     }
   }
 }
+
+export const eventServer = new EventServer(EventName)
