@@ -1,6 +1,6 @@
 import { event } from './event'
 import { ClientTools } from '../client-tools'
-import { EventBusName } from '../utils'
+import { EventBusName, EventName } from '../utils'
 import type { Event } from 'events-ex'
 
 const eventBus = event.runSync()
@@ -44,7 +44,7 @@ export class EventClient extends ClientTools {
     }
   }
 
-  name = 'event'
+  name = EventName
   description = 'subscribe server sent event'
   params = {
     event: { type: 'string' },
@@ -98,7 +98,6 @@ export class EventClient extends ClientTools {
   // pass event-bus event to server
   ebListener = async function(this: Event, ...data: any[]) {
     const event = this.type
-    console.log('🚀 ~ EventClient ~ ebListener=function ~ this.target:', event, this.target.name, this.target.publish)
     // when receive the event from SSE, the target is no publish method.
     if (this.target.publish) {
       await this.target.publish(data, event)
@@ -172,3 +171,5 @@ export class EventClient extends ClientTools {
     if (event) {this.subscribeSSE(event)}
   }
 }
+
+export const eventClient = new EventClient(EventName)
