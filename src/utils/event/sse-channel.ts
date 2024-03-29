@@ -39,14 +39,18 @@ export class SSEChannel {
       if (v) {
         if (this.pingTimer) {
           clearInterval(this.pingTimer);
+          this.pingTimer = undefined
         }
-        this.pingTimer = setInterval(() => this.publish(), this.options.pingInterval);
+        if (this.options.pingInterval > 0) {
+          this.pingTimer = setInterval(() => this.publish(), this.options.pingInterval);
+        }
       } else {
         if (this.clients.size) {
           this.clearClients()
         }
         if (this.pingTimer) {
           clearInterval(this.pingTimer);
+          this.pingTimer = undefined
         }
       }
       this._active = v;
