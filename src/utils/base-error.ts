@@ -1,3 +1,5 @@
+import { AbstractError } from "abstract-error"
+
 export type ErrorCodeType = number | string
 
 /**
@@ -26,7 +28,7 @@ export type ErrorCodeType = number | string
  * @method toJSON - Returns a JSON representation of the error.
  * @method fromJSON - Creates a new BaseError instance from a JSON representation.
  */
-export class BaseError extends Error {
+export class BaseError extends AbstractError {
   /**
    * The error code associated with the error.
    */
@@ -43,7 +45,7 @@ export class BaseError extends Error {
    * @param {string|object} [name] - The error name or additional properties.
    */
   constructor(message: string, code?: ErrorCodeType, name?: string|object) {
-    super(message)
+    super(message, code)
     const ctor = this.constructor as unknown as BaseError
 
     if (code != null) {
@@ -111,7 +113,7 @@ export const InternalErrorCode = 500
  * @param status - Error status code, default to 500
  * @returns Error object
  */
-export function createError(message: string, name?: string|object, status = InternalErrorCode) {
+export function createError(message: string, name?: string|Record<string, any>, status = InternalErrorCode) {
   const error = new BaseError(message, status, name)
   if (typeof error.code !== 'number')
     error.code = status
@@ -125,7 +127,7 @@ export function createError(message: string, name?: string|object, status = Inte
  * @param status - Error status code, default to 500
  * @throws {BaseError} Throws a BaseError object
  */
-export function throwError(message: string, name?: string|object, status = InternalErrorCode) {
+export function throwError(message: string, name?: string|Record<string, any>, status = InternalErrorCode) {
   const error = createError(message, name, status)
   throw error
 }
@@ -159,7 +161,7 @@ export const NotFoundErrorCode = 404
 */
 export class NotFoundError extends BaseError {
   static code = NotFoundErrorCode;
-  constructor(what: string, name?: string|object) {
+  constructor(what: string, name?: string|Record<string, any>) {
     super(`Could not find ${what}.`, NotFoundErrorCode, name)
     this.data = { what }
   }
@@ -177,7 +179,7 @@ export const AlreadyExistsErrorCode = 409
 */
 export class AlreadyExistsError extends BaseError {
   static code = AlreadyExistsErrorCode;
-  constructor(what: string, name?: string) {
+  constructor(what: string, name?: string|Record<string, any>) {
     super(`The ${what} already exists.`, AlreadyExistsErrorCode, name)
     this.data = { what }
   }
@@ -186,7 +188,7 @@ export class AlreadyExistsError extends BaseError {
 export const AbortErrorCode = 499
 export class AbortError extends BaseError {
   static code = AbortErrorCode;
-  constructor(message = "Aborted", name?: string) {
+  constructor(message = "Aborted", name?: string|Record<string, any>) {
     super(message, AbortErrorCode, name);
   }
 }
