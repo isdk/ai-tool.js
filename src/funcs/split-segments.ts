@@ -21,8 +21,8 @@ async function _splitSegments(
 
   const isSimilar = this.depends.isSimilar.getFuncWithPos();
 
-  const segment = [];
-  const segments= [];
+  const segment: string[] = [];
+  const segments: string[][] = [];
   let i=0;
   while (i<texts!.length) {
     segment.push(texts![i++]);

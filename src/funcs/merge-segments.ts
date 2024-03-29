@@ -11,7 +11,7 @@ async function _mergeSegments(
 
   const isSimilar = this.depends.isSimilar.getFuncWithPos()
   let i = 0
-  const result = []
+  const result: string[][] = []
   while (i < segments.length) {
     const item = segments[i++]
     if (item.length === 1 && i < segments.length) {
