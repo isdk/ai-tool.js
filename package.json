@@ -8,16 +8,17 @@
     ".": "./dist/index.mjs"
   },
   "dependencies": {
-    "@xenova/transformers": "^2.16.0",
+    "@xenova/transformers": "^2.16.1",
+    "abstract-error": "^2.0.0-alpha.7",
     "custom-ability": "^2.0.0-alpha.6",
-    "events-ex": "^2.0.0-alpha.11",
+    "events-ex": "^2.0.0-alpha.13",
     "eventsource-parser": "^1.1.2",
     "property-manager": "^2.0.0-alpha.5",
-    "secondary-cache": "^2.0.0-alpha.3",
+    "secondary-cache": "^2.0.0-alpha.4",
     "secure-json-parse": "^2.7.0",
     "util-ex": "2.0.0-alpha.10",
     "zod": "^3.22.4",
-    "zod-to-json-schema": "^3.22.4"
+    "zod-to-json-schema": "^3.22.5"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.8.0",
