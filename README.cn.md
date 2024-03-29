@@ -5,8 +5,8 @@
 
 在API上如何支持传递位置参数?
 
-`run?params=[id1,id2]`
-`run?params={users:[id1,id2]}`
+`run?p=[id1,id2]`
+`run?p={users:[id1,id2]}`
 
 全部序列化成json，不好，只有位置参数才序列化，obj参数不用
 
@@ -103,3 +103,66 @@ https://github.com/vercel/next.js/discussions/48427
 https://michaelangelo.io/blog/server-sent-events
 https://github.com/michaelangeloio/ts-sse/blob/main/examples/next-app/app/stream/route.ts
 
+EventSource`addEventListener(evtType: string, listener)` 只能接收指定的事件类型, 而`EventSource`的`onmessage`则只能接收无名事件。
+所以,只能约定发送无名事件，在data中传递事件类型(data.event)。
+它的作用实质是中转器,在本地事件与远程事件之间中转。
+
+~~目前可能潜在的问题,因为使用的是自定义的无名事件,导致所有的服务器事件都下发到客户端,在客户端做的过滤,可能有性能问题.~~
+已经搞定用`addEventListener`
+
+```ts
+const sse = new EventSource('/stream');
+sse.addEventListener('test', (e) =>{
+  // event.type 总是 test
+})
+
+sse.onmessage = (e) => {
+  // event.type 总是 message
+  // event.data
+  const event = JSON.parse(e.data);
+  const eventType = event.event;
+  const data = event.data
+}
+
+class EventSourceEx extends EventSource {
+  //  没有作用!
+  dispatchEvent(e) {
+    console.log('TCL:: ~ dispatchEvent e:', arguments);
+    super.dispatchEvent.apply(this, arguments)
+  }
+}
+
+```
+
+#### EventClient
+
+作用有2
+
+1. 将本地事件转发到服务器,通过特定的`Post` API
+2. 通过`GET`API 以SSE的方式接收服务器事件,并服务器事件转发到Event-Bus
+
+* initEventSource(events): 告诉服务器只接收指定的events,如果events存在,否则接收全部
+* subscribeSSE(events): 订阅服务器SSE消息,并转发到Event-Bus
+  * 注意区分是本地消息,还是来自服务器的消息,来自服务器的消息如果是forward的本地消息,就不要再次转发到Event-Bus,不然就要无限循环
+* unsubscribeSSE(events): 取消订阅服务器SSE消息
+* forwardEvent(events): 将指定的本地事件(通过本地订阅)转发到服务器
+* unforwardEvent(events): 取消转发指定的本地事件
+
+本地事件需要转发到服务器上的有哪些?是和订阅服务器的事件一样?
+现在是可以不一样,单独通过forwardEvent来决定要转发的本地事件
+
+还有在哪里启用事件化? ToolFunc?  还是EventClient?
+
+我以为是在ToolFunc,这样所有的ToolFunc都支持事件! 但是作为一个基类,ToolFunc应该不关心事件,只关心执行体。
+
+这样,还是在我的ai-tools上执行初始化的时候,加载核心函数,以及将ToolFunc事件化. 这样基类具有更大的灵活性.
+
+#### EventServer
+
+func: 没有act,或者只传入events则是供服务器使用,有events则是限制在events范围内.
+
+act有:
+
+* pub:  发布sse事件
+* sub: 转发服务器上的事件
+* unsub: 撤销转发服务器上的事件

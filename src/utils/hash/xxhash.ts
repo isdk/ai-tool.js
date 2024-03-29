@@ -1,10 +1,11 @@
-import { h64, h32 } from 'xxhashjs';
+import _xxhashjs from 'xxhashjs';
 import * as _base32768 from 'base32768';
 import { canonicalize } from 'json-canonicalize';
 
 export const base32768 = _base32768
 export * from 'json-canonicalize'
 
+const {h32,h64} = _xxhashjs;
 const SEED = 588213;
 
 export function xxhash32(value: string|object, radix= 16) {
