@@ -5,6 +5,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
+    // "strictNullChecks": false,
     "typeRoots": [
       "./types",
       "./node_modules/@types",
@@ -12,11 +13,13 @@
     ],
 
     "strictPropertyInitialization": false,
+    "useDefineForClassFields": false,
     "allowJs": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "noUnusedLocals": true,
-    "noImplicitAny": true,
+    "noImplicitThis": false,
+    "noImplicitAny": false,
     "resolveJsonModule": true,
   },
   "include": ["src/**/*"],
