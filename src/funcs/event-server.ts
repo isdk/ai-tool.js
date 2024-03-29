@@ -14,7 +14,13 @@ export interface EventServerFuncParams extends ServerFuncParams {
 }
 
 export class EventServer extends ServerTools {
-  static sse: SSEChannel = new SSEChannel()
+  static _sse: SSEChannel | undefined
+  static get sse() {
+    if (!this._sse) {
+      this._sse = new SSEChannel()
+    }
+    return this._sse
+  }
 
   name = EventName
   description = 'subscribe server sent event'
@@ -28,7 +34,7 @@ export class EventServer extends ServerTools {
   stream = true
 
   get sse() {
-    return (this.constructor as unknown as any).sseChannel
+    return (this.constructor as unknown as any).sse
   }
 
   static publish(data: any, event: string) {
