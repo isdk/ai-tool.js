@@ -2,6 +2,9 @@ import { BaseFuncItem } from "../tool-func"
 
 export const PASSING_SCORE = 0.618
 
+export const ActionNames = ['get', 'post', 'put', 'delete', 'patch', 'list', 'res'] as const
+export type ActionName = typeof ActionNames[number]
+
 export const RemoteToolFuncSchema = {
   apiRoot: {
     type: 'string',
@@ -14,7 +17,7 @@ export const RemoteToolFuncSchema = {
   },
   action: {
     type: 'string',
-    assign(value: string, dest: any, src?: any, name?: string, options?: any) {
+    assign(value: ActionName, dest: any, src?: any, name?: string, options?: any) {
       return value || 'post'
     },
   },
@@ -25,7 +28,7 @@ export const RemoteToolFuncSchema = {
 
 export interface RemoteFuncItem extends BaseFuncItem {
   apiRoot?: string
-  action?: 'get'|'post'
+  action?: ActionName
   fetchOptions?: any
   stream?: boolean
 }
