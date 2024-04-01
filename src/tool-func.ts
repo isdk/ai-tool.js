@@ -319,7 +319,7 @@ export const ToolFuncSchema = {
   params: {type: 'object'},
   result: {type: 'any'},
   setup: {type: 'function'},
-  depends: {type: 'object'},
+  depends: {type: 'object', exported: false},
   tags: {type: ['array', 'string']},
 }
 
