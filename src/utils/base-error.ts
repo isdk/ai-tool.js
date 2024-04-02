@@ -1,6 +1,34 @@
-import { AbstractError } from "abstract-error"
+import { AbstractError, createErrorClass } from "abstract-error"
 
 export type ErrorCodeType = number | string
+
+export enum ErrorCode {
+  OK = 200,
+  BadRequest = 400,
+  InvalidArgument = 400,
+  Unauthorized,
+  PaymentRequired,
+  Forbidden,
+  NotFound,
+  MethodNotAllowed,
+  NotAcceptable,
+  RequestTimeout = 408,
+  Conflict = 409,
+  Corruption = 409,
+  Aborted = 499,
+  InternalError = 500,
+  NotImplemented = 501,
+  NotSupported  = 501,
+  BadGateway,
+  ServiceUnavailable,
+  GatewayTimeout,
+}
+
+export const InternalErrorCode = ErrorCode.InternalError
+export const NotImplementedErrorCode = ErrorCode.NotImplemented
+export const NotFoundErrorCode = ErrorCode.NotFound
+export const AlreadyExistsErrorCode = ErrorCode.Conflict
+export const AbortErrorCode = ErrorCode.Aborted
 
 /**
  * BaseError class that extends the Error class.
@@ -36,6 +64,10 @@ export class BaseError extends AbstractError {
   declare caller: string
   declare code: ErrorCodeType
   declare data?: any
+
+  static createErrorClass(aType: string, aErrorCode?: number|string|typeof AbstractError, ParentErrorClass: typeof BaseError = BaseError): typeof BaseError {
+    return createErrorClass(aType, aErrorCode, ParentErrorClass) as typeof BaseError
+  }
 
   /**
    * Constructs a new BaseError instance.
@@ -81,7 +113,7 @@ export class BaseError extends AbstractError {
       code: this.code,
       data: this.data,
       caller: this.caller,
-      message: this.message,
+      error: this.message,
       stack: this.stack,
     }
     Object.keys(result).forEach(key => result[key] === undefined && delete result[key])
@@ -99,12 +131,81 @@ export class BaseError extends AbstractError {
     e.code = json.code
     e.data = json.data
     e.caller = json.caller
+    e.message = json.error
     e.stack = json.stack
     return e
   }
 }
 
-export const InternalErrorCode = 500
+export class CommonError extends BaseError {
+  constructor(message: string, name?: string|Record<string, any>, status: ErrorCodeType = InternalErrorCode) {
+    super(message, status, name)
+  }
+}
+
+/**
+ * Represents an error when a function or method is not implemented.
+ * Inherits from BaseError.
+ *
+ * @example
+ * throw new NotImplementationError()
+ *
+ * @extends CommonError
+ */
+export class NotImplementationError extends CommonError {
+  constructor(msg?: string, name?: string|Record<string, any>) {
+    if (!msg) {msg = `Not Implementation.`}
+    super(msg, name, ErrorCode.NotImplemented)
+  }
+}
+// export const NotImplementationError = createErrorClass('NotImplementation', ErrorCode.NotImplemented, CommonError as any) as typeof CommonError
+CommonError[NotImplementedErrorCode] = NotImplementationError
+
+/**
+ * Represents an error when a requested resource is not found.
+ * Inherits from BaseError.
+ *
+ * @example
+* throw new NotFoundError('user', { id: 123 })
+*
+* @extends CommonError
+*/
+export class NotFoundError extends CommonError {
+  static code = NotFoundErrorCode;
+  constructor(what: string, name?: string|Record<string, any>) {
+    super(`Could not find ${what}.`, name, NotFoundErrorCode)
+    this.data = { what }
+  }
+}
+CommonError[NotFoundErrorCode] = NotFoundError
+
+/**
+ * Represents an error when a requested resource already exists.
+ * Inherits from BaseError.
+ *
+ * @example
+* throw new AlreadyExistsError('user', { id: 123 })
+*
+* @extends CommonError
+*/
+export class AlreadyExistsError extends CommonError {
+  static code = AlreadyExistsErrorCode;
+  constructor(what: string, name?: string|Record<string, any>) {
+    super(`The ${what} already exists.`, name, AlreadyExistsErrorCode)
+    this.data = { what }
+  }
+}
+CommonError[AlreadyExistsErrorCode] = AlreadyExistsError
+
+export class AbortError extends CommonError {
+  static code = AbortErrorCode;
+  constructor(what?: string, name?: string|Record<string, any>) {
+    const message = what ? `The operation was aborted for ${what}.` : `The operation was aborted.`
+    super(message, name, AbortErrorCode);
+    if (what) {this.data = {what}}
+  }
+}
+CommonError[AbortErrorCode] = AbortError
 
 /**
  * Create an error object
@@ -113,8 +214,9 @@ export const InternalErrorCode = 500
  * @param status - Error status code, default to 500
  * @returns Error object
  */
-export function createError(message: string, name?: string|Record<string, any>, status = InternalErrorCode) {
-  const error = new BaseError(message, status, name)
+export function createError(message: string, name?: string|Record<string, any>, status: ErrorCode|ErrorCodeType = InternalErrorCode): CommonError {
+  const ErrorClass = CommonError[status] || CommonError
+  const error = new ErrorClass(message, name, status)
   if (typeof error.code !== 'number')
     error.code = status
   return error;
@@ -127,68 +229,8 @@ export function createError(message: string, name?: string|Record<string, any>, 
  * @param status - Error status code, default to 500
  * @throws {BaseError} Throws a BaseError object
  */
-export function throwError(message: string, name?: string|Record<string, any>, status = InternalErrorCode) {
+export function throwError(message: string, name?: string|Record<string, any>, status: ErrorCode|ErrorCodeType = InternalErrorCode) {
   const error = createError(message, name, status)
   throw error
 }
 
-/**
- * Represents an error when a function or method is not implemented.
- * Inherits from BaseError.
- *
- * @example
-* throw new NotImplementationError()
-*
-* @extends BaseError
-*/
-export class NotImplementationError extends BaseError {
-  constructor() {
-    const msg = `Not Implementation.`
-    super(msg, InternalErrorCode)
-  }
-}
-
-export const NotFoundErrorCode = 404
-
-/**
- * Represents an error when a requested resource is not found.
- * Inherits from BaseError.
- *
- * @example
-* throw new NotFoundError('user', { id: 123 })
-*
-* @extends BaseError
-*/
-export class NotFoundError extends BaseError {
-  static code = NotFoundErrorCode;
-  constructor(what: string, name?: string|Record<string, any>) {
-    super(`Could not find ${what}.`, NotFoundErrorCode, name)
-    this.data = { what }
-  }
-}
-
-export const AlreadyExistsErrorCode = 409
-/**
- * Represents an error when a requested resource already exists.
- * Inherits from BaseError.
- *
- * @example
-* throw new AlreadyExistsError('user', { id: 123 })
-*
-* @extends BaseError
-*/
-export class AlreadyExistsError extends BaseError {
-  static code = AlreadyExistsErrorCode;
-  constructor(what: string, name?: string|Record<string, any>) {
-    super(`The ${what} already exists.`, AlreadyExistsErrorCode, name)
-    this.data = { what }
-  }
-}
-
-export const AbortErrorCode = 499
-export class AbortError extends BaseError {
-  static code = AbortErrorCode;
-  constructor(message = "Aborted", name?: string|Record<string, any>) {
-    super(message, AbortErrorCode, name);
-  }
-}

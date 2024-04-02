@@ -1,5 +1,5 @@
 // import { describe, expect, it } from 'vitest'
-import { AlreadyExistsError, BaseError, NotFoundError, NotImplementationError, throwError } from "../src/utils/base-error"
+import { AbortError, AlreadyExistsError, BaseError, CommonError, ErrorCode, NotFoundError, NotImplementationError, createError, throwError } from "../src/utils/base-error"
 
 describe('BaseError', () => {
 
@@ -13,21 +13,21 @@ describe('BaseError', () => {
   })
 
   it('should create BaseError with message and code', ()=>{
-    const err = new BaseError('hello message', 404)
+    const err = new BaseError('hello message', ErrorCode.NotFound)
     expect(err).toBeInstanceOf(BaseError)
     expect(err.toJSON()).toMatchObject({
       message: 'hello message',
-      code: 404,
+      code: ErrorCode.NotFound,
       name: 'BaseError',
     })
   })
 
   it('should create BaseError with message, code and name', ()=>{
-    const err = new BaseError('hello message', 404, 'CustomError')
+    const err = new BaseError('hello message', ErrorCode.NotFound, 'CustomError')
     expect(err).toBeInstanceOf(BaseError)
     expect(err.toJSON()).toMatchObject({
       message: 'hello message',
-      code: 404,
+      code: ErrorCode.NotFound,
       name: 'CustomError',
     })
   })
@@ -35,7 +35,7 @@ describe('BaseError', () => {
 
 describe('throwError', () => {
   it('should throwError with message', ()=>{
-    const expectedErr = new BaseError('hello message', 500, 'BaseError').toJSON()
+    const expectedErr = new CommonError('hello message', 'CommonError', ErrorCode.InternalError).toJSON()
     delete expectedErr.stack
     let error
     try {
@@ -43,12 +43,12 @@ describe('throwError', () => {
     } catch (e) {
       error = e as BaseError
     }
-    expect(error).toBeInstanceOf(BaseError)
+    expect(error).toBeInstanceOf(CommonError)
     expect(error!.toJSON()).toMatchObject(expectedErr)
   })
 
   it('should throwError with message and name', ()=>{
-    const expectedErr = new BaseError('hello message', 500, 'CustomErr').toJSON()
+    const expectedErr = new BaseError('hello message', ErrorCode.InternalError, 'CustomErr').toJSON()
     delete expectedErr.stack
     let error
     try {
@@ -56,16 +56,16 @@ describe('throwError', () => {
     } catch (e) {
       error = e as BaseError
     }
-    expect(error).toBeInstanceOf(BaseError)
+    expect(error).toBeInstanceOf(CommonError)
     expect(error!.toJSON()).toMatchObject(expectedErr)
   })
 
   it('should throwError with message and code', ()=>{
-    const expectedErr = new BaseError('hello message', 200).toJSON()
+    const expectedErr = new CommonError('hello message', undefined, ErrorCode.OK).toJSON()
     delete expectedErr.stack
     let error
     try {
-      throwError('hello message', undefined, 200)
+      throwError('hello message', undefined, ErrorCode.OK)
     } catch (e) {
       error = e as BaseError
     }
@@ -74,11 +74,11 @@ describe('throwError', () => {
   })
 
   it('should create BaseError with message, name and code', ()=>{
-    const expectedErr = (new BaseError('hello message', 200, 'CustomErr')).toJSON()
+    const expectedErr = (new BaseError('hello message', ErrorCode.OK, 'CustomErr')).toJSON()
     delete expectedErr.stack
     let error
     try {
-      throwError('hello message', 'CustomErr', 200)
+      throwError('hello message', 'CustomErr', ErrorCode.OK)
     } catch (e) {
       error = e as BaseError
     }
@@ -93,7 +93,16 @@ describe('NotImplementationError', () => {
     expect(err).toBeInstanceOf(NotImplementationError)
     expect(err.toJSON()).toMatchObject({
       message: 'Not Implementation.',
-      code: 500,
+      code: ErrorCode.NotImplemented,
+      name: 'NotImplementationError',
+    })
+  })
+  it('should create NotImplementationError by createError', ()=>{
+    const err = createError('', undefined, ErrorCode.NotImplemented)
+    expect(err).toBeInstanceOf(NotImplementationError)
+    expect(err.toJSON()).toMatchObject({
+      message: 'Not Implementation.',
+      code: ErrorCode.NotImplemented,
       name: 'NotImplementationError',
     })
   })
@@ -105,8 +114,19 @@ describe('NotFoundError', () => {
     expect(err).toBeInstanceOf(NotFoundError)
     expect(err.toJSON()).toMatchObject({
       message: 'Could not find 1245.',
-      code: 404,
+      code: ErrorCode.NotFound,
       name: 'NotFoundError',
+      data: {what: '1245'},
+    })
+  })
+  it('should create NotFoundError by createError', ()=>{
+    const err = createError('1234', undefined, ErrorCode.NotFound)
+    expect(err).toBeInstanceOf(NotFoundError)
+    expect(err.toJSON()).toMatchObject({
+      message: 'Could not find 1234.',
+      code: ErrorCode.NotFound,
+      name: 'NotFoundError',
+      data: {what: '1234'},
     })
   })
 })
@@ -117,8 +137,9 @@ describe('AlreadyExistsError', () => {
     expect(err).toBeInstanceOf(AlreadyExistsError)
     expect(err.toJSON()).toMatchObject({
       message: 'The 1245 already exists.',
-      code: 409,
+      code: ErrorCode.Conflict,
       name: 'AlreadyExistsError',
+      data: {what: '1245'},
     })
   })
   it('should create AlreadyExistsError with message, name', ()=>{
@@ -126,8 +147,51 @@ describe('AlreadyExistsError', () => {
     expect(err).toBeInstanceOf(AlreadyExistsError)
     expect(err.toJSON()).toMatchObject({
       message: 'The 1245 already exists.',
-      code: 409,
+      code: ErrorCode.Conflict,
       name: 'custom name',
+      data: {what: '1245'},
+    })
+  })
+  it('should create AlreadyExistsError by createError', ()=>{
+    const err = createError('1234', undefined, ErrorCode.Conflict)
+    expect(err).toBeInstanceOf(AlreadyExistsError)
+    expect(err.toJSON()).toMatchObject({
+      message: 'The 1234 already exists.',
+      code: ErrorCode.Conflict,
+      name: 'AlreadyExistsError',
+      data: {what: '1234'},
+    })
+  })
+})
+
+describe('AbortError', () => {
+  it('should create AbortError', ()=>{
+    const err = new AbortError()
+    expect(err).toBeInstanceOf(AbortError)
+    expect(err.toJSON()).toMatchObject({
+      message: 'The operation was aborted.',
+      code: ErrorCode.Aborted,
+      name: 'AbortError',
+    })
+  })
+  it('should create AbortError with message', ()=>{
+    const err = new AbortError('1245')
+    expect(err).toBeInstanceOf(AbortError)
+    expect(err.toJSON()).toMatchObject({
+      message: 'The operation was aborted for 1245.',
+      code: ErrorCode.Aborted,
+      name: 'AbortError',
+      data: {what: '1245'},
+    })
+  })
+  it('should create AbortError by createError', ()=>{
+    const err = createError('1234', undefined, ErrorCode.Aborted)
+    expect(err).toBeInstanceOf(AbortError)
+    expect(err.toJSON()).toMatchObject({
+      message: 'The operation was aborted for 1234.',
+      code: ErrorCode.Aborted,
+      name: 'AbortError',
+      data: {what: '1234'},
     })
   })
 })
