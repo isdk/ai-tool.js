@@ -1,4 +1,4 @@
-import { BaseError, createError, throwError } from "./utils/base-error";
+import { createError, throwError } from "./utils/base-error";
 import { Funcs, ToolFunc } from "./tool-func";
 import { RemoteToolFuncSchema, type RemoteFuncItem, type ActionName } from "./utils/consts";
 

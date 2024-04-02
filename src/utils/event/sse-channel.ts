@@ -91,7 +91,7 @@ export class SSEChannel {
    * @throws Will throw an error if the channel is closed.
    */
   publish(data?: string | Record<string, any>, eventName?: string) {
-    console.log('🚀 ~ SSEChannel ~ publish ~ eventName:', eventName, data)
+    // console.log('🚀 ~ SSEChannel ~ publish ~ eventName:', eventName, data)
     if (!this.active) throwError('Channel closed', 'SSEChannel', SSEChannelAlreadyClosedErrCode);
     let output: string;
     let id: number | undefined;
@@ -121,7 +121,7 @@ export class SSEChannel {
 
     // [...this.clients].filter(c => !_eventName || hasEventMatch(c.events, _eventName)).forEach(c => c.res.write(output));
     [...this.clients].filter(c => !_eventName || hasEventMatch(c.events, _eventName)).forEach((c, i) => {
-      console.log(i, '🚀 ~ SSEChannel ~ publish ~ output:', c.req.socket.remoteAddress ?? '', output)
+      // console.log(i, '🚀 ~ SSEChannel ~ publish ~ output:', c.req.socket.remoteAddress ?? '', output)
       c.res.write(output)
     });
 
@@ -142,7 +142,7 @@ export class SSEChannel {
    */
   subscribe(req: IncomingMessage, res: ServerResponse, events?: Events) {
     if (!this.active) throwError('Channel closed', 'SSEChannel', SSEChannelAlreadyClosedErrCode);
-    console.log('🚀 ~ SSEChannel ~ subscribe ~ events:', events)
+    // console.log('🚀 ~ SSEChannel ~ subscribe ~ events:', events)
     const c = { req, res, events };
     const maxStreamDuration = this.options.maxStreamDuration
     let cacheControl = 'max-age=0, stale-while-revalidate=0, stale-if-error=0, no-transform'
