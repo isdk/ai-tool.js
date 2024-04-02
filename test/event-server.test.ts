@@ -8,15 +8,14 @@ import { ClientTools } from '../src/client-tools'
 import { EventServer, EventClient } from '../src/funcs'
 import { EventBusName, backendEventable } from "../src/utils/event"
 import { wait } from '../src/utils'
+import { findPort } from './find-port'
 backendEventable(EventClient)
 
 describe('Event Server api', () => {
-  const apiRoot = 'http://localhost:3000/api'
+  let apiRoot: string // = 'http://localhost:3000/api'
   const server = fastify()
 
   beforeAll(async () => {
-    ServerTools.apiRoot = apiRoot
-    ClientTools.apiRoot = apiRoot
     const params = {"a": "number", b: "any"}
     const eventServer = new EventServer('event')
     const eventClient = new EventClient('event')
@@ -50,7 +49,7 @@ describe('Event Server api', () => {
       } else {
         params = {}
       }
-      console.log('🚀 ~ server.get ~ param:', params)
+      // console.log('🚀 ~ server.get ~ param:', params)
       params._req = request.raw
       params._res = reply.raw
 
@@ -81,9 +80,13 @@ describe('Event Server api', () => {
       reply.send(result)
       // reply.send({params: request.params as any, query: request.query, url: request.url})
     })
-    const result = await server.listen({port: 3000})
-    console.log('server listening on ', result)
 
+    const port = await findPort(3000)
+    const result = await server.listen({port})
+    console.log('server listening on ', result)
+    apiRoot = `http://localhost:${port}/api`
+
+    ServerTools.apiRoot = apiRoot
     ClientTools.apiRoot = apiRoot
     await ClientTools.loadFrom()
   })
