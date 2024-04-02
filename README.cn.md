@@ -109,11 +109,67 @@ stream 参数加上,但是没有想好,如何在 ClientTools 上使用,因为Cli
 
 约定的params:
 
-* action: 'res' 指定这个就表示是资源Func
+* action: 'res' 则表示是资源函数
 
 传入的参数在某些方法中可能会有`id`和`options`
 
 RES基本都是约定,可以没有实质的类?还是需要一个类,来告诉后代get,list,post,put,delete方法的存在?
+
+新增约定，以`$`打头的方法为供客户端调用的自定义资源方法method, 然后它们的HTTP Method统一为`POST`
+
+```ts
+class TestResTool extends ResServerTools {
+  items: any = {}
+  params: FuncParams = {
+    'id': {type: 'number'},
+    'val': {type: 'any'},
+  }
+  $customMethod({id}: ResServerFuncParams) {
+    if (id) {
+      const item = this.items[id]
+      if (!item) {
+        throw new NotFoundError(id, 'res')
+      }
+      return {name: 'customMethod', id, item}
+    }
+  }
+  get({id}: ResServerFuncParams) {
+    if (id) {
+      const item = this.items[id]
+      if (!item) {
+        throw new NotFoundError(id, 'res')
+      }
+      return item
+    }
+  }
+  post({id, val}: ResServerFuncParams) {
+    if (id !== undefined && val !== undefined) {
+      this.items[id] = val
+      return {id}
+    } else {
+      throwError('id or val is undefined')
+    }
+  }
+  list() {
+    return Object.keys(this.items)
+  }
+  delete({id}: ResServerFuncParams) {
+    if (id) {
+      const item = this.items[id]
+      if (item === undefined) {
+        throw new NotFoundError(id, 'res')
+      }
+      delete this.items[id]
+      return {id}
+    }
+  }
+}
+ResServerTools.apiRoot = apiRoot
+const res = new TestResTool('res')
+res.register()
+```
+
+在Server中路由的参考实现
 
 ```ts
 const method = request.method
@@ -159,6 +215,20 @@ try {
 
 根据ServerTools的加载项中的methods约定,生成对应ClientTools中的方法.
 
+如果是调用自定义资源方法,那么去掉服务器中自定义方法的前缀(`$`)即可.
+
+```ts
+ResClientTools.apiRoot = apiRoot
+await ResClientTools.loadFrom()
+
+const resFunc = ResClientTools.getFunc(funcName)
+if (resFunc) {
+  let result = await res.post({id: '...', val: '...'})
+  result = await res.put({id: '...', val: '...'})
+  result = await res.get({id: '...'})
+  result = await res.customMethod({id: '...'})
+}
+```
 
 ### SSE
 
