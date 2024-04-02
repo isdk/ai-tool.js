@@ -1,3 +1,4 @@
+import { getAllNames } from 'util-ex'
 import { type ServerFuncParams, ServerTools } from "./server-tools";
 import { type FuncParams, type FuncItem } from "./tool-func";
 import { NotFoundError } from "./utils";
@@ -7,10 +8,11 @@ export interface ResServerFuncParams extends ServerFuncParams {
   id?: string
   // the value
   val?: any
+  act?: string
 }
 
 export interface ResServerTools {
-  methods: ActionName[]
+  methods: string[]
   get?({id}: ResServerFuncParams): any
   post?(options: ResServerFuncParams): any
   put?({id}: ResServerFuncParams): any
@@ -27,12 +29,13 @@ export class ResServerTools extends ServerTools {
 
   constructor(name: string|Function|FuncItem, options: FuncItem|any = {}) {
     super(name, options)
-    const methods = this.methods = [] as ActionName[]
+    const methods = this.methods = [] as string[]
     for (const action of ActionNames) {
       if (typeof this[action] === 'function') {
         methods.push(action)
       }
     }
+    getAllNames(Object.getPrototypeOf(this)).filter(name => name.startsWith('$') && typeof this[name] === 'function').forEach(name => methods.push(name))
   }
 
   cast(key: string, value: any) {
@@ -49,6 +52,9 @@ export class ResServerTools extends ServerTools {
   func(params: ResServerFuncParams) {
     let method = params?._req?.method?.toLowerCase()
     if (method === 'get' && params.id === undefined) {method = 'list'}
+    if (method === 'post' && params.act) {
+      method = params.act
+    }
     if (method && typeof this[method] === 'function') {
       if (params.id !== undefined) {
         params.id = this.cast('id', params.id)

@@ -17,6 +17,16 @@ class TestResTool extends ToolFunc {
     'val': {type: 'any'},
   }
 
+  $customMethod({id}: ResServerFuncParams) {
+    if (id) {
+      const item = this.items[id]
+      if (!item) {
+        throw new NotFoundError(id, 'res')
+      }
+      return {name: 'customMethod', id, item}
+    }
+  }
+
   get({id}: ResServerFuncParams) {
     if (id) {
       const item = this.items[id]
@@ -147,6 +157,9 @@ describe('res server api', () => {
     expect(err.code).toBe(ErrorCode.NotFound)
     expect(err.data).toStrictEqual({what: 1})
     expect(err.name).toBe('res')
+    expect(result.customMethod).toBeInstanceOf(Function)
+    res = await result.customMethod({id: 2})
+    expect(res).toStrictEqual({name: 'customMethod', id: 2, item: 20})
 
     // expect(await result.run({a: 10})).toStrictEqual(10)
     // expect(await result.run({a: 18, b: 'hi world'})).toStrictEqual('hi world')
