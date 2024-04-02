@@ -1,6 +1,6 @@
 import { type ServerFuncParams, ServerTools } from "./server-tools";
 import { type FuncParams, type FuncItem } from "./tool-func";
-import { throwError } from "./utils";
+import { NotFoundError } from "./utils";
 import { type ActionName, ActionNames } from "./utils/consts";
 
 export interface ResServerFuncParams extends ServerFuncParams {
@@ -54,7 +54,7 @@ export class ResServerTools extends ServerTools {
         params.id = this.cast('id', params.id)
       }
       return this[method](params)
-    } else {throwError(`${this.name} ${method} not found`)}
+    } else {throw new NotFoundError(method!, this.name)}
   }
 }
 

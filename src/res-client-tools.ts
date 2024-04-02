@@ -23,11 +23,24 @@ export class ResClientTools extends ClientTools {
         action = 'get'
       }
     }
-    return super.fetch(options, action)
+    return await super.fetch(options, action)
+  }
+
+  async _func(action: ActionName, options: ResServerFuncParams) {
+    const res = await this.fetch(options, action)
+    if (options?.stream) {
+      return res
+    }
+    const result = await res.json()
+    return result
   }
 
   async func(options: ResServerFuncParams) {
-    return await this.fetch(options, options.action)
+    const action = options.action
+    if (action) {
+      delete options.action
+    }
+    return this._func(action, options)
   }
 }
 
@@ -38,11 +51,7 @@ export const ResClientToolsSchema = {
       if (Array.isArray(value) && !options?.isExported) {
         for (const action of value) {
           if (!dest[action]) {
-            dest[action] = ((act: ActionName) => async function(options: any) {
-              const res = await this.fetch(options, act)
-              const result = await res.json()
-              return result
-            })(action)
+            dest[action] = ((act: ActionName) => dest._func.bind(dest, act))(action)
           }
         }
       }
