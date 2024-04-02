@@ -21,6 +21,9 @@ export class ResClientTools extends ClientTools {
         return super.fetch(options, action, id)
       } else if (action === 'list') {
         action = 'get'
+      } else if (action.startsWith('$')) {
+        options.act = action
+        action = 'post'
       }
     }
     return await super.fetch(options, action)
@@ -47,11 +50,12 @@ export class ResClientTools extends ClientTools {
 export const ResClientToolsSchema = {
   methods: {
     type: 'array',
-    assign(value: ActionName[], dest: any, src?: any, name?: string, options?: any) {
+    assign(value: string[], dest: any, src?: any, name?: string, options?: any) {
       if (Array.isArray(value) && !options?.isExported) {
         for (const action of value) {
-          if (!dest[action]) {
-            dest[action] = ((act: ActionName) => dest._func.bind(dest, act))(action)
+          const name = action.startsWith('$') ? action.slice(1) : action
+          if (!dest[name]) {
+            dest[name] = ((act: string) => dest._func.bind(dest, act))(action)
           }
         }
       }
