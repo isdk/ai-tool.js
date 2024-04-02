@@ -84,18 +84,81 @@ interface ClientFuncItem extends FuncItem {
 }
 ```
 
+stream 参数加上,但是没有想好,如何在 ClientTools 上使用,因为ClientTools是抽象的,而stream需要有具体的值.
+除非我这里约定为 Object stream, 一次发送一个object. 这样才能在 ClientTools 实现流.
 
-发现jest下，`transformers.js`调用的是`onnxruntime-web`而不是`onnxruntime-node`
-这是因为没有装`onnxruntime-node`! `onnxruntime-node`无法在bun下使用，报告错误:https://github.com/oven-sh/bun/issues/4619
-bun只能在`onnxruntime-web`下使用，不过有一个bug`wasm does not work on node right now with multiple threads`，需要workaround:
-https://github.com/oven-sh/bun/issues/7877
+另外如果是stream,是否能固化headers为:
+
+```js
+  headers.Connection = 'keep-alive' // 已加上
+  headers.Accept = 'text/event-stream' // 这个可能不必要
+```
+
+如果是stream,则func直接返回res,留待后代处理.
+
+### ResServerTools
+
+
+基于资源CRUD的ServerTools, 资源是ToolFunc的名称。如果是资源Func,那么就会存在如下的(可选的)方法:
+
+* GET /api/res/[resID]: 获取资源 `get({_req, _res, id, options?})`
+* GET /api/res: 获取资源列表      `list({_req, _res, options?})`
+* POST /api/res: 创建资源         `post({_req, _res, id, options?})`
+* PUT /api/res/[resID]: 更新资源   `put({_req, _res, id, options?})`
+* DELETE /api/res/[resID]: 删除资源 `delete({_req, _res, id, options?})`
+
+约定的params:
+
+* action: 'res' 指定这个就表示是资源Func
+
+传入的参数在某些方法中可能会有`id`和`options`
+
+RES基本都是约定,可以没有实质的类?还是需要一个类,来告诉后代get,list,post,put,delete方法的存在?
 
 ```ts
-import * as ONNX_NODE from 'onnxruntime-node';
-const ONNX = (ONNX_NODE as any).default ?? ONNX_NODE;
-// wasm does not work on node right now with multiple threads
-ONNX.env.wasm.numThreads = 1;
+const method = request.method
+if (method === 'GET' || method == 'DELETE') {
+  params = (request.query as any).p
+  if (params) {
+    params = JSON.parse(params)
+  } else {
+    params = {}
+  }
+} else {
+  params = request.body;
+  if (typeof params === 'string') {params = JSON.parse(params)}
+}
+params._req = request.raw
+params._res = reply.raw
+if (id !== undefined) {params.id = id}
+
+try {
+  let result = await func.run(params)
+  // 注意这里没有考虑 stream
+  result = JSON.stringify(result)
+  // console.log('🚀 ~ server.all ~ result:', result)
+
+  reply.send(result)
+  // reply.send({params: request.params as any, query: request.query, url: request.url})
+} catch(e) {
+  // console.log('🚀 ~ server.all ~ e:', e)
+  if (e.code !== undefined) {
+    if (e.stack) {e.stack = undefined}
+    reply.code(e.code).send(JSON.stringify(e))
+  } else if (e.message) {
+    reply.code(500).send({error: e.message})
+  } else {
+    reply.code(500).send({error: e})
+  }
+}
 ```
+
+### ResClientTools
+
+基于资源CRUD的ClientTools, 资源是ToolFunc的名称。
+
+根据ServerTools的加载项中的methods约定,生成对应ClientTools中的方法.
+
 
 ### SSE
 
@@ -166,3 +229,19 @@ act有:
 * pub:  发布sse事件
 * sub: 转发服务器上的事件
 * unsub: 撤销转发服务器上的事件
+
+
+------------
+
+发现jest下，`transformers.js`调用的是`onnxruntime-web`而不是`onnxruntime-node`
+这是因为没有装`onnxruntime-node`! `onnxruntime-node`无法在bun下使用，报告错误:https://github.com/oven-sh/bun/issues/4619
+bun只能在`onnxruntime-web`下使用，不过有一个bug`wasm does not work on node right now with multiple threads`，需要workaround:
+https://github.com/oven-sh/bun/issues/7877
+
+```ts
+import * as ONNX_NODE from 'onnxruntime-node';
+const ONNX = (ONNX_NODE as any).default ?? ONNX_NODE;
+// wasm does not work on node right now with multiple threads
+ONNX.env.wasm.numThreads = 1;
+```
+
