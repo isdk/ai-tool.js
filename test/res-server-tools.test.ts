@@ -4,8 +4,10 @@ import fastify from 'fastify'
 
 import { type ResServerFuncParams, ResServerTools as ToolFunc } from "../src/res-server-tools"
 import { ResClientTools as ClientTools } from '../src/res-client-tools'
-import { NotFoundError, throwError } from '../src/utils/base-error'
+import { BaseError, ErrorCode, NotFoundError, throwError } from '../src/utils/base-error'
 import type { FuncParams } from '../src/tool-func'
+import { findPort } from './find-port'
+import { wait } from '../src/utils'
 
 class TestResTool extends ToolFunc {
   items: any = {}
@@ -48,15 +50,10 @@ class TestResTool extends ToolFunc {
 }
 
 describe('res server api', () => {
-  const apiRoot = 'http://localhost:3000/api'
+  let apiRoot: string // = 'http://localhost:3000/api'
   const server = fastify()
 
   beforeAll(async () => {
-    ToolFunc.apiRoot = apiRoot
-    const res = new TestResTool('res')
-    res.register()
-
-
     server.get('/api', async function(request, reply){
       reply.send(ToolFunc.toJSON())
     })
@@ -65,7 +62,7 @@ describe('res server api', () => {
       const { toolId, id } = request.params as any;
       const func = ToolFunc.get(toolId)
       if (!func) {
-        reply.code(404).send({error: toolId + ' Not Found'})
+        reply.code(404).send({error: toolId + ' Not Found', data: {what: toolId}})
       }
       let params: any
       const method = request.method
@@ -88,14 +85,15 @@ describe('res server api', () => {
       try {
         let result = await func.run(params)
         result = JSON.stringify(result)
-        console.log('🚀 ~ server.all ~ result:', result)
+        // console.log('🚀 ~ server.all ~ result:', result)
 
         reply.send(result)
         // reply.send({params: request.params as any, query: request.query, url: request.url})
       } catch(e) {
-        console.log('🚀 ~ server.all ~ e:', e)
-        if (e.code) {
-          reply.code(e.code).send({error: e.message, name: e.name})
+        // console.log('🚀 ~ server.all ~ e:', e)
+        if (e.code !== undefined) {
+          if (e.stack) {e.stack = undefined}
+          reply.code(e.code).send(JSON.stringify(e))
         } else if (e.message) {
           reply.code(500).send({error: e.message})
         } else {
@@ -103,9 +101,15 @@ describe('res server api', () => {
         }
       }
     })
-
-    const result = await server.listen({port: 3000})
+    await wait(10)
+    const port = await findPort(3000)
+    const result = await server.listen({port})
     console.log('server listening on ', result)
+    apiRoot = `http://localhost:${port}/api`
+
+    ToolFunc.apiRoot = apiRoot
+    const res = new TestResTool('res')
+    res.register()
 
     ClientTools.apiRoot = apiRoot
     await ClientTools.loadFrom()
@@ -122,7 +126,6 @@ describe('res server api', () => {
     expect(res).toStrictEqual({id: 1})
     res = await result.get({id: 1})
     expect(res).toStrictEqual(10)
-    console.log('🚀 ~ it ~ res:', res)
     res = await result.post({id: 2, val: 20})
     expect(res).toStrictEqual({id: 2})
     res = await result.list()
@@ -131,6 +134,19 @@ describe('res server api', () => {
     expect(res).toStrictEqual({id: 1})
     res = await result.list()
     expect(res).toStrictEqual(['2'])
+    // expect(()=>result.get({id: 1})).rejects.toThrow(NotFoundError)
+    // expect(()=>result.get({id: 1})).rejects.toThrow('Could not find 1.')
+    let err: any
+    try {
+      res = await result.get({id: 1})
+    } catch(e) {
+      err = e
+    }
+    expect(err).toBeInstanceOf(NotFoundError)
+    expect(err.message).toBe('Could not find 1.')
+    expect(err.code).toBe(ErrorCode.NotFound)
+    expect(err.data).toStrictEqual({what: 1})
+    expect(err.name).toBe('res')
 
     // expect(await result.run({a: 10})).toStrictEqual(10)
     // expect(await result.run({a: 18, b: 'hi world'})).toStrictEqual('hi world')

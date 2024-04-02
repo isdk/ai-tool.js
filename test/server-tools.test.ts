@@ -4,6 +4,7 @@ import fastify from 'fastify'
 
 import { ServerTools as ToolFunc } from "../src/server-tools"
 import { ClientTools } from '../src/client-tools'
+import { findPort } from './find-port'
 
 describe('ServerTools', () => {
   beforeEach(()=>{
@@ -93,11 +94,10 @@ describe('ServerTools', () => {
 })
 
 describe('server api', () => {
-  const apiRoot = 'http://localhost:3000/api'
+  let apiRoot: string // = 'http://localhost:3000/api'
   const server = fastify()
 
   beforeAll(async () => {
-    ToolFunc.apiRoot = apiRoot
     const params = {"a": "number", b: "any"}
 
     ToolFunc.register({
@@ -158,9 +158,12 @@ describe('server api', () => {
       reply.send(result)
       // reply.send({params: request.params as any, query: request.query, url: request.url})
     })
-    const result = await server.listen({port: 3000})
+    const port = await findPort(3000)
+    const result = await server.listen({port})
     console.log('server listening on ', result)
+    apiRoot = `http://localhost:${port}/api`
 
+    ToolFunc.apiRoot = apiRoot
     ClientTools.apiRoot = apiRoot
     await ClientTools.loadFrom()
   })
