@@ -1,4 +1,4 @@
-import { throwError } from "./utils/base-error";
+import { BaseError, createError, throwError } from "./utils/base-error";
 import { Funcs, ToolFunc } from "./tool-func";
 import { RemoteToolFuncSchema, type RemoteFuncItem, type ActionName } from "./utils/consts";
 
@@ -67,7 +67,7 @@ export class ClientTools extends ToolFunc {
     if (objParam?.stream && !fetchOptions.headers.Connection) {
       fetchOptions.headers.Connection = 'keep-alive'
     }
-    if (!act) { act = this.action!}
+    if (!act) { act = this.action || 'post'}
     if (act === 'res') { act = 'get' }
     subName = subName ? this.name + '/' + subName : this.name
 
@@ -80,9 +80,41 @@ export class ClientTools extends ToolFunc {
       urlPart = subName!
     }
 
-    console.log('🚀 ~ ClientTools ~ fetch:', fetchOptions.method, `${this.apiRoot}/${urlPart}`)
+    // console.log('🚀 ~ ClientTools ~ fetch:', fetchOptions.method, `${this.apiRoot}/${urlPart}`)
     const res = await fetch(`${this.apiRoot}/${urlPart}`, fetchOptions)
+    if (!res.ok) {
+      const err = await this.errorFrom(res)
+      throw err
+    }
     return res
+  }
+
+  async errorFrom(res: Response) {
+    let errCode = res.status
+    let errMsg = res.statusText
+    let name = this.name
+    let data: any
+    if (res.body) {
+      const text = await res.text()
+      try {
+        const body = JSON.parse(text)
+        if (body) {
+          if (body.error) {errMsg = body.error}
+          if (body.name) {name = body.name}
+          if (body.data) {
+            data = body.data
+            data.name = name
+            if (data.what) {
+              data.msg = errMsg
+              errMsg = data.what
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('🚀 ~ parse error body to json:', e)
+      }
+    }
+    return createError(errMsg, name, errCode)
   }
 
   async func(objParam: any) {
