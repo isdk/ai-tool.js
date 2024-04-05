@@ -91,8 +91,8 @@ describe('Event Server api', () => {
     await ClientTools.loadFrom()
   })
 
-  afterAll(() => {
-    server.close()
+  afterAll(async () => {
+    await server.close()
   })
 
   it('should subscribe event', async () => {
@@ -136,6 +136,8 @@ describe('Event Server api', () => {
     await wait(10)
     expect(i).toBe(2)
     expect(j).toBe(1)
+    event.active = false
+    es.close()
     // expect(await event.run({a: 10})).toStrictEqual(10)
     // expect(await event.run({a: 18, b: 'hi world'})).toStrictEqual('hi world')
 
