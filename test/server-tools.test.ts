@@ -168,8 +168,8 @@ describe('server api', () => {
     await ClientTools.loadFrom()
   })
 
-  afterAll(() => {
-    server.close()
+  afterAll(async () => {
+    await server.close()
   })
 
   it('should work on get', async () => {
