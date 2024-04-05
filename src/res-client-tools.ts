@@ -1,18 +1,24 @@
 import { ClientTools } from "./client-tools";
-import type { ResServerFuncParams } from "./res-server-tools";
 import { throwError } from "./utils";
 import type { ActionName } from "./utils/consts";
 
+export interface ResClientFuncParams {
+  id?: string
+  act?: string
+  [name: string]: any
+}
+
 export interface ResClientTools {
-  get?({id}: ResServerFuncParams): any
-  post?(options: ResServerFuncParams): any
-  put?({id}: ResServerFuncParams): any
-  delete?({id}: ResServerFuncParams): any
-  list?(options: ResServerFuncParams): any
+  get?({id}: ResClientFuncParams): any
+  post?(options: ResClientFuncParams): any
+  put?({id}: ResClientFuncParams): any
+  delete?({id}: ResClientFuncParams): any
+  list?(options: ResClientFuncParams): any
 }
 
 export class ResClientTools extends ClientTools {
-  async fetch(options: ResServerFuncParams, action: ActionName) {
+  async fetch(options: ResClientFuncParams, action: ActionName) {
+    if (!options) {options = {} as any}
     if (action && this.action === 'res') {
       if (action === 'get' || action === 'delete') {
         const id = options.id
@@ -29,7 +35,7 @@ export class ResClientTools extends ClientTools {
     return await super.fetch(options, action)
   }
 
-  async _func(action: ActionName, options: ResServerFuncParams) {
+  async _func(action: ActionName, options: ResClientFuncParams) {
     const res = await this.fetch(options, action)
     if (options?.stream) {
       return res
@@ -38,7 +44,7 @@ export class ResClientTools extends ClientTools {
     return result
   }
 
-  async func(options: ResServerFuncParams) {
+  async func(options: ResClientFuncParams) {
     const action = options.action
     if (action) {
       delete options.action
