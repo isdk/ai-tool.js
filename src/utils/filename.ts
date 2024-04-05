@@ -1,4 +1,5 @@
 import path from 'path'
+import { ErrorCode, throwError } from './base-error';
 
 // do not use /g global option here: when the regex is executed multiple times, it will always begin where it left off last time.
 export const FilenameReservedRegex = /[<>:"/\\|?*\u0000-\u001F]/;
@@ -44,7 +45,7 @@ export function sanitizeFilename(filename:string, options: SanitizeFilenameOptio
   const replacement = options.replacement || '!';
 
 	if (FilenameReservedRegex.test(replacement) || ReControlCharsRegex.test(replacement)) {
-		throw new Error('Replacement string cannot contain reserved filename characters');
+		throwError('Replacement string cannot contain reserved filename characters', 'sanitizeFilename', ErrorCode.InvalidArgument);
 	}
 
   if (replacement.length > 0) {
