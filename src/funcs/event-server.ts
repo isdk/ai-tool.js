@@ -102,9 +102,11 @@ export class EventServer extends ServerTools {
         return
       }
       if (act === 'sub') {
-        return this.forward(events)
+        this.forward(events)
+        return
       } else if (act === 'unsub') {
-        return this.unforward(events)
+        this.unforward(events)
+        return
       }
     }
 
