@@ -13,7 +13,6 @@ async function _splitSegments(
   if (typeof texts === 'string') {
     texts = splitSentence(texts)
   } else if (!Array.isArray(texts)) {
-    console.log('TCL:: ~ texts:', texts);
     throwError('the texts parameter should be a string or string[]', 'segments')
   }
 
