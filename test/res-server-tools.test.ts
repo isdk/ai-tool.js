@@ -94,10 +94,13 @@ describe('res server api', () => {
       // const result = JSON.stringify(await func.run(params))
       try {
         let result = await func.run(params)
-        result = JSON.stringify(result)
-        // console.log('🚀 ~ server.all ~ result:', result)
-
-        reply.send(result)
+        if (!func.isStream(params)) {
+          result = JSON.stringify(result)
+          // console.log('🚀 ~ server.all ~ result:', result)
+          reply.send(result)
+        } else if (result) {
+          reply.send(result)
+        }
         // reply.send({params: request.params as any, query: request.query, url: request.url})
       } catch(e) {
         // console.log('🚀 ~ server.all ~ e:', e)
@@ -117,11 +120,11 @@ describe('res server api', () => {
     console.log('server listening on ', result)
     apiRoot = `http://localhost:${port}/api`
 
-    ToolFunc.apiRoot = apiRoot
+    ToolFunc.setApiRoot(apiRoot)
     const res = new TestResTool('res')
     res.register()
 
-    ClientTools.apiRoot = apiRoot
+    ClientTools.setApiRoot(apiRoot)
     await ClientTools.loadFrom()
   })
 
