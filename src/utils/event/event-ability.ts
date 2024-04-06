@@ -44,7 +44,6 @@ function getEventableClass(Backend: any) {
     once(eventName: string, listener: EventListenerFn): EventEmitter | void {
       const emitter = Backend.emitter;
       if (!emitter) {throw new TypeError('EventBackend required')}
-      console.log('🚀 ~ BackendEventable ~ once ~ eventName:', eventName)
       return emitter.once(eventName, listener);
     }
 
