@@ -22,7 +22,15 @@ const ServerToolItems: {[name:string]: ServerTools} = {}
 Object.setPrototypeOf(ServerToolItems, ToolFunc.items)
 
 export class ServerTools extends ToolFunc {
-  static apiRoot?: string;
+  private static _apiRoot?: string;
+  static get apiRoot() {
+    return ServerTools._apiRoot
+  }
+
+  static setApiRoot(v: string) {
+    ServerTools._apiRoot = v
+  }
+
   static items = ServerToolItems;
 
   static toJSON() {
