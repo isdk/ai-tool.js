@@ -51,19 +51,25 @@ export class ResClientTools extends ClientTools {
     }
     return this._func(action, options)
   }
+
+  assignMethods(methods: string[]) {
+    if (Array.isArray(methods)) {
+      for (const action of methods) {
+        const name = action.startsWith('$') ? action.slice(1) : action
+        if (!this[name]) {
+          this[name] = ((act: any) => this._func.bind(this, act))(action)
+        }
+      }
+    }
+  }
 }
 
 export const ResClientToolsSchema = {
   methods: {
     type: 'array',
     assign(value: string[], dest: any, src?: any, name?: string, options?: any) {
-      if (Array.isArray(value) && !options?.isExported) {
-        for (const action of value) {
-          const name = action.startsWith('$') ? action.slice(1) : action
-          if (!dest[name]) {
-            dest[name] = ((act: string) => dest._func.bind(dest, act))(action)
-          }
-        }
+      if (!options?.isExported) {
+        dest.assignMethods(value)
       }
     },
   },
