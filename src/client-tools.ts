@@ -44,6 +44,9 @@ export class ClientTools extends ToolFunc {
       const funcItem = items[name] as ClientFuncItem;
       if (!item) {
         this.register(funcItem);
+      } else {
+        item.assign(funcItem)
+        // console.warn('🚀 ~ ClientTools ~ loadFromSync:', name, 'already registered', item.apiRoot, this.apiRoot)
       }
     }
   }
