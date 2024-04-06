@@ -154,8 +154,12 @@ describe('server api', () => {
       body._req = request.raw
       body._res = reply.raw
       let result = await func.run(body)
-      result = JSON.stringify(result)
-      reply.send(result)
+      if (!func.isStream(body)) {
+        result = JSON.stringify(result)
+        reply.send(result)
+      } else if (result) {
+        reply.send(result)
+      }
       // reply.send({params: request.params as any, query: request.query, url: request.url})
     })
     const port = await findPort(3000)
@@ -163,8 +167,8 @@ describe('server api', () => {
     console.log('server listening on ', result)
     apiRoot = `http://localhost:${port}/api`
 
-    ToolFunc.apiRoot = apiRoot
-    ClientTools.apiRoot = apiRoot
+    ToolFunc.setApiRoot(apiRoot)
+    ClientTools.setApiRoot(apiRoot)
     await ClientTools.loadFrom()
   })
 
