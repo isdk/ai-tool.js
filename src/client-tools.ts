@@ -13,13 +13,22 @@ const ClientToolItems: Funcs = {}
 Object.setPrototypeOf(ClientToolItems, ToolFunc.items)
 
 export class ClientTools extends ToolFunc {
-  declare static apiRoot: string|undefined
+  declare apiRoot: string|undefined;
+
+  private static _apiRoot?: string;
+  static get apiRoot() {
+    return ClientTools._apiRoot
+  }
+
+  static setApiRoot(v: string) {
+    ClientTools._apiRoot = v
+  }
 
   static items = ClientToolItems;
 
   static async loadFrom() {
-    if (this.apiRoot) {
-      const res = await fetch(this.apiRoot, {headers: {
+    if (this._apiRoot) {
+      const res = await fetch(this._apiRoot, {headers: {
         "Content-Type": "application/json",
       },})
       const items = await res.json()
@@ -31,8 +40,9 @@ export class ClientTools extends ToolFunc {
 
   static loadFromSync(items: Funcs) {
     for (const name in items) {
-      if (!this.get(name)) {
-        const funcItem = items[name] as ClientFuncItem;
+      const item = this.get(name)
+      const funcItem = items[name] as ClientFuncItem;
+      if (!item) {
         this.register(funcItem);
       }
     }
@@ -80,7 +90,6 @@ export class ClientTools extends ToolFunc {
       urlPart = subName!
     }
 
-    // console.log('🚀 ~ ClientTools ~ fetch:', fetchOptions.method, `${this.apiRoot}/${urlPart}`)
     const res = await fetch(`${this.apiRoot}/${urlPart}`, fetchOptions)
     if (!res.ok) {
       const err = await this.errorFrom(res)
