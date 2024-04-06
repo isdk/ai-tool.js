@@ -120,7 +120,7 @@ export class SSEChannel {
     }
 
     // [...this.clients].filter(c => !_eventName || hasEventMatch(c.events, _eventName)).forEach(c => c.res.write(output));
-    [...this.clients].filter(c => !_eventName || hasEventMatch(c.events, _eventName)).forEach((c, i) => {
+    ;[...this.clients].filter(c => !_eventName || hasEventMatch(c.events, _eventName)).forEach((c, i) => {
       // console.log(i, '🚀 ~ SSEChannel ~ publish ~ output:', c.req.socket.remoteAddress ?? '', output)
       c.res.write(output)
     });
