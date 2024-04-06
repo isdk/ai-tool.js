@@ -209,6 +209,10 @@ describe('Event Server api', () => {
       await wait(1)
       expect(t1).toBe(3)
       expect(data).toStrictEqual([EventName, 'hi'])
+      res = await event.unsubscribe('t1')
+      eventServer.emit('t1','hi')
+      await wait(1)
+      expect(t1).toBe(3)
     } finally {
       event.active = false
     }
