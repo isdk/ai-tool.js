@@ -84,7 +84,7 @@ interface ClientFuncItem extends FuncItem {
 }
 ```
 
-stream 参数加上,但是没有想好,如何在 ClientTools 上使用,因为ClientTools是抽象的,而stream需要有具体的值.
+~~stream 参数~~(已经废弃,使用`isStream()`方法代替,这样更加灵活,因为后面的ResAPI中会有多个方法,有的支持流,有的不支持)加上,但是没有想好,如何在 ClientTools 上使用,因为ClientTools是抽象的,而stream需要有具体的值.
 除非我这里约定为 Object stream, 一次发送一个object. 这样才能在 ClientTools 实现流.
 
 另外如果是stream,是否能固化headers为:
