@@ -1,9 +1,6 @@
-import { event } from './event'
-import { ClientTools } from '../client-tools'
-import { EventBusName, EventName } from '../utils'
+import { EventName } from '../utils'
 import type { Event } from 'events-ex'
-
-const eventBus = event.runSync()
+import { ResClientTools } from '../res-client-tools'
 
 export interface EventClientFuncParams {
   event?: string | string[]
@@ -12,7 +9,7 @@ export interface EventClientFuncParams {
   listener?: (...args: any[]) => void
 }
 
-export class EventClient extends ClientTools {
+export class EventClient extends ResClientTools {
   _es: EventSource|undefined
   // the events on _es
   _esEvents: string[]|undefined
@@ -46,17 +43,6 @@ export class EventClient extends ClientTools {
 
   name = EventName
   description = 'subscribe server sent event'
-  params = {
-    event: { type: 'string' },
-    act: { type: 'string' },
-    listener: {type: 'function'},
-  }
-  depends = { [EventBusName]: event }
-  stream = true
-
-  async publish(data: any, event: string|string[]) {
-    await this.fetch({event, data, act: 'pub'})
-  }
 
   initEventSource(events?: string|string[]) {
     if (typeof events === 'string') { events = [events] }
@@ -85,11 +71,12 @@ export class EventClient extends ClientTools {
     const evtType = event.type
     if (!this._forwardEvents.has(evtType)) {
       // console.log(event))
-      if (data && evtType) {
+      const emitter = this.emitter
+      if (emitter && data && evtType) {
         if (Array.isArray(data)) {
-          eventBus.emit(evtType, ...data)
+          emitter.emit(evtType, ...data)
         } else {
-          eventBus.emit(evtType, data)
+          emitter.emit(evtType, data)
         }
       }
     }
@@ -100,11 +87,16 @@ export class EventClient extends ClientTools {
     const event = this.type
     // when receive the event from SSE, the target is no publish method.
     if (this.target.publish) {
-      await this.target.publish(data, event)
+      await this.target.publish({data, event})
     }
   }
 
-  subscribeSSE(events: string|string[]) {
+  /**
+   * subscribe server sent event(SSE)
+   * @param events
+   */
+  async subscribe(events: string|string[]) {
+    const result = await this.sub({event: events})
     if (typeof events === 'string') {
       events = [events]
     }
@@ -115,9 +107,15 @@ export class EventClient extends ClientTools {
         evtSource.addEventListener(event, listener)
       }
     }
+    return result
   }
 
-  unsubscribeSSE(events: string|string[]) {
+  /**
+   * unsubscribe server sent event(SSE)
+   * @param events
+   */
+  async unsubscribe(events: string|string[]) {
+    const result = await this.unsub({event: events})
     if (typeof events === 'string') {
       events = [events]
     }
@@ -128,9 +126,17 @@ export class EventClient extends ClientTools {
         this.evtSource.removeEventListener(event, listener)
       }
     }
+    return result
   }
 
-  // subscribe these local events, forward/publish to server
+  /**
+   * forward local event(s) to server
+   *
+   * subscribe these local events to forward/publish to server
+   *
+   * Note: pls backendEventable(ClientTools or EventClient) first
+   * @param events
+   */
   forwardEvent(events: string|string[]) {
     if (typeof events === 'string') {
       events = [events]
@@ -138,11 +144,19 @@ export class EventClient extends ClientTools {
     for (const event of events) {
       if (!this._forwardEvents.has(event)) {
         this._forwardEvents.add(event)
-        eventBus.on(event, this.ebListener)
+        if (this.on) this.on(event, this.ebListener)
       }
     }
   }
 
+  /**
+   * unforward local event(s) to server
+   *
+   * unsubscribe these local events not to forward/publish to server
+   *
+   * Note: pls backendEventable(ClientTools or EventClient) first
+   * @param events
+   */
   unforwardEvent(events: string|string[]) {
     if (typeof events === 'string') {
       events = [events]
@@ -150,25 +164,16 @@ export class EventClient extends ClientTools {
     for (const event of events) {
       if (this._forwardEvents.has(event)) {
         this._forwardEvents.delete(event)
-        eventBus.off(event, this.ebListener)
+        if (this.off) this.off(event, this.ebListener)
       }
     }
   }
 
-  async func({event, data, act}: EventClientFuncParams = {}) {
-    if (event) {
-      if (act === 'pub') {
-        return await this.publish(data, event)
-      } else if (act === 'unsub') {
-        return this.unsubscribeSSE(event)
-      } else if (act === 'sub') {
-        return this.subscribeSSE(event)
-      }
-    }
+  async init(events: string|string[]) {
     // close eventsource and re-init event source
     this.active = false
-    this.initEventSource(event)
-    if (event) {this.subscribeSSE(event)}
+    this.initEventSource(events)
+    if (events) {return await this.subscribe(events)}
   }
 }
 
