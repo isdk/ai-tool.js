@@ -49,12 +49,18 @@ export class ResServerTools extends ServerTools {
     return value
   }
 
-  func(params: ResServerFuncParams) {
+  getMethodFromParams(params: ResServerFuncParams) {
     let method = params?._req?.method?.toLowerCase()
     if (method === 'get' && params.id === undefined) {method = 'list'}
     if (method === 'post' && params.act) {
       method = params.act
     }
+    return method
+  }
+
+  func(params: ResServerFuncParams) {
+    const method = this.getMethodFromParams(params)
+
     if (method && typeof this[method] === 'function') {
       if (params.id !== undefined) {
         params.id = this.cast('id', params.id)
