@@ -98,6 +98,7 @@ stream 参数加上,但是没有想好,如何在 ClientTools 上使用,因为Cli
 
 ### ResServerTools
 
+TODO: 需要约定方法是否为stream?,而不是Func是否为stream.
 
 基于资源CRUD的ServerTools, 资源是ToolFunc的名称。如果是资源Func,那么就会存在如下的(可选的)方法:
 
@@ -267,17 +268,34 @@ class EventSourceEx extends EventSource {
 
 ```
 
+需要重构为RESTful API??
+
+1. `GET /api/event` `list` 服务器事件通道 (stream)
+2. `POST /api/event` 订阅服务器事件
+3. `DELETE /api/event` 取消订阅服务器事件
+4. `PUT /api/event` 发布消息给服务器事件
+
+也可以将其它三个方法合并为`POST /api/event`,或者自定义方法:
+
+1. `GET /api/event` list 服务器事件通道 (stream)
+2. `sub/unsub/publish`
+
 #### EventClient
 
-作用有2
+作用有2 主要功能为订阅与发布
+
+* 订阅: 订阅服务器事件,并转发到本地客户端Event-Bus
+* 发布: 发布消息到服务器
+
+EventSource上的事件不支持RegExp(匹配)事件监听
 
 1. 将本地事件转发到服务器,通过特定的`Post` API
 2. 通过`GET`API 以SSE的方式接收服务器事件,并服务器事件转发到Event-Bus
 
 * initEventSource(events): 告诉服务器只接收指定的events,如果events存在,否则接收全部
-* subscribeSSE(events): 订阅服务器SSE消息,并转发到Event-Bus
+* subscribe(events): 订阅服务器SSE消息,并转发到Event-Bus
   * 注意区分是本地消息,还是来自服务器的消息,来自服务器的消息如果是forward的本地消息,就不要再次转发到Event-Bus,不然就要无限循环
-* unsubscribeSSE(events): 取消订阅服务器SSE消息
+* unsubscribe(events): 取消订阅服务器SSE消息
 * forwardEvent(events): 将指定的本地事件(通过本地订阅)转发到服务器
 * unforwardEvent(events): 取消转发指定的本地事件
 
