@@ -46,6 +46,10 @@ export class ServerTools extends ToolFunc {
     return result
   }
 
+  isStream(params: ServerFuncParams) {
+    return this.stream
+  }
+
   func({}): Promise<any>|any {}
 }
 
