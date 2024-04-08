@@ -40,12 +40,12 @@ export interface AIStreamParserOptions {
 }
 
 export type AITextGenerationFinishReason =
-  | "stop"
-  | "length"
-  | 'tool_calls'
-  | 'content_filter'
-  | 'function_call'
-  | null;
+  | 'stop' // model generated stop sequence
+  | 'length' // model generated maximum number of tokens
+  | 'content-filter' // content filter violation stopped the model
+  | 'tool-calls' // model triggered tool calls
+  | 'error' // model stopped because of an error
+  | 'other' | null; // model stopped for other reasons
 
 export interface AIResult<TValue = any, TOptions = any> {
   /**
