@@ -18,7 +18,7 @@ export declare interface ServerTools extends ServerFuncItem {
   [name: string]: any;
 }
 
-const ServerToolItems: {[name:string]: ServerTools} = {}
+const ServerToolItems: {[name:string]: ServerTools|ToolFunc} = {}
 Object.setPrototypeOf(ServerToolItems, ToolFunc.items)
 
 export class ServerTools extends ToolFunc {
