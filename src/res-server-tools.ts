@@ -17,7 +17,7 @@ export interface ResServerTools {
   post?(options: ResServerFuncParams): any
   put?({id}: ResServerFuncParams): any
   delete?({id}: ResServerFuncParams): any
-  list?(options: ResServerFuncParams): any
+  list?(options?: ResServerFuncParams): any
 }
 
 export class ResServerTools extends ServerTools {
