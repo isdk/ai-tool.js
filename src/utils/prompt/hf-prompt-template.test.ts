@@ -32,4 +32,8 @@ describe('HfPromptTemplate', () => {
     })
     expect(result).toStrictEqual(`You are a helpful assistant that translates English to Chinese.\nHello, how are you?`)
   })
+
+  it('should format text without required variables', () => {
+    expect(HfPromptTemplate.from(`hi{{text}}`).format({})).toStrictEqual('hi')
+  })
 })

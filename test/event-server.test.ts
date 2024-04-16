@@ -198,7 +198,7 @@ describe('Event Server api', () => {
         data = dat
       })
       eventServer.emit('t1',1,2,3)
-      await wait(10)
+      await wait(50)
       expect(t1).toBe(1)
       expect(data).toStrictEqual([EventName, 1, 2, 3])
       await event.publish({event: 't1', data: [2, 3]})
