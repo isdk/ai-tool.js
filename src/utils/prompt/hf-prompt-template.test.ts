@@ -37,4 +37,25 @@ describe('HfPromptTemplate', () => {
   it('should format text without required variables', async () => {
     expect(await HfPromptTemplate.from(`hi{{text}}`).format({})).toStrictEqual('hi')
   })
+
+  it('should get partial PromptTemplate(string)', async () => {
+    const promptTemplate = new PromptTemplate('{{role}}:{{text}}', {templateType: 'hf'})
+    const p = promptTemplate.partial({role: 'user'})
+    expect(p).toBeInstanceOf(HfPromptTemplate)
+    expect(p.data).toStrictEqual({role: 'user'})
+    expect(await p.format({text: 'hello'})).toStrictEqual('user:hello')
+  })
+
+  it('should get partial PromptTemplate(function)', async () => {
+    const promptTemplate = new PromptTemplate('{{role}}:{{date}}', {templateType: 'hf'})
+    const dt = new Date()
+    function getDate() {
+      // console.log('getDate......', arguments)
+      return dt.toISOString()
+    }
+    const p = promptTemplate.partial({date: getDate})
+    expect(p).toBeInstanceOf(HfPromptTemplate)
+    expect(p.data).toStrictEqual({date: getDate})
+    expect(await p.format({role: 'user'})).toStrictEqual('user:'+dt.toISOString())
+  })
 })
