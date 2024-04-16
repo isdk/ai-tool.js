@@ -21,8 +21,12 @@ export interface AIResult<TValue = any, TOptions = any> {
   options?: TOptions
 }
 
-export const AIChatRoles = ['system', 'user', 'assistant',  'system', 'tool'] as const
-export type AIChatRole = typeof AIChatRoles[number]
+// human: user role;  ai: assistant role ; generic means customize role
+export const AIMessageTypes = ['human', 'ai', 'generic', 'system', 'function', 'tool'] as const
+export type AIMessageType = typeof AIMessageTypes[number]
+
+export const AIChatRoles = ['user', 'assistant', 'system', 'function', 'tool'] as const
+export type AIChatRole = (typeof AIChatRoles[number]) & string
 
 export type AIChatMessageParam =
   | AIChatSystemMessageParam

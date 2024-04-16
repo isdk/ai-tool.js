@@ -1,5 +1,5 @@
 import { Template as HFTemplate } from "@huggingface/jinja"
-import { PromptTemplate } from "./prompt-template"
+import { PromptTemplate, PromptTemplateOptions } from "./prompt-template"
 import { CommonError, ErrorCode, } from '../base-error'
 
 
@@ -73,25 +73,25 @@ function getVariables(statement: any, internalVars?: string[]) {
 }
 
 export class HfPromptTemplate extends PromptTemplate {
-  declare template: HFTemplate
+  declare compiledTemplate: HFTemplate
 
-  getVariables(template: HFTemplate = this.template) {
+  getVariables(template: HFTemplate = this.compiledTemplate) {
     const internalVars = []
     // get variables and remove duplication items
     const result = getVariables(template.parsed, internalVars).filter((item, index, self) => self.indexOf(item) === index)
     return result
   }
 
-  initialize(template: string) {
+  _initialize(template: string, options?: PromptTemplateOptions) {
     if (typeof template !== 'string') {
       throw new CommonError('Prompt template must be a string', 'PromptTemplate', ErrorCode.InvalidArgument)
     }
-    this.template = new HFTemplate(template)
-    this.inputVariables = this.getVariables()
+    this.compiledTemplate = new HFTemplate(template)
+    this.inputVariables = Array.isArray(options?.inputVariables) ? options.inputVariables : this.getVariables()
   }
 
   _format(data: Record<string, any>): string {
-    return this.template.render(data)
+    return this.compiledTemplate.render(data)
   }
 }
 
