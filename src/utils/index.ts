@@ -1,5 +1,6 @@
 export * from './consts'
 export * from './base-error'
+export * from './chat'
 export * from './split-sentence'
 export * from './trunc-to'
 export * from './wait'

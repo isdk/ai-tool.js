@@ -5,6 +5,7 @@ import {
   type ReconnectInterval,
 } from 'eventsource-parser';
 import { getResponseErrorReadableStream } from './error-readable-stream'
+import { AIResult } from '../chat';
 
 /**
  * Configuration options and helper callback methods for AIStream stream lifecycle events.
@@ -37,27 +38,6 @@ export interface AIStreamCallbacksAndOptions {
  */
 export interface AIStreamParserOptions {
   event?: string;
-}
-
-export type AITextGenerationFinishReason =
-  | 'stop' // model generated stop sequence
-  | 'length' // model generated maximum number of tokens
-  | 'content-filter' // content filter violation stopped the model
-  | 'tool-calls' // model triggered tool calls
-  | 'error' // model stopped because of an error
-  | 'other' | null; // model stopped for other reasons
-
-export interface AIResult<TValue = any, TOptions = any> {
-  /**
-   * The generated value.
-   */
-  content?: TValue;
-
-  /**
-   * The reason why the generation stopped.
-   */
-  finishReason?: AITextGenerationFinishReason;
-  options?: TOptions
 }
 
 /**
