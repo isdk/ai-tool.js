@@ -1,15 +1,22 @@
 import { BaseFactory } from 'custom-factory';
 
 import { CommonError, ErrorCode, NotImplementationError } from '../base-error'
-import { type PromptTemplateType } from './consts'
+// import { type PromptTemplateType } from './consts'
+
+export interface PromptTemplateOptions {
+  template?: string
+  data?: Record<string, any>
+  templateType?: string
+  [name: string]: any
+}
 
 export class PromptTemplate extends BaseFactory {
   declare template: any
   declare _data:Record<string, any>|undefined
   declare inputVariables: string[]|undefined
 
-  static from(template: string, data?: Record<string, any>) {
-    return new this(template, undefined, data)
+  static from(template: string, options?: PromptTemplateOptions) {
+    return new this(template, options)
   }
 
   get data() {
@@ -30,8 +37,10 @@ export class PromptTemplate extends BaseFactory {
     return data
   }
 
-  constructor(template: string, templateType?: PromptTemplateType, data?: Record<string, any>) {
-    super(template, templateType)
+  constructor(template: string, options?: PromptTemplateOptions) {
+    const { templateType, data } = options || {}
+
+    super(template, options)
 
     if (this.constructor === PromptTemplate) {
       const TemplateClass = PromptTemplate.get(templateType)
