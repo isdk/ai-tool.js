@@ -99,14 +99,18 @@ function parseFString(template: string): FStringPromptTemplateNode[] {
  */
 function interpolateFString(nodes: FStringPromptTemplateNode[], values: Record<string, any>) {
   return nodes.reduce((res, node) => {
+    let result: string
     if (node.type === "variable") {
       if (node.name in values) {
-        return res + values[node.name];
+        result = res + values[node.name];
+      } else {
+        // console.error(`Missing value for input ${node.name}`);
+        result = res;
       }
-      throw new Error(`Missing value for input ${node.name}`);
+    } else {
+      result = res + node.text;
     }
-
-    return res + node.text;
+    return result;
   }, "");
 }
 
