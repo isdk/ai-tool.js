@@ -20,11 +20,11 @@ describe('HfPromptTemplate', () => {
     expect(new PromptTemplate('{{text}}', {templateType: 'hf'})).toBeInstanceOf(HfPromptTemplate)
   })
 
-  it('should pass PromptTemplate to value', () => {
+  it('should pass PromptTemplate to value', async () => {
     const systemTemplate = HfPromptTemplate.from(`You are a helpful assistant that translates {{input_language}} to {{output_language}}.`)
     const humanTemplate = HfPromptTemplate.from(`{{text}}`)
     const template = HfPromptTemplate.from(`{{system_template}}\n{{human_template}}`)
-    let result = template.format({
+    let result = await template.format({
       system_template: systemTemplate,
       human_template: humanTemplate,
       input_language: 'English',
@@ -34,7 +34,7 @@ describe('HfPromptTemplate', () => {
     expect(result).toStrictEqual(`You are a helpful assistant that translates English to Chinese.\nHello, how are you?`)
   })
 
-  it('should format text without required variables', () => {
-    expect(HfPromptTemplate.from(`hi{{text}}`).format({})).toStrictEqual('hi')
+  it('should format text without required variables', async () => {
+    expect(await HfPromptTemplate.from(`hi{{text}}`).format({})).toStrictEqual('hi')
   })
 })
