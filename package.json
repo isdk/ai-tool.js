@@ -8,10 +8,12 @@
     ".": "./dist/index.mjs"
   },
   "dependencies": {
+    "@huggingface/jinja": "^0.2.2",
     "@xenova/transformers": "^2.16.1",
     "abstract-error": "^2.0.0-alpha.8",
     "base32768": "^3.0.1",
     "custom-ability": "^2.0.0-alpha.6",
+    "custom-factory": "2.3.0-alpha.6",
     "events-ex": "^2.0.0-alpha.15",
     "eventsource-parser": "^1.1.2",
     "json-canonicalize": "^1.0.6",
