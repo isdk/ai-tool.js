@@ -6,8 +6,8 @@ import { RemoteToolFuncSchema, RemoteFuncItem } from "./utils/consts";
  * Convention: Always pass _req, _res
  */
 export interface ServerFuncParams {
-  _req: IncomingMessage
-  _res: ServerResponse
+  _req?: IncomingMessage
+  _res?: ServerResponse
   [name: string]: any
 }
 export interface ServerFuncItem extends RemoteFuncItem {
