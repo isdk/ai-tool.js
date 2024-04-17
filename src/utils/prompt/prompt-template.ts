@@ -118,7 +118,7 @@ export class PromptTemplate extends BaseFactory {
     const options = this.toJSON()
     options.data = data
     options.ignoreInitialize = true
-    return new (this.constructor as any)(undefined, options)
+    return new (this.constructor as any)(options)
   }
 
   toJSON(options: PromptTemplateOptions = this) {
@@ -127,7 +127,9 @@ export class PromptTemplate extends BaseFactory {
       data: options.data,
       inputVariables: options.inputVariables,
       compiledTemplate: options.compiledTemplate,
-      templateFormat: options.templateFormat,
+    }
+    if (options.templateFormat && PromptTemplate.get(options.templateFormat) !== this.constructor) {
+      result.templateFormat = options.templateFormat
     }
     result = filterNullOrUndefined(result)
     return result
