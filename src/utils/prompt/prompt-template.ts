@@ -7,7 +7,7 @@ import { filterNullOrUndefined } from '../filterNullOrUndefined'
 export interface PromptTemplateOptions {
   template?: string
   data?: Record<string, any>
-  templateType?: string
+  templateFormat?: string
   inputVariables?: string[]
   compiledTemplate?: any
   [name: string]: any
@@ -36,7 +36,7 @@ export class PromptTemplate extends BaseFactory {
   }
 
   constructor(template: string, options?: PromptTemplateOptions) {
-    const { templateType } = options || {}
+    const { templateFormat: templateType } = options || {}
 
     super(template, options)
 

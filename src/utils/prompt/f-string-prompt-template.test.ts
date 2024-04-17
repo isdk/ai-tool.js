@@ -11,7 +11,7 @@ describe('FStringPromptTemplate', () => {
     expect(PromptTemplate.get('fstring')).toStrictEqual(FStringPromptTemplate)
     expect(PromptTemplate.get('f-string')).toStrictEqual(FStringPromptTemplate)
     expect(PromptTemplate.get('langchain')).toStrictEqual(FStringPromptTemplate)
-    expect(new PromptTemplate('{text}', {templateType: 'fstring'})).toBeInstanceOf(FStringPromptTemplate)
+    expect(new PromptTemplate('{text}', {templateFormat: 'fstring'})).toBeInstanceOf(FStringPromptTemplate)
   })
 
   it('should pass PromptTemplate to value', async () => {
@@ -33,7 +33,7 @@ describe('FStringPromptTemplate', () => {
   })
 
   it('should get partial PromptTemplate(string)', async () => {
-    const promptTemplate = new PromptTemplate('{role}:{text}', {templateType: 'fstring'})
+    const promptTemplate = new PromptTemplate('{role}:{text}', {templateFormat: 'fstring'})
     const p = promptTemplate.partial({role: 'user'})
     expect(p).toBeInstanceOf(FStringPromptTemplate)
     expect(p.data).toStrictEqual({role: 'user'})
@@ -41,7 +41,7 @@ describe('FStringPromptTemplate', () => {
   })
 
   it('should get partial PromptTemplate(function)', async () => {
-    const promptTemplate = new PromptTemplate('{role}:{date}', {templateType: 'fstring'})
+    const promptTemplate = new PromptTemplate('{role}:{date}', {templateFormat: 'fstring'})
     const dt = new Date()
     function getDate() {
       // console.log('getDate......', arguments)

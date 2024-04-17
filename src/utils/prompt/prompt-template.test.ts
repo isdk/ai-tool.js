@@ -22,11 +22,11 @@ describe('PromptTemplate', () => {
 
   it('should get registered PromptTemplate', () => {
     expect(PromptTemplate.get('Test')).toStrictEqual(TestPromptTemplate)
-    expect(new PromptTemplate('{{text}}', {templateType: 'Test'})).toBeInstanceOf(TestPromptTemplate)
+    expect(new PromptTemplate('{{text}}', {templateFormat: 'Test'})).toBeInstanceOf(TestPromptTemplate)
   })
 
   it('should get partial PromptTemplate(string)', async () => {
-    const promptTemplate = new PromptTemplate('{{role}}:{{text}}', {templateType: 'Test'})
+    const promptTemplate = new PromptTemplate('{{role}}:{{text}}', {templateFormat: 'Test'})
     const p = promptTemplate.partial({role: 'user'})
     expect(p).toBeInstanceOf(TestPromptTemplate)
     expect(p.data).toStrictEqual({role: 'user'})
@@ -34,7 +34,7 @@ describe('PromptTemplate', () => {
   })
 
   it('should get partial PromptTemplate(function)', async () => {
-    const promptTemplate = new PromptTemplate('{{role}}:{{date}}', {templateType: 'Test'})
+    const promptTemplate = new PromptTemplate('{{role}}:{{date}}', {templateFormat: 'Test'})
     const dt = new Date()
     function getDate() {
       // console.log('getDate......', arguments)
