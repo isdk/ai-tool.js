@@ -2,7 +2,7 @@ import {HfPromptTemplate} from './hf-prompt-template'
 import {PromptTemplate, PromptTemplateOptions} from './prompt-template'
 
 class TestPromptTemplate extends PromptTemplate {
-  _initialize(template: string, options?: PromptTemplateOptions | undefined): void {
+  _initialize(options?: PromptTemplateOptions | undefined): void {
 
   }
   _format(data) {
