@@ -20,7 +20,7 @@ describe('Event Server api', () => {
   const server = fastify()
 
   beforeAll(async () => {
-    const params = {"a": "number", b: "any"}
+    const params = { "a": "number", b: "any" }
     const eventServer = new EventServer('event')
     const eventClient = new EventClient('event')
     eventServer.register()
@@ -29,23 +29,23 @@ describe('Event Server api', () => {
     EventClient.register({
       name: 'test-post',
       params,
-      func: function ({a, b}: {a: number, b: any}) {
+      func: function ({ a, b }: { a: number, b: any }) {
         this.emit('before', a, b)
-        return a >15 ? b : a
+        return a > 15 ? b : a
       },
       result: 'number',
     })
 
 
-    server.get('/api', async function(request, reply){
+    server.get('/api', async function (request, reply) {
       reply.send(ServerTools)
     })
 
-    server.all('/api/:toolId/:id?', async function(request, reply){
+    server.all('/api/:toolId/:id?', async function (request, reply) {
       const { toolId, id } = request.params as any;
       const func = ServerTools.get(toolId)
       if (!func) {
-        reply.code(404).send({error: toolId + ' Not Found', data: {what: toolId}})
+        reply.code(404).send({ error: toolId + ' Not Found', data: { what: toolId } })
       }
       let params: any
       const method = request.method
@@ -58,12 +58,12 @@ describe('Event Server api', () => {
         }
       } else {
         params = request.body;
-        if (typeof params === 'string') {params = JSON.parse(params)}
+        if (typeof params === 'string') { params = JSON.parse(params) }
       }
       // console.log('🚀 ~ server.all ~ toolId:', toolId, params, id)
       params._req = request.raw
       params._res = reply.raw
-      if (id !== undefined) {params.id = id}
+      if (id !== undefined) { params.id = id }
 
       // const result = JSON.stringify(await func.run(params))
       try {
@@ -75,32 +75,32 @@ describe('Event Server api', () => {
           // reply.send({params: request.params as any, query: request.query, url: request.url})
         } else if (result) {
           reply.send(result)
-        // } else if (func.result && func.result !== 'any' && func.result !== 'void') {
-        //   // maybe should valid result type
-        //   reply.code(500).send({error: 'no result'})
-        // } else {
-        //   reply.send()
+          // } else if (func.result && func.result !== 'any' && func.result !== 'void') {
+          //   // maybe should valid result type
+          //   reply.code(500).send({error: 'no result'})
+          // } else {
+          //   reply.send()
         }
-      } catch(e) {
+      } catch (e) {
         if (e.code !== undefined) {
-          const err: any = {...e, error: e.message}
+          const err: any = { ...e, error: e.message }
           // console.log('🚀 ~ server.all ~ err:', err)
-          if (err.stack) {delete err.stack}
+          if (err.stack) { delete err.stack }
           if (typeof err.code === 'number') {
             reply.code(err.code).send(JSON.stringify(err))
           } else {
             reply.code(500).send(JSON.stringify(err))
           }
         } else if (e.message) {
-          reply.code(500).send({error: e.message})
+          reply.code(500).send({ error: e.message })
         } else {
-          reply.code(500).send({error: e})
+          reply.code(500).send({ error: e })
         }
       }
     })
 
     const port = await findPort(3000)
-    const result = await server.listen({port})
+    const result = await server.listen({ port })
     console.log('server listening on ', result)
     apiRoot = `http://localhost:${port}/api`
 
@@ -124,29 +124,29 @@ describe('Event Server api', () => {
     try {
       let t1 = 0
       let t2 = 0
-      event.on('t1', function(...data: any[]) {
+      event.on('t1', function (...data: any[]) {
         t1++
         expect(data).toMatch(`[1, 2, 3]`)
       })
 
       // publish the t1 event to the server
       // await event.run({event: 't1', act: 'pub', data: [1, 2, 3]})
-      await event.publish({event: 't1', data: [1, 2, 3]})
+      await event.publish({ event: 't1', data: [1, 2, 3] })
       await wait(10)
       expect(t1).toBe(1)
 
-      event.on('t2', function(...data: any[]) {
+      event.on('t2', function (...data: any[]) {
         t2++
         expect(data).toMatch(`["event", 4, 5, 6, ]`)
       })
 
       let t2j = 0
       // listen all the events from server
-      es.addEventListener('t2', function(e: MessageEvent) {
+      es.addEventListener('t2', function (e: MessageEvent) {
         t2j++
         expect(e.data).toMatch(`["event",4,5,6]`)
       })
-      es.onmessage = function(e: any) {
+      es.onmessage = function (e: any) {
         // it should not be here
         t2j++
       }
@@ -155,19 +155,19 @@ describe('Event Server api', () => {
       // forward the local t2 event to server
       event.forwardEvent('t2')
       // emit the t2 event
-      event.emit('t2', 4,5,6)
-      await wait(10)
+      event.emit('t2', 4, 5, 6)
+      await wait(150)
       expect(t1).toBe(1)
       expect(t2).toBe(1)
       expect(t2j).toBe(1)
       // await event.run({event: 't1', act: 'pub', data: [1, 2, 3]})
-      await event.publish({event: 't1', data: [1, 2, 3]})
+      await event.publish({ event: 't1', data: [1, 2, 3] })
       await wait(10)
       expect(t1).toBe(2)
       // await event.run({event: ['t1', 't2'], act: 'unsub'})
       await event.unsubscribe(['t1', 't2'])
       // await event.run({event: 't1', act: 'pub', data: [1, 2, 3]})
-      await event.publish({event: 't1', data: [1, 2, 3]})
+      await event.publish({ event: 't1', data: [1, 2, 3] })
       await wait(10)
       expect(t1).toBe(2)
     } finally {
@@ -181,36 +181,36 @@ describe('Event Server api', () => {
     // });
     // console.log(await res.json())
   })
-  it('should subscribe server events', async () =>{
+  it('should subscribe server events', async () => {
     const event = ClientTools.get('event') as EventClient
     const eventServer = ServerTools.get('event') as EventServer
     // subscribe the t1 and t2 event on the server
     // await event.run({event: ['t1', 't2'], act: 'sub'})
     let res = await event.subscribe('t1')
     await wait(10) // the eventsource need time to connect
-    expect(res).toStrictEqual({event: 't1'})
+    expect(res).toStrictEqual({ event: 't1' })
     try {
       let t1 = 0
       let t2 = 0
       let data: any
-      event.on('t1', function(...dat: any[]) {
+      event.on('t1', function (...dat: any[]) {
         t1++
         data = dat
       })
-      eventServer.emit('t1',1,2,3)
-      await wait(50)
+      eventServer.emit('t1', 1, 2, 3)
+      await wait(150)
       expect(t1).toBe(1)
       expect(data).toStrictEqual([EventName, 1, 2, 3])
-      await event.publish({event: 't1', data: [2, 3]})
+      await event.publish({ event: 't1', data: [2, 3] })
       await wait(1)
       expect(t1).toBe(2)
       expect(data).toStrictEqual([2, 3])
-      eventServer.emit('t1','hi')
+      eventServer.emit('t1', 'hi')
       await wait(1)
       expect(t1).toBe(3)
       expect(data).toStrictEqual([EventName, 'hi'])
       res = await event.unsubscribe('t1')
-      eventServer.emit('t1','hi')
+      eventServer.emit('t1', 'hi')
       await wait(1)
       expect(t1).toBe(3)
     } finally {
