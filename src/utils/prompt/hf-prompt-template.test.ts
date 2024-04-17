@@ -65,4 +65,8 @@ describe('HfPromptTemplate', () => {
     expect(p.data).toStrictEqual({date: getDate})
     expect(await p.format({role: 'user'})).toStrictEqual('user:'+dt.toISOString())
   })
+
+  it('should format directly by PromptTemplate', async () => {
+    expect(await PromptTemplate.format({template: '{{text}} world', data: {text: 'hello'}})).toStrictEqual('hello world')
+  })
 })

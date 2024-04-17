@@ -27,8 +27,9 @@ export class PromptTemplate extends BaseFactory {
     return new this(template, options)
   }
 
-  static format(options: PromptTemplateOptions) {
+  static async format(options: PromptTemplateOptions) {
     const template = new this(options)
+    return template.format()
   }
 
   /**
