@@ -17,7 +17,7 @@ describe('HfPromptTemplate', () => {
     expect(PromptTemplate.get('hf')).toStrictEqual(HfPromptTemplate)
     expect(PromptTemplate.get('internal')).toStrictEqual(HfPromptTemplate)
     expect(PromptTemplate.get('huggingface')).toStrictEqual(HfPromptTemplate)
-    expect(new PromptTemplate('{{text}}', {templateType: 'hf'})).toBeInstanceOf(HfPromptTemplate)
+    expect(new PromptTemplate('{{text}}', {templateFormat: 'hf'})).toBeInstanceOf(HfPromptTemplate)
   })
 
   it('should pass PromptTemplate to value', async () => {
@@ -39,7 +39,7 @@ describe('HfPromptTemplate', () => {
   })
 
   it('should get partial PromptTemplate(string)', async () => {
-    const promptTemplate = new PromptTemplate('{{role}}:{{text}}', {templateType: 'hf'})
+    const promptTemplate = new PromptTemplate('{{role}}:{{text}}', {templateFormat: 'hf'})
     const p = promptTemplate.partial({role: 'user'})
     expect(p).toBeInstanceOf(HfPromptTemplate)
     expect(p.data).toStrictEqual({role: 'user'})
@@ -47,7 +47,7 @@ describe('HfPromptTemplate', () => {
   })
 
   it('should get partial PromptTemplate(function)', async () => {
-    const promptTemplate = new PromptTemplate('{{role}}:{{date}}', {templateType: 'hf'})
+    const promptTemplate = new PromptTemplate('{{role}}:{{date}}', {templateFormat: 'hf'})
     const dt = new Date()
     function getDate() {
       // console.log('getDate......', arguments)
