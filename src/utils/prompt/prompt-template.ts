@@ -13,6 +13,7 @@ export interface PromptTemplateOptions {
   templateFormat?: string
   inputVariables?: string[]
   compiledTemplate?: any
+  ignoreInitialize?: boolean
   [name: string]: any
 }
 
@@ -53,16 +54,16 @@ export class PromptTemplate extends BaseFactory {
     }
   }
 
-  _initialize(template: string, options?: PromptTemplateOptions) {
+  _initialize(template?: string, options?: PromptTemplateOptions) {
     throw new NotImplementationError('Not implemented', 'PromptTemplate')
   }
 
-  initialize(template: string, options?: PromptTemplateOptions) {
+  initialize(template?: string, options?: PromptTemplateOptions) {
     if (this.constructor !== PromptTemplate) {
-      if (template) {
-        this._initialize(template, options)
-      } else if (options) {
+      if (options?.ignoreInitialize) {
         Object.assign(this, options)
+      } else {
+        this._initialize(template, options)
       }
     }
   }
@@ -103,6 +104,7 @@ export class PromptTemplate extends BaseFactory {
     data = { ...this.data, ...data }
     const options = this.toJSON()
     options.data = data
+    options.ignoreInitialize = true
     return new (this.constructor as any)(undefined, options)
   }
 
