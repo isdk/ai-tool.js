@@ -20,6 +20,7 @@ export interface PromptTemplateOptions {
 export class PromptTemplate extends BaseFactory {
   declare compiledTemplate: any
   declare template: string
+  declare templateFormat: string|undefined
   declare data:Record<string, any>|undefined
   declare inputVariables: string[]|undefined
 
@@ -126,6 +127,7 @@ export class PromptTemplate extends BaseFactory {
       data: options.data,
       inputVariables: options.inputVariables,
       compiledTemplate: options.compiledTemplate,
+      templateFormat: options.templateFormat,
     }
     result = filterNullOrUndefined(result)
     return result
