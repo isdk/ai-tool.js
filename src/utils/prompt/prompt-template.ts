@@ -24,7 +24,7 @@ export class PromptTemplate extends BaseFactory {
   declare data:Record<string, any>|undefined
   declare inputVariables: string[]|undefined
 
-  static from(template: string, options?: PromptTemplateOptions) {
+  static from(template?: string|PromptTemplateOptions, options?: PromptTemplateOptions) {
     return new this(template, options)
   }
 
