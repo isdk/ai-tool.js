@@ -95,4 +95,4 @@ export class HfPromptTemplate extends PromptTemplate {
   }
 }
 
-PromptTemplate.register(HfPromptTemplate,{name: 'hf', aliases: ['huggingface', 'internal']})
+PromptTemplate.register(HfPromptTemplate,{name: 'hf', aliases: ['huggingface', 'internal', 'default']})
