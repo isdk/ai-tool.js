@@ -39,10 +39,18 @@ export class PromptTemplate extends BaseFactory {
     return data
   }
 
-  constructor(template: string, options?: PromptTemplateOptions) {
+  constructor(template?: string|PromptTemplateOptions, options?: PromptTemplateOptions) {
+    if (typeof template === 'string') {
+      if (!options) { options = {} }
+      options.template = template
+    } else if (template) {
+      options = template
+      template = options.template
+    }
+
     const { templateFormat: templateType } = options || {}
 
-    super(template, options)
+    super(options)
 
     if (this.constructor === PromptTemplate) {
       const TemplateClass = PromptTemplate.get(templateType || defaultTemplateFormat)
@@ -54,16 +62,16 @@ export class PromptTemplate extends BaseFactory {
     }
   }
 
-  _initialize(template?: string, options?: PromptTemplateOptions) {
+  _initialize(options?: PromptTemplateOptions) {
     throw new NotImplementationError('Not implemented', 'PromptTemplate')
   }
 
-  initialize(template?: string, options?: PromptTemplateOptions) {
+  initialize(options?: PromptTemplateOptions) {
     if (this.constructor !== PromptTemplate) {
       if (options?.ignoreInitialize) {
         Object.assign(this, options)
       } else {
-        this._initialize(template, options)
+        this._initialize(options)
       }
     }
   }

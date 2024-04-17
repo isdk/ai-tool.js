@@ -82,7 +82,8 @@ export class HfPromptTemplate extends PromptTemplate {
     return result
   }
 
-  _initialize(template: string, options?: PromptTemplateOptions) {
+  _initialize(options?: PromptTemplateOptions) {
+    const template = options?.template
     if (typeof template !== 'string') {
       throw new CommonError('Prompt template must be a string', 'PromptTemplate', ErrorCode.InvalidArgument)
     }
