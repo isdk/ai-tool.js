@@ -27,6 +27,10 @@ export class PromptTemplate extends BaseFactory {
     return new this(template, options)
   }
 
+  static format(options: PromptTemplateOptions) {
+    const template = new this(options)
+  }
+
   /**
    * Validate/filter the data in inputVariables
    * @param data
@@ -68,9 +72,8 @@ export class PromptTemplate extends BaseFactory {
 
   initialize(options?: PromptTemplateOptions) {
     if (this.constructor !== PromptTemplate) {
-      if (options?.ignoreInitialize) {
-        Object.assign(this, options)
-      } else {
+      Object.assign(this, this.toJSON(options))
+      if (!options?.ignoreInitialize) {
         this._initialize(options)
       }
     }
@@ -80,7 +83,7 @@ export class PromptTemplate extends BaseFactory {
     throw new NotImplementationError('Not implemented', 'PromptTemplate')
   }
 
-  async format(data: Record<string, any>): Promise<string> {
+  async format(data?: Record<string, any>): Promise<string> {
     const partialData = this.data
     data = { ...partialData, ...data, }
     if (partialData) {
@@ -116,12 +119,12 @@ export class PromptTemplate extends BaseFactory {
     return new (this.constructor as any)(undefined, options)
   }
 
-  toJSON() {
+  toJSON(options: PromptTemplateOptions = this) {
     let result: PromptTemplateOptions = {
-      template: this.template,
-      data: this.data,
-      inputVariables: this.inputVariables,
-      compiledTemplate: this.compiledTemplate,
+      template: options.template,
+      data: options.data,
+      inputVariables: options.inputVariables,
+      compiledTemplate: options.compiledTemplate,
     }
     result = filterNullOrUndefined(result)
     return result

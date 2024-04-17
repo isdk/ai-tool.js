@@ -32,6 +32,11 @@ describe('FStringPromptTemplate', () => {
     expect(await FStringPromptTemplate.from(`hi{text}`).format({})).toStrictEqual('hi')
   })
 
+  it('should format text with required variables', async () => {
+    expect(await FStringPromptTemplate.from(`hi {text}`).format({text: 'world'})).toStrictEqual('hi world')
+    expect(await FStringPromptTemplate.from(`hi {text}`, {data: {text: 'world'}}).format()).toStrictEqual('hi world')
+  })
+
   it('should get partial PromptTemplate(string)', async () => {
     const promptTemplate = new PromptTemplate('{role}:{text}', {templateFormat: 'fstring'})
     const p = promptTemplate.partial({role: 'user'})
