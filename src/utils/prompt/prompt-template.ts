@@ -4,6 +4,9 @@ import { CommonError, ErrorCode, NotImplementationError } from '../base-error'
 import { filterNullOrUndefined } from '../filterNullOrUndefined'
 // import { type PromptTemplateType } from './consts'
 
+// register PromptTemplate alias as default.
+export const defaultTemplateFormat = 'default'
+
 export interface PromptTemplateOptions {
   template?: string
   data?: Record<string, any>
