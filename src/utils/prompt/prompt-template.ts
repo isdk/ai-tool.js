@@ -67,7 +67,7 @@ export class PromptTemplate extends BaseFactory {
     }
   }
 
-  _format(data: Record<string, any>): string {
+  _format(data: Record<string, any>): string|Promise<string> {
     throw new NotImplementationError('Not implemented', 'PromptTemplate')
   }
 
