@@ -44,7 +44,7 @@ export class PromptTemplate extends BaseFactory {
     super(template, options)
 
     if (this.constructor === PromptTemplate) {
-      const TemplateClass = PromptTemplate.get(templateType)
+      const TemplateClass = PromptTemplate.get(templateType || defaultTemplateFormat)
       if (TemplateClass) {
         return Reflect.construct(TemplateClass, arguments)
       } else {

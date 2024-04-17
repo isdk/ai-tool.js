@@ -17,7 +17,9 @@ describe('HfPromptTemplate', () => {
     expect(PromptTemplate.get('hf')).toStrictEqual(HfPromptTemplate)
     expect(PromptTemplate.get('internal')).toStrictEqual(HfPromptTemplate)
     expect(PromptTemplate.get('huggingface')).toStrictEqual(HfPromptTemplate)
+    expect(PromptTemplate.get('default')).toStrictEqual(HfPromptTemplate)
     expect(new PromptTemplate('{{text}}', {templateFormat: 'hf'})).toBeInstanceOf(HfPromptTemplate)
+    expect(new PromptTemplate('{{text}}')).toBeInstanceOf(HfPromptTemplate)
   })
 
   it('should pass PromptTemplate to value', async () => {
