@@ -40,6 +40,11 @@ describe('HfPromptTemplate', () => {
     expect(await HfPromptTemplate.from(`hi{{text}}`).format({})).toStrictEqual('hi')
   })
 
+  it('should format text with required variables', async () => {
+    expect(await HfPromptTemplate.from(`hi {{text}}`).format({text: 'world'})).toStrictEqual('hi world')
+    expect(await HfPromptTemplate.from(`hi {{text}}`, {data: {text: 'world'}}).format()).toStrictEqual('hi world')
+  })
+
   it('should get partial PromptTemplate(string)', async () => {
     const promptTemplate = new PromptTemplate('{{role}}:{{text}}', {templateFormat: 'hf'})
     const p = promptTemplate.partial({role: 'user'})
