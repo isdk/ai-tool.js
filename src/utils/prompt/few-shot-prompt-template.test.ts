@@ -1,6 +1,15 @@
 import { FewShotPromptTemplate } from './few-shot-prompt-template'
 import './hf-prompt-template'
+import { PromptExampleSelector, PromptExamples } from './prompt-example-selector';
 import { PromptTemplate } from './prompt-template'
+
+class ExampleSelector extends PromptExampleSelector<Record<string, any>> {
+  selectExample(example: Record<string, any>) {
+    if (example?.n > 0) {
+      return example;
+    }
+  }
+}
 
 describe('FewShotPromptTemplate', () => {
   it('should format examples array', async () => {
@@ -12,6 +21,29 @@ describe('FewShotPromptTemplate', () => {
     })
     let result = await template.format({text: 'hi world'})
     expect(result).toStrictEqual('Now begin:\n\ncount:1\n\ncount:2\n\ncount:3\n\ncount:4 hi world\n\nDone')
+  })
+
+  it('should format examples by PromptExampleSelector', async () => {
+    const asyncExamples: PromptExamples<Record<string, any>> = {
+      [Symbol.asyncIterator]: async function* () {
+        yield {n:0};
+        yield {n:1};
+        yield {n:2};
+        yield {n:3};
+        yield {n: '4 {{text}}'};
+      },
+    };
+
+    const examples = new ExampleSelector(asyncExamples);
+
+    const template = FewShotPromptTemplate.from({
+      examples,
+      examplePrompt: {template: 'count:{{n}}'},
+      prefix: 'Now begin:',
+      suffix: 'Done',
+    })
+    let result = await template.format({text: 'hi world'})
+    expect(result).toStrictEqual('Now begin:\n\ncount:1\n\ncount:2\n\ncount:3\n\nDone')
   })
 
   it('should get registered PromptTemplate', () => {
