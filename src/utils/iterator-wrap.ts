@@ -51,7 +51,7 @@ async function isEngineValid() {
 	let catchCalled = false
 	try {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		for await (const x of (function* () {
+		for await (const _x of (function* () {
 			try {
 				yield Promise.reject()
 			} finally {
