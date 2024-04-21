@@ -9,6 +9,7 @@ describe('FStringPromptTemplate', () => {
 
   it('should get registered PromptTemplate', () => {
     expect(PromptTemplate.get('fstring')).toStrictEqual(FStringPromptTemplate)
+    expect(PromptTemplate.get('python')).toStrictEqual(FStringPromptTemplate)
     expect(PromptTemplate.get('f-string')).toStrictEqual(FStringPromptTemplate)
     expect(PromptTemplate.get('langchain')).toStrictEqual(FStringPromptTemplate)
     expect(new PromptTemplate('{text}', {templateFormat: 'fstring'})).toBeInstanceOf(FStringPromptTemplate)
