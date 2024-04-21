@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@huggingface/jinja": "^0.2.2",
-    "@xenova/transformers": "^2.16.1",
+    "@xenova/transformers": "^2.17.1",
     "abstract-error": "^2.0.0-alpha.8",
     "base32768": "^3.0.1",
     "custom-ability": "^2.0.0-alpha.6",
@@ -23,7 +23,7 @@
     "util-ex": "2.0.0-alpha.13",
     "uuid": "^9.0.1",
     "xxhashjs": "^0.2.2",
-    "zod": "^3.22.4",
+    "zod": "^3.22.5",
     "zod-to-json-schema": "^3.22.5"
   },
   "devDependencies": {
@@ -34,7 +34,7 @@
     "@types/xxhashjs": "^0.2.4",
     "@typescript-eslint/eslint-plugin": "^7.7.0",
     "bumpp": "^9.4.0",
-    "eslint": "^9.0.0",
+    "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-tsdoc": "^0.2.17",
     "eventsource": "^2.0.2",
@@ -46,7 +46,7 @@
     "typedoc": "^0.25.13",
     "typedoc-plugin-markdown": "^3.17.1",
     "typescript": "^5.4.5",
-    "vite": "^5.2.9",
+    "vite": "^5.2.10",
     "vitest": "^1.5.0"
   },
   "bug": "https://github.com/isdk/ai-tool.js/issues",
