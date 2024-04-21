@@ -99,7 +99,7 @@ describe('Event Server api', () => {
       }
     })
 
-    const port = await findPort(3000)
+    const port = await findPort(3002)
     const result = await server.listen({ port })
     console.log('server listening on ', result)
     apiRoot = `http://localhost:${port}/api`
