@@ -22,5 +22,4 @@ export class GolangPromptTemplate extends PromptTemplate {
   }
 }
 
-console.log('🚀 ~ GolangPromptTemplate')
 PromptTemplate.register(GolangPromptTemplate,{name: 'golang', aliases: ['localai', 'ollama']})
