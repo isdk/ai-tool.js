@@ -7,8 +7,8 @@ export type ActionName = typeof ActionNames[number]
 
 export type AIModelNameRuleFn = (name: string) => boolean
 
-export type AIModelNameRule = string|RegExp
-export type AIModelNameRules = AIModelNameRule|AIModelNameRule[]|AIModelNameRuleFn
+export type AIModelNameRule = string|RegExp|AIModelNameRuleFn
+export type AIModelNameRules = AIModelNameRule|AIModelNameRule[]
 
 export const RemoteToolFuncSchema = {
   apiRoot: {

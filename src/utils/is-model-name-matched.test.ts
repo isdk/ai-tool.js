@@ -35,6 +35,11 @@ describe("IsModelNameMatched", () => {
         isModelNameMatched("other", [/^t/, /hello$/, /world/])
       ).toBe(false);
     });
+    it("should return true when the model name matches by function in the array", () => {
+      expect(
+        isModelNameMatched("test", [/^t/, (t) => t==="test", /other/])
+      ).toBe(true);
+    });
   });
 
   describe("Function Rule", () => {
