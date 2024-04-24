@@ -30,6 +30,8 @@ export function isModelNameMatched(modelName: string, rule?: AIModelNameRules) {
             if (modelName.toLowerCase() === item.toLowerCase()) {return true}
           } else if (item instanceof RegExp) {
             if (item.test(modelName)) {return true}
+          } else if (typeof item === 'function') {
+            if (item.call(this, modelName)) {return true}
           }
         }
       } else if (rule instanceof RegExp) {
