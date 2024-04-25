@@ -22,10 +22,14 @@ export interface AIResult<TValue = any, TOptions = any> {
 }
 
 // human: user role;  ai: assistant role ; generic means customize role
-export const AIMessageTypes = ['human', 'ai', 'generic', 'system', 'function', 'tool'] as const
+// 'function' is deprecated by OpenAI use 'tool' instead
+export const AIMessageTypes = ['human', 'ai', 'generic', 'system', 'tool'] as const
 export type AIMessageType = typeof AIMessageTypes[number]
 
-export const AIChatRoles = ['user', 'assistant', 'system', 'function', 'tool'] as const
+// tool: return the result of the tool called. {name: 'the tool name', content: 'the tool result', tool_call_id: ""}
+// tool_calls: the tool calls in the message, eg, [{type: "function", function: {name: "getCurrentLocation", arguments: "{}"}, id: "123"}
+// https://github.com/openai/openai-node/blob/master/README.md
+export const AIChatRoles = ['user', 'assistant', 'system', 'tool', 'tool_calls'] as const
 export type AIChatRole = (typeof AIChatRoles[number]) & string
 
 export type AIChatMessageParam =
