@@ -1,27 +1,6 @@
 ## @isdk/ai-tool
 
 所有的Tool Function 参数都是Obj参数，而不是位置参数
-准备同时支持Obj参数和位置参数。
-
-在API上如何支持传递位置参数?
-
-`run?p=[id1,id2]`
-`run?p={users:[id1,id2]}`
-
-全部序列化成json，不好，只有位置参数才序列化，obj参数不用
-
-`run`: 对象参数执行
-`runWithPos`: 位置参数执行
-
-为了适合服务器 内部 run/runSync 改为对象参数函数，原有函数更名`runWithPos/runWithPosSync`
-对象参数函数为第一优先
-
-run/runSync
-
-如果在Client和Server都要用到的，就在ToolFunc上注册，比如lruCache
-
-另外，Client的API来自Server,应该有一个地方从server上获取所有的API.
-调整结构，本地执行的在ToolFunc上，server的只不过是将所有的需要导出的API汇集在这里，注册在这里的才远程调用。
 
 ### ToolFunc
 
@@ -233,41 +212,6 @@ if (resFunc) {
 
 ### SSE
 
-https://github.com/vercel/next.js/discussions/48427
-https://michaelangelo.io/blog/server-sent-events
-https://github.com/michaelangeloio/ts-sse/blob/main/examples/next-app/app/stream/route.ts
-
-EventSource`addEventListener(evtType: string, listener)` 只能接收指定的事件类型, 而`EventSource`的`onmessage`则只能接收无名事件。
-所以,只能约定发送无名事件，在data中传递事件类型(data.event)。
-它的作用实质是中转器,在本地事件与远程事件之间中转。
-
-~~目前可能潜在的问题,因为使用的是自定义的无名事件,导致所有的服务器事件都下发到客户端,在客户端做的过滤,可能有性能问题.~~
-已经搞定用`addEventListener`
-
-```ts
-const sse = new EventSource('/stream');
-sse.addEventListener('test', (e) =>{
-  // event.type 总是 test
-})
-
-sse.onmessage = (e) => {
-  // event.type 总是 message
-  // event.data
-  const event = JSON.parse(e.data);
-  const eventType = event.event;
-  const data = event.data
-}
-
-class EventSourceEx extends EventSource {
-  //  没有作用!
-  dispatchEvent(e) {
-    console.log('TCL:: ~ dispatchEvent e:', arguments);
-    super.dispatchEvent.apply(this, arguments)
-  }
-}
-
-```
-
 需要重构为RESTful API??
 
 1. `GET /api/event` `list` 服务器事件通道 (stream)
@@ -317,19 +261,3 @@ act有:
 * pub:  发布sse事件
 * sub: 转发服务器上的事件
 * unsub: 撤销转发服务器上的事件
-
-
-------------
-
-发现jest下，`transformers.js`调用的是`onnxruntime-web`而不是`onnxruntime-node`
-这是因为没有装`onnxruntime-node`! `onnxruntime-node`无法在bun下使用，报告错误:https://github.com/oven-sh/bun/issues/4619
-bun只能在`onnxruntime-web`下使用，不过有一个bug`wasm does not work on node right now with multiple threads`，需要workaround:
-https://github.com/oven-sh/bun/issues/7877
-
-```ts
-import * as ONNX_NODE from 'onnxruntime-node';
-const ONNX = (ONNX_NODE as any).default ?? ONNX_NODE;
-// wasm does not work on node right now with multiple threads
-ONNX.env.wasm.numThreads = 1;
-```
-
