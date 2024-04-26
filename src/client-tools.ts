@@ -82,7 +82,13 @@ export class ClientTools extends ToolFunc {
     }
     if (!act) { act = this.action || 'post'}
     if (act === 'res') { act = 'get' }
-    subName = subName ? this.name + '/' + subName : this.name
+    if (subName) {
+      if (typeof subName !== 'string') {subName = JSON.stringify(subName)}
+      subName = this.name + '/' + subName
+
+    } else {
+      subName = this.name
+    }
 
     fetchOptions.method =act.toUpperCase()
     let urlPart: string
