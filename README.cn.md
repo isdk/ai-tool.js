@@ -212,8 +212,6 @@ if (resFunc) {
 
 ### SSE
 
-需要重构为RESTful API??
-
 1. `GET /api/event` `list` 服务器事件通道 (stream)
 2. `POST /api/event` 订阅服务器事件
 3. `DELETE /api/event` 取消订阅服务器事件
