@@ -17,6 +17,13 @@ class TestResTool extends ToolFunc {
     'val': {type: 'any'},
   }
 
+  cast(key: string, value: any) {
+    if (key === 'id' && typeof value === 'string' && (value[0] === '[' || value[0] === '{')) {
+      return JSON.parse(value)
+    }
+    return super.cast(key, value)
+  }
+
   $customMethod({id}: ResServerFuncParams) {
     if (id) {
       const item = this.items[id]
@@ -28,6 +35,10 @@ class TestResTool extends ToolFunc {
   }
 
   get({id}: ResServerFuncParams) {
+    if (Array.isArray(id)) {
+      return id.map(id => this.items[id])
+    }
+
     if (id) {
       const item = this.items[id]
       if (!item) {
@@ -143,6 +154,9 @@ describe('res server api', () => {
     expect(res).toStrictEqual({id: 2})
     res = await result.list()
     expect(res).toStrictEqual(['1', '2'])
+    res = await result.get({id: ['1', '2']})
+    expect(res).toStrictEqual([10, 20])
+
     res = await result.delete({id: 1})
     expect(res).toStrictEqual({id: 1})
     res = await result.list()
