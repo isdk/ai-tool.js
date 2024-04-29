@@ -4,7 +4,7 @@ import fastify from 'fastify'
 
 import { ServerTools as ToolFunc } from "../src/server-tools"
 import { ClientTools } from '../src/client-tools'
-import { findPort } from './find-port'
+import { findPort } from './util/find-port'
 
 describe('ServerTools', () => {
   beforeEach(()=>{
