@@ -93,7 +93,7 @@ export class ToolFunc extends AdvancePropertyManager {
     if (func) {
       return await func.run(params)
     }
-    throw new NotFoundError(`${name} to run`, 'ToolFunc');
+    throw new NotFoundError(`${name} to run`, this.name);
   }
 
   static runSync(name: string, params?: any) {
@@ -101,7 +101,7 @@ export class ToolFunc extends AdvancePropertyManager {
     if (func) {
       return func.runSync(params)
     }
-    throw new NotFoundError(`${name} to run`, 'ToolFunc');
+    throw new NotFoundError(`${name} to run`, this.name);
   }
 
   static getFunc(name: string) {
@@ -114,7 +114,7 @@ export class ToolFunc extends AdvancePropertyManager {
     if (func) {
       return await func.runWithPos(...params)
     }
-    throw new NotFoundError(`${name} to run`, 'ToolFunc');
+    throw new NotFoundError(`${name} to run`, this.name);
   }
 
   static runWithPosSync(name: string, ...params: any[]) {
@@ -122,7 +122,7 @@ export class ToolFunc extends AdvancePropertyManager {
     if (func) {
       return func.runWithPosSync(...params)
     }
-    throw new NotFoundError(`${name} to run`, 'ToolFunc');
+    throw new NotFoundError(`${name} to run`, this.name);
   }
 
   static getFuncWithPos(name: string) {
