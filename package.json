@@ -5,7 +5,8 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "exports": {
-    ".": "./dist/index.mjs"
+    ".": "./dist/index.mjs",
+    "./test/util": "./dist/test/util/index.mjs"
   },
   "dependencies": {
     "@huggingface/jinja": "^0.2.2",

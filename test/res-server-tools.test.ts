@@ -6,7 +6,7 @@ import { type ResServerFuncParams, ResServerTools as ToolFunc } from "../src/res
 import { ResClientTools as ClientTools } from '../src/res-client-tools'
 import { BaseError, ErrorCode, NotFoundError, throwError } from '../src/utils/base-error'
 import type { FuncParams } from '../src/tool-func'
-import { findPort } from './find-port'
+import { findPort } from './util/find-port'
 import { wait } from '../src/utils'
 
 class TestResTool extends ToolFunc {
