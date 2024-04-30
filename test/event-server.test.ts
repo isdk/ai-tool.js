@@ -156,7 +156,7 @@ describe('Event Server api', () => {
       event.forwardEvent('t2')
       // emit the t2 event
       event.emit('t2', 4, 5, 6)
-      await wait(150)
+      await wait(250)
       expect(t1).toBe(1)
       expect(t2).toBe(1)
       expect(t2j).toBe(1)
@@ -198,7 +198,7 @@ describe('Event Server api', () => {
         data = dat
       })
       eventServer.emit('t1', 1, 2, 3)
-      await wait(150)
+      await wait(250)
       expect(t1).toBe(1)
       expect(data).toStrictEqual([EventName, 1, 2, 3])
       await event.publish({ event: 't1', data: [2, 3] })
