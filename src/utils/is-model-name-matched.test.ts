@@ -14,6 +14,19 @@ describe("IsModelNameMatched", () => {
       expect(isModelNameMatched("Test", "test")).toBe(true);
     });
   });
+  describe("RegExp Rule", () => {
+    it("should return true when the model name matches the rule exactly", () => {
+      expect(isModelNameMatched("Test1", /test/i)).toBe(true);
+    });
+
+    it("should return true when the model name matches the string regexp rule exactly", () => {
+      expect(isModelNameMatched("Test1", '/test/i')).toBe(true);
+    });
+
+    it("should return false when the model name does not match the rule exactly", () => {
+      expect(isModelNameMatched("otherTest", /^test/i)).toBe(false);
+    });
+  });
 
   describe("Array Rule", () => {
     it("should return true when the model name matches any string in the array", () => {
@@ -26,7 +39,13 @@ describe("IsModelNameMatched", () => {
 
     it("should return true when the model name matches any regular expression in the array", () => {
       expect(
-        isModelNameMatched("test", [/^t/, /test$/, /other/])
+        isModelNameMatched("test", [/^T/, /test$/, /other/])
+      ).toBe(true);
+    });
+
+    it("should return true when the model name matches any string regular expression in the array", () => {
+      expect(
+        isModelNameMatched("test", ['/^T/', '/Test$/i', '/other/'])
       ).toBe(true);
     });
 
