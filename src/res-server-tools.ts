@@ -35,7 +35,11 @@ export class ResServerTools extends ServerTools {
         methods.push(action)
       }
     }
-    getAllNames(Object.getPrototypeOf(this)).filter(name => name.startsWith('$') && typeof this[name] === 'function').forEach(name => methods.push(name))
+    getAllNames(Object.getPrototypeOf(this)).filter(name => name.startsWith('$') && typeof this[name] === 'function').forEach(name => {
+      methods.push(name)
+      const n = name.slice(1)
+      if (this[n] === undefined) {this[n] = this[name]}
+    })
   }
 
   cast(key: string, value: any) {

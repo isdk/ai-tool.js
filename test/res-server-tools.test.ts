@@ -177,7 +177,11 @@ describe('res server api', () => {
     expect(result.customMethod).toBeInstanceOf(Function)
     res = await result.customMethod({id: 2})
     expect(res).toStrictEqual({name: 'customMethod', id: 2, item: 20})
-
+    const resServer = ToolFunc.get('res')
+    expect(resServer).toBeInstanceOf(TestResTool)
+    expect(resServer).toHaveProperty('customMethod')
+    res = await resServer.customMethod({id: 2})
+    expect(res).toStrictEqual({name: 'customMethod', id: 2, item: 20})
     // expect(await result.run({a: 10})).toStrictEqual(10)
     // expect(await result.run({a: 18, b: 'hi world'})).toStrictEqual('hi world')
 
