@@ -1,3 +1,4 @@
+import { isRegExpStr, toRegExp } from 'util-ex'
 import { CommonError, ErrorCode } from './base-error'
 import { AIModelNameRules } from './consts'
 
@@ -21,13 +22,19 @@ export function isModelNameMatched(modelName: string, rule?: AIModelNameRules) {
   if (typeof modelName !== 'string') {throw new CommonError('modelName must be a string', 'isModelNameMatched', ErrorCode.InvalidArgument)}
   switch (typeof rule) {
     case 'string':
-      if (modelName.toLowerCase() === rule.toLowerCase()) {return true}
+      if (isRegExpStr(rule)) {
+        rule = toRegExp(rule)
+        if (rule.test(modelName)) {return true}
+      } else if (modelName.toLowerCase() === rule.toLowerCase()) {return true}
       break
     case 'object':
       if (Array.isArray(rule)) {
         for (const item of rule) {
           if (typeof item === 'string') {
-            if (modelName.toLowerCase() === item.toLowerCase()) {return true}
+            if (isRegExpStr(item)) {
+              rule = toRegExp(item)
+              if (rule.test(modelName)) {return true}
+            } else if (modelName.toLowerCase() === item.toLowerCase()) {return true}
           } else if (item instanceof RegExp) {
             if (item.test(modelName)) {return true}
           } else if (typeof item === 'function') {
