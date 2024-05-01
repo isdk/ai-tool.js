@@ -127,6 +127,9 @@ export class ClientTools extends ToolFunc {
               errMsg = data.what
             }
           }
+          if (body.message) {
+            errMsg = errMsg + ':' + body.message;
+          }
         }
       } catch (e) {
         console.warn('🚀 ~ parse error body to json:', e)
