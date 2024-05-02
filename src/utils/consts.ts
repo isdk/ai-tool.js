@@ -5,7 +5,7 @@ export const PASSING_SCORE = 0.618
 export const ActionNames = ['get', 'post', 'put', 'delete', 'patch', 'list', 'res'] as const
 export type ActionName = typeof ActionNames[number]
 
-export type AIModelNameRuleFn = (name: string) => boolean
+export type AIModelNameRuleFn = (name: string) => string|RegExpExecArray|undefined
 
 export type AIModelNameRule = string|RegExp|AIModelNameRuleFn
 export type AIModelNameRules = AIModelNameRule|AIModelNameRule[]
