@@ -24,8 +24,9 @@ export function isModelNameMatched(modelName: string, rule?: AIModelNameRules) {
     case 'string':
       if (isRegExpStr(rule)) {
         rule = toRegExp(rule)
-        if (rule.test(modelName)) {return true}
-      } else if (modelName.toLowerCase() === rule.toLowerCase()) {return true}
+        const match = rule.exec(modelName)
+        if (match) {return match}
+      } else if (modelName.toLowerCase() === rule.toLowerCase()) {return rule}
       break
     case 'object':
       if (Array.isArray(rule)) {
@@ -33,20 +34,24 @@ export function isModelNameMatched(modelName: string, rule?: AIModelNameRules) {
           if (typeof item === 'string') {
             if (isRegExpStr(item)) {
               rule = toRegExp(item)
-              if (rule.test(modelName)) {return true}
-            } else if (modelName.toLowerCase() === item.toLowerCase()) {return true}
+              const match = rule.exec(modelName)
+              if (match) {return match}
+            } else if (modelName.toLowerCase() === item.toLowerCase()) {return item}
           } else if (item instanceof RegExp) {
             if (item.test(modelName)) {return true}
           } else if (typeof item === 'function') {
-            if (item.call(this, modelName)) {return true}
+            const result = item.call(this, modelName)
+            if (result) {return result}
           }
         }
       } else if (rule instanceof RegExp) {
-        if (rule.test(modelName)) {return true}
+        const match = rule.exec(modelName)
+        if (match) {return match}
       }
       break
     case 'function':
-      if (rule.call(this, modelName)) {return true}
+      const result = rule.call(this, modelName)
+      if (result) {return result}
       break
   }
   return false

@@ -3,7 +3,7 @@ import { isModelNameMatched } from './is-model-name-matched';
 describe("IsModelNameMatched", () => {
   describe("String Rule", () => {
     it("should return true when the model name matches the rule exactly", () => {
-      expect(isModelNameMatched("test", "test")).toBe(true);
+      expect(isModelNameMatched("test", "test")).toBe('test');
     });
 
     it("should return false when the model name does not match the rule exactly", () => {
@@ -11,16 +11,16 @@ describe("IsModelNameMatched", () => {
     });
 
     it("should return true when the rule is a case-insensitive match", () => {
-      expect(isModelNameMatched("Test", "test")).toBe(true);
+      expect(isModelNameMatched("Test", "test")).toBe('test');
     });
   });
   describe("RegExp Rule", () => {
     it("should return true when the model name matches the rule exactly", () => {
-      expect(isModelNameMatched("Test1", /test/i)).toBe(true);
+      expect(isModelNameMatched("Test1", /test/i)).toStrictEqual(/test/i.exec('Test1'));
     });
 
     it("should return true when the model name matches the string regexp rule exactly", () => {
-      expect(isModelNameMatched("Test1", '/test/i')).toBe(true);
+      expect(isModelNameMatched("Test1", '/test/i')).toStrictEqual(/test/i.exec('Test1'));
     });
 
     it("should return false when the model name does not match the rule exactly", () => {
@@ -30,7 +30,7 @@ describe("IsModelNameMatched", () => {
 
   describe("Array Rule", () => {
     it("should return true when the model name matches any string in the array", () => {
-      expect(isModelNameMatched("test", ["hello", "test", "world"])).toBe(true);
+      expect(isModelNameMatched("test", ["hello", "test", "world"])).toBe("test");
     });
 
     it("should return false when the model name does not match any string in the array", () => {
@@ -46,7 +46,7 @@ describe("IsModelNameMatched", () => {
     it("should return true when the model name matches any string regular expression in the array", () => {
       expect(
         isModelNameMatched("test", ['/^T/', '/Test$/i', '/other/'])
-      ).toBe(true);
+      ).toStrictEqual(/Test$/i.exec('test'));
     });
 
     it("should return false when the model name does not match any regular expression in the array", () => {
