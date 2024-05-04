@@ -6,7 +6,7 @@ import { AIModelNameRules } from './consts'
  * Checks if the provided model name matches the given rule.
  * @param modelName The name of the model to check.
  * @param rule An optional rule that can be a string, an array of strings, a regular expression, or a function.
- * @returns true if the model name matches the rule, false otherwise.
+ * @returns matched result if the model name matches the rule, undefined otherwise.
  * @example
  * IsModelNameMatched("gpt-3", "gpt-3") // returns true
  * IsModelNameMatched("GPT-3", "gpt-3") // returns true
@@ -38,7 +38,8 @@ export function isModelNameMatched(modelName: string, rule?: AIModelNameRules) {
               if (match) {return match}
             } else if (modelName.toLowerCase() === item.toLowerCase()) {return item}
           } else if (item instanceof RegExp) {
-            if (item.test(modelName)) {return true}
+            const match = item.exec(modelName)
+            if (match) {return match}
           } else if (typeof item === 'function') {
             const result = item.call(this, modelName)
             if (result) {return result}
@@ -54,5 +55,4 @@ export function isModelNameMatched(modelName: string, rule?: AIModelNameRules) {
       if (result) {return result}
       break
   }
-  return false
 }
