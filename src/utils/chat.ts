@@ -41,6 +41,7 @@ export type AIChatMessageParam =
 export interface AIChatSystemMessageParam {
   role: 'system';
   content: string;
+  templateFormat?: string;
 }
 
 export interface AIChatUserMessageParam {
@@ -52,6 +53,7 @@ export interface AIChatUserMessageParam {
   charId?: string;
   // the message sent from
   from?: 'speech' | string;
+  templateFormat?: string;
 }
 
 export type AIChatContentPart =
@@ -76,6 +78,7 @@ export interface AIChatAssistantMessageParam {
   tool_calls?: Array<AIChatMessageToolCall>;
   // the message creation time
   time?: Date|string;
+  templateFormat?: string;
 }
 
 export interface AIChatMessageToolCall {
@@ -91,4 +94,5 @@ export interface AIChatToolMessageParam {
   role: 'tool';
   content: string;
   tool_call_id: string;
+  templateFormat?: string;
 }
