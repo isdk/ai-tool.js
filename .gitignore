@@ -3,6 +3,8 @@
 node_modules/
 npm*
 .npmrc
+.envrc
+dev.md
 dist/
 .nyc_output/
 docs/
