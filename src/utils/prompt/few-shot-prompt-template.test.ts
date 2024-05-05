@@ -76,4 +76,8 @@ describe('FewShotPromptTemplate', () => {
   it('should format directly by PromptTemplate', async () => {
     expect(await PromptTemplate.format({examples: ['{{role}}:', '{{text}}'], data: {role: 'user', text: 'hello'}, templateFormat: 'fewshot'})).toStrictEqual('\n\nuser:\n\nhello\n')
   })
+
+  it('should format directly by PromptTemplate without template variable', async () => {
+    expect(await PromptTemplate.format({examples: ['user:', 'hello'], templateFormat: 'fewshot'})).toStrictEqual('\n\nuser:\n\nhello\n')
+  })
 })

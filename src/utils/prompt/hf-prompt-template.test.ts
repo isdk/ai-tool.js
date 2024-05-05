@@ -69,4 +69,8 @@ describe('HfPromptTemplate', () => {
   it('should format directly by PromptTemplate', async () => {
     expect(await PromptTemplate.format({template: '{{text}} world', data: {text: 'hello'}})).toStrictEqual('hello world')
   })
+
+  it('should format directly by PromptTemplate without template variable', async () => {
+    expect(await PromptTemplate.format({template: 'hello world', data: {text: 'hello'}})).toStrictEqual('hello world')
+  })
 })
