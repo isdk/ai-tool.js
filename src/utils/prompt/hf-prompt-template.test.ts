@@ -73,4 +73,11 @@ describe('HfPromptTemplate', () => {
   it('should format directly by PromptTemplate without template variable', async () => {
     expect(await PromptTemplate.format({template: 'hello world', data: {text: 'hello'}})).toStrictEqual('hello world')
   })
+
+  it('should format directly by PromptTemplate array last message', async () => {
+    expect(await PromptTemplate.format({
+      template: `{{messages[-1]}}{% for message in messages %}{% if loop.last %}{{messages[-1]}}{% endif %}{% endfor %}`,
+      data: {messages: ['hello', 'world', '!']},
+    })).toStrictEqual('!!')
+  })
 })
