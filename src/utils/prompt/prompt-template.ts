@@ -93,6 +93,7 @@ export class PromptTemplate extends BaseFactory {
       for (const [key, value] of Object.entries(partialData)) {
         // no overwrite and it's function
         if (data[key] === value && typeof value === 'function') {
+          // delete the key first to avoid infinite loop
           delete data[key]
           data[key] = await value(data)
         }
@@ -101,6 +102,7 @@ export class PromptTemplate extends BaseFactory {
 
     for (const [key, value] of Object.entries(data)) {
       if (value instanceof PromptTemplate) {
+        // avoid infinite loop
         delete data[key]
         data[key] = await value.format(data)
       }
