@@ -80,4 +80,31 @@ describe('HfPromptTemplate', () => {
       data: {messages: ['hello', 'world', '!']},
     })).toStrictEqual('!!')
   })
+
+  it('should format directly by PromptTemplate with custom functions', async () => {
+    // note:
+    //  1. the value in func is the hf template runtime value: AnyRuntimeValue(it not exported)
+    //  2. the PromptTemplate will call the func first to get the init data, so you must return the function to execute in HF-template
+    interface AnyRuntimeValue {
+      value: any
+      type: string
+      builtins?: Map<string, AnyRuntimeValue>
+    }
+
+    expect(await PromptTemplate.format({
+      template: `{{ func(content) }}`,
+      data: {
+        content: ['hello', 'world', '!'],
+        x:1,
+        apple: 'pear',
+        func: () => (content: AnyRuntimeValue[]) => content.map(i => i.value).join(' ')
+        // func: function(...args) {
+        //   return (content) => {
+        //     console.log('func run...', content)
+        //     return content.map(i => i.value).join(' ')
+        //   }
+        // },
+      },
+    })).toStrictEqual('hello world !')
+  })
 })
