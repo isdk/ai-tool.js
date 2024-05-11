@@ -97,3 +97,40 @@ export class HfPromptTemplate extends PromptTemplate {
 }
 
 PromptTemplate.register(HfPromptTemplate,{name: 'hf', aliases: ['huggingface', 'internal', 'default']})
+
+// note:
+//  1. the value in func is the hf template runtime value: AnyRuntimeValue(it's not exported)
+//  2. the PromptTemplate will call the func first to get the init data, so you must return the function to execute in HF-template
+interface AnyRuntimeValue {
+  value: any
+  type: string
+  builtins: Map<string, AnyRuntimeValue>
+}
+
+function parseHfValue(arg: any) {
+  let result = arg
+  if (Array.isArray(arg)) {
+    result = arg.map((item: AnyRuntimeValue) => parseHfValue(item))
+  } else if (arg instanceof Map)  {
+    result = {}
+    arg.forEach((item: AnyRuntimeValue, key: string) => {
+      result[key] = parseHfValue(item)
+    })
+  } else if (arg.type === 'ArrayValue')  {
+    result = arg.value.map((item: AnyRuntimeValue) => parseHfValue(item))
+  } else if (arg.type) {
+    result = arg.value
+  }
+  return result
+}
+
+export function createHfValueFunc(fn: Function) {
+  return function(_data: any) {
+    return function(...args: AnyRuntimeValue[]) {
+      const _args = args.map(arg => {
+        return parseHfValue(arg)
+      }) as any[]
+      return fn(..._args, args)
+    }
+  }
+}
