@@ -75,6 +75,30 @@ function getVariables(statement: any, internalVars?: string[]) {
 export class HfPromptTemplate extends PromptTemplate {
   declare compiledTemplate: HFTemplate
 
+  static isTemplate(templateOpt: PromptTemplateOptions|string): boolean {
+    let compiledTemplate: any
+    let template: string
+    let result = false
+    if (typeof templateOpt === 'object') {
+      template = templateOpt.template as string
+      compiledTemplate = templateOpt.compiledTemplate
+    } else {
+      template = templateOpt as string
+    }
+
+    if (!compiledTemplate && template) {
+      try {
+        compiledTemplate = new HFTemplate(template)
+      } catch (error) {}
+    }
+
+    if (compiledTemplate) {
+        const vars = getVariables(compiledTemplate.parsed, [])
+        result = vars.length > 0
+    }
+    return result
+  }
+
   getVariables(template: HFTemplate = this.compiledTemplate) {
     const internalVars = []
     // get variables and remove duplication items
