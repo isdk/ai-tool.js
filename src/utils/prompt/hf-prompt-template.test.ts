@@ -149,4 +149,13 @@ describe('HfPromptTemplate', () => {
       },
     })).toStrictEqual('hi world x 2 a 1,29')
   })
+
+  it('should test isTemplate', () => {
+    expect(HfPromptTemplate.isTemplate({template: '{{ strings }}: {{a}} + {b}'})).toBeTruthy()
+    expect(HfPromptTemplate.isTemplate({template: 'a {{strings '})).toBeFalsy()
+  })
+
+  it('should test isTemplate directly by PromptTemplate', async () => {
+    expect(PromptTemplate.isTemplate({template: '{{text}} world'})).toBeTruthy()
+  })
 })

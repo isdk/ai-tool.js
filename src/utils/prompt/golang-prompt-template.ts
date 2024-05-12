@@ -3,6 +3,12 @@ import { PromptTemplate, PromptTemplateOptions } from "./prompt-template";
 import { interpolateGolangTemplate } from "./template/golang";
 
 export class GolangPromptTemplate extends PromptTemplate {
+
+  static isTemplate(templateOpt: PromptTemplateOptions|string) {
+    const template = typeof templateOpt === 'string' ? templateOpt : templateOpt.template
+    return template?.includes('{{') && template.includes('}}')
+  }
+
   getVariables(template: string) {
     const result = {}
     interpolateGolangTemplate(template, result, true)

@@ -34,6 +34,27 @@ export class PromptTemplate extends BaseFactory {
   }
 
   /**
+   * If the given options.template is the template, perform formatting using that template.
+   * @param options - The options object to check for being a template and to format.
+   * @returns A Promise that resolves to the formatted result if options is a template; otherwise, no value is returned.
+   */
+  static async formatIf(options: PromptTemplateOptions) {
+    if (this.isTemplate(options)) {
+      const template = new this(options)
+      return template.format()
+    }
+  }
+
+  static isTemplate(templateOpt: PromptTemplateOptions) {
+    if (templateOpt?.template) {
+      const templateType = templateOpt.templateFormat || defaultTemplateFormat
+      const Template = PromptTemplate.get(templateType) as typeof PromptTemplate
+      // const Template = (this === PromptTemplate) ? PromptTemplate.get(templateType) as typeof PromptTemplate : this
+      return Template!.isTemplate !== PromptTemplate.isTemplate && Template!.isTemplate(templateOpt)
+    }
+  }
+
+  /**
    * Validate/filter the data in inputVariables
    * @param data
    * @returns

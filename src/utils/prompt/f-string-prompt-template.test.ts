@@ -65,4 +65,14 @@ describe('FStringPromptTemplate', () => {
   it('should format directly by PromptTemplate without template variable', async () => {
     expect(await PromptTemplate.format({template: 'hello world', data: {text: 'hello'}, templateFormat: 'langchain'})).toStrictEqual('hello world')
   })
+
+  it('should test isTemplate', () => {
+    expect(FStringPromptTemplate.isTemplate({template: '{strings}: {a} + {b}'})).toBeTruthy()
+    expect(FStringPromptTemplate.isTemplate({template: 'a {strings '})).toBeFalsy()
+  })
+
+  it('should test isTemplate directly by PromptTemplate', async () => {
+    expect(PromptTemplate.isTemplate({template: '{text} world', templateFormat: 'langchain'})).toBeTruthy()
+  })
+
 })
