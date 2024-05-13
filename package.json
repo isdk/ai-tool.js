@@ -5,12 +5,23 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "exports": {
-    ".": "./dist/index.mjs",
-    "./funcs": "./dist/funcs.mjs",
-    "./test/util": "./dist/test/util.mjs"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./funcs": {
+      "types": "./dist/funcs.d.ts",
+      "require": "./dist/funcs.js",
+      "import": "./dist/funcs.mjs"
+    },
+    "./test/util": {
+      "types": "./dist/test/util.d.ts",
+      "require": "./dist/test/util.js",
+      "import": "./dist/test/util.mjs"
+    }
   },
   "dependencies": {
-    "@huggingface/jinja": "^0.2.2",
     "@xenova/transformers": "^2.17.1",
     "abstract-error": "^2.0.0-alpha.8",
     "base32768": "^3.0.1",
