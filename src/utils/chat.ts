@@ -38,13 +38,18 @@ export type AIChatMessageParam =
   | AIChatAssistantMessageParam
   | AIChatToolMessageParam;
 
-export interface AIChatSystemMessageParam {
+  export interface AIChatMessageParamBase {
+    role: string;
+    [name: string]: any
+  }
+
+  export interface AIChatSystemMessageParam extends AIChatMessageParamBase{
   role: 'system';
   content: string;
   templateFormat?: string;
 }
 
-export interface AIChatUserMessageParam {
+export interface AIChatUserMessageParam extends AIChatMessageParamBase {
   role: 'user';
   content: string | Array<AIChatContentPart>;
   // the message creation time
@@ -72,7 +77,7 @@ export interface AIChatContentPartText {
   text: string;
 }
 
-export interface AIChatAssistantMessageParam {
+export interface AIChatAssistantMessageParam extends AIChatMessageParamBase {
   role: 'assistant';
   content?: string | null;
   tool_calls?: Array<AIChatMessageToolCall>;
@@ -90,7 +95,7 @@ export interface AIChatMessageToolCall {
   };
 }
 
-export interface AIChatToolMessageParam {
+export interface AIChatToolMessageParam extends AIChatMessageParamBase {
   role: 'tool';
   content: string;
   tool_call_id: string;
