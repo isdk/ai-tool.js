@@ -97,7 +97,7 @@ describe('HfPromptTemplate', () => {
         content: ['hello', 'world', '!'],
         x:1,
         apple: 'pear',
-        func: () => (content: AnyRuntimeValue[]) => content.map(i => i.value).join(' ')
+        func: () => (content: AnyRuntimeValue) => content.value.map(i => i.value).join(' ')
         // func: function(...args) {
         //   return (content) => {
         //     console.log('func run...', content)
