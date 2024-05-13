@@ -1,7 +1,6 @@
-import { Template as HFTemplate } from "@huggingface/jinja"
+import { HFTemplate } from "./template/jinja"
 import { PromptTemplate, PromptTemplateOptions } from "./prompt-template"
 import { CommonError, ErrorCode, } from '../base-error'
-
 
 function getVariable(statement: any, internalVars?: string[]) {
   let result: string|undefined
@@ -140,6 +139,14 @@ function parseHfValue(arg: any) {
     arg.forEach((item: AnyRuntimeValue, key: string) => {
       result[key] = parseHfValue(item)
     })
+  } else if (arg.type === 'ObjectValue')  {
+    if (arg.orgValue) {result = arg.orgValue}
+    else {
+      result = {}
+      arg.forEach((item: AnyRuntimeValue, key: string) => {
+        result[key] = parseHfValue(item)
+      })
+    }
   } else if (arg.type === 'ArrayValue')  {
     result = arg.value.map((item: AnyRuntimeValue) => parseHfValue(item))
   } else if (arg.type) {
