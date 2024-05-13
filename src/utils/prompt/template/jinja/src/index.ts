@@ -51,7 +51,8 @@ export class Template {
 		const interpreter = new Interpreter(env);
 
 		const result = interpreter.run(this.parsed) as StringValue;
-		return result.value;
+		console.log('🚀 ~ Template ~ render ~ result:', result)
+		return result.toString();
 	}
 }
 

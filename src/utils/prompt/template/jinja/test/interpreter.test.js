@@ -125,6 +125,66 @@ describe("Test interpreter options", () => {
 				options: { lstrip_blocks: true, trim_blocks: true },
 				target: ``,
 			},
+			{
+				template: '{{ obj | tojson }}',
+				data: {obj: {a: 1, b: 2}},
+				options: { lstrip_blocks: true, trim_blocks: true },
+				target: `{"a":1,"b":2}`,
+			},
+			{
+				template: `{{ obj + '' }}`,
+				data: {obj: {a: 1, b: 2}},
+				options: { lstrip_blocks: true, trim_blocks: true },
+				target: `{"a":1,"b":2}`,
+			},
+			{
+				template: `{{ '' + obj }}`,
+				data: {obj: {a: 1, b: 2}},
+				options: { lstrip_blocks: true, trim_blocks: true },
+				target: `{"a":1,"b":2}`,
+			},
+			{
+				template: `{{ obj }}`,
+				data: {obj: new TestObj({a: 1, b: 2})},
+				options: { lstrip_blocks: true, trim_blocks: true },
+				target: `[["a",1],["b",2]]`,
+			},
+			{
+				template: `{{ obj | string }}`,
+				data: {obj: {a: 1, b: 2}},
+				options: { lstrip_blocks: true, trim_blocks: true },
+				target: `{"a":1,"b":2}`,
+			},
+			{
+				template: '{{ obj | tojson }}',
+				data: {obj: [3,2,1]},
+				options: { lstrip_blocks: true, trim_blocks: true },
+				target: `[3,2,1]`,
+			},
+			{
+				template: '{{ "   test it  ".rstrip() }}',
+				data: {obj: [3,2,1]},
+				options: { lstrip_blocks: true, trim_blocks: true },
+				target: `   test it`,
+			},
+			{
+				template: '{{ "   test it  ".lstrip() }}',
+				data: {obj: [3,2,1]},
+				options: { lstrip_blocks: true, trim_blocks: true },
+				target: `test it  `,
+			},
+			{
+				template: '{{ "   test it  " | trimEnd }}',
+				data: {obj: [3,2,1]},
+				options: { lstrip_blocks: true, trim_blocks: true },
+				target: `   test it`,
+			},
+			{
+				template: '{{ "   test it  " | trimStart }}',
+				data: {obj: [3,2,1]},
+				options: { lstrip_blocks: true, trim_blocks: true },
+				target: `test it  `,
+			},
 		];
 
 		for (const test of TESTS) {
@@ -143,3 +203,12 @@ describe("Test interpreter options", () => {
 		}
 	});
 });
+
+class TestObj {
+	constructor(opt) {
+		if (opt) Object.assign(this, opt);
+	}
+	toString() {
+		return JSON.stringify(Object.entries(this))
+	}
+}

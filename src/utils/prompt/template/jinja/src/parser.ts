@@ -325,7 +325,7 @@ export function parse(tokens: Token[]): Program {
 	function parseArgumentsList(): Statement[] {
 		// comma-separated arguments list
 
-		const args = [];
+		const args = [] as any[];
 		while (!is(TOKEN_TYPES.CloseParen)) {
 			let argument = parseExpression();
 
@@ -493,7 +493,7 @@ export function parse(tokens: Token[]): Program {
 			case TOKEN_TYPES.OpenSquareBracket: {
 				++current; // consume opening square bracket
 
-				const values = [];
+				const values = [] as any[];
 				while (!is(TOKEN_TYPES.CloseSquareBracket)) {
 					values.push(parseExpression());
 
