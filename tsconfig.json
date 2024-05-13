@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es2021",
+    "target": "ES2022",
     "lib": ["ES2022", "DOM"],
-    "module": "esnext",
+    "module": "ESNext",
     "moduleResolution": "node",
     "strict": true,
     // "strictNullChecks": false,
@@ -21,6 +21,8 @@
     "noImplicitThis": false,
     "noImplicitAny": false,
     "resolveJsonModule": true,
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports": true,
   },
   "include": ["src/**/*"],
   "exclude": [
