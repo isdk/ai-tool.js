@@ -60,6 +60,14 @@ abstract class RuntimeValue<T> {
 	__bool__(): BooleanValue {
 		return new BooleanValue(!!this.value);
 	}
+
+	toString() {
+		return '' + this.value;
+	}
+
+	toJSON() {
+		return this.value as any;
+	}
 }
 
 /**
@@ -127,7 +135,27 @@ export class BooleanValue extends RuntimeValue<boolean> {
  * Represents an Object value at runtime.
  */
 export class ObjectValue extends RuntimeValue<Map<string, AnyRuntimeValue>> {
+
 	override type = "ObjectValue";
+
+	constructor(value: Map<string, AnyRuntimeValue>, public orgValue?: Record<string, any>) {
+		super(value);
+	}
+
+	toString() {
+		let result: string
+		if (this.orgValue && this.orgValue.toString !== Object.prototype.toString) {
+			result = this.orgValue.toString()
+		} else {
+			result = JSON.stringify(Object.fromEntries(this.value.entries()))
+		}
+		return result
+	}
+
+	toJSON() {
+		if (this.orgValue) {return this.orgValue}
+		return Object.fromEntries(this.value.entries());
+	}
 
 	/**
 	 * NOTE: necessary to override since all JavaScript arrays are considered truthy,
@@ -428,7 +456,7 @@ export class Interpreter {
 			// Support string concatenation as long as at least one operand is a string
 			switch (node.operator.value) {
 				case "+":
-					return new StringValue(left.value.toString() + right.value.toString());
+					return new StringValue(left.toString() + right.toString());
 			}
 		}
 
@@ -502,6 +530,8 @@ export class Interpreter {
 								}
 							})
 						);
+					case "tojson":
+						return new StringValue(JSON.stringify(operand.value));
 					default:
 						throw new Error(`Unknown ArrayValue filter: ${filter.value}`);
 				}
@@ -519,6 +549,10 @@ export class Interpreter {
 						return new StringValue(operand.value.charAt(0).toUpperCase() + operand.value.slice(1));
 					case "trim":
 						return new StringValue(operand.value.trim());
+					case "trimStart":
+						return new StringValue(operand.value.trimStart());
+					case "trimEnd":
+						return new StringValue(operand.value.trimEnd());
 					default:
 						throw new Error(`Unknown StringValue filter: ${filter.value}`);
 				}
@@ -537,6 +571,10 @@ export class Interpreter {
 						);
 					case "length":
 						return new NumericValue(operand.value.size);
+					case "tojson":
+						return new StringValue(JSON.stringify(operand));
+					case "string":
+						return new StringValue(operand.toString());
 					default:
 						throw new Error(`Unknown ObjectValue filter: ${filter.value}`);
 				}
@@ -640,7 +678,7 @@ export class Interpreter {
 			const lastEvaluated = this.evaluate(statement, environment);
 
 			if (lastEvaluated.type !== "NullValue" && lastEvaluated.type !== "UndefinedValue") {
-				result += lastEvaluated.value;
+				result += lastEvaluated;
 			}
 		}
 
@@ -871,7 +909,7 @@ export class Interpreter {
 					}
 					mapping.set(evaluatedKey.value, this.evaluate(value, environment));
 				}
-				return new ObjectValue(mapping);
+				return new ObjectValue(mapping, (statement as ObjectLiteral).value);
 			}
 			case "Identifier":
 				return this.evaluateIdentifier(statement as Identifier, environment);
@@ -913,7 +951,8 @@ function convertToRuntimeValues(input: unknown): AnyRuntimeValue {
 				return new ArrayValue(input.map(convertToRuntimeValues));
 			} else {
 				return new ObjectValue(
-					new Map(Object.entries(input).map(([key, value]) => [key, convertToRuntimeValues(value)]))
+					new Map(Object.entries(input).map(([key, value]) => [key, convertToRuntimeValues(value)])),
+					input,
 				);
 			}
 		case "function":
@@ -921,7 +960,9 @@ function convertToRuntimeValues(input: unknown): AnyRuntimeValue {
 			// eslint-disable-next-line @typescript-eslint/no-unused-vars
 			return new FunctionValue((args, _scope) => {
 				// NOTE: `_scope` is not used since it's in the global scope
-				const result = input(...args.map((x) => x.value)) ?? null; // map undefined -> null
+				// i need to get the original value
+				// const result = input(...args.map((x) => x.value)) ?? null; // map undefined -> null
+				const result = input(...args) ?? null; // map undefined -> null
 				return convertToRuntimeValues(result);
 			});
 		default:
