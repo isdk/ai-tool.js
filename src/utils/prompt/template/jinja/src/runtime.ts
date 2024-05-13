@@ -101,6 +101,18 @@ export class StringValue extends RuntimeValue<string> {
 			}),
 		],
 		["length", new NumericValue(this.value.length)],
+		[
+			"rstrip",
+			new FunctionValue(() => {
+				return new StringValue(this.value.trimEnd());
+			}),
+		],
+		[
+			"lstrip",
+			new FunctionValue(() => {
+				return new StringValue(this.value.trimStart());
+			}),
+		],
 	]);
 }
 
