@@ -4,11 +4,12 @@ refactor:
     ☐ rename value to compiledValue
     ☐ rename orgValue to value
     ☐ need a better way to expand the builtins
-    ☐ user defined function can be filter
-    ☐ filter can return a filter funcion(non-identifier filters)
 feat:
-  ✔ add rstrip/lstrip builtin methods for string @done(24-05-13)
-  ✔ add tojson filter to array/object @done(24-05-13)
-  ✔ add trimStart/trimEnd filter to string @done(24-05-13)
-  ✔ add string filter to object @done(24-05-13)
+  ✔ add `rstrip`/`lstrip` builtin methods for string @done(24-05-13)
+  ✔ add `tojson` filter to array/object @done(24-05-13)
+  ✔ add `trimStart`/`trimEnd` filter to string @done(24-05-13)
+  ✔ add `string` filter to object @done(24-05-13)
   ✔ object can convert to string directly if toString() method exists @done(24-05-13)
+  ✔ user defined function arguments should be Javascript value @done(24-05-13)
+  ✔ user defined function can be filter @done(24-05-14)
+  ☐ filter can return a filter funcion(non-identifier filters)
