@@ -17,8 +17,26 @@ import type { Program } from "./ast";
 import type { StringValue } from "./runtime";
 import { range } from "./utils";
 
+class EnvironmentEx extends Environment {
+	constructor(public parent?: EnvironmentEx) {
+		super(parent);
+	}
+
+	assign(items: Record<string, unknown>) {
+		for (const [key, value] of Object.entries(items)) {
+			this.set(key, value);
+		}
+	}
+
+	clear() {
+		this.variables.clear();
+	}
+}
+
 export class Template {
 	parsed: Program;
+
+	static global: EnvironmentEx = new EnvironmentEx();
 
 	/**
 	 * @param {string} template The template string
@@ -33,7 +51,7 @@ export class Template {
 
 	render(items: Record<string, unknown>): string {
 		// Create a new environment for this template
-		const env = new Environment();
+		const env = new Environment(Template.global);
 
 		// Declare global variables
 		env.set("false", false);
@@ -55,4 +73,4 @@ export class Template {
 	}
 }
 
-export { Environment, Interpreter, tokenize, parse };
+export { EnvironmentEx as Environment, Interpreter, tokenize, parse };
