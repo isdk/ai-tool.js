@@ -962,10 +962,41 @@ function convertToRuntimeValues(input: unknown): AnyRuntimeValue {
 				// NOTE: `_scope` is not used since it's in the global scope
 				// i need to get the original value
 				// const result = input(...args.map((x) => x.value)) ?? null; // map undefined -> null
-				const result = input(...args) ?? null; // map undefined -> null
+
+				// convert RuntimeValue to JavaScript value
+				const _args = args.map(arg => {
+					return parseRuntimeValue(arg)
+				}) as any[]
+
+				const result = input(..._args) ?? null; // map undefined -> null
 				return convertToRuntimeValues(result);
 			});
 		default:
 			throw new Error(`Cannot convert to runtime value: ${input}`);
 	}
+}
+
+function parseRuntimeValue(arg: any) {
+  let result = arg
+  if (Array.isArray(arg)) {
+    result = arg.map((item: AnyRuntimeValue) => parseRuntimeValue(item))
+  } else if (arg instanceof Map)  {
+    result = {}
+    arg.forEach((item: AnyRuntimeValue, key: string) => {
+      result[key] = parseRuntimeValue(item)
+    })
+  } else if (arg.type === 'ObjectValue')  {
+    if (arg.orgValue) {result = arg.orgValue}
+    else {
+      result = {}
+      arg.forEach((item: AnyRuntimeValue, key: string) => {
+        result[key] = parseRuntimeValue(item)
+      })
+    }
+  } else if (arg.type === 'ArrayValue')  {
+    result = arg.value.map((item: AnyRuntimeValue) => parseRuntimeValue(item))
+  } else if (arg.type) {
+    result = arg.value
+  }
+  return result
 }
