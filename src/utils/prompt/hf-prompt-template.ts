@@ -124,11 +124,13 @@ PromptTemplate.register(HfPromptTemplate,{name: 'hf', aliases: ['huggingface', '
 // note:
 //  1. the value in func is the hf template runtime value: AnyRuntimeValue(it's not exported)
 //  2. the PromptTemplate will call the func first to get the init data, so you must return the function to execute in HF-template
-interface AnyRuntimeValue {
-  value: any
-  type: string
-  builtins: Map<string, AnyRuntimeValue>
-}
+// already in jinja: jinja/src/runtime.ts#966
+
+// interface AnyRuntimeValue {
+//   value: any
+//   type: string
+//   builtins: Map<string, AnyRuntimeValue>
+// }
 
 export function createHfValueFunc(fn: Function) {
   return function(_data: any) {
