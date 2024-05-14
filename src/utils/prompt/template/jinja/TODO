@@ -12,4 +12,5 @@ feat:
   ✔ object can convert to string directly if toString() method exists @done(24-05-13)
   ✔ user defined function arguments should be Javascript value @done(24-05-13)
   ✔ user defined function can be filter @done(24-05-14)
+  ✔ Add global Environment to `Template` class @done(24-05-14)
   ☐ filter can return a filter funcion(non-identifier filters)
