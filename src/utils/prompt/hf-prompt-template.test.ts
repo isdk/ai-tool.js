@@ -1,7 +1,17 @@
 import {HfPromptTemplate, createHfValueFunc} from './hf-prompt-template'
 import {PromptTemplate} from './prompt-template'
+import { HFTemplate } from './template/jinja'
 
 describe('HfPromptTemplate', () => {
+  it('should use global env', async ()=> {
+    HFTemplate.global.assign({
+      say() {
+        return 'hello'
+      }
+    })
+    expect(await HfPromptTemplate.from('{{say()}}').format()).toStrictEqual('hello')
+    HFTemplate.global.clear()
+  })
   it('should get inputVariables from template', () => {
     let template = HfPromptTemplate.from(`{% for s in strings[:] %}{{ s }}{% endfor %} {{strings}} {{a+b}}`)
     expect(template.inputVariables).toStrictEqual(['strings', 'a', 'b'])
