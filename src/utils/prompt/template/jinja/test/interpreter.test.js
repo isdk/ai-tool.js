@@ -202,6 +202,21 @@ describe("Test interpreter options", () => {
 			expect(result.value).toEqual(test.target);
 		}
 	});
+
+  it("should support custom filter", async () => {
+		const options = { lstrip_blocks: true, trim_blocks: true }
+		const env = new Environment();
+		env.set('MSelect', function(operand, key) {
+			return operand[key]
+		});
+		env.set('content', {hi: 'world', x: 2, a: [1,29]});
+		const tokens = tokenize(`{{ content | MSelect('hi') }}`, options);
+		const parsed = parse(tokens);
+
+		const interpreter = new Interpreter(env);
+		const result = interpreter.run(parsed);
+		expect(result.value).toEqual('world');
+  });
 });
 
 class TestObj {

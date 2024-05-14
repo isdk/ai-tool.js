@@ -588,6 +588,11 @@ export class Interpreter {
 			}
 			const filterName = (filter.callee as Identifier).value;
 
+		  const filterFn = environment.lookupVariable(filterName);
+		  if (filterFn instanceof FunctionValue) {
+		    return filterFn.value([operand, ...filter.args.map((x) => this.evaluate(x, environment))], environment);
+		  }
+
 			if (operand instanceof ArrayValue) {
 				switch (filterName) {
 					case "selectattr": {
