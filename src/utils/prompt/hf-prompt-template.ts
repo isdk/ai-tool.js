@@ -130,6 +130,19 @@ interface AnyRuntimeValue {
   builtins: Map<string, AnyRuntimeValue>
 }
 
+export function createHfValueFunc(fn: Function) {
+  return function(_data: any) {
+    return fn
+    // return function(...args: AnyRuntimeValue[]) {
+    //   const _args = args.map(arg => {
+    //     return parseHfValue(arg)
+    //   }) as any[]
+    //   return fn(..._args, args)
+    // }
+  }
+}
+
+/*
 function parseHfValue(arg: any) {
   let result = arg
   if (Array.isArray(arg)) {
@@ -154,14 +167,4 @@ function parseHfValue(arg: any) {
   }
   return result
 }
-
-export function createHfValueFunc(fn: Function) {
-  return function(_data: any) {
-    return function(...args: AnyRuntimeValue[]) {
-      const _args = args.map(arg => {
-        return parseHfValue(arg)
-      }) as any[]
-      return fn(..._args, args)
-    }
-  }
-}
+*/
