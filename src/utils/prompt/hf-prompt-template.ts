@@ -32,6 +32,24 @@ function getVariable(statement: any, internalVars?: string[]) {
   return result
 }
 
+function isTemplate(statement: any) {
+  let result: boolean
+  switch (statement.type) {
+    case 'Program': {
+      result = statement.body.some((item)=>isTemplate(item))
+      break
+    }
+    case 'Text': {
+      result = false
+      break
+    }
+    default: {
+      result = true
+    }
+  }
+  return result
+}
+
 function getVariables(statement: any, internalVars?: string[]) {
   let result: string[] = []
   if (Array.isArray(statement)) {
@@ -92,8 +110,7 @@ export class HfPromptTemplate extends PromptTemplate {
     }
 
     if (compiledTemplate) {
-        const vars = getVariables(compiledTemplate.parsed, [])
-        result = vars.length > 0
+        result = isTemplate(compiledTemplate.parsed)
     }
     return result
   }
