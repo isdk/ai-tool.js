@@ -52,6 +52,7 @@
     "eslint-plugin-tsdoc": "^0.2.17",
     "eventsource": "^2.0.2",
     "fastify": "^4.26.2",
+    "onnxruntime-node": "1.17.3-rev.1",
     "onnxruntime-web": "^1.17.3",
     "prettier": "^3.2.5",
     "tsup": "^8.0.2",
