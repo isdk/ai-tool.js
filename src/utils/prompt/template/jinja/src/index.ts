@@ -16,6 +16,7 @@ import { Environment, Interpreter } from "./runtime";
 import type { Program } from "./ast";
 import type { StringValue } from "./runtime";
 import { range } from "./utils";
+import { builtins } from "./builtins";
 
 class EnvironmentEx extends Environment {
 	constructor(public parent?: EnvironmentEx) {
@@ -73,4 +74,6 @@ export class Template {
 	}
 }
 
-export { EnvironmentEx as Environment, Interpreter, tokenize, parse };
+export { builtins as Builtins, EnvironmentEx as Environment, Interpreter, tokenize, parse };
+
+Template.global.assign(builtins);
