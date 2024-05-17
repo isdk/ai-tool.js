@@ -1,9 +1,16 @@
-import { PromptExampleSelector, PromptExamples } from "./prompt-example-selector";
+import { PromptExampleSelector, type PromptExampleSelectorOptions, PromptExamples } from "./prompt-example-selector";
 
 class ExampleSelector extends PromptExampleSelector<string> {
-  selectExample(example: string) {
+  recordExamples = [] as {example: string, threshold?: number}[]
+
+  constructor(examples: PromptExamples<string>, options?: PromptExampleSelectorOptions) {
+    super(examples, options);
+  }
+
+  selectExample(example: string, threshold?: number) {
     if (example.startsWith('valid')) {
-      return example;
+      this.recordExamples.push({example, threshold})
+      return super.selectExample(example, threshold);
     }
   }
 }
@@ -90,5 +97,29 @@ describe('PromptExampleSelector', () => {
     }
 
     expect(selectedExamples).toEqual(['valid1', 'valid2', 'valid3', 'valid4', 'valid5', 'valid6']);
+  });
+
+  it('should random return examples', async () => {
+    const examples: PromptExamples<string> = [
+      'valid1',
+      'invalid',
+      'valid2',
+      'valid3',
+      'valid4',
+      'valid5',
+      'valid6',
+      'invalid2',
+    ];
+
+    const selector = new ExampleSelector(examples, {threshold: 0.8});
+
+    const selectedExamples: string[] = [];
+    for await (const example of selector) {
+      selectedExamples.push(example);
+    }
+
+    const expected = selector.recordExamples.filter(item => item.threshold! <= 0.8);
+
+    expect(selectedExamples).toEqual(expected.map(i => i.example));
   });
 });
