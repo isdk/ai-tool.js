@@ -53,7 +53,8 @@ export interface AIChatUserMessageParam extends AIChatMessageParamBase {
   role: 'user';
   content: string | Array<AIChatContentPart>;
   // the message creation time
-  time?: Date|string;
+  createdAt?: Date|string;
+  updatedAt?: Date|string;
   // point to the character card
   charId?: string;
   // the message sent from
@@ -82,7 +83,8 @@ export interface AIChatAssistantMessageParam extends AIChatMessageParamBase {
   content?: string | null;
   tool_calls?: Array<AIChatMessageToolCall>;
   // the message creation time
-  time?: Date|string;
+  createdAt?: Date|string;
+  updatedAt?: Date|string;
   templateFormat?: string;
 }
 
