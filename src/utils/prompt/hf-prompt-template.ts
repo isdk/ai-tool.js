@@ -39,12 +39,8 @@ function isTemplate(statement: any) {
       result = statement.body.some((item)=>isTemplate(item))
       break
     }
-    case 'Text': {
-      result = false
-      break
-    }
     default: {
-      result = true
+      result = statement.isStatement
     }
   }
   return result
