@@ -46,16 +46,23 @@ export function parse(tokens: Token[]): Program {
 	}
 
 	function parseAny(): Statement {
+		let result: Statement
 		switch (tokens[current].type) {
 			case TOKEN_TYPES.Text:
-				return parseText();
+				result = parseText();
+				break;
 			case TOKEN_TYPES.OpenStatement:
-				return parseJinjaStatement();
+				result = parseJinjaStatement();
+				result.isStatement = true;
+				break;
 			case TOKEN_TYPES.OpenExpression:
-				return parseJinjaExpression();
+				result = parseJinjaExpression();
+				result.isStatement = true;
+				break;
 			default:
 				throw new SyntaxError(`Unexpected token type: ${tokens[current].type}`);
 		}
+		return result;
 	}
 
 	function not(...types: TokenType[]): boolean {

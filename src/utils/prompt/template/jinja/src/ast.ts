@@ -4,6 +4,8 @@ import type { Token } from "./lexer";
  * Statements do not result in a value at runtime. They contain one or more expressions internally.
  */
 export class Statement {
+	declare isStatement: boolean;
+
 	type = "Statement";
 }
 
