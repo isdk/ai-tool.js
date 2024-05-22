@@ -10,7 +10,7 @@
  *
  * @module index
  */
-import { PreprocessOptions, Token, tokenize } from "./lexer";
+import { PreprocessOptions, tokenize } from "./lexer";
 import { parse } from "./parser";
 import { Environment, Interpreter } from "./runtime";
 import type { Program } from "./ast";
