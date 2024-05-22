@@ -10,7 +10,7 @@
  *
  * @module index
  */
-import { tokenize } from "./lexer";
+import { PreprocessOptions, Token, tokenize } from "./lexer";
 import { parse } from "./parser";
 import { Environment, Interpreter } from "./runtime";
 import type { Program } from "./ast";
@@ -42,11 +42,13 @@ export class Template {
 	/**
 	 * @param {string} template The template string
 	 */
-	constructor(template: string) {
-		const tokens = tokenize(template, {
+	constructor(template: string, options: PreprocessOptions = {}) {
+		options = {
 			lstrip_blocks: true,
 			trim_blocks: true,
-		});
+			...options,
+		};
+		const tokens = tokenize(template, options);
 		this.parsed = parse(tokens);
 	}
 
