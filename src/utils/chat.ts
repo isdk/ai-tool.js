@@ -19,6 +19,10 @@ export interface AIResult<TValue = any, TOptions = any> {
    */
   finishReason?: AITextGenerationFinishReason;
   options?: TOptions
+  /**
+   * for stream mode
+   */
+  stop?: boolean
 }
 
 // human: user role;  ai: assistant role ; generic means customize role
