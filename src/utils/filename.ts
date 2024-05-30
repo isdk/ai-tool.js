@@ -184,3 +184,28 @@ export function getMultiLevelExtname(filename: string, level: number = 1) {
   }
   return result // Return the concatenated extension string
 }
+
+/**
+ * Calculates the level of an extension name.
+ *
+ * The level represents the number of dots ('.') in the extension name, excluding the first dot which separates
+ * the base filename from the extension. For example, the level of ".txt" is 1, and the level of ".tar.gz" is 2.
+ *
+ * @param extName - The extension name to analyze. It should start with a dot ('.').
+ * @returns The level of the extension name, which is the count of dots minus one.
+ *
+ * @example
+* ```typescript
+* // Returns 0
+* extNameLevel("no-file-ext");
+*
+* // Returns 2
+* extNameLevel(".tar.gz");
+*
+* // Returns 1
+* extNameLevel(".json5");
+* ```
+*/
+export function extNameLevel(extName: string) {
+  return extName.split('.').length - 1
+}

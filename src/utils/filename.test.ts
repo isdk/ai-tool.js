@@ -1,6 +1,6 @@
 import path from 'path'
 
-import { getMultiLevelExtname, isValidFilename, isValidFilepath, sanitizeFilename } from './filename'
+import { extNameLevel, getMultiLevelExtname, isValidFilename, isValidFilepath, sanitizeFilename } from './filename'
 
 describe('isValidFilename', () => {
   it('should return true for valid filenames', () => {
@@ -158,5 +158,27 @@ describe('getMultiLevelExtname', () => {
   it('should return full filename when level exceeds actual extension levels', () => {
     const filename = 'file.tar.gz';
     expect(getMultiLevelExtname(filename, 3)).toBe('.tar.gz');
+  });
+});
+
+describe('extNameLevel', () => {
+  it('returns correct level for single-extension files', () => {
+    expect(extNameLevel('.txt')).toBe(1);
+    expect(extNameLevel('.json')).toBe(1);
+    expect(extNameLevel('.jpg')).toBe(1);
+  });
+
+  it('returns correct level for multi-extension files', () => {
+    expect(extNameLevel('.tar.gz')).toBe(2);
+    expect(extNameLevel('.zip.zip.three')).toBe(3);
+    expect(extNameLevel('.the.docx.three.four')).toBe(4);
+  });
+
+  it('handles empty extension', () => {
+    expect(extNameLevel('')).toBe(0);
+  });
+
+  it('handles missing leading dot', () => {
+    expect(extNameLevel('txt')).toBe(0)
   });
 });
