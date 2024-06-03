@@ -9,8 +9,8 @@ export declare interface ClientTools extends ClientFuncItem {
   [name: string]: any;
 }
 
-const ClientToolItems: Funcs = {}
-Object.setPrototypeOf(ClientToolItems, ToolFunc.items)
+// const ClientToolItems: Funcs = {}
+// Object.setPrototypeOf(ClientToolItems, ToolFunc.items)
 
 export class ClientTools extends ToolFunc {
   declare apiRoot: string|undefined;
@@ -24,7 +24,7 @@ export class ClientTools extends ToolFunc {
     ClientTools._apiRoot = v
   }
 
-  static items = ClientToolItems;
+  // static items = ClientToolItems;
 
   static async loadFrom() {
     if (this._apiRoot) {
@@ -44,9 +44,11 @@ export class ClientTools extends ToolFunc {
       const funcItem = items[name] as ClientFuncItem;
       if (!item) {
         this.register(funcItem);
-      } else {
+      } else if (item instanceof ClientTools) {
         item.assign(funcItem)
         // console.warn('🚀 ~ ClientTools ~ loadFromSync:', name, 'already registered', item.apiRoot, this.apiRoot)
+      } else {
+        throwError(`${name} already registered as ${item.constructor.name}`, 'ClientTools')
       }
     }
   }

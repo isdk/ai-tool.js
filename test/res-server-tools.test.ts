@@ -2,14 +2,16 @@
 // import { describe, expect, it } from 'vitest'
 import fastify from 'fastify'
 
-import { type ResServerFuncParams, ResServerTools as ToolFunc } from "../src/res-server-tools"
-import { ResClientTools as ClientTools } from '../src/res-client-tools'
+import { type ResServerFuncParams, ResServerTools } from "../src/res-server-tools"
+import { ResClientTools } from '../src/res-client-tools'
 import { BaseError, ErrorCode, NotFoundError, throwError } from '../src/utils/base-error'
-import type { FuncParams } from '../src/tool-func'
+import { type FuncParams, ToolFunc, Funcs } from '../src/tool-func'
 import { findPort } from './util/find-port'
 import { wait } from '../src/utils'
+import { ServerTools } from '../src/server-tools'
+import { ClientTools } from '../src/client-tools'
 
-class TestResTool extends ToolFunc {
+class TestResTool extends ResServerTools {
   items: any = {}
 
   params: FuncParams = {
@@ -75,13 +77,21 @@ describe('res server api', () => {
   const server = fastify()
 
   beforeAll(async () => {
+    const ServerToolItems: {[name:string]: ServerTools|ToolFunc} = {}
+    Object.setPrototypeOf(ServerToolItems, ToolFunc.items)
+    ServerTools.items = ServerToolItems
+
+    const ClientToolItems: Funcs = {}
+    Object.setPrototypeOf(ClientToolItems, ToolFunc.items)
+    ClientTools.items = ClientToolItems
+
     server.get('/api', async function(request, reply){
-      reply.send(ToolFunc.toJSON())
+      reply.send(ResServerTools.toJSON())
     })
 
     server.all('/api/:toolId/:id?', async function(request, reply){
       const { toolId, id } = request.params as any;
-      const func = ToolFunc.get(toolId)
+      const func = ResServerTools.get(toolId)
       if (!func) {
         reply.code(404).send({error: toolId + ' Not Found', data: {what: toolId}})
       }
@@ -131,21 +141,23 @@ describe('res server api', () => {
     console.log('server listening on ', result)
     apiRoot = `http://localhost:${port}/api`
 
-    ToolFunc.setApiRoot(apiRoot)
+    ResServerTools.setApiRoot(apiRoot)
     const res = new TestResTool('res')
     res.register()
 
-    ClientTools.setApiRoot(apiRoot)
-    await ClientTools.loadFrom()
+    ResClientTools.setApiRoot(apiRoot)
+    await ResClientTools.loadFrom()
   })
 
   afterAll(async () => {
     await server.close()
+    delete (ClientTools as any).items
+    delete (ServerTools as any).items
   })
 
   it('should work on res', async () => {
-    const result = ClientTools.get('res')
-    expect(result).toBeInstanceOf(ClientTools)
+    const result = ResClientTools.get('res')
+    expect(result).toBeInstanceOf(ResClientTools)
     let res = await result.post({id: 1, val: 10})
     expect(res).toStrictEqual({id: 1})
     res = await result.get({id: 1})
@@ -177,7 +189,7 @@ describe('res server api', () => {
     expect(result.customMethod).toBeInstanceOf(Function)
     res = await result.customMethod({id: 2})
     expect(res).toStrictEqual({name: 'customMethod', id: 2, item: 20})
-    const resServer = ToolFunc.get('res')
+    const resServer = ResServerTools.get('res')
     expect(resServer).toBeInstanceOf(TestResTool)
     expect(resServer).toHaveProperty('customMethod')
     res = await resServer.customMethod({id: 2})

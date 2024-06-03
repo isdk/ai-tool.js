@@ -18,8 +18,8 @@ export declare interface ServerTools extends ServerFuncItem {
   [name: string]: any;
 }
 
-const ServerToolItems: {[name:string]: ServerTools|ToolFunc} = {}
-Object.setPrototypeOf(ServerToolItems, ToolFunc.items)
+// const ServerToolItems: {[name:string]: ServerTools|ToolFunc} = {}
+// Object.setPrototypeOf(ServerToolItems, ToolFunc.items)
 
 export class ServerTools extends ToolFunc {
   private static _apiRoot?: string;
@@ -31,25 +31,27 @@ export class ServerTools extends ToolFunc {
     ServerTools._apiRoot = v
   }
 
-  static get(name: string) {
-    return this.items[name] ?? ToolFunc.get(name)
-  }
+  // static get(name: string) {
+  //   return this.items[name] ?? ToolFunc.get(name)
+  // }
 
-  static list() {
-    return {...ToolFunc.list(), ...this.items}
-  }
+  // static list() {
+  //   return {...ToolFunc.list(), ...this.items}
+  // }
 
-  static items = ServerToolItems;
+  // static items = ServerToolItems;
 
   static toJSON() {
     const result:{[name:string]: ServerTools} = {}
     for (const name in this.items) {
       let item: any = this.items[name];
-      if (!item.allowExportFunc) {
-        item = item.toJSON()
-        delete item.func;
+      if (item instanceof ServerTools) {
+        if (!item.allowExportFunc) {
+          item = item.toJSON()
+          delete item.func;
+        }
+        result[name] = item;
       }
-      result[name] = item;
     }
     return result
   }
