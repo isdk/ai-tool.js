@@ -2,26 +2,51 @@
 // import { describe, expect, it } from 'vitest'
 import fastify from 'fastify'
 
-import { ServerTools as ToolFunc } from "../src/server-tools"
+import { ToolFunc } from '../src/tool-func'
+import { ServerTools } from "../src/server-tools"
 import { ClientTools } from '../src/client-tools'
 import { findPort } from './util/find-port'
 
 describe('ServerTools', () => {
   beforeEach(()=>{
+    ServerTools.items = {}
     ToolFunc.items = {}
   })
+
+  it('should visit func which registered on ToolFunc', async () => {
+    const params = {"a": "any", b: "any"}
+    ServerTools.register({
+      name: 'testServer',
+      params,
+      func: ({a, b}: {a: any, b: any}) => {
+        return a >15 ? b : a
+      }
+    })
+    ToolFunc.register({
+      name: 'testCli',
+      params,
+      func: ({a, b}: {a: any, b: any}) => {
+        return a >15 ? b : a
+      }
+    })
+    const fn = ServerTools.get('testCli')
+    expect(fn).toBeInstanceOf(ToolFunc)
+    const fns = ServerTools.list()
+    expect(Object.keys(fns)).toStrictEqual(['testCli', 'testServer'])
+  })
+
   it('should register a func with named params', async () => {
     const params = {"a": "any", b: "any"}
-    ToolFunc.register({
+    ServerTools.register({
       name: 'test',
       params,
       func: ({a, b}: {a: any, b: any}) => {
         return a >15 ? b : a
       }
     })
-    expect(ToolFunc.items['test']).toBeInstanceOf(ToolFunc)
-    const result = ToolFunc.get('test')
-    expect(result).toBeInstanceOf(ToolFunc)
+    expect(ServerTools.items['test']).toBeInstanceOf(ServerTools)
+    const result = ServerTools.get('test')
+    expect(result).toBeInstanceOf(ServerTools)
     expect(result.name).toBe('test')
     expect(result.params).toStrictEqual(params)
     expect(result.func).toBeInstanceOf(Function)
@@ -50,20 +75,20 @@ describe('ServerTools', () => {
     expect(fn({"a": 118, b:6})).toStrictEqual(6)
     expect(fn({"a": 1})).toStrictEqual(1)
     expect(()=>fn([1])).toThrow('the function is not support array params')
-    ToolFunc.unregister('test')
+    ServerTools.unregister('test')
   })
 
   it('should register a func with position params', async () => {
     const params = [{name: "a", type: "any"}, {name: "b", type: "any"}]
-    ToolFunc.register({
+    ServerTools.register({
       name: 'test',
       params,
       func: (a:any, b:any) => {
         return a >15 ? b : a
       }
     })
-    const result = ToolFunc.get('test')
-    expect(result).toBeInstanceOf(ToolFunc)
+    const result = ServerTools.get('test')
+    expect(result).toBeInstanceOf(ServerTools)
     expect(result.name).toBe('test')
     expect(result.params).toStrictEqual(params)
     expect(result.func).toBeInstanceOf(Function)
@@ -88,7 +113,7 @@ describe('ServerTools', () => {
     expect(fn({"a": 1})).toStrictEqual(1)
     expect(fn([1])).toStrictEqual(1)
 
-    ToolFunc.unregister('test')
+    ServerTools.unregister('test')
   })
 
 })
@@ -100,7 +125,7 @@ describe('server api', () => {
   beforeAll(async () => {
     const params = {"a": "number", b: "any"}
 
-    ToolFunc.register({
+    ServerTools.register({
       name: 'test-get',
       params,
       action: 'get',
@@ -110,7 +135,7 @@ describe('server api', () => {
       result: 'number',
     })
 
-    ToolFunc.register({
+    ServerTools.register({
       name: 'test-post',
       params,
       func: ({a, b}: {a: number, b: any}) => {
@@ -120,12 +145,12 @@ describe('server api', () => {
     })
 
     server.get('/api', async function(request, reply){
-      reply.send(ToolFunc.toJSON())
+      reply.send(ServerTools.toJSON())
     })
 
     server.get('/api/:toolId', async function(request, reply){
       const { toolId } = request.params as any;
-      const func = ToolFunc.get(toolId)
+      const func = ServerTools.get(toolId)
       if (!func) {
         reply.code(404).send({error: toolId + ' Not Found'})
       }
@@ -145,7 +170,7 @@ describe('server api', () => {
 
     server.post('/api/:toolId', async function(request, reply){
       const { toolId } = request.params as any;
-      const func = ToolFunc.get(toolId)
+      const func = ServerTools.get(toolId)
       if (!func) {
         reply.code(404).send({error: toolId + ' Not Found'})
       }
@@ -167,7 +192,7 @@ describe('server api', () => {
     console.log('server listening on ', result)
     apiRoot = `http://localhost:${port}/api`
 
-    ToolFunc.setApiRoot(apiRoot)
+    ServerTools.setApiRoot(apiRoot)
     ClientTools.setApiRoot(apiRoot)
     await ClientTools.loadFrom()
   })

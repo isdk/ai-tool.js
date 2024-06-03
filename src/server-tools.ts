@@ -31,6 +31,14 @@ export class ServerTools extends ToolFunc {
     ServerTools._apiRoot = v
   }
 
+  static get(name: string) {
+    return this.items[name] ?? ToolFunc.get(name)
+  }
+
+  static list() {
+    return {...ToolFunc.list(), ...this.items}
+  }
+
   static items = ServerToolItems;
 
   static toJSON() {

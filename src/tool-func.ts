@@ -50,9 +50,13 @@ export class ToolFunc extends AdvancePropertyManager {
     return this.items[name]
   }
 
+  static list() {
+    return this.items
+  }
+
   static getByTag(tagName: string) {
     let result: ToolFunc|undefined;
-    for (const name in this.items) {
+    for (const name in this.list()) {
       const item = this.get(name)
       let tags = item.tags
       if (typeof tags === 'string') {
@@ -72,7 +76,7 @@ export class ToolFunc extends AdvancePropertyManager {
 
   static getAllByTag(tagName: string) {
     let result: ToolFunc[] = [];
-    for (const name in this.items) {
+    for (const name in this.list()) {
       const item = this.get(name)
       let tags = item.tags
       if (typeof tags === 'string') {
