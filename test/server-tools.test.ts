@@ -2,28 +2,28 @@
 // import { describe, expect, it } from 'vitest'
 import fastify from 'fastify'
 
-import { ToolFunc } from '../src/tool-func'
+import { Funcs, ToolFunc } from '../src/tool-func'
 import { ServerTools } from "../src/server-tools"
 import { ClientTools } from '../src/client-tools'
 import { findPort } from './util/find-port'
 
 describe('ServerTools', () => {
   beforeEach(()=>{
-    ServerTools.items = {}
+    // ServerTools.items = {}
     ToolFunc.items = {}
   })
 
   it('should visit func which registered on ToolFunc', async () => {
     const params = {"a": "any", b: "any"}
-    ServerTools.register({
-      name: 'testServer',
+    ToolFunc.register({
+      name: 'testCli',
       params,
       func: ({a, b}: {a: any, b: any}) => {
         return a >15 ? b : a
       }
     })
-    ToolFunc.register({
-      name: 'testCli',
+    ServerTools.register({
+      name: 'testServer',
       params,
       func: ({a, b}: {a: any, b: any}) => {
         return a >15 ? b : a
@@ -123,6 +123,14 @@ describe('server api', () => {
   const server = fastify()
 
   beforeAll(async () => {
+    const ServerToolItems: {[name:string]: ServerTools|ToolFunc} = {}
+    Object.setPrototypeOf(ServerToolItems, ToolFunc.items)
+    ServerTools.items = ServerToolItems
+
+    const ClientToolItems: Funcs = {}
+    Object.setPrototypeOf(ClientToolItems, ToolFunc.items)
+    ClientTools.items = ClientToolItems
+
     const params = {"a": "number", b: "any"}
 
     ServerTools.register({
@@ -199,6 +207,8 @@ describe('server api', () => {
 
   afterAll(async () => {
     await server.close()
+    delete (ClientTools as any).items
+    delete (ServerTools as any).items
   })
 
   it('should work on get', async () => {

@@ -9,17 +9,27 @@ import { EventServer, EventClient, event, EventToolFunc } from '../src/funcs'
 import { EventBusName, EventName, backendEventable } from "../src/utils/event"
 import { wait } from '../src/utils'
 import { findPort } from './util/find-port'
+import { Funcs, ToolFunc } from '../src/tool-func'
 backendEventable(EventClient)
 backendEventable(EventServer)
 
 const event4Client = new EventToolFunc(EventBusName)
-ClientTools.register(event4Client)
 
 describe('Event Server api', () => {
   let apiRoot: string // = 'http://localhost:3000/api'
   const server = fastify()
 
   beforeAll(async () => {
+    const ServerToolItems: {[name:string]: ServerTools|ToolFunc} = {}
+    Object.setPrototypeOf(ServerToolItems, ToolFunc.items)
+    ServerTools.items = ServerToolItems
+
+    const ClientToolItems: Funcs = {}
+    Object.setPrototypeOf(ClientToolItems, ToolFunc.items)
+    ClientTools.items = ClientToolItems
+
+    ClientTools.register(event4Client)
+
     const params = { "a": "number", b: "any" }
     const eventServer = new EventServer('event')
     const eventClient = new EventClient('event')
@@ -111,6 +121,8 @@ describe('Event Server api', () => {
 
   afterAll(async () => {
     await server.close()
+    delete (ClientTools as any).items
+    delete (ServerTools as any).items
   })
 
   it('should subscribe/publish events through server forwarding', async () => {
