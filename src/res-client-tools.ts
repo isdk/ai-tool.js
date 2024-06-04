@@ -23,8 +23,8 @@ export class ResClientTools extends ClientTools {
       if (action === 'get' || action === 'delete') {
         let id = options.id
         if (!id) {throwError('id is required')}
+        if (typeof id === 'string') {id = encodeURIComponent(id)}
         delete options.id
-        id = encodeURIComponent(id!)
         return super.fetch(options, action, id)
       } else if (action === 'list') {
         action = 'get'
