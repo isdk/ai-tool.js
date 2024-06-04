@@ -21,9 +21,10 @@ export class ResClientTools extends ClientTools {
     if (!options) {options = {} as any}
     if (action && this.action === 'res') {
       if (action === 'get' || action === 'delete') {
-        const id = options.id
+        let id = options.id
         if (!id) {throwError('id is required')}
         delete options.id
+        id = encodeURIComponent(id!)
         return super.fetch(options, action, id)
       } else if (action === 'list') {
         action = 'get'
