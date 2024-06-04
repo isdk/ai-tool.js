@@ -61,10 +61,11 @@ describe('toWhereClause function', () => {
                 { age: { $gt: 18, $lt: 30 } },
                 { $or: [{ gender: 'male' }, { country: 'USA' }, {$and: [{a: 1}, {b:2}]}] },
             ],
+            hi: true,
         };
 
         expect(jsonFilterToWhere(filter)).toBe(
-            `(name LIKE 'John%' AND name NOT LIKE 'Doe%' AND age > 18 AND age < 30 AND (gender='male' OR country='USA' OR (a=1 AND b=2)))`
+            `(name LIKE 'John%' AND name NOT LIKE 'Doe%' AND age > 18 AND age < 30 AND (gender='male' OR country='USA' OR (a=1 AND b=2))) AND hi=true`
         );
     });
 });

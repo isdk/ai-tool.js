@@ -66,6 +66,10 @@ function generateCondition(dataKey: string, condition: JsonFilter): string {
       case '!=':
         andQuery.push(`${dataKey} != ${quoteValueIfString(hasQuotes, value)}`);
         break;
+      case '=':
+      case '$eq':
+        andQuery.push(`${dataKey} = ${quoteValueIfString(hasQuotes, value)}`);
+        break;
       case '$in':
         andQuery.push(`${dataKey} IN (${(value as any[]).map(e => quoteValueIfString(true, e)).join(', ')})`);
         break;
@@ -80,6 +84,12 @@ function generateCondition(dataKey: string, condition: JsonFilter): string {
         break;
       case '$nlike':
         andQuery.push(`${dataKey} NOT LIKE '${value}'`);
+        break;
+      case '$glob':
+        andQuery.push(`${dataKey} GLOB '${value}'`);
+        break;
+      case '$nglob':
+        andQuery.push(`${dataKey} NOT GLOB '${value}'`);
         break;
       default:
         throw new Error(`Unsupported condition operator: ${key}`);
@@ -112,17 +122,19 @@ export function jsonFilterToWhere(filter: JsonFilter|JsonFilter[], wrapKey?: (k:
   if (Array.isArray(filter)) {
     andQuery.push(generateAndClause(filter, wrapKey));
   } else for (const [key, value] of Object.entries(filter)) {
-    if (value == null) {continue}
     if (key === '$and') {
       andQuery.push(`(${generateAndClause(filter[key] as JsonFilter[], wrapKey)})`);
     } else if (key === '$or') {
       andQuery.push(`(${generateOrClause(filter[key] as JsonFilter[], wrapKey)})`);
     } else {
-      if (typeof value === 'object' && !Array.isArray(value)) {
+      const tValue = typeof value
+      if (value == null) {
+        andQuery.push(`${wrapKey(key)} IS NULL`);
+      } else if (tValue === 'object' && !Array.isArray(value)) {
         andQuery.push(generateCondition(wrapKey(key), value));
-      } else if (typeof value === 'string') {
+      } else if (tValue === 'string') {
         andQuery.push(`${wrapKey(key)}='${value}'`);
-      } else if (typeof value === 'number') {
+      } else if (tValue === 'number' || tValue === 'boolean') {
         andQuery.push(`${wrapKey(key)}=${value}`);
       } else {
         throw new Error(`Unsupported value type for key ${key}`);
