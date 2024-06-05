@@ -71,7 +71,7 @@ export class ClientTools extends ToolFunc {
     return ''
   }
 
-  async fetch(objParam?: any, act?: ActionName, subName?: string) {
+  async fetch(objParam?: any, act?: ActionName, subName?: any) {
     const fetchOptions = {...this.fetchOptions}
     if (!fetchOptions.headers || !fetchOptions.headers['Content-Type']) {
       fetchOptions.headers = {

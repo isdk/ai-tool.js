@@ -3,7 +3,7 @@ import { throwError } from "./utils";
 import type { ActionName } from "./utils/consts";
 
 export interface ResClientFuncParams {
-  id?: string
+  id?: string|number
   act?: string
   [name: string]: any
 }
