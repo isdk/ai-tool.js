@@ -172,7 +172,7 @@ CommonError[NotImplementedErrorCode] = NotImplementationError
 */
 export class NotFoundError extends CommonError {
   static code = NotFoundErrorCode;
-  constructor(what: string, name?: string|Record<string, any>) {
+  constructor(what: string|number, name?: string|Record<string, any>) {
     super(`Could not find ${what}.`, name, NotFoundErrorCode)
     this.data = { what }
   }

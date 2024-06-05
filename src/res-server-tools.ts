@@ -5,7 +5,7 @@ import { NotFoundError } from "./utils";
 import { type ActionName, ActionNames } from "./utils/consts";
 
 export interface ResServerFuncParams extends ServerFuncParams {
-  id?: string
+  id?: string|number
   // the value
   val?: any
   act?: string
