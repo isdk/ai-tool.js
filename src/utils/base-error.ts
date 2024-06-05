@@ -190,7 +190,7 @@ CommonError[NotFoundErrorCode] = NotFoundError
 */
 export class AlreadyExistsError extends CommonError {
   static code = AlreadyExistsErrorCode;
-  constructor(what: string, name?: string|Record<string, any>) {
+  constructor(what: string|number, name?: string|Record<string, any>) {
     super(`The ${what} already exists.`, name, AlreadyExistsErrorCode)
     this.data = { what }
   }
