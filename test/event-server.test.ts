@@ -1,8 +1,6 @@
 // @vitest-environment node
 // import { describe, expect, it } from 'vitest'
 import fastify from 'fastify'
-import EventSource from 'eventsource'
-global.EventSource = EventSource
 import { ServerTools } from "../src/server-tools"
 import { ClientTools } from '../src/client-tools'
 import { EventServer, EventClient, event, EventToolFunc } from '../src/funcs'

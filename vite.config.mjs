@@ -8,5 +8,8 @@ export default defineConfig({
   ],
   test: {
     globals: true,
+    setupFiles: [
+      "./setupVitest.mjs",
+    ],
   },
 })
