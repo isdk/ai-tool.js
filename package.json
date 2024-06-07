@@ -95,6 +95,7 @@
   "scripts": {
     "build-fast": "tsup",
     "build": "pnpm run build-fast --dts-resolve --dts && pnpm run doc:md",
+    "clean": "rm -fr web docs dist",
     "doc": "typedoc --plugin none --out web",
     "doc:md": "typedoc --plugin typedoc-plugin-markdown --out docs",
     "style": "pnpm run format -c && pnpm run lint",
@@ -104,7 +105,8 @@
     "lint": "eslint .",
     "lint:fix": "pnpm run lint --fix",
     "test": "vitest run",
-    "release": "bumpp package.json --commit --push --tag && pnpm publish --access public",
+    "release": "pnpm run clean && pnpm run build && git add docs && git ci -m 'docs: update API docs' && pnpm dlx commit-and-tag-version -s",
+    "release.alpha": "npm run release -- --prerelease alpha",
     "prepublishOnly": "pnpm run build"
   },
   "types": "./dist/index.d.ts"
