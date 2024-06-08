@@ -93,7 +93,7 @@ AbstractError.constructor
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:79](https://github.com/isdk/ai-tool.js/blob/5ff3a34d9852a051d1821b3c3de867a8271c1404/src/utils/base-error.ts#L79)
+[packages/ai-tool/src/utils/base-error.ts:79](https://github.com/isdk/ai-tool.js/blob/0f8a4d4a5fd2f372072a81ed0b281e2d8d5796f1/src/utils/base-error.ts#L79)
 
 ## Properties
 
@@ -105,7 +105,7 @@ The name of the function that threw the error.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:64](https://github.com/isdk/ai-tool.js/blob/5ff3a34d9852a051d1821b3c3de867a8271c1404/src/utils/base-error.ts#L64)
+[packages/ai-tool/src/utils/base-error.ts:64](https://github.com/isdk/ai-tool.js/blob/0f8a4d4a5fd2f372072a81ed0b281e2d8d5796f1/src/utils/base-error.ts#L64)
 
 ___
 
@@ -133,7 +133,7 @@ AbstractError.code
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:65](https://github.com/isdk/ai-tool.js/blob/5ff3a34d9852a051d1821b3c3de867a8271c1404/src/utils/base-error.ts#L65)
+[packages/ai-tool/src/utils/base-error.ts:65](https://github.com/isdk/ai-tool.js/blob/0f8a4d4a5fd2f372072a81ed0b281e2d8d5796f1/src/utils/base-error.ts#L65)
 
 ___
 
@@ -145,7 +145,7 @@ Additional data associated with the error.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:66](https://github.com/isdk/ai-tool.js/blob/5ff3a34d9852a051d1821b3c3de867a8271c1404/src/utils/base-error.ts#L66)
+[packages/ai-tool/src/utils/base-error.ts:66](https://github.com/isdk/ai-tool.js/blob/0f8a4d4a5fd2f372072a81ed0b281e2d8d5796f1/src/utils/base-error.ts#L66)
 
 ___
 
@@ -199,7 +199,7 @@ The error code associated with the error.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:63](https://github.com/isdk/ai-tool.js/blob/5ff3a34d9852a051d1821b3c3de867a8271c1404/src/utils/base-error.ts#L63)
+[packages/ai-tool/src/utils/base-error.ts:63](https://github.com/isdk/ai-tool.js/blob/0f8a4d4a5fd2f372072a81ed0b281e2d8d5796f1/src/utils/base-error.ts#L63)
 
 ___
 
@@ -234,7 +234,7 @@ AbstractError.prepareStackTrace
 
 #### Defined in
 
-node_modules/.pnpm/@types+node@20.12.7/node_modules/@types/node/globals.d.ts:28
+node_modules/.pnpm/@types+node@20.14.2/node_modules/@types/node/globals.d.ts:28
 
 ___
 
@@ -248,7 +248,7 @@ AbstractError.stackTraceLimit
 
 #### Defined in
 
-node_modules/.pnpm/@types+node@20.12.7/node_modules/@types/node/globals.d.ts:30
+node_modules/.pnpm/@types+node@20.14.2/node_modules/@types/node/globals.d.ts:30
 
 ## Methods
 
@@ -272,7 +272,7 @@ A new BaseError instance.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:129](https://github.com/isdk/ai-tool.js/blob/5ff3a34d9852a051d1821b3c3de867a8271c1404/src/utils/base-error.ts#L129)
+[packages/ai-tool/src/utils/base-error.ts:129](https://github.com/isdk/ai-tool.js/blob/0f8a4d4a5fd2f372072a81ed0b281e2d8d5796f1/src/utils/base-error.ts#L129)
 
 ___
 
@@ -290,7 +290,7 @@ A JSON representation of the error.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:109](https://github.com/isdk/ai-tool.js/blob/5ff3a34d9852a051d1821b3c3de867a8271c1404/src/utils/base-error.ts#L109)
+[packages/ai-tool/src/utils/base-error.ts:109](https://github.com/isdk/ai-tool.js/blob/0f8a4d4a5fd2f372072a81ed0b281e2d8d5796f1/src/utils/base-error.ts#L109)
 
 ___
 
@@ -317,7 +317,7 @@ AbstractError.captureStackTrace
 
 #### Defined in
 
-node_modules/.pnpm/@types+node@20.12.7/node_modules/@types/node/globals.d.ts:21
+node_modules/.pnpm/@types+node@20.14.2/node_modules/@types/node/globals.d.ts:21
 
 ___
 
@@ -343,4 +343,4 @@ AbstractError.createErrorClass
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:68](https://github.com/isdk/ai-tool.js/blob/5ff3a34d9852a051d1821b3c3de867a8271c1404/src/utils/base-error.ts#L68)
+[packages/ai-tool/src/utils/base-error.ts:68](https://github.com/isdk/ai-tool.js/blob/0f8a4d4a5fd2f372072a81ed0b281e2d8d5796f1/src/utils/base-error.ts#L68)

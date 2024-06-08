@@ -20,4 +20,4 @@ The event (type) from the server side event stream.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/ai-stream.ts:40](https://github.com/isdk/ai-tool.js/blob/5ff3a34d9852a051d1821b3c3de867a8271c1404/src/utils/stream/ai-stream.ts#L40)
+[packages/ai-tool/src/utils/stream/ai-stream.ts:40](https://github.com/isdk/ai-tool.js/blob/0f8a4d4a5fd2f372072a81ed0b281e2d8d5796f1/src/utils/stream/ai-stream.ts#L40)
