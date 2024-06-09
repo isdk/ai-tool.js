@@ -23,32 +23,17 @@ export function loadFileFromPaths(filename: string, searchPaths?: string[], extN
   let result: string|Buffer|undefined
   // search the paths and try to load the script
   if (path.isAbsolute(filename)) {
-    if (fs.existsSync(filename)) {result = filename}
+    if (fs.existsSync(filename)) {
+      result = filename
+    } else {
+      result = tryGetFilepath(path.basename(filename), [path.dirname(filename)], extNames)
+    }
   } else {
     if (!searchPaths) {
       searchPaths = ['.']
     }
 
-    let exts: string[]|undefined = extNames ? extNames.map(ext => getMultiLevelExtname(filename, extNameLevel(ext))) : undefined
-
-    for (const searchPath of searchPaths) {
-      const filePath = path.resolve(searchPath, filename)
-      if (exts) {
-        for (let i=0; i<exts.length; i++) {
-          const extName = exts[i] !== extNames![i] ? extNames![i] : ''
-          const filenameWithExt = filePath + extName
-          if (fs.existsSync(filenameWithExt)) {
-            result = filenameWithExt
-            break
-          }
-        }
-      } else {
-        if (fs.existsSync(filePath)) {
-          result = filePath
-          break
-        }
-      }
-    }
+    result = tryGetFilepath(filename, searchPaths, extNames)
   }
 
   if (result) {
@@ -59,6 +44,30 @@ export function loadFileFromPaths(filename: string, searchPaths?: string[], extN
   return result
 }
 
+function tryGetFilepath(filename: string, searchPaths: string[], extNames?: string[]) {
+  let result: string|undefined
+  const exts: string[]|undefined = extNames ? extNames.map(ext => getMultiLevelExtname(filename, extNameLevel(ext))) : undefined
+
+  for (const searchPath of searchPaths) {
+    const filePath = path.resolve(searchPath, filename)
+    if (exts) {
+      for (let i=0; i<exts.length; i++) {
+        const extName = exts[i] !== extNames![i] ? extNames![i] : ''
+        const filenameWithExt = filePath + extName
+        if (fs.existsSync(filenameWithExt)) {
+          result = filenameWithExt
+          break
+        }
+      }
+    } else {
+      if (fs.existsSync(filePath)) {
+        result = filePath
+        break
+      }
+    }
+  }
+  return result
+}
 
 export function loadTextFromPaths(filename: string, searchPaths?: string[], extNames?: string[], encoding: BufferEncoding = 'utf8') {
   const result = loadFileFromPaths(filename, searchPaths, extNames)
