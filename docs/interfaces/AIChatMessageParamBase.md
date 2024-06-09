@@ -32,4 +32,4 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:47](https://github.com/isdk/ai-tool.js/blob/0f8a4d4a5fd2f372072a81ed0b281e2d8d5796f1/src/utils/chat.ts#L47)
+[packages/ai-tool/src/utils/chat.ts:47](https://github.com/isdk/ai-tool.js/blob/7204de5b4de6ebcdc7ec35b59d21cafca7d13309/src/utils/chat.ts#L47)
