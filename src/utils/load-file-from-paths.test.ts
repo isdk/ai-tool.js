@@ -57,4 +57,17 @@ describe('loadFileFromPaths', () => {
     expect(() => loadFileFromPaths('nonexistent')).toThrow(NotFoundError);
     expect(fs.existsSync).toHaveBeenCalled();
   });
+
+  it('loads a file from an absolute path from search', () => {
+    const mockFilePath = '/absolute/path/to/file';
+
+    (fs.existsSync as Mock).mockImplementation((file) => path.extname(file) === '.yaml');
+    (fs.readFileSync as Mock).mockImplementation((file) => Buffer.from(file));
+    const result = loadFileFromPaths(mockFilePath, undefined, ['.yaml'])
+    expect(result).toBeInstanceOf(Buffer);
+    expect(result.toString('utf8')).toBe(mockFilePath+'.yaml');
+    expect(fs.existsSync).toHaveBeenCalledWith(mockFilePath);
+    expect(fs.readFileSync).toHaveBeenCalledWith(mockFilePath+'.yaml');
+  });
+
 });
