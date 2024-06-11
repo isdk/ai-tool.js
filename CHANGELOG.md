@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.6](https://github.com/isdk/ai-tool.js/compare/v0.0.5...v0.0.6) (2024-06-11)
+
+
+### Features
+
+* **utils:** loadFileFromPaths pass the filepath back through options ([c377a14](https://github.com/isdk/ai-tool.js/commit/c377a1408daee78a2484142b6d99ef7fbbec7c7c))
+
 ## [0.0.5](https://github.com/isdk/ai-tool.js/compare/v0.0.4...v0.0.5) (2024-06-09)
 
 
