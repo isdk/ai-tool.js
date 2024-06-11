@@ -19,7 +19,7 @@ import { NotFoundError } from './base-error'
 * const content = loadFileFromPaths('config', ['/etc', '/usr/local/etc'], ['.json', '.yaml']);
 * ```
 */
-export function loadFileFromPaths(filename: string, searchPaths?: string[], extNames?: string[]) {
+export function loadFileFromPaths(filename: string, searchPaths?: string[], extNames?: string[], options?: {filepath?: string}) {
   let result: string|Buffer|undefined
   // search the paths and try to load the script
   if (path.isAbsolute(filename)) {
@@ -37,7 +37,9 @@ export function loadFileFromPaths(filename: string, searchPaths?: string[], extN
   }
 
   if (result) {
+    const filepath = result
     result = fs.readFileSync(result)
+    if (options) {options.filepath = filepath}
   } else {
     throw new NotFoundError(filename, 'loadFileFromPaths')
   }
@@ -69,7 +71,14 @@ function tryGetFilepath(filename: string, searchPaths: string[], extNames?: stri
   return result
 }
 
-export function loadTextFromPaths(filename: string, searchPaths?: string[], extNames?: string[], encoding: BufferEncoding = 'utf8') {
-  const result = loadFileFromPaths(filename, searchPaths, extNames)
+export function loadTextFromPaths(filename: string, searchPaths?: string[], extNames?: string[], options?: {encoding?: BufferEncoding, filepath?: string}|BufferEncoding) {
+  let encoding: BufferEncoding
+  if (typeof options === 'string') {
+    encoding = options
+    options = undefined
+  } else {
+    encoding = options?.encoding ?? 'utf8'
+  }
+  const result = loadFileFromPaths(filename, searchPaths, extNames, options)
   return result.toString(encoding)
 }
