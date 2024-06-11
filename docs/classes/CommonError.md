@@ -95,7 +95,7 @@ fromJSON - Creates a new BaseError instance from a JSON representation.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:141](https://github.com/isdk/ai-tool.js/blob/7204de5b4de6ebcdc7ec35b59d21cafca7d13309/src/utils/base-error.ts#L141)
+[packages/ai-tool/src/utils/base-error.ts:141](https://github.com/isdk/ai-tool.js/blob/c377a1408daee78a2484142b6d99ef7fbbec7c7c/src/utils/base-error.ts#L141)
 
 ## Properties
 
@@ -111,7 +111,7 @@ The name of the function that threw the error.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:64](https://github.com/isdk/ai-tool.js/blob/7204de5b4de6ebcdc7ec35b59d21cafca7d13309/src/utils/base-error.ts#L64)
+[packages/ai-tool/src/utils/base-error.ts:64](https://github.com/isdk/ai-tool.js/blob/c377a1408daee78a2484142b6d99ef7fbbec7c7c/src/utils/base-error.ts#L64)
 
 ___
 
@@ -139,7 +139,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:65](https://github.com/isdk/ai-tool.js/blob/7204de5b4de6ebcdc7ec35b59d21cafca7d13309/src/utils/base-error.ts#L65)
+[packages/ai-tool/src/utils/base-error.ts:65](https://github.com/isdk/ai-tool.js/blob/c377a1408daee78a2484142b6d99ef7fbbec7c7c/src/utils/base-error.ts#L65)
 
 ___
 
@@ -155,7 +155,7 @@ Additional data associated with the error.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:66](https://github.com/isdk/ai-tool.js/blob/7204de5b4de6ebcdc7ec35b59d21cafca7d13309/src/utils/base-error.ts#L66)
+[packages/ai-tool/src/utils/base-error.ts:66](https://github.com/isdk/ai-tool.js/blob/c377a1408daee78a2484142b6d99ef7fbbec7c7c/src/utils/base-error.ts#L66)
 
 ___
 
@@ -213,7 +213,7 @@ The error code associated with the error.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:63](https://github.com/isdk/ai-tool.js/blob/7204de5b4de6ebcdc7ec35b59d21cafca7d13309/src/utils/base-error.ts#L63)
+[packages/ai-tool/src/utils/base-error.ts:63](https://github.com/isdk/ai-tool.js/blob/c377a1408daee78a2484142b6d99ef7fbbec7c7c/src/utils/base-error.ts#L63)
 
 ___
 
@@ -290,7 +290,7 @@ A new BaseError instance.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:129](https://github.com/isdk/ai-tool.js/blob/7204de5b4de6ebcdc7ec35b59d21cafca7d13309/src/utils/base-error.ts#L129)
+[packages/ai-tool/src/utils/base-error.ts:129](https://github.com/isdk/ai-tool.js/blob/c377a1408daee78a2484142b6d99ef7fbbec7c7c/src/utils/base-error.ts#L129)
 
 ___
 
@@ -312,7 +312,7 @@ A JSON representation of the error.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:109](https://github.com/isdk/ai-tool.js/blob/7204de5b4de6ebcdc7ec35b59d21cafca7d13309/src/utils/base-error.ts#L109)
+[packages/ai-tool/src/utils/base-error.ts:109](https://github.com/isdk/ai-tool.js/blob/c377a1408daee78a2484142b6d99ef7fbbec7c7c/src/utils/base-error.ts#L109)
 
 ___
 
@@ -365,4 +365,4 @@ typeof [`BaseError`](BaseError.md)
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:68](https://github.com/isdk/ai-tool.js/blob/7204de5b4de6ebcdc7ec35b59d21cafca7d13309/src/utils/base-error.ts#L68)
+[packages/ai-tool/src/utils/base-error.ts:68](https://github.com/isdk/ai-tool.js/blob/c377a1408daee78a2484142b6d99ef7fbbec7c7c/src/utils/base-error.ts#L68)
