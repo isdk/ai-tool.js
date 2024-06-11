@@ -63,11 +63,13 @@ describe('loadFileFromPaths', () => {
 
     (fs.existsSync as Mock).mockImplementation((file) => path.extname(file) === '.yaml');
     (fs.readFileSync as Mock).mockImplementation((file) => Buffer.from(file));
-    const result = loadFileFromPaths(mockFilePath, undefined, ['.yaml'])
+    const opts = {} as any
+    const result = loadFileFromPaths(mockFilePath, undefined, ['.yaml'], opts)
     expect(result).toBeInstanceOf(Buffer);
     expect(result.toString('utf8')).toBe(mockFilePath+'.yaml');
     expect(fs.existsSync).toHaveBeenCalledWith(mockFilePath);
     expect(fs.readFileSync).toHaveBeenCalledWith(mockFilePath+'.yaml');
+    expect(opts.filepath).toBe(mockFilePath+'.yaml');
   });
 
 });
