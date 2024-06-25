@@ -1,4 +1,4 @@
-import {existsSync, mkdirSync, readdirSync, writeFileSync, type Dirent} from 'fs'
+import {existsSync, mkdirSync, readdirSync, statSync, writeFileSync, type Dirent} from 'fs'
 import path from 'path'
 import { Config as ConfigFile } from 'load-config-file'
 import { parse, stringify as stringifyYaml } from 'yaml'
@@ -47,12 +47,29 @@ function traverseFolderSync(directoryPath: string, fileHandler: (filePath: strin
   }
 }
 
-export function getConfigFileNames(directoryPath: string) {
-  const configFiles: string[] = [];
+interface ConfigFilesFilter {
+  after?: {[filepath: string]: number},
+  extensions?: string[]|string,
+  exclude?: string[]|string,
+}
 
-  traverseFolderSync(directoryPath, (filePath) => {
+export function getConfigFileNames(directoryPath: string, filter?: ConfigFilesFilter) {
+  const configFiles: string[] = [];
+  const after = filter?.after
+  const exclude = filter?.exclude ?
+    (typeof filter.exclude === 'string' ? [filter.exclude] : filter.exclude) : undefined
+  const extensions = filter?.extensions ?
+    (typeof filter.extensions === 'string' ? [filter.extensions] : filter.extensions.map(ext => ext.startsWith('.') ? ext : '.' + ext)):
+    ['.yml', '.yaml', '.json']
+
+  traverseFolderSync(directoryPath, (filePath, entry: Dirent) => {
+    if (exclude?.includes(filePath)) { return }
     const extname = path.extname(filePath);
-    if (extname === '.yml' || extname === '.yaml' || extname === '.json') {
+    const stat = statSync(filePath);
+    if (extensions.includes(extname)) {
+      if (after?.hasOwnProperty(filePath)) {
+        if (stat.mtimeMs <= after[filePath]) { return }
+      }
       configFiles.push(filePath);
     }
   });
@@ -60,8 +77,8 @@ export function getConfigFileNames(directoryPath: string) {
   return configFiles;
 }
 
-export function getConfigs(directoryPath: string) {
-  const files = getConfigFileNames(directoryPath);
+export function getConfigs(directoryPath: string, filter?: ConfigFilesFilter) {
+  const files = getConfigFileNames(directoryPath, filter);
   return files.map(file => ConfigFile.loadSync(file)).filter(config => config !== undefined)
 }
 
