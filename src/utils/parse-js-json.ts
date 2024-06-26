@@ -11,7 +11,15 @@ import { newFunction } from 'util-ex'
  * const json = parseJsJson(jsonString);
  * console.log(json); // { name: 'John' }
  */
-export function parseJsJson(input: string) {
+export function parseJsJson(input: string, scope?: Record<string, any>) {
+  if (scope) {
+    const argNames = Object.keys(scope)
+    if (argNames.length) {
+      const argValues = Object.values(scope)
+      // If a scope is provided, it is used as the global object for the function.
+      return newFunction('expression', argNames, `return ${input}`)(...argValues)
+    }
+  }
   // Dynamically creates a function using newFunction that, when executed, returns the parsed JSON object.
   const fn = newFunction('expression', [], `return ${input}`)
   return fn()

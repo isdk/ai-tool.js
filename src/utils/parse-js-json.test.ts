@@ -25,5 +25,9 @@ describe('parseJsJson', () => {
     expect(result).toBeUndefined();
   });
 
-  // Add more test cases if needed
+  it('should parse JS JSON with scope', () => {
+    const input = `{name, age: age + 10}`;
+    const result = parseJsJson(input, {name: 'John', age: 20});
+    expect(result).toEqual({ name: 'John', age: 30 });
+  });
 });
