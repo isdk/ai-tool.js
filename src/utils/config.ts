@@ -64,13 +64,13 @@ export function getConfigFileNames(directoryPath: string, filter?: ConfigFilesFi
 
   traverseFolderSync(directoryPath, (filePath, entry: Dirent) => {
     if (exclude?.includes(filePath)) { return }
-    const extname = path.extname(filePath);
+    const extname = path.extname(filePath)
     const stat = statSync(filePath);
     if (extensions.includes(extname)) {
       if (after?.hasOwnProperty(filePath)) {
         if (stat.mtimeMs <= after[filePath]) { return }
       }
-      configFiles.push(filePath);
+      configFiles.push(filePath)
     }
   });
 
