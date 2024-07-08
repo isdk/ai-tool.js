@@ -31,7 +31,7 @@ When StreamData is rolled out, this will be removed and the new protocol will be
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/ai-stream.ts:31](https://github.com/isdk/ai-tool.js/blob/c377a1408daee78a2484142b6d99ef7fbbec7c7c/src/utils/stream/ai-stream.ts#L31)
+[packages/ai-tool/src/utils/stream/ai-stream.ts:31](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/stream/ai-stream.ts#L31)
 
 ___
 
@@ -57,7 +57,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/ai-stream.ts:18](https://github.com/isdk/ai-tool.js/blob/c377a1408daee78a2484142b6d99ef7fbbec7c7c/src/utils/stream/ai-stream.ts#L18)
+[packages/ai-tool/src/utils/stream/ai-stream.ts:18](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/stream/ai-stream.ts#L18)
 
 ___
 
@@ -83,7 +83,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/ai-stream.ts:20](https://github.com/isdk/ai-tool.js/blob/c377a1408daee78a2484142b6d99ef7fbbec7c7c/src/utils/stream/ai-stream.ts#L20)
+[packages/ai-tool/src/utils/stream/ai-stream.ts:20](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/stream/ai-stream.ts#L20)
 
 ___
 
@@ -103,7 +103,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/ai-stream.ts:16](https://github.com/isdk/ai-tool.js/blob/c377a1408daee78a2484142b6d99ef7fbbec7c7c/src/utils/stream/ai-stream.ts#L16)
+[packages/ai-tool/src/utils/stream/ai-stream.ts:16](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/stream/ai-stream.ts#L16)
 
 ___
 
@@ -129,7 +129,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/ai-stream.ts:24](https://github.com/isdk/ai-tool.js/blob/c377a1408daee78a2484142b6d99ef7fbbec7c7c/src/utils/stream/ai-stream.ts#L24)
+[packages/ai-tool/src/utils/stream/ai-stream.ts:24](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/stream/ai-stream.ts#L24)
 
 ___
 
@@ -155,4 +155,4 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/ai-stream.ts:22](https://github.com/isdk/ai-tool.js/blob/c377a1408daee78a2484142b6d99ef7fbbec7c7c/src/utils/stream/ai-stream.ts#L22)
+[packages/ai-tool/src/utils/stream/ai-stream.ts:22](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/stream/ai-stream.ts#L22)
