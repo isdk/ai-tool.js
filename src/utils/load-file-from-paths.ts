@@ -19,21 +19,21 @@ import { NotFoundError } from './base-error'
 * const content = loadFileFromPaths('config', ['/etc', '/usr/local/etc'], ['.json', '.yaml']);
 * ```
 */
-export function loadFileFromPaths(filename: string, searchPaths?: string[], extNames?: string[], options?: {filepath?: string}) {
+export function loadFileFromPaths(filename: string, searchPaths?: string[], extNames?: string[], options?: {filepath?: string, exclude?: string[]|string}) {
   let result: string|Buffer|undefined
   // search the paths and try to load the script
   if (path.isAbsolute(filename)) {
     if (fs.existsSync(filename)) {
       result = filename
     } else {
-      result = tryGetFilepath(path.basename(filename), [path.dirname(filename)], extNames)
+      result = tryGetFilepath(path.basename(filename), [path.dirname(filename)], extNames, options?.exclude)
     }
   } else {
     if (!searchPaths) {
       searchPaths = ['.']
     }
 
-    result = tryGetFilepath(filename, searchPaths, extNames)
+    result = tryGetFilepath(filename, searchPaths, extNames, options?.exclude)
   }
 
   if (result) {
@@ -46,9 +46,10 @@ export function loadFileFromPaths(filename: string, searchPaths?: string[], extN
   return result
 }
 
-function tryGetFilepath(filename: string, searchPaths: string[], extNames?: string[]) {
+function tryGetFilepath(filename: string, searchPaths: string[], extNames?: string[], exclude: string[]|string = []) {
   let result: string|undefined
   const exts: string[]|undefined = extNames ? extNames.map(ext => getMultiLevelExtname(filename, extNameLevel(ext))) : undefined
+  if (typeof exclude === 'string') {exclude = [exclude]}
 
   for (const searchPath of searchPaths) {
     const filePath = path.resolve(searchPath, filename)
@@ -56,13 +57,13 @@ function tryGetFilepath(filename: string, searchPaths: string[], extNames?: stri
       for (let i=0; i<exts.length; i++) {
         const extName = exts[i] !== extNames![i] ? extNames![i] : ''
         const filenameWithExt = filePath + extName
-        if (fs.existsSync(filenameWithExt)) {
+        if (!exclude.includes(filenameWithExt) && fs.existsSync(filenameWithExt)) {
           result = filenameWithExt
           break
         }
       }
     } else {
-      if (fs.existsSync(filePath)) {
+      if (!exclude.includes(filePath) && fs.existsSync(filePath)) {
         result = filePath
         break
       }
@@ -71,7 +72,7 @@ function tryGetFilepath(filename: string, searchPaths: string[], extNames?: stri
   return result
 }
 
-export function loadTextFromPaths(filename: string, searchPaths?: string[], extNames?: string[], options?: {encoding?: BufferEncoding, filepath?: string}|BufferEncoding) {
+export function loadTextFromPaths(filename: string, searchPaths?: string[], extNames?: string[], options?: {encoding?: BufferEncoding, filepath?: string}|BufferEncoding, exclude?: string[]|string) {
   let encoding: BufferEncoding
   if (typeof options === 'string') {
     encoding = options

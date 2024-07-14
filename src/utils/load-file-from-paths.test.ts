@@ -51,6 +51,22 @@ describe('loadFileFromPaths', () => {
     expect(fs.readFileSync).toHaveBeenCalledWith(path.resolve(mockFilePath));
   });
 
+  it('loads a file from a relative path with exclude', () => {
+    const mockFilename = 'relativeFile';
+    const mockSearchPaths = ['/custom/path1', '/custom/path2', 'custom/path3'];
+    const mockFilePath = path.join(mockSearchPaths[1], mockFilename + '.ext');
+    const mockFilePath2 = path.join(mockSearchPaths[2], mockFilename + '.ext');
+    (fs.existsSync as Mock).mockImplementation((p) => {
+      return (p === mockFilePath) || (p === path.resolve(mockFilePath2))
+    });
+    (fs.readFileSync as Mock).mockReturnValueOnce(Buffer.from('file content'));
+
+    expect(loadFileFromPaths(mockFilename, mockSearchPaths, ['.ext'], {exclude: mockFilePath})).toBeInstanceOf(Buffer);
+    expect(fs.existsSync).toHaveBeenCalledTimes(2); // Once for each search path
+    expect(fs.readFileSync).toHaveBeenCalledTimes(1);
+    expect(fs.readFileSync).toHaveBeenCalledWith(path.resolve(mockFilePath2));
+  });
+
   it('throws NotFoundError when file is not found', () => {
     (fs.existsSync as Mock).mockImplementation(() => false);
 
