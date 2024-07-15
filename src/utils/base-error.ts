@@ -201,6 +201,7 @@ export class AbortError extends CommonError {
   static code = AbortErrorCode;
   constructor(what?: string, name?: string|Record<string, any>) {
     const message = what ? `The operation was aborted for ${what}.` : `The operation was aborted.`
+    if (!name) { name = 'AbortError'}
     super(message, name, AbortErrorCode);
     if (what) {this.data = {what}}
   }
