@@ -1,3 +1,5 @@
+import { toDateTime, dateToText } from './to-datetime';
+
 export const AITextGenerationFinishReasons = [
   'stop',           // model generated stop sequence
   'length',         // model generated maximum number of tokens
@@ -107,4 +109,20 @@ export interface AIChatToolMessageParam extends AIChatMessageParamBase {
   content: string;
   tool_call_id: string;
   templateFormat?: string;
+}
+
+export function messagesToText(messages: AIChatMessageParamBase[]) {
+  let result = ''
+  for (const msg of messages) {
+    if (msg.content) {
+      result += msg.role.toLowerCase() + ':'
+      let createdAt = msg.createdAt
+      if (createdAt) {
+        const dt = toDateTime(createdAt)
+        if (dt) {result += ' ['+ dateToText(dt) + ']'}
+      }
+      result += ' ' + msg.content + '\n'
+    }
+  }
+  return result
 }
