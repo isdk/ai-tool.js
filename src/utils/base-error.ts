@@ -4,6 +4,7 @@ export type ErrorCodeType = number | string
 
 export enum ErrorCode {
   OK = 200,
+  Accepted = 202,
   BadRequest = 400,
   InvalidArgument = 400,
   Unauthorized,
@@ -15,13 +16,14 @@ export enum ErrorCode {
   RequestTimeout = 408,
   Conflict = 409,
   Corruption = 409,
+  TooManyRequests = 429,
   Aborted = 499,
   InternalError = 500,
   NotImplemented = 501,
   NotSupported  = 501,
-  BadGateway,
-  ServiceUnavailable,
-  GatewayTimeout,
+  BadGateway = 502,
+  ServiceUnavailable = 503, // task is processing and Retry-After
+  GatewayTimeout = 504,
 }
 
 export const InternalErrorCode = ErrorCode.InternalError
