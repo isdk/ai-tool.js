@@ -1,6 +1,25 @@
 import { AdvancePropertyManager } from 'property-manager';
 import { _createFunction } from 'util-ex';
 import { NotFoundError, throwError } from './utils/base-error';
+import { IntSet } from './utils';
+
+// the binary bit position
+const ToolAsyncMultiTask = 0
+const ToolAsyncCancelableBit = 1
+const ToolAsyncPriorityBit = 2
+
+export enum AsyncFeatureBits {
+  MultiTask = ToolAsyncMultiTask,
+  Cancelable = ToolAsyncCancelableBit,
+  Priority = ToolAsyncPriorityBit,
+}
+
+// bit fields
+export enum AsyncFeatures {
+  MultiTask = 1 << ToolAsyncMultiTask, // B0001
+  Cancelable = 1 << ToolAsyncCancelableBit, // B010
+  Priority = 1 << ToolAsyncPriorityBit, // B0100
+}
 
 export type FuncParamType = string
 export interface FuncParam {
@@ -8,6 +27,7 @@ export interface FuncParam {
   type?: FuncParamType;
   required?: boolean;
   description?: string;
+  asyncFeatures?: number;
   depends?: {[name: string]: ToolFunc};
 }
 
@@ -300,6 +320,11 @@ export class ToolFunc extends AdvancePropertyManager {
     const result = name ? (this.constructor as any).getFuncWithPos(name) : this.runWithPosSync.bind(this)
     return result
   }
+
+  hasAsyncFeature(feature: AsyncFeatureBits) {
+    return IntSet.has(this.asyncFeatures, feature)
+  }
+
 }
 
 export const ToolFuncSchema = {
@@ -325,6 +350,25 @@ export const ToolFuncSchema = {
   setup: {type: 'function'},
   depends: {type: 'object', exported: false},
   tags: {type: ['array', 'string']},
+  asyncFeatures: {
+    type: 'number',
+    // assign(value: IntSet|string|number, dest:ToolFunc, src?:ToolFunc, name?: string, options?: any) {
+    //   let result = value;
+    //   const valueType = typeof value;
+    //   const isExported = options.isExported
+    //   if (!isExported) {
+    //     let initValue: number = 0
+    //     if (value instanceof IntSet) {
+    //       initValue = value.valueOf()
+    //     } else {
+    //       if (valueType === 'string') { initValue = parseInt(value as string) }
+    //       else if (valueType === 'number') { initValue = value as number }
+    //     }
+    //     result = new IntSet(initValue)
+    //   }
+    //   return result;
+    // },
+  },
 }
 
 ToolFunc.defineProperties(ToolFunc, ToolFuncSchema)
