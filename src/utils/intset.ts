@@ -4,11 +4,10 @@
  * where the flag value 0 represents the 0th bit, 1 represents the 1st bit, and so on.
  */
 export class IntSet {
-  /**
-   * The internal bit field used to store set members.
-   * @private
-   */
-  bitField: number = 0;
+
+  // bitField: The internal bit field used to store set members.
+  constructor(private bitField: number = 0) {
+  }
 
   /**
    * Adds an element to the set.
@@ -16,8 +15,9 @@ export class IntSet {
    * @param flag - The flag value representing the bit position to set.
    *              Note: the flag value 0 represents the 0th bit, and so on.
    */
-  add(flag: number): void {
+  add(flag: number) {
     this.bitField |= (1 << flag);
+    return this
   }
 
   /**
@@ -25,8 +25,9 @@ export class IntSet {
    *
    * @param flag - The flag value representing the bit position to set. 0 represents the 0th bit
    */
-  delete(flag: number): void {
+  delete(flag: number) {
     this.bitField &= ~(1 << flag);
+    return this
   }
 
   /**
@@ -42,7 +43,20 @@ export class IntSet {
   /**
    * Clears all elements from the set.
    */
-  clear(): void {
+  clear() {
     this.bitField = 0;
+    return this
+  }
+
+  valueOf() {
+    return this.bitField
+  }
+
+  toString() {
+    return this.bitField.toString()
+  }
+
+  toJSON() {
+    return this.bitField
   }
 }

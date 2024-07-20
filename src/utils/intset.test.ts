@@ -24,6 +24,7 @@ describe('IntSet', () => {
   describe('delete()', () => {
     it('removes an element from the set', () => {
       intSet.add(1);
+      expect(intSet.has(1)).toBe(true);
       intSet.delete(1);
       expect(intSet.has(1)).toBe(false);
     });
@@ -79,5 +80,23 @@ describe('IntSet', () => {
       Array(8).forEach((_, i) => expect(intSet.has(i)).toBe(i ===3 ? true:false))
     });
   });
-});
 
+  describe('others', () => {
+    it('could valueOf', () => {
+      intSet.add(1)
+      const i = new IntSet(2) + (intSet as any)
+      expect(i).toBe(4);
+    });
+
+    it('could toString', () => {
+      intSet.add(1)
+      const i = '' + intSet
+      expect(i).toBe('2');
+    });
+    it('could json', () => {
+      intSet.add(1)
+      const i = JSON.stringify(intSet)
+      expect(i).toBe('2');
+    });
+  });
+});
