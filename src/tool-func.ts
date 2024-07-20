@@ -4,9 +4,9 @@ import { NotFoundError, throwError } from './utils/base-error';
 import { IntSet } from './utils';
 
 // the binary bit position
-const ToolAsyncMultiTask = 0
-const ToolAsyncCancelableBit = 1
-const ToolAsyncPriorityBit = 2
+export const ToolAsyncMultiTask = 0
+export const ToolAsyncCancelableBit = 1
+export const ToolAsyncPriorityBit = 2
 
 export enum AsyncFeatureBits {
   MultiTask = ToolAsyncMultiTask,
@@ -322,7 +322,9 @@ export class ToolFunc extends AdvancePropertyManager {
   }
 
   hasAsyncFeature(feature: AsyncFeatureBits) {
-    return IntSet.has(this.asyncFeatures, feature)
+    let features = this.asyncFeatures
+    if (this._asyncFeatures) { features |= this._asyncFeatures }
+    return IntSet.has(features, feature)
   }
 
 }
