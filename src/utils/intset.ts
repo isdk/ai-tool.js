@@ -5,9 +5,20 @@
  */
 export class IntSet {
 
-  // bitField: The internal bit field used to store set members.
-  constructor(private bitField: number = 0) {
+  static has(bitField: number, flag: number) {
+    return (bitField & (1 << flag)) !== 0;
   }
+
+  static add(bitField: number, flag: number) {
+    return bitField | (1 << flag);
+  }
+
+  static delete(bitField: number, flag: number) {
+    return bitField & ~(1 << flag);
+  }
+
+  // bitField: The internal bit field used to store set members.
+  constructor(private bitField: number = 0) { }
 
   /**
    * Adds an element to the set.
@@ -37,7 +48,7 @@ export class IntSet {
    * @returns true if the element is in the set; otherwise, false.
    */
   has(flag: number): boolean {
-    return (this.bitField & (1 << flag)) !== 0;
+    return IntSet.has(this.bitField, flag);
   }
 
   /**
