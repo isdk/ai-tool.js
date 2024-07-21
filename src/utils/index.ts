@@ -1,3 +1,4 @@
+export {createAbilityInjector} from 'custom-ability'
 export * from './consts'
 export * from './base-error'
 export * from './chat'
