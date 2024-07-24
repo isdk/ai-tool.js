@@ -112,10 +112,10 @@ export class ToolFunc extends AdvancePropertyManager {
     return result
   }
 
-  static async run(name: string, params?: any) {
+  static run(name: string, params?: any): Promise<any> {
     const func = this.get(name)
     if (func) {
-      return await func.run(params)
+      return func.run(params)
     }
     throw new NotFoundError(`${name} to run`, this.name);
   }
@@ -133,10 +133,10 @@ export class ToolFunc extends AdvancePropertyManager {
     return func?.getFunc()
   }
 
-  static async runWithPos(name: string, ...params: any[]) {
+  static runWithPos(name: string, ...params: any[]): Promise<any> {
     const func = this.get(name)
     if (func) {
-      return await func.runWithPos(...params)
+      return func.runWithPos(...params)
     }
     throw new NotFoundError(`${name} to run`, this.name);
   }
@@ -276,13 +276,12 @@ export class ToolFunc extends AdvancePropertyManager {
     return this.func!(params)
   }
 
-  async run(params?: any) {
-    return await this.runSync(params)
+  run(params?: any): Promise<any> {
+    return this.runSync(params)
   }
 
-  async runAs(name:string, params?: any) {
-    const result = await (this.constructor as any).run(name, params)
-    return result
+  runAs(name:string, params?: any): Promise<any> {
+    return this.runAsSync(name, params)
   }
 
   runAsSync(name:string, params?: any) {
@@ -306,14 +305,12 @@ export class ToolFunc extends AdvancePropertyManager {
     return (this.constructor as any).runWithPosSync(name, ...params)
   }
 
-  async runWithPos(...params: any[]) {
-    const result = await this.runWithPosSync(...params)
-    return result
+  runWithPos(...params: any[]): Promise<any> {
+    return this.runWithPosSync(...params)
   }
 
-  async runWithPosAs(name:string, ...params: any[]) {
-    const result = await (this.constructor as any).runWithPos(name, ...params)
-    return result
+  runWithPosAs(name:string, ...params: any[]): Promise<any> {
+    return this.runWithPosAsSync(name, ...params)
   }
 
   getFuncWithPos(name?: string) {
