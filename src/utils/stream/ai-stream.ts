@@ -8,30 +8,6 @@ import { getResponseErrorReadableStream } from './error-readable-stream'
 import { AIResult } from '../chat';
 
 /**
- * Configuration options and helper callback methods for AIStream stream lifecycle events.
- * @interface
- */
-export interface AIStreamCallbacksAndOptions {
-  /** `onStart`: Called once when the stream is initialized. */
-  onStart?: () => Promise<void> | void;
-  /** `onCompletion`: Called for each tokenized message. */
-  onCompletion?: (completion: string) => Promise<void> | void;
-  /** `onFinal`: Called once when the stream is closed with the final completion message. */
-  onFinal?: (completion: string) => Promise<void> | void;
-  /** `onToken`: Called for each tokenized message. */
-  onToken?: (token: string) => Promise<void> | void;
-  /** `onText`: Called for each text chunk. */
-  onText?: (text: string) => Promise<void> | void;
-  /**
-   * A flag for enabling the experimental_StreamData class and the new protocol.
-   * @see https://github.com/vercel-labs/ai/pull/425
-   *
-   * When StreamData is rolled out, this will be removed and the new protocol will be used by default.
-   */
-  experimental_streamData?: boolean;
-}
-
-/**
  * Options for the AIStreamParser.
  * @interface
  * @property {string} event - The event (type) from the server side event stream.
@@ -94,67 +70,6 @@ export function createEventStreamTransformer<TValue = any, TOptions = any>(
 
     transform(chunk) {
       eventSourceParser.feed(textDecoder.decode(chunk));
-    },
-  });
-}
-
-/**
- * Creates a transform stream that encodes input messages and invokes optional callback functions.
- * The transform stream uses the provided callbacks to execute custom logic at different stages of the stream's lifecycle.
- * - `onStart`: Called once when the stream is initialized.
- * - `onToken`: Called for each tokenized message.
- * - `onCompletion`: Called every time an AIStream completion message is received. This can occur multiple times when using e.g. OpenAI functions
- * - `onFinal`: Called once when the stream is closed with the final completion message.
- *
- * This function is useful when you want to process a stream of messages and perform specific actions during the stream's lifecycle.
- *
- * @param {AIStreamCallbacksAndOptions} [callbacks] - An object containing the callback functions.
- * @return {TransformStream<string, Uint8Array>} A transform stream that encodes input messages as Uint8Array and allows the execution of custom logic through callbacks.
- *
- * @example
- * const callbacks = {
- *   onStart: async () => console.log('Stream started'),
- *   onToken: async (token) => console.log(`Token: ${token}`),
- *   onCompletion: async (completion) => console.log(`Completion: ${completion}`)
- *   onFinal: async () => data.close()
- * };
- * const transformer = createCallbacksTransformer(callbacks);
- */
-export function createCallbacksTransformer(
-  cb: AIStreamCallbacksAndOptions | undefined,
-): TransformStream<AIResult, Uint8Array> {
-  const textEncoder = new TextEncoder();
-  let aggregatedResponse = '';
-  const callbacks = cb || {};
-
-  return new TransformStream({
-    async start(): Promise<void> {
-      if (callbacks.onStart) await callbacks.onStart();
-    },
-
-    async transform(message, controller): Promise<void> {
-      const content = typeof message === 'string' ? message : message.content;
-
-      controller.enqueue(textEncoder.encode(content));
-
-      aggregatedResponse += content;
-
-      if (callbacks.onToken) await callbacks.onToken(content);
-      if (callbacks.onText && typeof message === 'string') {
-        await callbacks.onText(message);
-      }
-    },
-
-    async flush(): Promise<void> {
-      // If it's OpenAICallbacks, it has an experimental_onFunctionCall which means that the createFunctionCallTransformer
-      // will handle calling onComplete.
-      if (callbacks.onCompletion) {
-        await callbacks.onCompletion(aggregatedResponse);
-      }
-
-      if (callbacks.onFinal) {
-        await callbacks.onFinal(aggregatedResponse);
-      }
     },
   });
 }
