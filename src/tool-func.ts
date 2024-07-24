@@ -112,6 +112,13 @@ export class ToolFunc extends AdvancePropertyManager {
     return result
   }
 
+  static hasAsyncFeature(feature: AsyncFeatureBits) {
+    const proto = this.prototype
+    let features = proto.asyncFeatures
+    if (proto._asyncFeatures) { features |= proto._asyncFeatures }
+    return IntSet.has(features, feature)
+  }
+
   static run(name: string, params?: any): Promise<any> {
     const func = this.get(name)
     if (func) {
