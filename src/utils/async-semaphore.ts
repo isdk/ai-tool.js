@@ -135,7 +135,7 @@ function defaultInit() {
  * async function fetchData(x) {
  *   await semaphore.acquire()
  *   try {
- *     console.log(semaphore.nrWaiting() + ' calls to fetch are waiting')
+ *     console.log(semaphore.pendingCount() + ' calls to fetch are waiting')
  *     // ... do some async stuff with x
  *   } finally {
  *     semaphore.release();
@@ -146,7 +146,7 @@ function defaultInit() {
  * ```
  */
 export class Semaphore {
-	private maxConcurrency: number;
+	readonly maxConcurrency: number;
 	private free: Deque;
 	private waiting: Deque;
 	private releaseEmitter: EventEmitter;
