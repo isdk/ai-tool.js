@@ -214,7 +214,7 @@ export class CancelableAbility {
   }
 
   _cleanMultiTaskAborter(id: AsyncTaskId, aborters: TaskAbortControllers) {
-    aborters[id] = undefined
+    if (typeof id === 'number') { aborters[id] = undefined } else { delete aborters[id] }
 }
 
   createTaskPromise<Output = any>(runTask: (params: Record<string, any>) => Promise<Output>, params: Record<string, any>, options?: {taskId?: AsyncTaskId, raiseError?: boolean}) {
