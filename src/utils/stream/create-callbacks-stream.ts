@@ -71,7 +71,6 @@ export function createCallbacksTransformer<I = any, O = any>(
     },
 
     async flush(controller): Promise<void> {
-
       if (callbacks.onFinal) {
         try {
           await callbacks.onFinal(controller);
