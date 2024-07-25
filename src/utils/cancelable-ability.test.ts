@@ -3,6 +3,7 @@ import { AsyncFeatureBits, AsyncFeatures, ToolAsyncCancelableBit, ToolAsyncMulti
 import { AsyncTaskId, CancelableAbility, makeToolFuncCancelable, TaskAbortController, TaskAbortControllers, TaskPromise } from './cancelable-ability'
 import { wait } from './wait'
 import { uuid } from './hash'
+import { AbortError } from './base-error'
 
 class TestSingleTaskFunc extends ToolFunc {
   func(params: any) {
@@ -26,31 +27,34 @@ class TestMultiTaskFunc extends ToolFunc {
 const maxTaskConcurrency = 3
 makeToolFuncCancelable(TestMultiTaskFunc,{asyncFeatures: AsyncFeatures.MultiTask, maxTaskConcurrency})
 
+function getStream() {
+  const readableStream = new ReadableStream({
+    start(controller) {
+      // called by constructor
+      // console.log('[start]');
+      controller.enqueue({content: 'a'});
+      controller.enqueue({content: 'b'});
+      controller.enqueue({content: 'c'});
+    },
+    pull(controller) {
+      // called read when controller's queue is empty
+      // console.log('[pull]');
+      controller.enqueue({content: 'd'});
+      controller.enqueue({content: 'e'});
+      controller.close(); // or controller.error();
+    },
+    cancel(reason) {
+      // called when rs.cancel(reason)
+      // console.log('[cancel]', reason);
+    },
+  });
+  return readableStream
+}
+
 class TestStreamTaskFunc extends ToolFunc {
   func(params: any) {
     return this.runAsyncCancelableTask(params, async (params: any) => {
-      const readableStream = new ReadableStream({
-        start(controller) {
-          // called by constructor
-          // console.log('[start]');
-          controller.enqueue({content: 'a'});
-          controller.enqueue({content: 'b'});
-          controller.enqueue({content: 'c'});
-        },
-        pull(controller) {
-          // called read when controller's queue is empty
-          // console.log('[pull]');
-          controller.enqueue({content: 'd'});
-          controller.enqueue({content: 'e'});
-          controller.close(); // or controller.error();
-        },
-        cancel(reason) {
-          // called when rs.cancel(reason)
-          console.log('[cancel]', reason);
-        },
-      });
-
-      return readableStream
+      return getStream()
     })
   }
 }
@@ -232,6 +236,69 @@ describe('CancelableAbility', () => {
     await wait(10)
     expect(rmIds).toHaveLength(1)
     expect(aborter.id).toBe(rmIds[0])
+  })
+
+  it('should clean task if stream raise error', async () => {
+    const ids = [] as AsyncTaskId[]
+    const rmIds = [] as AsyncTaskId[]
+    const emits = [] as any[]
+    interface TestTaskErrorFunc extends CancelableAbility {}
+    class TestTaskErrorFunc extends ToolFunc {
+      emit(...args: any[]) {
+        emits.push(args)
+      }
+
+      generateAsyncTaskId(taskId?: AsyncTaskId, aborters?: TaskAbortControllers) {
+        taskId = this._generateAsyncTaskId(taskId, aborters)
+        ids.push(taskId as string)
+        return taskId
+      }
+
+      cleanMultiTaskAborter(id: AsyncTaskId, aborters: TaskAbortControllers) {
+        rmIds.push(id)
+        this._cleanMultiTaskAborter(id, aborters)
+      }
+
+      func(params: any) {
+        return this.runAsyncCancelableTask(params, async (params: any) => {
+          return getStream()
+        })
+      }
+    }
+    makeToolFuncCancelable(TestTaskErrorFunc, {asyncFeatures: AsyncFeatures.MultiTask})
+
+    const testTask = new TestTaskErrorFunc('testTaskError')
+
+    const taskInfo = testTask.run('error') as TaskPromise<ReadableStream>
+    expect(taskInfo.task).toBeInstanceOf(AbortController)
+    const task = taskInfo.task!
+    expect(ids).toHaveLength(1)
+    expect(rmIds).toHaveLength(0)
+    expect(task).toHaveProperty('id', ids[0])
+    expect(typeof task.id).toBe('number')
+    const stream = (await taskInfo)
+    const reader = stream.getReader()
+    let chunk = await reader.read()
+    let error:any
+
+    const data = {a:1}
+    task.abort('test', data)
+    await expect(reader.read()).rejects.toThrow(AbortError)
+    try {
+      chunk = await reader.read()
+    } catch (err) {
+      error = err
+    }
+    expect(error).toHaveProperty('data')
+    expect(error.data).toHaveProperty('what', 'test')
+
+    expect(rmIds).toHaveLength(1)
+    expect(task.id).toBe(rmIds[0])
+    expect(emits).toHaveLength(1)
+    expect(emits[0]).toHaveLength(3)
+    expect(emits[0][0]).toBe('aborting')
+    expect(emits[0][1].toJSON()).toMatchObject({data: {what: 'test', a: 1}, code: 499})
+    expect(emits[0][2]).toMatchObject(data)
   })
 
 })

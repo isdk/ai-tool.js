@@ -11,9 +11,30 @@ export interface CancelableAbilityOptions extends AbilityOptions {
   maxTaskConcurrency?: number
 }
 
-export interface TaskAbortController extends AbortController {
+export class TaskAbortController extends AbortController {
+
   id?: AsyncTaskId;
   timeoutId?: any;
+  streamController?: ReadableStreamDefaultController
+
+  constructor(public readonly parent: CancelableAbility) {super()}
+
+  abort(reason?: string|Error|CommonError, data?: any) {
+    if (this.signal.aborted) {return}
+    if (typeof reason === 'string') {
+      reason = new AbortError(reason)
+      if (data) { Object.assign((reason as any).data, data) }
+    }
+    try {
+      this.streamController?.error(reason)
+      const parent = this.parent
+      if (parent.emit) {
+        parent.emit('aborting', reason, data)
+      }
+    } finally {
+      super.abort(reason)
+    }
+  }
 }
 
 export interface TaskAbortControllers {
@@ -131,7 +152,8 @@ export class CancelableAbility {
   createAborter(params?: any, taskId?: AsyncTaskId, raiseError = true) {
     const isMultiTask = this.hasAsyncFeature(ToolAsyncMultiTaskBit)
     if (!isMultiTask && raiseError && this.getRunningTask()) { throw new CommonError('The task is running', this.name, ErrorCode.TooManyRequests)}
-    const result: TaskAbortController = params?.aborter || new AbortController()
+    const result: TaskAbortController = params?.aborter || new TaskAbortController(this)
+
     if (isMultiTask) {
       if (this._$tool_aborter == null) {
         this._$tool_aborter = {}
@@ -201,6 +223,7 @@ export class CancelableAbility {
     let taskPromise: TaskPromise<Output> = runTask(params)
     .then((result: any) => {
       if (result && result instanceof ReadableStream) {
+        const onStart = (controller) => {aborter.streamController = controller}
         const onCleanAborter = () => {this.cleanTaskAborter(aborter)}
         const onTransform = (chunk: any, controller: TransformStreamDefaultController) => {
           if (chunk && typeof chunk === 'object') {
@@ -208,7 +231,7 @@ export class CancelableAbility {
           }
           return chunk
         }
-        const transformer = createCallbacksTransformer({onFinal: onCleanAborter, onError: onCleanAborter, onTransform})
+        const transformer = createCallbacksTransformer({onStart, onFinal: onCleanAborter, onError: onCleanAborter, onTransform})
         result = result.pipeThrough(transformer)
       } else {
         this.cleanTaskAborter(aborter)
@@ -243,7 +266,7 @@ export class CancelableAbility {
   }
 
   abort(reason?: string, data?: any) {
-    let aborter = this._$tool_aborter as AbortController
+    let aborter = this._$tool_aborter as TaskAbortController
     if (aborter) {
       const isMultiTask = this.hasAsyncFeature(ToolAsyncMultiTaskBit)
       const aborters = aborter as unknown as {[id: string]:TaskAbortController|undefined}
@@ -251,7 +274,7 @@ export class CancelableAbility {
         const taskId = data?.taskId
         if (taskId != null) {
           aborter = aborter[taskId]
-          aborters[taskId] = undefined
+          this.cleanMultiTaskAborter(taskId, aborters)
         } else {
           throw new CommonError('Missing data.taskId', this.name + '.abort', ErrorCode.InvalidArgument)
         }
@@ -260,15 +283,7 @@ export class CancelableAbility {
       }
 
       if (aborter && !aborter.signal.aborted) {
-        const abortReason = new AbortError(reason)
-        if (data) { Object.assign(abortReason.data, data) }
-        try {
-          if (this.emit) {
-            this.emit('aborting', reason, data)
-          }
-        } finally {
-          aborter.abort(abortReason)
-        }
+        aborter.abort(reason, data)
       }
     }
   }
