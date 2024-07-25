@@ -3,6 +3,8 @@ import {EventEmitter} from 'events-ex';
 // async-sema Released under MIT
 // https://github.com/vercel/async-sema/blob/main/src/index.ts
 
+export const DefaultAsyncSemaphoreCapacity = 32;
+
 function arrayMove(
 	src: any[],
 	srcIndex: number,
@@ -12,7 +14,7 @@ function arrayMove(
 ) {
 	for (let j = 0; j < len; ++j) {
 		dst[j + dstIndex] = src[j + srcIndex];
-		src[j + srcIndex] = void 0;
+		src[j + srcIndex] = undefined;
 	}
 }
 
@@ -60,11 +62,11 @@ class Deque {
 	pop() {
 		const length = this._length;
 		if (length === 0) {
-			return void 0;
+			return undefined;
 		}
 		const i = (this._front + length - 1) & (this._capacity - 1);
 		const ret = this.arr[i];
-		this.arr[i] = void 0;
+		this.arr[i] = undefined;
 		this._length = length - 1;
 
 		return ret;
@@ -73,11 +75,11 @@ class Deque {
 	shift() {
 		const length = this._length;
 		if (length === 0) {
-			return void 0;
+			return undefined;
 		}
 		const front = this._front;
 		const ret = this.arr[front];
-		this.arr[front] = void 0;
+		this.arr[front] = undefined;
 		this._front = (front + 1) & (this._capacity - 1);
 		this._length = length - 1;
 
@@ -208,7 +210,7 @@ export class Semaphore {
 			initFn = defaultInit,
 			pauseFn,
 			resumeFn,
-			capacity = 16,
+			capacity = DefaultAsyncSemaphoreCapacity,
 		}: {
 			initFn?: () => any;
 			pauseFn?: () => void;
@@ -263,7 +265,7 @@ export class Semaphore {
   async acquire(): Promise<any> {
 		let token = this.tryAcquire();
 
-		if (token !== void 0) {
+		if (token !== undefined) {
 			return token;
 		}
 
