@@ -193,4 +193,45 @@ describe('CancelableAbility', () => {
     expect(result).toBe('12345')
   })
 
+  it('should clean task if task raise error', async () => {
+    const ids = [] as AsyncTaskId[]
+    const rmIds = [] as AsyncTaskId[]
+    interface TestTaskErrorFunc extends CancelableAbility {}
+    class TestTaskErrorFunc extends ToolFunc {
+      generateAsyncTaskId(taskId?: AsyncTaskId, aborters?: TaskAbortControllers) {
+        taskId = this._generateAsyncTaskId(taskId, aborters)
+        ids.push(taskId as string)
+        return taskId
+      }
+
+      cleanMultiTaskAborter(id: AsyncTaskId, aborters: TaskAbortControllers) {
+        rmIds.push(id)
+        this._cleanMultiTaskAborter(id, aborters)
+      }
+
+      func(params: any) {
+        return this.runAsyncCancelableTask(params, async (params: any) => {
+          await wait(10)
+          if (params === 'error') {throw new Error('test')}
+          return params
+        })
+      }
+    }
+    makeToolFuncCancelable(TestTaskErrorFunc, {asyncFeatures: AsyncFeatures.MultiTask})
+
+    const testTask = new TestTaskErrorFunc('testTaskError')
+
+    const taskInfo = testTask.run('error') as TaskPromise<string>
+    expect(taskInfo.task).toBeInstanceOf(AbortController)
+    const aborter = taskInfo.task!
+    expect(ids).toHaveLength(1)
+    expect(rmIds).toHaveLength(0)
+    expect(aborter).toHaveProperty('id', ids[0])
+    expect(typeof aborter.id).toBe('number')
+    await expect(taskInfo).rejects.toThrow('test')
+    await wait(10)
+    expect(rmIds).toHaveLength(1)
+    expect(aborter.id).toBe(rmIds[0])
+  })
+
 })

@@ -214,6 +214,9 @@ export class CancelableAbility {
         this.cleanTaskAborter(aborter)
       }
       return result
+    }).catch((err) => {
+      this.cleanTaskAborter(aborter)
+      throw err
     }).finally(() => {
       if (aborter.timeoutId) {
         clearTimeout(aborter.timeoutId)
