@@ -62,7 +62,7 @@ export function createEventStreamTransformer<TValue = any, TOptions = any>(
                   event: event.event,
                 })
               : event.data;
-            if (parsedMessage) controller.enqueue(parsedMessage as any);
+            if (parsedMessage) {controller.enqueue(parsedMessage as any)}
           }
         },
       );
