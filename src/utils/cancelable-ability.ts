@@ -4,7 +4,7 @@ import { AsyncFeatures, ToolAsyncMultiTaskBit, ToolFunc } from '../tool-func';
 import { Semaphore } from './async-semaphore';
 import { createCallbacksTransformer } from './stream';
 
-type TaskId = string|number
+export type AsyncTaskId = string|number
 
 export interface CancelableAbilityOptions extends AbilityOptions {
   asyncFeatures?: AsyncFeatures
@@ -12,8 +12,12 @@ export interface CancelableAbilityOptions extends AbilityOptions {
 }
 
 export interface TaskAbortController extends AbortController {
-  id?: TaskId;
+  id?: AsyncTaskId;
   timeoutId?: any;
+}
+
+export interface TaskAbortControllers {
+  [k: AsyncTaskId]: TaskAbortController|undefined
 }
 
 export interface TaskPromise<T = any> extends Promise<T> {
@@ -28,18 +32,26 @@ export declare interface CancelableAbility {
 
 
 export class CancelableAbility {
-  _$tool_aborter: TaskAbortController|{[taskId: TaskId]: TaskAbortController}|undefined
+  declare generateAsyncTaskId: (taskId?: AsyncTaskId, aborters?: TaskAbortControllers) => AsyncTaskId
+  declare cleanMultiTaskAborter: (id: AsyncTaskId, aborters: TaskAbortControllers) => void
+
+  _$tool_aborter: TaskAbortController|TaskAbortControllers|undefined
   _$semaphore: Semaphore|undefined
 
   get maxTaskConcurrency() {
-    const result = this._maxTaskConcurrency
-    if (result && !this._$semaphore) {
-      this._$semaphore = new Semaphore(result)
+    return this._maxTaskConcurrency
+  }
+
+  get semaphore() {
+    const maxTaskConcurrency = this._maxTaskConcurrency!
+    let result = this._$semaphore
+    if (maxTaskConcurrency > 0 && !result) {
+      result = this._$semaphore = new Semaphore(maxTaskConcurrency-1)
     }
     return result
   }
 
-  isAborted(taskId?: TaskId) {
+  isAborted(taskId?: AsyncTaskId) {
     const isMultiTask = this.hasAsyncFeature(ToolAsyncMultiTaskBit)
     let aborter = this._$tool_aborter as AbortController
     if (aborter) {
@@ -54,7 +66,7 @@ export class CancelableAbility {
     return !aborter || aborter.signal.aborted
   }
 
-  getRunningTask(taskId?: TaskId) {
+  getRunningTask(taskId?: AsyncTaskId) {
     const isMultiTask = this.hasAsyncFeature(ToolAsyncMultiTaskBit)
     let aborter: AbortController|undefined = this._$tool_aborter as AbortController
     if (aborter) {
@@ -92,7 +104,31 @@ export class CancelableAbility {
     return result
   }
 
-  createAborter(params?: any, taskId?: TaskId, raiseError = true) {
+  _generateAsyncTaskId(taskId?: AsyncTaskId, aborters?: TaskAbortControllers) {
+    if (!aborters) {aborters = this._$tool_aborter as unknown as TaskAbortControllers}
+    if (taskId == null) {
+      // find a free taskId in aborters
+      taskId = 0
+      if (aborters) while (aborters[taskId]) {
+        taskId++
+      }
+      // taskId = Object.keys(aborters).length
+    }
+    return taskId
+  }
+
+  $generateAsyncTaskId(taskId?: AsyncTaskId, aborters?: TaskAbortControllers) {
+    const superGenerateAsyncTaskId = this.super
+    const that = this.self || this
+    if (superGenerateAsyncTaskId) {
+      taskId = superGenerateAsyncTaskId.call(that, taskId)
+    } else {
+      taskId = this._generateAsyncTaskId(taskId, aborters)
+    }
+    return taskId
+  }
+
+  createAborter(params?: any, taskId?: AsyncTaskId, raiseError = true) {
     const isMultiTask = this.hasAsyncFeature(ToolAsyncMultiTaskBit)
     if (!isMultiTask && raiseError && this.getRunningTask()) { throw new CommonError('The task is running', this.name, ErrorCode.TooManyRequests)}
     const result: TaskAbortController = params?.aborter || new AbortController()
@@ -100,15 +136,10 @@ export class CancelableAbility {
       if (this._$tool_aborter == null) {
         this._$tool_aborter = {}
       }
-      const aborters = this._$tool_aborter
+      const aborters = this._$tool_aborter as unknown as TaskAbortControllers
 
       if (taskId == null) {
-        // find a free taskId in aborters
-        taskId = 0
-        while (aborters[taskId]) {
-          taskId++
-        }
-        // taskId = Object.keys(aborters).length
+        taskId = this.generateAsyncTaskId(taskId, aborters)
       }
       result.id = taskId
 
@@ -136,18 +167,31 @@ export class CancelableAbility {
     return result
   }
 
+  $cleanMultiTaskAborter(id: AsyncTaskId, aborters: TaskAbortControllers) {
+    const superCleanMultiTaskAborter = this.super
+    const that = this.self || this
+    if (superCleanMultiTaskAborter) {
+      superCleanMultiTaskAborter.call(that, id, aborters)
+    } else {
+      that._cleanMultiTaskAborter(id, aborters)
+    }
+  }
+
   cleanTaskAborter(aborter: TaskAbortController) {
     const isMultiTask = this.hasAsyncFeature(ToolAsyncMultiTaskBit)
     if (isMultiTask) {
-      const aborters = this._$tool_aborter as TaskAbortController
-      aborters[aborter.id!] = undefined
+      const aborters = this._$tool_aborter as unknown as TaskAbortControllers
+      this.cleanMultiTaskAborter(aborter.id!, aborters)
     } else {
       this._$tool_aborter = undefined
     }
-
   }
 
-  createTaskPromise<Output = any>(runTask: (params: Record<string, any>) => Promise<Output>, params: Record<string, any>, options?: {taskId?: TaskId, raiseError?: boolean}) {
+  _cleanMultiTaskAborter(id: AsyncTaskId, aborters: TaskAbortControllers) {
+    aborters[id] = undefined
+}
+
+  createTaskPromise<Output = any>(runTask: (params: Record<string, any>) => Promise<Output>, params: Record<string, any>, options?: {taskId?: AsyncTaskId, raiseError?: boolean}) {
     const aborter = this.createAborter(params, options?.taskId, options?.raiseError);
     if (params === undefined) {params = {}}
     if (typeof params === 'object') {
@@ -158,7 +202,13 @@ export class CancelableAbility {
     .then((result: any) => {
       if (result && result instanceof ReadableStream) {
         const onCleanAborter = () => {this.cleanTaskAborter(aborter)}
-        const transformer = createCallbacksTransformer({onFinal: onCleanAborter, onError: onCleanAborter})
+        const onTransform = (chunk: any, controller: TransformStreamDefaultController) => {
+          if (chunk && typeof chunk === 'object') {
+            chunk.taskId = aborter.id
+          }
+          return chunk
+        }
+        const transformer = createCallbacksTransformer({onFinal: onCleanAborter, onError: onCleanAborter, onTransform})
         result = result.pipeThrough(transformer)
       } else {
         this.cleanTaskAborter(aborter)
@@ -175,15 +225,13 @@ export class CancelableAbility {
     return taskPromise
   }
 
-  runAsyncCancelableTask<Output = any>(params: Record<string, any> = {}, runTask: (params: Record<string, any>) => Promise<Output>, options?: {taskId?: TaskId, raiseError?: boolean}) {
+  runAsyncCancelableTask<Output = any>(params: Record<string, any> = {}, runTask: (params: Record<string, any>) => Promise<Output>, options?: {taskId?: AsyncTaskId, raiseError?: boolean}) {
     let taskPromise = this.createTaskPromise(runTask, params, options)
 
-    if (this.maxTaskConcurrency) {
-      const semaphore = this._$semaphore!
+    const semaphore = this.semaphore
+    if (semaphore) {
       const _taskPromise = taskPromise
-      taskPromise = semaphore.acquire().then(() => {
-        return _taskPromise
-      }).finally(() => {
+      taskPromise = semaphore.acquire().then(() => _taskPromise).finally(() => {
         semaphore.release()
       })
       taskPromise.task = _taskPromise.task
@@ -221,6 +269,13 @@ export class CancelableAbility {
       }
     }
   }
+}
+CancelableAbility.prototype.generateAsyncTaskId = function(this: CancelableAbility, taskId?: AsyncTaskId, aborters?: TaskAbortControllers): AsyncTaskId {
+  return this._generateAsyncTaskId(taskId, aborters)
+}
+
+CancelableAbility.prototype.cleanMultiTaskAborter = function(this: CancelableAbility, id: AsyncTaskId, aborters: TaskAbortControllers) {
+  return this._cleanMultiTaskAborter(id, aborters)
 }
 
 function onInjectionSuccess(Tool: typeof ToolFunc, options?: CancelableAbilityOptions) {
