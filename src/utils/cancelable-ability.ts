@@ -27,8 +27,8 @@ export class TaskAbortController extends AbortController {
     if (this.signal.aborted) {return}
     if (typeof reason === 'string') {
       reason = new AbortError(reason)
-      if (data) { Object.assign((reason as any).data, data) }
     }
+    if (reason && data && typeof reason === 'object') { Object.assign((reason as any).data, data) }
     try {
       this.streamController?.error(reason)
       const parent = this.parent
