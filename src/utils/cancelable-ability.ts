@@ -3,6 +3,7 @@ import { AbortError, CommonError, ErrorCode } from './base-error'
 import { AsyncFeatures, ToolAsyncMultiTaskBit, ToolFunc } from '../tool-func';
 import { Semaphore } from './async-semaphore';
 import { createCallbacksTransformer } from './stream';
+import { defineProperty } from 'util-ex';
 
 export type AsyncTaskId = string|number
 
@@ -12,12 +13,15 @@ export interface CancelableAbilityOptions extends AbilityOptions {
 }
 
 export class TaskAbortController extends AbortController {
+  declare id?: AsyncTaskId
+  declare timeoutId?: any
+  declare streamController?: ReadableStreamDefaultController
+  declare parent: CancelableAbility
 
-  id?: AsyncTaskId;
-  timeoutId?: any;
-  streamController?: ReadableStreamDefaultController
-
-  constructor(public readonly parent: CancelableAbility) {super()}
+  constructor(parent: CancelableAbility) {
+    super()
+    defineProperty(this, 'parent', parent)
+  }
 
   abort(reason?: string|Error|CommonError, data?: any) {
     if (this.signal.aborted) {return}
@@ -223,7 +227,7 @@ export class CancelableAbility {
     let taskPromise: TaskPromise<Output> = runTask(params)
     .then((result: any) => {
       if (result && result instanceof ReadableStream) {
-        const onStart = (controller) => {aborter.streamController = controller}
+        const onStart = (controller) => { defineProperty(aborter, 'streamController', controller) }
         const onCleanAborter = () => {this.cleanTaskAborter(aborter)}
         const onTransform = (chunk: any, controller: TransformStreamDefaultController) => {
           if (chunk && typeof chunk === 'object') {
