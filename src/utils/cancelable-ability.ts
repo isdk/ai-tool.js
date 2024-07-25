@@ -266,10 +266,11 @@ export class CancelableAbility {
     const semaphore = this.semaphore
     if (semaphore) {
       const _taskPromise = taskPromise
-      taskPromise = semaphore.acquire().then(() => _taskPromise).finally(() => {
+      const task = _taskPromise.task!
+      taskPromise = semaphore.acquire(task.signal).then(() => _taskPromise).finally(() => {
         semaphore.release()
       })
-      taskPromise.task = _taskPromise.task
+      taskPromise.task = task
     }
     return taskPromise
   }
