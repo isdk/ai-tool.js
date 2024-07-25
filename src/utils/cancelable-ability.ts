@@ -29,15 +29,7 @@ export class TaskAbortController extends AbortController {
       reason = new AbortError(reason)
     }
     if (reason && data && typeof reason === 'object') { Object.assign((reason as any).data, data) }
-    try {
-      this.streamController?.error(reason)
-      const parent = this.parent
-      if (parent.emit) {
-        parent.emit('aborting', reason, data)
-      }
-    } finally {
-      super.abort(reason)
-    }
+    super.abort(reason)
   }
 }
 
@@ -193,6 +185,15 @@ export class CancelableAbility {
         result.timeoutId = undefined
         clearTimeout(timeoutId)
       }
+      const signal = result.signal
+      try {
+        if (this.emit) {
+          this.emit('aborting', signal.reason)
+        }
+      } finally {
+        result.streamController?.error(signal.reason)
+      }
+
     })
 
     return result
