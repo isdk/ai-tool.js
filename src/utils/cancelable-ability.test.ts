@@ -295,9 +295,10 @@ describe('CancelableAbility', () => {
     expect(rmIds).toHaveLength(1)
     expect(task.id).toBe(rmIds[0])
     expect(emits).toHaveLength(1)
-    expect(emits[0]).toHaveLength(2)
+    expect(emits[0]).toHaveLength(3)
     expect(emits[0][0]).toBe('aborting')
     expect(emits[0][1].toJSON()).toMatchObject({data: {what: 'test', a: 1}, code: 499})
+    expect(emits[0][2]).toMatchObject(data)
   })
 
   it('should pass an aborter into task', async () => {

@@ -188,7 +188,7 @@ export class CancelableAbility {
       const signal = result.signal
       try {
         if (this.emit) {
-          this.emit('aborting', signal.reason)
+          this.emit('aborting', signal.reason, signal.reason?.data)
         }
       } finally {
         result.streamController?.error(signal.reason)
