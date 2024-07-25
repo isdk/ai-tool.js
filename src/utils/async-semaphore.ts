@@ -56,7 +56,7 @@ class Deque {
 		this.arr[i] = item;
 		this._length = length + 1;
 
-		return length + 1;
+		return i;
 	}
 
 	pop() {
@@ -149,8 +149,8 @@ function defaultInit() {
  */
 export class Semaphore {
 	readonly maxConcurrency: number;
+	readonly waiting: Deque;
 	private free: Deque;
-	private waiting: Deque;
 	private releaseEmitter: EventEmitter;
 	private useDefaultTokens: boolean;
 	private pauseFn?: () => void;
@@ -262,11 +262,11 @@ export class Semaphore {
   /**
    * Acquire a token from the semaphore, thus decrement the number of available execution slots. If initFn is not used then the return value of the function can be discarded.
    */
-  async acquire(): Promise<any> {
+  acquire(signal?: AbortSignal): Promise<any> {
 		let token = this.tryAcquire();
 
 		if (token !== undefined) {
-			return token;
+			return Promise.resolve(token);
 		}
 
 		return new Promise((resolve, reject) => {
@@ -275,7 +275,13 @@ export class Semaphore {
 				this.pauseFn();
 			}
 
-			this.waiting.push({ resolve, reject });
+			const index = this.waiting.push({ resolve, reject });
+			if (signal) {
+				signal.addEventListener('abort', () => {
+					this.waiting[index] = undefined;
+					reject(signal.reason);
+				});
+			}
 		});
 	}
 
