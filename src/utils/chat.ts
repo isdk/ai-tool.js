@@ -1,4 +1,5 @@
 import { toDateTime, dateToText } from './to-datetime';
+import type { AsyncTaskId } from './cancelable-ability';
 
 export const AITextGenerationFinishReasons = [
   'stop',           // model generated stop sequence
@@ -26,6 +27,7 @@ export interface AIResult<TValue = any, TOptions = any> {
    * for stream mode
    */
   stop?: boolean
+  taskId?: AsyncTaskId; // for stream chunk
 }
 
 // human: user role;  ai: assistant role ; generic means customize role
