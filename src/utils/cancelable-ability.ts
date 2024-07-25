@@ -93,7 +93,7 @@ export class CancelableAbility {
 
   getRunningTask(taskId?: AsyncTaskId) {
     const isMultiTask = this.hasAsyncFeature(ToolAsyncMultiTaskBit)
-    let aborter: AbortController|undefined = this._$tool_aborter as AbortController
+    let aborter: TaskAbortController|undefined = this._$tool_aborter as TaskAbortController
     if (aborter) {
       if (isMultiTask) {
         if (taskId != null) {
@@ -157,6 +157,11 @@ export class CancelableAbility {
     const isMultiTask = this.hasAsyncFeature(ToolAsyncMultiTaskBit)
     if (!isMultiTask && raiseError && this.getRunningTask()) { throw new CommonError('The task is running', this.name, ErrorCode.TooManyRequests)}
     const result: TaskAbortController = params?.aborter || new TaskAbortController(this)
+    if (!(result instanceof TaskAbortController)) {
+      if ((result as any) instanceof AbortController) {
+        Object.setPrototypeOf(result, new TaskAbortController(this))
+      }
+    }
 
     if (isMultiTask) {
       if (this._$tool_aborter == null) {

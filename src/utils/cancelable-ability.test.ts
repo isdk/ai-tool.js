@@ -301,4 +301,15 @@ describe('CancelableAbility', () => {
     expect(emits[0][2]).toMatchObject(data)
   })
 
+  it('should pass an aborter into task', async () => {
+    const aborter = new AbortController()
+
+    const taskInfo = testSingleTask.run({content: '12345', aborter}) as TaskPromise<string>
+    expect(taskInfo.task).toBeInstanceOf(TaskAbortController)
+    expect(taskInfo.task).toBe(aborter)
+    expect(aborter).toHaveProperty('parent', testSingleTask)
+    const result = await taskInfo
+    expect(result).toMatchObject({content: '12345'})
+  })
+
 })
