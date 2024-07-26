@@ -52,7 +52,7 @@ export class CancelableAbility {
   declare generateAsyncTaskId: (taskId?: AsyncTaskId, aborters?: TaskAbortControllers) => AsyncTaskId
   declare cleanMultiTaskAborter: (id: AsyncTaskId, aborters: TaskAbortControllers) => void
 
-  _$tool_aborter: TaskAbortController|TaskAbortControllers|undefined
+  _$task_aborter: TaskAbortController|TaskAbortControllers|undefined
   _$semaphore: Semaphore|undefined
 
   get maxTaskConcurrency() {
@@ -70,7 +70,7 @@ export class CancelableAbility {
 
   isAborted(taskId?: AsyncTaskId) {
     const isMultiTask = this.hasAsyncFeature(ToolAsyncMultiTaskBit)
-    let aborter = this._$tool_aborter as AbortController
+    let aborter = this._$task_aborter as AbortController
     if (aborter) {
       if (isMultiTask) {
         if (taskId != null) {
@@ -85,7 +85,7 @@ export class CancelableAbility {
 
   getRunningTask(taskId?: AsyncTaskId) {
     const isMultiTask = this.hasAsyncFeature(ToolAsyncMultiTaskBit)
-    let aborter: TaskAbortController|undefined = this._$tool_aborter as TaskAbortController
+    let aborter: TaskAbortController|undefined = this._$task_aborter as TaskAbortController
     if (aborter) {
       if (isMultiTask) {
         if (taskId != null) {
@@ -97,9 +97,9 @@ export class CancelableAbility {
     }
     if (aborter?.signal.aborted) {
       if (isMultiTask) {
-        this._$tool_aborter![taskId!] = undefined
+        this._$task_aborter![taskId!] = undefined
       } else {
-        this._$tool_aborter = undefined
+        this._$task_aborter = undefined
       }
       aborter = undefined
     }
@@ -110,19 +110,19 @@ export class CancelableAbility {
     let result: number
     const isMultiTask = this.hasAsyncFeature(ToolAsyncMultiTaskBit)
     if (isMultiTask) {
-      const aborters = this._$tool_aborter as {[id: string]:TaskAbortController|undefined}
+      const aborters = this._$task_aborter as {[id: string]:TaskAbortController|undefined}
       result = aborters && Object.entries(aborters).filter(([id, aborter]) => {
         if (aborter?.signal.aborted) {aborters[id]=undefined} else {return true}
       }).length
     } else {
-      const aborter = this._$tool_aborter as TaskAbortController
+      const aborter = this._$task_aborter as TaskAbortController
       result = aborter?.signal.aborted ? 0 : 1
     }
     return result
   }
 
   _generateAsyncTaskId(taskId?: AsyncTaskId, aborters?: TaskAbortControllers) {
-    if (!aborters) {aborters = this._$tool_aborter as unknown as TaskAbortControllers}
+    if (!aborters) {aborters = this._$task_aborter as unknown as TaskAbortControllers}
     if (taskId == null) {
       // find a free taskId in aborters
       taskId = 0
@@ -158,10 +158,10 @@ export class CancelableAbility {
     }
 
     if (isMultiTask) {
-      if (this._$tool_aborter == null) {
-        this._$tool_aborter = {}
+      if (this._$task_aborter == null) {
+        this._$task_aborter = {}
       }
-      const aborters = this._$tool_aborter as unknown as TaskAbortControllers
+      const aborters = this._$task_aborter as unknown as TaskAbortControllers
 
       if (taskId == null) {
         taskId = this.generateAsyncTaskId(taskId, aborters)
@@ -170,7 +170,7 @@ export class CancelableAbility {
 
       aborters[taskId] = result
     } else {
-      this._$tool_aborter = result
+      this._$task_aborter = result
     }
 
     const timeout = params?.timeout
@@ -214,10 +214,10 @@ export class CancelableAbility {
   cleanTaskAborter(aborter: TaskAbortController) {
     const isMultiTask = this.hasAsyncFeature(ToolAsyncMultiTaskBit)
     if (isMultiTask) {
-      const aborters = this._$tool_aborter as unknown as TaskAbortControllers
+      const aborters = this._$task_aborter as unknown as TaskAbortControllers
       this.cleanMultiTaskAborter(aborter.id!, aborters)
     } else {
-      this._$tool_aborter = undefined
+      this._$task_aborter = undefined
     }
   }
 
@@ -279,7 +279,7 @@ export class CancelableAbility {
   }
 
   abort(reason?: string, data?: any) {
-    let aborter = this._$tool_aborter as TaskAbortController
+    let aborter = this._$task_aborter as TaskAbortController
     if (aborter) {
       const isMultiTask = this.hasAsyncFeature(ToolAsyncMultiTaskBit)
       const aborters = aborter as unknown as {[id: string]:TaskAbortController|undefined}
@@ -292,7 +292,7 @@ export class CancelableAbility {
           throw new CommonError('Missing data.taskId', this.name + '.abort', ErrorCode.InvalidArgument)
         }
       } else {
-        this._$tool_aborter = undefined
+        this._$task_aborter = undefined
       }
 
       if (aborter && !aborter.signal.aborted) {
