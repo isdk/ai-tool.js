@@ -18,8 +18,11 @@ makeToolFuncCancelable(TestSingleTaskFunc)
 
 class TestMultiTaskFunc extends ToolFunc {
   func(params: any) {
-    return this.runAsyncCancelableTask(params, async (params: any) => {
-      await wait(10)
+    return this.runAsyncCancelableTask(params, async (params: any, aborter: TaskAbortController) => {
+      for (let i = 0; i < 5; i++) {
+        if (aborter.throwRejected()) { return }
+        await wait(10)
+      }
       return params
     })
   }
@@ -348,6 +351,45 @@ describe('CancelableAbility', () => {
     expect(Object.values(errs)).toMatchObject([{data: {what: 'test3'}}, {data: {what: 'test7'}}])
     // check maxTaskConcurrency limit
     expect(pendingCountsBefore).toEqual([0, 0, 0, 1, 2, 3, 4, 5, 6, 7])
+    // expect(pendingCountsAfter).toEqual([7, 6, 5, 4, 3, 2, 1, 0, 0, 0])
+  })
+
+  it('should run multi async tasks and abort running task', async () => {
+    expect(testMultiTask.hasAsyncFeature(AsyncFeatureBits.Cancelable)).toBeTruthy()
+    expect(testMultiTask.hasAsyncFeature(ToolAsyncMultiTaskBit)).toBeTruthy()
+    expect(TestMultiTaskFunc.hasAsyncFeature(AsyncFeatureBits.MultiTask)).toBeTruthy()
+
+    const taskCount = 3;
+    const tasks = Array.from({ length: taskCount }, (_, index) => '' + index);
+
+
+    const pendingCountsBefore = [] as number[];
+    const pendingCountsAfter = [] as number[];
+    const errs = {} as any
+    const asyncTask = async (item: string, ix: number) => {
+      const semaphore = testMultiTask.semaphore;
+      let pendingCount = semaphore.pendingCount();
+      pendingCountsBefore.push(pendingCount)
+
+      const taskInfo = testMultiTask.run(item) as TaskPromise
+      if (ix === 1) {
+        taskInfo.task?.abort('test'+ix)
+      }
+      try {
+        await taskInfo
+      } catch(e) {
+        errs[item] = e
+      }
+      pendingCount = semaphore.pendingCount();
+      pendingCountsAfter.push(pendingCount)
+    };
+
+    await Promise.all(tasks.map(asyncTask));
+
+    expect(Object.keys(errs)).toEqual(['1'])
+    expect(Object.values(errs)).toMatchObject([{data: {what: 'test1'}}])
+    // check maxTaskConcurrency limit
+    expect(pendingCountsBefore).toEqual([0, 0, 0])
     // expect(pendingCountsAfter).toEqual([7, 6, 5, 4, 3, 2, 1, 0, 0, 0])
   })
 })

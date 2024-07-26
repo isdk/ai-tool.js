@@ -31,6 +31,16 @@ export class TaskAbortController extends AbortController {
     if (reason && data && typeof reason === 'object') { Object.assign((reason as any).data, data) }
     super.abort(reason)
   }
+
+  throwRejected(alreadyRejected?: boolean) {
+    const signal = this.signal as any
+    if (signal.aborted) {
+      if (alreadyRejected === undefined) alreadyRejected = signal.alreadyRejected
+      if (alreadyRejected) {return true}
+      const reason = (signal.reason instanceof Error) ? signal.reason : new AbortError(signal.reason || 'aborted')
+      throw reason
+    }
+  }
 }
 
 export interface TaskAbortControllers {
@@ -225,14 +235,14 @@ export class CancelableAbility {
     if (typeof id === 'number') { aborters[id] = undefined } else { delete aborters[id] }
 }
 
-  createTaskPromise<Output = any>(runTask: (params: Record<string, any>) => Promise<Output>, params: Record<string, any>, options?: {taskId?: AsyncTaskId, raiseError?: boolean}) {
+  createTaskPromise<Output = any>(runTask: (params: Record<string, any>, aborter: TaskAbortController) => Promise<Output>, params: Record<string, any>, options?: {taskId?: AsyncTaskId, raiseError?: boolean}) {
     const aborter = this.createAborter(params, options?.taskId, options?.raiseError);
     if (params === undefined) {params = {}}
     if (typeof params === 'object') {
       params.aborter = aborter
     }
 
-    let taskPromise: TaskPromise<Output> = runTask(params)
+    let taskPromise: TaskPromise<Output> = runTask(params, aborter)
     .then((result: any) => {
       if (result && result instanceof ReadableStream) {
         const onStart = (controller) => { defineProperty(aborter, 'streamController', controller) }
@@ -263,7 +273,7 @@ export class CancelableAbility {
     return taskPromise
   }
 
-  runAsyncCancelableTask<Output = any>(params: Record<string, any> = {}, runTask: (params: Record<string, any>) => Promise<Output>, options?: {taskId?: AsyncTaskId, raiseError?: boolean}) {
+  runAsyncCancelableTask<Output = any>(params: Record<string, any> = {}, runTask: (params: Record<string, any>, aborter: TaskAbortController) => Promise<Output>, options?: {taskId?: AsyncTaskId, raiseError?: boolean}) {
     let taskPromise = this.createTaskPromise(runTask, params, options)
 
     const semaphore = this.semaphore
