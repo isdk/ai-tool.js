@@ -1,4 +1,4 @@
-import { CommonError, ErrorCode } from "@isdk/ai-tool";
+import { CommonError, ErrorCode } from './base-error';
 
 /**
  * Formats a parameter size in bytes into a string with an appropriate scale (T, B, M, or K),
