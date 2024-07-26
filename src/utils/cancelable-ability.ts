@@ -152,6 +152,8 @@ export class CancelableAbility {
     if (!(result instanceof TaskAbortController)) {
       if ((result as any) instanceof AbortController) {
         Object.setPrototypeOf(result, new TaskAbortController(this))
+      } else {
+        throw new CommonError('aborter should be an AbortController', this.name, ErrorCode.InvalidArgument)
       }
     }
 
