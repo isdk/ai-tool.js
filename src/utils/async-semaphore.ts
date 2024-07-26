@@ -279,9 +279,12 @@ export class Semaphore {
 			if (signal) {
 				signal.addEventListener('abort', () => {
 					this.waiting[index] = undefined;
-					reject(signal.reason);
+					const reason = signal.reason instanceof Error ? signal.reason : new Error(signal.reason || 'aborted');
+					(signal as any).alreadyRejected = true;
+					reject(reason);
 				});
 			}
+			return index
 		});
 	}
 
