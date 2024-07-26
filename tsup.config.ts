@@ -34,5 +34,5 @@ export default defineConfig({
   },
   // splitting: true,
   // sourcemap: true,
-  // clean: true,
+  clean: true,
 })
