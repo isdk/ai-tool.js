@@ -58,6 +58,12 @@ export interface Funcs {
   [name: string]: ToolFunc
 }
 
+export interface ToolFuncPackage {
+  name: string
+  register: (data?: any) => void;
+  unregister?: () => void;
+}
+
 export declare interface ToolFunc extends BaseFunc {
   [name: string]: any;
 }
