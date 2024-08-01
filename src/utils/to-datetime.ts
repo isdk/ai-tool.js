@@ -1,6 +1,8 @@
-import { format as formatDateTime, parse, parseISO } from 'date-fns'
+import { format as formatDateTime, parse as parseDateFormat, parseISO } from 'date-fns'
 
-export {formatISO, parseISO} from 'date-fns'
+export {formatISO, parseISO, toDate} from 'date-fns'
+
+export { parseDateFormat }
 
 const FormatDateStr = "MMMM d, y 'at' h:m:s b 'GMT'x"
 
@@ -21,7 +23,7 @@ export function toDateTime(date: Date|string|number) {
 }
 
 export function textToDate(date: string, format = FormatDateStr) {
-  return parse(date, format, new Date())
+  return parseDateFormat(date, format, new Date())
 }
 
 export function dateToText(date: Date, format = FormatDateStr) {
