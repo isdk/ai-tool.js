@@ -16,6 +16,12 @@ function quoteValueIfString(shouldQuote: boolean, value: string | number): strin
   return String(value);
 }
 
+function toSqlValue(value: string|number|Date): string {
+  if (value instanceof Date) {value = value.toISOString()}
+  const shouldQuote = typeof value === 'string';
+  return quoteValueIfString(shouldQuote, value)
+}
+
 /**
  * Generates an 'AND' clause from an array of filters.
  * @param {JsonFilter[]} filters - An array of filters to combine with 'AND'.
@@ -44,37 +50,36 @@ function generateCondition(dataKey: string, condition: JsonFilter): string {
   const andQuery: string[] = [];
   Object.keys(condition).forEach(key => {
     const value = condition[key];
-    let hasQuotes = typeof condition[key] === 'string';
     switch (key) {
       case '$lt':
       case '<':
-        andQuery.push(`${dataKey} < ${quoteValueIfString(hasQuotes, value)}`);
+        andQuery.push(`${dataKey} < ${toSqlValue(value)}`);
         break;
       case '<=':
       case '$lte':
-        andQuery.push(`${dataKey} <= ${quoteValueIfString(hasQuotes, value)}`);
+        andQuery.push(`${dataKey} <= ${toSqlValue(value)}`);
         break;
       case '$gt':
       case '>':
-        andQuery.push(`${dataKey} > ${quoteValueIfString(hasQuotes, value)}`);
+        andQuery.push(`${dataKey} > ${toSqlValue(value)}`);
         break;
       case '$gte':
       case '>=':
-        andQuery.push(`${dataKey} >= ${quoteValueIfString(hasQuotes, value)}`);
+        andQuery.push(`${dataKey} >= ${toSqlValue(value)}`);
         break;
       case '$ne':
       case '!=':
-        andQuery.push(`${dataKey} != ${quoteValueIfString(hasQuotes, value)}`);
+        andQuery.push(`${dataKey} != ${toSqlValue(value)}`);
         break;
       case '=':
       case '$eq':
-        andQuery.push(`${dataKey} = ${quoteValueIfString(hasQuotes, value)}`);
+        andQuery.push(`${dataKey} = ${toSqlValue(value)}`);
         break;
       case '$in':
-        andQuery.push(`${dataKey} IN (${(value as any[]).map(e => quoteValueIfString(true, e)).join(', ')})`);
+        andQuery.push(`${dataKey} IN (${(value as any[]).map(e => toSqlValue(e)).join(', ')})`);
         break;
       case '$nin':
-        andQuery.push(`${dataKey} NOT IN (${(value as any[]).map(e => quoteValueIfString(true, e)).join(', ')})`);
+        andQuery.push(`${dataKey} NOT IN (${(value as any[]).map(e => toSqlValue(e)).join(', ')})`);
         break;
       case '$regex':
         andQuery.push(`${dataKey} REGEXP '${value.source}'`);
@@ -130,6 +135,8 @@ export function jsonFilterToWhere(filter: JsonFilter|JsonFilter[], wrapKey?: (k:
       const tValue = typeof value
       if (value == null) {
         andQuery.push(`${wrapKey(key)} IS NULL`);
+      } else if (value instanceof Date) {
+        andQuery.push(`${wrapKey(key)}='${value.toISOString()}'`);
       } else if (tValue === 'object' && !Array.isArray(value)) {
         andQuery.push(generateCondition(wrapKey(key), value));
       } else if (tValue === 'string') {
