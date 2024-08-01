@@ -1,6 +1,6 @@
 import { format as formatDateTime, parse, parseISO } from 'date-fns'
 
-export {formatISO} from 'date-fns'
+export {formatISO, parseISO} from 'date-fns'
 
 const FormatDateStr = "MMMM d, y 'at' h:m:s b 'GMT'x"
 
