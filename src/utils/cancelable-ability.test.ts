@@ -102,6 +102,7 @@ describe('CancelableAbility', () => {
     expect(testMultiTask.hasAsyncFeature(AsyncFeatureBits.Cancelable)).toBeTruthy()
     expect(testMultiTask.hasAsyncFeature(ToolAsyncMultiTaskBit)).toBeTruthy()
     expect(TestMultiTaskFunc.hasAsyncFeature(AsyncFeatureBits.MultiTask)).toBeTruthy()
+    expect(testMultiTask.semaphore).toBeDefined()
 
     const taskCount = 10;
     const tasks = Array.from({ length: taskCount }, (_, index) => '' + index);
