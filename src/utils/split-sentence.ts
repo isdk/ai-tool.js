@@ -27,6 +27,7 @@ function replaceWithSeparator(text: string, separator: string, regexs: RegExp[])
  * console.log(splitSentence(text));  // returns ['Hello world!', 'How are you today?', 'I am fine.']
  */
 export function splitSentence(text: string, best: boolean = true): string[] {
+  text = text.replace(/([。！？?])\1+/g, "$1");
   text = text.replace(/([。！？?])([^”’])/g, "$1\n$2");
   text = text.replace(/(\.{6})([^”’])/g, "$1\n$2");
   text = text.replace(/(…{2})([^”’])/g, "$1\n$2");

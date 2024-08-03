@@ -19,8 +19,7 @@ describe('split-sentence', () => {
     expect(result).toMatchInlineSnapshot(`
       [
         "3.14 is pi.",
-        "“你好！",
-        "！！”",
+        "“你好！”",
         "——他说。",
         "劇場版「Fate/stay night [HF]」最終章公開カウントダウン！",
       ]
@@ -28,12 +27,13 @@ describe('split-sentence', () => {
   })
 
   it('should split english sentence', () => {
-    let result = splitSentence('Hello world! How are you today? I am fine.')
+    let result = splitSentence('Hello world! How are you today? I am fine. Nice too.')
     expect(result).toMatchInlineSnapshot(`
       [
         "Hello world!",
         "How are you today?",
         "I am fine.",
+        "Nice too.",
       ]
     `)
   })
