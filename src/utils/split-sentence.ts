@@ -6,12 +6,12 @@ const UNDO_AB_SENIOR = new RegExp('([A-Z][a-z]{1,2}\\.)' + SEPARATOR + '(\\w)', 
 const UNDO_AB_ACRONYM = new RegExp('(\\.[a-zA-Z]\\.)' + SEPARATOR + '(\\w)', 'g');
 
 function replaceWithSeparator(text: string, separator: string, regexs: RegExp[]): string {
-    const replacement = "$1" + separator + "$2";
-    let result = text;
-    for (let i = 0; i < regexs.length; i++) {
-        result = result.replace(regexs[i], replacement);
-    }
-    return result;
+  const replacement = "$1" + separator + "$2";
+  let result = text;
+  for (let i = 0; i < regexs.length; i++) {
+      result = result.replace(regexs[i], replacement);
+  }
+  return result;
 }
 
 /**
@@ -28,30 +28,30 @@ function replaceWithSeparator(text: string, separator: string, regexs: RegExp[])
  */
 export function splitSentence(text: string, best: boolean = true): string[] {
   text = text.replace(/([。！？?])([^”’])/g, "$1\n$2");
-    text = text.replace(/(\.{6})([^”’])/g, "$1\n$2");
-    text = text.replace(/(…{2})([^”’])/g, "$1\n$2");
-    text = text.replace(/([。！？?][”’])([^，。！？?])/g, "$1\n$2");
-    const chunks = text.split("\n");
-    let result: string[] = [];
-    for (let i = 0; i < chunks.length; i++) {
-        let chunk = chunks[i].trim();
-        if (!chunk) {
-            continue;
-         }
-        if (!best) {
-            result.push(chunk);
-            continue;
-         }
-        let processed = replaceWithSeparator(chunk, SEPARATOR, [AB_SENIOR, AB_ACRONYM]);
-        let sents = Array.from(processed.matchAll(RE_SENTENCE));
-        if (!sents.length) {
-            result.push(chunk);
-            continue;
-         }
-        for (let j = 0; j < sents.length; j++) {
-            let sentence = replaceWithSeparator(sents[j][0], " ", [UNDO_AB_SENIOR, UNDO_AB_ACRONYM]);
-            result.push(sentence);
-         }
-     }
-    return result;
+  text = text.replace(/(\.{6})([^”’])/g, "$1\n$2");
+  text = text.replace(/(…{2})([^”’])/g, "$1\n$2");
+  text = text.replace(/([。！？?][”’])([^，。！？?])/g, "$1\n$2");
+  const chunks = text.split("\n");
+  let result: string[] = [];
+  for (let i = 0; i < chunks.length; i++) {
+    let chunk = chunks[i].trim();
+    if (!chunk) {
+      continue;
+    }
+    if (!best) {
+      result.push(chunk);
+      continue;
+    }
+    let processed = replaceWithSeparator(chunk, SEPARATOR, [AB_SENIOR, AB_ACRONYM]);
+    let sents = Array.from(processed.matchAll(RE_SENTENCE));
+    if (!sents.length) {
+      result.push(chunk);
+      continue;
+    }
+    for (let j = 0; j < sents.length; j++) {
+      let sentence = replaceWithSeparator(sents[j][0], " ", [UNDO_AB_SENIOR, UNDO_AB_ACRONYM]);
+      result.push(sentence);
+    }
+  }
+  return result;
 }
