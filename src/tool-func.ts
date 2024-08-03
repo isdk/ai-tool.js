@@ -303,7 +303,7 @@ export class ToolFunc extends AdvancePropertyManager {
   }
 
   getFunc(name?: string) {
-    const result = name ? (this.constructor as any).getFunc(name) : this.runSync.bind(this)
+    const result = name ? (this.constructor as typeof ToolFunc).getFunc(name) : this.runSync.bind(this)
     return result
   }
 
