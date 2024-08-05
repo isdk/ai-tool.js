@@ -83,3 +83,65 @@ export function loadTextFromPaths(filename: string, searchPaths?: string[], extN
   const result = loadFileFromPaths(filename, searchPaths, extNames, options)
   return result.toString(encoding)
 }
+
+/**
+ * Recursively reads all filenames in the given directory or directories.
+ * Optionally filters the results using a file matching callback.
+ *
+ * @param dir - A single directory path or an array of directory paths to start the search from.
+ * @param isFileMatched - An optional callback that determines whether a file should be included in the result.
+ * @returns An array of file paths that match the criteria.
+ *
+ * @example
+* ```typescript
+* const files = readFilenamesRecursiveSync('/path/to/directory', (filepath) => filepath.endsWith('.js'));
+* console.log(files); // Outputs an array of JavaScript file paths.
+* ```
+*/
+export function readFilenamesRecursiveSync(dir: string|string[], isFileMatched?: (filepath: string) => boolean) {
+  const result = [] as string[];
+  const stack: string[] = typeof dir === 'string' ? [dir] : [...dir];
+  const visitedDirs = new Set<string>()
+
+  while (stack.length > 0) {
+    const currentDir = getRealFilepath(stack.pop()!);
+    if (visitedDirs.has(currentDir)) {continue}
+    visitedDirs.add(currentDir)
+
+    const stat = fs.statSync(currentDir, {throwIfNoEntry: false})
+    if (stat?.isDirectory()) {
+      const files = fs.readdirSync(currentDir, {withFileTypes: true})
+      for (let j = 0; j < files.length; j++) {
+        const file = files[j]
+        const filepath = path.join(currentDir, file.name)
+        if (file.isDirectory()) {
+          stack.push(filepath)
+        } else if (file.isFile() && (!isFileMatched || isFileMatched(filepath))) {
+          result.push(filepath)
+        }
+      }
+    }
+  }
+  return result
+}
+
+/**
+ * Resolves the real file path, handling symbolic links.
+ *
+ * @param filepath - The file path to resolve.
+ * @returns The real file path.
+ *
+ * @example
+* ```typescript
+* const realPath = getRealFilepath('/path/to/symbolic/link');
+* console.log(realPath); // Outputs the resolved path.
+* ```
+*/
+export function getRealFilepath(filepath: string) {
+  // get the real dir if currentDir is a symbol Link
+  const lstat = fs.lstatSync(filepath, {throwIfNoEntry: false})
+  if (lstat?.isSymbolicLink()) {
+    filepath = fs.readlinkSync(filepath)
+  }
+  return filepath
+}
