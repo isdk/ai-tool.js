@@ -105,8 +105,9 @@ export function readFilenamesRecursiveSync(dir: string|string[], isFileMatched?:
 
   while (stack.length > 0) {
     const currentDir = getRealFilepath(stack.pop()!);
-    if (visitedDirs.has(currentDir)) {continue}
-    visitedDirs.add(currentDir)
+    const absoluteDir = path.resolve(currentDir)
+    if (visitedDirs.has(absoluteDir)) {continue}
+    visitedDirs.add(absoluteDir)
 
     const stat = fs.statSync(currentDir, {throwIfNoEntry: false})
     if (stat?.isDirectory()) {
