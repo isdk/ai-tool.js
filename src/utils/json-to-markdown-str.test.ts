@@ -1,4 +1,4 @@
-import { jsonToMarkdownStr } from './jsonToMarkdownStr';
+import { jsonToMarkdownStr } from './json-to-markdown-str';
 
 describe('jsonToMarkdownStr', () => {
   it('should convert a simple object to markdown string', () => {
