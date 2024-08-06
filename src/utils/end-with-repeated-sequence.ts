@@ -7,6 +7,7 @@ export function createEndWithRepetitionDetector(repetitionThreshold: number) {
 
   const regex = new RegExp(`([\\S\\s]+)(\\1{${repetitionThreshold-1},})$`)
   return function endWithRepeatedSequence(value: string) {
-    return regex.test(value)
+    const matched = regex.exec(value)
+    return matched
   }
 }

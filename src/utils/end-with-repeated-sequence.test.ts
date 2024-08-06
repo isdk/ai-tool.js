@@ -10,16 +10,20 @@ describe('createEndWithRepetitionDetector', () => {
   it('should return a function that detects if a string ends with a repeated sequence', () => {
     const repetitionThreshold = 3;
     const endWithRepeatedSequence = createEndWithRepetitionDetector(repetitionThreshold);
-    expect(endWithRepeatedSequence('33abcabcabc')).toBe(true);
-    expect(endWithRepeatedSequence('2abcabcabcabc')).toBe(true);
-    expect(endWithRepeatedSequence('12abcabc')).toBe(false);
-    expect(endWithRepeatedSequence('1abcabcab')).toBe(false);
+    let result = endWithRepeatedSequence('33abcabcabc')
+    expect(result).toBeTruthy();
+    expect(result![1]).toBe('abc');
+    result = endWithRepeatedSequence('2abcabcabcabc');
+    expect(result).toBeTruthy();
+    expect(result![1]).toBe('abc');
+    expect(endWithRepeatedSequence('12abcabc')).toBeFalsy();
+    expect(endWithRepeatedSequence('1abcabcab')).toBeFalsy();
   });
 
   it('should return a function that uses the provided repetitionThreshold', () => {
     const repetitionThreshold = 2;
     const endWithRepeatedSequence = createEndWithRepetitionDetector(repetitionThreshold);
-    expect(endWithRepeatedSequence('12abcabc')).toBe(true);
-    expect(endWithRepeatedSequence('1abcabcabcae')).toBe(false);
+    expect(endWithRepeatedSequence('12abcabc')).toBeTruthy();
+    expect(endWithRepeatedSequence('1abcabcabcae')).toBeFalsy();
   });
 });
