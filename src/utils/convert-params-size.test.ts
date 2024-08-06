@@ -1,4 +1,4 @@
-import { CommonError } from '@isdk/ai-tool';
+import { CommonError } from './base-error';
 import { paramsSizeToScaleStr, scaleStrToParamsSize } from './convert-params-size';
 
 describe('paramsSizeToScaleStr', () => {
