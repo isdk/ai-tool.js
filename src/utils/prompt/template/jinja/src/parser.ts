@@ -105,7 +105,7 @@ export function parse(tokens: Token[]): Program {
 				expect(TOKEN_TYPES.CloseStatement, "Expected %} token");
 				break;
 			default:
-				throw new SyntaxError(`Unknown statement type: ${tokens[current].type}`);
+				throw new SyntaxError(`Unknown statement type: ${tokens[current].type} ${tokens[current].value}`);
 		}
 
 		return result;
