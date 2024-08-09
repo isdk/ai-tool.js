@@ -176,4 +176,18 @@ describe('HfPromptTemplate', () => {
       },
     })).toStrictEqual('{"hi":"world","x":2,"a":[1,29]}')
   })
+
+  it('should format string with undefined value', async () => {
+    const template = `{{name}}{{i['0']}}`
+    //
+    let result = await PromptTemplate.format({
+      template,
+      data: {templateFormat: 'hf',
+        type: 'char',
+        name: '知识专家',
+        i:{0: undefined}
+      },
+    });
+    expect(result).toStrictEqual('知识专家')
+  })
 })

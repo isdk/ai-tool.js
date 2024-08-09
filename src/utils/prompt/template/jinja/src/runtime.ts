@@ -976,6 +976,8 @@ function convertToRuntimeValues(input: unknown): AnyRuntimeValue {
 				const result = input(..._args) ?? null; // map undefined -> null
 				return convertToRuntimeValues(result);
 			});
+		case "undefined":
+			return new NullValue();
 		default:
 			throw new Error(`Cannot convert to runtime value: ${input}`);
 	}
