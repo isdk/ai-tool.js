@@ -2,6 +2,72 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.8](https://github.com/isdk/ai-tool.js/compare/v0.0.7...v0.0.8) (2024-08-11)
+
+
+### Features
+
+* add async-semaphore class ([554d3d3](https://github.com/isdk/ai-tool.js/commit/554d3d34a71cea6d8b2e1d583cb0e9c5ac4ebb7f))
+* add cancelable-ability ([1b59eed](https://github.com/isdk/ai-tool.js/commit/1b59eed2da6d997dac71e108ac7e4e0593a87886))
+* add convert-params-size func ([f40be61](https://github.com/isdk/ai-tool.js/commit/f40be61104264410162141fc4be92bb3eb158adf))
+* add datetime helper functions ([a690b78](https://github.com/isdk/ai-tool.js/commit/a690b786bdf64c40ef1f942a69da8731f9ece9e1))
+* add exclude option to load-file-from-paths ([584a625](https://github.com/isdk/ai-tool.js/commit/584a62514ca79e5d768c2785b9039b615dea090d))
+* add IntSet class ([3891766](https://github.com/isdk/ai-tool.js/commit/3891766d2619d1ce7eb92f6f5060889c1580d968))
+* add isWebStream func ([c97c2f9](https://github.com/isdk/ai-tool.js/commit/c97c2f9b9f7697614aa2469b18e88644dca502ff))
+* add jsonToMarkdownStr func ([f426592](https://github.com/isdk/ai-tool.js/commit/f4265928fccdf23a1dcd127f570dcb96baa78258))
+* add messagesToText func ([60f82c0](https://github.com/isdk/ai-tool.js/commit/60f82c0789d9352733b3bd28086a62e54b7cd568))
+* add readFilenamesRecursiveSync func ([a1c321a](https://github.com/isdk/ai-tool.js/commit/a1c321ae99b4006af655290fe94a3f7adb6c4683))
+* add ToolFuncPackage type ([d2bbd91](https://github.com/isdk/ai-tool.js/commit/d2bbd9139125886ac4255cd21a8e21100e003c16))
+* **AITextGenerationFinishReasons:** add taskId for stream chunk ([b688b47](https://github.com/isdk/ai-tool.js/commit/b688b47b74947cb3d1e62600acb12b265aa767cb))
+* **CancelableAbility:** add optional generateAsyncTaskId, cleanMultiTaskAborter methods and apply chunk.taskId for object stream ([a4d87fe](https://github.com/isdk/ai-tool.js/commit/a4d87feff6134715360cae7ba0788ff2c4b92c57))
+* **CancelableAbility:** add ReadableStream and multi-tasks with maxTaskConcurrency supports ([9399647](https://github.com/isdk/ai-tool.js/commit/9399647891160f05af00393ed149c460965ed9c2))
+* **CancelableAbility:** add throwRejected method to TaskAbortController ([5d1c366](https://github.com/isdk/ai-tool.js/commit/5d1c366055e9dc911b4b47930ff81514d0b01899))
+* **CancelableAbility:** can pass an AbortController into task now ([76b3398](https://github.com/isdk/ai-tool.js/commit/76b3398e9401da343859540848c6c618c211a1e1))
+* export formatISO func ([5deb35c](https://github.com/isdk/ai-tool.js/commit/5deb35c638f581b466f466f509d5167caca31f9a))
+* export parseDateFormat, toDate ([4719167](https://github.com/isdk/ai-tool.js/commit/47191673fb125b2e4d442ffee08698d7bff770e5))
+* export parseISO from date-fns ([ce9e4de](https://github.com/isdk/ai-tool.js/commit/ce9e4defcd704da842cd9727db8e8e23424d04cb))
+* **IntSet:** add static methods ([bac2f14](https://github.com/isdk/ai-tool.js/commit/bac2f1486667f93b0b53f031ef3c95f37bada31f))
+* **IntSet:** add valueOf, toJSON, toString ([5ade81c](https://github.com/isdk/ai-tool.js/commit/5ade81c976c07e6a6a84b4f81db0c8d65d2425c6))
+* more http status code added ([8065169](https://github.com/isdk/ai-tool.js/commit/80651690ec9786577251fe384ee90aa3f16ca335))
+* **Semaphore:** add .alreadyRejected flag to signal ([5d3aea3](https://github.com/isdk/ai-tool.js/commit/5d3aea339581bde5214c61ba61367ce49a651b14))
+* **Semaphore:** add AbortSignal supports ([25f2e35](https://github.com/isdk/ai-tool.js/commit/25f2e35f7da322a5e7d6e7b457a803a293ae498c))
+* **Semaphore:** add DefaultAsyncSemaphoreCapacity constant ([0ec9d3f](https://github.com/isdk/ai-tool.js/commit/0ec9d3f74abcf96d62ee57601f9350418c5b1ac4))
+* **tool-func:** add asyncFeatures option ([b4ce16c](https://github.com/isdk/ai-tool.js/commit/b4ce16c0ac1ab6018ee7f0c0e4b6db430a77c04b))
+* **ToolFunc:** add _asyncFeatures for ability injection ([2d60803](https://github.com/isdk/ai-tool.js/commit/2d60803198ce47491a5d5e03ab5a4d5c1ee3a075))
+* **ToolFunc:** add static hasAsyncFeature ([4715821](https://github.com/isdk/ai-tool.js/commit/47158212772f3428d3bde99063279a3195f0ef6c))
+* **util:** add paramsSizeToScaleStr,scaleStrToParamsSize funcs ([89230c7](https://github.com/isdk/ai-tool.js/commit/89230c7187521bfa50718ff53496c26841432a7a))
+
+
+### Bug Fixes
+
+* **base-error:** add default AbortError name for AbortError ([635ea51](https://github.com/isdk/ai-tool.js/commit/635ea510c476f83de57e8e1a969d68ba3c7f9675))
+* **CancelableAbility:** abort should assign data to reason if reason is an object ([4d20bec](https://github.com/isdk/ai-tool.js/commit/4d20becfbbfcd5327d5b6a83731a50886e59bd56))
+* **CancelableAbility:** Because cannot standardize the internal variable format of terser, we have switched to managing it ourselves. ([787e914](https://github.com/isdk/ai-tool.js/commit/787e914a1f5dab2d24312399a6f123f0e8360403))
+* **CancelableAbility:** should abort waiting task immediately ([82777c4](https://github.com/isdk/ai-tool.js/commit/82777c4e1f9265fc057e271b75596e7b1c8b734c))
+* **CancelableAbility:** should clean task if task raise error ([4a4ae0b](https://github.com/isdk/ai-tool.js/commit/4a4ae0b1e2c9283b4e12644ccfacf5df70271015))
+* **CancelableAbility:** should hide parent, streamController props of TaskAbortController ([bf79f04](https://github.com/isdk/ai-tool.js/commit/bf79f04d30731d5d1fa16ee3a6c8c2faed70487d))
+* **CancelableAbility:** verify passed aborter type ([30a068d](https://github.com/isdk/ai-tool.js/commit/30a068d287c4f3f79cb08c72e8b1200a897c2f30))
+* **jinja2:** throw SyntaxError(`Unknown statement type: ${tokens[current].type} ${tokens[current].value} with value ([fa7e86d](https://github.com/isdk/ai-tool.js/commit/fa7e86d764b5497ac5b363fc04ba8b14fbc349bc))
+* **jinja:** Pass undefined value as null value, do not throw error ([7f1a703](https://github.com/isdk/ai-tool.js/commit/7f1a7038bf02da3b5f1264c27e2c530c5689e041))
+* **readFilenamesRecursiveSync:** should use absoluteDir to check whether visitedDirs ([bf5c7a6](https://github.com/isdk/ai-tool.js/commit/bf5c7a6c4ed72e5054a76eaa981759ecde669ea2))
+* **Semaphore:** public maxConcurrency readonly ([b2ddb88](https://github.com/isdk/ai-tool.js/commit/b2ddb883fa1d1137a88b432daec26ad0b8244598))
+* **ToolFunc:** const ToolAsyncMultiTas should be ToolAsyncMultiTaskBit ([f195536](https://github.com/isdk/ai-tool.js/commit/f195536c6d1a9e29a467d122e3d6d485668e6a2b))
+* typo ([59bba56](https://github.com/isdk/ai-tool.js/commit/59bba56c86ae20519db29c036a9d2540cd260816))
+* **util:** jsonFilterToWhere should convert date to UTC ISO Date string ([b995268](https://github.com/isdk/ai-tool.js/commit/b995268606eb89a591b10b337cd692145b298272))
+* **utils:** filter duplicaion punctuations in split-sentence ([7dc9f99](https://github.com/isdk/ai-tool.js/commit/7dc9f99a7400194b4f7105ab900b72ec93a6831b))
+
+
+### Refactor
+
+* **CancelableAbility:** keep abort compatibility ([1365815](https://github.com/isdk/ai-tool.js/commit/1365815ffd2ecd27fd31835a9e8c1c9a27149fda))
+* **CancelableAbility:** make abort more stable ([b035b8f](https://github.com/isdk/ai-tool.js/commit/b035b8f14a74463a564e70a2fa8e365dd2940134))
+* **CancelableAbility:** new TaskAbortController Class with parent, streamController and abort ([9be5ab4](https://github.com/isdk/ai-tool.js/commit/9be5ab46be689be89ace5adc39d4cfcac73dd542))
+* **CancelableAbility:** the default cleanMultiTaskAborter ([48ac131](https://github.com/isdk/ai-tool.js/commit/48ac1317ffb2ef4b4c623e899718e797edc5918c))
+* createCallbacksTransformer more general ([2f76138](https://github.com/isdk/ai-tool.js/commit/2f761385cd8243bc7b18266ac959017d75c5fea3))
+* end-with-repeated-sequence return matched now ([0a94b7b](https://github.com/isdk/ai-tool.js/commit/0a94b7b0fd5af1c4f86973b9f9a57f9875635dec))
+* export createAbilityInjector ([a5ceeb6](https://github.com/isdk/ai-tool.js/commit/a5ceeb6142d3fefa8301d1010188772dfeb2ff86))
+* **ToolFunc:** remove async keyword to avoid more Promise wrapped ([199ae62](https://github.com/isdk/ai-tool.js/commit/199ae62163bbd8875633c3416ed61fc6eb0bec35))
+
 ## 0.0.7 (2024-07-08)
 
 
