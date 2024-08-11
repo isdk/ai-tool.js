@@ -21,7 +21,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/res-client-tools.ts:7](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/res-client-tools.ts#L7)
+[packages/ai-tool/src/res-client-tools.ts:7](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/res-client-tools.ts#L7)
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-client-tools.ts:6](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/res-client-tools.ts#L6)
+[packages/ai-tool/src/res-client-tools.ts:6](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/res-client-tools.ts#L6)

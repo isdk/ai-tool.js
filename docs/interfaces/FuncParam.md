@@ -6,6 +6,7 @@
 
 ### Properties
 
+- [asyncFeatures](FuncParam.md#asyncfeatures)
 - [depends](FuncParam.md#depends)
 - [description](FuncParam.md#description)
 - [name](FuncParam.md#name)
@@ -13,6 +14,16 @@
 - [type](FuncParam.md#type)
 
 ## Properties
+
+### asyncFeatures
+
+• `Optional` **asyncFeatures**: `number`
+
+#### Defined in
+
+[packages/ai-tool/src/tool-func.ts:30](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/tool-func.ts#L30)
+
+___
 
 ### depends
 
@@ -24,7 +35,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:11](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/tool-func.ts#L11)
+[packages/ai-tool/src/tool-func.ts:31](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/tool-func.ts#L31)
 
 ___
 
@@ -34,7 +45,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:10](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/tool-func.ts#L10)
+[packages/ai-tool/src/tool-func.ts:29](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/tool-func.ts#L29)
 
 ___
 
@@ -44,7 +55,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:7](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/tool-func.ts#L7)
+[packages/ai-tool/src/tool-func.ts:26](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/tool-func.ts#L26)
 
 ___
 
@@ -54,7 +65,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:9](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/tool-func.ts#L9)
+[packages/ai-tool/src/tool-func.ts:28](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/tool-func.ts#L28)
 
 ___
 
@@ -64,4 +75,4 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:8](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/tool-func.ts#L8)
+[packages/ai-tool/src/tool-func.ts:27](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/tool-func.ts#L27)

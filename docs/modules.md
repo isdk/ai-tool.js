@@ -6,6 +6,8 @@
 
 ### Enumerations
 
+- [AsyncFeatureBits](enums/AsyncFeatureBits.md)
+- [AsyncFeatures](enums/AsyncFeatures.md)
 - [ErrorCode](enums/ErrorCode.md)
 - [XXHashAlgorithm](enums/XXHashAlgorithm.md)
 
@@ -14,6 +16,7 @@
 - [AbortError](classes/AbortError.md)
 - [AlreadyExistsError](classes/AlreadyExistsError.md)
 - [BaseError](classes/BaseError.md)
+- [CancelableAbility](classes/CancelableAbility.md)
 - [ClientTools](classes/ClientTools.md)
 - [CommonError](classes/CommonError.md)
 - [ConfigFile](classes/ConfigFile.md)
@@ -27,6 +30,7 @@
 - [HFInterpreter](classes/HFInterpreter.md)
 - [HFTemplate](classes/HFTemplate.md)
 - [HfPromptTemplate](classes/HfPromptTemplate.md)
+- [IntSet](classes/IntSet.md)
 - [NotFoundError](classes/NotFoundError.md)
 - [NotImplementationError](classes/NotImplementationError.md)
 - [PromptExampleSelector](classes/PromptExampleSelector.md)
@@ -35,7 +39,9 @@
 - [ResClientTools](classes/ResClientTools.md)
 - [ResServerTools](classes/ResServerTools.md)
 - [SSEChannel](classes/SSEChannel.md)
+- [Semaphore](classes/Semaphore.md)
 - [ServerTools](classes/ServerTools.md)
+- [TaskAbortController](classes/TaskAbortController.md)
 - [ToolFunc](classes/ToolFunc.md)
 
 ### Interfaces
@@ -49,11 +55,11 @@
 - [AIChatToolMessageParam](interfaces/AIChatToolMessageParam.md)
 - [AIChatUserMessageParam](interfaces/AIChatUserMessageParam.md)
 - [AIResult](interfaces/AIResult.md)
-- [AIStreamCallbacksAndOptions](interfaces/AIStreamCallbacksAndOptions.md)
 - [AIStreamParser](interfaces/AIStreamParser.md)
 - [AIStreamParserOptions](interfaces/AIStreamParserOptions.md)
 - [BaseFunc](interfaces/BaseFunc.md)
 - [BaseFuncItem](interfaces/BaseFuncItem.md)
+- [CancelableAbilityOptions](interfaces/CancelableAbilityOptions.md)
 - [ClientFuncItem](interfaces/ClientFuncItem.md)
 - [DotenvExpandOptions](interfaces/DotenvExpandOptions.md)
 - [DotenvExpandOutput](interfaces/DotenvExpandOutput.md)
@@ -77,6 +83,10 @@
 - [SanitizeFilenameOptions](interfaces/SanitizeFilenameOptions.md)
 - [ServerFuncItem](interfaces/ServerFuncItem.md)
 - [ServerFuncParams](interfaces/ServerFuncParams.md)
+- [StreamCallbacksAndOptions](interfaces/StreamCallbacksAndOptions.md)
+- [TaskAbortControllers](interfaces/TaskAbortControllers.md)
+- [TaskPromise](interfaces/TaskPromise.md)
+- [ToolFuncPackage](interfaces/ToolFuncPackage.md)
 
 ### Type Aliases
 
@@ -89,6 +99,7 @@
 - [AIModelNameRules](modules.md#aimodelnamerules)
 - [AITextGenerationFinishReason](modules.md#aitextgenerationfinishreason)
 - [ActionName](modules.md#actionname)
+- [AsyncTaskId](modules.md#asynctaskid)
 - [ErrorCodeType](modules.md#errorcodetype)
 - [EventErrorListenerFn](modules.md#eventerrorlistenerfn)
 - [EventListenerFn](modules.md#eventlistenerfn)
@@ -108,6 +119,7 @@
 - [ActionNames](modules.md#actionnames)
 - [AlreadyExistsErrorCode](modules.md#alreadyexistserrorcode)
 - [ClientToolFuncSchema](modules.md#clienttoolfuncschema)
+- [DefaultAsyncSemaphoreCapacity](modules.md#defaultasyncsemaphorecapacity)
 - [EventBusName](modules.md#eventbusname)
 - [EventName](modules.md#eventname)
 - [FilenameReservedRegex](modules.md#filenamereservedregex)
@@ -125,6 +137,9 @@
 - [ResponseRStreamErrCode](modules.md#responserstreamerrcode)
 - [SSEChannelAlreadyClosedErrCode](modules.md#ssechannelalreadyclosederrcode)
 - [ServerToolFuncSchema](modules.md#servertoolfuncschema)
+- [ToolAsyncCancelableBit](modules.md#toolasynccancelablebit)
+- [ToolAsyncMultiTaskBit](modules.md#toolasyncmultitaskbit)
+- [ToolAsyncPriorityBit](modules.md#toolasyncprioritybit)
 - [ToolFuncSchema](modules.md#toolfuncschema)
 - [WindowsReservedNameRegex](modules.md#windowsreservednameregex)
 - [base32768](modules.md#base32768)
@@ -139,10 +154,12 @@
 ### Functions
 
 - [AIStream](modules.md#aistream)
+- [RateLimit](modules.md#ratelimit)
 - [\_lrucache](modules.md#_lrucache)
 - [backendEventable](modules.md#backendeventable)
 - [canonicalize](modules.md#canonicalize)
 - [canonicalizeEx](modules.md#canonicalizeex)
+- [createAbilityInjector](modules.md#createabilityinjector)
 - [createCallbacksTransformer](modules.md#createcallbackstransformer)
 - [createEmptyReadableStream](modules.md#createemptyreadablestream)
 - [createEndWithRepetitionDetector](modules.md#createendwithrepetitiondetector)
@@ -150,15 +167,18 @@
 - [createEventStreamTransformer](modules.md#createeventstreamtransformer)
 - [createHfValueFunc](modules.md#createhfvaluefunc)
 - [createLRUCache](modules.md#createlrucache)
+- [dateToText](modules.md#datetotext)
 - [expandEnv](modules.md#expandenv)
 - [expandObjEnv](modules.md#expandobjenv)
 - [extNameLevel](modules.md#extnamelevel)
 - [filenameReservedRegex](modules.md#filenamereservedregex-1)
+- [formatISO](modules.md#formatiso)
 - [getAllEnumKeys](modules.md#getallenumkeys)
 - [getConfigFileNames](modules.md#getconfigfilenames)
 - [getConfigs](modules.md#getconfigs)
 - [getKeysPath](modules.md#getkeyspath)
 - [getMultiLevelExtname](modules.md#getmultilevelextname)
+- [getRealFilepath](modules.md#getrealfilepath)
 - [getResponseErrorReadableStream](modules.md#getresponseerrorreadablestream)
 - [hfParse](modules.md#hfparse)
 - [hfTokenize](modules.md#hftokenize)
@@ -168,24 +188,36 @@
 - [isModelNameMatched](modules.md#ismodelnamematched)
 - [isValidFilename](modules.md#isvalidfilename)
 - [isValidFilepath](modules.md#isvalidfilepath)
+- [isWebStream](modules.md#iswebstream)
 - [jsonFilterToWhere](modules.md#jsonfiltertowhere)
+- [jsonToMarkdownStr](modules.md#jsontomarkdownstr)
 - [loadFileFromPaths](modules.md#loadfilefrompaths)
 - [loadTextFromPaths](modules.md#loadtextfrompaths)
+- [makeToolFuncCancelable](modules.md#maketoolfunccancelable)
 - [matchUrlProtocol](modules.md#matchurlprotocol)
+- [messagesToText](modules.md#messagestotext)
+- [paramsSizeToScaleStr](modules.md#paramssizetoscalestr)
+- [parseDateFormat](modules.md#parsedateformat)
 - [parseFString](modules.md#parsefstring)
+- [parseISO](modules.md#parseiso)
 - [parseJsJson](modules.md#parsejsjson)
 - [parseYaml](modules.md#parseyaml)
 - [reControlCharsRegex](modules.md#recontrolcharsregex)
+- [readFilenamesRecursiveSync](modules.md#readfilenamesrecursivesync)
 - [readableFromAsyncIterable](modules.md#readablefromasynciterable)
 - [registerCoreTools](modules.md#registercoretools)
 - [registerYamlTag](modules.md#registeryamltag)
 - [sanitizeFilename](modules.md#sanitizefilename)
 - [sanitizeFilepath](modules.md#sanitizefilepath)
 - [saveConfigFile](modules.md#saveconfigfile)
+- [scaleStrToParamsSize](modules.md#scalestrtoparamssize)
 - [sortedValues](modules.md#sortedvalues)
 - [splitSentence](modules.md#splitsentence)
 - [stringifyYaml](modules.md#stringifyyaml)
+- [textToDate](modules.md#texttodate)
 - [throwError](modules.md#throwerror)
+- [toDate](modules.md#todate)
+- [toDateTime](modules.md#todatetime)
 - [trimStartOfStreamHelper](modules.md#trimstartofstreamhelper)
 - [truncTo](modules.md#truncto)
 - [uuid](modules.md#uuid)
@@ -202,7 +234,550 @@
 - [xxhash64](modules.md#xxhash64)
 - [xxhashAsStr](modules.md#xxhashasstr)
 
-## Type Aliases
+## Common Helpers
+
+### formatISO
+
+▸ **formatISO**\<`DateType`\>(`date`, `options?`): `string`
+
+#### Type parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `DateType` | extends `Date` | The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc). |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `date` | `string` \| `number` \| `DateType` | The original date |
+| `options?` | `FormatISOOptions` | An object with options. |
+
+#### Returns
+
+`string`
+
+The formatted date string (in loca.l time zone)
+
+**`Name`**
+
+formatISO
+
+**`Summary`**
+
+Format the date according to the ISO 8601 standard (https://support.sas.com/documentation/cdl/en/lrdict/64316/HTML/default/viewer.htm#a003169814.htm).
+
+**`Description`**
+
+Return the formatted date string in ISO 8601 format. Options may be passed to control the parts and notations of the date.
+
+**`Throws`**
+
+`date` must not be Invalid Date
+
+**`Example`**
+
+```ts
+// Represent 18 September 2019 in ISO 8601 format (local time zone is UTC):
+const result = formatISO(new Date(2019, 8, 18, 19, 0, 52))
+//=> '2019-09-18T19:00:52Z'
+```
+
+**`Example`**
+
+```ts
+// Represent 18 September 2019 in ISO 8601, short format (local time zone is UTC):
+const result = formatISO(new Date(2019, 8, 18, 19, 0, 52), { format: 'basic' })
+//=> '20190918T190052'
+```
+
+**`Example`**
+
+```ts
+// Represent 18 September 2019 in ISO 8601 format, date only:
+const result = formatISO(new Date(2019, 8, 18, 19, 0, 52), { representation: 'date' })
+//=> '2019-09-18'
+```
+
+**`Example`**
+
+```ts
+// Represent 18 September 2019 in ISO 8601 format, time only (local time zone is UTC):
+const result = formatISO(new Date(2019, 8, 18, 19, 0, 52), { representation: 'time' })
+//=> '19:00:52Z'
+```
+
+#### Defined in
+
+node_modules/.pnpm/date-fns@3.6.0/node_modules/date-fns/formatISO.d.ts:43
+
+___
+
+### parseDateFormat
+
+▸ **parseDateFormat**\<`DateType`\>(`dateStr`, `formatStr`, `referenceDate`, `options?`): `DateType`
+
+#### Type parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `DateType` | extends `Date` | The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc). |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `dateStr` | `string` | The string to parse |
+| `formatStr` | `string` | The string of tokens |
+| `referenceDate` | `string` \| `number` \| `DateType` | defines values missing from the parsed dateString |
+| `options?` | `ParseOptions` | An object with options. see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md |
+
+#### Returns
+
+`DateType`
+
+The parsed date
+
+**`Name`**
+
+parse
+
+**`Summary`**
+
+Parse the date.
+
+**`Description`**
+
+Return the date parsed from string using the given format string.
+
+> ⚠️ Please note that the `format` tokens differ from Moment.js and other libraries.
+> See: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
+
+The characters in the format string wrapped between two single quotes characters (') are escaped.
+Two single quotes in a row, whether inside or outside a quoted sequence, represent a 'real' single quote.
+
+Format of the format string is based on Unicode Technical Standard #35:
+https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Field_Symbol_Table
+with a few additions (see note 5 below the table).
+
+Not all tokens are compatible. Combinations that don't make sense or could lead to bugs are prohibited
+and will throw `RangeError`. For example usage of 24-hour format token with AM/PM token will throw an exception:
+
+```javascript
+parse('23 AM', 'HH a', new Date())
+//=> RangeError: The format string mustn't contain `HH` and `a` at the same time
+```
+
+See the compatibility table: https://docs.google.com/spreadsheets/d/e/2PACX-1vQOPU3xUhplll6dyoMmVUXHKl_8CRDs6_ueLmex3SoqwhuolkuN3O05l4rqx5h1dKX8eb46Ul-CCSrq/pubhtml?gid=0&single=true
+
+Accepted format string patterns:
+| Unit                            |Prior| Pattern | Result examples                   | Notes |
+|---------------------------------|-----|---------|-----------------------------------|-------|
+| Era                             | 140 | G..GGG  | AD, BC                            |       |
+|                                 |     | GGGG    | Anno Domini, Before Christ        | 2     |
+|                                 |     | GGGGG   | A, B                              |       |
+| Calendar year                   | 130 | y       | 44, 1, 1900, 2017, 9999           | 4     |
+|                                 |     | yo      | 44th, 1st, 1900th, 9999999th      | 4,5   |
+|                                 |     | yy      | 44, 01, 00, 17                    | 4     |
+|                                 |     | yyy     | 044, 001, 123, 999                | 4     |
+|                                 |     | yyyy    | 0044, 0001, 1900, 2017            | 4     |
+|                                 |     | yyyyy   | ...                               | 2,4   |
+| Local week-numbering year       | 130 | Y       | 44, 1, 1900, 2017, 9000           | 4     |
+|                                 |     | Yo      | 44th, 1st, 1900th, 9999999th      | 4,5   |
+|                                 |     | YY      | 44, 01, 00, 17                    | 4,6   |
+|                                 |     | YYY     | 044, 001, 123, 999                | 4     |
+|                                 |     | YYYY    | 0044, 0001, 1900, 2017            | 4,6   |
+|                                 |     | YYYYY   | ...                               | 2,4   |
+| ISO week-numbering year         | 130 | R       | -43, 1, 1900, 2017, 9999, -9999   | 4,5   |
+|                                 |     | RR      | -43, 01, 00, 17                   | 4,5   |
+|                                 |     | RRR     | -043, 001, 123, 999, -999         | 4,5   |
+|                                 |     | RRRR    | -0043, 0001, 2017, 9999, -9999    | 4,5   |
+|                                 |     | RRRRR   | ...                               | 2,4,5 |
+| Extended year                   | 130 | u       | -43, 1, 1900, 2017, 9999, -999    | 4     |
+|                                 |     | uu      | -43, 01, 99, -99                  | 4     |
+|                                 |     | uuu     | -043, 001, 123, 999, -999         | 4     |
+|                                 |     | uuuu    | -0043, 0001, 2017, 9999, -9999    | 4     |
+|                                 |     | uuuuu   | ...                               | 2,4   |
+| Quarter (formatting)            | 120 | Q       | 1, 2, 3, 4                        |       |
+|                                 |     | Qo      | 1st, 2nd, 3rd, 4th                | 5     |
+|                                 |     | QQ      | 01, 02, 03, 04                    |       |
+|                                 |     | QQQ     | Q1, Q2, Q3, Q4                    |       |
+|                                 |     | QQQQ    | 1st quarter, 2nd quarter, ...     | 2     |
+|                                 |     | QQQQQ   | 1, 2, 3, 4                        | 4     |
+| Quarter (stand-alone)           | 120 | q       | 1, 2, 3, 4                        |       |
+|                                 |     | qo      | 1st, 2nd, 3rd, 4th                | 5     |
+|                                 |     | qq      | 01, 02, 03, 04                    |       |
+|                                 |     | qqq     | Q1, Q2, Q3, Q4                    |       |
+|                                 |     | qqqq    | 1st quarter, 2nd quarter, ...     | 2     |
+|                                 |     | qqqqq   | 1, 2, 3, 4                        | 3     |
+| Month (formatting)              | 110 | M       | 1, 2, ..., 12                     |       |
+|                                 |     | Mo      | 1st, 2nd, ..., 12th               | 5     |
+|                                 |     | MM      | 01, 02, ..., 12                   |       |
+|                                 |     | MMM     | Jan, Feb, ..., Dec                |       |
+|                                 |     | MMMM    | January, February, ..., December  | 2     |
+|                                 |     | MMMMM   | J, F, ..., D                      |       |
+| Month (stand-alone)             | 110 | L       | 1, 2, ..., 12                     |       |
+|                                 |     | Lo      | 1st, 2nd, ..., 12th               | 5     |
+|                                 |     | LL      | 01, 02, ..., 12                   |       |
+|                                 |     | LLL     | Jan, Feb, ..., Dec                |       |
+|                                 |     | LLLL    | January, February, ..., December  | 2     |
+|                                 |     | LLLLL   | J, F, ..., D                      |       |
+| Local week of year              | 100 | w       | 1, 2, ..., 53                     |       |
+|                                 |     | wo      | 1st, 2nd, ..., 53th               | 5     |
+|                                 |     | ww      | 01, 02, ..., 53                   |       |
+| ISO week of year                | 100 | I       | 1, 2, ..., 53                     | 5     |
+|                                 |     | Io      | 1st, 2nd, ..., 53th               | 5     |
+|                                 |     | II      | 01, 02, ..., 53                   | 5     |
+| Day of month                    |  90 | d       | 1, 2, ..., 31                     |       |
+|                                 |     | do      | 1st, 2nd, ..., 31st               | 5     |
+|                                 |     | dd      | 01, 02, ..., 31                   |       |
+| Day of year                     |  90 | D       | 1, 2, ..., 365, 366               | 7     |
+|                                 |     | Do      | 1st, 2nd, ..., 365th, 366th       | 5     |
+|                                 |     | DD      | 01, 02, ..., 365, 366             | 7     |
+|                                 |     | DDD     | 001, 002, ..., 365, 366           |       |
+|                                 |     | DDDD    | ...                               | 2     |
+| Day of week (formatting)        |  90 | E..EEE  | Mon, Tue, Wed, ..., Sun           |       |
+|                                 |     | EEEE    | Monday, Tuesday, ..., Sunday      | 2     |
+|                                 |     | EEEEE   | M, T, W, T, F, S, S               |       |
+|                                 |     | EEEEEE  | Mo, Tu, We, Th, Fr, Sa, Su        |       |
+| ISO day of week (formatting)    |  90 | i       | 1, 2, 3, ..., 7                   | 5     |
+|                                 |     | io      | 1st, 2nd, ..., 7th                | 5     |
+|                                 |     | ii      | 01, 02, ..., 07                   | 5     |
+|                                 |     | iii     | Mon, Tue, Wed, ..., Sun           | 5     |
+|                                 |     | iiii    | Monday, Tuesday, ..., Sunday      | 2,5   |
+|                                 |     | iiiii   | M, T, W, T, F, S, S               | 5     |
+|                                 |     | iiiiii  | Mo, Tu, We, Th, Fr, Sa, Su        | 5     |
+| Local day of week (formatting)  |  90 | e       | 2, 3, 4, ..., 1                   |       |
+|                                 |     | eo      | 2nd, 3rd, ..., 1st                | 5     |
+|                                 |     | ee      | 02, 03, ..., 01                   |       |
+|                                 |     | eee     | Mon, Tue, Wed, ..., Sun           |       |
+|                                 |     | eeee    | Monday, Tuesday, ..., Sunday      | 2     |
+|                                 |     | eeeee   | M, T, W, T, F, S, S               |       |
+|                                 |     | eeeeee  | Mo, Tu, We, Th, Fr, Sa, Su        |       |
+| Local day of week (stand-alone) |  90 | c       | 2, 3, 4, ..., 1                   |       |
+|                                 |     | co      | 2nd, 3rd, ..., 1st                | 5     |
+|                                 |     | cc      | 02, 03, ..., 01                   |       |
+|                                 |     | ccc     | Mon, Tue, Wed, ..., Sun           |       |
+|                                 |     | cccc    | Monday, Tuesday, ..., Sunday      | 2     |
+|                                 |     | ccccc   | M, T, W, T, F, S, S               |       |
+|                                 |     | cccccc  | Mo, Tu, We, Th, Fr, Sa, Su        |       |
+| AM, PM                          |  80 | a..aaa  | AM, PM                            |       |
+|                                 |     | aaaa    | a.m., p.m.                        | 2     |
+|                                 |     | aaaaa   | a, p                              |       |
+| AM, PM, noon, midnight          |  80 | b..bbb  | AM, PM, noon, midnight            |       |
+|                                 |     | bbbb    | a.m., p.m., noon, midnight        | 2     |
+|                                 |     | bbbbb   | a, p, n, mi                       |       |
+| Flexible day period             |  80 | B..BBB  | at night, in the morning, ...     |       |
+|                                 |     | BBBB    | at night, in the morning, ...     | 2     |
+|                                 |     | BBBBB   | at night, in the morning, ...     |       |
+| Hour [1-12]                     |  70 | h       | 1, 2, ..., 11, 12                 |       |
+|                                 |     | ho      | 1st, 2nd, ..., 11th, 12th         | 5     |
+|                                 |     | hh      | 01, 02, ..., 11, 12               |       |
+| Hour [0-23]                     |  70 | H       | 0, 1, 2, ..., 23                  |       |
+|                                 |     | Ho      | 0th, 1st, 2nd, ..., 23rd          | 5     |
+|                                 |     | HH      | 00, 01, 02, ..., 23               |       |
+| Hour [0-11]                     |  70 | K       | 1, 2, ..., 11, 0                  |       |
+|                                 |     | Ko      | 1st, 2nd, ..., 11th, 0th          | 5     |
+|                                 |     | KK      | 01, 02, ..., 11, 00               |       |
+| Hour [1-24]                     |  70 | k       | 24, 1, 2, ..., 23                 |       |
+|                                 |     | ko      | 24th, 1st, 2nd, ..., 23rd         | 5     |
+|                                 |     | kk      | 24, 01, 02, ..., 23               |       |
+| Minute                          |  60 | m       | 0, 1, ..., 59                     |       |
+|                                 |     | mo      | 0th, 1st, ..., 59th               | 5     |
+|                                 |     | mm      | 00, 01, ..., 59                   |       |
+| Second                          |  50 | s       | 0, 1, ..., 59                     |       |
+|                                 |     | so      | 0th, 1st, ..., 59th               | 5     |
+|                                 |     | ss      | 00, 01, ..., 59                   |       |
+| Seconds timestamp               |  40 | t       | 512969520                         |       |
+|                                 |     | tt      | ...                               | 2     |
+| Fraction of second              |  30 | S       | 0, 1, ..., 9                      |       |
+|                                 |     | SS      | 00, 01, ..., 99                   |       |
+|                                 |     | SSS     | 000, 001, ..., 999                |       |
+|                                 |     | SSSS    | ...                               | 2     |
+| Milliseconds timestamp          |  20 | T       | 512969520900                      |       |
+|                                 |     | TT      | ...                               | 2     |
+| Timezone (ISO-8601 w/ Z)        |  10 | X       | -08, +0530, Z                     |       |
+|                                 |     | XX      | -0800, +0530, Z                   |       |
+|                                 |     | XXX     | -08:00, +05:30, Z                 |       |
+|                                 |     | XXXX    | -0800, +0530, Z, +123456          | 2     |
+|                                 |     | XXXXX   | -08:00, +05:30, Z, +12:34:56      |       |
+| Timezone (ISO-8601 w/o Z)       |  10 | x       | -08, +0530, +00                   |       |
+|                                 |     | xx      | -0800, +0530, +0000               |       |
+|                                 |     | xxx     | -08:00, +05:30, +00:00            | 2     |
+|                                 |     | xxxx    | -0800, +0530, +0000, +123456      |       |
+|                                 |     | xxxxx   | -08:00, +05:30, +00:00, +12:34:56 |       |
+| Long localized date             |  NA | P       | 05/29/1453                        | 5,8   |
+|                                 |     | PP      | May 29, 1453                      |       |
+|                                 |     | PPP     | May 29th, 1453                    |       |
+|                                 |     | PPPP    | Sunday, May 29th, 1453            | 2,5,8 |
+| Long localized time             |  NA | p       | 12:00 AM                          | 5,8   |
+|                                 |     | pp      | 12:00:00 AM                       |       |
+| Combination of date and time    |  NA | Pp      | 05/29/1453, 12:00 AM              |       |
+|                                 |     | PPpp    | May 29, 1453, 12:00:00 AM         |       |
+|                                 |     | PPPpp   | May 29th, 1453 at ...             |       |
+|                                 |     | PPPPpp  | Sunday, May 29th, 1453 at ...     | 2,5,8 |
+Notes:
+1. "Formatting" units (e.g. formatting quarter) in the default en-US locale
+   are the same as "stand-alone" units, but are different in some languages.
+   "Formatting" units are declined according to the rules of the language
+   in the context of a date. "Stand-alone" units are always nominative singular.
+   In `format` function, they will produce different result:
+
+   `format(new Date(2017, 10, 6), 'do LLLL', {locale: cs}) //=> '6. listopad'`
+
+   `format(new Date(2017, 10, 6), 'do MMMM', {locale: cs}) //=> '6. listopadu'`
+
+   `parse` will try to match both formatting and stand-alone units interchangably.
+
+2. Any sequence of the identical letters is a pattern, unless it is escaped by
+   the single quote characters (see below).
+   If the sequence is longer than listed in table:
+   - for numerical units (`yyyyyyyy`) `parse` will try to match a number
+     as wide as the sequence
+   - for text units (`MMMMMMMM`) `parse` will try to match the widest variation of the unit.
+     These variations are marked with "2" in the last column of the table.
+
+3. `QQQQQ` and `qqqqq` could be not strictly numerical in some locales.
+   These tokens represent the shortest form of the quarter.
+
+4. The main difference between `y` and `u` patterns are B.C. years:
+
+   | Year | `y` | `u` |
+   |------|-----|-----|
+   | AC 1 |   1 |   1 |
+   | BC 1 |   1 |   0 |
+   | BC 2 |   2 |  -1 |
+
+   Also `yy` will try to guess the century of two digit year by proximity with `referenceDate`:
+
+   `parse('50', 'yy', new Date(2018, 0, 1)) //=> Sat Jan 01 2050 00:00:00`
+
+   `parse('75', 'yy', new Date(2018, 0, 1)) //=> Wed Jan 01 1975 00:00:00`
+
+   while `uu` will just assign the year as is:
+
+   `parse('50', 'uu', new Date(2018, 0, 1)) //=> Sat Jan 01 0050 00:00:00`
+
+   `parse('75', 'uu', new Date(2018, 0, 1)) //=> Tue Jan 01 0075 00:00:00`
+
+   The same difference is true for local and ISO week-numbering years (`Y` and `R`),
+   except local week-numbering years are dependent on `options.weekStartsOn`
+   and `options.firstWeekContainsDate` (compare [setISOWeekYear](https://date-fns.org/docs/setISOWeekYear)
+   and [setWeekYear](https://date-fns.org/docs/setWeekYear)).
+
+5. These patterns are not in the Unicode Technical Standard #35:
+   - `i`: ISO day of week
+   - `I`: ISO week of year
+   - `R`: ISO week-numbering year
+   - `o`: ordinal number modifier
+   - `P`: long localized date
+   - `p`: long localized time
+
+6. `YY` and `YYYY` tokens represent week-numbering years but they are often confused with years.
+   You should enable `options.useAdditionalWeekYearTokens` to use them. See: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
+
+7. `D` and `DD` tokens represent days of the year but they are ofthen confused with days of the month.
+   You should enable `options.useAdditionalDayOfYearTokens` to use them. See: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
+
+8. `P+` tokens do not have a defined priority since they are merely aliases to other tokens based
+   on the given locale.
+
+   using `en-US` locale: `P` => `MM/dd/yyyy`
+   using `en-US` locale: `p` => `hh:mm a`
+   using `pt-BR` locale: `P` => `dd/MM/yyyy`
+   using `pt-BR` locale: `p` => `HH:mm`
+
+Values will be assigned to the date in the descending order of its unit's priority.
+Units of an equal priority overwrite each other in the order of appearance.
+
+If no values of higher priority are parsed (e.g. when parsing string 'January 1st' without a year),
+the values will be taken from 3rd argument `referenceDate` which works as a context of parsing.
+
+`referenceDate` must be passed for correct work of the function.
+If you're not sure which `referenceDate` to supply, create a new instance of Date:
+`parse('02/11/2014', 'MM/dd/yyyy', new Date())`
+In this case parsing will be done in the context of the current date.
+If `referenceDate` is `Invalid Date` or a value not convertible to valid `Date`,
+then `Invalid Date` will be returned.
+
+The result may vary by locale.
+
+If `formatString` matches with `dateString` but does not provides tokens, `referenceDate` will be returned.
+
+If parsing failed, `Invalid Date` will be returned.
+Invalid Date is a Date, whose time value is NaN.
+Time value of Date: http://es5.github.io/#x15.9.1.1
+
+**`Throws`**
+
+`options.locale` must contain `match` property
+
+**`Throws`**
+
+use `yyyy` instead of `YYYY` for formatting years using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
+
+**`Throws`**
+
+use `yy` instead of `YY` for formatting years using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
+
+**`Throws`**
+
+use `d` instead of `D` for formatting days of the month using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
+
+**`Throws`**
+
+use `dd` instead of `DD` for formatting days of the month using [format provided] to the input [input provided]; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
+
+**`Throws`**
+
+format string contains an unescaped latin alphabet character
+
+**`Example`**
+
+```ts
+// Parse 11 February 2014 from middle-endian format:
+var result = parse('02/11/2014', 'MM/dd/yyyy', new Date())
+//=> Tue Feb 11 2014 00:00:00
+```
+
+**`Example`**
+
+```ts
+// Parse 28th of February in Esperanto locale in the context of 2010 year:
+import eo from 'date-fns/locale/eo'
+var result = parse('28-a de februaro', "do 'de' MMMM", new Date(2010, 0, 1), {
+  locale: eo
+})
+//=> Sun Feb 28 2010 00:00:00
+```
+
+#### Defined in
+
+node_modules/.pnpm/date-fns@3.6.0/node_modules/date-fns/parse.d.ts:315
+
+___
+
+### parseISO
+
+▸ **parseISO**(`argument`, `options?`): `Date`
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `argument` | `string` | The value to convert |
+| `options?` | `ParseISOOptions` | An object with options |
+
+#### Returns
+
+`Date`
+
+The parsed date in the local time zone
+
+**`Name`**
+
+parseISO
+
+**`Summary`**
+
+Parse ISO string
+
+**`Description`**
+
+Parse the given string in ISO 8601 format and return an instance of Date.
+
+Function accepts complete ISO 8601 formats as well as partial implementations.
+ISO 8601: http://en.wikipedia.org/wiki/ISO_8601
+
+If the argument isn't a string, the function cannot parse the string or
+the values are invalid, it returns Invalid Date.
+
+**`Example`**
+
+```ts
+// Convert string '2014-02-11T11:30:30' to date:
+const result = parseISO('2014-02-11T11:30:30')
+//=> Tue Feb 11 2014 11:30:30
+```
+
+**`Example`**
+
+```ts
+// Convert string '+02014101' to date,
+// if the additional number of digits in the extended year format is 1:
+const result = parseISO('+02014101', { additionalDigits: 1 })
+//=> Fri Apr 11 2014 00:00:00
+```
+
+#### Defined in
+
+node_modules/.pnpm/date-fns@3.6.0/node_modules/date-fns/parseISO.d.ts:40
+
+___
+
+### toDate
+
+▸ **toDate**\<`DateType`\>(`argument`): `DateType`
+
+#### Type parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `DateType` | extends `Date` | The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc). |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `argument` | `string` \| `number` \| `DateType` | The value to convert |
+
+#### Returns
+
+`DateType`
+
+The parsed date in the local time zone
+
+**`Name`**
+
+toDate
+
+**`Summary`**
+
+Convert the given argument to an instance of Date.
+
+**`Description`**
+
+Convert the given argument to an instance of Date.
+
+If the argument is an instance of Date, the function returns its clone.
+
+If the argument is a number, it is treated as a timestamp.
+
+If the argument is none of the above, the function returns Invalid Date.
+
+**Note**: *all* Date arguments passed to any *date-fns* function is processed by `toDate`.
+
+**`Example`**
+
+```ts
+// Clone the date:
+const result = toDate(new Date(2014, 1, 11, 11, 30, 30))
+//=> Tue Feb 11 2014 11:30:30
+```
+
+**`Example`**
+
+```ts
+// Convert the timestamp to date:
+const result = toDate(1392098430000)
+//=> Tue Feb 11 2014 11:30:30
+```
+
+#### Defined in
+
+node_modules/.pnpm/date-fns@3.6.0/node_modules/date-fns/toDate.d.ts:33
+
+## Other
 
 ### AIChatContentPart
 
@@ -210,7 +785,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:70](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/chat.ts#L70)
+[packages/ai-tool/src/utils/chat.ts:74](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/chat.ts#L74)
 
 ___
 
@@ -220,7 +795,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:40](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/chat.ts#L40)
+[packages/ai-tool/src/utils/chat.ts:44](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/chat.ts#L44)
 
 ___
 
@@ -230,7 +805,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:38](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/chat.ts#L38)
+[packages/ai-tool/src/utils/chat.ts:42](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/chat.ts#L42)
 
 ___
 
@@ -240,7 +815,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:32](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/chat.ts#L32)
+[packages/ai-tool/src/utils/chat.ts:36](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/chat.ts#L36)
 
 ___
 
@@ -250,7 +825,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:10](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/consts.ts#L10)
+[packages/ai-tool/src/utils/consts.ts:10](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/consts.ts#L10)
 
 ___
 
@@ -274,7 +849,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:8](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/consts.ts#L8)
+[packages/ai-tool/src/utils/consts.ts:8](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/consts.ts#L8)
 
 ___
 
@@ -284,7 +859,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:11](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/consts.ts#L11)
+[packages/ai-tool/src/utils/consts.ts:11](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/consts.ts#L11)
 
 ___
 
@@ -294,7 +869,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:10](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/chat.ts#L10)
+[packages/ai-tool/src/utils/chat.ts:13](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/chat.ts#L13)
 
 ___
 
@@ -304,7 +879,17 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:6](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/consts.ts#L6)
+[packages/ai-tool/src/utils/consts.ts:6](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/consts.ts#L6)
+
+___
+
+### AsyncTaskId
+
+Ƭ **AsyncTaskId**: `string` \| `number`
+
+#### Defined in
+
+[packages/ai-tool/src/utils/cancelable-ability.ts:8](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/cancelable-ability.ts#L8)
 
 ___
 
@@ -314,7 +899,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:3](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/base-error.ts#L3)
+[packages/ai-tool/src/utils/base-error.ts:3](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/base-error.ts#L3)
 
 ___
 
@@ -341,7 +926,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/event/event-ability.ts:9](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/event/event-ability.ts#L9)
+[packages/ai-tool/src/utils/event/event-ability.ts:9](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/event/event-ability.ts#L9)
 
 ___
 
@@ -367,7 +952,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/event/event-ability.ts:8](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/event/event-ability.ts#L8)
+[packages/ai-tool/src/utils/event/event-ability.ts:8](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/event/event-ability.ts#L8)
 
 ___
 
@@ -380,7 +965,7 @@ a literal text or a variable name.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/python.ts:6](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/prompt/template/python.ts#L6)
+[packages/ai-tool/src/utils/prompt/template/python.ts:6](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/prompt/template/python.ts#L6)
 
 ___
 
@@ -390,7 +975,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:5](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/tool-func.ts#L5)
+[packages/ai-tool/src/tool-func.ts:24](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/tool-func.ts#L24)
 
 ___
 
@@ -406,7 +991,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:3](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/prompt/prompt-example-selector.ts#L3)
+[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:3](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/prompt/prompt-example-selector.ts#L3)
 
 ___
 
@@ -416,7 +1001,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/consts.ts:17](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/prompt/consts.ts#L17)
+[packages/ai-tool/src/utils/prompt/consts.ts:17](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/prompt/consts.ts#L17)
 
 ___
 
@@ -426,7 +1011,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/consts.ts:10](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/prompt/consts.ts#L10)
+[packages/ai-tool/src/utils/prompt/consts.ts:10](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/prompt/consts.ts#L10)
 
 ___
 
@@ -451,9 +1036,9 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:18](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/tool-func.ts#L18)
+[packages/ai-tool/src/tool-func.ts:38](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/tool-func.ts#L38)
 
-## Variables
+___
 
 ### AIChatRoles
 
@@ -461,7 +1046,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:37](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/chat.ts#L37)
+[packages/ai-tool/src/utils/chat.ts:41](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/chat.ts#L41)
 
 ___
 
@@ -471,7 +1056,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:31](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/chat.ts#L31)
+[packages/ai-tool/src/utils/chat.ts:35](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/chat.ts#L35)
 
 ___
 
@@ -481,7 +1066,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:1](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/chat.ts#L1)
+[packages/ai-tool/src/utils/chat.ts:4](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/chat.ts#L4)
 
 ___
 
@@ -491,7 +1076,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:31](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/base-error.ts#L31)
+[packages/ai-tool/src/utils/base-error.ts:33](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/base-error.ts#L33)
 
 ___
 
@@ -501,7 +1086,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:5](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/consts.ts#L5)
+[packages/ai-tool/src/utils/consts.ts:5](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/consts.ts#L5)
 
 ___
 
@@ -511,7 +1096,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:30](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/base-error.ts#L30)
+[packages/ai-tool/src/utils/base-error.ts:32](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/base-error.ts#L32)
 
 ___
 
@@ -539,7 +1124,17 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/client-tools.ts:153](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/client-tools.ts#L153)
+[packages/ai-tool/src/client-tools.ts:153](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/client-tools.ts#L153)
+
+___
+
+### DefaultAsyncSemaphoreCapacity
+
+• `Const` **DefaultAsyncSemaphoreCapacity**: ``32``
+
+#### Defined in
+
+[packages/ai-tool/src/utils/async-semaphore.ts:6](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/async-semaphore.ts#L6)
 
 ___
 
@@ -549,7 +1144,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/event/event-ability.ts:7](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/event/event-ability.ts#L7)
+[packages/ai-tool/src/utils/event/event-ability.ts:7](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/event/event-ability.ts#L7)
 
 ___
 
@@ -559,7 +1154,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/event/event-ability.ts:6](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/event/event-ability.ts#L6)
+[packages/ai-tool/src/utils/event/event-ability.ts:6](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/event/event-ability.ts#L6)
 
 ___
 
@@ -572,7 +1167,7 @@ do not use /g global option here: when the regex is executed multiple times, it 
 
 #### Defined in
 
-[packages/ai-tool/src/utils/filename.ts:8](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/filename.ts#L8)
+[packages/ai-tool/src/utils/filename.ts:8](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/filename.ts#L8)
 
 ___
 
@@ -589,7 +1184,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/builtins.ts:52](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/prompt/template/jinja/src/builtins.ts#L52)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/builtins.ts:52](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/prompt/template/jinja/src/builtins.ts#L52)
 
 ___
 
@@ -599,7 +1194,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:27](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/base-error.ts#L27)
+[packages/ai-tool/src/utils/base-error.ts:29](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/base-error.ts#L29)
 
 ___
 
@@ -609,7 +1204,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:29](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/base-error.ts#L29)
+[packages/ai-tool/src/utils/base-error.ts:31](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/base-error.ts#L31)
 
 ___
 
@@ -619,7 +1214,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:28](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/base-error.ts#L28)
+[packages/ai-tool/src/utils/base-error.ts:30](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/base-error.ts#L30)
 
 ___
 
@@ -629,7 +1224,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:3](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/consts.ts#L3)
+[packages/ai-tool/src/utils/consts.ts:3](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/consts.ts#L3)
 
 ___
 
@@ -639,7 +1234,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/consts.ts:12](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/prompt/consts.ts#L12)
+[packages/ai-tool/src/utils/prompt/consts.ts:12](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/prompt/consts.ts#L12)
 
 ___
 
@@ -652,7 +1247,7 @@ defaults to `chat`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/consts.ts:5](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/prompt/consts.ts#L5)
+[packages/ai-tool/src/utils/prompt/consts.ts:5](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/prompt/consts.ts#L5)
 
 ___
 
@@ -662,7 +1257,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/error-readable-stream.ts:3](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/stream/error-readable-stream.ts#L3)
+[packages/ai-tool/src/utils/stream/error-readable-stream.ts:3](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/stream/error-readable-stream.ts#L3)
 
 ___
 
@@ -690,7 +1285,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:13](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/consts.ts#L13)
+[packages/ai-tool/src/utils/consts.ts:13](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/consts.ts#L13)
 
 ___
 
@@ -708,7 +1303,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-client-tools.ts:68](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/res-client-tools.ts#L68)
+[packages/ai-tool/src/res-client-tools.ts:68](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/res-client-tools.ts#L68)
 
 ___
 
@@ -725,7 +1320,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:77](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/res-server-tools.ts#L77)
+[packages/ai-tool/src/res-server-tools.ts:77](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/res-server-tools.ts#L77)
 
 ___
 
@@ -735,7 +1330,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/error-readable-stream.ts:4](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/stream/error-readable-stream.ts#L4)
+[packages/ai-tool/src/utils/stream/error-readable-stream.ts:4](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/stream/error-readable-stream.ts#L4)
 
 ___
 
@@ -745,7 +1340,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/event/sse-channel.ts:17](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/event/sse-channel.ts#L17)
+[packages/ai-tool/src/utils/event/sse-channel.ts:17](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/event/sse-channel.ts#L17)
 
 ___
 
@@ -773,7 +1368,37 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:66](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/server-tools.ts#L66)
+[packages/ai-tool/src/server-tools.ts:66](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/server-tools.ts#L66)
+
+___
+
+### ToolAsyncCancelableBit
+
+• `Const` **ToolAsyncCancelableBit**: ``1``
+
+#### Defined in
+
+[packages/ai-tool/src/tool-func.ts:8](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/tool-func.ts#L8)
+
+___
+
+### ToolAsyncMultiTaskBit
+
+• `Const` **ToolAsyncMultiTaskBit**: ``0``
+
+#### Defined in
+
+[packages/ai-tool/src/tool-func.ts:7](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/tool-func.ts#L7)
+
+___
+
+### ToolAsyncPriorityBit
+
+• `Const` **ToolAsyncPriorityBit**: ``2``
+
+#### Defined in
+
+[packages/ai-tool/src/tool-func.ts:9](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/tool-func.ts#L9)
 
 ___
 
@@ -785,6 +1410,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
+| `asyncFeatures` | \{ `type`: `string` = 'number' } |
+| `asyncFeatures.type` | `string` |
 | `depends` | \{ `exported`: `boolean` = false; `type`: `string` = 'object' } |
 | `depends.exported` | `boolean` |
 | `depends.type` | `string` |
@@ -806,7 +1433,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:305](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/tool-func.ts#L305)
+[packages/ai-tool/src/tool-func.ts:342](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/tool-func.ts#L342)
 
 ___
 
@@ -818,7 +1445,7 @@ Regular expression pattern for reserved names on Windows systems.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/filename.ts:13](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/filename.ts#L13)
+[packages/ai-tool/src/utils/filename.ts:13](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/filename.ts#L13)
 
 ___
 
@@ -828,7 +1455,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/hash/xxhash.ts:5](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/hash/xxhash.ts#L5)
+[packages/ai-tool/src/utils/hash/xxhash.ts:5](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/hash/xxhash.ts#L5)
 
 ___
 
@@ -838,7 +1465,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:8](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/prompt/prompt-template.ts#L8)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:8](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/prompt/prompt-template.ts#L8)
 
 ___
 
@@ -848,7 +1475,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event.ts:22](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/funcs/event.ts#L22)
+[packages/ai-tool/src/funcs/event.ts:22](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/funcs/event.ts#L22)
 
 ___
 
@@ -858,7 +1485,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-client.ts:180](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/funcs/event-client.ts#L180)
+[packages/ai-tool/src/funcs/event-client.ts:180](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/funcs/event-client.ts#L180)
 
 ___
 
@@ -868,7 +1495,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:133](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/funcs/event-server.ts#L133)
+[packages/ai-tool/src/funcs/event-server.ts:133](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/funcs/event-server.ts#L133)
 
 ___
 
@@ -878,7 +1505,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/lrucache.ts:40](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/funcs/lrucache.ts#L40)
+[packages/ai-tool/src/funcs/lrucache.ts:40](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/funcs/lrucache.ts#L40)
 
 ___
 
@@ -900,7 +1527,7 @@ ___
 
 node_modules/.pnpm/@types+uuid@9.0.8/node_modules/@types/uuid/index.d.ts:78
 
-## Functions
+___
 
 ### AIStream
 
@@ -943,7 +1570,38 @@ Will throw an error if the response is not OK.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/ai-stream.ts:207](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/stream/ai-stream.ts#L207)
+[packages/ai-tool/src/utils/stream/ai-stream.ts:122](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/stream/ai-stream.ts#L122)
+
+___
+
+### RateLimit
+
+▸ **RateLimit**(`rps`, `«destructured»?`): () => `Promise`\<`void`\>
+
+Creates a rate limiter function that blocks with a promise whenever the rate limit is hit and resolves the promise once the call rate is within the limit set by rps. The second argument is optional.
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `rps` | `number` | `undefined` |
+| `«destructured»` | `Object` | `{}` |
+| › `timeUnit?` | `number` | `1000` |
+| › `uniformDistribution?` | `boolean` | `false` |
+
+#### Returns
+
+`fn`
+
+▸ (): `Promise`\<`void`\>
+
+##### Returns
+
+`Promise`\<`void`\>
+
+#### Defined in
+
+[packages/ai-tool/src/utils/async-semaphore.ts:347](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/async-semaphore.ts#L347)
 
 ___
 
@@ -967,19 +1625,19 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/lrucache.ts:6](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/funcs/lrucache.ts#L6)
+[packages/ai-tool/src/funcs/lrucache.ts:6](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/funcs/lrucache.ts#L6)
 
 ___
 
 ### backendEventable
 
-▸ **backendEventable**(`targetClass`, `options?`): `Function`
+▸ **backendEventable**(`targetClass?`, `options?`): `Function`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `targetClass` | `Function` |
+| `targetClass?` | `Function` |
 | `options?` | `AbilityOptions` |
 
 #### Returns
@@ -988,7 +1646,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/event/event-ability.ts:80](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/event/event-ability.ts#L80)
+[packages/ai-tool/src/utils/event/event-ability.ts:80](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/event/event-ability.ts#L80)
 
 ___
 
@@ -1033,28 +1691,111 @@ node_modules/.pnpm/json-canonicalize@1.0.6/node_modules/json-canonicalize/types/
 
 ___
 
-### createCallbacksTransformer
+### createAbilityInjector
 
-▸ **createCallbacksTransformer**(`cb`): `TransformStream`\<[`AIResult`](interfaces/AIResult.md), `Uint8Array`\>
-
-Creates a transform stream that encodes input messages and invokes optional callback functions.
-The transform stream uses the provided callbacks to execute custom logic at different stages of the stream's lifecycle.
-- `onStart`: Called once when the stream is initialized.
-- `onToken`: Called for each tokenized message.
-- `onCompletion`: Called every time an AIStream completion message is received. This can occur multiple times when using e.g. OpenAI functions
-- `onFinal`: Called once when the stream is closed with the final completion message.
-
-This function is useful when you want to process a stream of messages and perform specific actions during the stream's lifecycle.
+▸ **createAbilityInjector**(`abilityClass`, `isGetClassFunc?`, `injectorOpts?`): `AbilityFn`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `cb` | `undefined` \| [`AIStreamCallbacksAndOptions`](interfaces/AIStreamCallbacksAndOptions.md) |
+| `abilityClass` | `Function` |
+| `isGetClassFunc?` | `boolean` |
+| `injectorOpts?` | `AbilityInjectorOptions` |
 
 #### Returns
 
-`TransformStream`\<[`AIResult`](interfaces/AIResult.md), `Uint8Array`\>
+`AbilityFn`
+
+#### Defined in
+
+node_modules/.pnpm/custom-ability@2.0.0-alpha.7/node_modules/custom-ability/lib/custom-ability.d.ts:29
+
+▸ **createAbilityInjector**(`abilityClass`, `aCoreMethod?`, `isGetClassFunc?`, `injectorOpts?`): `AbilityFn`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `abilityClass` | `Function` |
+| `aCoreMethod?` | `string` \| `string`[] |
+| `isGetClassFunc?` | `boolean` |
+| `injectorOpts?` | `AbilityInjectorOptions` |
+
+#### Returns
+
+`AbilityFn`
+
+#### Defined in
+
+node_modules/.pnpm/custom-ability@2.0.0-alpha.7/node_modules/custom-ability/lib/custom-ability.d.ts:30
+
+▸ **createAbilityInjector**(`abilityClass`, `aCoreMethod?`, `injectorOpts?`): `AbilityFn`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `abilityClass` | `Function` |
+| `aCoreMethod?` | `string` \| `string`[] |
+| `injectorOpts?` | `AbilityInjectorOptions` |
+
+#### Returns
+
+`AbilityFn`
+
+#### Defined in
+
+node_modules/.pnpm/custom-ability@2.0.0-alpha.7/node_modules/custom-ability/lib/custom-ability.d.ts:31
+
+▸ **createAbilityInjector**(`abilityClass`, `injectorOpts?`): `AbilityFn`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `abilityClass` | `Function` |
+| `injectorOpts?` | `AbilityInjectorOptions` |
+
+#### Returns
+
+`AbilityFn`
+
+#### Defined in
+
+node_modules/.pnpm/custom-ability@2.0.0-alpha.7/node_modules/custom-ability/lib/custom-ability.d.ts:32
+
+___
+
+### createCallbacksTransformer
+
+▸ **createCallbacksTransformer**\<`I`, `O`\>(`cb`): `TransformStream`\<`I`, `O`\>
+
+Creates a transform stream that invokes optional callback functions.
+The transform stream uses the provided callbacks to execute custom logic at different stages of the stream's lifecycle.
+- `onStart`: Called once when the stream is initialized.
+- `onTransform`: Called for each tokenized message.
+- `onCompletion`: Called every time an AIStream completion message is received. This can occur multiple times when using e.g. OpenAI functions
+- `onFinal`: Called once when the stream is closed with the final completion message.
+
+This function is useful when you want to process a stream of messages and perform specific actions during the stream's lifecycle.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `I` | `any` |
+| `O` | `any` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `cb` | `undefined` \| [`StreamCallbacksAndOptions`](interfaces/StreamCallbacksAndOptions.md)\<`I`, `O`\> |
+
+#### Returns
+
+`TransformStream`\<`I`, `O`\>
 
 A transform stream that encodes input messages as Uint8Array and allows the execution of custom logic through callbacks.
 
@@ -1063,8 +1804,7 @@ A transform stream that encodes input messages as Uint8Array and allows the exec
 ```ts
 const callbacks = {
   onStart: async () => console.log('Stream started'),
-  onToken: async (token) => console.log(`Token: ${token}`),
-  onCompletion: async (completion) => console.log(`Completion: ${completion}`)
+  onTransform: async (chunk) => console.log('Token:',chunk),
   onFinal: async () => data.close()
 };
 const transformer = createCallbacksTransformer(callbacks);
@@ -1072,7 +1812,7 @@ const transformer = createCallbacksTransformer(callbacks);
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/ai-stream.ts:123](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/stream/ai-stream.ts#L123)
+[packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:36](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/stream/create-callbacks-stream.ts#L36)
 
 ___
 
@@ -1092,13 +1832,13 @@ An empty and closed ReadableStream instance.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/create-empty-stream.ts:8](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/stream/create-empty-stream.ts#L8)
+[packages/ai-tool/src/utils/stream/create-empty-stream.ts:8](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/stream/create-empty-stream.ts#L8)
 
 ___
 
 ### createEndWithRepetitionDetector
 
-▸ **createEndWithRepetitionDetector**(`repetitionThreshold`): (`value`: `string`) => `boolean`
+▸ **createEndWithRepetitionDetector**(`repetitionThreshold`): (`value`: `string`) => ``null`` \| `RegExpExecArray`
 
 #### Parameters
 
@@ -1110,7 +1850,7 @@ ___
 
 `fn`
 
-▸ (`value`): `boolean`
+▸ (`value`): ``null`` \| `RegExpExecArray`
 
 ##### Parameters
 
@@ -1120,11 +1860,11 @@ ___
 
 ##### Returns
 
-`boolean`
+``null`` \| `RegExpExecArray`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/end-with-repeated-sequence.ts:3](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/end-with-repeated-sequence.ts#L3)
+[packages/ai-tool/src/utils/end-with-repeated-sequence.ts:3](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/end-with-repeated-sequence.ts#L3)
 
 ___
 
@@ -1150,7 +1890,7 @@ Error object
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:217](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/base-error.ts#L217)
+[packages/ai-tool/src/utils/base-error.ts:220](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/base-error.ts#L220)
 
 ___
 
@@ -1181,7 +1921,7 @@ TransformStream parsing events.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/ai-stream.ts:61](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/stream/ai-stream.ts#L61)
+[packages/ai-tool/src/utils/stream/ai-stream.ts:37](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/stream/ai-stream.ts#L37)
 
 ___
 
@@ -1213,7 +1953,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/hf-prompt-template.ts:148](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/prompt/hf-prompt-template.ts#L148)
+[packages/ai-tool/src/utils/prompt/hf-prompt-template.ts:148](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/prompt/hf-prompt-template.ts#L148)
 
 ___
 
@@ -1234,7 +1974,28 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/lrucache.ts:22](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/funcs/lrucache.ts#L22)
+[packages/ai-tool/src/funcs/lrucache.ts:22](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/funcs/lrucache.ts#L22)
+
+___
+
+### dateToText
+
+▸ **dateToText**(`date`, `format?`): `string`
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `date` | `Date` | `undefined` |
+| `format` | `string` | `FormatDateStr` |
+
+#### Returns
+
+`string`
+
+#### Defined in
+
+[packages/ai-tool/src/utils/to-datetime.ts:29](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/to-datetime.ts#L29)
 
 ___
 
@@ -1273,7 +2034,7 @@ console.log(process.env.HELLO) // undefined
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/env.ts:82](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/prompt/template/env.ts#L82)
+[packages/ai-tool/src/utils/prompt/template/env.ts:82](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/prompt/template/env.ts#L82)
 
 ___
 
@@ -1317,7 +2078,7 @@ const expandedObj = expandObjEnv(obj, { processEnv: myCustomEnv }); // Assuming 
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/env.ts:142](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/prompt/template/env.ts#L142)
+[packages/ai-tool/src/utils/prompt/template/env.ts:142](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/prompt/template/env.ts#L142)
 
 ___
 
@@ -1357,7 +2118,7 @@ extNameLevel(".json5");
 
 #### Defined in
 
-[packages/ai-tool/src/utils/filename.ts:209](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/filename.ts#L209)
+[packages/ai-tool/src/utils/filename.ts:209](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/filename.ts#L209)
 
 ___
 
@@ -1376,7 +2137,7 @@ A compiled regular expression for reserved filename characters.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/filename.ts:42](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/filename.ts#L42)
+[packages/ai-tool/src/utils/filename.ts:42](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/filename.ts#L42)
 
 ___
 
@@ -1406,7 +2167,7 @@ An array containing all string keys of the specified enumeration.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/get-all-enum-keys.ts:7](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/get-all-enum-keys.ts#L7)
+[packages/ai-tool/src/utils/get-all-enum-keys.ts:7](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/get-all-enum-keys.ts#L7)
 
 ___
 
@@ -1427,7 +2188,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/config.ts:56](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/config.ts#L56)
+[packages/ai-tool/src/utils/config.ts:56](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/config.ts#L56)
 
 ___
 
@@ -1448,7 +2209,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/config.ts:80](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/config.ts#L80)
+[packages/ai-tool/src/utils/config.ts:80](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/config.ts#L80)
 
 ___
 
@@ -1485,7 +2246,7 @@ console.log(getKeysPath(obj)); // Output: ['a.b.c', 'd[0]', 'd[1].e']
 
 #### Defined in
 
-[packages/ai-tool/src/utils/get-keys-path.ts:16](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/get-keys-path.ts#L16)
+[packages/ai-tool/src/utils/get-keys-path.ts:16](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/get-keys-path.ts#L16)
 
 ___
 
@@ -1510,7 +2271,38 @@ Returns a concatenated string of multiple extensions, or an empty string if no e
 
 #### Defined in
 
-[packages/ai-tool/src/utils/filename.ts:174](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/filename.ts#L174)
+[packages/ai-tool/src/utils/filename.ts:174](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/filename.ts#L174)
+
+___
+
+### getRealFilepath
+
+▸ **getRealFilepath**(`filepath`): `string`
+
+Resolves the real file path, handling symbolic links.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `filepath` | `string` | The file path to resolve. |
+
+#### Returns
+
+`string`
+
+The real file path.
+
+**`Example`**
+
+```typescript
+const realPath = getRealFilepath('/path/to/symbolic/link');
+console.log(realPath); // Outputs the resolved path.
+```
+
+#### Defined in
+
+[packages/ai-tool/src/utils/load-file-from-paths.ts:141](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/load-file-from-paths.ts#L141)
 
 ___
 
@@ -1530,7 +2322,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/error-readable-stream.ts:12](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/stream/error-readable-stream.ts#L12)
+[packages/ai-tool/src/utils/stream/error-readable-stream.ts:12](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/stream/error-readable-stream.ts#L12)
 
 ___
 
@@ -1553,7 +2345,7 @@ Operator precedence can be found here: https://developer.mozilla.org/en-US/docs/
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/parser.ts:30](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/prompt/template/jinja/src/parser.ts#L30)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/parser.ts:30](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/prompt/template/jinja/src/parser.ts#L30)
 
 ___
 
@@ -1576,7 +2368,7 @@ Generate a list of tokens from a source string.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/lexer.ts:189](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/prompt/template/jinja/src/lexer.ts#L189)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/lexer.ts:189](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/prompt/template/jinja/src/lexer.ts#L189)
 
 ___
 
@@ -1598,7 +2390,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/env.ts:17](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/prompt/template/env.ts#L17)
+[packages/ai-tool/src/utils/prompt/template/env.ts:17](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/prompt/template/env.ts#L17)
 
 ___
 
@@ -1623,7 +2415,7 @@ template have been replaced with their corresponding values.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/python.ts:71](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/prompt/template/python.ts#L71)
+[packages/ai-tool/src/utils/prompt/template/python.ts:71](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/prompt/template/python.ts#L71)
 
 ___
 
@@ -1647,7 +2439,7 @@ Parse and interpolate template
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/golang.ts:269](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/prompt/template/golang.ts#L269)
+[packages/ai-tool/src/utils/prompt/template/golang.ts:269](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/prompt/template/golang.ts#L269)
 
 ___
 
@@ -1686,7 +2478,7 @@ IsModelNameMatched("gpt-2", (modelName) => modelName.startsWith("gpt-")) // retu
 
 #### Defined in
 
-[packages/ai-tool/src/utils/is-model-name-matched.ts:21](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/is-model-name-matched.ts#L21)
+[packages/ai-tool/src/utils/is-model-name-matched.ts:21](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/is-model-name-matched.ts#L21)
 
 ___
 
@@ -1721,7 +2513,7 @@ isValidFilename('my<file.txt'); // Returns false
 
 #### Defined in
 
-[packages/ai-tool/src/utils/filename.ts:63](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/filename.ts#L63)
+[packages/ai-tool/src/utils/filename.ts:63](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/filename.ts#L63)
 
 ___
 
@@ -1745,7 +2537,27 @@ A boolean indicating whether the filepath is valid. Returns true if valid; false
 
 #### Defined in
 
-[packages/ai-tool/src/utils/filename.ts:72](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/filename.ts#L72)
+[packages/ai-tool/src/utils/filename.ts:72](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/filename.ts#L72)
+
+___
+
+### isWebStream
+
+▸ **isWebStream**(`val`): `boolean`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `val` | `any` |
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[packages/ai-tool/src/utils/stream/is-web-stream.ts:1](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/stream/is-web-stream.ts#L1)
 
 ___
 
@@ -1786,7 +2598,32 @@ console.log(jsonFilterToWhere(jsonFilter)); // Outputs a WHERE clause based on t
 
 #### Defined in
 
-[packages/ai-tool/src/utils/json-filter.ts:118](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/json-filter.ts#L118)
+[packages/ai-tool/src/utils/json-filter.ts:123](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/json-filter.ts#L123)
+
+___
+
+### jsonToMarkdownStr
+
+▸ **jsonToMarkdownStr**(`mem`, `options?`): `string`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `mem` | `any` |
+| `options?` | `Object` |
+| `options.arrayTag?` | `string` |
+| `options.level?` | `number` |
+| `options.objectTag?` | `string` |
+| `options.visiting?` | `Set`\<`any`\> |
+
+#### Returns
+
+`string`
+
+#### Defined in
+
+[packages/ai-tool/src/utils/json-to-markdown-str.ts:2](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/json-to-markdown-str.ts#L2)
 
 ___
 
@@ -1804,6 +2641,7 @@ Loads a file from given paths, optionally searching for specific extensions.
 | `searchPaths?` | `string`[] | An array of directories to search for the file. Defaults to the current directory (`"."`) if not provided. |
 | `extNames?` | `string`[] | An array of file extensions to try, in order of preference. If not provided, the file will be searched for without any extension. |
 | `options?` | `Object` | - |
+| `options.exclude?` | `string` \| `string`[] | - |
 | `options.filepath?` | `string` | - |
 
 #### Returns
@@ -1824,13 +2662,13 @@ const content = loadFileFromPaths('config', ['/etc', '/usr/local/etc'], ['.json'
 
 #### Defined in
 
-[packages/ai-tool/src/utils/load-file-from-paths.ts:22](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/load-file-from-paths.ts#L22)
+[packages/ai-tool/src/utils/load-file-from-paths.ts:22](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/load-file-from-paths.ts#L22)
 
 ___
 
 ### loadTextFromPaths
 
-▸ **loadTextFromPaths**(`filename`, `searchPaths?`, `extNames?`, `options?`): `string`
+▸ **loadTextFromPaths**(`filename`, `searchPaths?`, `extNames?`, `options?`, `exclude?`): `string`
 
 #### Parameters
 
@@ -1840,6 +2678,7 @@ ___
 | `searchPaths?` | `string`[] |
 | `extNames?` | `string`[] |
 | `options?` | `BufferEncoding` \| \{ `encoding?`: BufferEncoding \| undefined ; `filepath?`: `string`  } |
+| `exclude?` | `string` \| `string`[] |
 
 #### Returns
 
@@ -1847,7 +2686,28 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/load-file-from-paths.ts:74](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/load-file-from-paths.ts#L74)
+[packages/ai-tool/src/utils/load-file-from-paths.ts:75](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/load-file-from-paths.ts#L75)
+
+___
+
+### makeToolFuncCancelable
+
+▸ **makeToolFuncCancelable**(`Tool`, `options?`): typeof [`ToolFunc`](classes/ToolFunc.md)
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `Tool` | typeof [`ToolFunc`](classes/ToolFunc.md) |
+| `options?` | [`CancelableAbilityOptions`](interfaces/CancelableAbilityOptions.md) |
+
+#### Returns
+
+typeof [`ToolFunc`](classes/ToolFunc.md)
+
+#### Defined in
+
+[packages/ai-tool/src/utils/cancelable-ability.ts:340](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/cancelable-ability.ts#L340)
 
 ___
 
@@ -1896,7 +2756,53 @@ matchUrlProtocol("noProtocolHere");
 
 #### Defined in
 
-[packages/ai-tool/src/utils/match-url-protocol.ts:23](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/match-url-protocol.ts#L23)
+[packages/ai-tool/src/utils/match-url-protocol.ts:23](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/match-url-protocol.ts#L23)
+
+___
+
+### messagesToText
+
+▸ **messagesToText**(`messages`): `string`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `messages` | [`AIChatMessageParamBase`](interfaces/AIChatMessageParamBase.md)[] |
+
+#### Returns
+
+`string`
+
+#### Defined in
+
+[packages/ai-tool/src/utils/chat.ts:116](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/chat.ts#L116)
+
+___
+
+### paramsSizeToScaleStr
+
+▸ **paramsSizeToScaleStr**(`paramsSize`, `fractionDigits?`): `string`
+
+Formats a parameter size in bytes into a string with an appropriate scale (T, B, M, or K),
+optionally specifying the number of fractional digits to display.
+
+#### Parameters
+
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `paramsSize` | `number` | `undefined` | The parameter size in bytes. |
+| `fractionDigits` | `number` | `0` | The number of fractional digits to include in the formatted output. Default is 0 (no fractional digits). |
+
+#### Returns
+
+`string`
+
+A string representing the formatted parameter size with the appropriate scale unit and the specified number of fractional digits.
+
+#### Defined in
+
+[packages/ai-tool/src/utils/convert-params-size.ts:11](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/convert-params-size.ts#L11)
 
 ___
 
@@ -1921,7 +2827,7 @@ extract from langchain.js/langchain-core/src/prompts/template.ts
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/python.ts:16](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/prompt/template/python.ts#L16)
+[packages/ai-tool/src/utils/prompt/template/python.ts:16](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/prompt/template/python.ts#L16)
 
 ___
 
@@ -1955,7 +2861,7 @@ console.log(json); // { name: 'John' }
 
 #### Defined in
 
-[packages/ai-tool/src/utils/parse-js-json.ts:14](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/parse-js-json.ts#L14)
+[packages/ai-tool/src/utils/parse-js-json.ts:14](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/parse-js-json.ts#L14)
 
 ___
 
@@ -1975,7 +2881,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/config.ts:25](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/config.ts#L25)
+[packages/ai-tool/src/utils/config.ts:25](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/config.ts#L25)
 
 ___
 
@@ -1993,7 +2899,40 @@ A compiled regular expression for control characters in a filename.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/filename.ts:50](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/filename.ts#L50)
+[packages/ai-tool/src/utils/filename.ts:50](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/filename.ts#L50)
+
+___
+
+### readFilenamesRecursiveSync
+
+▸ **readFilenamesRecursiveSync**(`dir`, `isFileMatched?`): `string`[]
+
+Recursively reads all filenames in the given directory or directories.
+Optionally filters the results using a file matching callback.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `dir` | `string` \| `string`[] | A single directory path or an array of directory paths to start the search from. |
+| `isFileMatched?` | (`filepath`: `string`) => `boolean` | An optional callback that determines whether a file should be included in the result. |
+
+#### Returns
+
+`string`[]
+
+An array of file paths that match the criteria.
+
+**`Example`**
+
+```typescript
+const files = readFilenamesRecursiveSync('/path/to/directory', (filepath) => filepath.endsWith('.js'));
+console.log(files); // Outputs an array of JavaScript file paths.
+```
+
+#### Defined in
+
+[packages/ai-tool/src/utils/load-file-from-paths.ts:101](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/load-file-from-paths.ts#L101)
 
 ___
 
@@ -2022,7 +2961,7 @@ https://github.com/whatwg/streams/commit/8d7a0bf26eb2cc23e884ddbaac7c1da4b91cf2b
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/ai-stream.ts:251](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/stream/ai-stream.ts#L251)
+[packages/ai-tool/src/utils/stream/ai-stream.ts:166](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/stream/ai-stream.ts#L166)
 
 ___
 
@@ -2036,7 +2975,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/index.ts:9](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/funcs/index.ts#L9)
+[packages/ai-tool/src/funcs/index.ts:9](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/funcs/index.ts#L9)
 
 ___
 
@@ -2056,7 +2995,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/config.ts:15](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/config.ts#L15)
+[packages/ai-tool/src/utils/config.ts:15](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/config.ts#L15)
 
 ___
 
@@ -2085,7 +3024,7 @@ The sanitized filename.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/filename.ts:97](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/filename.ts#L97)
+[packages/ai-tool/src/utils/filename.ts:97](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/filename.ts#L97)
 
 ___
 
@@ -2110,7 +3049,7 @@ The sanitized file path as a string.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/filename.ts:149](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/filename.ts#L149)
+[packages/ai-tool/src/utils/filename.ts:149](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/filename.ts#L149)
 
 ___
 
@@ -2132,7 +3071,31 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/config.ts:85](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/config.ts#L85)
+[packages/ai-tool/src/utils/config.ts:85](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/config.ts#L85)
+
+___
+
+### scaleStrToParamsSize
+
+▸ **scaleStrToParamsSize**(`scale`): `number`
+
+Converts a formatted parameters size string (with units T, B, M, or K) back to its byte value.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `scale` | `string` | The formatted parameter size string (e.g., "1.23B", "456M", "789K", or "123"). |
+
+#### Returns
+
+`number`
+
+The parameter size in bytes.
+
+#### Defined in
+
+[packages/ai-tool/src/utils/convert-params-size.ts:44](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/convert-params-size.ts#L44)
 
 ___
 
@@ -2158,7 +3121,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:4](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/prompt/few-shot-prompt-template.ts#L4)
+[packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:4](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/prompt/few-shot-prompt-template.ts#L4)
 
 ___
 
@@ -2188,7 +3151,7 @@ console.log(splitSentence(text));  // returns ['Hello world!', 'How are you toda
 
 #### Defined in
 
-[packages/ai-tool/src/utils/split-sentence.ts:29](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/split-sentence.ts#L29)
+[packages/ai-tool/src/utils/split-sentence.ts:29](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/split-sentence.ts#L29)
 
 ___
 
@@ -2235,6 +3198,27 @@ node_modules/.pnpm/yaml@2.4.3/node_modules/yaml/dist/public-api.d.ts:43
 
 ___
 
+### textToDate
+
+▸ **textToDate**(`date`, `format?`): `Date`
+
+#### Parameters
+
+| Name | Type | Default value |
+| :------ | :------ | :------ |
+| `date` | `string` | `undefined` |
+| `format` | `string` | `FormatDateStr` |
+
+#### Returns
+
+`Date`
+
+#### Defined in
+
+[packages/ai-tool/src/utils/to-datetime.ts:25](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/to-datetime.ts#L25)
+
+___
+
 ### throwError
 
 ▸ **throwError**(`message`, `name?`, `status?`): `void`
@@ -2259,7 +3243,27 @@ Throws a BaseError object
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:232](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/base-error.ts#L232)
+[packages/ai-tool/src/utils/base-error.ts:235](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/base-error.ts#L235)
+
+___
+
+### toDateTime
+
+▸ **toDateTime**(`date`): `undefined` \| `Date`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `date` | `string` \| `number` \| `Date` |
+
+#### Returns
+
+`undefined` \| `Date`
+
+#### Defined in
+
+[packages/ai-tool/src/utils/to-datetime.ts:9](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/to-datetime.ts#L9)
 
 ___
 
@@ -2301,7 +3305,7 @@ const output2 = trimStart("   text"); // "   text"
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/ai-stream.ts:177](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/stream/ai-stream.ts#L177)
+[packages/ai-tool/src/utils/stream/ai-stream.ts:92](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/stream/ai-stream.ts#L92)
 
 ___
 
@@ -2341,7 +3345,7 @@ truncTo(1.2345, 2, 0.6)
 
 #### Defined in
 
-[packages/ai-tool/src/utils/trunc-to.ts:19](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/trunc-to.ts#L19)
+[packages/ai-tool/src/utils/trunc-to.ts:19](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/trunc-to.ts#L19)
 
 ___
 
@@ -2362,7 +3366,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/hash/uuid.ts:8](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/hash/uuid.ts#L8)
+[packages/ai-tool/src/utils/hash/uuid.ts:8](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/hash/uuid.ts#L8)
 
 ___
 
@@ -2597,7 +3601,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/wait.ts:1](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/wait.ts#L1)
+[packages/ai-tool/src/utils/wait.ts:1](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/wait.ts#L1)
 
 ___
 
@@ -2619,7 +3623,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/hash/xxhash.ts:32](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/hash/xxhash.ts#L32)
+[packages/ai-tool/src/utils/hash/xxhash.ts:32](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/hash/xxhash.ts#L32)
 
 ___
 
@@ -2640,7 +3644,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/hash/xxhash.ts:11](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/hash/xxhash.ts#L11)
+[packages/ai-tool/src/utils/hash/xxhash.ts:11](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/hash/xxhash.ts#L11)
 
 ___
 
@@ -2661,7 +3665,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/hash/xxhash.ts:18](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/hash/xxhash.ts#L18)
+[packages/ai-tool/src/utils/hash/xxhash.ts:18](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/hash/xxhash.ts#L18)
 
 ___
 
@@ -2683,4 +3687,4 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/hash/xxhash.ts:48](https://github.com/isdk/ai-tool.js/blob/8de1e0420acc6b174e70aae08e16e1ba780f842c/src/utils/hash/xxhash.ts#L48)
+[packages/ai-tool/src/utils/hash/xxhash.ts:48](https://github.com/isdk/ai-tool.js/blob/787e914a1f5dab2d24312399a6f123f0e8360403/src/utils/hash/xxhash.ts#L48)
