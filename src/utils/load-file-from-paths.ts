@@ -19,21 +19,22 @@ import { NotFoundError } from './base-error'
 * const content = loadFileFromPaths('config', ['/etc', '/usr/local/etc'], ['.json', '.yaml']);
 * ```
 */
-export function loadFileFromPaths(filename: string, searchPaths?: string[], extNames?: string[], options?: {filepath?: string, exclude?: string[]|string}) {
+export function loadFileFromPaths(filename: string, searchPaths?: string[], extNames?: string[], options?: {filepath?: string, exclude?: string[]|string, signal?: AbortSignal}) {
+  const signal = options?.signal
+  const exclude = options?.exclude
   let result: string|Buffer|undefined
   // search the paths and try to load the script
   if (path.isAbsolute(filename)) {
     if (fs.existsSync(filename)) {
       result = filename
     } else {
-      result = tryGetFilepath(path.basename(filename), [path.dirname(filename)], extNames, options?.exclude)
+      result = tryGetFilepath(path.basename(filename), [path.dirname(filename)], {extNames, exclude, signal})
     }
   } else {
     if (!searchPaths) {
       searchPaths = ['.']
     }
-
-    result = tryGetFilepath(filename, searchPaths, extNames, options?.exclude)
+    result = tryGetFilepath(filename, searchPaths, {extNames, exclude, signal})
   }
 
   if (result) {
@@ -46,12 +47,15 @@ export function loadFileFromPaths(filename: string, searchPaths?: string[], extN
   return result
 }
 
-function tryGetFilepath(filename: string, searchPaths: string[], extNames?: string[], exclude: string[]|string = []) {
+function tryGetFilepath(filename: string, searchPaths: string[], {extNames, signal, exclude = []}: {extNames?: string[], exclude?: string[]|string, signal?: AbortSignal}) {
   let result: string|undefined
   const exts: string[]|undefined = extNames ? extNames.map(ext => getMultiLevelExtname(filename, extNameLevel(ext))) : undefined
   if (typeof exclude === 'string') {exclude = [exclude]}
 
   for (const searchPath of searchPaths) {
+    if (signal?.aborted) {
+      throw signal.reason
+    }
     const filePath = path.resolve(searchPath, filename)
     if (exts) {
       for (let i=0; i<exts.length; i++) {
@@ -72,7 +76,7 @@ function tryGetFilepath(filename: string, searchPaths: string[], extNames?: stri
   return result
 }
 
-export function loadTextFromPaths(filename: string, searchPaths?: string[], extNames?: string[], options?: {encoding?: BufferEncoding, filepath?: string}|BufferEncoding, exclude?: string[]|string) {
+export function loadTextFromPaths(filename: string, searchPaths?: string[], extNames?: string[], options?: {encoding?: BufferEncoding, filepath?: string, signal?: AbortSignal}|BufferEncoding, exclude?: string[]|string) {
   let encoding: BufferEncoding
   if (typeof options === 'string') {
     encoding = options
@@ -98,12 +102,15 @@ export function loadTextFromPaths(filename: string, searchPaths?: string[], extN
 * console.log(files); // Outputs an array of JavaScript file paths.
 * ```
 */
-export function readFilenamesRecursiveSync(dir: string|string[], isFileMatched?: (filepath: string) => boolean) {
+export function readFilenamesRecursiveSync(dir: string|string[], isFileMatched?: (filepath: string) => boolean, signal?: AbortSignal) {
   const result = [] as string[];
   const stack: string[] = typeof dir === 'string' ? [dir] : [...dir];
   const visitedDirs = new Set<string>()
 
   while (stack.length > 0) {
+    if (signal?.aborted) {
+      throw signal.reason
+    }
     const currentDir = getRealFilepath(stack.pop()!);
     const absoluteDir = path.resolve(currentDir)
     if (visitedDirs.has(absoluteDir)) {continue}

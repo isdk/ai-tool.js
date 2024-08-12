@@ -88,6 +88,18 @@ describe('loadFileFromPaths', () => {
     expect(fs.readFileSync).toHaveBeenCalledWith(mockFilePath+'.yaml');
     expect(opts.filepath).toBe(mockFilePath+'.yaml');
   });
+
+  it('throws AbortError when signal is aborted', () => {
+    const mockFilePath = '/absolute/path/to/file';
+
+    (fs.existsSync as Mock).mockImplementation((file) => path.extname(file) === '.yaml');
+    (fs.readFileSync as Mock).mockImplementation((file) => Buffer.from(file));
+    const aborter = new AbortController();
+    const opts = {signal: aborter.signal} as any
+    aborter.abort(new Error('my aborted'));
+    expect(() => loadFileFromPaths(mockFilePath, undefined, ['.yaml'], opts)).toThrow('my aborted');
+  });
+
 });
 
 describe('readFilenamesRecursiveSync', () => {
