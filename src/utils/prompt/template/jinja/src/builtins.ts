@@ -49,7 +49,16 @@ export function select(obj: any|any[], index?: number|string) {
   }
 }
 
+export function tojson(value: any, indent?: string|number|{indent?: string|number}) {
+  console.log('🚀 ~ tojson ~ indent:', indent)
+  if (indent && typeof indent === 'object') {
+    indent = indent.indent
+  }
+  return JSON.stringify(value, null, indent)
+}
+
 export const builtins = {
   randomInt,
   select,
+  tojson,
 }

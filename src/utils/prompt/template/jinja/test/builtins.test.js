@@ -1,4 +1,7 @@
-import { select } from '../src/builtins'
+import { Template } from "../src";
+
+import { select, tojson } from '../src/builtins'
+
 
 describe('Jinjia builtins functions', () => {
   describe('select function', () => {
@@ -54,4 +57,35 @@ describe('Jinjia builtins functions', () => {
       expect(select(undefined)).toBeUndefined();
     });
   });
+  describe('tojson filter', () => {
+    it("should support tojson filter with object arg", async () => {
+      const template = new Template(`{{ content | tojson(indent=4) }}`);
+      const result = template.render({content: {hi: 'world', x: 2, a: [1,29]}});
+      expect(result).toMatchInlineSnapshot(`
+        "{
+            "hi": "world",
+            "x": 2,
+            "a": [
+                1,
+                29
+            ]
+        }"
+      `);
+    });
+    it("should support tojson filter with pos arg", async () => {
+      const template = new Template(`{{ content | tojson(4) }}`);
+      const result = template.render({content: {hi: 'world', x: 2, a: [1,29]}});
+      expect(result).toMatchInlineSnapshot(`
+        "{
+            "hi": "world",
+            "x": 2,
+            "a": [
+                1,
+                29
+            ]
+        }"
+      `);
+    });
+  });
+
 })
