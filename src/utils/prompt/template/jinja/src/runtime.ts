@@ -19,6 +19,7 @@ import type {
 	KeywordArgumentExpression,
 	ObjectLiteral,
 	TupleLiteral,
+	Expression,
 } from "./ast";
 import { slice, titleCase } from "./utils";
 
@@ -590,7 +591,7 @@ export class Interpreter {
 
 		  const filterFn = environment.lookupVariable(filterName);
 		  if (filterFn instanceof FunctionValue) {
-		    return filterFn.value([operand, ...filter.args.map((x) => this.evaluate(x, environment))], environment);
+		    return filterFn.value([operand, ...this.evaluateArgumentsExpression(filter.args, environment)], environment);
 		  }
 
 			if (operand instanceof ArrayValue) {
@@ -694,22 +695,26 @@ export class Interpreter {
 		return environment.lookupVariable(node.value);
 	}
 
-	private evaluateCallExpression(expr: CallExpression, environment: Environment): AnyRuntimeValue {
+	private evaluateArgumentsExpression(args: Expression[], environment: Environment): AnyRuntimeValue[] {
 		// Accumulate all keyword arguments into a single object, which will be
 		// used as the final argument in the call function.
-		const args: AnyRuntimeValue[] = [];
+		const result: AnyRuntimeValue[] = [];
 		const kwargs = new Map();
-		for (const argument of expr.args) {
+		for (const argument of args) {
 			if (argument.type === "KeywordArgumentExpression") {
 				const kwarg = argument as KeywordArgumentExpression;
 				kwargs.set(kwarg.key.value, this.evaluate(kwarg.value, environment));
 			} else {
-				args.push(this.evaluate(argument, environment));
+				result.push(this.evaluate(argument, environment));
 			}
 		}
 		if (kwargs.size > 0) {
-			args.push(new ObjectValue(kwargs));
+			result.push(new ObjectValue(kwargs));
 		}
+		return result;
+	}
+	private evaluateCallExpression(expr: CallExpression, environment: Environment): AnyRuntimeValue {
+		const args: AnyRuntimeValue[] = this.evaluateArgumentsExpression(expr.args, environment)
 
 		const fn = this.evaluate(expr.callee, environment);
 		if (fn.type !== "FunctionValue") {
@@ -994,9 +999,11 @@ function parseRuntimeValue(arg: any) {
     })
   } else if (arg.type === 'ObjectValue')  {
     if (arg.orgValue) {result = arg.orgValue}
-    else {
+		else if (!arg.forEach) {
+			result = parseRuntimeValue(arg.value)
+    } else {
       result = {}
-      arg.forEach((item: AnyRuntimeValue, key: string) => {
+			arg.forEach((item: AnyRuntimeValue, key: string) => {
         result[key] = parseRuntimeValue(item)
       })
     }
