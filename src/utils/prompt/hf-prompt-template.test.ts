@@ -178,7 +178,7 @@ describe('HfPromptTemplate', () => {
   })
 
   it('should format string with undefined value', async () => {
-    const template = `{{name}}{{i['0']}}`
+    const template = `{{name}}{{i['0']}}{{i['no']}}`
     //
     let result = await PromptTemplate.format({
       template,
