@@ -1,30 +1,56 @@
 ## @isdk/ai-tool
 
-所有的Tool Function 参数都是Obj参数，而不是位置参数
+抽象封装AI工具函数(ToolFunc),并提供一系列方便使用的 helper 函数.
+
+注意: 所有的Tool Function 参数都是Obj参数，而不是位置参数
 
 ### ToolFunc
 
-所有本地执行的，注册在这里
+AI工具函数(ToolFunc), 将普通函数注册为`ToolFunc`.
 
-* func: 执行的工具函数主体
-* name： 工具函数的名称
-* params: 工具函数的参数描述schema
-* result: 工具函数返回结果类型
-* scope: 作用域
-* description: 工具函数说明
-* setup: 将在ctor ToolFunc实例的时候被执行
-* depends: `{[name: string]: ToolFunc}`, 放在这里的将会被自动注册
+所有本地执行的工具函数，在这里注册.
 
-### ServerTools
+例如:
 
-服务器端至少需要两个入口，一个获得所有tools api，另一个执行指定的tool api.
-未来再加一个EventSource入口，感知tool注册变动。
+```ts
+import {ToolFunc} from '@isdk/ai-tool'
+
+// 直接注册一个函数
+ToolFunc.register({
+  name: 'add',
+  decription: 'return a+b',
+  params: {"a": {type: "number"}, b: {type: "number"}},
+  result: 'number',
+  func: ({a, b}: {a: number, b: number}) => a+b
+})
+
+console.log('return', ToolFunc.runSync('add', {a: 1, b: 2}))
+// return 3
+
+```
+
+* `func`: 执行的工具函数主体
+* `name`: 工具函数的名称
+* `params`: 工具函数的参数描述schema
+* `result`: 工具函数返回结果类型
+* `scope`: 作用域
+* `description`: 工具函数说明
+* `setup`: 将在ctor ToolFunc实例的时候被执行
+* `depends`: `{[name: string]: ToolFunc}`, 放在这里的将会被自动注册
+
+
+### ServerTools(ToolFunc)
+
+服务器端的AI工具函数.
+
+注: 如果手工开发服务器,那么服务器上至少要两个API入口，一个API用于获得服务器上的所有tools，另一个API执行指定的tool.
+未来再加一个EventSource API入口，感知tool注册变动。
 
 所有需要暴露给服务器的，注册在这里，实质就是ToolFunc
 
 * 增加 `static toJSON()` 导出所有的服务API定义
 
-特点： 允许导出func,使得函数功能可以本地执行。
+特点： 允许导出func string,使得服务器端函数功能可以迁移到本地执行。
 
 属性：
 
@@ -45,8 +71,9 @@ interface ServerFuncItem extends FuncItem {
 如果是`get`那么参数应该被放在query string(`p`): `p=${encodeURIComponent(JSON.stringify(objParams))}`
 如果是`post`参数在body中，同样是json格式。
 
-### ClientTools
+### ClientTools(ToolFunc)
 
+用于调用远程服务器上的AI工具函数(ServerTools).
 所有的远程调用没有真正的执行体，都是统一的远程API调用。
 
 * 增加 `static loadFromSync(items)` 加载所有的远程调用，如果有item上有func，那么就是server调用的本地化，还是注册在ClientTools上。
@@ -259,3 +286,10 @@ act有:
 * pub:  发布sse事件
 * sub: 转发服务器上的事件
 * unsub: 撤销转发服务器上的事件
+
+## Credit
+
+* [@huggingface/jinja](https://github.com/huggingface/huggingface.js)
+* [eventsource-parser](https://github.com/rexxars/eventsource-parser)
+* [async-sema](https://github.com/vercel/async-sema)
+* [modelfusion](https://github.com/vercel/modelfusion)
