@@ -32,7 +32,7 @@ Convention: Always pass _req, _res
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:9](https://github.com/isdk/ai-tool.js/blob/c2cbe6039817535b740ff3ca5f97829770039649/src/server-tools.ts#L9)
+[packages/ai-tool/src/server-tools.ts:9](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/server-tools.ts#L9)
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/c2cbe6039817535b740ff3ca5f97829770039649/src/server-tools.ts#L10)
+[packages/ai-tool/src/server-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/server-tools.ts#L10)
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:11](https://github.com/isdk/ai-tool.js/blob/c2cbe6039817535b740ff3ca5f97829770039649/src/res-server-tools.ts#L11)
+[packages/ai-tool/src/res-server-tools.ts:11](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/res-server-tools.ts#L11)
 
 ___
 
@@ -66,7 +66,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:8](https://github.com/isdk/ai-tool.js/blob/c2cbe6039817535b740ff3ca5f97829770039649/src/res-server-tools.ts#L8)
+[packages/ai-tool/src/res-server-tools.ts:8](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/res-server-tools.ts#L8)
 
 ___
 
@@ -76,4 +76,4 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/c2cbe6039817535b740ff3ca5f97829770039649/src/res-server-tools.ts#L10)
+[packages/ai-tool/src/res-server-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/res-server-tools.ts#L10)

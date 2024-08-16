@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/env.ts:208](https://github.com/isdk/ai-tool.js/blob/c2cbe6039817535b740ff3ca5f97829770039649/src/utils/prompt/template/env.ts#L208)
+[packages/ai-tool/src/utils/prompt/template/env.ts:208](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/utils/prompt/template/env.ts#L208)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/env.ts:209](https://github.com/isdk/ai-tool.js/blob/c2cbe6039817535b740ff3ca5f97829770039649/src/utils/prompt/template/env.ts#L209)
+[packages/ai-tool/src/utils/prompt/template/env.ts:209](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/utils/prompt/template/env.ts#L209)

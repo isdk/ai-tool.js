@@ -42,7 +42,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:15](https://github.com/isdk/ai-tool.js/blob/c2cbe6039817535b740ff3ca5f97829770039649/src/utils/prompt/prompt-template.ts#L15)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:15](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/utils/prompt/prompt-template.ts#L15)
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:12](https://github.com/isdk/ai-tool.js/blob/c2cbe6039817535b740ff3ca5f97829770039649/src/utils/prompt/prompt-template.ts#L12)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:12](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/utils/prompt/prompt-template.ts#L12)
 
 ___
 
@@ -68,7 +68,7 @@ An [PromptTemplate](../classes/PromptTemplate.md) used to format a single exampl
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:19](https://github.com/isdk/ai-tool.js/blob/c2cbe6039817535b740ff3ca5f97829770039649/src/utils/prompt/few-shot-prompt-template.ts#L19)
+[packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:19](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/utils/prompt/few-shot-prompt-template.ts#L19)
 
 ___
 
@@ -80,7 +80,7 @@ String separator used to join the prefix, the examples, and suffix.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:24](https://github.com/isdk/ai-tool.js/blob/c2cbe6039817535b740ff3ca5f97829770039649/src/utils/prompt/few-shot-prompt-template.ts#L24)
+[packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:24](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/utils/prompt/few-shot-prompt-template.ts#L24)
 
 ___
 
@@ -92,7 +92,7 @@ The few shot examples to use in the prompt.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:14](https://github.com/isdk/ai-tool.js/blob/c2cbe6039817535b740ff3ca5f97829770039649/src/utils/prompt/few-shot-prompt-template.ts#L14)
+[packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:14](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/utils/prompt/few-shot-prompt-template.ts#L14)
 
 ___
 
@@ -106,7 +106,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:16](https://github.com/isdk/ai-tool.js/blob/c2cbe6039817535b740ff3ca5f97829770039649/src/utils/prompt/prompt-template.ts#L16)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:16](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/utils/prompt/prompt-template.ts#L16)
 
 ___
 
@@ -120,7 +120,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:14](https://github.com/isdk/ai-tool.js/blob/c2cbe6039817535b740ff3ca5f97829770039649/src/utils/prompt/prompt-template.ts#L14)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:14](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/utils/prompt/prompt-template.ts#L14)
 
 ___
 
@@ -136,7 +136,7 @@ A prompt template string to put before the examples.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:31](https://github.com/isdk/ai-tool.js/blob/c2cbe6039817535b740ff3ca5f97829770039649/src/utils/prompt/few-shot-prompt-template.ts#L31)
+[packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:31](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/utils/prompt/few-shot-prompt-template.ts#L31)
 
 ___
 
@@ -148,7 +148,7 @@ A prompt template string to put after the examples.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:36](https://github.com/isdk/ai-tool.js/blob/c2cbe6039817535b740ff3ca5f97829770039649/src/utils/prompt/few-shot-prompt-template.ts#L36)
+[packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:36](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/utils/prompt/few-shot-prompt-template.ts#L36)
 
 ___
 
@@ -162,7 +162,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:11](https://github.com/isdk/ai-tool.js/blob/c2cbe6039817535b740ff3ca5f97829770039649/src/utils/prompt/prompt-template.ts#L11)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:11](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/utils/prompt/prompt-template.ts#L11)
 
 ___
 
@@ -176,4 +176,4 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:13](https://github.com/isdk/ai-tool.js/blob/c2cbe6039817535b740ff3ca5f97829770039649/src/utils/prompt/prompt-template.ts#L13)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:13](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/utils/prompt/prompt-template.ts#L13)
