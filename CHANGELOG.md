@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.9](https://github.com/isdk/ai-tool.js/compare/v0.0.8...v0.0.9) (2024-08-16)
+
+
+### Features
+
+* **jinja:** tojson filter with indent argument support ([267cd5c](https://github.com/isdk/ai-tool.js/commit/267cd5c437c220f88cacad2819acaf151baea9a0))
+* **load-file-from-paths:** add signal option ([2e6a034](https://github.com/isdk/ai-tool.js/commit/2e6a034b999f9d3daab3b0c258977198a54971d4))
+* **saveConfigFile:** return saved filename ([c2cbe60](https://github.com/isdk/ai-tool.js/commit/c2cbe6039817535b740ff3ca5f97829770039649))
+
+
+### Bug Fixes
+
+* **jinja:** the filter expression can support object arguments now ([b37b0a0](https://github.com/isdk/ai-tool.js/commit/b37b0a0611729c23535aacc11783b0257877204f))
+
 ## [0.0.8](https://github.com/isdk/ai-tool.js/compare/v0.0.7...v0.0.8) (2024-08-11)
 
 
