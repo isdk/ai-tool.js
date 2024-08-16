@@ -99,4 +99,5 @@ export function saveConfigFile(filename: string, config: any, extLevel = 1) {
     mkdirSync(dirname, {recursive: true})
   }
   writeFileSync(filename, config, {encoding: 'utf8'})
+  return filename
 }
