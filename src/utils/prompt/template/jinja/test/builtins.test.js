@@ -86,6 +86,19 @@ describe('Jinjia builtins functions', () => {
         }"
       `);
     });
+
+    it("should support object | tojson filter", async () => {
+      const template = new Template(`{{ content | tojson }}`);
+      const result = template.render({content: {hi: 'world', x: 2, a: [1,29]}});
+      expect(result).toMatchInlineSnapshot(`"{"hi": "world", "x": 2, "a": [1, 29]}"`)
+    });
+
+    it("should support array | tojson filter", async () => {
+      const template = new Template(`{{ content | tojson }}`);
+      const result = template.render({content: [3, 2, 1, {hi: 'world', x: 2, a: [1,29]}]});
+      expect(result).toMatchInlineSnapshot(`"[3, 2, 1, {"hi": "world", "x": 2, "a": [1, 29]}]"`)
+    });
+
   });
 
 })

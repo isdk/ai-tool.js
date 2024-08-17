@@ -173,26 +173,6 @@ describe("Test interpreter options", () => {
 		testTemplate(test)
 	});
 
-	it("should support object | tojson filter", async () => {
-		const test = {
-			template: '{{ obj | tojson }}',
-			data: {obj: {a: 1, b: 2}},
-			options: { lstrip_blocks: true, trim_blocks: true },
-			target: `{"a": 1, "b": 2}`,
-		}
-		testTemplate(test)
-	});
-
-	it("should support array | tojson filter", async () => {
-		const test = {
-			template: '{{ obj | tojson }}',
-			data: {obj: [3,2,1]},
-			options: { lstrip_blocks: true, trim_blocks: true },
-			target: `[3, 2, 1]`,
-		}
-		testTemplate(test)
-	});
-
 	it("should support toString on an object", async () => {
 		const test = {
 			template: `{{ obj }}`,
@@ -243,7 +223,7 @@ describe("Test interpreter options", () => {
 		testTemplate(test)
 	});
 
-	it("should support custom filter", async () => {
+	it("should support user-defined filter", async () => {
 		const options = { lstrip_blocks: true, trim_blocks: true }
 		const env = new Environment();
 		env.set('MSelect', function(operand, key) {
@@ -256,6 +236,24 @@ describe("Test interpreter options", () => {
 		const interpreter = new Interpreter(env);
 		const result = interpreter.run(parsed);
 		expect(result.value).toEqual('world');
+  });
+
+	it("should support KeywordArguments on func", async () => {
+		const options = { lstrip_blocks: true, trim_blocks: true }
+		const env = new Environment();
+		let args
+		env.set('MSelect', function(..._args) {
+			args = _args
+			return 'hi ' + args[0]
+		});
+		env.set('content', {hi: 'world', x: 2, a: [1,29]});
+		const tokens = tokenize(`{{ MSelect('world', k1=12, k2="ok") }}`, options);
+		const parsed = parse(tokens);
+
+		const interpreter = new Interpreter(env);
+		const result = interpreter.run(parsed);
+		expect(result.value).toEqual('hi world');
+		expect(args).toEqual(['world', {k1: 12, k2: 'ok'}]);
   });
 });
 

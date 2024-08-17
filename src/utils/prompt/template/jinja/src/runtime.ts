@@ -535,9 +535,10 @@ export class Interpreter {
 		if (node.filter.type === "Identifier") {
 			const filter = node.filter as Identifier;
 
-			if (filter.value === "tojson") {
-				return new StringValue(toJSON(operand));
-			}
+			const filterFn = environment.lookupVariable(filter.value);
+		  if (filterFn instanceof FunctionValue) {
+		    return filterFn.value([operand], environment);
+		  }
 
 			if (operand instanceof ArrayValue) {
 				switch (filter.value) {
@@ -641,15 +642,6 @@ export class Interpreter {
 				}
 		    return filterFn.value([operand, ...args], environment);
 		  }
-
-			if (filterName === "tojson") {
-				const [, kwargs] = this.evaluateArguments(filter.args, environment);
-				const indent = kwargs.get("indent") ?? new NullValue();
-				if (!(indent instanceof NumericValue || indent instanceof NullValue)) {
-					throw new Error("If set, indent must be a number");
-				}
-				return new StringValue(toJSON(operand, indent.value));
-			}
 
 			if (operand instanceof ArrayValue) {
 				switch (filterName) {
@@ -1175,75 +1167,48 @@ function convertToRuntimeValues(input: unknown): AnyRuntimeValue {
 	}
 }
 
-function parseRuntimeValue(arg: any) {
-  let result = arg
-  if (Array.isArray(arg)) {
+function parseRuntimeValue(arg: AnyRuntimeValue|Map<string, any>|Array<any>) {
+  let result:any = arg;
+	if (Array.isArray(arg)) {
     result = arg.map((item: AnyRuntimeValue) => parseRuntimeValue(item))
   } else if (arg instanceof Map)  {
     result = {}
     arg.forEach((item: AnyRuntimeValue, key: string) => {
       result[key] = parseRuntimeValue(item)
     })
-  } else if (arg.type === 'ObjectValue' || arg.type === 'KeywordArgumentsValue')  {
-    if (arg.orgValue) {result = arg.orgValue}
-		else if (!arg.forEach) {
-			result = parseRuntimeValue(arg.value)
-    } else {
-      result = {}
-			arg.forEach((item: AnyRuntimeValue, key: string) => {
-        result[key] = parseRuntimeValue(item)
-      })
-    }
-		if (arg.type === 'KeywordArgumentsValue') {
-			Object.setPrototypeOf(result, {jinja_kargs: true})
+  } else {
+		switch (arg.type) {
+			case "NullValue":
+				result = null;
+				break;
+			case "UndefinedValue": // JSON.stringify(undefined) -> undefined
+				result = undefined;
+				break;
+			case "ArrayValue":
+				result = (arg as ArrayValue).value.map((item: AnyRuntimeValue) => parseRuntimeValue(item));
+				break;
+			case "KeywordArgumentsValue":
+			case "ObjectValue": {
+				if ((arg as ObjectValue).orgValue) {
+					result = (arg as ObjectValue).orgValue
+				// } else if (!arg.forEach) {
+				// 	result = parseRuntimeValue(arg.value)
+				} else {
+					result = parseRuntimeValue((arg as ObjectValue).value)
+					// result = {}
+					// arg.forEach((item: AnyRuntimeValue, key: string) => {
+					// 	result[key] = parseRuntimeValue(item)
+					// })
+				}
+				if (arg.type === 'KeywordArgumentsValue') {
+					Object.setPrototypeOf(result, {jinja_kargs: true})
+				}
+			} break;
+			default:
+				if (arg.type) {
+					result = arg.value
+				}
 		}
-  } else if (arg.type === 'ArrayValue')  {
-    result = arg.value.map((item: AnyRuntimeValue) => parseRuntimeValue(item))
-  } else if (arg.type) {
-    result = arg.value
-  }
-  return result
-}
-
-/**
- * Helper function to convert runtime values to JSON
- * @param {AnyRuntimeValue} input The runtime value to convert
- * @param {number|null} [indent] The number of spaces to indent, or null for no indentation
- * @param {number} [depth] The current depth of the object
- * @returns {string} JSON representation of the input
- */
-function toJSON(input: AnyRuntimeValue, indent?: number | null, depth?: number): string {
-	const currentDepth = depth ?? 0;
-	switch (input.type) {
-		case "NullValue":
-		case "UndefinedValue": // JSON.stringify(undefined) -> undefined
-			return "null";
-		case "NumericValue":
-		case "StringValue":
-		case "BooleanValue":
-			return JSON.stringify(input.value);
-		case "ArrayValue":
-		case "ObjectValue": {
-			const indentValue = indent ? " ".repeat(indent) : "";
-			const basePadding = "\n" + indentValue.repeat(currentDepth);
-			const childrenPadding = basePadding + indentValue; // Depth + 1
-
-			if (input.type === "ArrayValue") {
-				const core = (input as ArrayValue).value.map((x) => toJSON(x, indent, currentDepth + 1));
-				return indent
-					? `[${childrenPadding}${core.join(`,${childrenPadding}`)}${basePadding}]`
-					: `[${core.join(", ")}]`;
-			} else {
-				// ObjectValue
-				const core = Array.from((input as ObjectValue).value.entries()).map(([key, value]) => {
-					const v = `"${key}": ${toJSON(value, indent, currentDepth + 1)}`;
-					return indent ? `${childrenPadding}${v}` : v;
-				});
-				return indent ? `{${core.join(",")}${basePadding}}` : `{${core.join(", ")}}`;
-			}
-		}
-		default:
-			// e.g., FunctionValue
-			throw new Error(`Cannot convert to JSON: ${input.type}`);
 	}
+	return result
 }

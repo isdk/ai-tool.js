@@ -49,15 +49,67 @@ export function select(obj: any|any[], index?: number|string) {
   }
 }
 
-export function tojson(value: any, indent?: string|number|{indent?: string|number}) {
+export function tojson(value: any, indent?: number|{indent?: number, depth?: number}, depth?: number) {
   if (indent && typeof indent === 'object') {
+    if (indent.depth) {depth = indent.depth}
     indent = indent.indent
   }
-  return JSON.stringify(value, null, indent)
+  // return JSON.stringify(value, null, indent)
+  return toJSON(value, indent, depth)
 }
 
 export const builtins = {
   randomInt,
   select,
   tojson,
+}
+
+
+// modified from https://github.com/huggingface/huggingface.js/blob/master/packages/jinja/src/runtime.ts
+/**
+ * Helper function to convert runtime values to JSON
+ * @param input The runtime value to convert
+ * @param [indent] The number of spaces to indent, or null for no indentation
+ * @param [depth] The current depth of the object
+ * @returns JSON representation of the input
+ */
+function toJSON(input: any, indent?: number | null, depth?: number): string {
+  let result = ''
+	const currentDepth = depth ?? 0;
+  if (input === null) {
+    result = 'null'
+  } else {
+    const type = typeof input;
+    switch (type) {
+      case "undefined": // JSON.stringify(undefined) -> undefined
+        result = "null";
+      case "number":
+      case "string":
+      case "boolean":
+        return JSON.stringify(input);
+      case "object": {
+        const indentValue = indent ? " ".repeat(indent) : "";
+        const basePadding = "\n" + indentValue.repeat(currentDepth);
+        const childrenPadding = basePadding + indentValue; // Depth + 1
+
+        if (Array.isArray(input)) {
+          const core = input.map((x) => toJSON(x, indent, currentDepth + 1));
+          return indent
+            ? `[${childrenPadding}${core.join(`,${childrenPadding}`)}${basePadding}]`
+            : `[${core.join(", ")}]`;
+        } else {
+          // ObjectValue
+          const core = Array.from(Object.entries(input)).map(([key, value]) => {
+            const v = `"${key}": ${toJSON(value, indent, currentDepth + 1)}`;
+            return indent ? `${childrenPadding}${v}` : v;
+          });
+          return indent ? `{${core.join(",")}${basePadding}}` : `{${core.join(", ")}}`;
+        }
+      }
+      default:
+        // e.g., FunctionValue
+        throw new Error(`Cannot convert to JSON: ${type}`);
+    }
+  }
+  return result
 }
