@@ -254,6 +254,7 @@ describe("Test interpreter options", () => {
 		const result = interpreter.run(parsed);
 		expect(result.value).toEqual('hi world');
 		expect(args).toEqual(['world', {k1: 12, k2: 'ok'}]);
+		expect(args[1].jinja_kargs).toBe(true)
   });
 });
 
