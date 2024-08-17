@@ -4,7 +4,7 @@ import type { Token } from "./lexer";
  * Statements do not result in a value at runtime. They contain one or more expressions internally.
  */
 export class Statement {
-	declare isStatement: boolean;
+	declare isStatement?: boolean;
 
 	type = "Statement";
 }
@@ -32,13 +32,18 @@ export class If extends Statement {
 	}
 }
 
+/**
+ * Loop over each item in a sequence
+ * https://jinja.palletsprojects.com/en/3.0.x/templates/#for
+ */
 export class For extends Statement {
 	override type = "For";
 
 	constructor(
 		public loopvar: Identifier | TupleLiteral,
 		public iterable: Expression,
-		public body: Statement[]
+		public body: Statement[],
+		public defaultBlock: Statement[] // if no iteration took place
 	) {
 		super();
 	}
@@ -49,6 +54,18 @@ export class SetStatement extends Statement {
 	constructor(
 		public assignee: Expression,
 		public value: Expression
+	) {
+		super();
+	}
+}
+
+export class Macro extends Statement {
+	override type = "Macro";
+
+	constructor(
+		public name: Identifier,
+		public args: Expression[],
+		public body: Statement[]
 	) {
 		super();
 	}
@@ -179,6 +196,21 @@ export class FilterExpression extends Expression {
 	constructor(
 		public operand: Expression,
 		public filter: Identifier | CallExpression
+	) {
+		super();
+	}
+}
+
+/**
+ * An operation which filters a sequence of objects by applying a test to each object,
+ * and only selecting the objects with the test succeeding.
+ */
+export class SelectExpression extends Expression {
+	override type = "SelectExpression";
+
+	constructor(
+		public iterable: Expression,
+		public test: Expression
 	) {
 		super();
 	}

@@ -19,7 +19,9 @@ import type {
 	KeywordArgumentExpression,
 	ObjectLiteral,
 	TupleLiteral,
+	Macro,
 	Expression,
+	SelectExpression,
 } from "./ast";
 import { slice, titleCase } from "./utils";
 
@@ -136,7 +138,6 @@ export class BooleanValue extends RuntimeValue<boolean> {
  * Represents an Object value at runtime.
  */
 export class ObjectValue extends RuntimeValue<Map<string, AnyRuntimeValue>> {
-
 	override type = "ObjectValue";
 
 	constructor(value: Map<string, AnyRuntimeValue>, public orgValue?: Record<string, any>) {
@@ -189,6 +190,13 @@ export class ObjectValue extends RuntimeValue<Map<string, AnyRuntimeValue>> {
 			}),
 		],
 	]);
+}
+
+/**
+ * Represents a KeywordArguments value at runtime.
+ */
+export class KeywordArgumentsValue extends ObjectValue {
+	override type = "KeywordArgumentsValue";
 }
 
 /**
@@ -288,6 +296,7 @@ export class Environment {
 		],
 		["false", (operand) => operand.type === "BooleanValue" && !(operand as BooleanValue).value],
 		["true", (operand) => operand.type === "BooleanValue" && (operand as BooleanValue).value],
+		["string", (operand) => operand.type === "StringValue"],
 		["number", (operand) => operand.type === "NumericValue"],
 		["integer", (operand) => operand.type === "NumericValue" && Number.isInteger((operand as NumericValue).value)],
 		["iterable", (operand) => operand instanceof ArrayValue || operand instanceof StringValue],
@@ -309,6 +318,7 @@ export class Environment {
 		["defined", (operand) => operand.type !== "UndefinedValue"],
 		["undefined", (operand) => operand.type === "UndefinedValue"],
 		["equalto", (a, b) => a.value === b.value],
+		["eq", (a, b) => a.value === b.value],
 	]);
 
 	constructor(public parent?: Environment) {}
@@ -482,6 +492,28 @@ export class Interpreter {
 		throw new SyntaxError(`Unknown operator "${node.operator.value}" between ${left.type} and ${right.type}`);
 	}
 
+	private evaluateArguments(
+		args: Expression[],
+		environment: Environment
+	): [AnyRuntimeValue[], Map<string, AnyRuntimeValue>] {
+		// Accumulate args and kwargs
+		const positionalArguments: AnyRuntimeValue[] = [];
+		const keywordArguments = new Map();
+		for (const argument of args) {
+			// TODO: Lazy evaluation of arguments
+			if (argument.type === "KeywordArgumentExpression") {
+				const kwarg = argument as KeywordArgumentExpression;
+				keywordArguments.set(kwarg.key.value, this.evaluate(kwarg.value, environment));
+			} else {
+				if (keywordArguments.size > 0) {
+					throw new Error("Positional arguments must come before keyword arguments");
+				}
+				positionalArguments.push(this.evaluate(argument, environment));
+			}
+		}
+		return [positionalArguments, keywordArguments];
+	}
+
 	/**
 	 * Evaluates expressions following the filter operation type.
 	 */
@@ -502,6 +534,10 @@ export class Interpreter {
 
 		if (node.filter.type === "Identifier") {
 			const filter = node.filter as Identifier;
+
+			if (filter.value === "tojson") {
+				return new StringValue(toJSON(operand));
+			}
 
 			if (operand instanceof ArrayValue) {
 				switch (filter.value) {
@@ -531,8 +567,6 @@ export class Interpreter {
 								}
 							})
 						);
-					case "tojson":
-						return new StringValue(JSON.stringify(operand.value));
 					default:
 						throw new Error(`Unknown ArrayValue filter: ${filter.value}`);
 				}
@@ -554,6 +588,18 @@ export class Interpreter {
 						return new StringValue(operand.value.trimStart());
 					case "trimEnd":
 						return new StringValue(operand.value.trimEnd());
+					case "indent":
+						return new StringValue(
+							operand.value
+								.split("\n")
+								.map((x, i) =>
+									// By default, don't indent the first line or empty lines
+									i === 0 || x.length === 0 ? x : "    " + x
+								)
+								.join("\n")
+						);
+					case "string":
+						return operand; // no-op
 					default:
 						throw new Error(`Unknown StringValue filter: ${filter.value}`);
 				}
@@ -572,8 +618,6 @@ export class Interpreter {
 						);
 					case "length":
 						return new NumericValue(operand.value.size);
-					case "tojson":
-						return new StringValue(JSON.stringify(operand));
 					case "string":
 						return new StringValue(operand.toString());
 					default:
@@ -589,10 +633,23 @@ export class Interpreter {
 			}
 			const filterName = (filter.callee as Identifier).value;
 
-		  const filterFn = environment.lookupVariable(filterName);
+			const filterFn = environment.lookupVariable(filterName);
 		  if (filterFn instanceof FunctionValue) {
-		    return filterFn.value([operand, ...this.evaluateArgumentsExpression(filter.args, environment)], environment);
+				const [args, kwargs] = this.evaluateArguments(filter.args, environment);
+				if (kwargs.size > 0) {
+					args.push(new KeywordArgumentsValue(kwargs))
+				}
+		    return filterFn.value([operand, ...args], environment);
 		  }
+
+			if (filterName === "tojson") {
+				const [, kwargs] = this.evaluateArguments(filter.args, environment);
+				const indent = kwargs.get("indent") ?? new NullValue();
+				if (!(indent instanceof NumericValue || indent instanceof NullValue)) {
+					throw new Error("If set, indent must be a number");
+				}
+				return new StringValue(toJSON(operand, indent.value));
+			}
 
 			if (operand instanceof ArrayValue) {
 				switch (filterName) {
@@ -630,8 +687,58 @@ export class Interpreter {
 
 						return new ArrayValue(filtered);
 					}
+					case "map": {
+						// Accumulate kwargs
+						const [, kwargs] = this.evaluateArguments(filter.args, environment);
+
+						if (kwargs.has("attribute")) {
+							// Mapping on attributes
+							const attr = kwargs.get("attribute");
+							if (!(attr instanceof StringValue)) {
+								throw new Error("attribute must be a string");
+							}
+							const defaultValue = kwargs.get("default");
+							const mapped = operand.value.map((item) => {
+								if (!(item instanceof ObjectValue)) {
+									throw new Error("items in map must be an object");
+								}
+								return item.value.get(attr.value) ?? defaultValue ?? new UndefinedValue();
+							});
+							return new ArrayValue(mapped);
+						} else {
+							throw new Error("`map` expressions without `attribute` set are not currently supported.");
+						}
+					}
 				}
 				throw new Error(`Unknown ArrayValue filter: ${filterName}`);
+			} else if (operand instanceof StringValue) {
+				switch (filterName) {
+					case "indent": {
+						// https://jinja.palletsprojects.com/en/3.1.x/templates/#jinja-filters.indent
+						// Return a copy of the string with each line indented by 4 spaces. The first line and blank lines are not indented by default.
+						// Parameters:
+						//  - width: Number of spaces, or a string, to indent by.
+						//  - first: Don't skip indenting the first line.
+						//  - blank: Don't skip indenting empty lines.
+
+						const [args, kwargs] = this.evaluateArguments(filter.args, environment);
+
+						const width = args.at(0) ?? kwargs.get("width") ?? new NumericValue(4);
+						if (!(width instanceof NumericValue)) {
+							throw new Error("width must be a number");
+						}
+						const first = args.at(1) ?? kwargs.get("first") ?? new BooleanValue(false);
+						const blank = args.at(2) ?? kwargs.get("blank") ?? new BooleanValue(false);
+
+						const lines = operand.value.split("\n");
+						const indent = " ".repeat(width.value);
+						const indented = lines.map((x, i) =>
+							(!first.value && i === 0) || (!blank.value && x.length === 0) ? x : indent + x
+						);
+						return new StringValue(indented.join("\n"));
+					}
+				}
+				throw new Error(`Unknown StringValue filter: ${filterName}`);
 			} else {
 				throw new Error(`Cannot apply filter "${filterName}" to type: ${operand.type}`);
 			}
@@ -695,26 +802,14 @@ export class Interpreter {
 		return environment.lookupVariable(node.value);
 	}
 
-	private evaluateArgumentsExpression(args: Expression[], environment: Environment): AnyRuntimeValue[] {
+	private evaluateCallExpression(expr: CallExpression, environment: Environment): AnyRuntimeValue {
 		// Accumulate all keyword arguments into a single object, which will be
 		// used as the final argument in the call function.
-		const result: AnyRuntimeValue[] = [];
-		const kwargs = new Map();
-		for (const argument of args) {
-			if (argument.type === "KeywordArgumentExpression") {
-				const kwarg = argument as KeywordArgumentExpression;
-				kwargs.set(kwarg.key.value, this.evaluate(kwarg.value, environment));
-			} else {
-				result.push(this.evaluate(argument, environment));
-			}
-		}
+		const [args, kwargs] = this.evaluateArguments(expr.args, environment);
+
 		if (kwargs.size > 0) {
-			result.push(new ObjectValue(kwargs));
+			args.push(new KeywordArgumentsValue(kwargs));
 		}
-		return result;
-	}
-	private evaluateCallExpression(expr: CallExpression, environment: Environment): AnyRuntimeValue {
-		const args: AnyRuntimeValue[] = this.evaluateArgumentsExpression(expr.args, environment)
 
 		const fn = this.evaluate(expr.callee, environment);
 		if (fn.type !== "FunctionValue") {
@@ -827,35 +922,29 @@ export class Interpreter {
 		// Scope for the for loop
 		const scope = new Environment(environment);
 
-		const iterable = this.evaluate(node.iterable, scope);
+		let test, iterable;
+		if (node.iterable.type === "SelectExpression") {
+			const select = node.iterable as SelectExpression;
+			iterable = this.evaluate(select.iterable, scope);
+			test = select.test;
+		} else {
+			iterable = this.evaluate(node.iterable, scope);
+		}
+
 		if (!(iterable instanceof ArrayValue)) {
 			throw new Error(`Expected iterable type in for loop: got ${iterable.type}`);
 		}
 
-		let result = "";
-
+		const items: Expression[] = [];
+		const scopeUpdateFunctions: ((scope: Environment) => void)[] = [];
 		for (let i = 0; i < iterable.value.length; ++i) {
-			// Update the loop variable
-			// TODO: Only create object once, then update value?
-			const loop = new Map([
-				["index", new NumericValue(i + 1)],
-				["index0", new NumericValue(i)],
-				["revindex", new NumericValue(iterable.value.length - i)],
-				["revindex0", new NumericValue(iterable.value.length - i - 1)],
-				["first", new BooleanValue(i === 0)],
-				["last", new BooleanValue(i === iterable.value.length - 1)],
-				["length", new NumericValue(iterable.value.length)],
-				["previtem", i > 0 ? iterable.value[i - 1] : new UndefinedValue()],
-				["nextitem", i < iterable.value.length - 1 ? iterable.value[i + 1] : new UndefinedValue()],
-			] as [string, AnyRuntimeValue][]);
-
-			scope.setVariable("loop", new ObjectValue(loop));
+			const loopScope = new Environment(scope);
 
 			const current = iterable.value[i];
 
-			// For this iteration, set the loop variable to the current element
+			let scopeUpdateFunction;
 			if (node.loopvar.type === "Identifier") {
-				scope.setVariable((node.loopvar as Identifier).value, current);
+				scopeUpdateFunction = (scope: Environment) => scope.setVariable((node.loopvar as Identifier).value, current);
 			} else if (node.loopvar.type === "TupleLiteral") {
 				const loopvar = node.loopvar as TupleLiteral;
 				if (current.type !== "ArrayValue") {
@@ -867,20 +956,116 @@ export class Interpreter {
 				if (loopvar.value.length !== c.value.length) {
 					throw new Error(`Too ${loopvar.value.length > c.value.length ? "few" : "many"} items to unpack`);
 				}
-				for (let j = 0; j < loopvar.value.length; ++j) {
-					if (loopvar.value[j].type !== "Identifier") {
-						throw new Error(`Cannot unpack non-identifier type: ${loopvar.value[j].type}`);
+
+				scopeUpdateFunction = (scope: Environment) => {
+					for (let j = 0; j < loopvar.value.length; ++j) {
+						if (loopvar.value[j].type !== "Identifier") {
+							throw new Error(`Cannot unpack non-identifier type: ${loopvar.value[j].type}`);
+						}
+						scope.setVariable((loopvar.value[j] as Identifier).value, c.value[j]);
 					}
-					scope.setVariable((loopvar.value[j] as Identifier).value, c.value[j]);
+				};
+			} else {
+				throw new Error(`Invalid loop variable(s): ${node.loopvar.type}`);
+			}
+
+			if (test) {
+				scopeUpdateFunction(loopScope);
+
+				const testValue = this.evaluate(test, loopScope);
+				if (!testValue.__bool__().value) {
+					continue;
 				}
 			}
+
+			items.push(current);
+			scopeUpdateFunctions.push(scopeUpdateFunction);
+		}
+
+		let result = "";
+
+		let noIteration = true;
+		for (let i = 0; i < items.length; ++i) {
+			// Update the loop variable
+			// TODO: Only create object once, then update value?
+			const loop = new Map([
+				["index", new NumericValue(i + 1)],
+				["index0", new NumericValue(i)],
+				["revindex", new NumericValue(items.length - i)],
+				["revindex0", new NumericValue(items.length - i - 1)],
+				["first", new BooleanValue(i === 0)],
+				["last", new BooleanValue(i === items.length - 1)],
+				["length", new NumericValue(items.length)],
+				["previtem", i > 0 ? items[i - 1] : new UndefinedValue()],
+				["nextitem", i < items.length - 1 ? items[i + 1] : new UndefinedValue()],
+			] as [string, AnyRuntimeValue][]);
+
+			scope.setVariable("loop", new ObjectValue(loop));
+
+			// Update scope for this iteration
+			scopeUpdateFunctions[i](scope);
 
 			// Evaluate the body of the for loop
 			const evaluated = this.evaluateBlock(node.body, scope);
 			result += evaluated.value;
+
+			// At least one iteration took place
+			noIteration = false;
+		}
+
+		// no iteration took place, so we render the default block
+		if (noIteration) {
+			const defaultEvaluated = this.evaluateBlock(node.defaultBlock, scope);
+			result += defaultEvaluated.value;
 		}
 
 		return new StringValue(result);
+	}
+
+	/**
+	 * See https://jinja.palletsprojects.com/en/3.1.x/templates/#macros for more information.
+	 */
+	private evaluateMacro(node: Macro, environment: Environment): NullValue {
+		environment.setVariable(
+			node.name.value,
+			new FunctionValue((args, scope) => {
+				const macroScope = new Environment(scope);
+
+				args = args.slice(); // Make a copy of the arguments
+
+				// Separate positional and keyword arguments
+				let kwargs;
+				if (args.at(-1)?.type === "KeywordArgumentsValue") {
+					kwargs = args.pop() as KeywordArgumentsValue;
+				}
+
+				// Assign values to all arguments defined by the node
+				for (let i = 0; i < node.args.length; ++i) {
+					const nodeArg = node.args[i];
+					const passedArg = args[i];
+					if (nodeArg.type === "Identifier") {
+						const identifier = nodeArg as Identifier;
+						if (!passedArg) {
+							throw new Error(`Missing positional argument: ${identifier.value}`);
+						}
+						macroScope.setVariable(identifier.value, passedArg);
+					} else if (nodeArg.type === "KeywordArgumentExpression") {
+						const kwarg = nodeArg as KeywordArgumentExpression;
+						const value =
+							passedArg ?? // Try positional arguments first
+							kwargs?.value.get(kwarg.key.value) ?? // Look in user-passed kwargs
+							this.evaluate(kwarg.value, macroScope); // Use the default defined by the node
+						macroScope.setVariable(kwarg.key.value, value);
+					} else {
+						throw new Error(`Unknown argument type: ${nodeArg.type}`);
+					}
+				}
+				return this.evaluateBlock(node.body, macroScope);
+			})
+		);
+
+		// Macros are not evaluated immediately, so we return null
+		return new NullValue();
 	}
 
 	evaluate(statement: Statement | undefined, environment: Environment): AnyRuntimeValue {
@@ -898,6 +1083,8 @@ export class Interpreter {
 				return this.evaluateIf(statement as If, environment);
 			case "For":
 				return this.evaluateFor(statement as For, environment);
+			case "Macro":
+				return this.evaluateMacro(statement as Macro, environment);
 
 			// Expressions
 			case "NumericLiteral":
@@ -954,6 +1141,8 @@ function convertToRuntimeValues(input: unknown): AnyRuntimeValue {
 			return new StringValue(input);
 		case "boolean":
 			return new BooleanValue(input);
+		case "undefined":
+			return new UndefinedValue();
 		case "object":
 			if (input === null) {
 				return new NullValue();
@@ -981,8 +1170,6 @@ function convertToRuntimeValues(input: unknown): AnyRuntimeValue {
 				const result = input(..._args) ?? null; // map undefined -> null
 				return convertToRuntimeValues(result);
 			});
-		case "undefined":
-			return new NullValue();
 		default:
 			throw new Error(`Cannot convert to runtime value: ${input}`);
 	}
@@ -997,7 +1184,7 @@ function parseRuntimeValue(arg: any) {
     arg.forEach((item: AnyRuntimeValue, key: string) => {
       result[key] = parseRuntimeValue(item)
     })
-  } else if (arg.type === 'ObjectValue')  {
+  } else if (arg.type === 'ObjectValue' || arg.type === 'KeywordArgumentsValue')  {
     if (arg.orgValue) {result = arg.orgValue}
 		else if (!arg.forEach) {
 			result = parseRuntimeValue(arg.value)
@@ -1007,10 +1194,56 @@ function parseRuntimeValue(arg: any) {
         result[key] = parseRuntimeValue(item)
       })
     }
+		if (arg.type === 'KeywordArgumentsValue') {
+			Object.setPrototypeOf(result, {jinja_kargs: true})
+		}
   } else if (arg.type === 'ArrayValue')  {
     result = arg.value.map((item: AnyRuntimeValue) => parseRuntimeValue(item))
   } else if (arg.type) {
     result = arg.value
   }
   return result
+}
+
+/**
+ * Helper function to convert runtime values to JSON
+ * @param {AnyRuntimeValue} input The runtime value to convert
+ * @param {number|null} [indent] The number of spaces to indent, or null for no indentation
+ * @param {number} [depth] The current depth of the object
+ * @returns {string} JSON representation of the input
+ */
+function toJSON(input: AnyRuntimeValue, indent?: number | null, depth?: number): string {
+	const currentDepth = depth ?? 0;
+	switch (input.type) {
+		case "NullValue":
+		case "UndefinedValue": // JSON.stringify(undefined) -> undefined
+			return "null";
+		case "NumericValue":
+		case "StringValue":
+		case "BooleanValue":
+			return JSON.stringify(input.value);
+		case "ArrayValue":
+		case "ObjectValue": {
+			const indentValue = indent ? " ".repeat(indent) : "";
+			const basePadding = "\n" + indentValue.repeat(currentDepth);
+			const childrenPadding = basePadding + indentValue; // Depth + 1
+
+			if (input.type === "ArrayValue") {
+				const core = (input as ArrayValue).value.map((x) => toJSON(x, indent, currentDepth + 1));
+				return indent
+					? `[${childrenPadding}${core.join(`,${childrenPadding}`)}${basePadding}]`
+					: `[${core.join(", ")}]`;
+			} else {
+				// ObjectValue
+				const core = Array.from((input as ObjectValue).value.entries()).map(([key, value]) => {
+					const v = `"${key}": ${toJSON(value, indent, currentDepth + 1)}`;
+					return indent ? `${childrenPadding}${v}` : v;
+				});
+				return indent ? `{${core.join(",")}${basePadding}}` : `{${core.join(", ")}}`;
+			}
+		}
+		default:
+			// e.g., FunctionValue
+			throw new Error(`Cannot convert to JSON: ${input.type}`);
+	}
 }

@@ -125,66 +125,6 @@ describe("Test interpreter options", () => {
 				options: { lstrip_blocks: true, trim_blocks: true },
 				target: ``,
 			},
-			{
-				template: '{{ obj | tojson }}',
-				data: {obj: {a: 1, b: 2}},
-				options: { lstrip_blocks: true, trim_blocks: true },
-				target: `{"a":1,"b":2}`,
-			},
-			{
-				template: `{{ obj + '' }}`,
-				data: {obj: {a: 1, b: 2}},
-				options: { lstrip_blocks: true, trim_blocks: true },
-				target: `{"a":1,"b":2}`,
-			},
-			{
-				template: `{{ '' + obj }}`,
-				data: {obj: {a: 1, b: 2}},
-				options: { lstrip_blocks: true, trim_blocks: true },
-				target: `{"a":1,"b":2}`,
-			},
-			{
-				template: `{{ obj }}`,
-				data: {obj: new TestObj({a: 1, b: 2})},
-				options: { lstrip_blocks: true, trim_blocks: true },
-				target: `[["a",1],["b",2]]`,
-			},
-			{
-				template: `{{ obj | string }}`,
-				data: {obj: {a: 1, b: 2}},
-				options: { lstrip_blocks: true, trim_blocks: true },
-				target: `{"a":1,"b":2}`,
-			},
-			{
-				template: '{{ obj | tojson }}',
-				data: {obj: [3,2,1]},
-				options: { lstrip_blocks: true, trim_blocks: true },
-				target: `[3,2,1]`,
-			},
-			{
-				template: '{{ "   test it  ".rstrip() }}',
-				data: {obj: [3,2,1]},
-				options: { lstrip_blocks: true, trim_blocks: true },
-				target: `   test it`,
-			},
-			{
-				template: '{{ "   test it  ".lstrip() }}',
-				data: {obj: [3,2,1]},
-				options: { lstrip_blocks: true, trim_blocks: true },
-				target: `test it  `,
-			},
-			{
-				template: '{{ "   test it  " | trimEnd }}',
-				data: {obj: [3,2,1]},
-				options: { lstrip_blocks: true, trim_blocks: true },
-				target: `   test it`,
-			},
-			{
-				template: '{{ "   test it  " | trimStart }}',
-				data: {obj: [3,2,1]},
-				options: { lstrip_blocks: true, trim_blocks: true },
-				target: `test it  `,
-			},
 		];
 
 		for (const test of TESTS) {
@@ -203,7 +143,107 @@ describe("Test interpreter options", () => {
 		}
 	});
 
-  it("should support custom filter", async () => {
+	it("should support string + object", async () => {
+		const test = {
+			template: `{{ '' + obj }}`,
+			data: {obj: {a: 1, b: 2}},
+			options: { lstrip_blocks: true, trim_blocks: true },
+			target: `{"a":1,"b":2}`,
+		}
+		testTemplate(test)
+	});
+
+	it("should support object + string", async () => {
+		const test = {
+			template: `{{ obj + '' }}`,
+			data: {obj: {a: 1, b: 2}},
+			options: { lstrip_blocks: true, trim_blocks: true },
+			target: `{"a":1,"b":2}`,
+		}
+		testTemplate(test)
+	});
+
+	it("should support obj | string filter", async () => {
+		const test = {
+			template: `{{ obj | string }}`,
+			data: {obj: {a: 1, b: 2}},
+			options: { lstrip_blocks: true, trim_blocks: true },
+			target: `{"a":1,"b":2}`,
+		}
+		testTemplate(test)
+	});
+
+	it("should support object | tojson filter", async () => {
+		const test = {
+			template: '{{ obj | tojson }}',
+			data: {obj: {a: 1, b: 2}},
+			options: { lstrip_blocks: true, trim_blocks: true },
+			target: `{"a": 1, "b": 2}`,
+		}
+		testTemplate(test)
+	});
+
+	it("should support array | tojson filter", async () => {
+		const test = {
+			template: '{{ obj | tojson }}',
+			data: {obj: [3,2,1]},
+			options: { lstrip_blocks: true, trim_blocks: true },
+			target: `[3, 2, 1]`,
+		}
+		testTemplate(test)
+	});
+
+	it("should support toString on an object", async () => {
+		const test = {
+			template: `{{ obj }}`,
+			data: {obj: new TestObj({a: 1, b: 2})},
+			options: { lstrip_blocks: true, trim_blocks: true },
+			target: `[["a",1],["b",2]]`,
+		}
+		testTemplate(test)
+	});
+
+	it("should support trimStart filter", () => {
+		const test = {
+			template: '{{ "   test it  " | trimStart }}',
+			data: {obj: [3,2,1]},
+			options: { lstrip_blocks: true, trim_blocks: true },
+			target: `test it  `,
+		}
+		testTemplate(test)
+	});
+
+	it("should support trimEnd filter", () => {
+		const test ={
+			template: '{{ "   test it  " | trimEnd }}',
+			data: {obj: [3,2,1]},
+			options: { lstrip_blocks: true, trim_blocks: true },
+			target: `   test it`,
+		}
+		testTemplate(test)
+	});
+
+	it("should support string.rstrip()", () => {
+		const test = {
+			template: '{{ "   test it  ".rstrip() }}',
+			data: {obj: [3,2,1]},
+			options: { lstrip_blocks: true, trim_blocks: true },
+			target: `   test it`,
+		}
+		testTemplate(test)
+	});
+
+	it("should support string.lstrip()", () => {
+		const test = {
+			template: '{{ "   test it  ".lstrip() }}',
+			data: {obj: [3,2,1]},
+			options: { lstrip_blocks: true, trim_blocks: true },
+			target: `test it  `,
+		}
+		testTemplate(test)
+	});
+
+	it("should support custom filter", async () => {
 		const options = { lstrip_blocks: true, trim_blocks: true }
 		const env = new Environment();
 		env.set('MSelect', function(operand, key) {
@@ -226,4 +266,19 @@ class TestObj {
 	toString() {
 		return JSON.stringify(Object.entries(this))
 	}
+}
+
+function testTemplate(test) {
+	const env = new Environment();
+	env.set("True", true);
+	for (const [key, value] of Object.entries(test.data)) {
+		env.set(key, value);
+	}
+
+	const tokens = tokenize(test.template, test.options);
+	const parsed = parse(tokens);
+
+	const interpreter = new Interpreter(env);
+	const result = interpreter.run(parsed);
+	expect(result.value).toEqual(test.target);
 }
