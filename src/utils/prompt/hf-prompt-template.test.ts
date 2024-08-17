@@ -159,6 +159,7 @@ describe('HfPromptTemplate', () => {
     expect(HfPromptTemplate.isTemplate({template: 'a {{strings }'})).toBeFalsy()
     expect(HfPromptTemplate.isTemplate({template: '{{ "hello world" }}'})).toBeTruthy()
     expect(HfPromptTemplate.isTemplate({template: '{{ "hello world }}'})).toBeFalsy()
+    expect(HfPromptTemplate.isTemplate({template: '{% if true %}hi{%endif%}'})).toBeTruthy()
   })
 
   it('should test isTemplate directly by PromptTemplate', async () => {
