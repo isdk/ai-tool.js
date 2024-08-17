@@ -136,7 +136,7 @@ describe('res server api', () => {
       }
     })
     await wait(10)
-    const port = await findPort(3000)
+    const port = await findPort(3001)
     const result = await server.listen({port})
     console.log('server listening on ', result)
     apiRoot = `http://localhost:${port}/api`
