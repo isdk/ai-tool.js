@@ -50,7 +50,7 @@ Environment.constructor
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:22](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/utils/prompt/template/jinja/src/index.ts#L22)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:22](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/utils/prompt/template/jinja/src/index.ts#L22)
 
 ## Properties
 
@@ -64,7 +64,7 @@ Environment.parent
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:22](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/utils/prompt/template/jinja/src/index.ts#L22)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:22](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/utils/prompt/template/jinja/src/index.ts#L22)
 
 ___
 
@@ -80,7 +80,7 @@ Environment.tests
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:268](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/utils/prompt/template/jinja/src/runtime.ts#L268)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:276](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/utils/prompt/template/jinja/src/runtime.ts#L276)
 
 ___
 
@@ -96,7 +96,7 @@ Environment.variables
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:250](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/utils/prompt/template/jinja/src/runtime.ts#L250)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:258](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/utils/prompt/template/jinja/src/runtime.ts#L258)
 
 ## Methods
 
@@ -116,7 +116,7 @@ Environment.variables
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:26](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/utils/prompt/template/jinja/src/index.ts#L26)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:26](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/utils/prompt/template/jinja/src/index.ts#L26)
 
 ___
 
@@ -130,7 +130,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:32](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/utils/prompt/template/jinja/src/index.ts#L32)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:32](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/utils/prompt/template/jinja/src/index.ts#L32)
 
 ___
 
@@ -154,7 +154,7 @@ Environment.lookupVariable
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:364](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/utils/prompt/template/jinja/src/runtime.ts#L364)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:374](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/utils/prompt/template/jinja/src/runtime.ts#L374)
 
 ___
 
@@ -181,7 +181,7 @@ Environment.set
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:319](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/utils/prompt/template/jinja/src/runtime.ts#L319)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:329](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/utils/prompt/template/jinja/src/runtime.ts#L329)
 
 ___
 
@@ -209,4 +209,4 @@ Environment.setVariable
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:341](https://github.com/isdk/ai-tool.js/blob/43e2dd311b252f4a811e695a7944005766712a72/src/utils/prompt/template/jinja/src/runtime.ts#L341)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:351](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/utils/prompt/template/jinja/src/runtime.ts#L351)
