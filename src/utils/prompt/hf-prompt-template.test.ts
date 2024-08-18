@@ -191,4 +191,19 @@ describe('HfPromptTemplate', () => {
     });
     expect(result).toStrictEqual('知识专家')
   })
+
+  it('should format string with shortcut or value', async () => {
+    const template = `{{result or name}}`
+    //
+    let result = await PromptTemplate.format({
+      template,
+      data: {templateFormat: 'hf',
+        type: 'char',
+        result: 'Yes',
+        name: '知识专家',
+        i:{0: undefined}
+      },
+    });
+    expect(result).toStrictEqual('Yes')
+  })
 })
