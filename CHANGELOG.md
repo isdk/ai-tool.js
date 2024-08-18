@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.10](https://github.com/isdk/ai-tool.js/compare/v0.0.9...v0.0.10) (2024-08-18)
+
+
+### Features
+
+* **jinja:** add macro support from hf ([934ec0f](https://github.com/isdk/ai-tool.js/commit/934ec0ffcdd58c19f9e638c420c11d9eb4a4ea57))
+
+
+### Refactor
+
+* **jinja:** use user-defined filter instead of builtin tojson ([1b97d67](https://github.com/isdk/ai-tool.js/commit/1b97d67ae56215b08af37f13f053f96101df2cb0))
+
 ## [0.0.9](https://github.com/isdk/ai-tool.js/compare/v0.0.8...v0.0.9) (2024-08-16)
 
 
