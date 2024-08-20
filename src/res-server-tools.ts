@@ -1,18 +1,14 @@
-import { getAllNames } from 'util-ex'
-import { type ServerFuncParams, ServerTools } from "./server-tools";
 import { type FuncParams, type FuncItem } from "./tool-func";
-import { NotFoundError } from "./utils";
 import { type ActionName, ActionNames } from "./utils/consts";
+import { RpcMethodsServerFuncParams, RpcMethodsServerTool } from './rpc-methods-server-tool';
 
-export interface ResServerFuncParams extends ServerFuncParams {
+export interface ResServerFuncParams extends RpcMethodsServerFuncParams {
   id?: string|number
   // the value
   val?: any
-  act?: string
 }
 
 export interface ResServerTools {
-  methods: string[]
   get?({id}: ResServerFuncParams): any
   post?(options: ResServerFuncParams): any
   put?({id}: ResServerFuncParams): any
@@ -20,7 +16,8 @@ export interface ResServerTools {
   list?(options?: ResServerFuncParams): any
 }
 
-export class ResServerTools extends ServerTools {
+export class ResServerTools extends RpcMethodsServerTool {
+  static SpecialRpcMethodNames = ActionNames as any
   action: ActionName = 'res'
   params: FuncParams = {
     'id': {type: 'string'},
@@ -29,28 +26,6 @@ export class ResServerTools extends ServerTools {
 
   constructor(name: string|Function|FuncItem, options: FuncItem|any = {}) {
     super(name, options)
-    const methods = this.methods = [] as string[]
-    for (const action of ActionNames) {
-      if (typeof this[action] === 'function') {
-        methods.push(action)
-      }
-    }
-    getAllNames(Object.getPrototypeOf(this)).filter(name => name.startsWith('$') && typeof this[name] === 'function').forEach(name => {
-      methods.push(name)
-      const n = name.slice(1)
-      if (this[n] === undefined) {this[n] = this[name]}
-    })
-  }
-
-  cast(key: string, value: any) {
-    let vType = this.params[key]
-    if (vType) {
-      if (typeof vType !== 'string') {vType = vType.type as string}
-      if (vType === 'number') {
-        value = Number(value)
-      }
-    }
-    return value
   }
 
   getMethodFromParams(params: ResServerFuncParams) {
@@ -62,22 +37,10 @@ export class ResServerTools extends ServerTools {
     return method
   }
 
-  func(params: ResServerFuncParams) {
-    const method = this.getMethodFromParams(params)
-
-    if (method && typeof this[method] === 'function') {
-      if (params.id !== undefined) {
-        params.id = this.cast('id', params.id)
-      }
-      return this[method](params)
-    } else {throw new NotFoundError(method!, this.name)}
+  castParams(params: RpcMethodsServerFuncParams) {
+    if (params.id !== undefined) {
+      params.id = this.cast('id', params.id)
+    }
+    return params
   }
 }
-
-export const ResServerToolsSchema = {
-  methods: {
-    type: 'array',
-  },
-}
-
-ResServerTools.defineProperties(ResServerTools, ResServerToolsSchema)

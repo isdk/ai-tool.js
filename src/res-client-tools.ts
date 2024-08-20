@@ -1,11 +1,9 @@
-import { ClientTools } from "./client-tools";
+import { RpcMethodsClientFuncParams, RpcMethodsClientTool } from "./rpc-methods-client-tool";
 import { throwError } from "./utils";
 import type { ActionName } from "./utils/consts";
 
-export interface ResClientFuncParams {
+export interface ResClientFuncParams extends RpcMethodsClientFuncParams{
   id?: string|number
-  act?: string
-  [name: string]: any
 }
 
 export interface ResClientTools {
@@ -16,7 +14,7 @@ export interface ResClientTools {
   list?(options: ResClientFuncParams): any
 }
 
-export class ResClientTools extends ClientTools {
+export class ResClientTools extends RpcMethodsClientTool {
   async fetch(options: ResClientFuncParams, action: ActionName) {
     if (!options) {options = {} as any}
     if (action && this.action === 'res') {
@@ -35,45 +33,4 @@ export class ResClientTools extends ClientTools {
     }
     return await super.fetch(options, action)
   }
-
-  async _func(action: ActionName, options: ResClientFuncParams) {
-    const res = await this.fetch(options, action)
-    if (options?.stream) {
-      return res
-    }
-    const result = await res.json()
-    return result
-  }
-
-  async func(options: ResClientFuncParams) {
-    const action = options.action
-    if (action) {
-      delete options.action
-    }
-    return this._func(action, options)
-  }
-
-  assignMethods(methods: string[]) {
-    if (Array.isArray(methods)) {
-      for (const action of methods) {
-        const name = action.startsWith('$') ? action.slice(1) : action
-        if (!this[name]) {
-          this[name] = ((act: any) => this._func.bind(this, act))(action)
-        }
-      }
-    }
-  }
 }
-
-export const ResClientToolsSchema = {
-  methods: {
-    type: 'array',
-    assign(value: string[], dest: any, src?: any, name?: string, options?: any) {
-      if (!options?.isExported) {
-        dest.assignMethods(value)
-      }
-    },
-  },
-}
-
-ResClientTools.defineProperties(ResClientTools, ResClientToolsSchema)
