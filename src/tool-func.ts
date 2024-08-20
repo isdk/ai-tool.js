@@ -44,6 +44,8 @@ export interface BaseFuncItem {
   scope?: any;
   tags?: string|string[];
   setup?: (this: ToolFunc, options?: FuncItem) => void;
+  isApi?: boolean; // treat as server API
+  stream?: boolean,
 }
 
 export interface FuncItem extends BaseFuncItem {
@@ -337,6 +339,10 @@ export class ToolFunc extends AdvancePropertyManager {
     return IntSet.has(features, feature)
   }
 
+  isStream(params: any) {
+    return this.stream
+  }
+
 }
 
 export const ToolFuncSchema = {
@@ -362,6 +368,8 @@ export const ToolFuncSchema = {
   setup: {type: 'function'},
   depends: {type: 'object', exported: false},
   tags: {type: ['array', 'string']},
+  isApi: {type: 'boolean'},
+  stream: { type: 'boolean' },
   asyncFeatures: {
     type: 'number',
     // assign(value: IntSet|string|number, dest:ToolFunc, src?:ToolFunc, name?: string, options?: any) {

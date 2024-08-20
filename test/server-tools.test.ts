@@ -133,6 +133,18 @@ describe('server api', () => {
 
     const params = {"a": "number", b: "any"}
 
+    const testToolAsApi = new ToolFunc({
+      name: 'test-cli',
+      params,
+      func: ({a, b}: {a: number, b: any}) => {
+        return a >15 ? b : a
+      },
+      result: 'number',
+      isApi: true,
+    })
+
+    ServerTools.register(testToolAsApi)
+
     ServerTools.register({
       name: 'test-get',
       params,
@@ -227,6 +239,17 @@ describe('server api', () => {
     expect(result).toBeInstanceOf(ClientTools)
     expect(await result.run({a: 10})).toStrictEqual(10)
     expect(await result.run({a: 18, b: 5})).toStrictEqual(5)
+    expect(await result.run({a: 18, b: 'hi world'})).toStrictEqual('hi world')
+
+    // const res = await fetch(apiRoot + '/test?as=1&toolId=6', {
+    // });
+    // console.log(await res.json())
+  })
+
+  it('should work with test-cli', async () => {
+    const result = ClientTools.get('test-cli')
+    expect(result).toBeInstanceOf(ClientTools)
+    expect(await result.run({a: 10})).toStrictEqual(10)
     expect(await result.run({a: 18, b: 'hi world'})).toStrictEqual('hi world')
 
     // const res = await fetch(apiRoot + '/test?as=1&toolId=6', {

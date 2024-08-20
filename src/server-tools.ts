@@ -24,11 +24,11 @@ export declare interface ServerTools extends ServerFuncItem {
 export class ServerTools extends ToolFunc {
   private static _apiRoot?: string;
   static get apiRoot() {
-    return ServerTools._apiRoot
+    return this._apiRoot
   }
 
   static setApiRoot(v: string) {
-    ServerTools._apiRoot = v
+    this._apiRoot = v
   }
 
   // static get(name: string) {
@@ -45,7 +45,7 @@ export class ServerTools extends ToolFunc {
     const result:{[name:string]: ServerTools} = {}
     for (const name in this.items) {
       let item: any = this.items[name];
-      if (item instanceof ServerTools) {
+      if ((item instanceof ServerTools) || item.isApi) {
         if (!item.allowExportFunc) {
           item = item.toJSON()
           delete item.func;
@@ -54,10 +54,6 @@ export class ServerTools extends ToolFunc {
       }
     }
     return result
-  }
-
-  isStream(params: ServerFuncParams) {
-    return this.stream
   }
 
   func({}): Promise<any>|any {}
