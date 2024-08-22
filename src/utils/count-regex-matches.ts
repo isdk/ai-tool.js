@@ -11,11 +11,12 @@ export function countRegexMatches(content: string, regex: RegExp): number {
   // Ensure the regular expression includes the 'g' flag for global matching
   const globalRegex = regex.global ? regex : new RegExp(regex.source, `${regex.flags}g`);
 
-  let match;
+  // @ts-ignore: error TS6133
+  let _match: RegExpExecArray|null;
   let count = 0;
 
   // Iterate through all matches using the global regular expression
-  while ((match = globalRegex.exec(content)) !== null) {
+  while ((_match = globalRegex.exec(content)) !== null) {
       count++;
   }
 
