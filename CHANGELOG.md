@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.1.0](https://github.com/isdk/ai-tool.js/compare/v0.0.10...v0.1.0) (2024-08-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* ToolFunc can be used as Server Tool now: set isApi to true
+
+### Features
+
+* ToolFunc can be used as Server Tool now: set isApi to true ([4e03b8d](https://github.com/isdk/ai-tool.js/commit/4e03b8d2ea1ebd1da2cc9417e43f47aa4f143f5e))
+* **util:** add countRegexMatches func ([068b46a](https://github.com/isdk/ai-tool.js/commit/068b46a0518befb5502ade881694461123a9d3e5))
+
+
+### Bug Fixes
+
+* **ts:** ignore error TS6133 "_match is declared but its value is never read" ([262bec6](https://github.com/isdk/ai-tool.js/commit/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2))
+
+
+### Refactor
+
+* extract rpc-methods-server-tool from res-server-tools ([f83adda](https://github.com/isdk/ai-tool.js/commit/f83adda93027ec6847b7e4df00c9383518d996b0))
+
 ## [0.0.10](https://github.com/isdk/ai-tool.js/compare/v0.0.9...v0.0.10) (2024-08-18)
 
 
