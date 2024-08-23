@@ -4,7 +4,7 @@
 
 ## Hierarchy
 
-- [`ServerTools`](ServerTools.md)
+- `RpcMethodsServerTool`
 
   ↳ **`ResServerTools`**
 
@@ -25,6 +25,7 @@
 - [constructor](ResServerTools.md#constructor-1)
 - [defaultOptions](ResServerTools.md#defaultoptions)
 - [fetchOptions](ResServerTools.md#fetchoptions)
+- [isApi](ResServerTools.md#isapi)
 - [methods](ResServerTools.md#methods)
 - [name](ResServerTools.md#name)
 - [nonExported1stChar](ResServerTools.md#nonexported1stchar)
@@ -35,11 +36,13 @@
 - [should](ResServerTools.md#should)
 - [stream](ResServerTools.md#stream)
 - [tags](ResServerTools.md#tags)
+- [SpecialRpcMethodNames](ResServerTools.md#specialrpcmethodnames)
 - [dataPath](ResServerTools.md#datapath)
 - [items](ResServerTools.md#items)
 
 ### Accessors
 
+- [SpecialRpcMethodNames](ResServerTools.md#specialrpcmethodnames-1)
 - [apiRoot](ResServerTools.md#apiroot-1)
 
 ### Methods
@@ -50,6 +53,7 @@
 - [assignPropertyTo](ResServerTools.md#assignpropertyto)
 - [assignTo](ResServerTools.md#assignto)
 - [cast](ResServerTools.md#cast)
+- [castParams](ResServerTools.md#castparams)
 - [clone](ResServerTools.md#clone)
 - [cloneTo](ResServerTools.md#cloneto)
 - [defineProperties](ResServerTools.md#defineproperties)
@@ -63,6 +67,7 @@
 - [getProperties](ResServerTools.md#getproperties)
 - [hasAsyncFeature](ResServerTools.md#hasasyncfeature)
 - [hasOwnProperty](ResServerTools.md#hasownproperty)
+- [initRpcMethods](ResServerTools.md#initrpcmethods)
 - [initialize](ResServerTools.md#initialize)
 - [isPrototypeOf](ResServerTools.md#isprototypeof)
 - [isSame](ResServerTools.md#issame)
@@ -144,23 +149,15 @@
 
 [`ResServerTools`](ResServerTools.md)
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[constructor](ServerTools.md#constructor)
-
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:30](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L30)
+[packages/ai-tool/src/res-server-tools.ts:27](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L27)
 
 ## Properties
 
 ### $attributes
 
 • **$attributes**: `Properties`
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[$attributes](ServerTools.md#$attributes)
 
 #### Defined in
 
@@ -172,13 +169,9 @@ ___
 
 • **action**: ``"get"`` \| ``"post"`` \| ``"put"`` \| ``"delete"`` \| ``"patch"`` \| ``"list"`` \| ``"res"`` = `'res'`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[action](ServerTools.md#action)
-
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:24](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L24)
+[packages/ai-tool/src/res-server-tools.ts:21](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L21)
 
 ___
 
@@ -186,13 +179,9 @@ ___
 
 • `Optional` **allowExportFunc**: `boolean`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[allowExportFunc](ServerTools.md#allowexportfunc)
-
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/server-tools.ts#L14)
+[packages/ai-tool/src/server-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/server-tools.ts#L14)
 
 ___
 
@@ -200,13 +189,9 @@ ___
 
 • `Optional` **apiRoot**: `string`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[apiRoot](ServerTools.md#apiroot)
-
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:35](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/utils/consts.ts#L35)
+[packages/ai-tool/src/utils/consts.ts:34](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/utils/consts.ts#L34)
 
 ___
 
@@ -235,10 +220,6 @@ The default options for export and assign
 | `assign?` | `IMergeOptions` |
 | `export?` | `IMergeOptions` |
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[defaultOptions](ServerTools.md#defaultoptions)
-
 #### Defined in
 
 node_modules/.pnpm/property-manager@2.0.0-alpha.5/node_modules/property-manager/lib/abstract.d.ts:74
@@ -249,13 +230,19 @@ ___
 
 • `Optional` **fetchOptions**: `any`
 
-#### Inherited from
+#### Defined in
 
-[ServerTools](ServerTools.md).[fetchOptions](ServerTools.md#fetchoptions)
+[packages/ai-tool/src/utils/consts.ts:36](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/utils/consts.ts#L36)
+
+___
+
+### isApi
+
+• `Optional` **isApi**: `boolean`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:37](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/utils/consts.ts#L37)
+[packages/ai-tool/src/tool-func.ts:47](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L47)
 
 ___
 
@@ -265,7 +252,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:15](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L15)
+[packages/ai-tool/src/rpc-methods-server-tool.ts:11](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/rpc-methods-server-tool.ts#L11)
 
 ___
 
@@ -273,13 +260,9 @@ ___
 
 • `Optional` **name**: `string`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[name](ServerTools.md#name)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:41](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L41)
+[packages/ai-tool/src/tool-func.ts:41](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L41)
 
 ___
 
@@ -288,10 +271,6 @@ ___
 • **nonExported1stChar**: `string`
 
 the property with the default prefix '$' will not be exported.
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[nonExported1stChar](ServerTools.md#nonexported1stchar)
 
 #### Defined in
 
@@ -303,13 +282,9 @@ ___
 
 • **params**: [`FuncParams`](../interfaces/FuncParams.md)
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[params](ServerTools.md#params)
-
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:25](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L25)
+[packages/ai-tool/src/res-server-tools.ts:22](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L22)
 
 ___
 
@@ -317,13 +292,9 @@ ___
 
 • `Optional` **result**: `string`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[result](ServerTools.md#result)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:43](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L43)
+[packages/ai-tool/src/tool-func.ts:43](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L43)
 
 ___
 
@@ -331,13 +302,9 @@ ___
 
 • `Optional` **scope**: `any`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[scope](ServerTools.md#scope)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:44](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L44)
+[packages/ai-tool/src/tool-func.ts:44](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L44)
 
 ___
 
@@ -360,23 +327,15 @@ ___
 
 `void`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[setup](ServerTools.md#setup)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:46](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L46)
+[packages/ai-tool/src/tool-func.ts:46](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L46)
 
 ___
 
 ### should
 
 • **should**: `Assertion`
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[should](ServerTools.md#should)
 
 #### Defined in
 
@@ -388,13 +347,9 @@ ___
 
 • `Optional` **stream**: `boolean`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[stream](ServerTools.md#stream)
-
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:38](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/utils/consts.ts#L38)
+[packages/ai-tool/src/tool-func.ts:48](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L48)
 
 ___
 
@@ -402,13 +357,19 @@ ___
 
 • `Optional` **tags**: `string` \| `string`[]
 
-#### Inherited from
+#### Defined in
 
-[ServerTools](ServerTools.md).[tags](ServerTools.md#tags)
+[packages/ai-tool/src/tool-func.ts:45](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L45)
+
+___
+
+### SpecialRpcMethodNames
+
+▪ `Static` **SpecialRpcMethodNames**: `any`
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:45](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L45)
+[packages/ai-tool/src/res-server-tools.ts:20](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L20)
 
 ___
 
@@ -416,13 +377,9 @@ ___
 
 ▪ `Static` **dataPath**: `string`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[dataPath](ServerTools.md#datapath)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:73](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L73)
+[packages/ai-tool/src/tool-func.ts:75](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L75)
 
 ___
 
@@ -430,15 +387,25 @@ ___
 
 ▪ `Static` **items**: [`Funcs`](../interfaces/Funcs.md) = `{}`
 
-#### Inherited from
+#### Defined in
 
-[ServerTools](ServerTools.md).[items](ServerTools.md#items)
+[packages/ai-tool/src/tool-func.ts:74](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L74)
+
+## Accessors
+
+### SpecialRpcMethodNames
+
+• `get` **SpecialRpcMethodNames**(): `any`
+
+#### Returns
+
+`any`
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:72](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L72)
+[packages/ai-tool/src/rpc-methods-server-tool.ts:22](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/rpc-methods-server-tool.ts#L22)
 
-## Accessors
+___
 
 ### apiRoot
 
@@ -450,7 +417,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:26](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/server-tools.ts#L26)
+[packages/ai-tool/src/server-tools.ts:26](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/server-tools.ts#L26)
 
 ## Methods
 
@@ -468,13 +435,9 @@ ___
 
 `any`[]
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[arr2ObjParams](ServerTools.md#arr2objparams)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:252](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L252)
+[packages/ai-tool/src/tool-func.ts:254](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L254)
 
 ___
 
@@ -496,10 +459,6 @@ Assign the values from the src object.
 `this`
 
 this object
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[assign](ServerTools.md#assign)
 
 #### Defined in
 
@@ -526,10 +485,6 @@ Assign a property of src to this object.
 #### Returns
 
 `void`
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[assignProperty](ServerTools.md#assignproperty)
 
 #### Defined in
 
@@ -560,10 +515,6 @@ Assign the property value from the src to destination object.
 
 **`Abstract`**
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[assignPropertyTo](ServerTools.md#assignpropertyto)
-
 #### Defined in
 
 node_modules/.pnpm/property-manager@2.0.0-alpha.5/node_modules/property-manager/lib/abstract.d.ts:131
@@ -589,10 +540,6 @@ Assign this attributes to the dest object
 
 the dest object
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[assignTo](ServerTools.md#assignto)
-
 #### Defined in
 
 node_modules/.pnpm/property-manager@2.0.0-alpha.5/node_modules/property-manager/lib/abstract.d.ts:191
@@ -616,7 +563,27 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:45](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L45)
+[packages/ai-tool/src/rpc-methods-server-tool.ts:48](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/rpc-methods-server-tool.ts#L48)
+
+___
+
+### castParams
+
+▸ **castParams**(`params`): `RpcMethodsServerFuncParams`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `params` | `RpcMethodsServerFuncParams` |
+
+#### Returns
+
+`RpcMethodsServerFuncParams`
+
+#### Defined in
+
+[packages/ai-tool/src/res-server-tools.ts:40](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L40)
 
 ___
 
@@ -637,10 +604,6 @@ Create a new object with the same values of attributes.
 `any`
 
 the new object
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[clone](ServerTools.md#clone)
 
 #### Defined in
 
@@ -667,10 +630,6 @@ Create and assign the values to the destination object.
 
 the new dest object
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[cloneTo](ServerTools.md#cloneto)
-
 #### Defined in
 
 node_modules/.pnpm/property-manager@2.0.0-alpha.5/node_modules/property-manager/lib/abstract.d.ts:148
@@ -695,10 +654,6 @@ Define the attributes of this object.
 
 **`Abstract`**
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[defineProperties](ServerTools.md#defineproperties)
-
 #### Defined in
 
 node_modules/.pnpm/property-manager@2.0.0-alpha.5/node_modules/property-manager/lib/abstract.d.ts:89
@@ -721,7 +676,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:19](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L19)
+[packages/ai-tool/src/res-server-tools.ts:15](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L15)
 
 ___
 
@@ -744,10 +699,6 @@ Export attributes to the dest json object.
 
 the dest object.
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[exportTo](ServerTools.md#exportto)
-
 #### Defined in
 
 node_modules/.pnpm/property-manager@2.0.0-alpha.5/node_modules/property-manager/lib/abstract.d.ts:173
@@ -762,19 +713,15 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `params` | [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md) |
+| `params` | `RpcMethodsServerFuncParams` |
 
 #### Returns
 
 `any`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[func](ServerTools.md#func)
-
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:65](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L65)
+[packages/ai-tool/src/rpc-methods-server-tool.ts:68](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/rpc-methods-server-tool.ts#L68)
 
 ___
 
@@ -794,7 +741,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:16](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L16)
+[packages/ai-tool/src/res-server-tools.ts:12](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L12)
 
 ___
 
@@ -812,13 +759,9 @@ ___
 
 `any`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[getFunc](ServerTools.md#getfunc)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:305](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L305)
+[packages/ai-tool/src/tool-func.ts:307](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L307)
 
 ___
 
@@ -836,13 +779,9 @@ ___
 
 `any`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[getFuncWithPos](ServerTools.md#getfuncwithpos)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:329](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L329)
+[packages/ai-tool/src/tool-func.ts:331](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L331)
 
 ___
 
@@ -862,7 +801,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:56](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L56)
+[packages/ai-tool/src/res-server-tools.ts:31](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L31)
 
 ___
 
@@ -879,10 +818,6 @@ Get the defined attributes.
 the descriptors of properties object
 
 **`Abstract`**
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[getProperties](ServerTools.md#getproperties)
 
 #### Defined in
 
@@ -904,13 +839,9 @@ ___
 
 `boolean`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[hasAsyncFeature](ServerTools.md#hasasyncfeature)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:334](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L334)
+[packages/ai-tool/src/tool-func.ts:336](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L336)
 
 ___
 
@@ -930,13 +861,29 @@ Determines whether an object has a property with the specified name.
 
 `boolean`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[hasOwnProperty](ServerTools.md#hasownproperty)
-
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:140
+
+___
+
+### initRpcMethods
+
+▸ **initRpcMethods**(`methods?`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `methods` | `string`[] |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[packages/ai-tool/src/rpc-methods-server-tool.ts:27](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/rpc-methods-server-tool.ts#L27)
 
 ___
 
@@ -957,10 +904,6 @@ Initialize object and assign attribute values from src if src exists.
 `this`
 
 this object.
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[initialize](ServerTools.md#initialize)
 
 #### Defined in
 
@@ -983,10 +926,6 @@ Determines whether an object exists in another object's prototype chain.
 #### Returns
 
 `boolean`
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[isPrototypeOf](ServerTools.md#isprototypeof)
 
 #### Defined in
 
@@ -1011,10 +950,6 @@ Check the src object whether “equals” this object.
 
 `boolean`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[isSame](ServerTools.md#issame)
-
 #### Defined in
 
 node_modules/.pnpm/property-manager@2.0.0-alpha.5/node_modules/property-manager/lib/abstract.d.ts:200
@@ -1029,19 +964,15 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `params` | [`ServerFuncParams`](../interfaces/ServerFuncParams.md) |
+| `params` | `any` |
 
 #### Returns
 
 `undefined` \| `boolean`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[isStream](ServerTools.md#isstream)
-
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:59](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/server-tools.ts#L59)
+[packages/ai-tool/src/tool-func.ts:342](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L342)
 
 ___
 
@@ -1061,7 +992,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:20](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L20)
+[packages/ai-tool/src/res-server-tools.ts:16](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L16)
 
 ___
 
@@ -1084,10 +1015,6 @@ Merge this attributes to dest object.
 
 the dest object.
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[mergeTo](ServerTools.md#mergeto)
-
 #### Defined in
 
 node_modules/.pnpm/property-manager@2.0.0-alpha.5/node_modules/property-manager/lib/abstract.d.ts:164
@@ -1108,13 +1035,9 @@ ___
 
 `any`[]
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[obj2ArrParams](ServerTools.md#obj2arrparams)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:265](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L265)
+[packages/ai-tool/src/tool-func.ts:267](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L267)
 
 ___
 
@@ -1134,7 +1057,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:17](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L17)
+[packages/ai-tool/src/res-server-tools.ts:13](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L13)
 
 ___
 
@@ -1153,10 +1076,6 @@ Determines whether a specified property is enumerable.
 #### Returns
 
 `boolean`
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[propertyIsEnumerable](ServerTools.md#propertyisenumerable)
 
 #### Defined in
 
@@ -1180,7 +1099,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:18](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L18)
+[packages/ai-tool/src/res-server-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L14)
 
 ___
 
@@ -1192,13 +1111,9 @@ ___
 
 `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[register](ServerTools.md#register)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:235](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L235)
+[packages/ai-tool/src/tool-func.ts:237](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L237)
 
 ___
 
@@ -1216,13 +1131,9 @@ ___
 
 `Promise`\<`any`\>
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[run](ServerTools.md#run)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:292](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L292)
+[packages/ai-tool/src/tool-func.ts:294](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L294)
 
 ___
 
@@ -1241,13 +1152,9 @@ ___
 
 `Promise`\<`any`\>
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[runAs](ServerTools.md#runas)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:296](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L296)
+[packages/ai-tool/src/tool-func.ts:298](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L298)
 
 ___
 
@@ -1266,13 +1173,9 @@ ___
 
 `any`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[runAsSync](ServerTools.md#runassync)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:300](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L300)
+[packages/ai-tool/src/tool-func.ts:302](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L302)
 
 ___
 
@@ -1290,13 +1193,9 @@ ___
 
 `any`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[runSync](ServerTools.md#runsync)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:278](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L278)
+[packages/ai-tool/src/tool-func.ts:280](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L280)
 
 ___
 
@@ -1314,13 +1213,9 @@ ___
 
 `Promise`\<`any`\>
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[runWithPos](ServerTools.md#runwithpos)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:321](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L321)
+[packages/ai-tool/src/tool-func.ts:323](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L323)
 
 ___
 
@@ -1339,13 +1234,9 @@ ___
 
 `Promise`\<`any`\>
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[runWithPosAs](ServerTools.md#runwithposas)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:325](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L325)
+[packages/ai-tool/src/tool-func.ts:327](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L327)
 
 ___
 
@@ -1364,13 +1255,9 @@ ___
 
 `any`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[runWithPosAsSync](ServerTools.md#runwithposassync)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:317](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L317)
+[packages/ai-tool/src/tool-func.ts:319](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L319)
 
 ___
 
@@ -1388,13 +1275,9 @@ ___
 
 `any`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[runWithPosSync](ServerTools.md#runwithpossync)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:310](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L310)
+[packages/ai-tool/src/tool-func.ts:312](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L312)
 
 ___
 
@@ -1405,10 +1288,6 @@ ___
 #### Returns
 
 `any`
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[toJSON](ServerTools.md#tojson)
 
 #### Defined in
 
@@ -1425,10 +1304,6 @@ Returns a date converted to a string using the current locale.
 #### Returns
 
 `string`
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[toLocaleString](ServerTools.md#tolocalestring)
 
 #### Defined in
 
@@ -1454,10 +1329,6 @@ Convert the attributes to the json object
 
 the json object.
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[toObject](ServerTools.md#toobject)
-
 #### Defined in
 
 node_modules/.pnpm/property-manager@2.0.0-alpha.5/node_modules/property-manager/lib/abstract.d.ts:181
@@ -1474,10 +1345,6 @@ Returns a string representation of an object.
 
 `string`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[toString](ServerTools.md#tostring)
-
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:128
@@ -1492,13 +1359,9 @@ ___
 
 `any`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[unregister](ServerTools.md#unregister)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:248](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L248)
+[packages/ai-tool/src/tool-func.ts:250](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L250)
 
 ___
 
@@ -1511,10 +1374,6 @@ Returns the primitive value of the specified object.
 #### Returns
 
 `Object`
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[valueOf](ServerTools.md#valueof)
 
 #### Defined in
 
@@ -1547,10 +1406,6 @@ target object. Returns the target object.
 
 `T` & `U`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[assign](ServerTools.md#assign-1)
-
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.core.d.ts:284
@@ -1579,10 +1434,6 @@ target object. Returns the target object.
 #### Returns
 
 `T` & `U` & `V`
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[assign](ServerTools.md#assign-1)
 
 #### Defined in
 
@@ -1615,10 +1466,6 @@ target object. Returns the target object.
 
 `T` & `U` & `V` & `W`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[assign](ServerTools.md#assign-1)
-
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.core.d.ts:303
@@ -1638,10 +1485,6 @@ target object. Returns the target object.
 #### Returns
 
 `any`
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[assign](ServerTools.md#assign-1)
 
 #### Defined in
 
@@ -1665,10 +1508,6 @@ Creates an object that has the specified prototype or that has null prototype.
 
 `any`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[create](ServerTools.md#create)
-
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:188
@@ -1687,10 +1526,6 @@ Creates an object that has the specified prototype, and that optionally contains
 #### Returns
 
 `any`
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[create](ServerTools.md#create)
 
 #### Defined in
 
@@ -1713,10 +1548,6 @@ ___
 #### Returns
 
 `any`
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[defineProperties](ServerTools.md#defineproperties-1)
 
 #### Defined in
 
@@ -1748,10 +1579,6 @@ Adds a property to an object, or modifies attributes of an existing property.
 
 `T`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[defineProperty](ServerTools.md#defineproperty)
-
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:203
@@ -1780,10 +1607,6 @@ Returns an array of key/values of the enumerable properties of an object
 
 [`string`, `T`][]
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[entries](ServerTools.md#entries)
-
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2017.object.d.ts:36
@@ -1801,10 +1624,6 @@ Returns an array of key/values of the enumerable properties of an object
 #### Returns
 
 [`string`, `any`][]
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[entries](ServerTools.md#entries)
 
 #### Defined in
 
@@ -1834,10 +1653,6 @@ Prevents the modification of existing property attributes and values, and preven
 
 `T`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[freeze](ServerTools.md#freeze)
-
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:222
@@ -1863,10 +1678,6 @@ Prevents the modification of existing property attributes and values, and preven
 
 `Readonly`\<`T`\>
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[freeze](ServerTools.md#freeze)
-
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:228
@@ -1890,10 +1701,6 @@ Prevents the modification of existing property attributes and values, and preven
 #### Returns
 
 `Readonly`\<`T`\>
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[freeze](ServerTools.md#freeze)
 
 #### Defined in
 
@@ -1923,10 +1730,6 @@ Returns an object created by key-value entries for properties and methods
 
 `Object`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[fromEntries](ServerTools.md#fromentries)
-
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2019.object.d.ts:26
@@ -1944,10 +1747,6 @@ Returns an object created by key-value entries for properties and methods
 #### Returns
 
 `any`
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[fromEntries](ServerTools.md#fromentries)
 
 #### Defined in
 
@@ -1969,13 +1768,9 @@ ___
 
 [`ToolFunc`](ToolFunc.md)
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[get](ServerTools.md#get)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:75](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L75)
+[packages/ai-tool/src/tool-func.ts:77](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L77)
 
 ___
 
@@ -1993,13 +1788,9 @@ ___
 
 [`ToolFunc`](ToolFunc.md)[]
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[getAllByTag](ServerTools.md#getallbytag)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:103](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L103)
+[packages/ai-tool/src/tool-func.ts:105](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L105)
 
 ___
 
@@ -2017,13 +1808,9 @@ ___
 
 `undefined` \| [`ToolFunc`](ToolFunc.md)
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[getByTag](ServerTools.md#getbytag)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:83](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L83)
+[packages/ai-tool/src/tool-func.ts:85](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L85)
 
 ___
 
@@ -2041,13 +1828,9 @@ ___
 
 `any`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[getFunc](ServerTools.md#getfunc-1)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:144](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L144)
+[packages/ai-tool/src/tool-func.ts:146](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L146)
 
 ___
 
@@ -2065,13 +1848,9 @@ ___
 
 `any`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[getFuncWithPos](ServerTools.md#getfuncwithpos-1)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:165](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L165)
+[packages/ai-tool/src/tool-func.ts:167](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L167)
 
 ___
 
@@ -2092,10 +1871,6 @@ An own property descriptor is one that is defined directly on the object and is 
 #### Returns
 
 `undefined` \| `PropertyDescriptor`
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[getOwnPropertyDescriptor](ServerTools.md#getownpropertydescriptor)
 
 #### Defined in
 
@@ -2125,10 +1900,6 @@ Returns an object containing all own property descriptors of an object
 
 \{ [P in string \| number \| symbol]: TypedPropertyDescriptor\<T[P]\> } & \{ `[x: string]`: `PropertyDescriptor`;  }
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[getOwnPropertyDescriptors](ServerTools.md#getownpropertydescriptors)
-
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2017.object.d.ts:48
@@ -2152,10 +1923,6 @@ on that object, and are not inherited from the object's prototype. The propertie
 
 `string`[]
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[getOwnPropertyNames](ServerTools.md#getownpropertynames)
-
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:182
@@ -2178,10 +1945,6 @@ Returns an array of all symbol properties found directly on object o.
 
 `symbol`[]
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[getOwnPropertySymbols](ServerTools.md#getownpropertysymbols)
-
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.core.d.ts:317
@@ -2197,10 +1960,6 @@ get all properties descriptor include inherited.
 #### Returns
 
 `PropDescriptors`
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[getProperties](ServerTools.md#getproperties-1)
 
 #### Defined in
 
@@ -2224,10 +1983,6 @@ Returns the prototype of an object.
 
 `any`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[getPrototypeOf](ServerTools.md#getprototypeof)
-
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:167
@@ -2248,13 +2003,9 @@ ___
 
 `boolean`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[hasAsyncFeature](ServerTools.md#hasasyncfeature-1)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:121](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L121)
+[packages/ai-tool/src/tool-func.ts:123](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L123)
 
 ___
 
@@ -2274,10 +2025,6 @@ Determines whether an object has a property with the specified name.
 #### Returns
 
 `boolean`
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[hasOwn](ServerTools.md#hasown)
 
 #### Defined in
 
@@ -2302,10 +2049,6 @@ Returns true if the values are the same value, false otherwise.
 
 `boolean`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[is](ServerTools.md#is)
-
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.core.d.ts:330
@@ -2327,10 +2070,6 @@ Returns a value that indicates whether new properties can be added to an object.
 #### Returns
 
 `boolean`
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[isExtensible](ServerTools.md#isextensible)
 
 #### Defined in
 
@@ -2354,10 +2093,6 @@ Returns true if existing property attributes and values cannot be modified in an
 
 `boolean`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[isFrozen](ServerTools.md#isfrozen)
-
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:252
@@ -2379,10 +2114,6 @@ Returns true if existing property attributes cannot be modified in an object and
 #### Returns
 
 `boolean`
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[isSealed](ServerTools.md#issealed)
 
 #### Defined in
 
@@ -2406,10 +2137,6 @@ Returns the names of the enumerable string properties and methods of an object.
 
 `string`[]
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[keys](ServerTools.md#keys)
-
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:264
@@ -2428,10 +2155,6 @@ Returns the names of the enumerable string properties and methods of an object.
 
 `string`[]
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[keys](ServerTools.md#keys)
-
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.core.d.ts:323
@@ -2446,13 +2169,9 @@ ___
 
 [`Funcs`](../interfaces/Funcs.md)
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[list](ServerTools.md#list)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:79](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L79)
+[packages/ai-tool/src/tool-func.ts:81](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L81)
 
 ___
 
@@ -2478,10 +2197,6 @@ Prevents the addition of new properties to an object.
 
 `T`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[preventExtensions](ServerTools.md#preventextensions)
-
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:240
@@ -2503,13 +2218,9 @@ ___
 
 `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[register](ServerTools.md#register-1)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:170](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L170)
+[packages/ai-tool/src/tool-func.ts:172](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L172)
 
 ▸ **register**(`func`, `options`): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
@@ -2524,13 +2235,9 @@ ___
 
 `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[register](ServerTools.md#register-1)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:171](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L171)
+[packages/ai-tool/src/tool-func.ts:173](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L173)
 
 ▸ **register**(`name`, `options?`): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
@@ -2545,13 +2252,9 @@ ___
 
 `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[register](ServerTools.md#register-1)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:172](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L172)
+[packages/ai-tool/src/tool-func.ts:174](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L174)
 
 ___
 
@@ -2570,13 +2273,9 @@ ___
 
 `Promise`\<`any`\>
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[run](ServerTools.md#run-1)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:128](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L128)
+[packages/ai-tool/src/tool-func.ts:130](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L130)
 
 ___
 
@@ -2595,13 +2294,9 @@ ___
 
 `any`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[runSync](ServerTools.md#runsync-1)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:136](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L136)
+[packages/ai-tool/src/tool-func.ts:138](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L138)
 
 ___
 
@@ -2620,13 +2315,9 @@ ___
 
 `Promise`\<`any`\>
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[runWithPos](ServerTools.md#runwithpos-1)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:149](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L149)
+[packages/ai-tool/src/tool-func.ts:151](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L151)
 
 ___
 
@@ -2645,13 +2336,9 @@ ___
 
 `any`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[runWithPosSync](ServerTools.md#runwithpossync-1)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:157](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L157)
+[packages/ai-tool/src/tool-func.ts:159](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L159)
 
 ___
 
@@ -2677,10 +2364,6 @@ Prevents the modification of attributes of existing properties, and prevents the
 
 `T`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[seal](ServerTools.md#seal)
-
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:216
@@ -2701,13 +2384,9 @@ ___
 
 `void`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[setApiRoot](ServerTools.md#setapiroot)
-
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:30](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/server-tools.ts#L30)
+[packages/ai-tool/src/server-tools.ts:30](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/server-tools.ts#L30)
 
 ___
 
@@ -2728,10 +2407,6 @@ Sets the prototype of a specified object o to object proto or null. Returns the 
 
 `any`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[setPrototypeOf](ServerTools.md#setprototypeof)
-
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.core.d.ts:337
@@ -2746,13 +2421,9 @@ ___
 
 `Object`
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[toJSON](ServerTools.md#tojson-1)
-
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:44](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/server-tools.ts#L44)
+[packages/ai-tool/src/server-tools.ts:44](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/server-tools.ts#L44)
 
 ___
 
@@ -2770,13 +2441,9 @@ ___
 
 `undefined` \| [`ToolFunc`](ToolFunc.md)
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[unregister](ServerTools.md#unregister-1)
-
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:200](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L200)
+[packages/ai-tool/src/tool-func.ts:202](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L202)
 
 ___
 
@@ -2802,10 +2469,6 @@ Returns an array of values of the enumerable properties of an object
 
 `T`[]
 
-#### Inherited from
-
-[ServerTools](ServerTools.md).[values](ServerTools.md#values)
-
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2017.object.d.ts:24
@@ -2823,10 +2486,6 @@ Returns an array of values of the enumerable properties of an object
 #### Returns
 
 `any`[]
-
-#### Inherited from
-
-[ServerTools](ServerTools.md).[values](ServerTools.md#values)
 
 #### Defined in
 

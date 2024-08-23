@@ -21,6 +21,7 @@
 - [constructor](EventToolFunc.md#constructor-1)
 - [defaultOptions](EventToolFunc.md#defaultoptions)
 - [description](EventToolFunc.md#description)
+- [isApi](EventToolFunc.md#isapi)
 - [name](EventToolFunc.md#name)
 - [nonExported1stChar](EventToolFunc.md#nonexported1stchar)
 - [params](EventToolFunc.md#params)
@@ -28,6 +29,7 @@
 - [scope](EventToolFunc.md#scope)
 - [setup](EventToolFunc.md#setup)
 - [should](EventToolFunc.md#should)
+- [stream](EventToolFunc.md#stream)
 - [tags](EventToolFunc.md#tags)
 - [dataPath](EventToolFunc.md#datapath)
 - [items](EventToolFunc.md#items)
@@ -56,6 +58,7 @@
 - [initialize](EventToolFunc.md#initialize)
 - [isPrototypeOf](EventToolFunc.md#isprototypeof)
 - [isSame](EventToolFunc.md#issame)
+- [isStream](EventToolFunc.md#isstream)
 - [mergeTo](EventToolFunc.md#mergeto)
 - [obj2ArrParams](EventToolFunc.md#obj2arrparams)
 - [propertyIsEnumerable](EventToolFunc.md#propertyisenumerable)
@@ -134,7 +137,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:208](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L208)
+[packages/ai-tool/src/tool-func.ts:210](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L210)
 
 ## Properties
 
@@ -158,7 +161,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event.ts:7](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event.ts#L7)
+[packages/ai-tool/src/funcs/event.ts:7](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event.ts#L7)
 
 ___
 
@@ -207,7 +210,21 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event.ts:9](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event.ts#L9)
+[packages/ai-tool/src/funcs/event.ts:9](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event.ts#L9)
+
+___
+
+### isApi
+
+• `Optional` **isApi**: `boolean`
+
+#### Inherited from
+
+[ToolFunc](ToolFunc.md).[isApi](ToolFunc.md#isapi)
+
+#### Defined in
+
+[packages/ai-tool/src/tool-func.ts:47](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L47)
 
 ___
 
@@ -221,7 +238,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:41](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L41)
+[packages/ai-tool/src/tool-func.ts:41](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L41)
 
 ___
 
@@ -251,7 +268,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:42](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L42)
+[packages/ai-tool/src/tool-func.ts:42](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L42)
 
 ___
 
@@ -265,7 +282,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event.ts:10](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event.ts#L10)
+[packages/ai-tool/src/funcs/event.ts:10](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event.ts#L10)
 
 ___
 
@@ -279,7 +296,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:44](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L44)
+[packages/ai-tool/src/tool-func.ts:44](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L44)
 
 ___
 
@@ -308,7 +325,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:46](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L46)
+[packages/ai-tool/src/tool-func.ts:46](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L46)
 
 ___
 
@@ -326,6 +343,20 @@ node_modules/.pnpm/@types+chai@4.3.16/node_modules/@types/chai/index.d.ts:2100
 
 ___
 
+### stream
+
+• `Optional` **stream**: `boolean`
+
+#### Inherited from
+
+[ToolFunc](ToolFunc.md).[stream](ToolFunc.md#stream)
+
+#### Defined in
+
+[packages/ai-tool/src/tool-func.ts:48](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L48)
+
+___
+
 ### tags
 
 • `Optional` **tags**: `string` \| `string`[]
@@ -336,7 +367,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:45](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L45)
+[packages/ai-tool/src/tool-func.ts:45](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L45)
 
 ___
 
@@ -350,7 +381,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:73](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L73)
+[packages/ai-tool/src/tool-func.ts:75](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L75)
 
 ___
 
@@ -364,7 +395,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:72](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L72)
+[packages/ai-tool/src/tool-func.ts:74](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L74)
 
 ## Accessors
 
@@ -378,7 +409,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event.ts:12](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event.ts#L12)
+[packages/ai-tool/src/funcs/event.ts:12](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event.ts#L12)
 
 ## Methods
 
@@ -402,7 +433,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:252](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L252)
+[packages/ai-tool/src/tool-func.ts:254](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L254)
 
 ___
 
@@ -655,7 +686,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event.ts:17](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event.ts#L17)
+[packages/ai-tool/src/funcs/event.ts:17](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event.ts#L17)
 
 ___
 
@@ -679,7 +710,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:305](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L305)
+[packages/ai-tool/src/tool-func.ts:307](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L307)
 
 ___
 
@@ -703,7 +734,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:329](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L329)
+[packages/ai-tool/src/tool-func.ts:331](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L331)
 
 ___
 
@@ -751,7 +782,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:334](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L334)
+[packages/ai-tool/src/tool-func.ts:336](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L336)
 
 ___
 
@@ -862,6 +893,30 @@ node_modules/.pnpm/property-manager@2.0.0-alpha.5/node_modules/property-manager/
 
 ___
 
+### isStream
+
+▸ **isStream**(`params`): `undefined` \| `boolean`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `params` | `any` |
+
+#### Returns
+
+`undefined` \| `boolean`
+
+#### Inherited from
+
+[ToolFunc](ToolFunc.md).[isStream](ToolFunc.md#isstream)
+
+#### Defined in
+
+[packages/ai-tool/src/tool-func.ts:342](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L342)
+
+___
+
 ### mergeTo
 
 ▸ **mergeTo**(`dest`, `options?`): `any`
@@ -911,7 +966,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:265](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L265)
+[packages/ai-tool/src/tool-func.ts:267](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L267)
 
 ___
 
@@ -955,7 +1010,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:235](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L235)
+[packages/ai-tool/src/tool-func.ts:237](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L237)
 
 ___
 
@@ -979,7 +1034,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:292](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L292)
+[packages/ai-tool/src/tool-func.ts:294](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L294)
 
 ___
 
@@ -1004,7 +1059,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:296](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L296)
+[packages/ai-tool/src/tool-func.ts:298](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L298)
 
 ___
 
@@ -1029,7 +1084,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:300](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L300)
+[packages/ai-tool/src/tool-func.ts:302](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L302)
 
 ___
 
@@ -1053,7 +1108,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:278](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L278)
+[packages/ai-tool/src/tool-func.ts:280](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L280)
 
 ___
 
@@ -1077,7 +1132,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:321](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L321)
+[packages/ai-tool/src/tool-func.ts:323](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L323)
 
 ___
 
@@ -1102,7 +1157,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:325](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L325)
+[packages/ai-tool/src/tool-func.ts:327](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L327)
 
 ___
 
@@ -1127,7 +1182,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:317](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L317)
+[packages/ai-tool/src/tool-func.ts:319](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L319)
 
 ___
 
@@ -1151,7 +1206,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:310](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L310)
+[packages/ai-tool/src/tool-func.ts:312](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L312)
 
 ___
 
@@ -1255,7 +1310,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:248](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L248)
+[packages/ai-tool/src/tool-func.ts:250](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L250)
 
 ___
 
@@ -1732,7 +1787,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:75](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L75)
+[packages/ai-tool/src/tool-func.ts:77](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L77)
 
 ___
 
@@ -1756,7 +1811,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:103](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L103)
+[packages/ai-tool/src/tool-func.ts:105](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L105)
 
 ___
 
@@ -1780,7 +1835,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:83](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L83)
+[packages/ai-tool/src/tool-func.ts:85](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L85)
 
 ___
 
@@ -1804,7 +1859,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:144](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L144)
+[packages/ai-tool/src/tool-func.ts:146](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L146)
 
 ___
 
@@ -1828,7 +1883,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:165](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L165)
+[packages/ai-tool/src/tool-func.ts:167](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L167)
 
 ___
 
@@ -2011,7 +2066,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:121](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L121)
+[packages/ai-tool/src/tool-func.ts:123](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L123)
 
 ___
 
@@ -2209,7 +2264,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:79](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L79)
+[packages/ai-tool/src/tool-func.ts:81](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L81)
 
 ___
 
@@ -2266,7 +2321,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:170](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L170)
+[packages/ai-tool/src/tool-func.ts:172](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L172)
 
 ▸ **register**(`func`, `options`): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
@@ -2287,7 +2342,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:171](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L171)
+[packages/ai-tool/src/tool-func.ts:173](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L173)
 
 ▸ **register**(`name`, `options?`): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
@@ -2308,7 +2363,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:172](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L172)
+[packages/ai-tool/src/tool-func.ts:174](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L174)
 
 ___
 
@@ -2333,7 +2388,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:128](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L128)
+[packages/ai-tool/src/tool-func.ts:130](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L130)
 
 ___
 
@@ -2358,7 +2413,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:136](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L136)
+[packages/ai-tool/src/tool-func.ts:138](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L138)
 
 ___
 
@@ -2383,7 +2438,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:149](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L149)
+[packages/ai-tool/src/tool-func.ts:151](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L151)
 
 ___
 
@@ -2408,7 +2463,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:157](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L157)
+[packages/ai-tool/src/tool-func.ts:159](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L159)
 
 ___
 
@@ -2491,7 +2546,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:200](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L200)
+[packages/ai-tool/src/tool-func.ts:202](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L202)
 
 ___
 

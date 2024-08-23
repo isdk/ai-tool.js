@@ -2,9 +2,11 @@
 
 # Interface: ResClientFuncParams
 
-## Indexable
+## Hierarchy
 
-▪ [name: `string`]: `any`
+- `RpcMethodsClientFuncParams`
+
+  ↳ **`ResClientFuncParams`**
 
 ## Table of contents
 
@@ -19,9 +21,13 @@
 
 • `Optional` **act**: `string`
 
+#### Inherited from
+
+RpcMethodsClientFuncParams.act
+
 #### Defined in
 
-[packages/ai-tool/src/res-client-tools.ts:7](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-client-tools.ts#L7)
+[packages/ai-tool/src/rpc-methods-client-tool.ts:5](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/rpc-methods-client-tool.ts#L5)
 
 ___
 
@@ -31,4 +37,4 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-client-tools.ts:6](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-client-tools.ts#L6)
+[packages/ai-tool/src/res-client-tools.ts:6](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-client-tools.ts#L6)

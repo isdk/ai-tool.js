@@ -25,6 +25,7 @@
 - [depends](EventServer.md#depends)
 - [description](EventServer.md#description)
 - [fetchOptions](EventServer.md#fetchoptions)
+- [isApi](EventServer.md#isapi)
 - [methods](EventServer.md#methods)
 - [name](EventServer.md#name)
 - [nonExported1stChar](EventServer.md#nonexported1stchar)
@@ -35,6 +36,7 @@
 - [should](EventServer.md#should)
 - [stream](EventServer.md#stream)
 - [tags](EventServer.md#tags)
+- [SpecialRpcMethodNames](EventServer.md#specialrpcmethodnames)
 - [\_sse](EventServer.md#_sse)
 - [dataPath](EventServer.md#datapath)
 - [ebListener](EventServer.md#eblistener)
@@ -42,6 +44,7 @@
 
 ### Accessors
 
+- [SpecialRpcMethodNames](EventServer.md#specialrpcmethodnames-1)
 - [sse](EventServer.md#sse)
 - [apiRoot](EventServer.md#apiroot-1)
 - [sse](EventServer.md#sse-1)
@@ -57,6 +60,7 @@
 - [assignPropertyTo](EventServer.md#assignpropertyto)
 - [assignTo](EventServer.md#assignto)
 - [cast](EventServer.md#cast)
+- [castParams](EventServer.md#castparams)
 - [clone](EventServer.md#clone)
 - [cloneTo](EventServer.md#cloneto)
 - [defineProperties](EventServer.md#defineproperties)
@@ -71,6 +75,7 @@
 - [getProperties](EventServer.md#getproperties)
 - [hasAsyncFeature](EventServer.md#hasasyncfeature)
 - [hasOwnProperty](EventServer.md#hasownproperty)
+- [initRpcMethods](EventServer.md#initrpcmethods)
 - [initialize](EventServer.md#initialize)
 - [isPrototypeOf](EventServer.md#isprototypeof)
 - [isSame](EventServer.md#issame)
@@ -164,7 +169,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:30](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L30)
+[packages/ai-tool/src/res-server-tools.ts:27](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L27)
 
 ## Properties
 
@@ -192,7 +197,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:24](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L24)
+[packages/ai-tool/src/res-server-tools.ts:21](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L21)
 
 ___
 
@@ -206,7 +211,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/server-tools.ts#L14)
+[packages/ai-tool/src/server-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/server-tools.ts#L14)
 
 ___
 
@@ -220,7 +225,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:35](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/utils/consts.ts#L35)
+[packages/ai-tool/src/utils/consts.ts:34](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/utils/consts.ts#L34)
 
 ___
 
@@ -275,7 +280,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:30](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event-server.ts#L30)
+[packages/ai-tool/src/funcs/event-server.ts:30](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event-server.ts#L30)
 
 ___
 
@@ -285,7 +290,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:28](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event-server.ts#L28)
+[packages/ai-tool/src/funcs/event-server.ts:28](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event-server.ts#L28)
 
 ___
 
@@ -299,7 +304,21 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:37](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/utils/consts.ts#L37)
+[packages/ai-tool/src/utils/consts.ts:36](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/utils/consts.ts#L36)
+
+___
+
+### isApi
+
+• `Optional` **isApi**: `boolean`
+
+#### Inherited from
+
+[ResServerTools](ResServerTools.md).[isApi](ResServerTools.md#isapi)
+
+#### Defined in
+
+[packages/ai-tool/src/tool-func.ts:47](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L47)
 
 ___
 
@@ -313,7 +332,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:15](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L15)
+[packages/ai-tool/src/rpc-methods-server-tool.ts:11](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/rpc-methods-server-tool.ts#L11)
 
 ___
 
@@ -327,7 +346,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:27](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event-server.ts#L27)
+[packages/ai-tool/src/funcs/event-server.ts:27](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event-server.ts#L27)
 
 ___
 
@@ -357,7 +376,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:25](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L25)
+[packages/ai-tool/src/res-server-tools.ts:22](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L22)
 
 ___
 
@@ -371,7 +390,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:29](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event-server.ts#L29)
+[packages/ai-tool/src/funcs/event-server.ts:29](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event-server.ts#L29)
 
 ___
 
@@ -385,7 +404,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:44](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L44)
+[packages/ai-tool/src/tool-func.ts:44](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L44)
 
 ___
 
@@ -414,7 +433,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:46](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L46)
+[packages/ai-tool/src/tool-func.ts:46](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L46)
 
 ___
 
@@ -442,7 +461,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:38](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/utils/consts.ts#L38)
+[packages/ai-tool/src/tool-func.ts:48](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L48)
 
 ___
 
@@ -456,7 +475,21 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:45](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L45)
+[packages/ai-tool/src/tool-func.ts:45](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L45)
+
+___
+
+### SpecialRpcMethodNames
+
+▪ `Static` **SpecialRpcMethodNames**: `any`
+
+#### Inherited from
+
+[ResServerTools](ResServerTools.md).[SpecialRpcMethodNames](ResServerTools.md#specialrpcmethodnames)
+
+#### Defined in
+
+[packages/ai-tool/src/res-server-tools.ts:20](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L20)
 
 ___
 
@@ -466,7 +499,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:19](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event-server.ts#L19)
+[packages/ai-tool/src/funcs/event-server.ts:19](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event-server.ts#L19)
 
 ___
 
@@ -480,7 +513,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:73](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L73)
+[packages/ai-tool/src/tool-func.ts:75](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L75)
 
 ___
 
@@ -505,7 +538,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:42](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event-server.ts#L42)
+[packages/ai-tool/src/funcs/event-server.ts:42](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event-server.ts#L42)
 
 ___
 
@@ -519,9 +552,27 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:72](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L72)
+[packages/ai-tool/src/tool-func.ts:74](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L74)
 
 ## Accessors
+
+### SpecialRpcMethodNames
+
+• `get` **SpecialRpcMethodNames**(): `any`
+
+#### Returns
+
+`any`
+
+#### Inherited from
+
+ResServerTools.SpecialRpcMethodNames
+
+#### Defined in
+
+[packages/ai-tool/src/rpc-methods-server-tool.ts:22](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/rpc-methods-server-tool.ts#L22)
+
+___
 
 ### sse
 
@@ -533,7 +584,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:32](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event-server.ts#L32)
+[packages/ai-tool/src/funcs/event-server.ts:32](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event-server.ts#L32)
 
 ___
 
@@ -551,7 +602,7 @@ ResServerTools.apiRoot
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:26](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/server-tools.ts#L26)
+[packages/ai-tool/src/server-tools.ts:26](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/server-tools.ts#L26)
 
 ___
 
@@ -565,7 +616,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:20](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event-server.ts#L20)
+[packages/ai-tool/src/funcs/event-server.ts:20](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event-server.ts#L20)
 
 ## Methods
 
@@ -585,7 +636,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:113](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event-server.ts#L113)
+[packages/ai-tool/src/funcs/event-server.ts:113](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event-server.ts#L113)
 
 ___
 
@@ -605,7 +656,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:95](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event-server.ts#L95)
+[packages/ai-tool/src/funcs/event-server.ts:95](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event-server.ts#L95)
 
 ___
 
@@ -625,7 +676,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:104](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event-server.ts#L104)
+[packages/ai-tool/src/funcs/event-server.ts:104](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event-server.ts#L104)
 
 ___
 
@@ -649,7 +700,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:252](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L252)
+[packages/ai-tool/src/tool-func.ts:254](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L254)
 
 ___
 
@@ -795,7 +846,31 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:45](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L45)
+[packages/ai-tool/src/rpc-methods-server-tool.ts:48](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/rpc-methods-server-tool.ts#L48)
+
+___
+
+### castParams
+
+▸ **castParams**(`params`): `RpcMethodsServerFuncParams`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `params` | `RpcMethodsServerFuncParams` |
+
+#### Returns
+
+`RpcMethodsServerFuncParams`
+
+#### Inherited from
+
+[ResServerTools](ResServerTools.md).[castParams](ResServerTools.md#castparams)
+
+#### Defined in
+
+[packages/ai-tool/src/res-server-tools.ts:40](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L40)
 
 ___
 
@@ -904,7 +979,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:19](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L19)
+[packages/ai-tool/src/res-server-tools.ts:15](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L15)
 
 ___
 
@@ -953,7 +1028,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:69](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event-server.ts#L69)
+[packages/ai-tool/src/funcs/event-server.ts:69](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event-server.ts#L69)
 
 ___
 
@@ -965,7 +1040,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `params` | [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md) |
+| `params` | `RpcMethodsServerFuncParams` |
 
 #### Returns
 
@@ -977,7 +1052,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:65](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L65)
+[packages/ai-tool/src/rpc-methods-server-tool.ts:68](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/rpc-methods-server-tool.ts#L68)
 
 ___
 
@@ -1001,7 +1076,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:16](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L16)
+[packages/ai-tool/src/res-server-tools.ts:12](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L12)
 
 ___
 
@@ -1025,7 +1100,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:305](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L305)
+[packages/ai-tool/src/tool-func.ts:307](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L307)
 
 ___
 
@@ -1049,7 +1124,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:329](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L329)
+[packages/ai-tool/src/tool-func.ts:331](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L331)
 
 ___
 
@@ -1073,7 +1148,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:56](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L56)
+[packages/ai-tool/src/res-server-tools.ts:31](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L31)
 
 ___
 
@@ -1121,7 +1196,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:334](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L334)
+[packages/ai-tool/src/tool-func.ts:336](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L336)
 
 ___
 
@@ -1148,6 +1223,30 @@ Determines whether an object has a property with the specified name.
 #### Defined in
 
 node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:140
+
+___
+
+### initRpcMethods
+
+▸ **initRpcMethods**(`methods?`): `void`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `methods` | `string`[] |
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[ResServerTools](ResServerTools.md).[initRpcMethods](ResServerTools.md#initrpcmethods)
+
+#### Defined in
+
+[packages/ai-tool/src/rpc-methods-server-tool.ts:27](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/rpc-methods-server-tool.ts#L27)
 
 ___
 
@@ -1252,7 +1351,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:127](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event-server.ts#L127)
+[packages/ai-tool/src/funcs/event-server.ts:127](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event-server.ts#L127)
 
 ___
 
@@ -1276,7 +1375,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:89](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event-server.ts#L89)
+[packages/ai-tool/src/funcs/event-server.ts:89](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event-server.ts#L89)
 
 ___
 
@@ -1329,7 +1428,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:265](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L265)
+[packages/ai-tool/src/tool-func.ts:267](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L267)
 
 ___
 
@@ -1353,7 +1452,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:17](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L17)
+[packages/ai-tool/src/res-server-tools.ts:13](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L13)
 
 ___
 
@@ -1400,7 +1499,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:57](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event-server.ts#L57)
+[packages/ai-tool/src/funcs/event-server.ts:57](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event-server.ts#L57)
 
 ___
 
@@ -1424,7 +1523,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:18](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L18)
+[packages/ai-tool/src/res-server-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L14)
 
 ___
 
@@ -1442,7 +1541,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:235](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L235)
+[packages/ai-tool/src/tool-func.ts:237](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L237)
 
 ___
 
@@ -1466,7 +1565,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:292](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L292)
+[packages/ai-tool/src/tool-func.ts:294](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L294)
 
 ___
 
@@ -1491,7 +1590,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:296](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L296)
+[packages/ai-tool/src/tool-func.ts:298](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L298)
 
 ___
 
@@ -1516,7 +1615,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:300](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L300)
+[packages/ai-tool/src/tool-func.ts:302](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L302)
 
 ___
 
@@ -1540,7 +1639,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:278](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L278)
+[packages/ai-tool/src/tool-func.ts:280](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L280)
 
 ___
 
@@ -1564,7 +1663,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:321](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L321)
+[packages/ai-tool/src/tool-func.ts:323](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L323)
 
 ___
 
@@ -1589,7 +1688,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:325](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L325)
+[packages/ai-tool/src/tool-func.ts:327](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L327)
 
 ___
 
@@ -1614,7 +1713,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:317](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L317)
+[packages/ai-tool/src/tool-func.ts:319](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L319)
 
 ___
 
@@ -1638,7 +1737,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:310](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L310)
+[packages/ai-tool/src/tool-func.ts:312](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L312)
 
 ___
 
@@ -1660,7 +1759,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:61](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event-server.ts#L61)
+[packages/ai-tool/src/funcs/event-server.ts:61](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event-server.ts#L61)
 
 ___
 
@@ -1766,7 +1865,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:80](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event-server.ts#L80)
+[packages/ai-tool/src/funcs/event-server.ts:80](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event-server.ts#L80)
 
 ___
 
@@ -1784,7 +1883,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:248](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L248)
+[packages/ai-tool/src/tool-func.ts:250](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L250)
 
 ___
 
@@ -1824,7 +1923,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:50](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event-server.ts#L50)
+[packages/ai-tool/src/funcs/event-server.ts:50](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event-server.ts#L50)
 
 ___
 
@@ -2281,7 +2380,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:75](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L75)
+[packages/ai-tool/src/tool-func.ts:77](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L77)
 
 ___
 
@@ -2305,7 +2404,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:103](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L103)
+[packages/ai-tool/src/tool-func.ts:105](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L105)
 
 ___
 
@@ -2329,7 +2428,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:83](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L83)
+[packages/ai-tool/src/tool-func.ts:85](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L85)
 
 ___
 
@@ -2353,7 +2452,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:144](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L144)
+[packages/ai-tool/src/tool-func.ts:146](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L146)
 
 ___
 
@@ -2377,7 +2476,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:165](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L165)
+[packages/ai-tool/src/tool-func.ts:167](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L167)
 
 ___
 
@@ -2560,7 +2659,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:121](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L121)
+[packages/ai-tool/src/tool-func.ts:123](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L123)
 
 ___
 
@@ -2758,7 +2857,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:79](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L79)
+[packages/ai-tool/src/tool-func.ts:81](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L81)
 
 ___
 
@@ -2811,7 +2910,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:36](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event-server.ts#L36)
+[packages/ai-tool/src/funcs/event-server.ts:36](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event-server.ts#L36)
 
 ___
 
@@ -2836,7 +2935,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:170](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L170)
+[packages/ai-tool/src/tool-func.ts:172](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L172)
 
 ▸ **register**(`func`, `options`): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
@@ -2857,7 +2956,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:171](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L171)
+[packages/ai-tool/src/tool-func.ts:173](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L173)
 
 ▸ **register**(`name`, `options?`): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
@@ -2878,7 +2977,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:172](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L172)
+[packages/ai-tool/src/tool-func.ts:174](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L174)
 
 ___
 
@@ -2903,7 +3002,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:128](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L128)
+[packages/ai-tool/src/tool-func.ts:130](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L130)
 
 ___
 
@@ -2928,7 +3027,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:136](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L136)
+[packages/ai-tool/src/tool-func.ts:138](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L138)
 
 ___
 
@@ -2953,7 +3052,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:149](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L149)
+[packages/ai-tool/src/tool-func.ts:151](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L151)
 
 ___
 
@@ -2978,7 +3077,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:157](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L157)
+[packages/ai-tool/src/tool-func.ts:159](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L159)
 
 ___
 
@@ -3034,7 +3133,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:30](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/server-tools.ts#L30)
+[packages/ai-tool/src/server-tools.ts:30](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/server-tools.ts#L30)
 
 ___
 
@@ -3089,7 +3188,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:46](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/funcs/event-server.ts#L46)
+[packages/ai-tool/src/funcs/event-server.ts:46](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/funcs/event-server.ts#L46)
 
 ___
 
@@ -3107,7 +3206,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:44](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/server-tools.ts#L44)
+[packages/ai-tool/src/server-tools.ts:44](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/server-tools.ts#L44)
 
 ___
 
@@ -3131,7 +3230,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:200](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/tool-func.ts#L200)
+[packages/ai-tool/src/tool-func.ts:202](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/tool-func.ts#L202)
 
 ___
 

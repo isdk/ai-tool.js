@@ -30,4 +30,4 @@ Custom parser for AIStream data.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/ai-stream.ts:27](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/utils/stream/ai-stream.ts#L27)
+[packages/ai-tool/src/utils/stream/ai-stream.ts:27](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/utils/stream/ai-stream.ts#L27)

@@ -2,11 +2,9 @@
 
 # Interface: ResServerFuncParams
 
-Convention: Always pass _req, _res
-
 ## Hierarchy
 
-- [`ServerFuncParams`](ServerFuncParams.md)
+- `RpcMethodsServerFuncParams`
 
   ↳ **`ResServerFuncParams`**
 
@@ -28,11 +26,11 @@ Convention: Always pass _req, _res
 
 #### Inherited from
 
-[ServerFuncParams](ServerFuncParams.md).[_req](ServerFuncParams.md#_req)
+RpcMethodsServerFuncParams.\_req
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:9](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/server-tools.ts#L9)
+[packages/ai-tool/src/server-tools.ts:9](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/server-tools.ts#L9)
 
 ___
 
@@ -42,11 +40,11 @@ ___
 
 #### Inherited from
 
-[ServerFuncParams](ServerFuncParams.md).[_res](ServerFuncParams.md#_res)
+RpcMethodsServerFuncParams.\_res
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/server-tools.ts#L10)
+[packages/ai-tool/src/server-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/server-tools.ts#L10)
 
 ___
 
@@ -54,9 +52,13 @@ ___
 
 • `Optional` **act**: `string`
 
+#### Inherited from
+
+RpcMethodsServerFuncParams.act
+
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:11](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L11)
+[packages/ai-tool/src/rpc-methods-server-tool.ts:7](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/rpc-methods-server-tool.ts#L7)
 
 ___
 
@@ -66,7 +68,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:8](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L8)
+[packages/ai-tool/src/res-server-tools.ts:6](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L6)
 
 ___
 
@@ -76,4 +78,4 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/409aab70514a73e5edfa59ea25e4ee1fe316b26d/src/res-server-tools.ts#L10)
+[packages/ai-tool/src/res-server-tools.ts:8](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-server-tools.ts#L8)
