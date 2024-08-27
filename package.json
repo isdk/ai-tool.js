@@ -31,6 +31,7 @@
     "eventsource-parser": "^1.1.2",
     "json-canonicalize": "^1.0.6",
     "load-config-file": "2.0.0-alpha.3",
+    "lodash-es": "^4.17.21",
     "mime-type": "^5.0.0-alpha.2",
     "property-manager": "^2.0.0-alpha.5",
     "secondary-cache": "^2.0.0-alpha.5",
@@ -46,6 +47,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^2.20.0",
     "@types/jest": "^29.5.12",
+    "@types/lodash-es": "^4.17.12",
     "@types/node": "^20.14.2",
     "@types/uuid": "^9.0.8",
     "@types/xxhashjs": "^0.2.4",
