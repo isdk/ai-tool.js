@@ -4,6 +4,23 @@ import { extNameLevel, getMultiLevelExtname } from './filename'
 import { NotFoundError } from './base-error'
 
 /**
+ * Checks if a file (not a directory) exists at the specified path.
+ *
+ * @param filepath - The path to the file to check.
+ * @returns true if the file exists and is not a directory; otherwise, false.
+ *
+ * @example
+ * ```typescript
+ * const exists = fileIsExists('path/to/file.txt');
+ * console.log(exists); // Outputs: true or false
+ * ```
+ */
+export function fileIsExists(filepath: string) {
+  const stat = fs.statSync(filepath, {throwIfNoEntry: false})
+  return stat?.isFile()
+}
+
+/**
  * Loads a file from given paths, optionally searching for specific extensions.
  *
  * @param filename - The base filename to search for, without any file extension.
@@ -25,7 +42,7 @@ export function loadFileFromPaths(filename: string, searchPaths?: string[], extN
   let result: string|Buffer|undefined
   // search the paths and try to load the script
   if (path.isAbsolute(filename)) {
-    if (fs.existsSync(filename)) {
+    if (fileIsExists(filename)) {
       result = filename
     } else {
       result = tryGetFilepath(path.basename(filename), [path.dirname(filename)], {extNames, exclude, signal})
@@ -61,13 +78,13 @@ function tryGetFilepath(filename: string, searchPaths: string[], {extNames, sign
       for (let i=0; i<exts.length; i++) {
         const extName = exts[i] !== extNames![i] ? extNames![i] : ''
         const filenameWithExt = filePath + extName
-        if (!exclude.includes(filenameWithExt) && fs.existsSync(filenameWithExt)) {
+        if (!exclude.includes(filenameWithExt) && fileIsExists(filenameWithExt)) {
           result = filenameWithExt
           break
         }
       }
     } else {
-      if (!exclude.includes(filePath) && fs.existsSync(filePath)) {
+      if (!exclude.includes(filePath) && fileIsExists(filePath)) {
         result = filePath
         break
       }
