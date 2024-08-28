@@ -173,7 +173,7 @@ describe("Test interpreter options", () => {
 		testTemplate(test)
 	});
 
-	it("should support toString on an object", async () => {
+	it("should support object::toString on an object", async () => {
 		const test = {
 			template: `{{ obj }}`,
 			data: {obj: new TestObj({a: 1, b: 2})},
@@ -186,7 +186,6 @@ describe("Test interpreter options", () => {
 	it("should support trimStart filter", () => {
 		const test = {
 			template: '{{ "   test it  " | trimStart }}',
-			data: {obj: [3,2,1]},
 			options: { lstrip_blocks: true, trim_blocks: true },
 			target: `test it  `,
 		}
@@ -196,7 +195,6 @@ describe("Test interpreter options", () => {
 	it("should support trimEnd filter", () => {
 		const test ={
 			template: '{{ "   test it  " | trimEnd }}',
-			data: {obj: [3,2,1]},
 			options: { lstrip_blocks: true, trim_blocks: true },
 			target: `   test it`,
 		}
@@ -206,7 +204,6 @@ describe("Test interpreter options", () => {
 	it("should support string.rstrip()", () => {
 		const test = {
 			template: '{{ "   test it  ".rstrip() }}',
-			data: {obj: [3,2,1]},
 			options: { lstrip_blocks: true, trim_blocks: true },
 			target: `   test it`,
 		}
@@ -216,7 +213,6 @@ describe("Test interpreter options", () => {
 	it("should support string.lstrip()", () => {
 		const test = {
 			template: '{{ "   test it  ".lstrip() }}',
-			data: {obj: [3,2,1]},
 			options: { lstrip_blocks: true, trim_blocks: true },
 			target: `test it  `,
 		}
