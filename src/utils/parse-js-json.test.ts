@@ -30,4 +30,10 @@ describe('parseJsJson', () => {
     const result = parseJsJson(input, {name: 'John', age: 20});
     expect(result).toEqual({ name: 'John', age: 30 });
   });
+
+  it('should parse JS JSON with some invalid scope', () => {
+    const input = `{name, age: age + 10}`;
+    const result = parseJsJson(input, {name: 'John', age: 20, 0: '124'});
+    expect(result).toEqual({ name: 'John', age: 30 });
+  });
 });
