@@ -1,5 +1,5 @@
 import { PromptTemplate, type PromptTemplateOptions } from "./prompt";
-import { parseJsJson } from './parse-js-json'
+import { filterValidFnScope, parseJsJson } from './parse-js-json'
 import { get as getByPath } from "lodash-es";
 import { newFunction } from "util-ex";
 
@@ -205,7 +205,7 @@ export async function parseObjectArgInfo(argInfo: ArgInfo, ix: number, scope?: R
       return ix+':'+arg
     } else {
       try {
-        const fn = newFunction('async expression', [], `return ${arg};`, scope)
+        const fn = newFunction('async expression', [], `return ${arg};`, filterValidFnScope(scope))
         const result = await fn.call(this)
           switch (typeof result) {
             case 'number':
