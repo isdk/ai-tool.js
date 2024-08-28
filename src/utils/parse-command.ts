@@ -56,28 +56,35 @@ export interface AIChoiceConfig {
  * ```
  */
 export async function parseObjectArguments(argsStr: string, scope?: Record<string, any>, options?: {delimiter?: string, argProcessor?: ArgProcessor, returnArrayOnly?: boolean}) {
-  const _args = await parseObjectArgumentsAsStr(argsStr, scope, options)
-  const returnArrayOnly = options?.returnArrayOnly
-  let result = _args?.length ? parseJsJson(`{${_args.map((arg: string) => escapeSpecialChars(arg)).join(',')}}`, scope) : undefined
-  if (result) {
-    const keys = Object.keys(result)
-    if (keys.length === 1 && result[0] !== undefined) {
-      result = result[0]
-    } else if (keys.every(k => !isNaN(parseInt(k)))) {
-      result = keys.sort((a,b) => parseInt(a) - parseInt(b)).map(k => result[k])
-    }
-  }
-  if (result && !returnArrayOnly) {
-    const entries = Object.entries(result)
-    if (entries.length === 1 && result[0] !== undefined) {
-      result =  result[0]
-    } else if (entries.length === 2 && entries[0][0] === '0' && entries[0][1] === entries[1][1]) {
-      // { '0': 3, n: 3 }
-      result = result[0]
-    }
+  const args = parseObjectArgumentsAsArgInfos(argsStr, scope, options);
+  return parseObjectArgumentInfos(args, scope, options)
+}
 
+export async function parseObjectArgumentInfos(args: ArgInfo[], scope?: Record<string, any>, options?: {delimiter?: string, argProcessor?: ArgProcessor, returnArrayOnly?: boolean}) {
+  if (args.length) {
+    const _args = await Promise.all(args.map((argInfo, ix) => parseObjectArgInfo(argInfo, ix, scope, options?.argProcessor)))
+    const returnArrayOnly = options?.returnArrayOnly
+    let result = _args?.length ? parseJsJson(`{${_args.map((arg: string) => escapeSpecialChars(arg)).join(',')}}`, scope) : undefined
+    if (result) {
+      const keys = Object.keys(result)
+      if (keys.length === 1 && result[0] !== undefined) {
+        result = result[0]
+      } else if (keys.every(k => !isNaN(parseInt(k)))) {
+        result = keys.sort((a,b) => parseInt(a) - parseInt(b)).map(k => result[k])
+      }
+    }
+    if (result && !returnArrayOnly) {
+      const entries = Object.entries(result)
+      if (entries.length === 1 && result[0] !== undefined) {
+        result =  result[0]
+      } else if (entries.length === 2 && entries[0][0] === '0' && entries[0][1] === entries[1][1]) {
+        // { '0': 3, n: 3 }
+        result = result[0]
+      }
+
+    }
+    return result && returnArrayOnly && Object.keys(result).length === 1 && result[0] !== undefined ? result[0] : result
   }
-  return result && returnArrayOnly && Object.keys(result).length === 1 && result[0] !== undefined ? result[0] : result
 }
 
 export function ChoiceArgProcessor(argInfo: ArgInfo, _ix: number, scope?: Record<string, any>) {
@@ -197,8 +204,8 @@ export async function parseObjectArgInfo(argInfo: ArgInfo, ix: number, scope?: R
     } else if (isNonQuotedArg(arg)) {
       return ix+':'+arg
     } else {
-      const fn = newFunction('async expression', [], `return ${arg};`, scope)
       try {
+        const fn = newFunction('async expression', [], `return ${arg};`, scope)
         const result = await fn.call(this)
           switch (typeof result) {
             case 'number':
@@ -217,10 +224,12 @@ export async function parseObjectArgInfo(argInfo: ArgInfo, ix: number, scope?: R
   }
 }
 
+/*
 async function parseObjectArgumentsAsStr(argsStr: string, scope?: Record<string, any>, options?: {delimiter?: string, argProcessor?: ArgProcessor}) {
   const args = parseObjectArgumentsAsArgInfos(argsStr, scope, options);
   return args.length ? Promise.all(args.map((argInfo, ix) => parseObjectArgInfo(argInfo, ix, scope, options?.argProcessor))) : undefined;
 }
+*/
 
 /**
  * Parses an object arguments string into an array of ArgInfo.
