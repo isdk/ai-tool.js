@@ -49,6 +49,12 @@ describe('parseObjectArguments', async () => {
     expect(result).toEqual('arg1');
   });
 
+  test('should parse expression argument', async () => {
+    const argsStr = '"This is " + a';
+    const result = await parseObjectArguments(argsStr, {a: 'apple'});
+    expect(result).toEqual('This is apple');
+  });
+
   test('should parse one argument with scope', async () => {
     const argsStr = 'arg1';
     const result = await parseObjectArguments(argsStr, {arg1: '123'});

@@ -1,6 +1,7 @@
 import { PromptTemplate, type PromptTemplateOptions } from "./prompt";
 import { parseJsJson } from './parse-js-json'
 import { get as getByPath } from "lodash-es";
+import { newFunction } from "util-ex";
 
 type ArgInfo = [boolean, string]
 type ArgProcessor = (arg: ArgInfo, ix: number, scope?: Record<string, any>) => string|void|Promise<string|void>
@@ -178,6 +179,10 @@ export function quoteStr(str: string) {
   return '"' + str.replace(/(?<!\\)"(?!\\)/g, '\\"') + '"';
 }
 
+function isNonQuotedArg(arg: string) {
+  return isQuoted(arg) || !Number.isNaN(parseFloat(arg)) || arg === 'true' || arg === 'false' || isArrowFunctionExpression(arg)
+}
+
 export async function parseObjectArgInfo(argInfo: ArgInfo, ix: number, scope?: Record<string, any>, argProcessor?: ArgProcessor) {
   const [isNamedArg, arg] = argInfo
   if (typeof argProcessor === 'function') {
@@ -189,9 +194,24 @@ export async function parseObjectArgInfo(argInfo: ArgInfo, ix: number, scope?: R
   } else {
     if (scope && getByPath(scope, arg) !== undefined) {
       return ix+':'+arg + ', "' + arg +'":' + arg
-    } else if (isQuoted(arg) || !Number.isNaN(parseFloat(arg)) || arg === 'true' || arg === 'false' || isArrowFunctionExpression(arg)) {
+    } else if (isNonQuotedArg(arg)) {
       return ix+':'+arg
     } else {
+      const fn = newFunction('async expression', [], `return ${arg};`, scope)
+      try {
+        const result = await fn.call(this)
+          switch (typeof result) {
+            case 'number':
+            case 'boolean':
+            case 'undefined':
+              return ix+':'+ result
+            case 'function':
+              return ix+':'+fn.toString()
+            default:
+              return ix+':'+ JSON.stringify(result)
+          }
+      } catch(e) {}
+
       return ix+':'+ quoteStr(arg)
     }
   }
