@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.1.1](https://github.com/isdk/ai-tool.js/compare/v0.1.0...v0.1.1) (2024-08-28)
+
+
+### Features
+
+* add parse command ([67c1c08](https://github.com/isdk/ai-tool.js/commit/67c1c08e37a7fbac19e94edcee033953f6cee353))
+* **load-file-from-paths:** add fileIsExists ([e79b5a0](https://github.com/isdk/ai-tool.js/commit/e79b5a0dea6c72a3c469fa89c78cc698fe14775b))
+* **parse-command:** add expression arg supports ([87bcc39](https://github.com/isdk/ai-tool.js/commit/87bcc39e9840213ab34ac26f65c01ed38201b944))
+* **parse-command:** add parseObjectArgumentInfos func ([3df5dc0](https://github.com/isdk/ai-tool.js/commit/3df5dc0271fa045569b36182bd61c9223595a731))
+* **parse-command:** add returnArrayOnly option ([8a3868f](https://github.com/isdk/ai-tool.js/commit/8a3868f1f1961a33972820a784c6998cd4d59eb2))
+
+
+### Bug Fixes
+
+* **filterValidFnScope:** should allow scope is optional ([e2bebb1](https://github.com/isdk/ai-tool.js/commit/e2bebb1952f8ddfbbed88256bde31522d792b51d))
+* **parse-command:** add filterValidFnScope ([bc1a97d](https://github.com/isdk/ai-tool.js/commit/bc1a97dabcb6599e292a0944fe49213fed45d128))
+* **parse-js-json:** filter only Valid Scope by filterValidFnScope ([29b98b1](https://github.com/isdk/ai-tool.js/commit/29b98b1d7fb159b9fdc363b6ea97807f567548bb))
+
+
+### Refactor
+
+* **parse-js-json:** optimize perform ([497b1d6](https://github.com/isdk/ai-tool.js/commit/497b1d6ab755da2640caf05a15ab6035fe61b60c))
+
 ## [0.1.0](https://github.com/isdk/ai-tool.js/compare/v0.0.10...v0.1.0) (2024-08-23)
 
 
