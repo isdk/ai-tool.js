@@ -32,8 +32,12 @@ const isValidJsIdentifier = (str: string) => JsIdentifierRegex.test(str);
 
 export function filterValidFnScope(scope?: Record<string, any>) {
   if (scope) {
-    const argNames = Object.keys(scope).filter(name => isValidJsIdentifier(name) && scope![name] !== null)
-    if (argNames.length) {
+    const keys = Object.keys(scope)
+    const len = keys.length
+    const argNames = keys.filter(name => isValidJsIdentifier(name) && scope![name] !== null)
+    if (len === argNames.length) {
+      return scope
+    } else if (argNames.length) {
       scope = pick(scope, argNames)
       return scope
     }
