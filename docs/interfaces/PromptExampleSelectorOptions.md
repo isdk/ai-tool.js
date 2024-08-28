@@ -23,7 +23,7 @@ The maximum count of the selected examples, or `undefined` if no limit.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:9](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/utils/prompt/prompt-example-selector.ts#L9)
+[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:9](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/prompt-example-selector.ts#L9)
 
 ___
 
@@ -36,4 +36,4 @@ If `true`, defaults to 0.5; if `false`, disable it.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:14](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/utils/prompt/prompt-example-selector.ts#L14)
+[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:14](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/prompt-example-selector.ts#L14)

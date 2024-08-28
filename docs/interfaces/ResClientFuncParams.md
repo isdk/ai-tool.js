@@ -27,7 +27,7 @@ RpcMethodsClientFuncParams.act
 
 #### Defined in
 
-[packages/ai-tool/src/rpc-methods-client-tool.ts:5](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/rpc-methods-client-tool.ts#L5)
+[packages/ai-tool/src/rpc-methods-client-tool.ts:5](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/rpc-methods-client-tool.ts#L5)
 
 ___
 
@@ -37,4 +37,4 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-client-tools.ts:6](https://github.com/isdk/ai-tool.js/blob/262bec683a365fd77a8c1ea7cbf9a636e19c4ce2/src/res-client-tools.ts#L6)
+[packages/ai-tool/src/res-client-tools.ts:6](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/res-client-tools.ts#L6)
