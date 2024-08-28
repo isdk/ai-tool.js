@@ -30,7 +30,7 @@ export function parseJsJson(input: string, scope?: Record<string, any>) {
 const JsIdentifierRegex = /^[a-zA-Z_$][0-9a-zA-Z_$]*$/
 const isValidJsIdentifier = (str: string) => JsIdentifierRegex.test(str);
 
-export function filterValidFnScope(scope: Record<string, any>) {
+export function filterValidFnScope(scope?: Record<string, any>) {
   if (scope) {
     const argNames = Object.keys(scope).filter(name => isValidJsIdentifier(name) && scope![name] !== null)
     if (argNames.length) {
