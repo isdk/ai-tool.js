@@ -21,7 +21,7 @@ describe('parseObjectArguments', async () => {
 
   test('should parse arguments with complex template string', async () => {
     const argsStr = `{{ test + '\n' + b }}, arg2= "value2"`;
-    const result = await parseObjectArguments(argsStr, {test: 'value1,tt', b: '3'}, {argProcessor: TemplateArgProcessor});
+    const result = await parseObjectArguments(argsStr, {test: 'value1', b: '3'}, {argProcessor: TemplateArgProcessor});
     expect(result).toEqual({0: "value1\n3", arg2: 'value2'});
   });
 
@@ -47,6 +47,18 @@ describe('parseObjectArguments', async () => {
     const argsStr = 'arg1';
     const result = await parseObjectArguments(argsStr);
     expect(result).toEqual('arg1');
+  });
+
+  test('should parse one argument with scope', async () => {
+    const argsStr = 'arg1';
+    const result = await parseObjectArguments(argsStr, {arg1: '123'});
+    expect(result).toEqual('123');
+  });
+
+  test('should parse one argument with scope and do not extract', async () => {
+    const argsStr = 'arg1';
+    const result = await parseObjectArguments(argsStr, {arg1: '123'}, {returnArrayOnly: true});
+    expect(result).toEqual({0: '123', arg1: '123'});
   });
 
   test('should parse named arguments', async () => {
@@ -75,7 +87,9 @@ describe('parseObjectArguments', async () => {
 
   test('should parse path arguments', async () => {
     const argsStr = 'test.a';
-    const result = await parseObjectArguments(argsStr, {test: {a:1,b:2}});
+    let result = await parseObjectArguments(argsStr, {test: {a:1,b:2}});
+    expect(result).toEqual(1);
+    result = await parseObjectArguments(argsStr, {test: {a:1,b:2}}, {returnArrayOnly: true});
     expect(result).toEqual({0: 1, "test.a": 1});
   });
 
