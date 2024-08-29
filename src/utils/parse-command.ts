@@ -72,7 +72,12 @@ export async function parseObjectArgumentInfos(args: ArgInfo[], scope?: Record<s
   if (args.length) {
     const _args = await Promise.all(args.map((argInfo, ix) => parseObjectArgInfo(argInfo, ix, scope, options)))
     const returnArrayOnly = options?.returnArrayOnly
-    let result = _args?.length ? parseJsJson(`{${_args.map((arg: string) => escapeSpecialChars(arg)).join(',')}}`, scope) : undefined
+    let result: any
+    if (_args?.length) {
+      const jsonStr = `{${_args.map((arg: string) => escapeSpecialChars(arg)).join(',')}}`
+      result = parseJsJson(jsonStr, scope)
+    }
+
     if (result) {
       const keys = Object.keys(result)
       if (keys.length === 1 && result[0] !== undefined) {
@@ -201,6 +206,21 @@ function isNonQuotedArg(arg: string) {
   return isQuoted(arg) || !Number.isNaN(parseFloat(arg)) || JSKeywords.includes(arg) || isArrowFunctionExpression(arg)
 }
 
+async function getExpressionResult(arg: string, scope: any) {
+  const fn = newFunction('async expression', [], `return ${arg};`, filterValidFnScope(scope))
+  let result = await fn.call(this)
+  switch (typeof result) {
+    case 'number':
+    case 'boolean':
+    case 'undefined':
+      return result
+    case 'function':
+      return fn.toString()
+    default:
+      return JSON.stringify(result)
+  }
+}
+
 export async function parseObjectArgInfo(argInfo: ArgInfo, ix: number, scope?: Record<string, any>, options?: ParseObjectArgumentOptions) {
   const [isNamedArg, arg] = argInfo
   const argProcessor = options?.argProcessor
@@ -213,31 +233,27 @@ export async function parseObjectArgInfo(argInfo: ArgInfo, ix: number, scope?: R
     const k = arg.slice(0, ix).trim()
     const v = arg.slice(ix+1).trim()
     if (!isNonQuotedArg(v) && (!scope || getByPath(scope, v) === undefined)) {
+      try {
+        const result = await getExpressionResult.call(this, v, scope)
+        return k+':'+ result
+      } catch(e) {}
+
       return k + ':' + quoteStr(v)
     }
     return arg
   } else {
-    if (scope && getByPath(scope, arg) !== undefined) {
-      return ix+':'+arg + ', "' + arg +'":' + arg
-    } else if (isNonQuotedArg(arg)) {
-      return ix+':'+arg
+    const _arg = arg.trim()
+    if (scope && getByPath(scope, _arg) !== undefined) {
+      return ix+':'+_arg + ', "' + _arg +'":' + _arg
+    } else if (isNonQuotedArg(_arg)) {
+      return ix+':'+_arg
     } else {
       try {
-        const fn = newFunction('async expression', [], `return ${arg};`, filterValidFnScope(scope))
-        const result = await fn.call(this)
-          switch (typeof result) {
-            case 'number':
-            case 'boolean':
-            case 'undefined':
-              return ix+':'+ result
-            case 'function':
-              return ix+':'+fn.toString()
-            default:
-              return ix+':'+ JSON.stringify(result)
-          }
+        const result = await getExpressionResult.call(this, _arg, scope)
+        return ix+':'+ result
       } catch(e) {}
 
-      return ix+':'+ quoteStr(arg)
+      return ix+':'+ quoteStr(_arg)
     }
   }
 }
@@ -374,7 +390,7 @@ export async function parseCommand(commandStr: string, scope?: Record<string, an
 }
 
 
-const ArrowFunctionRegExp = /^\s*\(\)|\(([a-zA-Z_$][\w\d$]*)(\s*,\s*([a-zA-Z_$][\w\d$]*))*\)=>/;
+const ArrowFunctionRegExp = /^\s*\(\)|[a-zA-Z_$][\w\d$]*|\(([a-zA-Z_$][\w\d$]*)(\s*,\s*([a-zA-Z_$][\w\d$]*))*\)\s*=>/;
 
 function isArrowFunctionExpression(code: string) {
   return ArrowFunctionRegExp.test(code);
