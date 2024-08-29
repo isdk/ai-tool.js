@@ -4,7 +4,7 @@ import { get as getByPath } from "lodash-es";
 import { newFunction } from "util-ex";
 
 type ArgInfo = [boolean, string]
-type ArgProcessor = (arg: ArgInfo, ix: number, scope?: Record<string, any>) => string|void|Promise<string|void>
+type ArgProcessor = (arg: ArgInfo, ix: number, scope?: Record<string, any>, options?: ParseObjectArgumentOptions) => string|void|Promise<string|void>
 
 export interface AIChoiceConfig {
   items?: string[]
@@ -20,6 +20,8 @@ export interface ParseObjectArgumentOptions {
   delimiter?: string
   argProcessor?: ArgProcessor
   returnArrayOnly?: boolean
+  templateFormat?: string
+  templateData?: Record<string, any>
 }
 
 /**
@@ -68,7 +70,7 @@ export async function parseObjectArguments(argsStr: string, scope?: Record<strin
 
 export async function parseObjectArgumentInfos(args: ArgInfo[], scope?: Record<string, any>, options?: ParseObjectArgumentOptions) {
   if (args.length) {
-    const _args = await Promise.all(args.map((argInfo, ix) => parseObjectArgInfo(argInfo, ix, scope, options?.argProcessor)))
+    const _args = await Promise.all(args.map((argInfo, ix) => parseObjectArgInfo(argInfo, ix, scope, options)))
     const returnArrayOnly = options?.returnArrayOnly
     let result = _args?.length ? parseJsJson(`{${_args.map((arg: string) => escapeSpecialChars(arg)).join(',')}}`, scope) : undefined
     if (result) {
@@ -93,14 +95,14 @@ export async function parseObjectArgumentInfos(args: ArgInfo[], scope?: Record<s
   }
 }
 
-export function ChoiceArgProcessor(argInfo: ArgInfo, _ix: number, scope?: Record<string, any>) {
+export function ChoiceArgProcessor(argInfo: ArgInfo, _ix: number, scope?: Record<string, any>, options?: ParseObjectArgumentOptions) {
   const [isNamedArg, arg] = argInfo
   if (!isNamedArg && arg[0] === '|') {
-   return 'choice: {' + parseChoiceInfo(arg, scope) + '}'
+   return 'choice: {' + parseChoiceInfo(arg, scope, options) + '}'
   }
 }
 
-export async function TemplateArgProcessor([isNamedArg, arg]: ArgInfo, ix: number, scope?: Record<string, any>) {
+export async function TemplateArgProcessor([isNamedArg, arg]: ArgInfo, ix: number, scope?: Record<string, any>, options?: ParseObjectArgumentOptions) {
   if (!scope) {return}
   let name: string
   let value: string
@@ -112,10 +114,11 @@ export async function TemplateArgProcessor([isNamedArg, arg]: ArgInfo, ix: numbe
     value = arg
     name = ix + ''
   }
+  const data = {...scope, ...options?.templateData}
 
-  const formatOpts: PromptTemplateOptions = {template: value, data: scope }
-  if (scope.templateFormat) {
-    formatOpts.templateFormat = scope.templateFormat
+  const formatOpts: PromptTemplateOptions = {template: value, data }
+  if (options?.templateFormat) {
+    formatOpts.templateFormat = options.templateFormat
   }
   const content = await PromptTemplate.formatIf(formatOpts) as string
   if (content) {
@@ -124,10 +127,10 @@ export async function TemplateArgProcessor([isNamedArg, arg]: ArgInfo, ix: numbe
   }
 }
 
-export async function AIArgProcessor(argInfo: ArgInfo, ix: number, scope?: Record<string, any>) {
-  let result = ChoiceArgProcessor(argInfo, ix, scope)
+export async function AIArgProcessor(argInfo: ArgInfo, ix: number, scope?: Record<string, any>, options?: ParseObjectArgumentOptions) {
+  let result = ChoiceArgProcessor(argInfo, ix, scope, options)
   if (!result) {
-    result = await TemplateArgProcessor(argInfo, ix, scope)
+    result = await TemplateArgProcessor(argInfo, ix, scope, options)
   }
   return result
 }
@@ -151,8 +154,8 @@ function wrapQuotes(strs: string[], quoteChar = '"') {
     }
   })
 }
-function parseChoiceInfo(argsStr: string, scope?: Record<string, any>) {
-  const args = parseObjectArgumentsAsArgInfos(argsStr, scope, {delimiter: ':'})
+function parseChoiceInfo(argsStr: string, scope?: Record<string, any>, options?: ParseObjectArgumentOptions) {
+  const args = parseObjectArgumentsAsArgInfos(argsStr, scope, {...options, delimiter: ':'})
   const hasPicked = {} as Record<keyof AIChoiceConfig, boolean>
   const result = args.map(([isNamedArg, arg]: ArgInfo, ix: number) => {
     if (isNamedArg) {
@@ -198,10 +201,11 @@ function isNonQuotedArg(arg: string) {
   return isQuoted(arg) || !Number.isNaN(parseFloat(arg)) || JSKeywords.includes(arg) || isArrowFunctionExpression(arg)
 }
 
-export async function parseObjectArgInfo(argInfo: ArgInfo, ix: number, scope?: Record<string, any>, argProcessor?: ArgProcessor) {
+export async function parseObjectArgInfo(argInfo: ArgInfo, ix: number, scope?: Record<string, any>, options?: ParseObjectArgumentOptions) {
   const [isNamedArg, arg] = argInfo
+  const argProcessor = options?.argProcessor
   if (typeof argProcessor === 'function') {
-    const result = await argProcessor(argInfo, ix, scope)
+    const result = await argProcessor(argInfo, ix, scope, options)
     if (result) {return result}
   }
   if (isNamedArg) {
