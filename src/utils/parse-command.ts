@@ -192,8 +192,10 @@ export function quoteStr(str: string) {
   return '"' + str.replace(/(?<!\\)"(?!\\)/g, '\\"') + '"';
 }
 
+const JSKeywords = ['true', 'false', 'null', 'undefined', 'NaN', 'Infinity']
+
 function isNonQuotedArg(arg: string) {
-  return isQuoted(arg) || !Number.isNaN(parseFloat(arg)) || arg === 'true' || arg === 'false' || isArrowFunctionExpression(arg)
+  return isQuoted(arg) || !Number.isNaN(parseFloat(arg)) || JSKeywords.includes(arg) || isArrowFunctionExpression(arg)
 }
 
 export async function parseObjectArgInfo(argInfo: ArgInfo, ix: number, scope?: Record<string, any>, argProcessor?: ArgProcessor) {
@@ -203,6 +205,12 @@ export async function parseObjectArgInfo(argInfo: ArgInfo, ix: number, scope?: R
     if (result) {return result}
   }
   if (isNamedArg) {
+    const ix = arg.indexOf(':')
+    const k = arg.slice(0, ix).trim()
+    const v = arg.slice(ix+1).trim()
+    if (!isNonQuotedArg(v) && (!scope || getByPath(scope, v) === undefined)) {
+      return k + ':' + quoteStr(v)
+    }
     return arg
   } else {
     if (scope && getByPath(scope, arg) !== undefined) {

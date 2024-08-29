@@ -55,6 +55,13 @@ describe('parseObjectArguments', async () => {
     expect(result).toEqual('This is apple');
   });
 
+  test('should parse expression argument2', async () => {
+    const argsStr = `format=(answer) => answer ? 'yes' : 'no'`;
+    const result = await parseObjectArguments(argsStr);
+    expect(result).toHaveProperty('format')
+    expect(result.format.toString()).toBe(`(answer) => answer ? 'yes' : 'no'`);
+  });
+
   test('should parse one argument with scope', async () => {
     const argsStr = 'arg1';
     const result = await parseObjectArguments(argsStr, {arg1: '123'});
