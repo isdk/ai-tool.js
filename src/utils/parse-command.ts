@@ -16,6 +16,12 @@ export interface AIChoiceConfig {
   end?: string
 }
 
+export interface ParseObjectArgumentOptions {
+  delimiter?: string
+  argProcessor?: ArgProcessor
+  returnArrayOnly?: boolean
+}
+
 /**
  * Asynchronously parses a string of object arguments into an actual object.
  * @param argsStr The string of arguments to be parsed.
@@ -55,12 +61,12 @@ export interface AIChoiceConfig {
  * console.log(arrayResult); // Output: [1, 2, 3]
  * ```
  */
-export async function parseObjectArguments(argsStr: string, scope?: Record<string, any>, options?: {delimiter?: string, argProcessor?: ArgProcessor, returnArrayOnly?: boolean}) {
+export async function parseObjectArguments(argsStr: string, scope?: Record<string, any>, options?: ParseObjectArgumentOptions) {
   const args = parseObjectArgumentsAsArgInfos(argsStr, scope, options);
   return parseObjectArgumentInfos(args, scope, options)
 }
 
-export async function parseObjectArgumentInfos(args: ArgInfo[], scope?: Record<string, any>, options?: {delimiter?: string, argProcessor?: ArgProcessor, returnArrayOnly?: boolean}) {
+export async function parseObjectArgumentInfos(args: ArgInfo[], scope?: Record<string, any>, options?: ParseObjectArgumentOptions) {
   if (args.length) {
     const _args = await Promise.all(args.map((argInfo, ix) => parseObjectArgInfo(argInfo, ix, scope, options?.argProcessor)))
     const returnArrayOnly = options?.returnArrayOnly
@@ -246,7 +252,7 @@ async function parseObjectArgumentsAsStr(argsStr: string, scope?: Record<string,
  * @returns An array of parsed argument information, where each item contains a boolean indicating whether the argument is named,
  *          and the string representation of the argument.
  */
-export function parseObjectArgumentsAsArgInfos(argsStr: string, scope?: Record<string, any>, options?: {delimiter?: string, argProcessor?: ArgProcessor}) {
+export function parseObjectArgumentsAsArgInfos(argsStr: string, scope?: Record<string, any>, options?: ParseObjectArgumentOptions) {
   const delimiter = options?.delimiter ?? ','
   // Stores the parsed argument information.
   let args: ArgInfo[] = [];
@@ -338,7 +344,7 @@ export function parseObjectArgumentsAsArgInfos(argsStr: string, scope?: Record<s
   return args
 }
 
-export async function parseCommand(commandStr: string, scope?: Record<string, any>, options?: {delimiter?: string, argProcessor?: ArgProcessor}): Promise<{ command: string, args?: Record<string, any> }> {
+export async function parseCommand(commandStr: string, scope?: Record<string, any>, options?: ParseObjectArgumentOptions): Promise<{ command: string, args?: Record<string, any> }> {
   const pattern = /^([^(]+)(?:\((.*)\))?$/;
   const match = commandStr.match(pattern);
 
