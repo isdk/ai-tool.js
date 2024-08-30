@@ -12,7 +12,7 @@ import { canonicalize } from 'json-canonicalize'
 // }
 
 export function memoize<F extends (...args: any[]) => any>(fn: any, options?: Options<F>) {
-  if (isAsyncFunction(fn) || isPromise(fn)) {
+  if (options?.promise === undefined && (isAsyncFunction(fn) || isPromise(fn))) {
     options = {promise: true, ...options}
   }
 
