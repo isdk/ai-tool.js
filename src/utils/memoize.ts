@@ -24,6 +24,7 @@ export function memoize<F extends (...args: any[]) => any>(fn: any, options?: Op
   const normalizer = options?.normalizer
 
   return _memoize<F>(fn, {
+    ...options,
     normalizer: (args) => {
       if (normalizer) {
         const s = normalizer(args);
@@ -33,9 +34,9 @@ export function memoize<F extends (...args: any[]) => any>(fn: any, options?: Op
           return s
         }
       }
-      return xxhashAsStr(canonicalize(args));
+      const result = xxhashAsStr(canonicalize(args));
+      return result
     },
-    ...options
   })
 }
 
