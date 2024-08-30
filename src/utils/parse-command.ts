@@ -78,25 +78,21 @@ export async function parseObjectArgumentInfos(args: ArgInfo[], scope?: Record<s
       result = parseJsJson(jsonStr, scope)
     }
 
-    if (result) {
-      const keys = Object.keys(result)
-      if (keys.length === 1 && result[0] !== undefined) {
-        result = result[0]
-      } else if (keys.every(k => !isNaN(parseInt(k)))) {
-        result = keys.sort((a,b) => parseInt(a) - parseInt(b)).map(k => result[k])
-      }
-    }
     if (result && !returnArrayOnly) {
       const entries = Object.entries(result)
+      const keys = Object.keys(result)
       if (entries.length === 1 && result[0] !== undefined) {
         result =  result[0]
+      } else if (keys.every(k => !isNaN(parseInt(k)))) {
+        // convert to array
+        result = keys.sort((a,b) => parseInt(a) - parseInt(b)).map(k => result[k])
       } else if (entries.length === 2 && entries[0][0] === '0' && entries[0][1] === entries[1][1]) {
         // { '0': 3, n: 3 }
         result = result[0]
       }
 
     }
-    return result && returnArrayOnly && Object.keys(result).length === 1 && result[0] !== undefined ? result[0] : result
+    return result
   }
 }
 
