@@ -3,7 +3,7 @@ import * as _base32768 from 'base32768';
 import { canonicalize } from 'json-canonicalize';
 
 export const base32768 = _base32768
-export * from 'json-canonicalize'
+export { canonicalize }
 
 const {h32,h64} = _xxhashjs;
 const SEED = 588213;
