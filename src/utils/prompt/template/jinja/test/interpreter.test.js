@@ -266,7 +266,7 @@ class TestObj {
 function testTemplate(test) {
 	const env = new Environment();
 	env.set("True", true);
-	for (const [key, value] of Object.entries(test.data)) {
+	if (test.data) for (const [key, value] of Object.entries(test.data)) {
 		env.set(key, value);
 	}
 
