@@ -229,13 +229,13 @@ export async function parseObjectArgInfo(argInfo: ArgInfo, ix: number, scope?: R
     const k = arg.slice(0, ix).trim()
     const v = arg.slice(ix+1).trim()
     if (!isNonQuotedArg(v) && (!scope || getByPath(scope, v) === undefined)) {
-      try {
-        const result = await getExpressionResult.call(this, v, scope)
-        return k+':'+ result
-      } catch(e) {}
-
       return k + ':' + quoteStr(v)
     }
+    if (!isArrowFunctionExpression(arg)) try {
+      const result = await getExpressionResult.call(this, v, scope)
+      return k+':'+ result
+    } catch(e) {}
+
     return arg
   } else {
     const _arg = arg.trim()
@@ -244,7 +244,7 @@ export async function parseObjectArgInfo(argInfo: ArgInfo, ix: number, scope?: R
     } else if (isNonQuotedArg(_arg)) {
       return ix+':'+_arg
     } else {
-      try {
+      if (!isArrowFunctionExpression(arg)) try {
         const result = await getExpressionResult.call(this, _arg, scope)
         return ix+':'+ result
       } catch(e) {}
