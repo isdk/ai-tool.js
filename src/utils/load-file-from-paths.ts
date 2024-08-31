@@ -120,12 +120,14 @@ export function loadTextFromPaths(filename: string, searchPaths?: string[], extN
 * console.log(files); // Outputs an array of JavaScript file paths.
 * ```
 */
-export function readFilenamesRecursiveSync(dir: string|string[], options?: {isFileMatched?: (filepath: string) => boolean, signal?: AbortSignal}) {
+export function readFilenamesRecursiveSync(dir: string|string[], options?: {isFileMatched?: (filepath: string) => boolean, signal?: AbortSignal, level?: number}) {
   const result = [] as string[];
   const stack: string[] = typeof dir === 'string' ? [dir] : [...dir];
   const visitedDirs = new Set<string>()
   const signal = options?.signal
   const isFileMatched = options?.isFileMatched
+  const maxLevel = options?.level
+  let level = 0
 
   while (stack.length > 0) {
     if (signal?.aborted) {
@@ -148,6 +150,8 @@ export function readFilenamesRecursiveSync(dir: string|string[], options?: {isFi
           result.push(filepath)
         }
       }
+      level++
+      if (maxLevel && level >= maxLevel) {break}
     }
   }
   return result
