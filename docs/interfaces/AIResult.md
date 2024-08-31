@@ -29,7 +29,7 @@ The generated value.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:19](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/chat.ts#L19)
+[packages/ai-tool/src/utils/chat.ts:19](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/chat.ts#L19)
 
 ___
 
@@ -41,7 +41,7 @@ The reason why the generation stopped.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:24](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/chat.ts#L24)
+[packages/ai-tool/src/utils/chat.ts:24](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/chat.ts#L24)
 
 ___
 
@@ -51,7 +51,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:25](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/chat.ts#L25)
+[packages/ai-tool/src/utils/chat.ts:25](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/chat.ts#L25)
 
 ___
 
@@ -63,7 +63,7 @@ for stream mode
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:29](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/chat.ts#L29)
+[packages/ai-tool/src/utils/chat.ts:29](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/chat.ts#L29)
 
 ___
 
@@ -73,4 +73,4 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:30](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/chat.ts#L30)
+[packages/ai-tool/src/utils/chat.ts:30](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/chat.ts#L30)

@@ -42,7 +42,7 @@
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/lib/index.d.ts:42
+node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:42
 
 • **new ConfigFile**(`aPath`, `aOptions?`): [`ConfigFile`](ConfigFile.md)
 
@@ -59,7 +59,7 @@ node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/lib/index.d.ts:43
+node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:43
 
 ## Properties
 
@@ -69,7 +69,7 @@ node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/lib/index.d.ts:37
+node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:37
 
 ___
 
@@ -79,7 +79,7 @@ ___
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/lib/index.d.ts:38
+node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:38
 
 ___
 
@@ -89,7 +89,7 @@ ___
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/lib/index.d.ts:39
+node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:39
 
 ___
 
@@ -99,7 +99,7 @@ ___
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/lib/index.d.ts:40
+node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:40
 
 ## Methods
 
@@ -120,7 +120,7 @@ node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/lib/index.d.ts:44
+node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:44
 
 ▸ **load**(`done`): `void`
 
@@ -136,7 +136,7 @@ node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/lib/index.d.ts:45
+node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:45
 
 ▸ **load**(`aPath`, `aOptions`, `done`): `void`
 
@@ -154,7 +154,7 @@ node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/lib/index.d.ts:46
+node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:46
 
 ▸ **load**(`aPath`, `aOptions?`): `Promise`\<`any`\>
 
@@ -171,7 +171,7 @@ node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/lib/index.d.ts:47
+node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:47
 
 ▸ **load**(`aOptions?`): `Promise`\<`any`\>
 
@@ -187,7 +187,7 @@ node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/lib/index.d.ts:48
+node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:48
 
 ___
 
@@ -208,7 +208,7 @@ ___
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/lib/index.d.ts:49
+node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:49
 
 ▸ **loadSync**(`aOptions?`): `any`
 
@@ -224,7 +224,7 @@ node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/lib/index.d.ts:50
+node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:50
 
 ___
 
@@ -245,7 +245,7 @@ ___
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/lib/index.d.ts:32
+node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:32
 
 ▸ **load**(`aPath`, `aOptions`, `done`): `void` \| `Promise`\<`any`\>
 
@@ -263,7 +263,7 @@ node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/lib/index.d.ts:33
+node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:33
 
 ▸ **load**(`aPath`, `done`): `void` \| `Promise`\<`any`\>
 
@@ -280,7 +280,7 @@ node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/lib/index.d.ts:34
+node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:34
 
 ___
 
@@ -301,7 +301,7 @@ ___
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/lib/index.d.ts:35
+node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:35
 
 ___
 
@@ -323,7 +323,7 @@ ___
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/lib/index.d.ts:29
+node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:29
 
 ___
 
@@ -343,4 +343,4 @@ ___
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0-alpha.3/node_modules/load-config-file/lib/index.d.ts:30
+node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:30

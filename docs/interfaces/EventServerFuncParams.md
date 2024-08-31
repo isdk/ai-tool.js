@@ -32,7 +32,7 @@ Convention: Always pass _req, _res
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:9](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/server-tools.ts#L9)
+[packages/ai-tool/src/server-tools.ts:9](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/server-tools.ts#L9)
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/server-tools.ts#L10)
+[packages/ai-tool/src/server-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/server-tools.ts#L10)
 
 ___
 
@@ -56,7 +56,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:15](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/funcs/event-server.ts#L15)
+[packages/ai-tool/src/funcs/event-server.ts:15](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/funcs/event-server.ts#L15)
 
 ___
 
@@ -66,7 +66,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:14](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/funcs/event-server.ts#L14)
+[packages/ai-tool/src/funcs/event-server.ts:14](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/funcs/event-server.ts#L14)
 
 ___
 
@@ -76,4 +76,4 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:13](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/funcs/event-server.ts#L13)
+[packages/ai-tool/src/funcs/event-server.ts:13](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/funcs/event-server.ts#L13)

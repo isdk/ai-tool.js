@@ -29,7 +29,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:11](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/cancelable-ability.ts#L11)
+[packages/ai-tool/src/utils/cancelable-ability.ts:11](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/cancelable-ability.ts#L11)
 
 ___
 
@@ -43,7 +43,7 @@ AbilityOptions.classMethods
 
 #### Defined in
 
-node_modules/.pnpm/custom-ability@2.0.0-alpha.7/node_modules/custom-ability/lib/custom-ability.d.ts:13
+node_modules/.pnpm/custom-ability@2.0.0/node_modules/custom-ability/lib/custom-ability.d.ts:13
 
 ___
 
@@ -57,7 +57,7 @@ AbilityOptions.exclude
 
 #### Defined in
 
-node_modules/.pnpm/custom-ability@2.0.0-alpha.7/node_modules/custom-ability/lib/custom-ability.d.ts:11
+node_modules/.pnpm/custom-ability@2.0.0/node_modules/custom-ability/lib/custom-ability.d.ts:11
 
 ___
 
@@ -71,7 +71,7 @@ AbilityOptions.id
 
 #### Defined in
 
-node_modules/.pnpm/custom-ability@2.0.0-alpha.7/node_modules/custom-ability/lib/custom-ability.d.ts:8
+node_modules/.pnpm/custom-ability@2.0.0/node_modules/custom-ability/lib/custom-ability.d.ts:8
 
 ___
 
@@ -85,7 +85,7 @@ AbilityOptions.include
 
 #### Defined in
 
-node_modules/.pnpm/custom-ability@2.0.0-alpha.7/node_modules/custom-ability/lib/custom-ability.d.ts:10
+node_modules/.pnpm/custom-ability@2.0.0/node_modules/custom-ability/lib/custom-ability.d.ts:10
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:12](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/cancelable-ability.ts#L12)
+[packages/ai-tool/src/utils/cancelable-ability.ts:12](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/cancelable-ability.ts#L12)
 
 ___
 
@@ -109,7 +109,7 @@ AbilityOptions.methods
 
 #### Defined in
 
-node_modules/.pnpm/custom-ability@2.0.0-alpha.7/node_modules/custom-ability/lib/custom-ability.d.ts:12
+node_modules/.pnpm/custom-ability@2.0.0/node_modules/custom-ability/lib/custom-ability.d.ts:12
 
 ___
 
@@ -123,4 +123,4 @@ AbilityOptions.mode
 
 #### Defined in
 
-node_modules/.pnpm/custom-ability@2.0.0-alpha.7/node_modules/custom-ability/lib/custom-ability.d.ts:9
+node_modules/.pnpm/custom-ability@2.0.0/node_modules/custom-ability/lib/custom-ability.d.ts:9

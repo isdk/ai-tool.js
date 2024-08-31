@@ -74,8 +74,8 @@
 - [FuncParam](interfaces/FuncParam.md)
 - [FuncParams](interfaces/FuncParams.md)
 - [Funcs](interfaces/Funcs.md)
-- [IOptions](interfaces/IOptions.md)
 - [JsonFilter](interfaces/JsonFilter.md)
+- [ParseObjectArgumentOptions](interfaces/ParseObjectArgumentOptions.md)
 - [PromptExampleSelectorOptions](interfaces/PromptExampleSelectorOptions.md)
 - [PromptTemplateOptions](interfaces/PromptTemplateOptions.md)
 - [RemoteFuncItem](interfaces/RemoteFuncItem.md)
@@ -160,7 +160,6 @@
 - [\_lrucache](modules.md#_lrucache)
 - [backendEventable](modules.md#backendeventable)
 - [canonicalize](modules.md#canonicalize)
-- [canonicalizeEx](modules.md#canonicalizeex)
 - [countRegexMatches](modules.md#countregexmatches)
 - [createAbilityInjector](modules.md#createabilityinjector)
 - [createCallbacksTransformer](modules.md#createcallbackstransformer)
@@ -200,6 +199,7 @@
 - [loadTextFromPaths](modules.md#loadtextfrompaths)
 - [makeToolFuncCancelable](modules.md#maketoolfunccancelable)
 - [matchUrlProtocol](modules.md#matchurlprotocol)
+- [memoize](modules.md#memoize)
 - [messagesToText](modules.md#messagestotext)
 - [paramsSizeToScaleStr](modules.md#paramssizetoscalestr)
 - [parseCommand](modules.md#parsecommand)
@@ -796,7 +796,7 @@ node_modules/.pnpm/date-fns@3.6.0/node_modules/date-fns/toDate.d.ts:33
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:74](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/chat.ts#L74)
+[packages/ai-tool/src/utils/chat.ts:74](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/chat.ts#L74)
 
 ___
 
@@ -806,7 +806,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:44](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/chat.ts#L44)
+[packages/ai-tool/src/utils/chat.ts:44](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/chat.ts#L44)
 
 ___
 
@@ -816,7 +816,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:42](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/chat.ts#L42)
+[packages/ai-tool/src/utils/chat.ts:42](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/chat.ts#L42)
 
 ___
 
@@ -826,7 +826,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:36](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/chat.ts#L36)
+[packages/ai-tool/src/utils/chat.ts:36](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/chat.ts#L36)
 
 ___
 
@@ -836,7 +836,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:10](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/consts.ts#L10)
+[packages/ai-tool/src/utils/consts.ts:10](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/consts.ts#L10)
 
 ___
 
@@ -860,7 +860,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:8](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/consts.ts#L8)
+[packages/ai-tool/src/utils/consts.ts:8](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/consts.ts#L8)
 
 ___
 
@@ -870,7 +870,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:11](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/consts.ts#L11)
+[packages/ai-tool/src/utils/consts.ts:11](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/consts.ts#L11)
 
 ___
 
@@ -880,7 +880,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:13](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/chat.ts#L13)
+[packages/ai-tool/src/utils/chat.ts:13](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/chat.ts#L13)
 
 ___
 
@@ -890,7 +890,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:6](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/consts.ts#L6)
+[packages/ai-tool/src/utils/consts.ts:6](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/consts.ts#L6)
 
 ___
 
@@ -900,7 +900,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:8](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/cancelable-ability.ts#L8)
+[packages/ai-tool/src/utils/cancelable-ability.ts:8](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/cancelable-ability.ts#L8)
 
 ___
 
@@ -910,7 +910,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:3](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/base-error.ts#L3)
+[packages/ai-tool/src/utils/base-error.ts:3](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/base-error.ts#L3)
 
 ___
 
@@ -937,7 +937,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/event/event-ability.ts:9](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/event/event-ability.ts#L9)
+[packages/ai-tool/src/utils/event/event-ability.ts:9](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/event/event-ability.ts#L9)
 
 ___
 
@@ -963,7 +963,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/event/event-ability.ts:8](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/event/event-ability.ts#L8)
+[packages/ai-tool/src/utils/event/event-ability.ts:8](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/event/event-ability.ts#L8)
 
 ___
 
@@ -976,7 +976,7 @@ a literal text or a variable name.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/python.ts:6](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/template/python.ts#L6)
+[packages/ai-tool/src/utils/prompt/template/python.ts:6](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/template/python.ts#L6)
 
 ___
 
@@ -986,7 +986,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:24](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/tool-func.ts#L24)
+[packages/ai-tool/src/tool-func.ts:24](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/tool-func.ts#L24)
 
 ___
 
@@ -1002,7 +1002,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:3](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/prompt-example-selector.ts#L3)
+[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:3](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/prompt-example-selector.ts#L3)
 
 ___
 
@@ -1012,7 +1012,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/consts.ts:17](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/consts.ts#L17)
+[packages/ai-tool/src/utils/prompt/consts.ts:17](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/consts.ts#L17)
 
 ___
 
@@ -1022,7 +1022,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/consts.ts:10](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/consts.ts#L10)
+[packages/ai-tool/src/utils/prompt/consts.ts:10](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/consts.ts#L10)
 
 ___
 
@@ -1047,7 +1047,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:38](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/tool-func.ts#L38)
+[packages/ai-tool/src/tool-func.ts:38](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/tool-func.ts#L38)
 
 ___
 
@@ -1057,7 +1057,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:41](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/chat.ts#L41)
+[packages/ai-tool/src/utils/chat.ts:41](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/chat.ts#L41)
 
 ___
 
@@ -1067,7 +1067,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:35](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/chat.ts#L35)
+[packages/ai-tool/src/utils/chat.ts:35](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/chat.ts#L35)
 
 ___
 
@@ -1077,7 +1077,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:4](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/chat.ts#L4)
+[packages/ai-tool/src/utils/chat.ts:4](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/chat.ts#L4)
 
 ___
 
@@ -1087,7 +1087,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:33](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/base-error.ts#L33)
+[packages/ai-tool/src/utils/base-error.ts:33](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/base-error.ts#L33)
 
 ___
 
@@ -1097,7 +1097,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:5](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/consts.ts#L5)
+[packages/ai-tool/src/utils/consts.ts:5](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/consts.ts#L5)
 
 ___
 
@@ -1107,7 +1107,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:32](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/base-error.ts#L32)
+[packages/ai-tool/src/utils/base-error.ts:32](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/base-error.ts#L32)
 
 ___
 
@@ -1133,7 +1133,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/client-tools.ts:153](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/client-tools.ts#L153)
+[packages/ai-tool/src/client-tools.ts:153](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/client-tools.ts#L153)
 
 ___
 
@@ -1143,7 +1143,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/async-semaphore.ts:6](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/async-semaphore.ts#L6)
+[packages/ai-tool/src/utils/async-semaphore.ts:6](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/async-semaphore.ts#L6)
 
 ___
 
@@ -1153,7 +1153,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/event/event-ability.ts:7](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/event/event-ability.ts#L7)
+[packages/ai-tool/src/utils/event/event-ability.ts:7](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/event/event-ability.ts#L7)
 
 ___
 
@@ -1163,7 +1163,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/event/event-ability.ts:6](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/event/event-ability.ts#L6)
+[packages/ai-tool/src/utils/event/event-ability.ts:6](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/event/event-ability.ts#L6)
 
 ___
 
@@ -1176,7 +1176,7 @@ do not use /g global option here: when the regex is executed multiple times, it 
 
 #### Defined in
 
-[packages/ai-tool/src/utils/filename.ts:8](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/filename.ts#L8)
+[packages/ai-tool/src/utils/filename.ts:8](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/filename.ts#L8)
 
 ___
 
@@ -1194,7 +1194,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/builtins.ts:61](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/template/jinja/src/builtins.ts#L61)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/builtins.ts:61](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/template/jinja/src/builtins.ts#L61)
 
 ___
 
@@ -1204,7 +1204,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:29](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/base-error.ts#L29)
+[packages/ai-tool/src/utils/base-error.ts:29](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/base-error.ts#L29)
 
 ___
 
@@ -1214,7 +1214,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:31](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/base-error.ts#L31)
+[packages/ai-tool/src/utils/base-error.ts:31](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/base-error.ts#L31)
 
 ___
 
@@ -1224,7 +1224,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:30](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/base-error.ts#L30)
+[packages/ai-tool/src/utils/base-error.ts:30](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/base-error.ts#L30)
 
 ___
 
@@ -1234,7 +1234,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:3](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/consts.ts#L3)
+[packages/ai-tool/src/utils/consts.ts:3](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/consts.ts#L3)
 
 ___
 
@@ -1244,7 +1244,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/consts.ts:12](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/consts.ts#L12)
+[packages/ai-tool/src/utils/prompt/consts.ts:12](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/consts.ts#L12)
 
 ___
 
@@ -1257,7 +1257,7 @@ defaults to `chat`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/consts.ts:5](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/consts.ts#L5)
+[packages/ai-tool/src/utils/prompt/consts.ts:5](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/consts.ts#L5)
 
 ___
 
@@ -1267,7 +1267,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/error-readable-stream.ts:3](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/stream/error-readable-stream.ts#L3)
+[packages/ai-tool/src/utils/stream/error-readable-stream.ts:3](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/stream/error-readable-stream.ts#L3)
 
 ___
 
@@ -1293,7 +1293,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:13](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/consts.ts#L13)
+[packages/ai-tool/src/utils/consts.ts:13](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/consts.ts#L13)
 
 ___
 
@@ -1303,7 +1303,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/error-readable-stream.ts:4](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/stream/error-readable-stream.ts#L4)
+[packages/ai-tool/src/utils/stream/error-readable-stream.ts:4](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/stream/error-readable-stream.ts#L4)
 
 ___
 
@@ -1313,7 +1313,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/event/sse-channel.ts:17](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/event/sse-channel.ts#L17)
+[packages/ai-tool/src/utils/event/sse-channel.ts:17](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/event/sse-channel.ts#L17)
 
 ___
 
@@ -1339,7 +1339,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:62](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/server-tools.ts#L62)
+[packages/ai-tool/src/server-tools.ts:62](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/server-tools.ts#L62)
 
 ___
 
@@ -1349,7 +1349,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:8](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/tool-func.ts#L8)
+[packages/ai-tool/src/tool-func.ts:8](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/tool-func.ts#L8)
 
 ___
 
@@ -1359,7 +1359,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:7](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/tool-func.ts#L7)
+[packages/ai-tool/src/tool-func.ts:7](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/tool-func.ts#L7)
 
 ___
 
@@ -1369,7 +1369,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:9](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/tool-func.ts#L9)
+[packages/ai-tool/src/tool-func.ts:9](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/tool-func.ts#L9)
 
 ___
 
@@ -1408,7 +1408,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:348](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/tool-func.ts#L348)
+[packages/ai-tool/src/tool-func.ts:348](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/tool-func.ts#L348)
 
 ___
 
@@ -1420,7 +1420,7 @@ Regular expression pattern for reserved names on Windows systems.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/filename.ts:13](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/filename.ts#L13)
+[packages/ai-tool/src/utils/filename.ts:13](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/filename.ts#L13)
 
 ___
 
@@ -1430,7 +1430,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/hash/xxhash.ts:5](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/hash/xxhash.ts#L5)
+[packages/ai-tool/src/utils/hash/xxhash.ts:5](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/hash/xxhash.ts#L5)
 
 ___
 
@@ -1440,7 +1440,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:8](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/prompt-template.ts#L8)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:8](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/prompt-template.ts#L8)
 
 ___
 
@@ -1450,7 +1450,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event.ts:22](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/funcs/event.ts#L22)
+[packages/ai-tool/src/funcs/event.ts:22](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/funcs/event.ts#L22)
 
 ___
 
@@ -1460,7 +1460,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-client.ts:180](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/funcs/event-client.ts#L180)
+[packages/ai-tool/src/funcs/event-client.ts:180](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/funcs/event-client.ts#L180)
 
 ___
 
@@ -1470,7 +1470,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:133](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/funcs/event-server.ts#L133)
+[packages/ai-tool/src/funcs/event-server.ts:133](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/funcs/event-server.ts#L133)
 
 ___
 
@@ -1480,7 +1480,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/lrucache.ts:40](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/funcs/lrucache.ts#L40)
+[packages/ai-tool/src/funcs/lrucache.ts:40](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/funcs/lrucache.ts#L40)
 
 ___
 
@@ -1490,7 +1490,7 @@ ___
 
 #### Defined in
 
-node_modules/.pnpm/mime-type@5.0.0-alpha.2/node_modules/mime-type/src/with-db.d.ts:3
+node_modules/.pnpm/mime-type@5.0.0/node_modules/mime-type/src/with-db.d.ts:3
 
 ___
 
@@ -1506,7 +1506,7 @@ ___
 
 ### AIArgProcessor
 
-▸ **AIArgProcessor**(`argInfo`, `ix`, `scope?`): `Promise`\<`undefined` \| `string`\>
+▸ **AIArgProcessor**(`argInfo`, `ix`, `scope?`, `options?`): `Promise`\<`undefined` \| `string`\>
 
 #### Parameters
 
@@ -1515,6 +1515,7 @@ ___
 | `argInfo` | `ArgInfo` |
 | `ix` | `number` |
 | `scope?` | `Record`\<`string`, `any`\> |
+| `options?` | [`ParseObjectArgumentOptions`](interfaces/ParseObjectArgumentOptions.md) |
 
 #### Returns
 
@@ -1522,7 +1523,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/parse-command.ts:121](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/parse-command.ts#L121)
+[packages/ai-tool/src/utils/parse-command.ts:131](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/parse-command.ts#L131)
 
 ___
 
@@ -1567,13 +1568,13 @@ Will throw an error if the response is not OK.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/ai-stream.ts:122](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/stream/ai-stream.ts#L122)
+[packages/ai-tool/src/utils/stream/ai-stream.ts:122](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/stream/ai-stream.ts#L122)
 
 ___
 
 ### ChoiceArgProcessor
 
-▸ **ChoiceArgProcessor**(`argInfo`, `_ix`, `scope?`): `undefined` \| `string`
+▸ **ChoiceArgProcessor**(`argInfo`, `_ix`, `scope?`, `options?`): `undefined` \| `string`
 
 #### Parameters
 
@@ -1582,6 +1583,7 @@ ___
 | `argInfo` | `ArgInfo` |
 | `_ix` | `number` |
 | `scope?` | `Record`\<`string`, `any`\> |
+| `options?` | [`ParseObjectArgumentOptions`](interfaces/ParseObjectArgumentOptions.md) |
 
 #### Returns
 
@@ -1589,7 +1591,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/parse-command.ts:90](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/parse-command.ts#L90)
+[packages/ai-tool/src/utils/parse-command.ts:99](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/parse-command.ts#L99)
 
 ___
 
@@ -1620,13 +1622,13 @@ Creates a rate limiter function that blocks with a promise whenever the rate lim
 
 #### Defined in
 
-[packages/ai-tool/src/utils/async-semaphore.ts:347](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/async-semaphore.ts#L347)
+[packages/ai-tool/src/utils/async-semaphore.ts:347](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/async-semaphore.ts#L347)
 
 ___
 
 ### TemplateArgProcessor
 
-▸ **TemplateArgProcessor**(`«destructured»`, `ix`, `scope?`): `Promise`\<`undefined` \| `string`\>
+▸ **TemplateArgProcessor**(`«destructured»`, `ix`, `scope?`, `options?`): `Promise`\<`undefined` \| `string`\>
 
 #### Parameters
 
@@ -1635,6 +1637,7 @@ ___
 | `«destructured»` | `ArgInfo` |
 | `ix` | `number` |
 | `scope?` | `Record`\<`string`, `any`\> |
+| `options?` | [`ParseObjectArgumentOptions`](interfaces/ParseObjectArgumentOptions.md) |
 
 #### Returns
 
@@ -1642,7 +1645,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/parse-command.ts:97](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/parse-command.ts#L97)
+[packages/ai-tool/src/utils/parse-command.ts:106](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/parse-command.ts#L106)
 
 ___
 
@@ -1666,7 +1669,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/lrucache.ts:6](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/funcs/lrucache.ts#L6)
+[packages/ai-tool/src/funcs/lrucache.ts:6](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/funcs/lrucache.ts#L6)
 
 ___
 
@@ -1687,7 +1690,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/event/event-ability.ts:80](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/event/event-ability.ts#L80)
+[packages/ai-tool/src/utils/event/event-ability.ts:80](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/event/event-ability.ts#L80)
 
 ___
 
@@ -1708,27 +1711,6 @@ ___
 #### Defined in
 
 node_modules/.pnpm/json-canonicalize@1.0.6/node_modules/json-canonicalize/types/canonicalize.d.ts:1
-
-___
-
-### canonicalizeEx
-
-▸ **canonicalizeEx**(`obj`, `options?`): `string`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `obj` | `any` |
-| `options?` | [`IOptions`](interfaces/IOptions.md) |
-
-#### Returns
-
-`string`
-
-#### Defined in
-
-node_modules/.pnpm/json-canonicalize@1.0.6/node_modules/json-canonicalize/types/canonicalize-ex.d.ts:5
 
 ___
 
@@ -1755,7 +1737,7 @@ The total number of matches found.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/count-regex-matches.ts:10](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/count-regex-matches.ts#L10)
+[packages/ai-tool/src/utils/count-regex-matches.ts:10](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/count-regex-matches.ts#L10)
 
 ___
 
@@ -1777,7 +1759,7 @@ ___
 
 #### Defined in
 
-node_modules/.pnpm/custom-ability@2.0.0-alpha.7/node_modules/custom-ability/lib/custom-ability.d.ts:29
+node_modules/.pnpm/custom-ability@2.0.0/node_modules/custom-ability/lib/custom-ability.d.ts:29
 
 ▸ **createAbilityInjector**(`abilityClass`, `aCoreMethod?`, `isGetClassFunc?`, `injectorOpts?`): `AbilityFn`
 
@@ -1796,7 +1778,7 @@ node_modules/.pnpm/custom-ability@2.0.0-alpha.7/node_modules/custom-ability/lib/
 
 #### Defined in
 
-node_modules/.pnpm/custom-ability@2.0.0-alpha.7/node_modules/custom-ability/lib/custom-ability.d.ts:30
+node_modules/.pnpm/custom-ability@2.0.0/node_modules/custom-ability/lib/custom-ability.d.ts:30
 
 ▸ **createAbilityInjector**(`abilityClass`, `aCoreMethod?`, `injectorOpts?`): `AbilityFn`
 
@@ -1814,7 +1796,7 @@ node_modules/.pnpm/custom-ability@2.0.0-alpha.7/node_modules/custom-ability/lib/
 
 #### Defined in
 
-node_modules/.pnpm/custom-ability@2.0.0-alpha.7/node_modules/custom-ability/lib/custom-ability.d.ts:31
+node_modules/.pnpm/custom-ability@2.0.0/node_modules/custom-ability/lib/custom-ability.d.ts:31
 
 ▸ **createAbilityInjector**(`abilityClass`, `injectorOpts?`): `AbilityFn`
 
@@ -1831,7 +1813,7 @@ node_modules/.pnpm/custom-ability@2.0.0-alpha.7/node_modules/custom-ability/lib/
 
 #### Defined in
 
-node_modules/.pnpm/custom-ability@2.0.0-alpha.7/node_modules/custom-ability/lib/custom-ability.d.ts:32
+node_modules/.pnpm/custom-ability@2.0.0/node_modules/custom-ability/lib/custom-ability.d.ts:32
 
 ___
 
@@ -1880,7 +1862,7 @@ const transformer = createCallbacksTransformer(callbacks);
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:36](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/stream/create-callbacks-stream.ts#L36)
+[packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:36](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/stream/create-callbacks-stream.ts#L36)
 
 ___
 
@@ -1900,7 +1882,7 @@ An empty and closed ReadableStream instance.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/create-empty-stream.ts:8](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/stream/create-empty-stream.ts#L8)
+[packages/ai-tool/src/utils/stream/create-empty-stream.ts:8](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/stream/create-empty-stream.ts#L8)
 
 ___
 
@@ -1932,7 +1914,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/end-with-repeated-sequence.ts:3](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/end-with-repeated-sequence.ts#L3)
+[packages/ai-tool/src/utils/end-with-repeated-sequence.ts:3](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/end-with-repeated-sequence.ts#L3)
 
 ___
 
@@ -1958,7 +1940,7 @@ Error object
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:220](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/base-error.ts#L220)
+[packages/ai-tool/src/utils/base-error.ts:220](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/base-error.ts#L220)
 
 ___
 
@@ -1989,7 +1971,7 @@ TransformStream parsing events.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/ai-stream.ts:37](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/stream/ai-stream.ts#L37)
+[packages/ai-tool/src/utils/stream/ai-stream.ts:37](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/stream/ai-stream.ts#L37)
 
 ___
 
@@ -2021,7 +2003,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/hf-prompt-template.ts:140](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/hf-prompt-template.ts#L140)
+[packages/ai-tool/src/utils/prompt/hf-prompt-template.ts:140](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/hf-prompt-template.ts#L140)
 
 ___
 
@@ -2042,7 +2024,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/lrucache.ts:22](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/funcs/lrucache.ts#L22)
+[packages/ai-tool/src/funcs/lrucache.ts:22](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/funcs/lrucache.ts#L22)
 
 ___
 
@@ -2063,7 +2045,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/to-datetime.ts:29](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/to-datetime.ts#L29)
+[packages/ai-tool/src/utils/to-datetime.ts:29](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/to-datetime.ts#L29)
 
 ___
 
@@ -2102,7 +2084,7 @@ console.log(process.env.HELLO) // undefined
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/env.ts:82](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/template/env.ts#L82)
+[packages/ai-tool/src/utils/prompt/template/env.ts:82](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/template/env.ts#L82)
 
 ___
 
@@ -2146,7 +2128,7 @@ const expandedObj = expandObjEnv(obj, { processEnv: myCustomEnv }); // Assuming 
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/env.ts:142](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/template/env.ts#L142)
+[packages/ai-tool/src/utils/prompt/template/env.ts:142](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/template/env.ts#L142)
 
 ___
 
@@ -2186,7 +2168,7 @@ extNameLevel(".json5");
 
 #### Defined in
 
-[packages/ai-tool/src/utils/filename.ts:209](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/filename.ts#L209)
+[packages/ai-tool/src/utils/filename.ts:209](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/filename.ts#L209)
 
 ___
 
@@ -2217,7 +2199,7 @@ console.log(exists); // Outputs: true or false
 
 #### Defined in
 
-[packages/ai-tool/src/utils/load-file-from-paths.ts:18](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/load-file-from-paths.ts#L18)
+[packages/ai-tool/src/utils/load-file-from-paths.ts:18](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/load-file-from-paths.ts#L18)
 
 ___
 
@@ -2236,7 +2218,7 @@ A compiled regular expression for reserved filename characters.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/filename.ts:42](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/filename.ts#L42)
+[packages/ai-tool/src/utils/filename.ts:42](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/filename.ts#L42)
 
 ___
 
@@ -2256,7 +2238,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/parse-js-json.ts:33](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/parse-js-json.ts#L33)
+[packages/ai-tool/src/utils/parse-js-json.ts:33](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/parse-js-json.ts#L33)
 
 ___
 
@@ -2286,7 +2268,7 @@ An array containing all string keys of the specified enumeration.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/get-all-enum-keys.ts:7](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/get-all-enum-keys.ts#L7)
+[packages/ai-tool/src/utils/get-all-enum-keys.ts:7](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/get-all-enum-keys.ts#L7)
 
 ___
 
@@ -2307,7 +2289,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/config.ts:56](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/config.ts#L56)
+[packages/ai-tool/src/utils/config.ts:56](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/config.ts#L56)
 
 ___
 
@@ -2328,7 +2310,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/config.ts:80](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/config.ts#L80)
+[packages/ai-tool/src/utils/config.ts:80](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/config.ts#L80)
 
 ___
 
@@ -2365,7 +2347,7 @@ console.log(getKeysPath(obj)); // Output: ['a.b.c', 'd[0]', 'd[1].e']
 
 #### Defined in
 
-[packages/ai-tool/src/utils/get-keys-path.ts:16](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/get-keys-path.ts#L16)
+[packages/ai-tool/src/utils/get-keys-path.ts:16](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/get-keys-path.ts#L16)
 
 ___
 
@@ -2390,7 +2372,7 @@ Returns a concatenated string of multiple extensions, or an empty string if no e
 
 #### Defined in
 
-[packages/ai-tool/src/utils/filename.ts:174](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/filename.ts#L174)
+[packages/ai-tool/src/utils/filename.ts:174](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/filename.ts#L174)
 
 ___
 
@@ -2421,7 +2403,7 @@ console.log(realPath); // Outputs the resolved path.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/load-file-from-paths.ts:165](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/load-file-from-paths.ts#L165)
+[packages/ai-tool/src/utils/load-file-from-paths.ts:172](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/load-file-from-paths.ts#L172)
 
 ___
 
@@ -2441,7 +2423,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/error-readable-stream.ts:12](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/stream/error-readable-stream.ts#L12)
+[packages/ai-tool/src/utils/stream/error-readable-stream.ts:12](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/stream/error-readable-stream.ts#L12)
 
 ___
 
@@ -2464,7 +2446,7 @@ Operator precedence can be found here: https://developer.mozilla.org/en-US/docs/
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/parser.ts:32](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/template/jinja/src/parser.ts#L32)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/parser.ts:32](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/template/jinja/src/parser.ts#L32)
 
 ___
 
@@ -2487,7 +2469,7 @@ Generate a list of tokens from a source string.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/lexer.ts:200](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/template/jinja/src/lexer.ts#L200)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/lexer.ts:200](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/template/jinja/src/lexer.ts#L200)
 
 ___
 
@@ -2509,7 +2491,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/env.ts:17](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/template/env.ts#L17)
+[packages/ai-tool/src/utils/prompt/template/env.ts:17](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/template/env.ts#L17)
 
 ___
 
@@ -2534,7 +2516,7 @@ template have been replaced with their corresponding values.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/python.ts:71](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/template/python.ts#L71)
+[packages/ai-tool/src/utils/prompt/template/python.ts:71](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/template/python.ts#L71)
 
 ___
 
@@ -2558,7 +2540,7 @@ Parse and interpolate template
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/golang.ts:269](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/template/golang.ts#L269)
+[packages/ai-tool/src/utils/prompt/template/golang.ts:269](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/template/golang.ts#L269)
 
 ___
 
@@ -2597,7 +2579,7 @@ IsModelNameMatched("gpt-2", (modelName) => modelName.startsWith("gpt-")) // retu
 
 #### Defined in
 
-[packages/ai-tool/src/utils/is-model-name-matched.ts:21](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/is-model-name-matched.ts#L21)
+[packages/ai-tool/src/utils/is-model-name-matched.ts:21](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/is-model-name-matched.ts#L21)
 
 ___
 
@@ -2632,7 +2614,7 @@ isValidFilename('my<file.txt'); // Returns false
 
 #### Defined in
 
-[packages/ai-tool/src/utils/filename.ts:63](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/filename.ts#L63)
+[packages/ai-tool/src/utils/filename.ts:63](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/filename.ts#L63)
 
 ___
 
@@ -2656,7 +2638,7 @@ A boolean indicating whether the filepath is valid. Returns true if valid; false
 
 #### Defined in
 
-[packages/ai-tool/src/utils/filename.ts:72](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/filename.ts#L72)
+[packages/ai-tool/src/utils/filename.ts:72](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/filename.ts#L72)
 
 ___
 
@@ -2676,7 +2658,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/is-web-stream.ts:1](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/stream/is-web-stream.ts#L1)
+[packages/ai-tool/src/utils/stream/is-web-stream.ts:1](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/stream/is-web-stream.ts#L1)
 
 ___
 
@@ -2717,7 +2699,7 @@ console.log(jsonFilterToWhere(jsonFilter)); // Outputs a WHERE clause based on t
 
 #### Defined in
 
-[packages/ai-tool/src/utils/json-filter.ts:123](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/json-filter.ts#L123)
+[packages/ai-tool/src/utils/json-filter.ts:123](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/json-filter.ts#L123)
 
 ___
 
@@ -2742,7 +2724,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/json-to-markdown-str.ts:2](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/json-to-markdown-str.ts#L2)
+[packages/ai-tool/src/utils/json-to-markdown-str.ts:2](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/json-to-markdown-str.ts#L2)
 
 ___
 
@@ -2782,7 +2764,7 @@ const content = loadFileFromPaths('config', ['/etc', '/usr/local/etc'], ['.json'
 
 #### Defined in
 
-[packages/ai-tool/src/utils/load-file-from-paths.ts:39](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/load-file-from-paths.ts#L39)
+[packages/ai-tool/src/utils/load-file-from-paths.ts:39](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/load-file-from-paths.ts#L39)
 
 ___
 
@@ -2806,7 +2788,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/load-file-from-paths.ts:96](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/load-file-from-paths.ts#L96)
+[packages/ai-tool/src/utils/load-file-from-paths.ts:96](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/load-file-from-paths.ts#L96)
 
 ___
 
@@ -2827,7 +2809,7 @@ typeof [`ToolFunc`](classes/ToolFunc.md)
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:340](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/cancelable-ability.ts#L340)
+[packages/ai-tool/src/utils/cancelable-ability.ts:340](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/cancelable-ability.ts#L340)
 
 ___
 
@@ -2876,7 +2858,34 @@ matchUrlProtocol("noProtocolHere");
 
 #### Defined in
 
-[packages/ai-tool/src/utils/match-url-protocol.ts:23](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/match-url-protocol.ts#L23)
+[packages/ai-tool/src/utils/match-url-protocol.ts:23](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/match-url-protocol.ts#L23)
+
+___
+
+### memoize
+
+▸ **memoize**\<`F`\>(`fn`, `options?`): `F` & `Memoized`\<`F`\>
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `F` | extends (...`args`: `any`[]) => `any` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `fn` | `any` |
+| `options?` | `Options`\<`F`\> |
+
+#### Returns
+
+`F` & `Memoized`\<`F`\>
+
+#### Defined in
+
+[packages/ai-tool/src/utils/memoize.ts:14](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/memoize.ts#L14)
 
 ___
 
@@ -2896,7 +2905,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:116](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/chat.ts#L116)
+[packages/ai-tool/src/utils/chat.ts:116](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/chat.ts#L116)
 
 ___
 
@@ -2922,7 +2931,7 @@ A string representing the formatted parameter size with the appropriate scale un
 
 #### Defined in
 
-[packages/ai-tool/src/utils/convert-params-size.ts:11](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/convert-params-size.ts#L11)
+[packages/ai-tool/src/utils/convert-params-size.ts:11](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/convert-params-size.ts#L11)
 
 ___
 
@@ -2936,9 +2945,7 @@ ___
 | :------ | :------ |
 | `commandStr` | `string` |
 | `scope?` | `Record`\<`string`, `any`\> |
-| `options?` | `Object` |
-| `options.argProcessor?` | `ArgProcessor` |
-| `options.delimiter?` | `string` |
+| `options?` | [`ParseObjectArgumentOptions`](interfaces/ParseObjectArgumentOptions.md) |
 
 #### Returns
 
@@ -2946,7 +2953,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/parse-command.ts:341](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/parse-command.ts#L341)
+[packages/ai-tool/src/utils/parse-command.ts:371](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/parse-command.ts#L371)
 
 ___
 
@@ -2971,7 +2978,7 @@ extract from langchain.js/langchain-core/src/prompts/template.ts
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/python.ts:16](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/template/python.ts#L16)
+[packages/ai-tool/src/utils/prompt/template/python.ts:16](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/template/python.ts#L16)
 
 ___
 
@@ -3005,13 +3012,13 @@ console.log(json); // { name: 'John' }
 
 #### Defined in
 
-[packages/ai-tool/src/utils/parse-js-json.ts:15](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/parse-js-json.ts#L15)
+[packages/ai-tool/src/utils/parse-js-json.ts:15](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/parse-js-json.ts#L15)
 
 ___
 
 ### parseObjectArgInfo
 
-▸ **parseObjectArgInfo**(`argInfo`, `ix`, `scope?`, `argProcessor?`): `Promise`\<`string`\>
+▸ **parseObjectArgInfo**(`argInfo`, `ix`, `scope?`, `options?`): `Promise`\<`string`\>
 
 #### Parameters
 
@@ -3020,7 +3027,7 @@ ___
 | `argInfo` | `ArgInfo` |
 | `ix` | `number` |
 | `scope?` | `Record`\<`string`, `any`\> |
-| `argProcessor?` | `ArgProcessor` |
+| `options?` | [`ParseObjectArgumentOptions`](interfaces/ParseObjectArgumentOptions.md) |
 
 #### Returns
 
@@ -3028,7 +3035,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/parse-command.ts:193](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/parse-command.ts#L193)
+[packages/ai-tool/src/utils/parse-command.ts:220](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/parse-command.ts#L220)
 
 ___
 
@@ -3042,10 +3049,7 @@ ___
 | :------ | :------ |
 | `args` | `ArgInfo`[] |
 | `scope?` | `Record`\<`string`, `any`\> |
-| `options?` | `Object` |
-| `options.argProcessor?` | `ArgProcessor` |
-| `options.delimiter?` | `string` |
-| `options.returnArrayOnly?` | `boolean` |
+| `options?` | [`ParseObjectArgumentOptions`](interfaces/ParseObjectArgumentOptions.md) |
 
 #### Returns
 
@@ -3053,7 +3057,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/parse-command.ts:63](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/parse-command.ts#L63)
+[packages/ai-tool/src/utils/parse-command.ts:71](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/parse-command.ts#L71)
 
 ___
 
@@ -3069,10 +3073,7 @@ Asynchronously parses a string of object arguments into an actual object.
 | :------ | :------ | :------ |
 | `argsStr` | `string` | The string of arguments to be parsed. |
 | `scope?` | `Record`\<`string`, `any`\> | An optional scope object that provides values for variables during parsing. |
-| `options?` | `Object` | An optional configuration object containing the delimiter and argument processor. |
-| `options.argProcessor?` | `ArgProcessor` | - |
-| `options.delimiter?` | `string` | - |
-| `options.returnArrayOnly?` | `boolean` | - |
+| `options?` | [`ParseObjectArgumentOptions`](interfaces/ParseObjectArgumentOptions.md) | An optional configuration object containing the delimiter and argument processor. |
 
 #### Returns
 
@@ -3115,7 +3116,7 @@ console.log(arrayResult); // Output: [1, 2, 3]
 
 #### Defined in
 
-[packages/ai-tool/src/utils/parse-command.ts:58](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/parse-command.ts#L58)
+[packages/ai-tool/src/utils/parse-command.ts:66](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/parse-command.ts#L66)
 
 ___
 
@@ -3135,9 +3136,7 @@ object literal strings from dynamic languages, such as JSON objects or similar c
 | :------ | :------ | :------ |
 | `argsStr` | `string` | The string containing the arguments to be parsed. |
 | `scope?` | `Record`\<`string`, `any`\> | An optional scope object used for further processing of the parsed arguments. Default is undefined. |
-| `options?` | `Object` | Parsing options, including: - delimiter: The character used to separate arguments. Default is ','. - argProcessor: An optional instance of ArgProcessor used for further processing of the parsed arguments. |
-| `options.argProcessor?` | `ArgProcessor` | - |
-| `options.delimiter?` | `string` | - |
+| `options?` | [`ParseObjectArgumentOptions`](interfaces/ParseObjectArgumentOptions.md) | Parsing options, including: - delimiter: The character used to separate arguments. Default is ','. - argProcessor: An optional instance of ArgProcessor used for further processing of the parsed arguments. |
 
 #### Returns
 
@@ -3148,7 +3147,7 @@ An array of parsed argument information, where each item contains a boolean indi
 
 #### Defined in
 
-[packages/ai-tool/src/utils/parse-command.ts:249](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/parse-command.ts#L249)
+[packages/ai-tool/src/utils/parse-command.ts:279](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/parse-command.ts#L279)
 
 ___
 
@@ -3168,7 +3167,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/config.ts:25](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/config.ts#L25)
+[packages/ai-tool/src/utils/config.ts:25](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/config.ts#L25)
 
 ___
 
@@ -3188,7 +3187,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/parse-command.ts:184](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/parse-command.ts#L184)
+[packages/ai-tool/src/utils/parse-command.ts:194](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/parse-command.ts#L194)
 
 ___
 
@@ -3206,13 +3205,13 @@ A compiled regular expression for control characters in a filename.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/filename.ts:50](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/filename.ts#L50)
+[packages/ai-tool/src/utils/filename.ts:50](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/filename.ts#L50)
 
 ___
 
 ### readFilenamesRecursiveSync
 
-▸ **readFilenamesRecursiveSync**(`dir`, `isFileMatched?`, `signal?`): `string`[]
+▸ **readFilenamesRecursiveSync**(`dir`, `options?`): `string`[]
 
 Recursively reads all filenames in the given directory or directories.
 Optionally filters the results using a file matching callback.
@@ -3222,8 +3221,10 @@ Optionally filters the results using a file matching callback.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `dir` | `string` \| `string`[] | A single directory path or an array of directory paths to start the search from. |
-| `isFileMatched?` | (`filepath`: `string`) => `boolean` | An optional callback that determines whether a file should be included in the result. |
-| `signal?` | `AbortSignal` | - |
+| `options?` | `Object` | - |
+| `options.isFileMatched?` | (`filepath`: `string`) => `boolean` | An optional callback that determines whether a file should be included in the result. |
+| `options.level?` | `number` | - |
+| `options.signal?` | `AbortSignal` | An optional signal to abort the operation. |
 
 #### Returns
 
@@ -3234,13 +3235,13 @@ An array of file paths that match the criteria.
 **`Example`**
 
 ```typescript
-const files = readFilenamesRecursiveSync('/path/to/directory', (filepath) => filepath.endsWith('.js'));
+const files = readFilenamesRecursiveSync('/path/to/directory', {isFileMatched: (filepath) => filepath.endsWith('.js')});
 console.log(files); // Outputs an array of JavaScript file paths.
 ```
 
 #### Defined in
 
-[packages/ai-tool/src/utils/load-file-from-paths.ts:122](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/load-file-from-paths.ts#L122)
+[packages/ai-tool/src/utils/load-file-from-paths.ts:123](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/load-file-from-paths.ts#L123)
 
 ___
 
@@ -3269,7 +3270,7 @@ https://github.com/whatwg/streams/commit/8d7a0bf26eb2cc23e884ddbaac7c1da4b91cf2b
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/ai-stream.ts:166](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/stream/ai-stream.ts#L166)
+[packages/ai-tool/src/utils/stream/ai-stream.ts:166](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/stream/ai-stream.ts#L166)
 
 ___
 
@@ -3283,7 +3284,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/index.ts:9](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/funcs/index.ts#L9)
+[packages/ai-tool/src/funcs/index.ts:9](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/funcs/index.ts#L9)
 
 ___
 
@@ -3303,7 +3304,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/config.ts:15](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/config.ts#L15)
+[packages/ai-tool/src/utils/config.ts:15](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/config.ts#L15)
 
 ___
 
@@ -3332,7 +3333,7 @@ The sanitized filename.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/filename.ts:97](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/filename.ts#L97)
+[packages/ai-tool/src/utils/filename.ts:97](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/filename.ts#L97)
 
 ___
 
@@ -3357,7 +3358,7 @@ The sanitized file path as a string.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/filename.ts:149](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/filename.ts#L149)
+[packages/ai-tool/src/utils/filename.ts:149](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/filename.ts#L149)
 
 ___
 
@@ -3379,7 +3380,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/config.ts:85](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/config.ts#L85)
+[packages/ai-tool/src/utils/config.ts:85](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/config.ts#L85)
 
 ___
 
@@ -3403,7 +3404,7 @@ The parameter size in bytes.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/convert-params-size.ts:44](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/convert-params-size.ts#L44)
+[packages/ai-tool/src/utils/convert-params-size.ts:44](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/convert-params-size.ts#L44)
 
 ___
 
@@ -3429,7 +3430,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:4](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/few-shot-prompt-template.ts#L4)
+[packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:4](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/few-shot-prompt-template.ts#L4)
 
 ___
 
@@ -3459,7 +3460,7 @@ console.log(splitSentence(text));  // returns ['Hello world!', 'How are you toda
 
 #### Defined in
 
-[packages/ai-tool/src/utils/split-sentence.ts:29](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/split-sentence.ts#L29)
+[packages/ai-tool/src/utils/split-sentence.ts:29](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/split-sentence.ts#L29)
 
 ___
 
@@ -3523,7 +3524,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/to-datetime.ts:25](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/to-datetime.ts#L25)
+[packages/ai-tool/src/utils/to-datetime.ts:25](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/to-datetime.ts#L25)
 
 ___
 
@@ -3551,7 +3552,7 @@ Throws a BaseError object
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:235](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/base-error.ts#L235)
+[packages/ai-tool/src/utils/base-error.ts:235](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/base-error.ts#L235)
 
 ___
 
@@ -3571,7 +3572,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/to-datetime.ts:9](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/to-datetime.ts#L9)
+[packages/ai-tool/src/utils/to-datetime.ts:9](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/to-datetime.ts#L9)
 
 ___
 
@@ -3613,7 +3614,7 @@ const output2 = trimStart("   text"); // "   text"
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/ai-stream.ts:92](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/stream/ai-stream.ts#L92)
+[packages/ai-tool/src/utils/stream/ai-stream.ts:92](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/stream/ai-stream.ts#L92)
 
 ___
 
@@ -3653,7 +3654,7 @@ truncTo(1.2345, 2, 0.6)
 
 #### Defined in
 
-[packages/ai-tool/src/utils/trunc-to.ts:19](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/trunc-to.ts#L19)
+[packages/ai-tool/src/utils/trunc-to.ts:19](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/trunc-to.ts#L19)
 
 ___
 
@@ -3674,7 +3675,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/hash/uuid.ts:8](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/hash/uuid.ts#L8)
+[packages/ai-tool/src/utils/hash/uuid.ts:8](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/hash/uuid.ts#L8)
 
 ___
 
@@ -3909,7 +3910,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/wait.ts:1](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/wait.ts#L1)
+[packages/ai-tool/src/utils/wait.ts:1](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/wait.ts#L1)
 
 ___
 
@@ -3931,7 +3932,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/hash/xxhash.ts:32](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/hash/xxhash.ts#L32)
+[packages/ai-tool/src/utils/hash/xxhash.ts:32](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/hash/xxhash.ts#L32)
 
 ___
 
@@ -3952,7 +3953,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/hash/xxhash.ts:11](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/hash/xxhash.ts#L11)
+[packages/ai-tool/src/utils/hash/xxhash.ts:11](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/hash/xxhash.ts#L11)
 
 ___
 
@@ -3973,7 +3974,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/hash/xxhash.ts:18](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/hash/xxhash.ts#L18)
+[packages/ai-tool/src/utils/hash/xxhash.ts:18](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/hash/xxhash.ts#L18)
 
 ___
 
@@ -3995,4 +3996,4 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/hash/xxhash.ts:48](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/hash/xxhash.ts#L48)
+[packages/ai-tool/src/utils/hash/xxhash.ts:48](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/hash/xxhash.ts#L48)

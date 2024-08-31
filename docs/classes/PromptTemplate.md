@@ -98,7 +98,7 @@ BaseFactory.constructor
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:69](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/prompt-template.ts#L69)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:69](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/prompt-template.ts#L69)
 
 ## Properties
 
@@ -108,7 +108,7 @@ BaseFactory.constructor
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:21](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/prompt-template.ts#L21)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:21](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/prompt-template.ts#L21)
 
 ___
 
@@ -118,7 +118,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:24](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/prompt-template.ts#L24)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:24](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/prompt-template.ts#L24)
 
 ___
 
@@ -128,7 +128,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:25](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/prompt-template.ts#L25)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:25](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/prompt-template.ts#L25)
 
 ___
 
@@ -138,7 +138,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:22](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/prompt-template.ts#L22)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:22](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/prompt-template.ts#L22)
 
 ___
 
@@ -148,7 +148,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:23](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/prompt-template.ts#L23)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:23](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/prompt-template.ts#L23)
 
 ___
 
@@ -170,7 +170,7 @@ BaseFactory.\_Factory
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:41
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:41
 
 ___
 
@@ -189,7 +189,7 @@ BaseFactory.\_aliases
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:59
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:59
 
 ___
 
@@ -230,7 +230,7 @@ BaseFactory.\_baseNameOnly
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:82
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:82
 
 ___
 
@@ -256,7 +256,7 @@ BaseFactory.\_children
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:49
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:49
 
 ## Accessors
 
@@ -276,7 +276,7 @@ BaseFactory.Factory
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:63
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:63
 
 ___
 
@@ -296,7 +296,7 @@ BaseFactory.aliases
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:200
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:200
 
 • `set` **aliases**(`value`): `void`
 
@@ -316,7 +316,7 @@ BaseFactory.aliases
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:196
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:196
 
 ## Methods
 
@@ -336,7 +336,7 @@ node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:105](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/prompt-template.ts#L105)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:105](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/prompt-template.ts#L105)
 
 ___
 
@@ -356,7 +356,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:92](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/prompt-template.ts#L92)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:92](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/prompt-template.ts#L92)
 
 ___
 
@@ -378,7 +378,7 @@ Validate/filter the data in inputVariables
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:62](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/prompt-template.ts#L62)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:62](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/prompt-template.ts#L62)
 
 ___
 
@@ -398,7 +398,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:109](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/prompt-template.ts#L109)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:109](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/prompt-template.ts#L109)
 
 ___
 
@@ -422,7 +422,7 @@ BaseFactory.initialize
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:96](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/prompt-template.ts#L96)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:96](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/prompt-template.ts#L96)
 
 ___
 
@@ -446,7 +446,7 @@ the new partial PromptTemplate instance
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:139](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/prompt-template.ts#L139)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:139](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/prompt-template.ts#L139)
 
 ___
 
@@ -466,7 +466,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:147](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/prompt-template.ts#L147)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:147](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/prompt-template.ts#L147)
 
 ___
 
@@ -492,7 +492,7 @@ BaseFactory.\_findRootFactory
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:99
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:99
 
 ___
 
@@ -516,7 +516,7 @@ BaseFactory.\_get
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:234
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:234
 
 ___
 
@@ -545,7 +545,7 @@ BaseFactory.\_register
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:145
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:145
 
 ___
 
@@ -571,7 +571,7 @@ BaseFactory.cleanAliases
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:162
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:162
 
 ___
 
@@ -598,7 +598,7 @@ BaseFactory.createObject
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:241
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:241
 
 ___
 
@@ -625,7 +625,7 @@ BaseFactory.findRootFactory
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:92
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:92
 
 ___
 
@@ -651,7 +651,7 @@ BaseFactory.forEach
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:227
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:227
 
 ___
 
@@ -671,7 +671,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:31](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/prompt-template.ts#L31)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:31](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/prompt-template.ts#L31)
 
 ___
 
@@ -695,7 +695,7 @@ A Promise that resolves to the formatted result if options is a template; otherw
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:41](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/prompt-template.ts#L41)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:41](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/prompt-template.ts#L41)
 
 ___
 
@@ -725,7 +725,7 @@ BaseFactory.formatName
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:116
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:116
 
 ___
 
@@ -754,7 +754,7 @@ BaseFactory.formatNameFromClass
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:130
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:130
 
 ___
 
@@ -775,7 +775,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:27](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/prompt-template.ts#L27)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:27](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/prompt-template.ts#L27)
 
 ___
 
@@ -803,7 +803,7 @@ BaseFactory.get
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:233
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:233
 
 ___
 
@@ -831,7 +831,7 @@ BaseFactory.getAliases
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:195
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:195
 
 ___
 
@@ -857,7 +857,7 @@ BaseFactory.getDisplayName
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:206
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:206
 
 ___
 
@@ -885,7 +885,7 @@ BaseFactory.getNameFrom
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:122
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:122
 
 ___
 
@@ -909,7 +909,7 @@ BaseFactory.getRealName
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:100
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:100
 
 ___
 
@@ -937,7 +937,7 @@ BaseFactory.getRealNameFromAlias
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:106
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:106
 
 ___
 
@@ -957,7 +957,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:48](https://github.com/isdk/ai-tool.js/blob/bc1a97dabcb6599e292a0944fe49213fed45d128/src/utils/prompt/prompt-template.ts#L48)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:48](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/prompt/prompt-template.ts#L48)
 
 ___
 
@@ -985,7 +985,7 @@ BaseFactory.register
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:137
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:137
 
 ___
 
@@ -1013,7 +1013,7 @@ BaseFactory.registeredClass
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:151
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:151
 
 ___
 
@@ -1039,7 +1039,7 @@ BaseFactory.removeAlias
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:167
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:167
 
 ___
 
@@ -1066,7 +1066,7 @@ BaseFactory.setAlias
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:189
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:189
 
 ___
 
@@ -1105,7 +1105,7 @@ BaseFactory.setAliases
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:183
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:183
 
 ___
 
@@ -1132,7 +1132,7 @@ BaseFactory.setDisplayName
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:212
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:212
 
 ___
 
@@ -1160,4 +1160,4 @@ BaseFactory.unregister
 
 #### Defined in
 
-node_modules/.pnpm/custom-factory@2.3.0-alpha.6/node_modules/custom-factory/lib/base-factory.d.ts:157
+node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-factory.d.ts:157
