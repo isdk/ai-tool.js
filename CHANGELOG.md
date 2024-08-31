@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.1.2](https://github.com/isdk/ai-tool.js/compare/v0.1.1...v0.1.2) (2024-08-31)
+
+
+### Features
+
+* add level option to readFilenamesRecursiveSync ([e0a5d5e](https://github.com/isdk/ai-tool.js/commit/e0a5d5e09c6700f03e2ada2e5057c18bbb7f1a74))
+* **parse-command:** add templateData, templateFormat option ([f128632](https://github.com/isdk/ai-tool.js/commit/f1286325d66bad2db7ff2023670f58a7a7fd5c90))
+* **parse-commnad:** add ParseObjectArgumentOptions ([2760271](https://github.com/isdk/ai-tool.js/commit/276027198dfb94a78fa69e419e4bf5f5fe326cbb))
+* **util:** add memoize ([a78684a](https://github.com/isdk/ai-tool.js/commit/a78684a08e213a2fb9a94720914e98ab0c8b5233))
+
+
+### Bug Fixes
+
+* add normalizer option ([66a1bcb](https://github.com/isdk/ai-tool.js/commit/66a1bcb6aaf66798085b80fdcbc5cb3485dbd1a8))
+* do not treat arraw function as expression result ([d053ee3](https://github.com/isdk/ai-tool.js/commit/d053ee3be226e0797c8a40e4180608b9fd9c5037))
+* normalizer not work ([0f7647b](https://github.com/isdk/ai-tool.js/commit/0f7647bc7b7ae36d3343e4e2d5a6cde920301ef7))
+* **parse-command:** minor bug fixed ([c9793a9](https://github.com/isdk/ai-tool.js/commit/c9793a9c9d1885b538d72ef813b308ed087a668a))
+* **parse-command:** returnArrayOnly glitch ([3cf8f4c](https://github.com/isdk/ai-tool.js/commit/3cf8f4c296765d9711118e94f3d0fa4ac75428a7))
+* **parse-command:** the named arg should verify value too ([efa9d3b](https://github.com/isdk/ai-tool.js/commit/efa9d3b163f911ac081818897e8d57c382793fc7))
+* should visit canonicalize ([86fab90](https://github.com/isdk/ai-tool.js/commit/86fab902ff37a68621e94392b2613c9d9d8cc438))
+
 ## [0.1.1](https://github.com/isdk/ai-tool.js/compare/v0.1.0...v0.1.1) (2024-08-28)
 
 
