@@ -110,19 +110,22 @@ export function loadTextFromPaths(filename: string, searchPaths?: string[], extN
  * Optionally filters the results using a file matching callback.
  *
  * @param dir - A single directory path or an array of directory paths to start the search from.
- * @param isFileMatched - An optional callback that determines whether a file should be included in the result.
+ * @param options.isFileMatched - An optional callback that determines whether a file should be included in the result.
+ * @param options.signal - An optional signal to abort the operation.
  * @returns An array of file paths that match the criteria.
  *
  * @example
 * ```typescript
-* const files = readFilenamesRecursiveSync('/path/to/directory', (filepath) => filepath.endsWith('.js'));
+* const files = readFilenamesRecursiveSync('/path/to/directory', {isFileMatched: (filepath) => filepath.endsWith('.js')});
 * console.log(files); // Outputs an array of JavaScript file paths.
 * ```
 */
-export function readFilenamesRecursiveSync(dir: string|string[], isFileMatched?: (filepath: string) => boolean, signal?: AbortSignal) {
+export function readFilenamesRecursiveSync(dir: string|string[], options?: {isFileMatched?: (filepath: string) => boolean, signal?: AbortSignal}) {
   const result = [] as string[];
   const stack: string[] = typeof dir === 'string' ? [dir] : [...dir];
   const visitedDirs = new Set<string>()
+  const signal = options?.signal
+  const isFileMatched = options?.isFileMatched
 
   while (stack.length > 0) {
     if (signal?.aborted) {
