@@ -68,6 +68,23 @@ export async function parseObjectArguments(argsStr: string, scope?: Record<strin
   return parseObjectArgumentInfos(args, scope, options)
 }
 
+export function simplifyObjectArguments(args: any) {
+  if (args) {
+    const entries = Object.entries(args)
+    const keys = Object.keys(args)
+    if (entries.length === 1 && args[0] !== undefined) {
+      args =  args[0]
+    } else if (keys.every(k => !isNaN(parseInt(k)))) {
+      // convert to array
+      args = keys.sort((a,b) => parseInt(a) - parseInt(b)).map(k => args[k])
+    } else if (entries.length === 2 && entries[0][0] === '0' && entries[0][1] === entries[1][1]) {
+      // { '0': 3, n: 3 }
+      args = args[0]
+    }
+  }
+  return args
+}
+
 export async function parseObjectArgumentInfos(args: ArgInfo[], scope?: Record<string, any>, options?: ParseObjectArgumentOptions) {
   if (args.length) {
     const _args = await Promise.all(args.map((argInfo, ix) => parseObjectArgInfo(argInfo, ix, scope, options)))
@@ -79,18 +96,7 @@ export async function parseObjectArgumentInfos(args: ArgInfo[], scope?: Record<s
     }
 
     if (result && !returnArrayOnly) {
-      const entries = Object.entries(result)
-      const keys = Object.keys(result)
-      if (entries.length === 1 && result[0] !== undefined) {
-        result =  result[0]
-      } else if (keys.every(k => !isNaN(parseInt(k)))) {
-        // convert to array
-        result = keys.sort((a,b) => parseInt(a) - parseInt(b)).map(k => result[k])
-      } else if (entries.length === 2 && entries[0][0] === '0' && entries[0][1] === entries[1][1]) {
-        // { '0': 3, n: 3 }
-        result = result[0]
-      }
-
+      result = simplifyObjectArguments(result)
     }
     return result
   }
