@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.1.3](https://github.com/isdk/ai-tool.js/compare/v0.1.2...v0.1.3) (2024-09-01)
+
+
+### Features
+
+* **parse-command:** extract simplifyObjectArguments ([727ad33](https://github.com/isdk/ai-tool.js/commit/727ad337acba85b160efbc4d039daefcc8371127))
+
 ## [0.1.2](https://github.com/isdk/ai-tool.js/compare/v0.1.1...v0.1.2) (2024-08-31)
 
 
