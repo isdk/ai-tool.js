@@ -66,7 +66,7 @@ throw new AlreadyExistsError('user', { id: 123 })
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:195](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/base-error.ts#L195)
+[packages/ai-tool/src/utils/base-error.ts:195](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/base-error.ts#L195)
 
 ## Properties
 
@@ -82,7 +82,7 @@ The name of the function that threw the error.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:66](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/base-error.ts#L66)
+[packages/ai-tool/src/utils/base-error.ts:66](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/base-error.ts#L66)
 
 ___
 
@@ -110,7 +110,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:67](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/base-error.ts#L67)
+[packages/ai-tool/src/utils/base-error.ts:67](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/base-error.ts#L67)
 
 ___
 
@@ -126,7 +126,7 @@ Additional data associated with the error.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:68](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/base-error.ts#L68)
+[packages/ai-tool/src/utils/base-error.ts:68](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/base-error.ts#L68)
 
 ___
 
@@ -184,7 +184,7 @@ The error code associated with the error.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:194](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/base-error.ts#L194)
+[packages/ai-tool/src/utils/base-error.ts:194](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/base-error.ts#L194)
 
 ___
 
@@ -261,7 +261,7 @@ A new BaseError instance.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:131](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/base-error.ts#L131)
+[packages/ai-tool/src/utils/base-error.ts:131](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/base-error.ts#L131)
 
 ___
 
@@ -283,7 +283,7 @@ A JSON representation of the error.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:111](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/base-error.ts#L111)
+[packages/ai-tool/src/utils/base-error.ts:111](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/base-error.ts#L111)
 
 ___
 
@@ -336,4 +336,4 @@ typeof [`BaseError`](BaseError.md)
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:70](https://github.com/isdk/ai-tool.js/blob/645c3145aafa05351c48068783eb3c2f206ce4c5/src/utils/base-error.ts#L70)
+[packages/ai-tool/src/utils/base-error.ts:70](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/base-error.ts#L70)
