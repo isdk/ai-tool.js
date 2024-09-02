@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.1.4](https://github.com/isdk/ai-tool.js/compare/v0.1.3...v0.1.4) (2024-09-02)
+
+
+### Bug Fixes
+
+* **parse-command:** template string escape error ([c88a9f1](https://github.com/isdk/ai-tool.js/commit/c88a9f179b129c3f6d28b6a0f9e682e41997bc83))
+
 ## [0.1.3](https://github.com/isdk/ai-tool.js/compare/v0.1.2...v0.1.3) (2024-09-01)
 
 
