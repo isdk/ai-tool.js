@@ -50,7 +50,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:386](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/prompt/template/jinja/src/runtime.ts#L386)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:386](https://github.com/isdk/ai-tool.js/blob/c88a9f179b129c3f6d28b6a0f9e682e41997bc83/src/utils/prompt/template/jinja/src/runtime.ts#L386)
 
 ## Properties
 
@@ -60,7 +60,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:384](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/prompt/template/jinja/src/runtime.ts#L384)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:384](https://github.com/isdk/ai-tool.js/blob/c88a9f179b129c3f6d28b6a0f9e682e41997bc83/src/utils/prompt/template/jinja/src/runtime.ts#L384)
 
 ## Methods
 
@@ -81,7 +81,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:773](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/prompt/template/jinja/src/runtime.ts#L773)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:773](https://github.com/isdk/ai-tool.js/blob/c88a9f179b129c3f6d28b6a0f9e682e41997bc83/src/utils/prompt/template/jinja/src/runtime.ts#L773)
 
 ___
 
@@ -102,7 +102,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:1063](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/prompt/template/jinja/src/runtime.ts#L1063)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:1063](https://github.com/isdk/ai-tool.js/blob/c88a9f179b129c3f6d28b6a0f9e682e41997bc83/src/utils/prompt/template/jinja/src/runtime.ts#L1063)
 
 ___
 
@@ -123,7 +123,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:495](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/prompt/template/jinja/src/runtime.ts#L495)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:495](https://github.com/isdk/ai-tool.js/blob/c88a9f179b129c3f6d28b6a0f9e682e41997bc83/src/utils/prompt/template/jinja/src/runtime.ts#L495)
 
 ___
 
@@ -146,7 +146,7 @@ Evaluates expressions following the binary operation type.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:400](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/prompt/template/jinja/src/runtime.ts#L400)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:400](https://github.com/isdk/ai-tool.js/blob/c88a9f179b129c3f6d28b6a0f9e682e41997bc83/src/utils/prompt/template/jinja/src/runtime.ts#L400)
 
 ___
 
@@ -167,7 +167,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:777](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/prompt/template/jinja/src/runtime.ts#L777)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:777](https://github.com/isdk/ai-tool.js/blob/c88a9f179b129c3f6d28b6a0f9e682e41997bc83/src/utils/prompt/template/jinja/src/runtime.ts#L777)
 
 ___
 
@@ -188,7 +188,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:797](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/prompt/template/jinja/src/runtime.ts#L797)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:797](https://github.com/isdk/ai-tool.js/blob/c88a9f179b129c3f6d28b6a0f9e682e41997bc83/src/utils/prompt/template/jinja/src/runtime.ts#L797)
 
 ___
 
@@ -211,7 +211,7 @@ Evaluates expressions following the filter operation type.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:520](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/prompt/template/jinja/src/runtime.ts#L520)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:520](https://github.com/isdk/ai-tool.js/blob/c88a9f179b129c3f6d28b6a0f9e682e41997bc83/src/utils/prompt/template/jinja/src/runtime.ts#L520)
 
 ___
 
@@ -232,7 +232,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:913](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/prompt/template/jinja/src/runtime.ts#L913)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:913](https://github.com/isdk/ai-tool.js/blob/c88a9f179b129c3f6d28b6a0f9e682e41997bc83/src/utils/prompt/template/jinja/src/runtime.ts#L913)
 
 ___
 
@@ -253,7 +253,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:793](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/prompt/template/jinja/src/runtime.ts#L793)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:793](https://github.com/isdk/ai-tool.js/blob/c88a9f179b129c3f6d28b6a0f9e682e41997bc83/src/utils/prompt/template/jinja/src/runtime.ts#L793)
 
 ___
 
@@ -274,7 +274,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:908](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/prompt/template/jinja/src/runtime.ts#L908)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:908](https://github.com/isdk/ai-tool.js/blob/c88a9f179b129c3f6d28b6a0f9e682e41997bc83/src/utils/prompt/template/jinja/src/runtime.ts#L908)
 
 ___
 
@@ -297,7 +297,7 @@ See https://jinja.palletsprojects.com/en/3.1.x/templates/#macros for more inform
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:1020](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/prompt/template/jinja/src/runtime.ts#L1020)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:1020](https://github.com/isdk/ai-tool.js/blob/c88a9f179b129c3f6d28b6a0f9e682e41997bc83/src/utils/prompt/template/jinja/src/runtime.ts#L1020)
 
 ___
 
@@ -318,7 +318,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:844](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/prompt/template/jinja/src/runtime.ts#L844)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:844](https://github.com/isdk/ai-tool.js/blob/c88a9f179b129c3f6d28b6a0f9e682e41997bc83/src/utils/prompt/template/jinja/src/runtime.ts#L844)
 
 ___
 
@@ -339,7 +339,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:885](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/prompt/template/jinja/src/runtime.ts#L885)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:885](https://github.com/isdk/ai-tool.js/blob/c88a9f179b129c3f6d28b6a0f9e682e41997bc83/src/utils/prompt/template/jinja/src/runtime.ts#L885)
 
 ___
 
@@ -361,7 +361,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:813](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/prompt/template/jinja/src/runtime.ts#L813)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:813](https://github.com/isdk/ai-tool.js/blob/c88a9f179b129c3f6d28b6a0f9e682e41997bc83/src/utils/prompt/template/jinja/src/runtime.ts#L813)
 
 ___
 
@@ -384,7 +384,7 @@ Evaluates expressions following the test operation type.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:744](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/prompt/template/jinja/src/runtime.ts#L744)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:744](https://github.com/isdk/ai-tool.js/blob/c88a9f179b129c3f6d28b6a0f9e682e41997bc83/src/utils/prompt/template/jinja/src/runtime.ts#L744)
 
 ___
 
@@ -407,7 +407,7 @@ Evaluates expressions following the unary operation type.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:762](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/prompt/template/jinja/src/runtime.ts#L762)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:762](https://github.com/isdk/ai-tool.js/blob/c88a9f179b129c3f6d28b6a0f9e682e41997bc83/src/utils/prompt/template/jinja/src/runtime.ts#L762)
 
 ___
 
@@ -429,4 +429,4 @@ Run the program.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:393](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/prompt/template/jinja/src/runtime.ts#L393)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:393](https://github.com/isdk/ai-tool.js/blob/c88a9f179b129c3f6d28b6a0f9e682e41997bc83/src/utils/prompt/template/jinja/src/runtime.ts#L393)

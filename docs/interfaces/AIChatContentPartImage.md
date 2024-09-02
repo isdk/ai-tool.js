@@ -23,7 +23,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:80](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/chat.ts#L80)
+[packages/ai-tool/src/utils/chat.ts:80](https://github.com/isdk/ai-tool.js/blob/c88a9f179b129c3f6d28b6a0f9e682e41997bc83/src/utils/chat.ts#L80)
 
 ___
 
@@ -33,4 +33,4 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:79](https://github.com/isdk/ai-tool.js/blob/727ad337acba85b160efbc4d039daefcc8371127/src/utils/chat.ts#L79)
+[packages/ai-tool/src/utils/chat.ts:79](https://github.com/isdk/ai-tool.js/blob/c88a9f179b129c3f6d28b6a0f9e682e41997bc83/src/utils/chat.ts#L79)
