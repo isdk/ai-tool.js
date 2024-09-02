@@ -69,7 +69,7 @@ export async function parseObjectArguments(argsStr: string, scope?: Record<strin
 }
 
 export function simplifyObjectArguments(args: any) {
-  if (args) {
+  if (args && !Array.isArray(args) && typeof args === 'object') {
     const entries = Object.entries(args)
     const keys = Object.keys(args)
     if (entries.length === 1 && args[0] !== undefined) {
@@ -88,10 +88,12 @@ export function simplifyObjectArguments(args: any) {
 export async function parseObjectArgumentInfos(args: ArgInfo[], scope?: Record<string, any>, options?: ParseObjectArgumentOptions) {
   if (args.length) {
     const _args = await Promise.all(args.map((argInfo, ix) => parseObjectArgInfo(argInfo, ix, scope, options)))
+    console.log('🚀 ~ parseObjectArgumentInfos ~ _args:', _args)
     const returnArrayOnly = options?.returnArrayOnly
     let result: any
     if (_args?.length) {
-      const jsonStr = `{${_args.map((arg: string) => escapeSpecialChars(arg)).join(',')}}`
+      const jsonStr = `{${_args.map((arg: string) => arg).join(',')}}`
+      console.log('🚀 ~ parseObjectArgumentInfos ~ jsonStr:', jsonStr)
       result = parseJsJson(jsonStr, scope)
     }
 
@@ -130,7 +132,7 @@ export async function TemplateArgProcessor([isNamedArg, arg]: ArgInfo, ix: numbe
   const content = await PromptTemplate.formatIf(formatOpts) as string
   if (content) {
     value = content
-    return name + ':' + quoteStr(value)
+    return name + ':' + JSON.stringify(value)
   }
 }
 
@@ -398,6 +400,7 @@ function isArrowFunctionExpression(code: string) {
   return ArrowFunctionRegExp.test(code);
 }
 
+/*
 function escapeSpecialChars(str: string) {
   // Build a map to store special characters and their corresponding escape sequences
   const escapeMap = {
@@ -412,10 +415,11 @@ function escapeSpecialChars(str: string) {
   // Use a regular expression to match special characters and escape them
   return str.replace(/\\?[\n\r\t\b\f\\]/g, (match) => {
     // Check if the character is already escaped
-    if (match.startsWith('\\')) {
+    if (match.startsWith('\\') && match.length > 1) {
         return match; // Return the already escaped character
     } else {
         return escapeMap[match]; // Escape the character
     }
   });
 }
+*/

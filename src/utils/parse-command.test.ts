@@ -19,6 +19,12 @@ describe('parseObjectArguments', async () => {
     expect(result).toEqual({0: "value1", arg2: 'value2'});
   });
 
+  test('should parse arguments with template string and without unescape template data', async () => {
+    const argsStr = '{{ test }}, arg2= "value2"';
+    const result = await parseObjectArguments(argsStr, {test: '\\value1'}, {argProcessor: TemplateArgProcessor});
+    expect(result).toEqual({0: "\\value1", arg2: 'value2'});
+  });
+
   test('should parse arguments with complex template string', async () => {
     const argsStr = `{{ test + '\n' + b }}, arg2= "value2"`;
     const result = await parseObjectArguments(argsStr, {test: 'value1', b: '3'}, {argProcessor: TemplateArgProcessor});
@@ -104,6 +110,12 @@ describe('parseObjectArguments', async () => {
     expect(result).toEqual({0: {a:1}, arg2: {b: 2}});
   });
 
+  test('should parse json path arguments and without unescape from arg', async () => {
+    const argsStr = '{a: test.a}, arg2= {b: test.b}';
+    const result = await parseObjectArguments(argsStr, {test: {a:"c:\\User", b: "C:\\Windows"}});
+    expect(result).toEqual({0: {a: "c:\\User"}, arg2: {b: "C:\\Windows"}});
+  });
+
   test('should parse path arguments', async () => {
     const argsStr = 'test.a';
     let result = await parseObjectArguments(argsStr, {test: {a:1,b:2}});
@@ -183,13 +195,13 @@ describe('parseCommand function', async () => {
   });
 
   it('should handle commands with only whitespace in arguments', async () => {
-    const commandStr = 'command(arg1="  ", arg2=" \\\"  ")';
+    const commandStr = 'command(arg1="  ", arg2=" \\"  ")';
     expect(await parseCommand(commandStr)).toEqual({ command: 'command', args: {arg1: "  ", arg2:' "  ' } });
   });
 
   it('should handle commands with scope', async () => {
     const scope = {name: 'John', age: 20}
-    const commandStr = 'command(arg1=name, age, arg2=" \\\"  ")';
+    const commandStr = 'command(arg1=name, age, arg2=" \\"  ")';
     expect(await parseCommand(commandStr, scope)).toEqual({ command: 'command', args: {arg1: scope.name, 1: scope.age, age: scope.age, arg2:' "  ' } });
   });
 });
