@@ -88,12 +88,10 @@ export function simplifyObjectArguments(args: any) {
 export async function parseObjectArgumentInfos(args: ArgInfo[], scope?: Record<string, any>, options?: ParseObjectArgumentOptions) {
   if (args.length) {
     const _args = await Promise.all(args.map((argInfo, ix) => parseObjectArgInfo(argInfo, ix, scope, options)))
-    console.log('🚀 ~ parseObjectArgumentInfos ~ _args:', _args)
     const returnArrayOnly = options?.returnArrayOnly
     let result: any
     if (_args?.length) {
       const jsonStr = `{${_args.map((arg: string) => arg).join(',')}}`
-      console.log('🚀 ~ parseObjectArgumentInfos ~ jsonStr:', jsonStr)
       result = parseJsJson(jsonStr, scope)
     }
 
