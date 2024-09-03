@@ -6,7 +6,7 @@ import { ClientTools } from '../src/client-tools'
 import { EventServer, EventClient, event, EventToolFunc } from '../src/funcs'
 import { EventBusName, EventName, backendEventable } from "../src/utils/event"
 import { wait } from '../src/utils'
-import { findPort } from './util/find-port'
+import { findPort } from '../src/utils/find-port'
 import { Funcs, ToolFunc } from '../src/tool-func'
 backendEventable(EventClient)
 backendEventable(EventServer)

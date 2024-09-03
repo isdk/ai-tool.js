@@ -5,7 +5,7 @@ import fastify from 'fastify'
 import { Funcs, ToolFunc } from '../src/tool-func'
 import { ServerTools } from "../src/server-tools"
 import { ClientTools } from '../src/client-tools'
-import { findPort } from './util/find-port'
+import { findPort } from '../src/utils/find-port'
 
 describe('ServerTools', () => {
   beforeEach(()=>{
