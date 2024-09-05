@@ -106,7 +106,7 @@ export class BaseError extends AbstractError {
   /**
    * Returns a JSON representation of the error.
    *
-   * @returns {object} A JSON representation of the error.
+   * @returns A JSON representation of the error.
    */
   toJSON() {
     // Error objects aren't normally serializable. So we do something about that.
@@ -125,8 +125,8 @@ export class BaseError extends AbstractError {
   /**
    * Creates a new BaseError instance from a JSON representation.
    *
-   * @param {object} json - A JSON representation of the error.
-   * @returns {BaseError} A new BaseError instance.
+   * @param json - A JSON representation of the error.
+   * @returns A new BaseError instance.
    */
   fromJSON(json: any) {
     const e = new BaseError(json.message)
