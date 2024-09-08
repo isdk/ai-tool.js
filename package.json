@@ -22,6 +22,7 @@
     }
   },
   "dependencies": {
+    "@isdk/common-error": "^0.1.1",
     "abstract-error": "^2.0.0",
     "base32768": "^3.0.1",
     "custom-ability": "^2.0.0",
