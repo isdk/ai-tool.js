@@ -150,7 +150,7 @@ export function expandObjEnv(obj: any, options: DotenvExpandOptions = {}, parsed
       break
     }
     case 'object': {
-      if (parsedObjs.has(obj)) { return obj }
+      if (parsedObjs.has(obj) || obj === null) { return obj }
       parsedObjs.add(obj)
       if (Array.isArray(obj)) {
         for (let i=0; i < obj.length; i++) {
