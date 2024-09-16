@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.2.0](https://github.com/isdk/ai-tool.js/compare/v0.1.5...v0.2.0) (2024-09-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* extract common-error to @isdk/common-error
+* move find-port to src/utils
+
+### Features
+
+* add getPackageDir func ([c5e6203](https://github.com/isdk/ai-tool.js/commit/c5e620338f3b80d6ef09148577c5087098896d8b))
+
+
+### Bug Fixes
+
+* can not export ([f8dde4e](https://github.com/isdk/ai-tool.js/commit/f8dde4efbe84551b2511dd543bdad2f1208b7353))
+* do not expand the null object ([7ea2b27](https://github.com/isdk/ai-tool.js/commit/7ea2b276165074c4450f8fc3995ad5182f8edfdb))
+* **utils:** ts declaration ([f0ef0ef](https://github.com/isdk/ai-tool.js/commit/f0ef0efd8143e391cdf4d69558e6a55b76e4b63b))
+
+
+### Refactor
+
+* extract common-error to @isdk/common-error ([a577ff3](https://github.com/isdk/ai-tool.js/commit/a577ff321deef5a85a8bef1b3b2db65b3d3c4b9d))
+* move find-port to src/utils ([78a211d](https://github.com/isdk/ai-tool.js/commit/78a211dd392b39e166244aeb3635fd7752bc4d3a))
+
 ## [0.1.5](https://github.com/isdk/ai-tool.js/compare/v0.1.4...v0.1.5) (2024-09-02)
 
 ## [0.1.4](https://github.com/isdk/ai-tool.js/compare/v0.1.3...v0.1.4) (2024-09-02)
