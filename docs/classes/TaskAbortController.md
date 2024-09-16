@@ -49,7 +49,7 @@ AbortController.constructor
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:21](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/cancelable-ability.ts#L21)
+[packages/ai-tool/src/utils/cancelable-ability.ts:21](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/cancelable-ability.ts#L21)
 
 ## Properties
 
@@ -59,7 +59,7 @@ AbortController.constructor
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:16](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/cancelable-ability.ts#L16)
+[packages/ai-tool/src/utils/cancelable-ability.ts:16](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/cancelable-ability.ts#L16)
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:19](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/cancelable-ability.ts#L19)
+[packages/ai-tool/src/utils/cancelable-ability.ts:19](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/cancelable-ability.ts#L19)
 
 ___
 
@@ -99,7 +99,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:18](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/cancelable-ability.ts#L18)
+[packages/ai-tool/src/utils/cancelable-ability.ts:18](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/cancelable-ability.ts#L18)
 
 ___
 
@@ -109,7 +109,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:17](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/cancelable-ability.ts#L17)
+[packages/ai-tool/src/utils/cancelable-ability.ts:17](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/cancelable-ability.ts#L17)
 
 ## Methods
 
@@ -134,7 +134,7 @@ AbortController.abort
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:26](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/cancelable-ability.ts#L26)
+[packages/ai-tool/src/utils/cancelable-ability.ts:26](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/cancelable-ability.ts#L26)
 
 ___
 
@@ -154,4 +154,4 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:35](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/cancelable-ability.ts#L35)
+[packages/ai-tool/src/utils/cancelable-ability.ts:35](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/cancelable-ability.ts#L35)

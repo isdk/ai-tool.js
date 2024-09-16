@@ -86,7 +86,7 @@ fromJSON - Creates a new BaseError instance from a JSON representation.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:204](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/base-error.ts#L204)
+node_modules/.pnpm/@isdk+common-error@0.1.1/node_modules/@isdk/common-error/dist/index.d.ts:132
 
 ## Properties
 
@@ -102,7 +102,7 @@ The name of the function that threw the error.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:66](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/base-error.ts#L66)
+node_modules/.pnpm/@isdk+common-error@0.1.1/node_modules/@isdk/common-error/dist/index.d.ts:63
 
 ___
 
@@ -122,7 +122,7 @@ ___
 
 ### code
 
-• **code**: [`ErrorCodeType`](../modules.md#errorcodetype)
+• **code**: `ErrorCodeType`
 
 #### Inherited from
 
@@ -130,7 +130,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:67](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/base-error.ts#L67)
+node_modules/.pnpm/@isdk+common-error@0.1.1/node_modules/@isdk/common-error/dist/index.d.ts:64
 
 ___
 
@@ -146,7 +146,7 @@ Additional data associated with the error.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:68](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/base-error.ts#L68)
+node_modules/.pnpm/@isdk+common-error@0.1.1/node_modules/@isdk/common-error/dist/index.d.ts:65
 
 ___
 
@@ -194,7 +194,7 @@ ___
 
 ### code
 
-▪ `Static` **code**: [`ErrorCode`](../enums/ErrorCode.md) = `AbortErrorCode`
+▪ `Static` **code**: [`ErrorCode`](../enums/ErrorCode.md)
 
 The error code associated with the error.
 
@@ -204,7 +204,7 @@ The error code associated with the error.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:203](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/base-error.ts#L203)
+node_modules/.pnpm/@isdk+common-error@0.1.1/node_modules/@isdk/common-error/dist/index.d.ts:131
 
 ___
 
@@ -281,7 +281,7 @@ A new BaseError instance.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:131](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/base-error.ts#L131)
+node_modules/.pnpm/@isdk+common-error@0.1.1/node_modules/@isdk/common-error/dist/index.d.ts:87
 
 ___
 
@@ -303,7 +303,7 @@ A JSON representation of the error.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:111](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/base-error.ts#L111)
+node_modules/.pnpm/@isdk+common-error@0.1.1/node_modules/@isdk/common-error/dist/index.d.ts:80
 
 ___
 
@@ -340,11 +340,11 @@ ___
 
 #### Parameters
 
-| Name | Type | Default value |
-| :------ | :------ | :------ |
-| `aType` | `string` | `undefined` |
-| `aErrorCode?` | `string` \| `number` \| typeof `AbstractError` | `undefined` |
-| `ParentErrorClass` | typeof [`BaseError`](BaseError.md) | `BaseError` |
+| Name | Type |
+| :------ | :------ |
+| `aType` | `string` |
+| `aErrorCode?` | `string` \| `number` \| typeof `AbstractError` |
+| `ParentErrorClass?` | typeof [`BaseError`](BaseError.md) |
 
 #### Returns
 
@@ -356,4 +356,4 @@ typeof [`BaseError`](BaseError.md)
 
 #### Defined in
 
-[packages/ai-tool/src/utils/base-error.ts:70](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/base-error.ts#L70)
+node_modules/.pnpm/@isdk+common-error@0.1.1/node_modules/@isdk/common-error/dist/index.d.ts:66

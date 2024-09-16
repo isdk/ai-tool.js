@@ -91,7 +91,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:69](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/prompt/prompt-template.ts#L69)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:69](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/prompt-template.ts#L69)
 
 ## Properties
 
@@ -105,7 +105,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:21](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/prompt/prompt-template.ts#L21)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:21](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/prompt-template.ts#L21)
 
 ___
 
@@ -119,7 +119,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:24](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/prompt/prompt-template.ts#L24)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:24](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/prompt-template.ts#L24)
 
 ___
 
@@ -133,7 +133,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:25](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/prompt/prompt-template.ts#L25)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:25](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/prompt-template.ts#L25)
 
 ___
 
@@ -147,7 +147,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:22](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/prompt/prompt-template.ts#L22)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:22](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/prompt-template.ts#L22)
 
 ___
 
@@ -161,7 +161,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:23](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/prompt/prompt-template.ts#L23)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:23](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/prompt-template.ts#L23)
 
 ___
 
@@ -353,7 +353,7 @@ node_modules/.pnpm/custom-factory@2.3.0/node_modules/custom-factory/lib/base-fac
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/golang-prompt-template.ts:26](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/prompt/golang-prompt-template.ts#L26)
+[packages/ai-tool/src/utils/prompt/golang-prompt-template.ts:26](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/golang-prompt-template.ts#L26)
 
 ___
 
@@ -377,7 +377,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/golang-prompt-template.ts:18](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/prompt/golang-prompt-template.ts#L18)
+[packages/ai-tool/src/utils/prompt/golang-prompt-template.ts:18](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/golang-prompt-template.ts#L18)
 
 ___
 
@@ -403,7 +403,7 @@ Validate/filter the data in inputVariables
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:62](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/prompt/prompt-template.ts#L62)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:62](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/prompt-template.ts#L62)
 
 ___
 
@@ -427,7 +427,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:109](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/prompt/prompt-template.ts#L109)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:109](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/prompt-template.ts#L109)
 
 ___
 
@@ -447,7 +447,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/golang-prompt-template.ts:12](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/prompt/golang-prompt-template.ts#L12)
+[packages/ai-tool/src/utils/prompt/golang-prompt-template.ts:12](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/golang-prompt-template.ts#L12)
 
 ___
 
@@ -471,7 +471,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:96](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/prompt/prompt-template.ts#L96)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:96](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/prompt-template.ts#L96)
 
 ___
 
@@ -499,7 +499,7 @@ the new partial PromptTemplate instance
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:139](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/prompt/prompt-template.ts#L139)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:139](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/prompt-template.ts#L139)
 
 ___
 
@@ -523,7 +523,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:147](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/prompt/prompt-template.ts#L147)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:147](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/prompt-template.ts#L147)
 
 ___
 
@@ -732,7 +732,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:31](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/prompt/prompt-template.ts#L31)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:31](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/prompt-template.ts#L31)
 
 ___
 
@@ -760,7 +760,7 @@ A Promise that resolves to the formatted result if options is a template; otherw
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:41](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/prompt/prompt-template.ts#L41)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:41](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/prompt-template.ts#L41)
 
 ___
 
@@ -844,7 +844,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-template.ts:27](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/prompt/prompt-template.ts#L27)
+[packages/ai-tool/src/utils/prompt/prompt-template.ts:27](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/prompt-template.ts#L27)
 
 ___
 
@@ -1030,7 +1030,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/golang-prompt-template.ts:7](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/prompt/golang-prompt-template.ts#L7)
+[packages/ai-tool/src/utils/prompt/golang-prompt-template.ts:7](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/golang-prompt-template.ts#L7)
 
 ___
 

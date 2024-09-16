@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/env.ts:188](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/prompt/template/env.ts#L188)
+[packages/ai-tool/src/utils/prompt/template/env.ts:188](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/template/env.ts#L188)
 
 ___
 
@@ -32,7 +32,7 @@ Object coming from dotenv's parsed result.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/env.ts:204](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/prompt/template/env.ts#L204)
+[packages/ai-tool/src/utils/prompt/template/env.ts:204](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/template/env.ts#L204)
 
 ___
 
@@ -48,4 +48,4 @@ example: `const processEnv = {}; require('dotenv').config({ processEnv: processE
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/env.ts:197](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/prompt/template/env.ts#L197)
+[packages/ai-tool/src/utils/prompt/template/env.ts:197](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/template/env.ts#L197)

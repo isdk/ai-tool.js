@@ -29,7 +29,7 @@ Convention: Always pass _req, _res
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:9](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/server-tools.ts#L9)
+[packages/ai-tool/src/server-tools.ts:9](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/server-tools.ts#L9)
 
 ___
 
@@ -39,4 +39,4 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/server-tools.ts#L10)
+[packages/ai-tool/src/server-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/server-tools.ts#L10)

@@ -22,7 +22,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/parse-command.ts:16](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/parse-command.ts#L16)
+[packages/ai-tool/src/utils/parse-command.ts:16](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/parse-command.ts#L16)
 
 ___
 
@@ -32,7 +32,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/parse-command.ts:10](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/parse-command.ts#L10)
+[packages/ai-tool/src/utils/parse-command.ts:10](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/parse-command.ts#L10)
 
 ___
 
@@ -42,7 +42,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/parse-command.ts:11](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/parse-command.ts#L11)
+[packages/ai-tool/src/utils/parse-command.ts:11](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/parse-command.ts#L11)
 
 ___
 
@@ -52,7 +52,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/parse-command.ts:12](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/parse-command.ts#L12)
+[packages/ai-tool/src/utils/parse-command.ts:12](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/parse-command.ts#L12)
 
 ___
 
@@ -62,7 +62,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/parse-command.ts:14](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/parse-command.ts#L14)
+[packages/ai-tool/src/utils/parse-command.ts:14](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/parse-command.ts#L14)
 
 ___
 
@@ -72,7 +72,7 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/parse-command.ts:13](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/parse-command.ts#L13)
+[packages/ai-tool/src/utils/parse-command.ts:13](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/parse-command.ts#L13)
 
 ___
 
@@ -82,4 +82,4 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/parse-command.ts:15](https://github.com/isdk/ai-tool.js/blob/2f408f6a05d1e5c252765bf426ed06744998275d/src/utils/parse-command.ts#L15)
+[packages/ai-tool/src/utils/parse-command.ts:15](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/parse-command.ts#L15)
