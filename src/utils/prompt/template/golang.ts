@@ -24,7 +24,7 @@ import { getValueByPath } from './util';
 * console.log(variablesWithInit); // Output: { text: null }
 */
 function reReplace(template: string, variables: Record<string, any>, initVars?: boolean): string {
-  const regex = /{{\s*re_replace\s+\.(.+?)\s+(["'])([^\2]*?)\2\s+(["'])([^\4]*?)\4\s*}}/g;
+  const regex = /{{\s*re_replace\s+\.(.+?)\s+(["'])((?:(?!\2).)*?)\2\s+(["'])((?:(?!\4).)*?)\4\s*}}/g;
 
   return template.replace(regex, (match, prop, _regDelimiter, regexp, _newValueDelimiter, newValue) => {
     if (initVars) {
@@ -62,7 +62,7 @@ function reReplace(template: string, variables: Record<string, any>, initVars?: 
 * console.log(variablesWithInit); // Output: { colors: null }
 */
 function joinReplace(template: string, variables: Record<string, any>, initVars?: boolean): string {
-  const regex = /{{\s*join\s+\.(.+?)\s+(["'])([^\2]*?)\2\s*}}/g;
+  const regex = /{{\s*join\s+\.(.+?)\s+(["'])((?:(?!\2).)*?)\2\s*}}/g;
   return template.replace(regex, (match, prop, _quote, delimiter) => {
     if (initVars) {
       variables[prop] = null;
