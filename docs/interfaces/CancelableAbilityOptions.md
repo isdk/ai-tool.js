@@ -1,126 +1,115 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / CancelableAbilityOptions
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / CancelableAbilityOptions
 
 # Interface: CancelableAbilityOptions
 
-## Hierarchy
+## Extends
 
 - `AbilityOptions`
 
-  ↳ **`CancelableAbilityOptions`**
-
-## Table of contents
-
-### Properties
-
-- [asyncFeatures](CancelableAbilityOptions.md#asyncfeatures)
-- [classMethods](CancelableAbilityOptions.md#classmethods)
-- [exclude](CancelableAbilityOptions.md#exclude)
-- [id](CancelableAbilityOptions.md#id)
-- [include](CancelableAbilityOptions.md#include)
-- [maxTaskConcurrency](CancelableAbilityOptions.md#maxtaskconcurrency)
-- [methods](CancelableAbilityOptions.md#methods)
-- [mode](CancelableAbilityOptions.md#mode)
-
 ## Properties
 
-### asyncFeatures
+### asyncFeatures?
 
-• `Optional` **asyncFeatures**: [`AsyncFeatures`](../enums/AsyncFeatures.md)
+> `optional` **asyncFeatures**: [`AsyncFeatures`](../enumerations/AsyncFeatures.md)
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:11](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/cancelable-ability.ts#L11)
+[packages/ai-tool/src/utils/cancelable-ability.ts:11](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L11)
 
-___
+***
 
-### classMethods
+### classMethods?
 
-• `Optional` **classMethods**: `Record`\<`string`, `Function`\>
+> `optional` **classMethods**: `Record`\<`string`, `Function`\>
 
 #### Inherited from
 
-AbilityOptions.classMethods
+`AbilityOptions.classMethods`
 
 #### Defined in
 
-node_modules/.pnpm/custom-ability@2.0.0/node_modules/custom-ability/lib/custom-ability.d.ts:13
+node\_modules/.pnpm/custom-ability@2.0.0/node\_modules/custom-ability/lib/custom-ability.d.ts:13
 
-___
+***
 
-### exclude
+### exclude?
 
-• `Optional` **exclude**: `string` \| `string`[]
+> `optional` **exclude**: `string` \| `string`[]
 
 #### Inherited from
 
-AbilityOptions.exclude
+`AbilityOptions.exclude`
 
 #### Defined in
 
-node_modules/.pnpm/custom-ability@2.0.0/node_modules/custom-ability/lib/custom-ability.d.ts:11
+node\_modules/.pnpm/custom-ability@2.0.0/node\_modules/custom-ability/lib/custom-ability.d.ts:11
 
-___
+***
 
-### id
+### id?
 
-• `Optional` **id**: `string`
+> `optional` **id**: `string`
 
 #### Inherited from
 
-AbilityOptions.id
+`AbilityOptions.id`
 
 #### Defined in
 
-node_modules/.pnpm/custom-ability@2.0.0/node_modules/custom-ability/lib/custom-ability.d.ts:8
+node\_modules/.pnpm/custom-ability@2.0.0/node\_modules/custom-ability/lib/custom-ability.d.ts:8
 
-___
+***
 
-### include
+### include?
 
-• `Optional` **include**: `string` \| `string`[]
+> `optional` **include**: `string` \| `string`[]
 
 #### Inherited from
 
-AbilityOptions.include
+`AbilityOptions.include`
 
 #### Defined in
 
-node_modules/.pnpm/custom-ability@2.0.0/node_modules/custom-ability/lib/custom-ability.d.ts:10
+node\_modules/.pnpm/custom-ability@2.0.0/node\_modules/custom-ability/lib/custom-ability.d.ts:10
 
-___
+***
 
-### maxTaskConcurrency
+### maxTaskConcurrency?
 
-• `Optional` **maxTaskConcurrency**: `number`
+> `optional` **maxTaskConcurrency**: `number`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:12](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/cancelable-ability.ts#L12)
+[packages/ai-tool/src/utils/cancelable-ability.ts:12](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L12)
 
-___
+***
 
-### methods
+### methods?
 
-• `Optional` **methods**: `Record`\<`string`, `Function`\>
+> `optional` **methods**: `Record`\<`string`, `Function`\>
 
 #### Inherited from
 
-AbilityOptions.methods
+`AbilityOptions.methods`
 
 #### Defined in
 
-node_modules/.pnpm/custom-ability@2.0.0/node_modules/custom-ability/lib/custom-ability.d.ts:12
+node\_modules/.pnpm/custom-ability@2.0.0/node\_modules/custom-ability/lib/custom-ability.d.ts:12
 
-___
+***
 
-### mode
+### mode?
 
-• `Optional` **mode**: `number`
+> `optional` **mode**: `number`
 
 #### Inherited from
 
-AbilityOptions.mode
+`AbilityOptions.mode`
 
 #### Defined in
 
-node_modules/.pnpm/custom-ability@2.0.0/node_modules/custom-ability/lib/custom-ability.d.ts:9
+node\_modules/.pnpm/custom-ability@2.0.0/node\_modules/custom-ability/lib/custom-ability.d.ts:9

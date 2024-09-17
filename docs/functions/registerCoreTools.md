@@ -1,0 +1,17 @@
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / registerCoreTools
+
+# Function: registerCoreTools()
+
+> **registerCoreTools**(): `void`
+
+## Returns
+
+`void`
+
+## Defined in
+
+[packages/ai-tool/src/funcs/index.ts:9](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/index.ts#L9)

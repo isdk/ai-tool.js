@@ -1,186 +1,168 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / RemoteFuncItem
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / RemoteFuncItem
 
 # Interface: RemoteFuncItem
 
-## Hierarchy
+## Extends
 
 - [`BaseFuncItem`](BaseFuncItem.md)
 
-  ↳ **`RemoteFuncItem`**
+## Extended by
 
-  ↳↳ [`ClientFuncItem`](ClientFuncItem.md)
-
-  ↳↳ [`ServerFuncItem`](ServerFuncItem.md)
-
-## Table of contents
-
-### Properties
-
-- [action](RemoteFuncItem.md#action)
-- [apiRoot](RemoteFuncItem.md#apiroot)
-- [fetchOptions](RemoteFuncItem.md#fetchoptions)
-- [isApi](RemoteFuncItem.md#isapi)
-- [name](RemoteFuncItem.md#name)
-- [params](RemoteFuncItem.md#params)
-- [result](RemoteFuncItem.md#result)
-- [scope](RemoteFuncItem.md#scope)
-- [setup](RemoteFuncItem.md#setup)
-- [stream](RemoteFuncItem.md#stream)
-- [tags](RemoteFuncItem.md#tags)
+- [`ClientFuncItem`](ClientFuncItem.md)
+- [`ServerFuncItem`](ServerFuncItem.md)
 
 ## Properties
 
-### action
+### action?
 
-• `Optional` **action**: ``"get"`` \| ``"post"`` \| ``"put"`` \| ``"delete"`` \| ``"patch"`` \| ``"list"`` \| ``"res"``
-
-#### Defined in
-
-[packages/ai-tool/src/utils/consts.ts:35](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/consts.ts#L35)
-
-___
-
-### apiRoot
-
-• `Optional` **apiRoot**: `string`
+> `optional` **action**: `"get"` \| `"post"` \| `"put"` \| `"delete"` \| `"patch"` \| `"list"` \| `"res"`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:34](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/consts.ts#L34)
+[packages/ai-tool/src/utils/consts.ts:35](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/consts.ts#L35)
 
-___
+***
 
-### fetchOptions
+### apiRoot?
 
-• `Optional` **fetchOptions**: `any`
+> `optional` **apiRoot**: `string`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:36](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/consts.ts#L36)
+[packages/ai-tool/src/utils/consts.ts:34](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/consts.ts#L34)
 
-___
+***
 
-### isApi
+### fetchOptions?
 
-• `Optional` **isApi**: `boolean`
+> `optional` **fetchOptions**: `any`
+
+#### Defined in
+
+[packages/ai-tool/src/utils/consts.ts:36](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/consts.ts#L36)
+
+***
+
+### isApi?
+
+> `optional` **isApi**: `boolean`
 
 #### Inherited from
 
-[BaseFuncItem](BaseFuncItem.md).[isApi](BaseFuncItem.md#isapi)
+[`BaseFuncItem`](BaseFuncItem.md).[`isApi`](BaseFuncItem.md#isapi)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:47](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L47)
+[packages/ai-tool/src/tool-func.ts:47](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L47)
 
-___
+***
 
-### name
+### name?
 
-• `Optional` **name**: `string`
+> `optional` **name**: `string`
 
 #### Inherited from
 
-[BaseFuncItem](BaseFuncItem.md).[name](BaseFuncItem.md#name)
+[`BaseFuncItem`](BaseFuncItem.md).[`name`](BaseFuncItem.md#name)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:41](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L41)
+[packages/ai-tool/src/tool-func.ts:41](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L41)
 
-___
+***
 
-### params
+### params?
 
-• `Optional` **params**: [`FuncParams`](FuncParams.md) \| [`FuncParam`](FuncParam.md)[]
+> `optional` **params**: [`FuncParams`](FuncParams.md) \| [`FuncParam`](FuncParam.md)[]
 
 #### Inherited from
 
-[BaseFuncItem](BaseFuncItem.md).[params](BaseFuncItem.md#params)
+[`BaseFuncItem`](BaseFuncItem.md).[`params`](BaseFuncItem.md#params)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:42](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L42)
+[packages/ai-tool/src/tool-func.ts:42](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L42)
 
-___
+***
 
-### result
+### result?
 
-• `Optional` **result**: `string`
+> `optional` **result**: `string`
 
 #### Inherited from
 
-[BaseFuncItem](BaseFuncItem.md).[result](BaseFuncItem.md#result)
+[`BaseFuncItem`](BaseFuncItem.md).[`result`](BaseFuncItem.md#result)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:43](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L43)
+[packages/ai-tool/src/tool-func.ts:43](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L43)
 
-___
+***
 
-### scope
+### scope?
 
-• `Optional` **scope**: `any`
+> `optional` **scope**: `any`
 
 #### Inherited from
 
-[BaseFuncItem](BaseFuncItem.md).[scope](BaseFuncItem.md#scope)
+[`BaseFuncItem`](BaseFuncItem.md).[`scope`](BaseFuncItem.md#scope)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:44](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L44)
+[packages/ai-tool/src/tool-func.ts:44](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L44)
 
-___
+***
 
-### setup
+### setup()?
 
-• `Optional` **setup**: (`this`: [`ToolFunc`](../classes/ToolFunc.md), `options?`: [`FuncItem`](FuncItem.md)) => `void`
+> `optional` **setup**: (`this`, `options`?) => `void`
 
-#### Type declaration
+#### Parameters
 
-▸ (`this`, `options?`): `void`
+• **this**: [`ToolFunc`](../classes/ToolFunc.md)
 
-##### Parameters
+• **options?**: [`FuncItem`](FuncItem.md)
 
-| Name | Type |
-| :------ | :------ |
-| `this` | [`ToolFunc`](../classes/ToolFunc.md) |
-| `options?` | [`FuncItem`](FuncItem.md) |
-
-##### Returns
+#### Returns
 
 `void`
 
 #### Inherited from
 
-[BaseFuncItem](BaseFuncItem.md).[setup](BaseFuncItem.md#setup)
+[`BaseFuncItem`](BaseFuncItem.md).[`setup`](BaseFuncItem.md#setup)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:46](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L46)
+[packages/ai-tool/src/tool-func.ts:46](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L46)
 
-___
+***
 
-### stream
+### stream?
 
-• `Optional` **stream**: `boolean`
+> `optional` **stream**: `boolean`
 
 #### Inherited from
 
-[BaseFuncItem](BaseFuncItem.md).[stream](BaseFuncItem.md#stream)
+[`BaseFuncItem`](BaseFuncItem.md).[`stream`](BaseFuncItem.md#stream)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:48](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L48)
+[packages/ai-tool/src/tool-func.ts:48](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L48)
 
-___
+***
 
-### tags
+### tags?
 
-• `Optional` **tags**: `string` \| `string`[]
+> `optional` **tags**: `string` \| `string`[]
 
 #### Inherited from
 
-[BaseFuncItem](BaseFuncItem.md).[tags](BaseFuncItem.md#tags)
+[`BaseFuncItem`](BaseFuncItem.md).[`tags`](BaseFuncItem.md#tags)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:45](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L45)
+[packages/ai-tool/src/tool-func.ts:45](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L45)

@@ -1,40 +1,20 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / ConfigFile
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / ConfigFile
 
 # Class: ConfigFile
 
-## Table of contents
-
-### Constructors
-
-- [constructor](ConfigFile.md#constructor)
-
-### Properties
-
-- [configurators](ConfigFile.md#configurators)
-- [fs](ConfigFile.md#fs)
-- [path](ConfigFile.md#path)
-- [readFile](ConfigFile.md#readfile)
-
-### Methods
-
-- [load](ConfigFile.md#load)
-- [loadSync](ConfigFile.md#loadsync)
-- [load](ConfigFile.md#load-1)
-- [loadSync](ConfigFile.md#loadsync-1)
-- [register](ConfigFile.md#register)
-- [setFileSystem](ConfigFile.md#setfilesystem)
-
 ## Constructors
 
-### constructor
+### new ConfigFile()
 
-• **new ConfigFile**(`aOptions?`): [`ConfigFile`](ConfigFile.md)
+> **new ConfigFile**(`aOptions`?): [`ConfigFile`](ConfigFile.md)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `aOptions?` | `IConfigOptions` |
+• **aOptions?**: `IConfigOptions`
 
 #### Returns
 
@@ -42,16 +22,17 @@
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:42
+node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:42
 
-• **new ConfigFile**(`aPath`, `aOptions?`): [`ConfigFile`](ConfigFile.md)
+### new ConfigFile()
+
+> **new ConfigFile**(`aPath`, `aOptions`?): [`ConfigFile`](ConfigFile.md)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `aPath` | `string` |
-| `aOptions?` | `IConfigOptions` |
+• **aPath**: `string`
+
+• **aOptions?**: `IConfigOptions`
 
 #### Returns
 
@@ -59,241 +40,249 @@ node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/inde
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:43
+node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:43
 
 ## Properties
 
 ### configurators
 
-• **configurators**: `IConfigurator`
+> **configurators**: `IConfigurator`
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:37
+node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:37
 
-___
+***
 
 ### fs
 
-• **fs**: `IFileSystem`
+> **fs**: `IFileSystem`
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:38
+node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:38
 
-___
+***
 
 ### path
 
-• **path**: `any`
+> **path**: `any`
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:39
+node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:39
 
-___
+***
 
 ### readFile
 
-• **readFile**: `any`
+> **readFile**: `any`
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:40
+node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:40
 
 ## Methods
 
-### load
+### load()
 
-▸ **load**(`aPath`, `done`): `void`
+#### load(aPath, done)
 
-#### Parameters
+> **load**(`aPath`, `done`): `void`
 
-| Name | Type |
-| :------ | :------ |
-| `aPath` | `string` |
-| `done` | `ConfigCallBackFn` |
+##### Parameters
 
-#### Returns
+• **aPath**: `string`
 
-`void`
+• **done**: `ConfigCallBackFn`
 
-#### Defined in
-
-node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:44
-
-▸ **load**(`done`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `done` | `ConfigCallBackFn` |
-
-#### Returns
+##### Returns
 
 `void`
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:45
+node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:44
 
-▸ **load**(`aPath`, `aOptions`, `done`): `void`
+#### load(done)
 
-#### Parameters
+> **load**(`done`): `void`
 
-| Name | Type |
-| :------ | :------ |
-| `aPath` | `string` |
-| `aOptions` | `IConfigOptions` |
-| `done` | `ConfigCallBackFn` |
+##### Parameters
 
-#### Returns
+• **done**: `ConfigCallBackFn`
+
+##### Returns
 
 `void`
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:46
+node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:45
 
-▸ **load**(`aPath`, `aOptions?`): `Promise`\<`any`\>
+#### load(aPath, aOptions, done)
 
-#### Parameters
+> **load**(`aPath`, `aOptions`, `done`): `void`
 
-| Name | Type |
-| :------ | :------ |
-| `aPath` | `string` |
-| `aOptions?` | `IConfigOptions` |
+##### Parameters
 
-#### Returns
+• **aPath**: `string`
+
+• **aOptions**: `IConfigOptions`
+
+• **done**: `ConfigCallBackFn`
+
+##### Returns
+
+`void`
+
+##### Defined in
+
+node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:46
+
+#### load(aPath, aOptions)
+
+> **load**(`aPath`, `aOptions`?): `Promise`\<`any`\>
+
+##### Parameters
+
+• **aPath**: `string`
+
+• **aOptions?**: `IConfigOptions`
+
+##### Returns
 
 `Promise`\<`any`\>
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:47
+node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:47
 
-▸ **load**(`aOptions?`): `Promise`\<`any`\>
+#### load(aOptions)
 
-#### Parameters
+> **load**(`aOptions`?): `Promise`\<`any`\>
 
-| Name | Type |
-| :------ | :------ |
-| `aOptions?` | `IConfigOptions` |
+##### Parameters
 
-#### Returns
+• **aOptions?**: `IConfigOptions`
+
+##### Returns
 
 `Promise`\<`any`\>
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:48
+node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:48
 
-___
+***
 
-### loadSync
+### loadSync()
 
-▸ **loadSync**(`aPath`, `aOptions?`): `any`
+#### loadSync(aPath, aOptions)
 
-#### Parameters
+> **loadSync**(`aPath`, `aOptions`?): `any`
 
-| Name | Type |
-| :------ | :------ |
-| `aPath` | `string` |
-| `aOptions?` | `IConfigOptions` |
+##### Parameters
 
-#### Returns
+• **aPath**: `string`
+
+• **aOptions?**: `IConfigOptions`
+
+##### Returns
 
 `any`
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:49
+node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:49
 
-▸ **loadSync**(`aOptions?`): `any`
+#### loadSync(aOptions)
 
-#### Parameters
+> **loadSync**(`aOptions`?): `any`
 
-| Name | Type |
-| :------ | :------ |
-| `aOptions?` | `IConfigOptions` |
+##### Parameters
 
-#### Returns
+• **aOptions?**: `IConfigOptions`
+
+##### Returns
 
 `any`
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:50
+node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:50
 
-___
+***
 
-### load
+### load()
 
-▸ **load**(`aPath`, `aOptions?`): `Promise`\<`any`\>
+#### load(aPath, aOptions)
 
-#### Parameters
+> `static` **load**(`aPath`, `aOptions`?): `Promise`\<`any`\>
 
-| Name | Type |
-| :------ | :------ |
-| `aPath` | `string` |
-| `aOptions?` | `IConfigOptions` |
+##### Parameters
 
-#### Returns
+• **aPath**: `string`
+
+• **aOptions?**: `IConfigOptions`
+
+##### Returns
 
 `Promise`\<`any`\>
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:32
+node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:32
 
-▸ **load**(`aPath`, `aOptions`, `done`): `void` \| `Promise`\<`any`\>
+#### load(aPath, aOptions, done)
 
-#### Parameters
+> `static` **load**(`aPath`, `aOptions`, `done`): `void` \| `Promise`\<`any`\>
 
-| Name | Type |
-| :------ | :------ |
-| `aPath` | `string` |
-| `aOptions` | `IConfigOptions` |
-| `done` | ``true`` \| `ConfigCallBackFn` |
+##### Parameters
 
-#### Returns
+• **aPath**: `string`
+
+• **aOptions**: `IConfigOptions`
+
+• **done**: `true` \| `ConfigCallBackFn`
+
+##### Returns
 
 `void` \| `Promise`\<`any`\>
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:33
+node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:33
 
-▸ **load**(`aPath`, `done`): `void` \| `Promise`\<`any`\>
+#### load(aPath, done)
 
-#### Parameters
+> `static` **load**(`aPath`, `done`): `void` \| `Promise`\<`any`\>
 
-| Name | Type |
-| :------ | :------ |
-| `aPath` | `string` |
-| `done` | ``true`` \| `ConfigCallBackFn` |
+##### Parameters
 
-#### Returns
+• **aPath**: `string`
+
+• **done**: `true` \| `ConfigCallBackFn`
+
+##### Returns
 
 `void` \| `Promise`\<`any`\>
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:34
+node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:34
 
-___
+***
 
-### loadSync
+### loadSync()
 
-▸ **loadSync**(`aPath`, `aOptions?`): `any`
+> `static` **loadSync**(`aPath`, `aOptions`?): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `aPath` | `string` |
-| `aOptions?` | `IConfigOptions` |
+• **aPath**: `string`
+
+• **aOptions?**: `IConfigOptions`
 
 #### Returns
 
@@ -301,21 +290,21 @@ ___
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:35
+node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:35
 
-___
+***
 
-### register
+### register()
 
-▸ **register**(`aExts`, `aProcess`, `aConfigurators?`): `any`
+> `static` **register**(`aExts`, `aProcess`, `aConfigurators`?): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `aExts` | `string` \| `string`[] |
-| `aProcess` | `ConfigAsyncProcessFn` |
-| `aConfigurators?` | `IConfigurator` |
+• **aExts**: `string` \| `string`[]
+
+• **aProcess**: `ConfigAsyncProcessFn`
+
+• **aConfigurators?**: `IConfigurator`
 
 #### Returns
 
@@ -323,19 +312,17 @@ ___
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:29
+node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:29
 
-___
+***
 
-### setFileSystem
+### setFileSystem()
 
-▸ **setFileSystem**(`aFileSystem`): `any`
+> `static` **setFileSystem**(`aFileSystem`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `aFileSystem` | `IFileSystem` |
+• **aFileSystem**: `IFileSystem`
 
 #### Returns
 
@@ -343,4 +330,4 @@ ___
 
 #### Defined in
 
-node_modules/.pnpm/load-config-file@2.0.0/node_modules/load-config-file/lib/index.d.ts:30
+node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:30

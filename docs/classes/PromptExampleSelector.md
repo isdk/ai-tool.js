@@ -1,4 +1,8 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / PromptExampleSelector
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / PromptExampleSelector
 
 # Class: PromptExampleSelector\<T\>
 
@@ -6,7 +10,7 @@ The `PromptExampleSelector` class provides a mechanism to selectively choose exa
 configurable options such as maximum length and probability threshold. This class is meant to be extended and customized
 with an implementation of the `selectExample` method.
 
-**`Example`**
+## Example
 
 ```ts
 // Custom selector that selects examples based on a custom condition
@@ -28,51 +32,29 @@ for await (const selectedExample of selector) {
 }
 ```
 
-## Type parameters
+## Type Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `T` | `any` | The type of the prompt examples. |
+• **T** = `any`
 
-## Table of contents
-
-### Constructors
-
-- [constructor](PromptExampleSelector.md#constructor)
-
-### Properties
-
-- [examples](PromptExampleSelector.md#examples)
-- [maxLength](PromptExampleSelector.md#maxlength)
-- [threshold](PromptExampleSelector.md#threshold)
-
-### Methods
-
-- [[asyncIterator]](PromptExampleSelector.md#[asynciterator])
-- [initialize](PromptExampleSelector.md#initialize)
-- [selectExample](PromptExampleSelector.md#selectexample)
-- [selectExamples](PromptExampleSelector.md#selectexamples)
+The type of the prompt examples.
 
 ## Constructors
 
-### constructor
+### new PromptExampleSelector()
 
-• **new PromptExampleSelector**\<`T`\>(`examples`, `options?`): [`PromptExampleSelector`](PromptExampleSelector.md)\<`T`\>
+> **new PromptExampleSelector**\<`T`\>(`examples`, `options`?): [`PromptExampleSelector`](PromptExampleSelector.md)\<`T`\>
 
 Constructs a new `PromptExampleSelector` instance with the given examples and options.
 
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | `any` |
-
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `examples` | [`PromptExamples`](../modules.md#promptexamples)\<`T`\> | The prompt examples to select from. |
-| `options?` | [`PromptExampleSelectorOptions`](../interfaces/PromptExampleSelectorOptions.md) | An optional configuration object. |
+• **examples**: [`PromptExamples`](../type-aliases/PromptExamples.md)\<`T`\>
+
+The prompt examples to select from.
+
+• **options?**: [`PromptExampleSelectorOptions`](../interfaces/PromptExampleSelectorOptions.md)
+
+An optional configuration object.
 
 #### Returns
 
@@ -80,47 +62,47 @@ Constructs a new `PromptExampleSelector` instance with the given examples and op
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:62](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/prompt-example-selector.ts#L62)
+[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:62](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/prompt-example-selector.ts#L62)
 
 ## Properties
 
 ### examples
 
-• **examples**: [`PromptExamples`](../modules.md#promptexamples)\<`T`\>
+> **examples**: [`PromptExamples`](../type-aliases/PromptExamples.md)\<`T`\>
 
 The collection of prompt examples.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:55](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/prompt-example-selector.ts#L55)
+[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:55](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/prompt-example-selector.ts#L55)
 
-___
+***
 
 ### maxLength
 
-• **maxLength**: `undefined` \| `number`
+> **maxLength**: `undefined` \| `number`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:47](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/prompt-example-selector.ts#L47)
+[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:47](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/prompt-example-selector.ts#L47)
 
-___
+***
 
 ### threshold
 
-• **threshold**: `undefined` \| `number`
+> **threshold**: `undefined` \| `number`
 
 The probability threshold (0-1) for selecting an example. If `undefined`, no filtering by probability occurs.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:51](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/prompt-example-selector.ts#L51)
+[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:51](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/prompt-example-selector.ts#L51)
 
 ## Methods
 
-### [asyncIterator]
+### \[asyncIterator\]()
 
-▸ **[asyncIterator]**(): `AsyncGenerator`\<`Awaited`\<`T`\>, `void`, `unknown`\>
+> **\[asyncIterator\]**(): `AsyncGenerator`\<`Awaited`\<`T`\>, `void`, `unknown`\>
 
 Returns an asynchronous iterator for the selected examples.
 
@@ -132,22 +114,25 @@ An asynchronous iterator over the selected examples.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:119](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/prompt-example-selector.ts#L119)
+[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:119](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/prompt-example-selector.ts#L119)
 
-___
+***
 
-### initialize
+### initialize()
 
-▸ **initialize**(`examples`, `options?`): `void`
+> **initialize**(`examples`, `options`?): `void`
 
 Initializes the selector with examples and options.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `examples` | [`PromptExamples`](../modules.md#promptexamples)\<`T`\> | The prompt examples to select from. |
-| `options?` | [`PromptExampleSelectorOptions`](../interfaces/PromptExampleSelectorOptions.md) | An optional configuration object. |
+• **examples**: [`PromptExamples`](../type-aliases/PromptExamples.md)\<`T`\>
+
+The prompt examples to select from.
+
+• **options?**: [`PromptExampleSelectorOptions`](../interfaces/PromptExampleSelectorOptions.md)
+
+An optional configuration object.
 
 #### Returns
 
@@ -155,22 +140,25 @@ Initializes the selector with examples and options.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:71](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/prompt-example-selector.ts#L71)
+[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:71](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/prompt-example-selector.ts#L71)
 
-___
+***
 
-### selectExample
+### selectExample()
 
-▸ **selectExample**(`example`, `threshold?`): `void` \| `T`
+> **selectExample**(`example`, `threshold`?): `void` \| `T`
 
 Select an example. Can overwrite this in subclasses.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `example` | `T` | The example to potentially select. |
-| `threshold?` | `number` | report the current probability [0-1) for the selecting example. |
+• **example**: `T`
+
+The example to potentially select.
+
+• **threshold?**: `number`
+
+report the current probability [0-1) for the selecting example.
 
 #### Returns
 
@@ -180,21 +168,21 @@ The selected example, or `undefined` if not selected.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:92](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/prompt-example-selector.ts#L92)
+[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:92](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/prompt-example-selector.ts#L92)
 
-___
+***
 
-### selectExamples
+### selectExamples()
 
-▸ **selectExamples**(`examples?`): `AsyncGenerator`\<`Awaited`\<`T`\>, `void`, `unknown`\>
+> **selectExamples**(`examples`): `AsyncGenerator`\<`Awaited`\<`T`\>, `void`, `unknown`\>
 
 Asynchronously selects examples from the given examples, applying the configured threshold (if any).
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `examples` | [`PromptExamples`](../modules.md#promptexamples)\<`T`\> | The examples to select from. Defaults to the selector's examples if not provided. |
+• **examples**: [`PromptExamples`](../type-aliases/PromptExamples.md)\<`T`\> = `...`
+
+The examples to select from. Defaults to the selector's examples if not provided.
 
 #### Returns
 
@@ -204,4 +192,4 @@ An asynchronous iterator yielding selected examples.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:103](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/prompt-example-selector.ts#L103)
+[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:103](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/prompt-example-selector.ts#L103)

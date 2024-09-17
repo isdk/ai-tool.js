@@ -1,63 +1,49 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / ToolFuncPackage
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / ToolFuncPackage
 
 # Interface: ToolFuncPackage
-
-## Table of contents
-
-### Properties
-
-- [name](ToolFuncPackage.md#name)
-- [register](ToolFuncPackage.md#register)
-- [unregister](ToolFuncPackage.md#unregister)
 
 ## Properties
 
 ### name
 
-• **name**: `string`
+> **name**: `string`
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:64](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L64)
+[packages/ai-tool/src/tool-func.ts:64](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L64)
 
-___
+***
 
-### register
+### register()
 
-• **register**: (`data?`: `any`) => `void`
+> **register**: (`data`?) => `void`
 
-#### Type declaration
+#### Parameters
 
-▸ (`data?`): `void`
+• **data?**: `any`
 
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `data?` | `any` |
-
-##### Returns
+#### Returns
 
 `void`
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:65](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L65)
+[packages/ai-tool/src/tool-func.ts:65](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L65)
 
-___
+***
 
-### unregister
+### unregister()?
 
-• `Optional` **unregister**: () => `void`
+> `optional` **unregister**: () => `void`
 
-#### Type declaration
-
-▸ (): `void`
-
-##### Returns
+#### Returns
 
 `void`
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:66](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L66)
+[packages/ai-tool/src/tool-func.ts:66](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L66)

@@ -1,35 +1,28 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / AIChatMessageParamBase
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / AIChatMessageParamBase
 
 # Interface: AIChatMessageParamBase
 
-## Hierarchy
+## Extended by
 
-- **`AIChatMessageParamBase`**
-
-  ↳ [`AIChatSystemMessageParam`](AIChatSystemMessageParam.md)
-
-  ↳ [`AIChatUserMessageParam`](AIChatUserMessageParam.md)
-
-  ↳ [`AIChatAssistantMessageParam`](AIChatAssistantMessageParam.md)
-
-  ↳ [`AIChatToolMessageParam`](AIChatToolMessageParam.md)
+- [`AIChatSystemMessageParam`](AIChatSystemMessageParam.md)
+- [`AIChatUserMessageParam`](AIChatUserMessageParam.md)
+- [`AIChatAssistantMessageParam`](AIChatAssistantMessageParam.md)
+- [`AIChatToolMessageParam`](AIChatToolMessageParam.md)
 
 ## Indexable
 
-▪ [name: `string`]: `any`
-
-## Table of contents
-
-### Properties
-
-- [role](AIChatMessageParamBase.md#role)
+ \[`name`: `string`\]: `any`
 
 ## Properties
 
 ### role
 
-• **role**: `string`
+> **role**: `string`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:51](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L51)
+[packages/ai-tool/src/utils/chat.ts:51](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L51)

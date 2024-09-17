@@ -1,7 +1,11 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / DotenvParseOutput
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / DotenvParseOutput
 
 # Interface: DotenvParseOutput
 
 ## Indexable
 
-▪ [name: `string`]: `string` \| `undefined`
+ \[`name`: `string`\]: `string` \| `undefined`

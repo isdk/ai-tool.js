@@ -1,84 +1,75 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / AIChatAssistantMessageParam
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / AIChatAssistantMessageParam
 
 # Interface: AIChatAssistantMessageParam
 
-## Hierarchy
+## Extends
 
 - [`AIChatMessageParamBase`](AIChatMessageParamBase.md)
 
-  ↳ **`AIChatAssistantMessageParam`**
-
-## Table of contents
-
-### Properties
-
-- [content](AIChatAssistantMessageParam.md#content)
-- [createdAt](AIChatAssistantMessageParam.md#createdat)
-- [role](AIChatAssistantMessageParam.md#role)
-- [templateFormat](AIChatAssistantMessageParam.md#templateformat)
-- [tool\_calls](AIChatAssistantMessageParam.md#tool_calls)
-- [updatedAt](AIChatAssistantMessageParam.md#updatedat)
-
 ## Properties
 
-### content
+### content?
 
-• `Optional` **content**: ``null`` \| `string`
-
-#### Defined in
-
-[packages/ai-tool/src/utils/chat.ts:92](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L92)
-
-___
-
-### createdAt
-
-• `Optional` **createdAt**: `string` \| `Date`
+> `optional` **content**: `null` \| `string`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:95](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L95)
+[packages/ai-tool/src/utils/chat.ts:92](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L92)
 
-___
+***
+
+### createdAt?
+
+> `optional` **createdAt**: `string` \| `Date`
+
+#### Defined in
+
+[packages/ai-tool/src/utils/chat.ts:95](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L95)
+
+***
 
 ### role
 
-• **role**: ``"assistant"``
+> **role**: `"assistant"`
 
 #### Overrides
 
-[AIChatMessageParamBase](AIChatMessageParamBase.md).[role](AIChatMessageParamBase.md#role)
+[`AIChatMessageParamBase`](AIChatMessageParamBase.md).[`role`](AIChatMessageParamBase.md#role)
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:91](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L91)
+[packages/ai-tool/src/utils/chat.ts:91](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L91)
 
-___
+***
 
-### templateFormat
+### templateFormat?
 
-• `Optional` **templateFormat**: `string`
-
-#### Defined in
-
-[packages/ai-tool/src/utils/chat.ts:97](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L97)
-
-___
-
-### tool\_calls
-
-• `Optional` **tool\_calls**: [`AIChatMessageToolCall`](AIChatMessageToolCall.md)[]
+> `optional` **templateFormat**: `string`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:93](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L93)
+[packages/ai-tool/src/utils/chat.ts:97](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L97)
 
-___
+***
 
-### updatedAt
+### tool\_calls?
 
-• `Optional` **updatedAt**: `string` \| `Date`
+> `optional` **tool\_calls**: [`AIChatMessageToolCall`](AIChatMessageToolCall.md)[]
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:96](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L96)
+[packages/ai-tool/src/utils/chat.ts:93](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L93)
+
+***
+
+### updatedAt?
+
+> `optional` **updatedAt**: `string` \| `Date`
+
+#### Defined in
+
+[packages/ai-tool/src/utils/chat.ts:96](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L96)

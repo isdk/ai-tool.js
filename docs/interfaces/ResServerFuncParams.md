@@ -1,81 +1,73 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / ResServerFuncParams
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / ResServerFuncParams
 
 # Interface: ResServerFuncParams
 
-## Hierarchy
+## Extends
 
 - `RpcMethodsServerFuncParams`
 
-  ↳ **`ResServerFuncParams`**
-
-## Table of contents
-
-### Properties
-
-- [\_req](ResServerFuncParams.md#_req)
-- [\_res](ResServerFuncParams.md#_res)
-- [act](ResServerFuncParams.md#act)
-- [id](ResServerFuncParams.md#id)
-- [val](ResServerFuncParams.md#val)
-
 ## Properties
 
-### \_req
+### \_req?
 
-• `Optional` **\_req**: `IncomingMessage`
-
-#### Inherited from
-
-RpcMethodsServerFuncParams.\_req
-
-#### Defined in
-
-[packages/ai-tool/src/server-tools.ts:9](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/server-tools.ts#L9)
-
-___
-
-### \_res
-
-• `Optional` **\_res**: `ServerResponse`\<`IncomingMessage`\>
+> `optional` **\_req**: `IncomingMessage`
 
 #### Inherited from
 
-RpcMethodsServerFuncParams.\_res
+`RpcMethodsServerFuncParams._req`
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/server-tools.ts#L10)
+[packages/ai-tool/src/server-tools.ts:9](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/server-tools.ts#L9)
 
-___
+***
 
-### act
+### \_res?
 
-• `Optional` **act**: `string`
+> `optional` **\_res**: `ServerResponse`\<`IncomingMessage`\>
 
 #### Inherited from
 
-RpcMethodsServerFuncParams.act
+`RpcMethodsServerFuncParams._res`
 
 #### Defined in
 
-[packages/ai-tool/src/rpc-methods-server-tool.ts:7](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/rpc-methods-server-tool.ts#L7)
+[packages/ai-tool/src/server-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/server-tools.ts#L10)
 
-___
+***
 
-### id
+### act?
 
-• `Optional` **id**: `string` \| `number`
+> `optional` **act**: `string`
 
-#### Defined in
+#### Inherited from
 
-[packages/ai-tool/src/res-server-tools.ts:6](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L6)
-
-___
-
-### val
-
-• `Optional` **val**: `any`
+`RpcMethodsServerFuncParams.act`
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:8](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L8)
+[packages/ai-tool/src/rpc-methods-server-tool.ts:7](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/rpc-methods-server-tool.ts#L7)
+
+***
+
+### id?
+
+> `optional` **id**: `string` \| `number`
+
+#### Defined in
+
+[packages/ai-tool/src/res-server-tools.ts:6](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L6)
+
+***
+
+### val?
+
+> `optional` **val**: `any`
+
+#### Defined in
+
+[packages/ai-tool/src/res-server-tools.ts:8](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L8)

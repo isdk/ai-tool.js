@@ -1,149 +1,30 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / ResServerTools
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / ResServerTools
 
 # Class: ResServerTools
 
-## Hierarchy
+## Extends
 
 - `RpcMethodsServerTool`
 
-  ↳ **`ResServerTools`**
+## Extended by
 
-  ↳↳ [`EventServer`](EventServer.md)
-
-## Table of contents
-
-### Constructors
-
-- [constructor](ResServerTools.md#constructor)
-
-### Properties
-
-- [$attributes](ResServerTools.md#$attributes)
-- [action](ResServerTools.md#action)
-- [allowExportFunc](ResServerTools.md#allowexportfunc)
-- [apiRoot](ResServerTools.md#apiroot)
-- [constructor](ResServerTools.md#constructor-1)
-- [defaultOptions](ResServerTools.md#defaultoptions)
-- [fetchOptions](ResServerTools.md#fetchoptions)
-- [isApi](ResServerTools.md#isapi)
-- [methods](ResServerTools.md#methods)
-- [name](ResServerTools.md#name)
-- [nonExported1stChar](ResServerTools.md#nonexported1stchar)
-- [params](ResServerTools.md#params)
-- [result](ResServerTools.md#result)
-- [scope](ResServerTools.md#scope)
-- [setup](ResServerTools.md#setup)
-- [should](ResServerTools.md#should)
-- [stream](ResServerTools.md#stream)
-- [tags](ResServerTools.md#tags)
-- [SpecialRpcMethodNames](ResServerTools.md#specialrpcmethodnames)
-- [dataPath](ResServerTools.md#datapath)
-- [items](ResServerTools.md#items)
-
-### Accessors
-
-- [SpecialRpcMethodNames](ResServerTools.md#specialrpcmethodnames-1)
-- [apiRoot](ResServerTools.md#apiroot-1)
-
-### Methods
-
-- [arr2ObjParams](ResServerTools.md#arr2objparams)
-- [assign](ResServerTools.md#assign)
-- [assignProperty](ResServerTools.md#assignproperty)
-- [assignPropertyTo](ResServerTools.md#assignpropertyto)
-- [assignTo](ResServerTools.md#assignto)
-- [cast](ResServerTools.md#cast)
-- [castParams](ResServerTools.md#castparams)
-- [clone](ResServerTools.md#clone)
-- [cloneTo](ResServerTools.md#cloneto)
-- [defineProperties](ResServerTools.md#defineproperties)
-- [delete](ResServerTools.md#delete)
-- [exportTo](ResServerTools.md#exportto)
-- [func](ResServerTools.md#func)
-- [get](ResServerTools.md#get)
-- [getFunc](ResServerTools.md#getfunc)
-- [getFuncWithPos](ResServerTools.md#getfuncwithpos)
-- [getMethodFromParams](ResServerTools.md#getmethodfromparams)
-- [getProperties](ResServerTools.md#getproperties)
-- [hasAsyncFeature](ResServerTools.md#hasasyncfeature)
-- [hasOwnProperty](ResServerTools.md#hasownproperty)
-- [initRpcMethods](ResServerTools.md#initrpcmethods)
-- [initialize](ResServerTools.md#initialize)
-- [isPrototypeOf](ResServerTools.md#isprototypeof)
-- [isSame](ResServerTools.md#issame)
-- [isStream](ResServerTools.md#isstream)
-- [list](ResServerTools.md#list)
-- [mergeTo](ResServerTools.md#mergeto)
-- [obj2ArrParams](ResServerTools.md#obj2arrparams)
-- [post](ResServerTools.md#post)
-- [propertyIsEnumerable](ResServerTools.md#propertyisenumerable)
-- [put](ResServerTools.md#put)
-- [register](ResServerTools.md#register)
-- [run](ResServerTools.md#run)
-- [runAs](ResServerTools.md#runas)
-- [runAsSync](ResServerTools.md#runassync)
-- [runSync](ResServerTools.md#runsync)
-- [runWithPos](ResServerTools.md#runwithpos)
-- [runWithPosAs](ResServerTools.md#runwithposas)
-- [runWithPosAsSync](ResServerTools.md#runwithposassync)
-- [runWithPosSync](ResServerTools.md#runwithpossync)
-- [toJSON](ResServerTools.md#tojson)
-- [toLocaleString](ResServerTools.md#tolocalestring)
-- [toObject](ResServerTools.md#toobject)
-- [toString](ResServerTools.md#tostring)
-- [unregister](ResServerTools.md#unregister)
-- [valueOf](ResServerTools.md#valueof)
-- [assign](ResServerTools.md#assign-1)
-- [create](ResServerTools.md#create)
-- [defineProperties](ResServerTools.md#defineproperties-1)
-- [defineProperty](ResServerTools.md#defineproperty)
-- [entries](ResServerTools.md#entries)
-- [freeze](ResServerTools.md#freeze)
-- [fromEntries](ResServerTools.md#fromentries)
-- [get](ResServerTools.md#get-1)
-- [getAllByTag](ResServerTools.md#getallbytag)
-- [getByTag](ResServerTools.md#getbytag)
-- [getFunc](ResServerTools.md#getfunc-1)
-- [getFuncWithPos](ResServerTools.md#getfuncwithpos-1)
-- [getOwnPropertyDescriptor](ResServerTools.md#getownpropertydescriptor)
-- [getOwnPropertyDescriptors](ResServerTools.md#getownpropertydescriptors)
-- [getOwnPropertyNames](ResServerTools.md#getownpropertynames)
-- [getOwnPropertySymbols](ResServerTools.md#getownpropertysymbols)
-- [getProperties](ResServerTools.md#getproperties-1)
-- [getPrototypeOf](ResServerTools.md#getprototypeof)
-- [hasAsyncFeature](ResServerTools.md#hasasyncfeature-1)
-- [hasOwn](ResServerTools.md#hasown)
-- [is](ResServerTools.md#is)
-- [isExtensible](ResServerTools.md#isextensible)
-- [isFrozen](ResServerTools.md#isfrozen)
-- [isSealed](ResServerTools.md#issealed)
-- [keys](ResServerTools.md#keys)
-- [list](ResServerTools.md#list-1)
-- [preventExtensions](ResServerTools.md#preventextensions)
-- [register](ResServerTools.md#register-1)
-- [run](ResServerTools.md#run-1)
-- [runSync](ResServerTools.md#runsync-1)
-- [runWithPos](ResServerTools.md#runwithpos-1)
-- [runWithPosSync](ResServerTools.md#runwithpossync-1)
-- [seal](ResServerTools.md#seal)
-- [setApiRoot](ResServerTools.md#setapiroot)
-- [setPrototypeOf](ResServerTools.md#setprototypeof)
-- [toJSON](ResServerTools.md#tojson-1)
-- [unregister](ResServerTools.md#unregister-1)
-- [values](ResServerTools.md#values)
+- [`EventServer`](EventServer.md)
 
 ## Constructors
 
-### constructor
+### new ResServerTools()
 
-• **new ResServerTools**(`name`, `options?`): [`ResServerTools`](ResServerTools.md)
+> **new ResServerTools**(`name`, `options`): [`ResServerTools`](ResServerTools.md)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` \| `Function` \| [`FuncItem`](../interfaces/FuncItem.md) |
-| `options` | `any` |
+• **name**: `string` \| `Function` \| [`FuncItem`](../interfaces/FuncItem.md)
+
+• **options**: `any` = `{}`
 
 #### Returns
 
@@ -151,251 +32,247 @@
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:27](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L27)
+[packages/ai-tool/src/res-server-tools.ts:27](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L27)
 
 ## Properties
 
 ### $attributes
 
-• **$attributes**: `Properties`
+> **$attributes**: `Properties`
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/advance.d.ts:5
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/advance.d.ts:5
 
-___
+***
 
 ### action
 
-• **action**: ``"get"`` \| ``"post"`` \| ``"put"`` \| ``"delete"`` \| ``"patch"`` \| ``"list"`` \| ``"res"`` = `'res'`
+> **action**: `"get"` \| `"post"` \| `"put"` \| `"delete"` \| `"patch"` \| `"list"` \| `"res"` = `'res'`
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:21](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L21)
+[packages/ai-tool/src/res-server-tools.ts:21](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L21)
 
-___
+***
 
-### allowExportFunc
+### allowExportFunc?
 
-• `Optional` **allowExportFunc**: `boolean`
-
-#### Defined in
-
-[packages/ai-tool/src/server-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/server-tools.ts#L14)
-
-___
-
-### apiRoot
-
-• `Optional` **apiRoot**: `string`
+> `optional` **allowExportFunc**: `boolean`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:34](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/consts.ts#L34)
+[packages/ai-tool/src/server-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/server-tools.ts#L14)
 
-___
+***
+
+### apiRoot?
+
+> `optional` **apiRoot**: `string`
+
+#### Defined in
+
+[packages/ai-tool/src/utils/consts.ts:34](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/consts.ts#L34)
+
+***
 
 ### constructor
 
-• **constructor**: `Function`
+> **constructor**: `Function`
 
 The initial value of Object.prototype.constructor is the standard built-in Object constructor.
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:125
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:125
 
-___
+***
 
 ### defaultOptions
 
-• **defaultOptions**: `Object`
+> **defaultOptions**: `object`
 
 The default options for export and assign
 
-#### Type declaration
+#### assign?
 
-| Name | Type |
-| :------ | :------ |
-| `assign?` | `IMergeOptions` |
-| `export?` | `IMergeOptions` |
+> `optional` **assign**: `IMergeOptions`
 
-#### Defined in
+#### export?
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:74
-
-___
-
-### fetchOptions
-
-• `Optional` **fetchOptions**: `any`
+> `optional` **export**: `IMergeOptions`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:36](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/consts.ts#L36)
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:74
 
-___
+***
 
-### isApi
+### fetchOptions?
 
-• `Optional` **isApi**: `boolean`
+> `optional` **fetchOptions**: `any`
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:47](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L47)
+[packages/ai-tool/src/utils/consts.ts:36](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/consts.ts#L36)
 
-___
+***
+
+### isApi?
+
+> `optional` **isApi**: `boolean`
+
+#### Defined in
+
+[packages/ai-tool/src/tool-func.ts:47](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L47)
+
+***
 
 ### methods
 
-• **methods**: `string`[]
+> **methods**: `string`[]
 
 #### Defined in
 
-[packages/ai-tool/src/rpc-methods-server-tool.ts:11](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/rpc-methods-server-tool.ts#L11)
+[packages/ai-tool/src/rpc-methods-server-tool.ts:11](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/rpc-methods-server-tool.ts#L11)
 
-___
+***
 
-### name
+### name?
 
-• `Optional` **name**: `string`
+> `optional` **name**: `string`
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:41](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L41)
+[packages/ai-tool/src/tool-func.ts:41](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L41)
 
-___
+***
 
 ### nonExported1stChar
 
-• **nonExported1stChar**: `string`
+> **nonExported1stChar**: `string`
 
 the property with the default prefix '$' will not be exported.
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:78
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:78
 
-___
+***
 
 ### params
 
-• **params**: [`FuncParams`](../interfaces/FuncParams.md)
+> **params**: [`FuncParams`](../interfaces/FuncParams.md)
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:22](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L22)
+[packages/ai-tool/src/res-server-tools.ts:22](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L22)
 
-___
+***
 
-### result
+### result?
 
-• `Optional` **result**: `string`
-
-#### Defined in
-
-[packages/ai-tool/src/tool-func.ts:43](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L43)
-
-___
-
-### scope
-
-• `Optional` **scope**: `any`
+> `optional` **result**: `string`
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:44](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L44)
+[packages/ai-tool/src/tool-func.ts:43](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L43)
 
-___
+***
 
-### setup
+### scope?
 
-• `Optional` **setup**: (`this`: [`ToolFunc`](ToolFunc.md), `options?`: [`FuncItem`](../interfaces/FuncItem.md)) => `void`
+> `optional` **scope**: `any`
 
-#### Type declaration
+#### Defined in
 
-▸ (`this`, `options?`): `void`
+[packages/ai-tool/src/tool-func.ts:44](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L44)
 
-##### Parameters
+***
 
-| Name | Type |
-| :------ | :------ |
-| `this` | [`ToolFunc`](ToolFunc.md) |
-| `options?` | [`FuncItem`](../interfaces/FuncItem.md) |
+### setup()?
 
-##### Returns
+> `optional` **setup**: (`this`, `options`?) => `void`
+
+#### Parameters
+
+• **this**: [`ToolFunc`](ToolFunc.md)
+
+• **options?**: [`FuncItem`](../interfaces/FuncItem.md)
+
+#### Returns
 
 `void`
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:46](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L46)
+[packages/ai-tool/src/tool-func.ts:46](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L46)
 
-___
+***
 
 ### should
 
-• **should**: `Assertion`
+> **should**: `Assertion`
 
 #### Defined in
 
-node_modules/.pnpm/@types+chai@4.3.16/node_modules/@types/chai/index.d.ts:2100
+node\_modules/.pnpm/@types+chai@4.3.16/node\_modules/@types/chai/index.d.ts:2100
 
-___
+***
 
-### stream
+### stream?
 
-• `Optional` **stream**: `boolean`
-
-#### Defined in
-
-[packages/ai-tool/src/tool-func.ts:48](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L48)
-
-___
-
-### tags
-
-• `Optional` **tags**: `string` \| `string`[]
+> `optional` **stream**: `boolean`
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:45](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L45)
+[packages/ai-tool/src/tool-func.ts:48](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L48)
 
-___
+***
 
-### SpecialRpcMethodNames
+### tags?
 
-▪ `Static` **SpecialRpcMethodNames**: `any`
+> `optional` **tags**: `string` \| `string`[]
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:20](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L20)
+[packages/ai-tool/src/tool-func.ts:45](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L45)
 
-___
+***
 
 ### dataPath
 
-▪ `Static` **dataPath**: `string`
+> `static` **dataPath**: `string`
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:75](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L75)
+[packages/ai-tool/src/tool-func.ts:75](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L75)
 
-___
+***
 
 ### items
 
-▪ `Static` **items**: [`Funcs`](../interfaces/Funcs.md) = `{}`
+> `static` **items**: [`Funcs`](../interfaces/Funcs.md) = `{}`
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:74](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L74)
+[packages/ai-tool/src/tool-func.ts:74](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L74)
+
+***
+
+### SpecialRpcMethodNames
+
+> `static` **SpecialRpcMethodNames**: `any`
+
+#### Defined in
+
+[packages/ai-tool/src/res-server-tools.ts:20](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L20)
 
 ## Accessors
 
 ### SpecialRpcMethodNames
 
-• `get` **SpecialRpcMethodNames**(): `any`
+> `get` **SpecialRpcMethodNames**(): `any`
 
 #### Returns
 
@@ -403,13 +280,13 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/rpc-methods-server-tool.ts:22](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/rpc-methods-server-tool.ts#L22)
+[packages/ai-tool/src/rpc-methods-server-tool.ts:22](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/rpc-methods-server-tool.ts#L22)
 
-___
+***
 
 ### apiRoot
 
-• `get` **apiRoot**(): `undefined` \| `string`
+> `get` `static` **apiRoot**(): `undefined` \| `string`
 
 #### Returns
 
@@ -417,19 +294,17 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:26](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/server-tools.ts#L26)
+[packages/ai-tool/src/server-tools.ts:26](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/server-tools.ts#L26)
 
 ## Methods
 
-### arr2ObjParams
+### arr2ObjParams()
 
-▸ **arr2ObjParams**(`params`): `any`[]
+> **arr2ObjParams**(`params`): `any`[]
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params` | `any`[] |
+• **params**: `any`[]
 
 #### Returns
 
@@ -437,22 +312,23 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:254](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L254)
+[packages/ai-tool/src/tool-func.ts:254](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L254)
 
-___
+***
 
-### assign
+### assign()
 
-▸ **assign**(`src`, `options?`): `this`
+> **assign**(`src`, `options`?): `this`
 
 Assign the values from the src object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `src` | `any` | the source object |
-| `options?` | `IMergeOptions` | - |
+• **src**: `any`
+
+the source object
+
+• **options?**: `IMergeOptions`
 
 #### Returns
 
@@ -462,25 +338,35 @@ this object
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:106
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:106
 
-___
+***
 
-### assignProperty
+### assignProperty()
 
-▸ **assignProperty**(`src`, `name`, `value`, `attrs?`, `options?`): `void`
+> **assignProperty**(`src`, `name`, `value`, `attrs`?, `options`?): `void`
 
 Assign a property of src to this object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `src` | `any` | the src object |
-| `name` | `string` | the property name to assign |
-| `value` | `any` | the property value to assign |
-| `attrs?` | `any` | the attributes object |
-| `options?` | `IMergeOptions` |  |
+• **src**: `any`
+
+the src object
+
+• **name**: `string`
+
+the property name to assign
+
+• **value**: `any`
+
+the property value to assign
+
+• **attrs?**: `any`
+
+the attributes object
+
+• **options?**: `IMergeOptions`
 
 #### Returns
 
@@ -488,51 +374,63 @@ Assign a property of src to this object.
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:117
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:117
 
-___
+***
 
-### assignPropertyTo
+### assignPropertyTo()
 
-▸ **assignPropertyTo**(`dest`, `src`, `name`, `value`, `attrs?`, `options?`): `void`
+> `abstract` **assignPropertyTo**(`dest`, `src`, `name`, `value`, `attrs`?, `options`?): `void`
 
 Assign the property value from the src to destination object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `dest` | `any` | The destination object |
-| `src` | `any` | The src object |
-| `name` | `string` | The property name |
-| `value` | `any` | The property value |
-| `attrs?` | `any` | The attributes object of the property |
-| `options?` | `IMergeOptions` |  |
+• **dest**: `any`
+
+The destination object
+
+• **src**: `any`
+
+The src object
+
+• **name**: `string`
+
+The property name
+
+• **value**: `any`
+
+The property value
+
+• **attrs?**: `any`
+
+The attributes object of the property
+
+• **options?**: `IMergeOptions`
 
 #### Returns
 
 `void`
 
-**`Abstract`**
-
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:131
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:131
 
-___
+***
 
-### assignTo
+### assignTo()
 
-▸ **assignTo**(`dest?`, `options?`): `any`
+> **assignTo**(`dest`?, `options`?): `any`
 
 Assign this attributes to the dest object
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `dest?` | `any` | the destination object |
-| `options?` | `IMergeOptions` | - |
+• **dest?**: `any`
+
+the destination object
+
+• **options?**: `IMergeOptions`
 
 #### Returns
 
@@ -542,20 +440,19 @@ the dest object
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:191
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:191
 
-___
+***
 
-### cast
+### cast()
 
-▸ **cast**(`key`, `value`): `any`
+> **cast**(`key`, `value`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `key` | `string` |
-| `value` | `any` |
+• **key**: `string`
+
+• **value**: `any`
 
 #### Returns
 
@@ -563,19 +460,17 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/rpc-methods-server-tool.ts:48](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/rpc-methods-server-tool.ts#L48)
+[packages/ai-tool/src/rpc-methods-server-tool.ts:48](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/rpc-methods-server-tool.ts#L48)
 
-___
+***
 
-### castParams
+### castParams()
 
-▸ **castParams**(`params`): `RpcMethodsServerFuncParams`
+> **castParams**(`params`): `RpcMethodsServerFuncParams`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params` | `RpcMethodsServerFuncParams` |
+• **params**: `RpcMethodsServerFuncParams`
 
 #### Returns
 
@@ -583,21 +478,19 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:40](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L40)
+[packages/ai-tool/src/res-server-tools.ts:40](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L40)
 
-___
+***
 
-### clone
+### clone()
 
-▸ **clone**(`options?`): `any`
+> **clone**(`options`?): `any`
 
 Create a new object with the same values of attributes.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `options?` | `IMergeOptions` |
+• **options?**: `IMergeOptions`
 
 #### Returns
 
@@ -607,22 +500,23 @@ the new object
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:155
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:155
 
-___
+***
 
-### cloneTo
+### cloneTo()
 
-▸ **cloneTo**(`dest`, `options?`): `any`
+> **cloneTo**(`dest`, `options`?): `any`
 
 Create and assign the values to the destination object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `dest` | `any` | the destination object |
-| `options?` | `IMergeOptions` |  |
+• **dest**: `any`
+
+the destination object
+
+• **options?**: `IMergeOptions`
 
 #### Returns
 
@@ -632,43 +526,39 @@ the new dest object
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:148
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:148
 
-___
+***
 
-### defineProperties
+### defineProperties()
 
-▸ **defineProperties**(`aProperties`): `any`
+> `abstract` **defineProperties**(`aProperties`): `any`
 
 Define the attributes of this object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `aProperties` | `SimplePropDescriptors` | the defined attributes of the object |
+• **aProperties**: `SimplePropDescriptors`
+
+the defined attributes of the object
 
 #### Returns
 
 `any`
 
-**`Abstract`**
-
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:89
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:89
 
-___
+***
 
-### delete
+### delete()?
 
-▸ **delete**(`«destructured»`): `any`
+> `optional` **delete**(`__namedParameters`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `«destructured»` | [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md) |
+• **\_\_namedParameters**: [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md)
 
 #### Returns
 
@@ -676,22 +566,23 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:15](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L15)
+[packages/ai-tool/src/res-server-tools.ts:15](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L15)
 
-___
+***
 
-### exportTo
+### exportTo()
 
-▸ **exportTo**(`dest`, `options?`): `any`
+> **exportTo**(`dest`, `options`?): `any`
 
 Export attributes to the dest json object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `dest` | `any` | the destination object |
-| `options?` | `IExportOptions` | - |
+• **dest**: `any`
+
+the destination object
+
+• **options?**: `IExportOptions`
 
 #### Returns
 
@@ -701,19 +592,17 @@ the dest object.
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:173
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:173
 
-___
+***
 
-### func
+### func()
 
-▸ **func**(`params`): `any`
+> **func**(`params`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params` | `RpcMethodsServerFuncParams` |
+• **params**: `RpcMethodsServerFuncParams`
 
 #### Returns
 
@@ -721,19 +610,17 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/rpc-methods-server-tool.ts:68](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/rpc-methods-server-tool.ts#L68)
+[packages/ai-tool/src/rpc-methods-server-tool.ts:68](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/rpc-methods-server-tool.ts#L68)
 
-___
+***
 
-### get
+### get()?
 
-▸ **get**(`«destructured»`): `any`
+> `optional` **get**(`__namedParameters`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `«destructured»` | [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md) |
+• **\_\_namedParameters**: [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md)
 
 #### Returns
 
@@ -741,19 +628,17 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:12](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L12)
+[packages/ai-tool/src/res-server-tools.ts:12](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L12)
 
-___
+***
 
-### getFunc
+### getFunc()
 
-▸ **getFunc**(`name?`): `any`
+> **getFunc**(`name`?): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name?` | `string` |
+• **name?**: `string`
 
 #### Returns
 
@@ -761,19 +646,17 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:307](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L307)
+[packages/ai-tool/src/tool-func.ts:307](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L307)
 
-___
+***
 
-### getFuncWithPos
+### getFuncWithPos()
 
-▸ **getFuncWithPos**(`name?`): `any`
+> **getFuncWithPos**(`name`?): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name?` | `string` |
+• **name?**: `string`
 
 #### Returns
 
@@ -781,19 +664,17 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:331](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L331)
+[packages/ai-tool/src/tool-func.ts:331](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L331)
 
-___
+***
 
-### getMethodFromParams
+### getMethodFromParams()
 
-▸ **getMethodFromParams**(`params`): `undefined` \| `string`
+> **getMethodFromParams**(`params`): `undefined` \| `string`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params` | [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md) |
+• **params**: [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md)
 
 #### Returns
 
@@ -801,13 +682,13 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:31](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L31)
+[packages/ai-tool/src/res-server-tools.ts:31](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L31)
 
-___
+***
 
-### getProperties
+### getProperties()
 
-▸ **getProperties**(): `PropDescriptors`
+> `abstract` **getProperties**(): `PropDescriptors`
 
 Get the defined attributes.
 
@@ -817,23 +698,19 @@ Get the defined attributes.
 
 the descriptors of properties object
 
-**`Abstract`**
-
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:98
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:98
 
-___
+***
 
-### hasAsyncFeature
+### hasAsyncFeature()
 
-▸ **hasAsyncFeature**(`feature`): `boolean`
+> **hasAsyncFeature**(`feature`): `boolean`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `feature` | [`AsyncFeatureBits`](../enums/AsyncFeatureBits.md) |
+• **feature**: [`AsyncFeatureBits`](../enumerations/AsyncFeatureBits.md)
 
 #### Returns
 
@@ -841,21 +718,21 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:336](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L336)
+[packages/ai-tool/src/tool-func.ts:336](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L336)
 
-___
+***
 
-### hasOwnProperty
+### hasOwnProperty()
 
-▸ **hasOwnProperty**(`v`): `boolean`
+> **hasOwnProperty**(`v`): `boolean`
 
 Determines whether an object has a property with the specified name.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `v` | `PropertyKey` | A property name. |
+• **v**: `PropertyKey`
+
+A property name.
 
 #### Returns
 
@@ -863,41 +740,19 @@ Determines whether an object has a property with the specified name.
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:140
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:140
 
-___
+***
 
-### initRpcMethods
+### initialize()
 
-▸ **initRpcMethods**(`methods?`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `methods` | `string`[] |
-
-#### Returns
-
-`void`
-
-#### Defined in
-
-[packages/ai-tool/src/rpc-methods-server-tool.ts:27](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/rpc-methods-server-tool.ts#L27)
-
-___
-
-### initialize
-
-▸ **initialize**(`src?`): `this`
+> **initialize**(`src`?): `this`
 
 Initialize object and assign attribute values from src if src exists.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `src?` | `any` |
+• **src?**: `any`
 
 #### Returns
 
@@ -907,21 +762,39 @@ this object.
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:139
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:139
 
-___
+***
 
-### isPrototypeOf
+### initRpcMethods()
 
-▸ **isPrototypeOf**(`v`): `boolean`
+> **initRpcMethods**(`methods`): `void`
+
+#### Parameters
+
+• **methods**: `string`[] = `...`
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[packages/ai-tool/src/rpc-methods-server-tool.ts:27](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/rpc-methods-server-tool.ts#L27)
+
+***
+
+### isPrototypeOf()
+
+> **isPrototypeOf**(`v`): `boolean`
 
 Determines whether an object exists in another object's prototype chain.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `v` | `Object` | Another object whose prototype chain is to be checked. |
+• **v**: `Object`
+
+Another object whose prototype chain is to be checked.
 
 #### Returns
 
@@ -929,22 +802,23 @@ Determines whether an object exists in another object's prototype chain.
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:146
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:146
 
-___
+***
 
-### isSame
+### isSame()
 
-▸ **isSame**(`src`, `options?`): `boolean`
+> **isSame**(`src`, `options`?): `boolean`
 
 Check the src object whether “equals” this object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `src` | `any` | The source object |
-| `options?` | `IMergeOptions` | - |
+• **src**: `any`
+
+The source object
+
+• **options?**: `IMergeOptions`
 
 #### Returns
 
@@ -952,19 +826,17 @@ Check the src object whether “equals” this object.
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:200
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:200
 
-___
+***
 
-### isStream
+### isStream()
 
-▸ **isStream**(`params`): `undefined` \| `boolean`
+> **isStream**(`params`): `undefined` \| `boolean`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params` | `any` |
+• **params**: `any`
 
 #### Returns
 
@@ -972,19 +844,17 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:342](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L342)
+[packages/ai-tool/src/tool-func.ts:342](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L342)
 
-___
+***
 
-### list
+### list()?
 
-▸ **list**(`options?`): `any`
+> `optional` **list**(`options`?): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `options?` | [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md) |
+• **options?**: [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md)
 
 #### Returns
 
@@ -992,22 +862,23 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:16](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L16)
+[packages/ai-tool/src/res-server-tools.ts:16](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L16)
 
-___
+***
 
-### mergeTo
+### mergeTo()
 
-▸ **mergeTo**(`dest`, `options?`): `any`
+> **mergeTo**(`dest`, `options`?): `any`
 
 Merge this attributes to dest object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `dest` | `any` | The destination object |
-| `options?` | `IMergeOptions` | - |
+• **dest**: `any`
+
+The destination object
+
+• **options?**: `IMergeOptions`
 
 #### Returns
 
@@ -1017,19 +888,17 @@ the dest object.
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:164
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:164
 
-___
+***
 
-### obj2ArrParams
+### obj2ArrParams()
 
-▸ **obj2ArrParams**(`params?`): `any`[]
+> **obj2ArrParams**(`params`?): `any`[]
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params?` | `any` |
+• **params?**: `any`
 
 #### Returns
 
@@ -1037,19 +906,17 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:267](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L267)
+[packages/ai-tool/src/tool-func.ts:267](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L267)
 
-___
+***
 
-### post
+### post()?
 
-▸ **post**(`options`): `any`
+> `optional` **post**(`options`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `options` | [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md) |
+• **options**: [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md)
 
 #### Returns
 
@@ -1057,21 +924,21 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:13](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L13)
+[packages/ai-tool/src/res-server-tools.ts:13](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L13)
 
-___
+***
 
-### propertyIsEnumerable
+### propertyIsEnumerable()
 
-▸ **propertyIsEnumerable**(`v`): `boolean`
+> **propertyIsEnumerable**(`v`): `boolean`
 
 Determines whether a specified property is enumerable.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `v` | `PropertyKey` | A property name. |
+• **v**: `PropertyKey`
+
+A property name.
 
 #### Returns
 
@@ -1079,19 +946,17 @@ Determines whether a specified property is enumerable.
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:152
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:152
 
-___
+***
 
-### put
+### put()?
 
-▸ **put**(`«destructured»`): `any`
+> `optional` **put**(`__namedParameters`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `«destructured»` | [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md) |
+• **\_\_namedParameters**: [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md)
 
 #### Returns
 
@@ -1099,13 +964,13 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L14)
+[packages/ai-tool/src/res-server-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L14)
 
-___
+***
 
-### register
+### register()
 
-▸ **register**(): `boolean` \| [`ToolFunc`](ToolFunc.md)
+> **register**(): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
 #### Returns
 
@@ -1113,19 +978,17 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:237](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L237)
+[packages/ai-tool/src/tool-func.ts:237](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L237)
 
-___
+***
 
-### run
+### run()
 
-▸ **run**(`params?`): `Promise`\<`any`\>
+> **run**(`params`?): `Promise`\<`any`\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params?` | `any` |
+• **params?**: `any`
 
 #### Returns
 
@@ -1133,20 +996,19 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:294](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L294)
+[packages/ai-tool/src/tool-func.ts:294](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L294)
 
-___
+***
 
-### runAs
+### runAs()
 
-▸ **runAs**(`name`, `params?`): `Promise`\<`any`\>
+> **runAs**(`name`, `params`?): `Promise`\<`any`\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-| `params?` | `any` |
+• **name**: `string`
+
+• **params?**: `any`
 
 #### Returns
 
@@ -1154,20 +1016,19 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:298](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L298)
+[packages/ai-tool/src/tool-func.ts:298](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L298)
 
-___
+***
 
-### runAsSync
+### runAsSync()
 
-▸ **runAsSync**(`name`, `params?`): `any`
+> **runAsSync**(`name`, `params`?): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-| `params?` | `any` |
+• **name**: `string`
+
+• **params?**: `any`
 
 #### Returns
 
@@ -1175,19 +1036,17 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:302](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L302)
+[packages/ai-tool/src/tool-func.ts:302](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L302)
 
-___
+***
 
-### runSync
+### runSync()
 
-▸ **runSync**(`params?`): `any`
+> **runSync**(`params`?): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params?` | `any` |
+• **params?**: `any`
 
 #### Returns
 
@@ -1195,19 +1054,17 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:280](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L280)
+[packages/ai-tool/src/tool-func.ts:280](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L280)
 
-___
+***
 
-### runWithPos
+### runWithPos()
 
-▸ **runWithPos**(`...params`): `Promise`\<`any`\>
+> **runWithPos**(...`params`): `Promise`\<`any`\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `...params` | `any`[] |
+• ...**params**: `any`[]
 
 #### Returns
 
@@ -1215,20 +1072,19 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:323](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L323)
+[packages/ai-tool/src/tool-func.ts:323](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L323)
 
-___
+***
 
-### runWithPosAs
+### runWithPosAs()
 
-▸ **runWithPosAs**(`name`, `...params`): `Promise`\<`any`\>
+> **runWithPosAs**(`name`, ...`params`): `Promise`\<`any`\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-| `...params` | `any`[] |
+• **name**: `string`
+
+• ...**params**: `any`[]
 
 #### Returns
 
@@ -1236,40 +1092,19 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:327](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L327)
+[packages/ai-tool/src/tool-func.ts:327](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L327)
 
-___
+***
 
-### runWithPosAsSync
+### runWithPosAsSync()
 
-▸ **runWithPosAsSync**(`name`, `...params`): `any`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-| `...params` | `any`[] |
-
-#### Returns
-
-`any`
-
-#### Defined in
-
-[packages/ai-tool/src/tool-func.ts:319](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L319)
-
-___
-
-### runWithPosSync
-
-▸ **runWithPosSync**(`...params`): `any`
+> **runWithPosAsSync**(`name`, ...`params`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `...params` | `any`[] |
+• **name**: `string`
+
+• ...**params**: `any`[]
 
 #### Returns
 
@@ -1277,13 +1112,17 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:312](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L312)
+[packages/ai-tool/src/tool-func.ts:319](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L319)
 
-___
+***
 
-### toJSON
+### runWithPosSync()
 
-▸ **toJSON**(): `any`
+> **runWithPosSync**(...`params`): `any`
+
+#### Parameters
+
+• ...**params**: `any`[]
 
 #### Returns
 
@@ -1291,13 +1130,27 @@ ___
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:182
+[packages/ai-tool/src/tool-func.ts:312](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L312)
 
-___
+***
 
-### toLocaleString
+### toJSON()
 
-▸ **toLocaleString**(): `string`
+> **toJSON**(): `any`
+
+#### Returns
+
+`any`
+
+#### Defined in
+
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:182
+
+***
+
+### toLocaleString()
+
+> **toLocaleString**(): `string`
 
 Returns a date converted to a string using the current locale.
 
@@ -1307,21 +1160,19 @@ Returns a date converted to a string using the current locale.
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:131
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:131
 
-___
+***
 
-### toObject
+### toObject()
 
-▸ **toObject**(`options?`): `any`
+> **toObject**(`options`?): `any`
 
 Convert the attributes to the json object
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `options?` | `any` |
+• **options?**: `any`
 
 #### Returns
 
@@ -1331,13 +1182,13 @@ the json object.
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:181
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:181
 
-___
+***
 
-### toString
+### toString()
 
-▸ **toString**(): `string`
+> **toString**(): `string`
 
 Returns a string representation of an object.
 
@@ -1347,13 +1198,13 @@ Returns a string representation of an object.
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:128
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:128
 
-___
+***
 
-### unregister
+### unregister()
 
-▸ **unregister**(): `any`
+> **unregister**(): `any`
 
 #### Returns
 
@@ -1361,13 +1212,13 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:250](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L250)
+[packages/ai-tool/src/tool-func.ts:250](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L250)
 
-___
+***
 
-### valueOf
+### valueOf()
 
-▸ **valueOf**(): `Object`
+> **valueOf**(): `Object`
 
 Returns the primitive value of the specified object.
 
@@ -1377,151 +1228,211 @@ Returns the primitive value of the specified object.
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:134
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:134
 
-___
+***
 
-### assign
+### assign()
 
-▸ **assign**\<`T`, `U`\>(`target`, `source`): `T` & `U`
+#### assign(target, source)
+
+> `static` **assign**\<`T`, `U`\>(`target`, `source`): `T` & `U`
 
 Copy the values of all of the enumerable own properties from one or more source objects to a
 target object. Returns the target object.
 
-#### Type parameters
+##### Type Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `Object` |
-| `U` | `U` |
+• **T** *extends* `object`
 
-#### Parameters
+• **U**
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `target` | `T` | The target object to copy to. |
-| `source` | `U` | The source object from which to copy properties. |
+##### Parameters
 
-#### Returns
+• **target**: `T`
+
+The target object to copy to.
+
+• **source**: `U`
+
+The source object from which to copy properties.
+
+##### Returns
 
 `T` & `U`
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.core.d.ts:284
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2015.core.d.ts:286
 
-▸ **assign**\<`T`, `U`, `V`\>(`target`, `source1`, `source2`): `T` & `U` & `V`
+#### assign(target, source1, source2)
+
+> `static` **assign**\<`T`, `U`, `V`\>(`target`, `source1`, `source2`): `T` & `U` & `V`
 
 Copy the values of all of the enumerable own properties from one or more source objects to a
 target object. Returns the target object.
 
-#### Type parameters
+##### Type Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `Object` |
-| `U` | `U` |
-| `V` | `V` |
+• **T** *extends* `object`
 
-#### Parameters
+• **U**
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `target` | `T` | The target object to copy to. |
-| `source1` | `U` | The first source object from which to copy properties. |
-| `source2` | `V` | The second source object from which to copy properties. |
+• **V**
 
-#### Returns
+##### Parameters
+
+• **target**: `T`
+
+The target object to copy to.
+
+• **source1**: `U`
+
+The first source object from which to copy properties.
+
+• **source2**: `V`
+
+The second source object from which to copy properties.
+
+##### Returns
 
 `T` & `U` & `V`
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.core.d.ts:293
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2015.core.d.ts:295
 
-▸ **assign**\<`T`, `U`, `V`, `W`\>(`target`, `source1`, `source2`, `source3`): `T` & `U` & `V` & `W`
+#### assign(target, source1, source2, source3)
+
+> `static` **assign**\<`T`, `U`, `V`, `W`\>(`target`, `source1`, `source2`, `source3`): `T` & `U` & `V` & `W`
 
 Copy the values of all of the enumerable own properties from one or more source objects to a
 target object. Returns the target object.
 
-#### Type parameters
+##### Type Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `Object` |
-| `U` | `U` |
-| `V` | `V` |
-| `W` | `W` |
+• **T** *extends* `object`
 
-#### Parameters
+• **U**
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `target` | `T` | The target object to copy to. |
-| `source1` | `U` | The first source object from which to copy properties. |
-| `source2` | `V` | The second source object from which to copy properties. |
-| `source3` | `W` | The third source object from which to copy properties. |
+• **V**
 
-#### Returns
+• **W**
+
+##### Parameters
+
+• **target**: `T`
+
+The target object to copy to.
+
+• **source1**: `U`
+
+The first source object from which to copy properties.
+
+• **source2**: `V`
+
+The second source object from which to copy properties.
+
+• **source3**: `W`
+
+The third source object from which to copy properties.
+
+##### Returns
 
 `T` & `U` & `V` & `W`
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.core.d.ts:303
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2015.core.d.ts:305
 
-▸ **assign**(`target`, `...sources`): `any`
+#### assign(target, sources)
+
+> `static` **assign**(`target`, ...`sources`): `any`
 
 Copy the values of all of the enumerable own properties from one or more source objects to a
 target object. Returns the target object.
 
-#### Parameters
+##### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `target` | `object` | The target object to copy to. |
-| `...sources` | `any`[] | One or more source objects from which to copy properties |
+• **target**: `object`
 
-#### Returns
+The target object to copy to.
+
+• ...**sources**: `any`[]
+
+One or more source objects from which to copy properties
+
+##### Returns
 
 `any`
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.core.d.ts:311
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2015.core.d.ts:313
 
-___
+***
 
-### create
+### create()
 
-▸ **create**(`o`): `any`
+#### create(o)
+
+> `static` **create**(`o`): `any`
 
 Creates an object that has the specified prototype or that has null prototype.
 
-#### Parameters
+##### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | ``null`` \| `object` | Object to use as a prototype. May be null. |
+• **o**: `null` \| `object`
 
-#### Returns
+Object to use as a prototype. May be null.
+
+##### Returns
 
 `any`
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:188
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:188
 
-▸ **create**(`o`, `properties`): `any`
+#### create(o, properties)
+
+> `static` **create**(`o`, `properties`): `any`
 
 Creates an object that has the specified prototype, and that optionally contains specified properties.
 
+##### Parameters
+
+• **o**: `null` \| `object`
+
+Object to use as a prototype. May be null
+
+• **properties**: `PropertyDescriptorMap` & `ThisType`\<`any`\>
+
+JavaScript object that contains one or more property descriptors.
+
+##### Returns
+
+`any`
+
+##### Defined in
+
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:195
+
+***
+
+### defineProperties()
+
+> `static` **defineProperties**(`aTarget`, `aProperties`, `recreate`?): `any`
+
+Adds one or more properties to an object, and/or modifies attributes of existing properties.
+
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | ``null`` \| `object` | Object to use as a prototype. May be null |
-| `properties` | `PropertyDescriptorMap` & `ThisType`\<`any`\> | JavaScript object that contains one or more property descriptors. |
+• **aTarget**: `any`
+
+• **aProperties**: `PropDescriptors`
+
+• **recreate?**: `boolean`
 
 #### Returns
 
@@ -1529,51 +1440,33 @@ Creates an object that has the specified prototype, and that optionally contains
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:195
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/advance.d.ts:11
 
-___
+***
 
-### defineProperties
+### defineProperty()
 
-▸ **defineProperties**(`aTarget`, `aProperties`, `recreate?`): `any`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `aTarget` | `any` |
-| `aProperties` | `PropDescriptors` |
-| `recreate?` | `boolean` |
-
-#### Returns
-
-`any`
-
-#### Defined in
-
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/advance.d.ts:11
-
-___
-
-### defineProperty
-
-▸ **defineProperty**\<`T`\>(`o`, `p`, `attributes`): `T`
+> `static` **defineProperty**\<`T`\>(`o`, `p`, `attributes`): `T`
 
 Adds a property to an object, or modifies attributes of an existing property.
 
-#### Type parameters
+#### Type Parameters
 
-| Name |
-| :------ |
-| `T` |
+• **T**
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `T` | Object on which to add or modify the property. This can be a native JavaScript object (that is, a user-defined object or a built in object) or a DOM object. |
-| `p` | `PropertyKey` | The property name. |
-| `attributes` | `PropertyDescriptor` & `ThisType`\<`any`\> | Descriptor for the property. It can be for a data property or an accessor property. |
+• **o**: `T`
+
+Object on which to add or modify the property. This can be a native JavaScript object (that is, a user-defined object or a built in object) or a DOM object.
+
+• **p**: `PropertyKey`
+
+The property name.
+
+• **attributes**: `PropertyDescriptor` & `ThisType`\<`any`\>
+
+Descriptor for the property. It can be for a data property or an accessor property.
 
 #### Returns
 
@@ -1581,188 +1474,191 @@ Adds a property to an object, or modifies attributes of an existing property.
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:203
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:203
 
-___
+***
 
-### entries
+### entries()
 
-▸ **entries**\<`T`\>(`o`): [`string`, `T`][]
+#### entries(o)
 
-Returns an array of key/values of the enumerable properties of an object
+> `static` **entries**\<`T`\>(`o`): [`string`, `T`][]
 
-#### Type parameters
+Returns an array of key/values of the enumerable own properties of an object
 
-| Name |
-| :------ |
-| `T` |
+##### Type Parameters
 
-#### Parameters
+• **T**
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | \{ `[s: string]`: `T`;  } \| `ArrayLike`\<`T`\> | Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object. |
+##### Parameters
 
-#### Returns
+• **o**: `object` \| `ArrayLike`\<`T`\>
+
+Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object.
+
+##### Returns
 
 [`string`, `T`][]
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2017.object.d.ts:36
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2017.object.d.ts:36
 
-▸ **entries**(`o`): [`string`, `any`][]
+#### entries(o)
 
-Returns an array of key/values of the enumerable properties of an object
+> `static` **entries**(`o`): [`string`, `any`][]
 
-#### Parameters
+Returns an array of key/values of the enumerable own properties of an object
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `Object` | Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object. |
+##### Parameters
 
-#### Returns
+• **o**
+
+Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object.
+
+##### Returns
 
 [`string`, `any`][]
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2017.object.d.ts:42
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2017.object.d.ts:42
 
-___
+***
 
-### freeze
+### freeze()
 
-▸ **freeze**\<`T`\>(`f`): `T`
+#### freeze(f)
+
+> `static` **freeze**\<`T`\>(`f`): `T`
 
 Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
 
-#### Type parameters
+##### Type Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `Function` |
+• **T** *extends* `Function`
 
-#### Parameters
+##### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `f` | `T` | Object on which to lock the attributes. |
+• **f**: `T`
 
-#### Returns
+Object on which to lock the attributes.
+
+##### Returns
 
 `T`
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:222
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:222
 
-▸ **freeze**\<`T`, `U`\>(`o`): `Readonly`\<`T`\>
+#### freeze(o)
 
-Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `Object` |
-| `U` | extends `string` \| `number` \| `bigint` \| `boolean` \| `symbol` |
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `T` | Object on which to lock the attributes. |
-
-#### Returns
-
-`Readonly`\<`T`\>
-
-#### Defined in
-
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:228
-
-▸ **freeze**\<`T`\>(`o`): `Readonly`\<`T`\>
+> `static` **freeze**\<`T`, `U`\>(`o`): `Readonly`\<`T`\>
 
 Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
 
-#### Type parameters
+##### Type Parameters
 
-| Name |
-| :------ |
-| `T` |
+• **T** *extends* `object`
 
-#### Parameters
+• **U** *extends* `string` \| `number` \| `bigint` \| `boolean` \| `symbol`
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `T` | Object on which to lock the attributes. |
+##### Parameters
 
-#### Returns
+• **o**: `T`
+
+Object on which to lock the attributes.
+
+##### Returns
 
 `Readonly`\<`T`\>
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:234
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:228
 
-___
+#### freeze(o)
 
-### fromEntries
+> `static` **freeze**\<`T`\>(`o`): `Readonly`\<`T`\>
 
-▸ **fromEntries**\<`T`\>(`entries`): `Object`
+Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
+
+##### Type Parameters
+
+• **T**
+
+##### Parameters
+
+• **o**: `T`
+
+Object on which to lock the attributes.
+
+##### Returns
+
+`Readonly`\<`T`\>
+
+##### Defined in
+
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:234
+
+***
+
+### fromEntries()
+
+#### fromEntries(entries)
+
+> `static` **fromEntries**\<`T`\>(`entries`): `object`
 
 Returns an object created by key-value entries for properties and methods
 
-#### Type parameters
+##### Type Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | `any` |
+• **T** = `any`
 
-#### Parameters
+##### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `entries` | `Iterable`\<readonly [`PropertyKey`, `T`]\> | An iterable object that contains key-value entries for properties and methods. |
+• **entries**: `Iterable`\<readonly [`PropertyKey`, `T`], `any`, `any`\>
 
-#### Returns
+An iterable object that contains key-value entries for properties and methods.
 
-`Object`
+##### Returns
 
-#### Defined in
+`object`
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2019.object.d.ts:26
+##### Defined in
 
-▸ **fromEntries**(`entries`): `any`
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2019.object.d.ts:26
+
+#### fromEntries(entries)
+
+> `static` **fromEntries**(`entries`): `any`
 
 Returns an object created by key-value entries for properties and methods
 
-#### Parameters
+##### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `entries` | `Iterable`\<readonly `any`[]\> | An iterable object that contains key-value entries for properties and methods. |
+• **entries**: `Iterable`\<readonly `any`[], `any`, `any`\>
 
-#### Returns
+An iterable object that contains key-value entries for properties and methods.
+
+##### Returns
 
 `any`
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2019.object.d.ts:32
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2019.object.d.ts:32
 
-___
+***
 
-### get
+### get()
 
-▸ **get**(`name`): [`ToolFunc`](ToolFunc.md)
+> `static` **get**(`name`): [`ToolFunc`](ToolFunc.md)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
+• **name**: `string`
 
 #### Returns
 
@@ -1770,19 +1666,17 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:77](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L77)
+[packages/ai-tool/src/tool-func.ts:77](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L77)
 
-___
+***
 
-### getAllByTag
+### getAllByTag()
 
-▸ **getAllByTag**(`tagName`): [`ToolFunc`](ToolFunc.md)[]
+> `static` **getAllByTag**(`tagName`): [`ToolFunc`](ToolFunc.md)[]
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `tagName` | `string` |
+• **tagName**: `string`
 
 #### Returns
 
@@ -1790,19 +1684,17 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:105](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L105)
+[packages/ai-tool/src/tool-func.ts:105](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L105)
 
-___
+***
 
-### getByTag
+### getByTag()
 
-▸ **getByTag**(`tagName`): `undefined` \| [`ToolFunc`](ToolFunc.md)
+> `static` **getByTag**(`tagName`): `undefined` \| [`ToolFunc`](ToolFunc.md)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `tagName` | `string` |
+• **tagName**: `string`
 
 #### Returns
 
@@ -1810,19 +1702,17 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:85](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L85)
+[packages/ai-tool/src/tool-func.ts:85](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L85)
 
-___
+***
 
-### getFunc
+### getFunc()
 
-▸ **getFunc**(`name`): `any`
+> `static` **getFunc**(`name`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
+• **name**: `string`
 
 #### Returns
 
@@ -1830,19 +1720,17 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:146](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L146)
+[packages/ai-tool/src/tool-func.ts:146](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L146)
 
-___
+***
 
-### getFuncWithPos
+### getFuncWithPos()
 
-▸ **getFuncWithPos**(`name`): `any`
+> `static` **getFuncWithPos**(`name`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
+• **name**: `string`
 
 #### Returns
 
@@ -1850,23 +1738,26 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:167](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L167)
+[packages/ai-tool/src/tool-func.ts:167](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L167)
 
-___
+***
 
-### getOwnPropertyDescriptor
+### getOwnPropertyDescriptor()
 
-▸ **getOwnPropertyDescriptor**(`o`, `p`): `undefined` \| `PropertyDescriptor`
+> `static` **getOwnPropertyDescriptor**(`o`, `p`): `undefined` \| `PropertyDescriptor`
 
 Gets the own property descriptor of the specified object.
 An own property descriptor is one that is defined directly on the object and is not inherited from the object's prototype.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `any` | Object that contains the property. |
-| `p` | `PropertyKey` | Name of the property. |
+• **o**: `any`
+
+Object that contains the property.
+
+• **p**: `PropertyKey`
+
+Name of the property.
 
 #### Returns
 
@@ -1874,50 +1765,48 @@ An own property descriptor is one that is defined directly on the object and is 
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:175
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:175
 
-___
+***
 
-### getOwnPropertyDescriptors
+### getOwnPropertyDescriptors()
 
-▸ **getOwnPropertyDescriptors**\<`T`\>(`o`): \{ [P in string \| number \| symbol]: TypedPropertyDescriptor\<T[P]\> } & \{ `[x: string]`: `PropertyDescriptor`;  }
+> `static` **getOwnPropertyDescriptors**\<`T`\>(`o`): \{ \[P in string \| number \| symbol\]: TypedPropertyDescriptor\<T\[P\]\> \} & `object`
 
 Returns an object containing all own property descriptors of an object
 
-#### Type parameters
+#### Type Parameters
 
-| Name |
-| :------ |
-| `T` |
+• **T**
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `T` | Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object. |
+• **o**: `T`
+
+Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object.
 
 #### Returns
 
-\{ [P in string \| number \| symbol]: TypedPropertyDescriptor\<T[P]\> } & \{ `[x: string]`: `PropertyDescriptor`;  }
+\{ \[P in string \| number \| symbol\]: TypedPropertyDescriptor\<T\[P\]\> \} & `object`
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2017.object.d.ts:48
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2017.object.d.ts:48
 
-___
+***
 
-### getOwnPropertyNames
+### getOwnPropertyNames()
 
-▸ **getOwnPropertyNames**(`o`): `string`[]
+> `static` **getOwnPropertyNames**(`o`): `string`[]
 
 Returns the names of the own properties of an object. The own properties of an object are those that are defined directly
 on that object, and are not inherited from the object's prototype. The properties of an object include both fields (objects) and functions.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `any` | Object that contains the own properties. |
+• **o**: `any`
+
+Object that contains the own properties.
 
 #### Returns
 
@@ -1925,21 +1814,21 @@ on that object, and are not inherited from the object's prototype. The propertie
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:182
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:182
 
-___
+***
 
-### getOwnPropertySymbols
+### getOwnPropertySymbols()
 
-▸ **getOwnPropertySymbols**(`o`): `symbol`[]
+> `static` **getOwnPropertySymbols**(`o`): `symbol`[]
 
 Returns an array of all symbol properties found directly on object o.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `any` | Object to retrieve the symbols from. |
+• **o**: `any`
+
+Object to retrieve the symbols from.
 
 #### Returns
 
@@ -1947,13 +1836,13 @@ Returns an array of all symbol properties found directly on object o.
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.core.d.ts:317
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2015.core.d.ts:319
 
-___
+***
 
-### getProperties
+### getProperties()
 
-▸ **getProperties**(): `PropDescriptors`
+> `static` **getProperties**(): `PropDescriptors`
 
 get all properties descriptor include inherited.
 
@@ -1963,21 +1852,21 @@ get all properties descriptor include inherited.
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/advance.d.ts:10
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/advance.d.ts:10
 
-___
+***
 
-### getPrototypeOf
+### getPrototypeOf()
 
-▸ **getPrototypeOf**(`o`): `any`
+> `static` **getPrototypeOf**(`o`): `any`
 
 Returns the prototype of an object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `any` | The object that references the prototype. |
+• **o**: `any`
+
+The object that references the prototype.
 
 #### Returns
 
@@ -1985,19 +1874,17 @@ Returns the prototype of an object.
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:167
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:167
 
-___
+***
 
-### hasAsyncFeature
+### hasAsyncFeature()
 
-▸ **hasAsyncFeature**(`feature`): `boolean`
+> `static` **hasAsyncFeature**(`feature`): `boolean`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `feature` | [`AsyncFeatureBits`](../enums/AsyncFeatureBits.md) |
+• **feature**: [`AsyncFeatureBits`](../enumerations/AsyncFeatureBits.md)
 
 #### Returns
 
@@ -2005,22 +1892,25 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:123](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L123)
+[packages/ai-tool/src/tool-func.ts:123](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L123)
 
-___
+***
 
-### hasOwn
+### hasOwn()
 
-▸ **hasOwn**(`o`, `v`): `boolean`
+> `static` **hasOwn**(`o`, `v`): `boolean`
 
 Determines whether an object has a property with the specified name.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `object` | An object. |
-| `v` | `PropertyKey` | A property name. |
+• **o**: `object`
+
+An object.
+
+• **v**: `PropertyKey`
+
+A property name.
 
 #### Returns
 
@@ -2028,22 +1918,25 @@ Determines whether an object has a property with the specified name.
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2022.object.d.ts:25
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2022.object.d.ts:25
 
-___
+***
 
-### is
+### is()
 
-▸ **is**(`value1`, `value2`): `boolean`
+> `static` **is**(`value1`, `value2`): `boolean`
 
 Returns true if the values are the same value, false otherwise.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `value1` | `any` | The first value. |
-| `value2` | `any` | The second value. |
+• **value1**: `any`
+
+The first value.
+
+• **value2**: `any`
+
+The second value.
 
 #### Returns
 
@@ -2051,21 +1944,21 @@ Returns true if the values are the same value, false otherwise.
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.core.d.ts:330
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2015.core.d.ts:332
 
-___
+***
 
-### isExtensible
+### isExtensible()
 
-▸ **isExtensible**(`o`): `boolean`
+> `static` **isExtensible**(`o`): `boolean`
 
 Returns a value that indicates whether new properties can be added to an object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `any` | Object to test. |
+• **o**: `any`
+
+Object to test.
 
 #### Returns
 
@@ -2073,21 +1966,21 @@ Returns a value that indicates whether new properties can be added to an object.
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:258
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:258
 
-___
+***
 
-### isFrozen
+### isFrozen()
 
-▸ **isFrozen**(`o`): `boolean`
+> `static` **isFrozen**(`o`): `boolean`
 
 Returns true if existing property attributes and values cannot be modified in an object, and new properties cannot be added to the object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `any` | Object to test. |
+• **o**: `any`
+
+Object to test.
 
 #### Returns
 
@@ -2095,21 +1988,21 @@ Returns true if existing property attributes and values cannot be modified in an
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:252
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:252
 
-___
+***
 
-### isSealed
+### isSealed()
 
-▸ **isSealed**(`o`): `boolean`
+> `static` **isSealed**(`o`): `boolean`
 
 Returns true if existing property attributes cannot be modified in an object and new properties cannot be added to the object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `any` | Object to test. |
+• **o**: `any`
+
+Object to test.
 
 #### Returns
 
@@ -2117,53 +2010,57 @@ Returns true if existing property attributes cannot be modified in an object and
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:246
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:246
 
-___
+***
 
-### keys
+### keys()
 
-▸ **keys**(`o`): `string`[]
+#### keys(o)
 
-Returns the names of the enumerable string properties and methods of an object.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `object` | Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object. |
-
-#### Returns
-
-`string`[]
-
-#### Defined in
-
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:264
-
-▸ **keys**(`o`): `string`[]
+> `static` **keys**(`o`): `string`[]
 
 Returns the names of the enumerable string properties and methods of an object.
 
-#### Parameters
+##### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `Object` | Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object. |
+• **o**: `object`
 
-#### Returns
+Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object.
+
+##### Returns
 
 `string`[]
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.core.d.ts:323
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:264
 
-___
+#### keys(o)
 
-### list
+> `static` **keys**(`o`): `string`[]
 
-▸ **list**(): [`Funcs`](../interfaces/Funcs.md)
+Returns the names of the enumerable string properties and methods of an object.
+
+##### Parameters
+
+• **o**
+
+Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object.
+
+##### Returns
+
+`string`[]
+
+##### Defined in
+
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2015.core.d.ts:325
+
+***
+
+### list()
+
+> `static` **list**(): [`Funcs`](../interfaces/Funcs.md)
 
 #### Returns
 
@@ -2171,27 +2068,25 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:81](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L81)
+[packages/ai-tool/src/tool-func.ts:81](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L81)
 
-___
+***
 
-### preventExtensions
+### preventExtensions()
 
-▸ **preventExtensions**\<`T`\>(`o`): `T`
+> `static` **preventExtensions**\<`T`\>(`o`): `T`
 
 Prevents the addition of new properties to an object.
 
-#### Type parameters
+#### Type Parameters
 
-| Name |
-| :------ |
-| `T` |
+• **T**
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `T` | Object to make non-extensible. |
+• **o**: `T`
+
+Object to make non-extensible.
 
 #### Returns
 
@@ -2199,75 +2094,77 @@ Prevents the addition of new properties to an object.
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:240
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:240
 
-___
+***
 
-### register
+### register()
 
-▸ **register**(`name`, `options`): `boolean` \| [`ToolFunc`](ToolFunc.md)
+#### register(name, options)
 
-#### Parameters
+> `static` **register**(`name`, `options`): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-| `options` | [`FuncItem`](../interfaces/FuncItem.md) |
+##### Parameters
 
-#### Returns
+• **name**: `string`
 
-`boolean` \| [`ToolFunc`](ToolFunc.md)
+• **options**: [`FuncItem`](../interfaces/FuncItem.md)
 
-#### Defined in
-
-[packages/ai-tool/src/tool-func.ts:172](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L172)
-
-▸ **register**(`func`, `options`): `boolean` \| [`ToolFunc`](ToolFunc.md)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `func` | `Function` |
-| `options` | [`FuncItem`](../interfaces/FuncItem.md) |
-
-#### Returns
+##### Returns
 
 `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-#### Defined in
+##### Defined in
 
-[packages/ai-tool/src/tool-func.ts:173](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L173)
+[packages/ai-tool/src/tool-func.ts:172](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L172)
 
-▸ **register**(`name`, `options?`): `boolean` \| [`ToolFunc`](ToolFunc.md)
+#### register(func, options)
 
-#### Parameters
+> `static` **register**(`func`, `options`): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` \| `Function` \| [`ToolFunc`](ToolFunc.md) \| [`FuncItem`](../interfaces/FuncItem.md) |
-| `options?` | [`FuncItem`](../interfaces/FuncItem.md) |
+##### Parameters
 
-#### Returns
+• **func**: `Function`
+
+• **options**: [`FuncItem`](../interfaces/FuncItem.md)
+
+##### Returns
 
 `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-#### Defined in
+##### Defined in
 
-[packages/ai-tool/src/tool-func.ts:174](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L174)
+[packages/ai-tool/src/tool-func.ts:173](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L173)
 
-___
+#### register(name, options)
 
-### run
+> `static` **register**(`name`, `options`?): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-▸ **run**(`name`, `params?`): `Promise`\<`any`\>
+##### Parameters
+
+• **name**: `string` \| `Function` \| [`ToolFunc`](ToolFunc.md) \| [`FuncItem`](../interfaces/FuncItem.md)
+
+• **options?**: [`FuncItem`](../interfaces/FuncItem.md)
+
+##### Returns
+
+`boolean` \| [`ToolFunc`](ToolFunc.md)
+
+##### Defined in
+
+[packages/ai-tool/src/tool-func.ts:174](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L174)
+
+***
+
+### run()
+
+> `static` **run**(`name`, `params`?): `Promise`\<`any`\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-| `params?` | `any` |
+• **name**: `string`
+
+• **params?**: `any`
 
 #### Returns
 
@@ -2275,20 +2172,19 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:130](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L130)
+[packages/ai-tool/src/tool-func.ts:130](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L130)
 
-___
+***
 
-### runSync
+### runSync()
 
-▸ **runSync**(`name`, `params?`): `any`
+> `static` **runSync**(`name`, `params`?): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-| `params?` | `any` |
+• **name**: `string`
+
+• **params?**: `any`
 
 #### Returns
 
@@ -2296,20 +2192,19 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:138](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L138)
+[packages/ai-tool/src/tool-func.ts:138](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L138)
 
-___
+***
 
-### runWithPos
+### runWithPos()
 
-▸ **runWithPos**(`name`, `...params`): `Promise`\<`any`\>
+> `static` **runWithPos**(`name`, ...`params`): `Promise`\<`any`\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-| `...params` | `any`[] |
+• **name**: `string`
+
+• ...**params**: `any`[]
 
 #### Returns
 
@@ -2317,20 +2212,19 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:151](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L151)
+[packages/ai-tool/src/tool-func.ts:151](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L151)
 
-___
+***
 
-### runWithPosSync
+### runWithPosSync()
 
-▸ **runWithPosSync**(`name`, `...params`): `any`
+> `static` **runWithPosSync**(`name`, ...`params`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-| `...params` | `any`[] |
+• **name**: `string`
+
+• ...**params**: `any`[]
 
 #### Returns
 
@@ -2338,27 +2232,25 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:159](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L159)
+[packages/ai-tool/src/tool-func.ts:159](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L159)
 
-___
+***
 
-### seal
+### seal()
 
-▸ **seal**\<`T`\>(`o`): `T`
+> `static` **seal**\<`T`\>(`o`): `T`
 
 Prevents the modification of attributes of existing properties, and prevents the addition of new properties.
 
-#### Type parameters
+#### Type Parameters
 
-| Name |
-| :------ |
-| `T` |
+• **T**
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `T` | Object on which to lock the attributes. |
+• **o**: `T`
+
+Object on which to lock the attributes.
 
 #### Returns
 
@@ -2366,19 +2258,17 @@ Prevents the modification of attributes of existing properties, and prevents the
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:216
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:216
 
-___
+***
 
-### setApiRoot
+### setApiRoot()
 
-▸ **setApiRoot**(`v`): `void`
+> `static` **setApiRoot**(`v`): `void`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `v` | `string` |
+• **v**: `string`
 
 #### Returns
 
@@ -2386,22 +2276,25 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:30](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/server-tools.ts#L30)
+[packages/ai-tool/src/server-tools.ts:30](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/server-tools.ts#L30)
 
-___
+***
 
-### setPrototypeOf
+### setPrototypeOf()
 
-▸ **setPrototypeOf**(`o`, `proto`): `any`
+> `static` **setPrototypeOf**(`o`, `proto`): `any`
 
 Sets the prototype of a specified object o to object proto or null. Returns the object o.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `any` | The object to change its prototype. |
-| `proto` | ``null`` \| `object` | The value of the new prototype or null. |
+• **o**: `any`
+
+The object to change its prototype.
+
+• **proto**: `null` \| `object`
+
+The value of the new prototype or null.
 
 #### Returns
 
@@ -2409,33 +2302,31 @@ Sets the prototype of a specified object o to object proto or null. Returns the 
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.core.d.ts:337
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2015.core.d.ts:339
 
-___
+***
 
-### toJSON
+### toJSON()
 
-▸ **toJSON**(): `Object`
+> `static` **toJSON**(): `object`
 
 #### Returns
 
-`Object`
+`object`
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:44](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/server-tools.ts#L44)
+[packages/ai-tool/src/server-tools.ts:44](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/server-tools.ts#L44)
 
-___
+***
 
-### unregister
+### unregister()
 
-▸ **unregister**(`name`): `undefined` \| [`ToolFunc`](ToolFunc.md)
+> `static` **unregister**(`name`): `undefined` \| [`ToolFunc`](ToolFunc.md)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
+• **name**: `string`
 
 #### Returns
 
@@ -2443,50 +2334,52 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:202](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L202)
+[packages/ai-tool/src/tool-func.ts:202](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L202)
 
-___
+***
 
-### values
+### values()
 
-▸ **values**\<`T`\>(`o`): `T`[]
+#### values(o)
 
-Returns an array of values of the enumerable properties of an object
+> `static` **values**\<`T`\>(`o`): `T`[]
 
-#### Type parameters
+Returns an array of values of the enumerable own properties of an object
 
-| Name |
-| :------ |
-| `T` |
+##### Type Parameters
 
-#### Parameters
+• **T**
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | \{ `[s: string]`: `T`;  } \| `ArrayLike`\<`T`\> | Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object. |
+##### Parameters
 
-#### Returns
+• **o**: `object` \| `ArrayLike`\<`T`\>
+
+Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object.
+
+##### Returns
 
 `T`[]
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2017.object.d.ts:24
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2017.object.d.ts:24
 
-▸ **values**(`o`): `any`[]
+#### values(o)
 
-Returns an array of values of the enumerable properties of an object
+> `static` **values**(`o`): `any`[]
 
-#### Parameters
+Returns an array of values of the enumerable own properties of an object
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `Object` | Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object. |
+##### Parameters
 
-#### Returns
+• **o**
+
+Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object.
+
+##### Returns
 
 `any`[]
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2017.object.d.ts:30
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2017.object.d.ts:30

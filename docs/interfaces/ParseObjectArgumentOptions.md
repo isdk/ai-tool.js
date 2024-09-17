@@ -1,63 +1,57 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / ParseObjectArgumentOptions
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / ParseObjectArgumentOptions
 
 # Interface: ParseObjectArgumentOptions
 
-## Table of contents
-
-### Properties
-
-- [argProcessor](ParseObjectArgumentOptions.md#argprocessor)
-- [delimiter](ParseObjectArgumentOptions.md#delimiter)
-- [returnArrayOnly](ParseObjectArgumentOptions.md#returnarrayonly)
-- [templateData](ParseObjectArgumentOptions.md#templatedata)
-- [templateFormat](ParseObjectArgumentOptions.md#templateformat)
-
 ## Properties
 
-### argProcessor
+### argProcessor?
 
-• `Optional` **argProcessor**: `ArgProcessor`
-
-#### Defined in
-
-[packages/ai-tool/src/utils/parse-command.ts:21](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/parse-command.ts#L21)
-
-___
-
-### delimiter
-
-• `Optional` **delimiter**: `string`
+> `optional` **argProcessor**: `ArgProcessor`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/parse-command.ts:20](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/parse-command.ts#L20)
+[packages/ai-tool/src/utils/parse-command.ts:21](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/parse-command.ts#L21)
 
-___
+***
 
-### returnArrayOnly
+### delimiter?
 
-• `Optional` **returnArrayOnly**: `boolean`
-
-#### Defined in
-
-[packages/ai-tool/src/utils/parse-command.ts:22](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/parse-command.ts#L22)
-
-___
-
-### templateData
-
-• `Optional` **templateData**: `Record`\<`string`, `any`\>
+> `optional` **delimiter**: `string`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/parse-command.ts:24](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/parse-command.ts#L24)
+[packages/ai-tool/src/utils/parse-command.ts:20](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/parse-command.ts#L20)
 
-___
+***
 
-### templateFormat
+### returnArrayOnly?
 
-• `Optional` **templateFormat**: `string`
+> `optional` **returnArrayOnly**: `boolean`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/parse-command.ts:23](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/parse-command.ts#L23)
+[packages/ai-tool/src/utils/parse-command.ts:22](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/parse-command.ts#L22)
+
+***
+
+### templateData?
+
+> `optional` **templateData**: `Record`\<`string`, `any`\>
+
+#### Defined in
+
+[packages/ai-tool/src/utils/parse-command.ts:24](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/parse-command.ts#L24)
+
+***
+
+### templateFormat?
+
+> `optional` **templateFormat**: `string`
+
+#### Defined in
+
+[packages/ai-tool/src/utils/parse-command.ts:23](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/parse-command.ts#L23)

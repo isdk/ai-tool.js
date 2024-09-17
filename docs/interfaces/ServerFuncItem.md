@@ -1,207 +1,189 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / ServerFuncItem
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / ServerFuncItem
 
 # Interface: ServerFuncItem
 
-## Hierarchy
+## Extends
 
 - [`RemoteFuncItem`](RemoteFuncItem.md)
 
-  ↳ **`ServerFuncItem`**
+## Extended by
 
-  ↳↳ [`ServerTools`](../classes/ServerTools.md)
-
-## Table of contents
-
-### Properties
-
-- [action](ServerFuncItem.md#action)
-- [allowExportFunc](ServerFuncItem.md#allowexportfunc)
-- [apiRoot](ServerFuncItem.md#apiroot)
-- [fetchOptions](ServerFuncItem.md#fetchoptions)
-- [isApi](ServerFuncItem.md#isapi)
-- [name](ServerFuncItem.md#name)
-- [params](ServerFuncItem.md#params)
-- [result](ServerFuncItem.md#result)
-- [scope](ServerFuncItem.md#scope)
-- [setup](ServerFuncItem.md#setup)
-- [stream](ServerFuncItem.md#stream)
-- [tags](ServerFuncItem.md#tags)
+- [`ServerTools`](../classes/ServerTools.md)
 
 ## Properties
 
-### action
+### action?
 
-• `Optional` **action**: ``"get"`` \| ``"post"`` \| ``"put"`` \| ``"delete"`` \| ``"patch"`` \| ``"list"`` \| ``"res"``
-
-#### Inherited from
-
-[RemoteFuncItem](RemoteFuncItem.md).[action](RemoteFuncItem.md#action)
-
-#### Defined in
-
-[packages/ai-tool/src/utils/consts.ts:35](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/consts.ts#L35)
-
-___
-
-### allowExportFunc
-
-• `Optional` **allowExportFunc**: `boolean`
-
-#### Defined in
-
-[packages/ai-tool/src/server-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/server-tools.ts#L14)
-
-___
-
-### apiRoot
-
-• `Optional` **apiRoot**: `string`
+> `optional` **action**: `"get"` \| `"post"` \| `"put"` \| `"delete"` \| `"patch"` \| `"list"` \| `"res"`
 
 #### Inherited from
 
-[RemoteFuncItem](RemoteFuncItem.md).[apiRoot](RemoteFuncItem.md#apiroot)
+[`RemoteFuncItem`](RemoteFuncItem.md).[`action`](RemoteFuncItem.md#action)
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:34](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/consts.ts#L34)
+[packages/ai-tool/src/utils/consts.ts:35](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/consts.ts#L35)
 
-___
+***
 
-### fetchOptions
+### allowExportFunc?
 
-• `Optional` **fetchOptions**: `any`
+> `optional` **allowExportFunc**: `boolean`
+
+#### Defined in
+
+[packages/ai-tool/src/server-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/server-tools.ts#L14)
+
+***
+
+### apiRoot?
+
+> `optional` **apiRoot**: `string`
 
 #### Inherited from
 
-[RemoteFuncItem](RemoteFuncItem.md).[fetchOptions](RemoteFuncItem.md#fetchoptions)
+[`RemoteFuncItem`](RemoteFuncItem.md).[`apiRoot`](RemoteFuncItem.md#apiroot)
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:36](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/consts.ts#L36)
+[packages/ai-tool/src/utils/consts.ts:34](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/consts.ts#L34)
 
-___
+***
 
-### isApi
+### fetchOptions?
 
-• `Optional` **isApi**: `boolean`
+> `optional` **fetchOptions**: `any`
 
 #### Inherited from
 
-[RemoteFuncItem](RemoteFuncItem.md).[isApi](RemoteFuncItem.md#isapi)
+[`RemoteFuncItem`](RemoteFuncItem.md).[`fetchOptions`](RemoteFuncItem.md#fetchoptions)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:47](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L47)
+[packages/ai-tool/src/utils/consts.ts:36](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/consts.ts#L36)
 
-___
+***
 
-### name
+### isApi?
 
-• `Optional` **name**: `string`
+> `optional` **isApi**: `boolean`
 
 #### Inherited from
 
-[RemoteFuncItem](RemoteFuncItem.md).[name](RemoteFuncItem.md#name)
+[`RemoteFuncItem`](RemoteFuncItem.md).[`isApi`](RemoteFuncItem.md#isapi)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:41](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L41)
+[packages/ai-tool/src/tool-func.ts:47](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L47)
 
-___
+***
 
-### params
+### name?
 
-• `Optional` **params**: [`FuncParams`](FuncParams.md) \| [`FuncParam`](FuncParam.md)[]
+> `optional` **name**: `string`
 
 #### Inherited from
 
-[RemoteFuncItem](RemoteFuncItem.md).[params](RemoteFuncItem.md#params)
+[`RemoteFuncItem`](RemoteFuncItem.md).[`name`](RemoteFuncItem.md#name)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:42](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L42)
+[packages/ai-tool/src/tool-func.ts:41](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L41)
 
-___
+***
 
-### result
+### params?
 
-• `Optional` **result**: `string`
+> `optional` **params**: [`FuncParams`](FuncParams.md) \| [`FuncParam`](FuncParam.md)[]
 
 #### Inherited from
 
-[RemoteFuncItem](RemoteFuncItem.md).[result](RemoteFuncItem.md#result)
+[`RemoteFuncItem`](RemoteFuncItem.md).[`params`](RemoteFuncItem.md#params)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:43](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L43)
+[packages/ai-tool/src/tool-func.ts:42](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L42)
 
-___
+***
 
-### scope
+### result?
 
-• `Optional` **scope**: `any`
+> `optional` **result**: `string`
 
 #### Inherited from
 
-[RemoteFuncItem](RemoteFuncItem.md).[scope](RemoteFuncItem.md#scope)
+[`RemoteFuncItem`](RemoteFuncItem.md).[`result`](RemoteFuncItem.md#result)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:44](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L44)
+[packages/ai-tool/src/tool-func.ts:43](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L43)
 
-___
+***
 
-### setup
+### scope?
 
-• `Optional` **setup**: (`this`: [`ToolFunc`](../classes/ToolFunc.md), `options?`: [`FuncItem`](FuncItem.md)) => `void`
+> `optional` **scope**: `any`
 
-#### Type declaration
+#### Inherited from
 
-▸ (`this`, `options?`): `void`
+[`RemoteFuncItem`](RemoteFuncItem.md).[`scope`](RemoteFuncItem.md#scope)
 
-##### Parameters
+#### Defined in
 
-| Name | Type |
-| :------ | :------ |
-| `this` | [`ToolFunc`](../classes/ToolFunc.md) |
-| `options?` | [`FuncItem`](FuncItem.md) |
+[packages/ai-tool/src/tool-func.ts:44](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L44)
 
-##### Returns
+***
+
+### setup()?
+
+> `optional` **setup**: (`this`, `options`?) => `void`
+
+#### Parameters
+
+• **this**: [`ToolFunc`](../classes/ToolFunc.md)
+
+• **options?**: [`FuncItem`](FuncItem.md)
+
+#### Returns
 
 `void`
 
 #### Inherited from
 
-[RemoteFuncItem](RemoteFuncItem.md).[setup](RemoteFuncItem.md#setup)
+[`RemoteFuncItem`](RemoteFuncItem.md).[`setup`](RemoteFuncItem.md#setup)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:46](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L46)
+[packages/ai-tool/src/tool-func.ts:46](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L46)
 
-___
+***
 
-### stream
+### stream?
 
-• `Optional` **stream**: `boolean`
+> `optional` **stream**: `boolean`
 
 #### Inherited from
 
-[RemoteFuncItem](RemoteFuncItem.md).[stream](RemoteFuncItem.md#stream)
+[`RemoteFuncItem`](RemoteFuncItem.md).[`stream`](RemoteFuncItem.md#stream)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:48](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L48)
+[packages/ai-tool/src/tool-func.ts:48](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L48)
 
-___
+***
 
-### tags
+### tags?
 
-• `Optional` **tags**: `string` \| `string`[]
+> `optional` **tags**: `string` \| `string`[]
 
 #### Inherited from
 
-[RemoteFuncItem](RemoteFuncItem.md).[tags](RemoteFuncItem.md#tags)
+[`RemoteFuncItem`](RemoteFuncItem.md).[`tags`](RemoteFuncItem.md#tags)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:45](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L45)
+[packages/ai-tool/src/tool-func.ts:45](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L45)

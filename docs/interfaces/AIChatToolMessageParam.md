@@ -1,62 +1,55 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / AIChatToolMessageParam
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / AIChatToolMessageParam
 
 # Interface: AIChatToolMessageParam
 
-## Hierarchy
+## Extends
 
 - [`AIChatMessageParamBase`](AIChatMessageParamBase.md)
-
-  ↳ **`AIChatToolMessageParam`**
-
-## Table of contents
-
-### Properties
-
-- [content](AIChatToolMessageParam.md#content)
-- [role](AIChatToolMessageParam.md#role)
-- [templateFormat](AIChatToolMessageParam.md#templateformat)
-- [tool\_call\_id](AIChatToolMessageParam.md#tool_call_id)
 
 ## Properties
 
 ### content
 
-• **content**: `string`
+> **content**: `string`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:111](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L111)
+[packages/ai-tool/src/utils/chat.ts:111](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L111)
 
-___
+***
 
 ### role
 
-• **role**: ``"tool"``
+> **role**: `"tool"`
 
 #### Overrides
 
-[AIChatMessageParamBase](AIChatMessageParamBase.md).[role](AIChatMessageParamBase.md#role)
+[`AIChatMessageParamBase`](AIChatMessageParamBase.md).[`role`](AIChatMessageParamBase.md#role)
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:110](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L110)
+[packages/ai-tool/src/utils/chat.ts:110](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L110)
 
-___
+***
 
-### templateFormat
+### templateFormat?
 
-• `Optional` **templateFormat**: `string`
+> `optional` **templateFormat**: `string`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:113](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L113)
+[packages/ai-tool/src/utils/chat.ts:113](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L113)
 
-___
+***
 
 ### tool\_call\_id
 
-• **tool\_call\_id**: `string`
+> **tool\_call\_id**: `string`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:112](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L112)
+[packages/ai-tool/src/utils/chat.ts:112](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L112)

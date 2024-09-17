@@ -1,44 +1,24 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / HFEnvironment
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / HFEnvironment
 
 # Class: HFEnvironment
 
-## Hierarchy
+## Extends
 
 - `Environment`
 
-  ↳ **`HFEnvironment`**
-
-## Table of contents
-
-### Constructors
-
-- [constructor](HFEnvironment.md#constructor)
-
-### Properties
-
-- [parent](HFEnvironment.md#parent)
-- [tests](HFEnvironment.md#tests)
-- [variables](HFEnvironment.md#variables)
-
-### Methods
-
-- [assign](HFEnvironment.md#assign)
-- [clear](HFEnvironment.md#clear)
-- [lookupVariable](HFEnvironment.md#lookupvariable)
-- [set](HFEnvironment.md#set)
-- [setVariable](HFEnvironment.md#setvariable)
-
 ## Constructors
 
-### constructor
+### new HFEnvironment()
 
-• **new HFEnvironment**(`parent?`): [`HFEnvironment`](HFEnvironment.md)
+> **new HFEnvironment**(`parent`?): [`HFEnvironment`](HFEnvironment.md)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `parent?` | [`HFEnvironment`](HFEnvironment.md) |
+• **parent?**: [`HFEnvironment`](HFEnvironment.md)
 
 #### Returns
 
@@ -46,69 +26,67 @@
 
 #### Overrides
 
-Environment.constructor
+`Environment.constructor`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:22](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/template/jinja/src/index.ts#L22)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:22](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/template/jinja/src/index.ts#L22)
 
 ## Properties
 
-### parent
+### parent?
 
-• `Optional` **parent**: [`HFEnvironment`](HFEnvironment.md)
+> `optional` **parent**: [`HFEnvironment`](HFEnvironment.md)
 
 #### Inherited from
 
-Environment.parent
+`Environment.parent`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:22](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/template/jinja/src/index.ts#L22)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:22](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/template/jinja/src/index.ts#L22)
 
-___
+***
 
 ### tests
 
-• **tests**: `Map`\<`string`, (...`value`: `AnyRuntimeValue`[]) => `boolean`\>
+> **tests**: `Map`\<`string`, (...`value`) => `boolean`\>
 
 The tests available in this environment.
 
 #### Inherited from
 
-Environment.tests
+`Environment.tests`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:276](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/template/jinja/src/runtime.ts#L276)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:276](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/template/jinja/src/runtime.ts#L276)
 
-___
+***
 
 ### variables
 
-• **variables**: `Map`\<`string`, `AnyRuntimeValue`\>
+> **variables**: `Map`\<`string`, `AnyRuntimeValue`\>
 
 The variables declared in this environment.
 
 #### Inherited from
 
-Environment.variables
+`Environment.variables`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:258](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/template/jinja/src/runtime.ts#L258)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:258](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/template/jinja/src/runtime.ts#L258)
 
 ## Methods
 
-### assign
+### assign()
 
-▸ **assign**(`items`): `void`
+> **assign**(`items`): `void`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `items` | `Record`\<`string`, `unknown`\> |
+• **items**: `Record`\<`string`, `unknown`\>
 
 #### Returns
 
@@ -116,13 +94,13 @@ Environment.variables
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:26](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/template/jinja/src/index.ts#L26)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:26](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/template/jinja/src/index.ts#L26)
 
-___
+***
 
-### clear
+### clear()
 
-▸ **clear**(): `void`
+> **clear**(): `void`
 
 #### Returns
 
@@ -130,19 +108,17 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:32](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/template/jinja/src/index.ts#L32)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:32](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/template/jinja/src/index.ts#L32)
 
-___
+***
 
-### lookupVariable
+### lookupVariable()
 
-▸ **lookupVariable**(`name`): `AnyRuntimeValue`
+> **lookupVariable**(`name`): `AnyRuntimeValue`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
+• **name**: `string`
 
 #### Returns
 
@@ -150,26 +126,25 @@ ___
 
 #### Inherited from
 
-Environment.lookupVariable
+`Environment.lookupVariable`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:374](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/template/jinja/src/runtime.ts#L374)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:374](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/template/jinja/src/runtime.ts#L374)
 
-___
+***
 
-### set
+### set()
 
-▸ **set**(`name`, `value`): `AnyRuntimeValue`
+> **set**(`name`, `value`): `AnyRuntimeValue`
 
 Set the value of a variable in the current environment.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-| `value` | `unknown` |
+• **name**: `string`
+
+• **value**: `unknown`
 
 #### Returns
 
@@ -177,27 +152,26 @@ Set the value of a variable in the current environment.
 
 #### Inherited from
 
-Environment.set
+`Environment.set`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:329](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/template/jinja/src/runtime.ts#L329)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:329](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/template/jinja/src/runtime.ts#L329)
 
-___
+***
 
-### setVariable
+### setVariable()
 
-▸ **setVariable**(`name`, `value`): `AnyRuntimeValue`
+> **setVariable**(`name`, `value`): `AnyRuntimeValue`
 
 Set variable in the current scope.
 See https://jinja.palletsprojects.com/en/3.0.x/templates/#assignments for more information.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-| `value` | `AnyRuntimeValue` |
+• **name**: `string`
+
+• **value**: `AnyRuntimeValue`
 
 #### Returns
 
@@ -205,8 +179,8 @@ See https://jinja.palletsprojects.com/en/3.0.x/templates/#assignments for more i
 
 #### Inherited from
 
-Environment.setVariable
+`Environment.setVariable`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:351](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/prompt/template/jinja/src/runtime.ts#L351)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:351](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/template/jinja/src/runtime.ts#L351)

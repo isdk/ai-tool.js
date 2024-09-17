@@ -1,30 +1,27 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / AIChatContentPartText
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / AIChatContentPartText
 
 # Interface: AIChatContentPartText
-
-## Table of contents
-
-### Properties
-
-- [text](AIChatContentPartText.md#text)
-- [type](AIChatContentPartText.md#type)
 
 ## Properties
 
 ### text
 
-• **text**: `string`
+> **text**: `string`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:87](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L87)
+[packages/ai-tool/src/utils/chat.ts:87](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L87)
 
-___
+***
 
 ### type
 
-• **type**: ``"text"``
+> **type**: `"text"`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:86](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L86)
+[packages/ai-tool/src/utils/chat.ts:86](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L86)

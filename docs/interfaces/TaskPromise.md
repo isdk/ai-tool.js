@@ -1,75 +1,60 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / TaskPromise
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / TaskPromise
 
 # Interface: TaskPromise\<T\>
 
-## Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | `any` |
-
-## Hierarchy
+## Extends
 
 - `Promise`\<`T`\>
 
-  ↳ **`TaskPromise`**
+## Type Parameters
 
-## Table of contents
-
-### Properties
-
-- [[toStringTag]](TaskPromise.md#[tostringtag])
-- [task](TaskPromise.md#task)
-
-### Methods
-
-- [catch](TaskPromise.md#catch)
-- [finally](TaskPromise.md#finally)
-- [then](TaskPromise.md#then)
+• **T** = `any`
 
 ## Properties
 
-### [toStringTag]
+### \[toStringTag\]
 
-• `Readonly` **[toStringTag]**: `string`
+> `readonly` **\[toStringTag\]**: `string`
 
 #### Inherited from
 
-Promise.[toStringTag]
+`Promise.[toStringTag]`
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts:176
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts:176
 
-___
+***
 
-### task
+### task?
 
-• `Optional` **task**: [`TaskAbortController`](../classes/TaskAbortController.md)
+> `optional` **task**: [`TaskAbortController`](../classes/TaskAbortController.md)
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:51](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/cancelable-ability.ts#L51)
+[packages/ai-tool/src/utils/cancelable-ability.ts:51](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L51)
 
 ## Methods
 
-### catch
+### catch()
 
-▸ **catch**\<`TResult`\>(`onrejected?`): `Promise`\<`T` \| `TResult`\>
+> **catch**\<`TResult`\>(`onrejected`?): `Promise`\<`T` \| `TResult`\>
 
 Attaches a callback for only the rejection of the Promise.
 
-#### Type parameters
+#### Type Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `TResult` | `never` |
+• **TResult** = `never`
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `onrejected?` | ``null`` \| (`reason`: `any`) => `TResult` \| `PromiseLike`\<`TResult`\> | The callback to execute when the Promise is rejected. |
+• **onrejected?**: `null` \| (`reason`) => `TResult` \| `PromiseLike`\<`TResult`\>
+
+The callback to execute when the Promise is rejected.
 
 #### Returns
 
@@ -79,26 +64,26 @@ A Promise for the completion of the callback.
 
 #### Inherited from
 
-Promise.catch
+`Promise.catch`
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:1557
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:1557
 
-___
+***
 
-### finally
+### finally()
 
-▸ **finally**(`onfinally?`): `Promise`\<`T`\>
+> **finally**(`onfinally`?): `Promise`\<`T`\>
 
 Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
 resolved value cannot be modified from the callback.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `onfinally?` | ``null`` \| () => `void` | The callback to execute when the Promise is settled (fulfilled or rejected). |
+• **onfinally?**: `null` \| () => `void`
+
+The callback to execute when the Promise is settled (fulfilled or rejected).
 
 #### Returns
 
@@ -108,33 +93,35 @@ A Promise for the completion of the callback.
 
 #### Inherited from
 
-Promise.finally
+`Promise.finally`
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2018.promise.d.ts:29
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2018.promise.d.ts:29
 
-___
+***
 
-### then
+### then()
 
-▸ **then**\<`TResult1`, `TResult2`\>(`onfulfilled?`, `onrejected?`): `Promise`\<`TResult1` \| `TResult2`\>
+> **then**\<`TResult1`, `TResult2`\>(`onfulfilled`?, `onrejected`?): `Promise`\<`TResult1` \| `TResult2`\>
 
 Attaches callbacks for the resolution and/or rejection of the Promise.
 
-#### Type parameters
+#### Type Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `TResult1` | `T` |
-| `TResult2` | `never` |
+• **TResult1** = `T`
+
+• **TResult2** = `never`
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `onfulfilled?` | ``null`` \| (`value`: `T`) => `TResult1` \| `PromiseLike`\<`TResult1`\> | The callback to execute when the Promise is resolved. |
-| `onrejected?` | ``null`` \| (`reason`: `any`) => `TResult2` \| `PromiseLike`\<`TResult2`\> | The callback to execute when the Promise is rejected. |
+• **onfulfilled?**: `null` \| (`value`) => `TResult1` \| `PromiseLike`\<`TResult1`\>
+
+The callback to execute when the Promise is resolved.
+
+• **onrejected?**: `null` \| (`reason`) => `TResult2` \| `PromiseLike`\<`TResult2`\>
+
+The callback to execute when the Promise is rejected.
 
 #### Returns
 
@@ -144,8 +131,8 @@ A Promise for the completion of which ever callback is executed.
 
 #### Inherited from
 
-Promise.then
+`Promise.then`
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:1550
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:1550

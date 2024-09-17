@@ -1,7 +1,11 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / TaskAbortControllers
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / TaskAbortControllers
 
 # Interface: TaskAbortControllers
 
 ## Indexable
 
-▪ [k: [`AsyncTaskId`](../modules.md#asynctaskid)]: [`TaskAbortController`](../classes/TaskAbortController.md) \| `undefined`
+ \[`k`: [`AsyncTaskId`](../type-aliases/AsyncTaskId.md)\]: [`TaskAbortController`](../classes/TaskAbortController.md) \| `undefined`

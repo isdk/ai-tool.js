@@ -1,95 +1,85 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / AIChatUserMessageParam
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / AIChatUserMessageParam
 
 # Interface: AIChatUserMessageParam
 
-## Hierarchy
+## Extends
 
 - [`AIChatMessageParamBase`](AIChatMessageParamBase.md)
 
-  ↳ **`AIChatUserMessageParam`**
-
-## Table of contents
-
-### Properties
-
-- [charId](AIChatUserMessageParam.md#charid)
-- [content](AIChatUserMessageParam.md#content)
-- [createdAt](AIChatUserMessageParam.md#createdat)
-- [from](AIChatUserMessageParam.md#from)
-- [role](AIChatUserMessageParam.md#role)
-- [templateFormat](AIChatUserMessageParam.md#templateformat)
-- [updatedAt](AIChatUserMessageParam.md#updatedat)
-
 ## Properties
 
-### charId
+### charId?
 
-• `Optional` **charId**: `string`
+> `optional` **charId**: `string`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:68](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L68)
+[packages/ai-tool/src/utils/chat.ts:68](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L68)
 
-___
+***
 
 ### content
 
-• **content**: `string` \| [`AIChatContentPart`](../modules.md#aichatcontentpart)[]
+> **content**: `string` \| [`AIChatContentPart`](../type-aliases/AIChatContentPart.md)[]
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:63](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L63)
+[packages/ai-tool/src/utils/chat.ts:63](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L63)
 
-___
+***
 
-### createdAt
+### createdAt?
 
-• `Optional` **createdAt**: `string` \| `Date`
-
-#### Defined in
-
-[packages/ai-tool/src/utils/chat.ts:65](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L65)
-
-___
-
-### from
-
-• `Optional` **from**: `string`
+> `optional` **createdAt**: `string` \| `Date`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:70](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L70)
+[packages/ai-tool/src/utils/chat.ts:65](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L65)
 
-___
+***
+
+### from?
+
+> `optional` **from**: `string`
+
+#### Defined in
+
+[packages/ai-tool/src/utils/chat.ts:70](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L70)
+
+***
 
 ### role
 
-• **role**: ``"user"``
+> **role**: `"user"`
 
 #### Overrides
 
-[AIChatMessageParamBase](AIChatMessageParamBase.md).[role](AIChatMessageParamBase.md#role)
+[`AIChatMessageParamBase`](AIChatMessageParamBase.md).[`role`](AIChatMessageParamBase.md#role)
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:62](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L62)
+[packages/ai-tool/src/utils/chat.ts:62](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L62)
 
-___
+***
 
-### templateFormat
+### templateFormat?
 
-• `Optional` **templateFormat**: `string`
-
-#### Defined in
-
-[packages/ai-tool/src/utils/chat.ts:71](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L71)
-
-___
-
-### updatedAt
-
-• `Optional` **updatedAt**: `string` \| `Date`
+> `optional` **templateFormat**: `string`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:66](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L66)
+[packages/ai-tool/src/utils/chat.ts:71](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L71)
+
+***
+
+### updatedAt?
+
+> `optional` **updatedAt**: `string` \| `Date`
+
+#### Defined in
+
+[packages/ai-tool/src/utils/chat.ts:66](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L66)

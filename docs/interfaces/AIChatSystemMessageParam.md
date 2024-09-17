@@ -1,51 +1,45 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / AIChatSystemMessageParam
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / AIChatSystemMessageParam
 
 # Interface: AIChatSystemMessageParam
 
-## Hierarchy
+## Extends
 
 - [`AIChatMessageParamBase`](AIChatMessageParamBase.md)
-
-  ↳ **`AIChatSystemMessageParam`**
-
-## Table of contents
-
-### Properties
-
-- [content](AIChatSystemMessageParam.md#content)
-- [role](AIChatSystemMessageParam.md#role)
-- [templateFormat](AIChatSystemMessageParam.md#templateformat)
 
 ## Properties
 
 ### content
 
-• **content**: `string`
+> **content**: `string`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:57](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L57)
+[packages/ai-tool/src/utils/chat.ts:57](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L57)
 
-___
+***
 
 ### role
 
-• **role**: ``"system"``
+> **role**: `"system"`
 
 #### Overrides
 
-[AIChatMessageParamBase](AIChatMessageParamBase.md).[role](AIChatMessageParamBase.md#role)
+[`AIChatMessageParamBase`](AIChatMessageParamBase.md).[`role`](AIChatMessageParamBase.md#role)
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:56](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L56)
+[packages/ai-tool/src/utils/chat.ts:56](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L56)
 
-___
+***
 
-### templateFormat
+### templateFormat?
 
-• `Optional` **templateFormat**: `string`
+> `optional` **templateFormat**: `string`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:58](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/chat.ts#L58)
+[packages/ai-tool/src/utils/chat.ts:58](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L58)

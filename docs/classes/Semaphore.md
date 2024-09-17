@@ -1,4 +1,8 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / Semaphore
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / Semaphore
 
 # Class: Semaphore
 
@@ -30,49 +34,29 @@ async function fetchData(x) {
 const data = await Promise.all(array.map(fetchData));
 ```
 
-## Table of contents
-
-### Constructors
-
-- [constructor](Semaphore.md#constructor)
-
-### Properties
-
-- [free](Semaphore.md#free)
-- [maxConcurrency](Semaphore.md#maxconcurrency)
-- [pauseFn](Semaphore.md#pausefn)
-- [paused](Semaphore.md#paused)
-- [releaseEmitter](Semaphore.md#releaseemitter)
-- [resumeFn](Semaphore.md#resumefn)
-- [useDefaultTokens](Semaphore.md#usedefaulttokens)
-- [waiting](Semaphore.md#waiting)
-
-### Methods
-
-- [acquire](Semaphore.md#acquire)
-- [drain](Semaphore.md#drain)
-- [pendingCount](Semaphore.md#pendingcount)
-- [release](Semaphore.md#release)
-- [tryAcquire](Semaphore.md#tryacquire)
-
 ## Constructors
 
-### constructor
+### new Semaphore()
 
-• **new Semaphore**(`maxConcurrency`, `«destructured»?`): [`Semaphore`](Semaphore.md)
+> **new Semaphore**(`maxConcurrency`, `__namedParameters`): [`Semaphore`](Semaphore.md)
 
 Creates a semaphore object. The first argument is the maximum concurrently number and the second argument is optional.
 
 #### Parameters
 
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `maxConcurrency` | `number` | `undefined` | The maximum number of callers allowed to acquire the semaphore concurrently. |
-| `«destructured»` | `Object` | `{}` | - |
-| › `capacity?` | `number` | `DefaultAsyncSemaphoreCapacity` | - |
-| › `initFn?` | () => `any` | `defaultInit` | - |
-| › `pauseFn?` | () => `void` | `undefined` | - |
-| › `resumeFn?` | () => `void` | `undefined` | - |
+• **maxConcurrency**: `number`
+
+The maximum number of callers allowed to acquire the semaphore concurrently.
+
+• **\_\_namedParameters** = `{}`
+
+• **\_\_namedParameters.capacity?**: `number` = `DefaultAsyncSemaphoreCapacity`
+
+• **\_\_namedParameters.initFn?** = `defaultInit`
+
+• **\_\_namedParameters.pauseFn?**
+
+• **\_\_namedParameters.resumeFn?**
 
 #### Returns
 
@@ -80,117 +64,39 @@ Creates a semaphore object. The first argument is the maximum concurrently numbe
 
 #### Defined in
 
-[packages/ai-tool/src/utils/async-semaphore.ts:207](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/async-semaphore.ts#L207)
+[packages/ai-tool/src/utils/async-semaphore.ts:207](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/async-semaphore.ts#L207)
 
 ## Properties
 
-### free
-
-• `Private` **free**: `Deque`
-
-#### Defined in
-
-[packages/ai-tool/src/utils/async-semaphore.ts:153](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/async-semaphore.ts#L153)
-
-___
-
 ### maxConcurrency
 
-• `Readonly` **maxConcurrency**: `number`
+> `readonly` **maxConcurrency**: `number`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/async-semaphore.ts:151](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/async-semaphore.ts#L151)
+[packages/ai-tool/src/utils/async-semaphore.ts:151](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/async-semaphore.ts#L151)
 
-___
-
-### pauseFn
-
-• `Private` `Optional` **pauseFn**: () => `void`
-
-#### Type declaration
-
-▸ (): `void`
-
-##### Returns
-
-`void`
-
-#### Defined in
-
-[packages/ai-tool/src/utils/async-semaphore.ts:156](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/async-semaphore.ts#L156)
-
-___
-
-### paused
-
-• `Private` **paused**: `boolean`
-
-#### Defined in
-
-[packages/ai-tool/src/utils/async-semaphore.ts:158](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/async-semaphore.ts#L158)
-
-___
-
-### releaseEmitter
-
-• `Private` **releaseEmitter**: `EventEmitter`
-
-#### Defined in
-
-[packages/ai-tool/src/utils/async-semaphore.ts:154](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/async-semaphore.ts#L154)
-
-___
-
-### resumeFn
-
-• `Private` `Optional` **resumeFn**: () => `void`
-
-#### Type declaration
-
-▸ (): `void`
-
-##### Returns
-
-`void`
-
-#### Defined in
-
-[packages/ai-tool/src/utils/async-semaphore.ts:157](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/async-semaphore.ts#L157)
-
-___
-
-### useDefaultTokens
-
-• `Private` **useDefaultTokens**: `boolean`
-
-#### Defined in
-
-[packages/ai-tool/src/utils/async-semaphore.ts:155](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/async-semaphore.ts#L155)
-
-___
+***
 
 ### waiting
 
-• `Readonly` **waiting**: `Deque`
+> `readonly` **waiting**: `Deque`
 
 #### Defined in
 
-[packages/ai-tool/src/utils/async-semaphore.ts:152](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/async-semaphore.ts#L152)
+[packages/ai-tool/src/utils/async-semaphore.ts:152](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/async-semaphore.ts#L152)
 
 ## Methods
 
-### acquire
+### acquire()
 
-▸ **acquire**(`signal?`): `Promise`\<`any`\>
+> **acquire**(`signal`?): `Promise`\<`any`\>
 
 Acquire a token from the semaphore, thus decrement the number of available execution slots. If initFn is not used then the return value of the function can be discarded.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `signal?` | `AbortSignal` |
+• **signal?**: `AbortSignal`
 
 #### Returns
 
@@ -198,13 +104,13 @@ Acquire a token from the semaphore, thus decrement the number of available execu
 
 #### Defined in
 
-[packages/ai-tool/src/utils/async-semaphore.ts:265](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/async-semaphore.ts#L265)
+[packages/ai-tool/src/utils/async-semaphore.ts:265](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/async-semaphore.ts#L265)
 
-___
+***
 
-### drain
+### drain()
 
-▸ **drain**(): `Promise`\<`any`[]\>
+> **drain**(): `Promise`\<`any`[]\>
 
 Drains the semaphore and returns all the initialized tokens in an array. Draining is an ideal way to ensure there are no pending async tasks, for example before a process will terminate.
 
@@ -214,13 +120,13 @@ Drains the semaphore and returns all the initialized tokens in an array. Drainin
 
 #### Defined in
 
-[packages/ai-tool/src/utils/async-semaphore.ts:301](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/async-semaphore.ts#L301)
+[packages/ai-tool/src/utils/async-semaphore.ts:301](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/async-semaphore.ts#L301)
 
-___
+***
 
-### pendingCount
+### pendingCount()
 
-▸ **pendingCount**(): `number`
+> **pendingCount**(): `number`
 
 Returns the number of callers waiting on the semaphore, i.e. the number of pending promises.
 
@@ -232,21 +138,19 @@ The number of waiters in the waiting list.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/async-semaphore.ts:314](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/async-semaphore.ts#L314)
+[packages/ai-tool/src/utils/async-semaphore.ts:314](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/async-semaphore.ts#L314)
 
-___
+***
 
-### release
+### release()
 
-▸ **release**(`token?`): `void`
+> **release**(`token`?): `void`
 
 Release the semaphore, thus increment the number of free execution slots. If initFn is used then the token returned by acquire() should be given as an argument when calling this function.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `token?` | `any` |
+• **token?**: `any`
 
 #### Returns
 
@@ -254,13 +158,13 @@ Release the semaphore, thus increment the number of free execution slots. If ini
 
 #### Defined in
 
-[packages/ai-tool/src/utils/async-semaphore.ts:294](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/async-semaphore.ts#L294)
+[packages/ai-tool/src/utils/async-semaphore.ts:294](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/async-semaphore.ts#L294)
 
-___
+***
 
-### tryAcquire
+### tryAcquire()
 
-▸ **tryAcquire**(): `any`
+> **tryAcquire**(): `any`
 
 Attempt to acquire a token from the semaphore, if one is available immediately. Otherwise, return undefined.
 
@@ -270,4 +174,4 @@ Attempt to acquire a token from the semaphore, if one is available immediately. 
 
 #### Defined in
 
-[packages/ai-tool/src/utils/async-semaphore.ts:258](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/async-semaphore.ts#L258)
+[packages/ai-tool/src/utils/async-semaphore.ts:258](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/async-semaphore.ts#L258)

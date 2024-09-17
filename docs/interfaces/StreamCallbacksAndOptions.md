@@ -1,124 +1,95 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / StreamCallbacksAndOptions
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / StreamCallbacksAndOptions
 
 # Interface: StreamCallbacksAndOptions\<I, O\>
 
 Configuration options and helper callback methods for stream lifecycle events.
 
-## Type parameters
+## Type Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `I` | `any` |
-| `O` | `any` |
+• **I** = `any`
 
-## Table of contents
-
-### Properties
-
-- [onError](StreamCallbacksAndOptions.md#onerror)
-- [onFinal](StreamCallbacksAndOptions.md#onfinal)
-- [onStart](StreamCallbacksAndOptions.md#onstart)
-- [onTransform](StreamCallbacksAndOptions.md#ontransform)
+• **O** = `any`
 
 ## Properties
 
-### onError
+### onError()?
 
-• `Optional` **onError**: (`error`: `Error`) => `void` \| `Promise`\<`void`\>
+> `optional` **onError**: (`error`) => `void` \| `Promise`\<`void`\>
 
-#### Type declaration
+#### Parameters
 
-▸ (`error`): `void` \| `Promise`\<`void`\>
+• **error**: `Error`
 
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `error` | `Error` |
-
-##### Returns
+#### Returns
 
 `void` \| `Promise`\<`void`\>
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:12](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/stream/create-callbacks-stream.ts#L12)
+[packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:12](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/stream/create-callbacks-stream.ts#L12)
 
-___
+***
 
-### onFinal
+### onFinal()?
 
-• `Optional` **onFinal**: (`controller`: `TransformStreamDefaultController`\<`any`\>) => `void` \| `Promise`\<`void`\>
+> `optional` **onFinal**: (`controller`) => `void` \| `Promise`\<`void`\>
 
 `onFinal`: Called once when the stream is closed with the final completion message.
 
-#### Type declaration
+#### Parameters
 
-▸ (`controller`): `void` \| `Promise`\<`void`\>
+• **controller**: `TransformStreamDefaultController`\<`any`\>
 
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `controller` | `TransformStreamDefaultController`\<`any`\> |
-
-##### Returns
+#### Returns
 
 `void` \| `Promise`\<`void`\>
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:11](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/stream/create-callbacks-stream.ts#L11)
+[packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:11](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/stream/create-callbacks-stream.ts#L11)
 
-___
+***
 
-### onStart
+### onStart()?
 
-• `Optional` **onStart**: (`controller`: `TransformStreamDefaultController`\<`any`\>) => `void` \| `Promise`\<`void`\>
+> `optional` **onStart**: (`controller`) => `void` \| `Promise`\<`void`\>
 
 `onStart`: Called once when the stream is initialized.
 
-#### Type declaration
+#### Parameters
 
-▸ (`controller`): `void` \| `Promise`\<`void`\>
+• **controller**: `TransformStreamDefaultController`\<`any`\>
 
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `controller` | `TransformStreamDefaultController`\<`any`\> |
-
-##### Returns
+#### Returns
 
 `void` \| `Promise`\<`void`\>
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:7](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/stream/create-callbacks-stream.ts#L7)
+[packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:7](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/stream/create-callbacks-stream.ts#L7)
 
-___
+***
 
-### onTransform
+### onTransform()?
 
-• `Optional` **onTransform**: (`chunk`: `I`, `controller`: `TransformStreamDefaultController`\<`any`\>) => `void` \| `O` \| `Promise`\<`void` \| `O`\>
+> `optional` **onTransform**: (`chunk`, `controller`) => `void` \| `O` \| `Promise`\<`void` \| `O`\>
 
 `onToken`: Called for each tokenized message.
 
-#### Type declaration
+#### Parameters
 
-▸ (`chunk`, `controller`): `void` \| `O` \| `Promise`\<`void` \| `O`\>
+• **chunk**: `I`
 
-##### Parameters
+• **controller**: `TransformStreamDefaultController`\<`any`\>
 
-| Name | Type |
-| :------ | :------ |
-| `chunk` | `I` |
-| `controller` | `TransformStreamDefaultController`\<`any`\> |
-
-##### Returns
+#### Returns
 
 `void` \| `O` \| `Promise`\<`void` \| `O`\>
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:9](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/stream/create-callbacks-stream.ts#L9)
+[packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:9](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/stream/create-callbacks-stream.ts#L9)

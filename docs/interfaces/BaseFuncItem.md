@@ -1,121 +1,103 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / BaseFuncItem
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / BaseFuncItem
 
 # Interface: BaseFuncItem
 
-## Hierarchy
+## Extended by
 
-- **`BaseFuncItem`**
-
-  ↳ [`RemoteFuncItem`](RemoteFuncItem.md)
-
-  ↳ [`FuncItem`](FuncItem.md)
-
-  ↳ [`BaseFunc`](BaseFunc.md)
-
-## Table of contents
-
-### Properties
-
-- [isApi](BaseFuncItem.md#isapi)
-- [name](BaseFuncItem.md#name)
-- [params](BaseFuncItem.md#params)
-- [result](BaseFuncItem.md#result)
-- [scope](BaseFuncItem.md#scope)
-- [setup](BaseFuncItem.md#setup)
-- [stream](BaseFuncItem.md#stream)
-- [tags](BaseFuncItem.md#tags)
+- [`RemoteFuncItem`](RemoteFuncItem.md)
+- [`FuncItem`](FuncItem.md)
+- [`BaseFunc`](BaseFunc.md)
 
 ## Properties
 
-### isApi
+### isApi?
 
-• `Optional` **isApi**: `boolean`
-
-#### Defined in
-
-[packages/ai-tool/src/tool-func.ts:47](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L47)
-
-___
-
-### name
-
-• `Optional` **name**: `string`
+> `optional` **isApi**: `boolean`
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:41](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L41)
+[packages/ai-tool/src/tool-func.ts:47](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L47)
 
-___
+***
 
-### params
+### name?
 
-• `Optional` **params**: [`FuncParams`](FuncParams.md) \| [`FuncParam`](FuncParam.md)[]
-
-#### Defined in
-
-[packages/ai-tool/src/tool-func.ts:42](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L42)
-
-___
-
-### result
-
-• `Optional` **result**: `string`
+> `optional` **name**: `string`
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:43](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L43)
+[packages/ai-tool/src/tool-func.ts:41](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L41)
 
-___
+***
 
-### scope
+### params?
 
-• `Optional` **scope**: `any`
+> `optional` **params**: [`FuncParams`](FuncParams.md) \| [`FuncParam`](FuncParam.md)[]
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:44](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L44)
+[packages/ai-tool/src/tool-func.ts:42](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L42)
 
-___
+***
 
-### setup
+### result?
 
-• `Optional` **setup**: (`this`: [`ToolFunc`](../classes/ToolFunc.md), `options?`: [`FuncItem`](FuncItem.md)) => `void`
+> `optional` **result**: `string`
 
-#### Type declaration
+#### Defined in
 
-▸ (`this`, `options?`): `void`
+[packages/ai-tool/src/tool-func.ts:43](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L43)
 
-##### Parameters
+***
 
-| Name | Type |
-| :------ | :------ |
-| `this` | [`ToolFunc`](../classes/ToolFunc.md) |
-| `options?` | [`FuncItem`](FuncItem.md) |
+### scope?
 
-##### Returns
+> `optional` **scope**: `any`
+
+#### Defined in
+
+[packages/ai-tool/src/tool-func.ts:44](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L44)
+
+***
+
+### setup()?
+
+> `optional` **setup**: (`this`, `options`?) => `void`
+
+#### Parameters
+
+• **this**: [`ToolFunc`](../classes/ToolFunc.md)
+
+• **options?**: [`FuncItem`](FuncItem.md)
+
+#### Returns
 
 `void`
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:46](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L46)
+[packages/ai-tool/src/tool-func.ts:46](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L46)
 
-___
+***
 
-### stream
+### stream?
 
-• `Optional` **stream**: `boolean`
-
-#### Defined in
-
-[packages/ai-tool/src/tool-func.ts:48](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L48)
-
-___
-
-### tags
-
-• `Optional` **tags**: `string` \| `string`[]
+> `optional` **stream**: `boolean`
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:45](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L45)
+[packages/ai-tool/src/tool-func.ts:48](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L48)
+
+***
+
+### tags?
+
+> `optional` **tags**: `string` \| `string`[]
+
+#### Defined in
+
+[packages/ai-tool/src/tool-func.ts:45](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L45)

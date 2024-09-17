@@ -1,7 +1,11 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / DotenvPopulateInput
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / DotenvPopulateInput
 
 # Interface: DotenvPopulateInput
 
 ## Indexable
 
-▪ [name: `string`]: `string` \| `undefined`
+ \[`name`: `string`\]: `string` \| `undefined`

@@ -1,7 +1,11 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / Funcs
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / Funcs
 
 # Interface: Funcs
 
 ## Indexable
 
-▪ [name: `string`]: [`ToolFunc`](../classes/ToolFunc.md)
+ \[`name`: `string`\]: [`ToolFunc`](../classes/ToolFunc.md)

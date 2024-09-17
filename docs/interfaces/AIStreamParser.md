@@ -1,33 +1,39 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / AIStreamParser
+[**@isdk/ai-tool**](../README.md) • **Docs**
 
-# Interface: AIStreamParser\<T, TOptions\>
+***
+
+[@isdk/ai-tool](../globals.md) / AIStreamParser
+
+# Interface: AIStreamParser()\<T, TOptions\>
 
 Custom parser for AIStream data.
 
-## Type parameters
+## Type Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | `any` |
-| `TOptions` | `any` |
+• **T** = `any`
 
-## Callable
+• **TOptions** = `any`
 
-### AIStreamParser
+> **AIStreamParser**(`data`, `options`): `void` \| [`AIResult`](AIResult.md)\<`T`, `TOptions`\>
 
-▸ **AIStreamParser**(`data`, `options`): `void` \| [`AIResult`](AIResult.md)\<`T`, `TOptions`\>
+Custom parser for AIStream data.
 
-#### Parameters
+## Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `data` | `string` |
-| `options` | [`AIStreamParserOptions`](AIStreamParserOptions.md) |
+• **data**: `string`
 
-#### Returns
+The data to be parsed.
+
+• **options**: [`AIStreamParserOptions`](AIStreamParserOptions.md)
+
+The options for the parser.
+
+## Returns
 
 `void` \| [`AIResult`](AIResult.md)\<`T`, `TOptions`\>
 
-#### Defined in
+The parsed data or void.
 
-[packages/ai-tool/src/utils/stream/ai-stream.ts:27](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/stream/ai-stream.ts#L27)
+## Defined in
+
+[packages/ai-tool/src/utils/stream/ai-stream.ts:27](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/stream/ai-stream.ts#L27)

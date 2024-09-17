@@ -1,7 +1,11 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / JsonFilter
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / JsonFilter
 
 # Interface: JsonFilter
 
 ## Indexable
 
-▪ [key: `string`]: `any`
+ \[`key`: `string`\]: `any`

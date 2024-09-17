@@ -1,4 +1,6 @@
-@isdk/ai-tool / [Exports](modules.md)
+**@isdk/ai-tool** • [**Docs**](globals.md)
+
+***
 
 # @isdk/ai-tool
 
@@ -234,11 +236,11 @@ The `EventServer` component manages server-side event processing, including publ
 
 ## Contribution
 
-If you would like to contribute to the project, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) file for guidelines on how to get started.
+If you would like to contribute to the project, please read the [CONTRIBUTING.md](_media/CONTRIBUTING.md) file for guidelines on how to get started.
 
 ## License
 
-The project is licensed under the MIT License. See the [LICENSE-MIT](./LICENSE-MIT) file for more details.
+The project is licensed under the MIT License. See the [LICENSE-MIT](_media/LICENSE-MIT) file for more details.
 
 ## Credit
 

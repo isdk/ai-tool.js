@@ -1,163 +1,28 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / EventServer
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / EventServer
 
 # Class: EventServer
 
-## Hierarchy
+## Extends
 
 - [`ResServerTools`](ResServerTools.md)
 
-  ↳ **`EventServer`**
-
-## Table of contents
-
-### Constructors
-
-- [constructor](EventServer.md#constructor)
-
-### Properties
-
-- [$attributes](EventServer.md#$attributes)
-- [action](EventServer.md#action)
-- [allowExportFunc](EventServer.md#allowexportfunc)
-- [apiRoot](EventServer.md#apiroot)
-- [constructor](EventServer.md#constructor-1)
-- [defaultOptions](EventServer.md#defaultoptions)
-- [depends](EventServer.md#depends)
-- [description](EventServer.md#description)
-- [fetchOptions](EventServer.md#fetchoptions)
-- [isApi](EventServer.md#isapi)
-- [methods](EventServer.md#methods)
-- [name](EventServer.md#name)
-- [nonExported1stChar](EventServer.md#nonexported1stchar)
-- [params](EventServer.md#params)
-- [result](EventServer.md#result)
-- [scope](EventServer.md#scope)
-- [setup](EventServer.md#setup)
-- [should](EventServer.md#should)
-- [stream](EventServer.md#stream)
-- [tags](EventServer.md#tags)
-- [SpecialRpcMethodNames](EventServer.md#specialrpcmethodnames)
-- [\_sse](EventServer.md#_sse)
-- [dataPath](EventServer.md#datapath)
-- [ebListener](EventServer.md#eblistener)
-- [items](EventServer.md#items)
-
-### Accessors
-
-- [SpecialRpcMethodNames](EventServer.md#specialrpcmethodnames-1)
-- [sse](EventServer.md#sse)
-- [apiRoot](EventServer.md#apiroot-1)
-- [sse](EventServer.md#sse-1)
-
-### Methods
-
-- [$publish](EventServer.md#$publish)
-- [$sub](EventServer.md#$sub)
-- [$unsub](EventServer.md#$unsub)
-- [arr2ObjParams](EventServer.md#arr2objparams)
-- [assign](EventServer.md#assign)
-- [assignProperty](EventServer.md#assignproperty)
-- [assignPropertyTo](EventServer.md#assignpropertyto)
-- [assignTo](EventServer.md#assignto)
-- [cast](EventServer.md#cast)
-- [castParams](EventServer.md#castparams)
-- [clone](EventServer.md#clone)
-- [cloneTo](EventServer.md#cloneto)
-- [defineProperties](EventServer.md#defineproperties)
-- [delete](EventServer.md#delete)
-- [exportTo](EventServer.md#exportto)
-- [forward](EventServer.md#forward)
-- [func](EventServer.md#func)
-- [get](EventServer.md#get)
-- [getFunc](EventServer.md#getfunc)
-- [getFuncWithPos](EventServer.md#getfuncwithpos)
-- [getMethodFromParams](EventServer.md#getmethodfromparams)
-- [getProperties](EventServer.md#getproperties)
-- [hasAsyncFeature](EventServer.md#hasasyncfeature)
-- [hasOwnProperty](EventServer.md#hasownproperty)
-- [initRpcMethods](EventServer.md#initrpcmethods)
-- [initialize](EventServer.md#initialize)
-- [isPrototypeOf](EventServer.md#isprototypeof)
-- [isSame](EventServer.md#issame)
-- [isStream](EventServer.md#isstream)
-- [list](EventServer.md#list)
-- [mergeTo](EventServer.md#mergeto)
-- [obj2ArrParams](EventServer.md#obj2arrparams)
-- [post](EventServer.md#post)
-- [propertyIsEnumerable](EventServer.md#propertyisenumerable)
-- [publishSSE](EventServer.md#publishsse)
-- [put](EventServer.md#put)
-- [register](EventServer.md#register)
-- [run](EventServer.md#run)
-- [runAs](EventServer.md#runas)
-- [runAsSync](EventServer.md#runassync)
-- [runSync](EventServer.md#runsync)
-- [runWithPos](EventServer.md#runwithpos)
-- [runWithPosAs](EventServer.md#runwithposas)
-- [runWithPosAsSync](EventServer.md#runwithposassync)
-- [runWithPosSync](EventServer.md#runwithpossync)
-- [subscribeSSE](EventServer.md#subscribesse)
-- [toJSON](EventServer.md#tojson)
-- [toLocaleString](EventServer.md#tolocalestring)
-- [toObject](EventServer.md#toobject)
-- [toString](EventServer.md#tostring)
-- [unforward](EventServer.md#unforward)
-- [unregister](EventServer.md#unregister)
-- [valueOf](EventServer.md#valueof)
-- [alreadyForward](EventServer.md#alreadyforward)
-- [assign](EventServer.md#assign-1)
-- [create](EventServer.md#create)
-- [defineProperties](EventServer.md#defineproperties-1)
-- [defineProperty](EventServer.md#defineproperty)
-- [entries](EventServer.md#entries)
-- [freeze](EventServer.md#freeze)
-- [fromEntries](EventServer.md#fromentries)
-- [get](EventServer.md#get-1)
-- [getAllByTag](EventServer.md#getallbytag)
-- [getByTag](EventServer.md#getbytag)
-- [getFunc](EventServer.md#getfunc-1)
-- [getFuncWithPos](EventServer.md#getfuncwithpos-1)
-- [getOwnPropertyDescriptor](EventServer.md#getownpropertydescriptor)
-- [getOwnPropertyDescriptors](EventServer.md#getownpropertydescriptors)
-- [getOwnPropertyNames](EventServer.md#getownpropertynames)
-- [getOwnPropertySymbols](EventServer.md#getownpropertysymbols)
-- [getProperties](EventServer.md#getproperties-1)
-- [getPrototypeOf](EventServer.md#getprototypeof)
-- [hasAsyncFeature](EventServer.md#hasasyncfeature-1)
-- [hasOwn](EventServer.md#hasown)
-- [is](EventServer.md#is)
-- [isExtensible](EventServer.md#isextensible)
-- [isFrozen](EventServer.md#isfrozen)
-- [isSealed](EventServer.md#issealed)
-- [keys](EventServer.md#keys)
-- [list](EventServer.md#list-1)
-- [preventExtensions](EventServer.md#preventextensions)
-- [publish](EventServer.md#publish)
-- [register](EventServer.md#register-1)
-- [run](EventServer.md#run-1)
-- [runSync](EventServer.md#runsync-1)
-- [runWithPos](EventServer.md#runwithpos-1)
-- [runWithPosSync](EventServer.md#runwithpossync-1)
-- [seal](EventServer.md#seal)
-- [setApiRoot](EventServer.md#setapiroot)
-- [setPrototypeOf](EventServer.md#setprototypeof)
-- [subscribe](EventServer.md#subscribe)
-- [toJSON](EventServer.md#tojson-1)
-- [unregister](EventServer.md#unregister-1)
-- [values](EventServer.md#values)
-
 ## Constructors
 
-### constructor
+### new EventServer()
 
-• **new EventServer**(`name`, `options?`): [`EventServer`](EventServer.md)
+> **new EventServer**(`name`, `options`): [`EventServer`](EventServer.md)
+
+The initial value of Object.prototype.constructor is the standard built-in Object constructor.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` \| `Function` \| [`FuncItem`](../interfaces/FuncItem.md) |
-| `options` | `any` |
+• **name**: `string` \| `Function` \| [`FuncItem`](../interfaces/FuncItem.md)
+
+• **options**: `any` = `{}`
 
 #### Returns
 
@@ -165,400 +30,389 @@
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[constructor](ResServerTools.md#constructor)
+[`ResServerTools`](ResServerTools.md).[`constructor`](ResServerTools.md#constructors)
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:27](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L27)
+[packages/ai-tool/src/res-server-tools.ts:27](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L27)
 
 ## Properties
 
 ### $attributes
 
-• **$attributes**: `Properties`
+> **$attributes**: `Properties`
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[$attributes](ResServerTools.md#$attributes)
+[`ResServerTools`](ResServerTools.md).[`$attributes`](ResServerTools.md#$attributes)
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/advance.d.ts:5
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/advance.d.ts:5
 
-___
+***
 
 ### action
 
-• **action**: ``"get"`` \| ``"post"`` \| ``"put"`` \| ``"delete"`` \| ``"patch"`` \| ``"list"`` \| ``"res"`` = `'res'`
+> **action**: `"get"` \| `"post"` \| `"put"` \| `"delete"` \| `"patch"` \| `"list"` \| `"res"` = `'res'`
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[action](ResServerTools.md#action)
+[`ResServerTools`](ResServerTools.md).[`action`](ResServerTools.md#action)
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:21](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L21)
+[packages/ai-tool/src/res-server-tools.ts:21](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L21)
 
-___
+***
 
-### allowExportFunc
+### allowExportFunc?
 
-• `Optional` **allowExportFunc**: `boolean`
+> `optional` **allowExportFunc**: `boolean`
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[allowExportFunc](ResServerTools.md#allowexportfunc)
+[`ResServerTools`](ResServerTools.md).[`allowExportFunc`](ResServerTools.md#allowexportfunc)
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/server-tools.ts#L14)
+[packages/ai-tool/src/server-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/server-tools.ts#L14)
 
-___
+***
 
-### apiRoot
+### apiRoot?
 
-• `Optional` **apiRoot**: `string`
+> `optional` **apiRoot**: `string`
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[apiRoot](ResServerTools.md#apiroot)
+[`ResServerTools`](ResServerTools.md).[`apiRoot`](ResServerTools.md#apiroot)
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:34](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/consts.ts#L34)
+[packages/ai-tool/src/utils/consts.ts:34](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/consts.ts#L34)
 
-___
+***
 
 ### constructor
 
-• **constructor**: `Function`
+> **constructor**: `Function`
 
 The initial value of Object.prototype.constructor is the standard built-in Object constructor.
 
 #### Inherited from
 
-ResServerTools.constructor
+`ResServerTools.constructor`
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:125
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:125
 
-___
+***
 
 ### defaultOptions
 
-• **defaultOptions**: `Object`
+> **defaultOptions**: `object`
 
 The default options for export and assign
 
-#### Type declaration
+#### assign?
 
-| Name | Type |
-| :------ | :------ |
-| `assign?` | `IMergeOptions` |
-| `export?` | `IMergeOptions` |
+> `optional` **assign**: `IMergeOptions`
+
+#### export?
+
+> `optional` **export**: `IMergeOptions`
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[defaultOptions](ResServerTools.md#defaultoptions)
+[`ResServerTools`](ResServerTools.md).[`defaultOptions`](ResServerTools.md#defaultoptions)
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:74
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:74
 
-___
+***
 
 ### depends
 
-• **depends**: `Object`
+> **depends**: `object`
 
-#### Type declaration
+#### event-bus
 
-| Name | Type |
-| :------ | :------ |
-| `event-bus` | [`EventToolFunc`](EventToolFunc.md) |
+> **event-bus**: [`EventToolFunc`](EventToolFunc.md) = `event`
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:30](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-server.ts#L30)
+[packages/ai-tool/src/funcs/event-server.ts:30](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-server.ts#L30)
 
-___
+***
 
 ### description
 
-• **description**: `string` = `'subscribe server sent event'`
+> **description**: `string` = `'subscribe server sent event'`
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:28](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-server.ts#L28)
+[packages/ai-tool/src/funcs/event-server.ts:28](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-server.ts#L28)
 
-___
+***
 
-### fetchOptions
+### fetchOptions?
 
-• `Optional` **fetchOptions**: `any`
+> `optional` **fetchOptions**: `any`
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[fetchOptions](ResServerTools.md#fetchoptions)
+[`ResServerTools`](ResServerTools.md).[`fetchOptions`](ResServerTools.md#fetchoptions)
 
 #### Defined in
 
-[packages/ai-tool/src/utils/consts.ts:36](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/utils/consts.ts#L36)
+[packages/ai-tool/src/utils/consts.ts:36](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/consts.ts#L36)
 
-___
+***
 
-### isApi
+### isApi?
 
-• `Optional` **isApi**: `boolean`
+> `optional` **isApi**: `boolean`
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[isApi](ResServerTools.md#isapi)
+[`ResServerTools`](ResServerTools.md).[`isApi`](ResServerTools.md#isapi)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:47](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L47)
+[packages/ai-tool/src/tool-func.ts:47](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L47)
 
-___
+***
 
 ### methods
 
-• **methods**: `string`[]
+> **methods**: `string`[]
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[methods](ResServerTools.md#methods)
+[`ResServerTools`](ResServerTools.md).[`methods`](ResServerTools.md#methods)
 
 #### Defined in
 
-[packages/ai-tool/src/rpc-methods-server-tool.ts:11](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/rpc-methods-server-tool.ts#L11)
+[packages/ai-tool/src/rpc-methods-server-tool.ts:11](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/rpc-methods-server-tool.ts#L11)
 
-___
+***
 
 ### name
 
-• **name**: `string` = `EventName`
+> **name**: `string` = `EventName`
 
 #### Overrides
 
-[ResServerTools](ResServerTools.md).[name](ResServerTools.md#name)
+[`ResServerTools`](ResServerTools.md).[`name`](ResServerTools.md#name)
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:27](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-server.ts#L27)
+[packages/ai-tool/src/funcs/event-server.ts:27](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-server.ts#L27)
 
-___
+***
 
 ### nonExported1stChar
 
-• **nonExported1stChar**: `string`
+> **nonExported1stChar**: `string`
 
 the property with the default prefix '$' will not be exported.
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[nonExported1stChar](ResServerTools.md#nonexported1stchar)
+[`ResServerTools`](ResServerTools.md).[`nonExported1stChar`](ResServerTools.md#nonexported1stchar)
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:78
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:78
 
-___
+***
 
 ### params
 
-• **params**: [`FuncParams`](../interfaces/FuncParams.md)
+> **params**: [`FuncParams`](../interfaces/FuncParams.md)
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[params](ResServerTools.md#params)
+[`ResServerTools`](ResServerTools.md).[`params`](ResServerTools.md#params)
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:22](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L22)
+[packages/ai-tool/src/res-server-tools.ts:22](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L22)
 
-___
+***
 
 ### result
 
-• **result**: `string` = `'event'`
+> **result**: `string` = `'event'`
 
 #### Overrides
 
-[ResServerTools](ResServerTools.md).[result](ResServerTools.md#result)
+[`ResServerTools`](ResServerTools.md).[`result`](ResServerTools.md#result)
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:29](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-server.ts#L29)
+[packages/ai-tool/src/funcs/event-server.ts:29](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-server.ts#L29)
 
-___
+***
 
-### scope
+### scope?
 
-• `Optional` **scope**: `any`
+> `optional` **scope**: `any`
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[scope](ResServerTools.md#scope)
+[`ResServerTools`](ResServerTools.md).[`scope`](ResServerTools.md#scope)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:44](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L44)
+[packages/ai-tool/src/tool-func.ts:44](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L44)
 
-___
+***
 
-### setup
+### setup()?
 
-• `Optional` **setup**: (`this`: [`ToolFunc`](ToolFunc.md), `options?`: [`FuncItem`](../interfaces/FuncItem.md)) => `void`
+> `optional` **setup**: (`this`, `options`?) => `void`
 
-#### Type declaration
+#### Parameters
 
-▸ (`this`, `options?`): `void`
+• **this**: [`ToolFunc`](ToolFunc.md)
 
-##### Parameters
+• **options?**: [`FuncItem`](../interfaces/FuncItem.md)
 
-| Name | Type |
-| :------ | :------ |
-| `this` | [`ToolFunc`](ToolFunc.md) |
-| `options?` | [`FuncItem`](../interfaces/FuncItem.md) |
-
-##### Returns
+#### Returns
 
 `void`
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[setup](ResServerTools.md#setup)
+[`ResServerTools`](ResServerTools.md).[`setup`](ResServerTools.md#setup)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:46](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L46)
+[packages/ai-tool/src/tool-func.ts:46](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L46)
 
-___
+***
 
 ### should
 
-• **should**: `Assertion`
+> **should**: `Assertion`
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[should](ResServerTools.md#should)
+[`ResServerTools`](ResServerTools.md).[`should`](ResServerTools.md#should)
 
 #### Defined in
 
-node_modules/.pnpm/@types+chai@4.3.16/node_modules/@types/chai/index.d.ts:2100
+node\_modules/.pnpm/@types+chai@4.3.16/node\_modules/@types/chai/index.d.ts:2100
 
-___
+***
 
-### stream
+### stream?
 
-• `Optional` **stream**: `boolean`
+> `optional` **stream**: `boolean`
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[stream](ResServerTools.md#stream)
+[`ResServerTools`](ResServerTools.md).[`stream`](ResServerTools.md#stream)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:48](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L48)
+[packages/ai-tool/src/tool-func.ts:48](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L48)
 
-___
+***
 
-### tags
+### tags?
 
-• `Optional` **tags**: `string` \| `string`[]
+> `optional` **tags**: `string` \| `string`[]
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[tags](ResServerTools.md#tags)
+[`ResServerTools`](ResServerTools.md).[`tags`](ResServerTools.md#tags)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:45](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L45)
+[packages/ai-tool/src/tool-func.ts:45](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L45)
 
-___
-
-### SpecialRpcMethodNames
-
-▪ `Static` **SpecialRpcMethodNames**: `any`
-
-#### Inherited from
-
-[ResServerTools](ResServerTools.md).[SpecialRpcMethodNames](ResServerTools.md#specialrpcmethodnames)
-
-#### Defined in
-
-[packages/ai-tool/src/res-server-tools.ts:20](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L20)
-
-___
+***
 
 ### \_sse
 
-▪ `Static` **\_sse**: `undefined` \| [`SSEChannel`](SSEChannel.md)
+> `static` **\_sse**: `undefined` \| [`SSEChannel`](SSEChannel.md)
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:19](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-server.ts#L19)
+[packages/ai-tool/src/funcs/event-server.ts:19](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-server.ts#L19)
 
-___
+***
 
 ### dataPath
 
-▪ `Static` **dataPath**: `string`
+> `static` **dataPath**: `string`
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[dataPath](ResServerTools.md#datapath)
+[`ResServerTools`](ResServerTools.md).[`dataPath`](ResServerTools.md#datapath)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:75](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L75)
+[packages/ai-tool/src/tool-func.ts:75](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L75)
 
-___
+***
 
-### ebListener
+### ebListener()
 
-▪ `Static` **ebListener**: (`this`: `Event`, ...`data`: `any`[]) => `void`
+> `static` **ebListener**: (`this`, ...`data`) => `void`
 
-#### Type declaration
+#### Parameters
 
-▸ (`this`, `...data`): `void`
+• **this**: `Event`
 
-##### Parameters
+• ...**data**: `any`[]
 
-| Name | Type |
-| :------ | :------ |
-| `this` | `Event` |
-| `...data` | `any`[] |
-
-##### Returns
+#### Returns
 
 `void`
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:42](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-server.ts#L42)
+[packages/ai-tool/src/funcs/event-server.ts:42](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-server.ts#L42)
 
-___
+***
 
 ### items
 
-▪ `Static` **items**: [`Funcs`](../interfaces/Funcs.md) = `{}`
+> `static` **items**: [`Funcs`](../interfaces/Funcs.md) = `{}`
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[items](ResServerTools.md#items)
+[`ResServerTools`](ResServerTools.md).[`items`](ResServerTools.md#items)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:74](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L74)
+[packages/ai-tool/src/tool-func.ts:74](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L74)
+
+***
+
+### SpecialRpcMethodNames
+
+> `static` **SpecialRpcMethodNames**: `any`
+
+#### Inherited from
+
+[`ResServerTools`](ResServerTools.md).[`SpecialRpcMethodNames`](ResServerTools.md#specialrpcmethodnames)
+
+#### Defined in
+
+[packages/ai-tool/src/res-server-tools.ts:20](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L20)
 
 ## Accessors
 
 ### SpecialRpcMethodNames
 
-• `get` **SpecialRpcMethodNames**(): `any`
+> `get` **SpecialRpcMethodNames**(): `any`
 
 #### Returns
 
@@ -566,17 +420,17 @@ ___
 
 #### Inherited from
 
-ResServerTools.SpecialRpcMethodNames
+[`ResServerTools`](ResServerTools.md).[`SpecialRpcMethodNames`](ResServerTools.md#specialrpcmethodnames-1)
 
 #### Defined in
 
-[packages/ai-tool/src/rpc-methods-server-tool.ts:22](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/rpc-methods-server-tool.ts#L22)
+[packages/ai-tool/src/rpc-methods-server-tool.ts:22](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/rpc-methods-server-tool.ts#L22)
 
-___
+***
 
 ### sse
 
-• `get` **sse**(): `any`
+> `get` **sse**(): `any`
 
 #### Returns
 
@@ -584,13 +438,13 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:32](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-server.ts#L32)
+[packages/ai-tool/src/funcs/event-server.ts:32](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-server.ts#L32)
 
-___
+***
 
 ### apiRoot
 
-• `get` **apiRoot**(): `undefined` \| `string`
+> `get` `static` **apiRoot**(): `undefined` \| `string`
 
 #### Returns
 
@@ -598,17 +452,17 @@ ___
 
 #### Inherited from
 
-ResServerTools.apiRoot
+[`ResServerTools`](ResServerTools.md).[`apiRoot`](ResServerTools.md#apiroot-1)
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:26](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/server-tools.ts#L26)
+[packages/ai-tool/src/server-tools.ts:26](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/server-tools.ts#L26)
 
-___
+***
 
 ### sse
 
-• `get` **sse**(): [`SSEChannel`](SSEChannel.md)
+> `get` `static` **sse**(): [`SSEChannel`](SSEChannel.md)
 
 #### Returns
 
@@ -616,79 +470,71 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:20](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-server.ts#L20)
+[packages/ai-tool/src/funcs/event-server.ts:20](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-server.ts#L20)
 
 ## Methods
 
-### $publish
+### $publish()
 
-▸ **$publish**(`«destructured»`): `undefined` \| \{ `event`: `string`[] = events }
+> **$publish**(`__namedParameters`): `undefined` \| `object`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `«destructured»` | [`EventServerFuncParams`](../interfaces/EventServerFuncParams.md) |
+• **\_\_namedParameters**: [`EventServerFuncParams`](../interfaces/EventServerFuncParams.md)
 
 #### Returns
 
-`undefined` \| \{ `event`: `string`[] = events }
+`undefined` \| `object`
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:113](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-server.ts#L113)
+[packages/ai-tool/src/funcs/event-server.ts:113](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-server.ts#L113)
 
-___
+***
 
-### $sub
+### $sub()
 
-▸ **$sub**(`«destructured»`): `undefined` \| \{ `event`: `string` \| `string`[]  }
+> **$sub**(`__namedParameters`): `undefined` \| `object`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `«destructured»` | [`EventServerFuncParams`](../interfaces/EventServerFuncParams.md) |
+• **\_\_namedParameters**: [`EventServerFuncParams`](../interfaces/EventServerFuncParams.md)
 
 #### Returns
 
-`undefined` \| \{ `event`: `string` \| `string`[]  }
+`undefined` \| `object`
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:95](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-server.ts#L95)
+[packages/ai-tool/src/funcs/event-server.ts:95](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-server.ts#L95)
 
-___
+***
 
-### $unsub
+### $unsub()
 
-▸ **$unsub**(`«destructured»`): `undefined` \| \{ `event`: `string` \| `string`[]  }
+> **$unsub**(`__namedParameters`): `undefined` \| `object`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `«destructured»` | [`EventServerFuncParams`](../interfaces/EventServerFuncParams.md) |
+• **\_\_namedParameters**: [`EventServerFuncParams`](../interfaces/EventServerFuncParams.md)
 
 #### Returns
 
-`undefined` \| \{ `event`: `string` \| `string`[]  }
+`undefined` \| `object`
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:104](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-server.ts#L104)
+[packages/ai-tool/src/funcs/event-server.ts:104](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-server.ts#L104)
 
-___
+***
 
-### arr2ObjParams
+### arr2ObjParams()
 
-▸ **arr2ObjParams**(`params`): `any`[]
+> **arr2ObjParams**(`params`): `any`[]
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params` | `any`[] |
+• **params**: `any`[]
 
 #### Returns
 
@@ -696,26 +542,27 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[arr2ObjParams](ResServerTools.md#arr2objparams)
+[`ResServerTools`](ResServerTools.md).[`arr2ObjParams`](ResServerTools.md#arr2objparams)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:254](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L254)
+[packages/ai-tool/src/tool-func.ts:254](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L254)
 
-___
+***
 
-### assign
+### assign()
 
-▸ **assign**(`src`, `options?`): `this`
+> **assign**(`src`, `options`?): `this`
 
 Assign the values from the src object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `src` | `any` | the source object |
-| `options?` | `IMergeOptions` | - |
+• **src**: `any`
+
+the source object
+
+• **options?**: `IMergeOptions`
 
 #### Returns
 
@@ -725,29 +572,39 @@ this object
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[assign](ResServerTools.md#assign)
+[`ResServerTools`](ResServerTools.md).[`assign`](ResServerTools.md#assign-1)
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:106
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:106
 
-___
+***
 
-### assignProperty
+### assignProperty()
 
-▸ **assignProperty**(`src`, `name`, `value`, `attrs?`, `options?`): `void`
+> **assignProperty**(`src`, `name`, `value`, `attrs`?, `options`?): `void`
 
 Assign a property of src to this object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `src` | `any` | the src object |
-| `name` | `string` | the property name to assign |
-| `value` | `any` | the property value to assign |
-| `attrs?` | `any` | the attributes object |
-| `options?` | `IMergeOptions` |  |
+• **src**: `any`
+
+the src object
+
+• **name**: `string`
+
+the property name to assign
+
+• **value**: `any`
+
+the property value to assign
+
+• **attrs?**: `any`
+
+the attributes object
+
+• **options?**: `IMergeOptions`
 
 #### Returns
 
@@ -755,59 +612,71 @@ Assign a property of src to this object.
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[assignProperty](ResServerTools.md#assignproperty)
+[`ResServerTools`](ResServerTools.md).[`assignProperty`](ResServerTools.md#assignproperty)
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:117
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:117
 
-___
+***
 
-### assignPropertyTo
+### assignPropertyTo()
 
-▸ **assignPropertyTo**(`dest`, `src`, `name`, `value`, `attrs?`, `options?`): `void`
+> `abstract` **assignPropertyTo**(`dest`, `src`, `name`, `value`, `attrs`?, `options`?): `void`
 
 Assign the property value from the src to destination object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `dest` | `any` | The destination object |
-| `src` | `any` | The src object |
-| `name` | `string` | The property name |
-| `value` | `any` | The property value |
-| `attrs?` | `any` | The attributes object of the property |
-| `options?` | `IMergeOptions` |  |
+• **dest**: `any`
+
+The destination object
+
+• **src**: `any`
+
+The src object
+
+• **name**: `string`
+
+The property name
+
+• **value**: `any`
+
+The property value
+
+• **attrs?**: `any`
+
+The attributes object of the property
+
+• **options?**: `IMergeOptions`
 
 #### Returns
 
 `void`
 
-**`Abstract`**
-
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[assignPropertyTo](ResServerTools.md#assignpropertyto)
+[`ResServerTools`](ResServerTools.md).[`assignPropertyTo`](ResServerTools.md#assignpropertyto)
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:131
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:131
 
-___
+***
 
-### assignTo
+### assignTo()
 
-▸ **assignTo**(`dest?`, `options?`): `any`
+> **assignTo**(`dest`?, `options`?): `any`
 
 Assign this attributes to the dest object
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `dest?` | `any` | the destination object |
-| `options?` | `IMergeOptions` | - |
+• **dest?**: `any`
+
+the destination object
+
+• **options?**: `IMergeOptions`
 
 #### Returns
 
@@ -817,24 +686,23 @@ the dest object
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[assignTo](ResServerTools.md#assignto)
+[`ResServerTools`](ResServerTools.md).[`assignTo`](ResServerTools.md#assignto)
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:191
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:191
 
-___
+***
 
-### cast
+### cast()
 
-▸ **cast**(`key`, `value`): `any`
+> **cast**(`key`, `value`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `key` | `string` |
-| `value` | `any` |
+• **key**: `string`
+
+• **value**: `any`
 
 #### Returns
 
@@ -842,23 +710,21 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[cast](ResServerTools.md#cast)
+[`ResServerTools`](ResServerTools.md).[`cast`](ResServerTools.md#cast)
 
 #### Defined in
 
-[packages/ai-tool/src/rpc-methods-server-tool.ts:48](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/rpc-methods-server-tool.ts#L48)
+[packages/ai-tool/src/rpc-methods-server-tool.ts:48](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/rpc-methods-server-tool.ts#L48)
 
-___
+***
 
-### castParams
+### castParams()
 
-▸ **castParams**(`params`): `RpcMethodsServerFuncParams`
+> **castParams**(`params`): `RpcMethodsServerFuncParams`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params` | `RpcMethodsServerFuncParams` |
+• **params**: `RpcMethodsServerFuncParams`
 
 #### Returns
 
@@ -866,25 +732,23 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[castParams](ResServerTools.md#castparams)
+[`ResServerTools`](ResServerTools.md).[`castParams`](ResServerTools.md#castparams)
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:40](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L40)
+[packages/ai-tool/src/res-server-tools.ts:40](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L40)
 
-___
+***
 
-### clone
+### clone()
 
-▸ **clone**(`options?`): `any`
+> **clone**(`options`?): `any`
 
 Create a new object with the same values of attributes.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `options?` | `IMergeOptions` |
+• **options?**: `IMergeOptions`
 
 #### Returns
 
@@ -894,26 +758,27 @@ the new object
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[clone](ResServerTools.md#clone)
+[`ResServerTools`](ResServerTools.md).[`clone`](ResServerTools.md#clone)
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:155
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:155
 
-___
+***
 
-### cloneTo
+### cloneTo()
 
-▸ **cloneTo**(`dest`, `options?`): `any`
+> **cloneTo**(`dest`, `options`?): `any`
 
 Create and assign the values to the destination object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `dest` | `any` | the destination object |
-| `options?` | `IMergeOptions` |  |
+• **dest**: `any`
+
+the destination object
+
+• **options?**: `IMergeOptions`
 
 #### Returns
 
@@ -923,51 +788,47 @@ the new dest object
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[cloneTo](ResServerTools.md#cloneto)
+[`ResServerTools`](ResServerTools.md).[`cloneTo`](ResServerTools.md#cloneto)
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:148
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:148
 
-___
+***
 
-### defineProperties
+### defineProperties()
 
-▸ **defineProperties**(`aProperties`): `any`
+> `abstract` **defineProperties**(`aProperties`): `any`
 
 Define the attributes of this object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `aProperties` | `SimplePropDescriptors` | the defined attributes of the object |
+• **aProperties**: `SimplePropDescriptors`
+
+the defined attributes of the object
 
 #### Returns
 
 `any`
 
-**`Abstract`**
-
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[defineProperties](ResServerTools.md#defineproperties)
+[`ResServerTools`](ResServerTools.md).[`defineProperties`](ResServerTools.md#defineproperties)
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:89
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:89
 
-___
+***
 
-### delete
+### delete()?
 
-▸ **delete**(`«destructured»`): `any`
+> `optional` **delete**(`__namedParameters`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `«destructured»` | [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md) |
+• **\_\_namedParameters**: [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md)
 
 #### Returns
 
@@ -975,26 +836,27 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[delete](ResServerTools.md#delete)
+[`ResServerTools`](ResServerTools.md).[`delete`](ResServerTools.md#delete)
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:15](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L15)
+[packages/ai-tool/src/res-server-tools.ts:15](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L15)
 
-___
+***
 
-### exportTo
+### exportTo()
 
-▸ **exportTo**(`dest`, `options?`): `any`
+> **exportTo**(`dest`, `options`?): `any`
 
 Export attributes to the dest json object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `dest` | `any` | the destination object |
-| `options?` | `IExportOptions` | - |
+• **dest**: `any`
+
+the destination object
+
+• **options?**: `IExportOptions`
 
 #### Returns
 
@@ -1004,23 +866,21 @@ the dest object.
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[exportTo](ResServerTools.md#exportto)
+[`ResServerTools`](ResServerTools.md).[`exportTo`](ResServerTools.md#exportto)
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:173
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:173
 
-___
+***
 
-### forward
+### forward()
 
-▸ **forward**(`events`): `void`
+> **forward**(`events`): `void`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `events` | `string` \| `string`[] |
+• **events**: `string` \| `string`[]
 
 #### Returns
 
@@ -1028,19 +888,17 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:69](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-server.ts#L69)
+[packages/ai-tool/src/funcs/event-server.ts:69](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-server.ts#L69)
 
-___
+***
 
-### func
+### func()
 
-▸ **func**(`params`): `any`
+> **func**(`params`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params` | `RpcMethodsServerFuncParams` |
+• **params**: `RpcMethodsServerFuncParams`
 
 #### Returns
 
@@ -1048,23 +906,21 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[func](ResServerTools.md#func)
+[`ResServerTools`](ResServerTools.md).[`func`](ResServerTools.md#func)
 
 #### Defined in
 
-[packages/ai-tool/src/rpc-methods-server-tool.ts:68](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/rpc-methods-server-tool.ts#L68)
+[packages/ai-tool/src/rpc-methods-server-tool.ts:68](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/rpc-methods-server-tool.ts#L68)
 
-___
+***
 
-### get
+### get()?
 
-▸ **get**(`«destructured»`): `any`
+> `optional` **get**(`__namedParameters`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `«destructured»` | [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md) |
+• **\_\_namedParameters**: [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md)
 
 #### Returns
 
@@ -1072,23 +928,21 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[get](ResServerTools.md#get)
+[`ResServerTools`](ResServerTools.md).[`get`](ResServerTools.md#get)
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:12](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L12)
+[packages/ai-tool/src/res-server-tools.ts:12](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L12)
 
-___
+***
 
-### getFunc
+### getFunc()
 
-▸ **getFunc**(`name?`): `any`
+> **getFunc**(`name`?): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name?` | `string` |
+• **name?**: `string`
 
 #### Returns
 
@@ -1096,23 +950,21 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[getFunc](ResServerTools.md#getfunc)
+[`ResServerTools`](ResServerTools.md).[`getFunc`](ResServerTools.md#getfunc)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:307](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L307)
+[packages/ai-tool/src/tool-func.ts:307](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L307)
 
-___
+***
 
-### getFuncWithPos
+### getFuncWithPos()
 
-▸ **getFuncWithPos**(`name?`): `any`
+> **getFuncWithPos**(`name`?): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name?` | `string` |
+• **name?**: `string`
 
 #### Returns
 
@@ -1120,23 +972,21 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[getFuncWithPos](ResServerTools.md#getfuncwithpos)
+[`ResServerTools`](ResServerTools.md).[`getFuncWithPos`](ResServerTools.md#getfuncwithpos)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:331](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L331)
+[packages/ai-tool/src/tool-func.ts:331](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L331)
 
-___
+***
 
-### getMethodFromParams
+### getMethodFromParams()
 
-▸ **getMethodFromParams**(`params`): `undefined` \| `string`
+> **getMethodFromParams**(`params`): `undefined` \| `string`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params` | [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md) |
+• **params**: [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md)
 
 #### Returns
 
@@ -1144,17 +994,17 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[getMethodFromParams](ResServerTools.md#getmethodfromparams)
+[`ResServerTools`](ResServerTools.md).[`getMethodFromParams`](ResServerTools.md#getmethodfromparams)
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:31](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L31)
+[packages/ai-tool/src/res-server-tools.ts:31](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L31)
 
-___
+***
 
-### getProperties
+### getProperties()
 
-▸ **getProperties**(): `PropDescriptors`
+> `abstract` **getProperties**(): `PropDescriptors`
 
 Get the defined attributes.
 
@@ -1164,27 +1014,23 @@ Get the defined attributes.
 
 the descriptors of properties object
 
-**`Abstract`**
-
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[getProperties](ResServerTools.md#getproperties)
+[`ResServerTools`](ResServerTools.md).[`getProperties`](ResServerTools.md#getproperties)
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:98
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:98
 
-___
+***
 
-### hasAsyncFeature
+### hasAsyncFeature()
 
-▸ **hasAsyncFeature**(`feature`): `boolean`
+> **hasAsyncFeature**(`feature`): `boolean`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `feature` | [`AsyncFeatureBits`](../enums/AsyncFeatureBits.md) |
+• **feature**: [`AsyncFeatureBits`](../enumerations/AsyncFeatureBits.md)
 
 #### Returns
 
@@ -1192,25 +1038,25 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[hasAsyncFeature](ResServerTools.md#hasasyncfeature)
+[`ResServerTools`](ResServerTools.md).[`hasAsyncFeature`](ResServerTools.md#hasasyncfeature)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:336](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L336)
+[packages/ai-tool/src/tool-func.ts:336](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L336)
 
-___
+***
 
-### hasOwnProperty
+### hasOwnProperty()
 
-▸ **hasOwnProperty**(`v`): `boolean`
+> **hasOwnProperty**(`v`): `boolean`
 
 Determines whether an object has a property with the specified name.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `v` | `PropertyKey` | A property name. |
+• **v**: `PropertyKey`
+
+A property name.
 
 #### Returns
 
@@ -1218,49 +1064,23 @@ Determines whether an object has a property with the specified name.
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[hasOwnProperty](ResServerTools.md#hasownproperty)
+[`ResServerTools`](ResServerTools.md).[`hasOwnProperty`](ResServerTools.md#hasownproperty)
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:140
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:140
 
-___
+***
 
-### initRpcMethods
+### initialize()
 
-▸ **initRpcMethods**(`methods?`): `void`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `methods` | `string`[] |
-
-#### Returns
-
-`void`
-
-#### Inherited from
-
-[ResServerTools](ResServerTools.md).[initRpcMethods](ResServerTools.md#initrpcmethods)
-
-#### Defined in
-
-[packages/ai-tool/src/rpc-methods-server-tool.ts:27](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/rpc-methods-server-tool.ts#L27)
-
-___
-
-### initialize
-
-▸ **initialize**(`src?`): `this`
+> **initialize**(`src`?): `this`
 
 Initialize object and assign attribute values from src if src exists.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `src?` | `any` |
+• **src?**: `any`
 
 #### Returns
 
@@ -1270,25 +1090,47 @@ this object.
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[initialize](ResServerTools.md#initialize)
+[`ResServerTools`](ResServerTools.md).[`initialize`](ResServerTools.md#initialize)
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:139
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:139
 
-___
+***
 
-### isPrototypeOf
+### initRpcMethods()
 
-▸ **isPrototypeOf**(`v`): `boolean`
+> **initRpcMethods**(`methods`): `void`
+
+#### Parameters
+
+• **methods**: `string`[] = `...`
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+[`ResServerTools`](ResServerTools.md).[`initRpcMethods`](ResServerTools.md#initrpcmethods)
+
+#### Defined in
+
+[packages/ai-tool/src/rpc-methods-server-tool.ts:27](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/rpc-methods-server-tool.ts#L27)
+
+***
+
+### isPrototypeOf()
+
+> **isPrototypeOf**(`v`): `boolean`
 
 Determines whether an object exists in another object's prototype chain.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `v` | `Object` | Another object whose prototype chain is to be checked. |
+• **v**: `Object`
+
+Another object whose prototype chain is to be checked.
 
 #### Returns
 
@@ -1296,26 +1138,27 @@ Determines whether an object exists in another object's prototype chain.
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[isPrototypeOf](ResServerTools.md#isprototypeof)
+[`ResServerTools`](ResServerTools.md).[`isPrototypeOf`](ResServerTools.md#isprototypeof)
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:146
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:146
 
-___
+***
 
-### isSame
+### isSame()
 
-▸ **isSame**(`src`, `options?`): `boolean`
+> **isSame**(`src`, `options`?): `boolean`
 
 Check the src object whether “equals” this object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `src` | `any` | The source object |
-| `options?` | `IMergeOptions` | - |
+• **src**: `any`
+
+The source object
+
+• **options?**: `IMergeOptions`
 
 #### Returns
 
@@ -1323,23 +1166,21 @@ Check the src object whether “equals” this object.
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[isSame](ResServerTools.md#issame)
+[`ResServerTools`](ResServerTools.md).[`isSame`](ResServerTools.md#issame)
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:200
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:200
 
-___
+***
 
-### isStream
+### isStream()
 
-▸ **isStream**(`params`): `boolean`
+> **isStream**(`params`): `boolean`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params` | [`ServerFuncParams`](../interfaces/ServerFuncParams.md) |
+• **params**: [`ServerFuncParams`](../interfaces/ServerFuncParams.md)
 
 #### Returns
 
@@ -1347,23 +1188,21 @@ ___
 
 #### Overrides
 
-[ResServerTools](ResServerTools.md).[isStream](ResServerTools.md#isstream)
+[`ResServerTools`](ResServerTools.md).[`isStream`](ResServerTools.md#isstream)
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:127](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-server.ts#L127)
+[packages/ai-tool/src/funcs/event-server.ts:127](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-server.ts#L127)
 
-___
+***
 
-### list
+### list()
 
-▸ **list**(`«destructured»`): `void`
+> **list**(`__namedParameters`): `void`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `«destructured»` | [`EventServerFuncParams`](../interfaces/EventServerFuncParams.md) |
+• **\_\_namedParameters**: [`EventServerFuncParams`](../interfaces/EventServerFuncParams.md)
 
 #### Returns
 
@@ -1371,26 +1210,27 @@ ___
 
 #### Overrides
 
-[ResServerTools](ResServerTools.md).[list](ResServerTools.md#list)
+[`ResServerTools`](ResServerTools.md).[`list`](ResServerTools.md#list)
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:89](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-server.ts#L89)
+[packages/ai-tool/src/funcs/event-server.ts:89](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-server.ts#L89)
 
-___
+***
 
-### mergeTo
+### mergeTo()
 
-▸ **mergeTo**(`dest`, `options?`): `any`
+> **mergeTo**(`dest`, `options`?): `any`
 
 Merge this attributes to dest object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `dest` | `any` | The destination object |
-| `options?` | `IMergeOptions` | - |
+• **dest**: `any`
+
+The destination object
+
+• **options?**: `IMergeOptions`
 
 #### Returns
 
@@ -1400,23 +1240,21 @@ the dest object.
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[mergeTo](ResServerTools.md#mergeto)
+[`ResServerTools`](ResServerTools.md).[`mergeTo`](ResServerTools.md#mergeto)
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:164
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:164
 
-___
+***
 
-### obj2ArrParams
+### obj2ArrParams()
 
-▸ **obj2ArrParams**(`params?`): `any`[]
+> **obj2ArrParams**(`params`?): `any`[]
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params?` | `any` |
+• **params?**: `any`
 
 #### Returns
 
@@ -1424,23 +1262,21 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[obj2ArrParams](ResServerTools.md#obj2arrparams)
+[`ResServerTools`](ResServerTools.md).[`obj2ArrParams`](ResServerTools.md#obj2arrparams)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:267](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L267)
+[packages/ai-tool/src/tool-func.ts:267](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L267)
 
-___
+***
 
-### post
+### post()?
 
-▸ **post**(`options`): `any`
+> `optional` **post**(`options`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `options` | [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md) |
+• **options**: [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md)
 
 #### Returns
 
@@ -1448,25 +1284,25 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[post](ResServerTools.md#post)
+[`ResServerTools`](ResServerTools.md).[`post`](ResServerTools.md#post)
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:13](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L13)
+[packages/ai-tool/src/res-server-tools.ts:13](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L13)
 
-___
+***
 
-### propertyIsEnumerable
+### propertyIsEnumerable()
 
-▸ **propertyIsEnumerable**(`v`): `boolean`
+> **propertyIsEnumerable**(`v`): `boolean`
 
 Determines whether a specified property is enumerable.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `v` | `PropertyKey` | A property name. |
+• **v**: `PropertyKey`
+
+A property name.
 
 #### Returns
 
@@ -1474,24 +1310,23 @@ Determines whether a specified property is enumerable.
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[propertyIsEnumerable](ResServerTools.md#propertyisenumerable)
+[`ResServerTools`](ResServerTools.md).[`propertyIsEnumerable`](ResServerTools.md#propertyisenumerable)
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:152
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:152
 
-___
+***
 
-### publishSSE
+### publishSSE()
 
-▸ **publishSSE**(`data`, `event`): `any`
+> **publishSSE**(`data`, `event`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `data` | `any` |
-| `event` | `string` |
+• **data**: `any`
+
+• **event**: `string`
 
 #### Returns
 
@@ -1499,19 +1334,17 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:57](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-server.ts#L57)
+[packages/ai-tool/src/funcs/event-server.ts:57](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-server.ts#L57)
 
-___
+***
 
-### put
+### put()?
 
-▸ **put**(`«destructured»`): `any`
+> `optional` **put**(`__namedParameters`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `«destructured»` | [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md) |
+• **\_\_namedParameters**: [`ResServerFuncParams`](../interfaces/ResServerFuncParams.md)
 
 #### Returns
 
@@ -1519,17 +1352,17 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[put](ResServerTools.md#put)
+[`ResServerTools`](ResServerTools.md).[`put`](ResServerTools.md#put)
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/res-server-tools.ts#L14)
+[packages/ai-tool/src/res-server-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/res-server-tools.ts#L14)
 
-___
+***
 
-### register
+### register()
 
-▸ **register**(): `boolean` \| [`ToolFunc`](ToolFunc.md)
+> **register**(): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
 #### Returns
 
@@ -1537,23 +1370,21 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[register](ResServerTools.md#register)
+[`ResServerTools`](ResServerTools.md).[`register`](ResServerTools.md#register)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:237](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L237)
+[packages/ai-tool/src/tool-func.ts:237](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L237)
 
-___
+***
 
-### run
+### run()
 
-▸ **run**(`params?`): `Promise`\<`any`\>
+> **run**(`params`?): `Promise`\<`any`\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params?` | `any` |
+• **params?**: `any`
 
 #### Returns
 
@@ -1561,24 +1392,23 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[run](ResServerTools.md#run)
+[`ResServerTools`](ResServerTools.md).[`run`](ResServerTools.md#run)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:294](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L294)
+[packages/ai-tool/src/tool-func.ts:294](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L294)
 
-___
+***
 
-### runAs
+### runAs()
 
-▸ **runAs**(`name`, `params?`): `Promise`\<`any`\>
+> **runAs**(`name`, `params`?): `Promise`\<`any`\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-| `params?` | `any` |
+• **name**: `string`
+
+• **params?**: `any`
 
 #### Returns
 
@@ -1586,24 +1416,23 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[runAs](ResServerTools.md#runas)
+[`ResServerTools`](ResServerTools.md).[`runAs`](ResServerTools.md#runas)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:298](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L298)
+[packages/ai-tool/src/tool-func.ts:298](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L298)
 
-___
+***
 
-### runAsSync
+### runAsSync()
 
-▸ **runAsSync**(`name`, `params?`): `any`
+> **runAsSync**(`name`, `params`?): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-| `params?` | `any` |
+• **name**: `string`
+
+• **params?**: `any`
 
 #### Returns
 
@@ -1611,23 +1440,21 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[runAsSync](ResServerTools.md#runassync)
+[`ResServerTools`](ResServerTools.md).[`runAsSync`](ResServerTools.md#runassync)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:302](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L302)
+[packages/ai-tool/src/tool-func.ts:302](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L302)
 
-___
+***
 
-### runSync
+### runSync()
 
-▸ **runSync**(`params?`): `any`
+> **runSync**(`params`?): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `params?` | `any` |
+• **params?**: `any`
 
 #### Returns
 
@@ -1635,23 +1462,21 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[runSync](ResServerTools.md#runsync)
+[`ResServerTools`](ResServerTools.md).[`runSync`](ResServerTools.md#runsync)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:280](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L280)
+[packages/ai-tool/src/tool-func.ts:280](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L280)
 
-___
+***
 
-### runWithPos
+### runWithPos()
 
-▸ **runWithPos**(`...params`): `Promise`\<`any`\>
+> **runWithPos**(...`params`): `Promise`\<`any`\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `...params` | `any`[] |
+• ...**params**: `any`[]
 
 #### Returns
 
@@ -1659,24 +1484,23 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[runWithPos](ResServerTools.md#runwithpos)
+[`ResServerTools`](ResServerTools.md).[`runWithPos`](ResServerTools.md#runwithpos)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:323](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L323)
+[packages/ai-tool/src/tool-func.ts:323](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L323)
 
-___
+***
 
-### runWithPosAs
+### runWithPosAs()
 
-▸ **runWithPosAs**(`name`, `...params`): `Promise`\<`any`\>
+> **runWithPosAs**(`name`, ...`params`): `Promise`\<`any`\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-| `...params` | `any`[] |
+• **name**: `string`
+
+• ...**params**: `any`[]
 
 #### Returns
 
@@ -1684,24 +1508,23 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[runWithPosAs](ResServerTools.md#runwithposas)
+[`ResServerTools`](ResServerTools.md).[`runWithPosAs`](ResServerTools.md#runwithposas)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:327](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L327)
+[packages/ai-tool/src/tool-func.ts:327](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L327)
 
-___
+***
 
-### runWithPosAsSync
+### runWithPosAsSync()
 
-▸ **runWithPosAsSync**(`name`, `...params`): `any`
+> **runWithPosAsSync**(`name`, ...`params`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-| `...params` | `any`[] |
+• **name**: `string`
+
+• ...**params**: `any`[]
 
 #### Returns
 
@@ -1709,23 +1532,21 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[runWithPosAsSync](ResServerTools.md#runwithposassync)
+[`ResServerTools`](ResServerTools.md).[`runWithPosAsSync`](ResServerTools.md#runwithposassync)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:319](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L319)
+[packages/ai-tool/src/tool-func.ts:319](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L319)
 
-___
+***
 
-### runWithPosSync
+### runWithPosSync()
 
-▸ **runWithPosSync**(`...params`): `any`
+> **runWithPosSync**(...`params`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `...params` | `any`[] |
+• ...**params**: `any`[]
 
 #### Returns
 
@@ -1733,25 +1554,25 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[runWithPosSync](ResServerTools.md#runwithpossync)
+[`ResServerTools`](ResServerTools.md).[`runWithPosSync`](ResServerTools.md#runwithpossync)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:312](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L312)
+[packages/ai-tool/src/tool-func.ts:312](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L312)
 
-___
+***
 
-### subscribeSSE
+### subscribeSSE()
 
-▸ **subscribeSSE**(`req`, `res`, `events?`): `any`
+> **subscribeSSE**(`req`, `res`, `events`?): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `req` | `IncomingMessage` |
-| `res` | `ServerResponse`\<`IncomingMessage`\> |
-| `events?` | `string` \| `string`[] |
+• **req**: `IncomingMessage`
+
+• **res**: `ServerResponse`\<`IncomingMessage`\>
+
+• **events?**: `string` \| `string`[]
 
 #### Returns
 
@@ -1759,13 +1580,13 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:61](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-server.ts#L61)
+[packages/ai-tool/src/funcs/event-server.ts:61](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-server.ts#L61)
 
-___
+***
 
-### toJSON
+### toJSON()
 
-▸ **toJSON**(): `any`
+> **toJSON**(): `any`
 
 #### Returns
 
@@ -1773,17 +1594,17 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[toJSON](ResServerTools.md#tojson)
+[`ResServerTools`](ResServerTools.md).[`toJSON`](ResServerTools.md#tojson)
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:182
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:182
 
-___
+***
 
-### toLocaleString
+### toLocaleString()
 
-▸ **toLocaleString**(): `string`
+> **toLocaleString**(): `string`
 
 Returns a date converted to a string using the current locale.
 
@@ -1793,25 +1614,23 @@ Returns a date converted to a string using the current locale.
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[toLocaleString](ResServerTools.md#tolocalestring)
+[`ResServerTools`](ResServerTools.md).[`toLocaleString`](ResServerTools.md#tolocalestring)
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:131
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:131
 
-___
+***
 
-### toObject
+### toObject()
 
-▸ **toObject**(`options?`): `any`
+> **toObject**(`options`?): `any`
 
 Convert the attributes to the json object
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `options?` | `any` |
+• **options?**: `any`
 
 #### Returns
 
@@ -1821,17 +1640,17 @@ the json object.
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[toObject](ResServerTools.md#toobject)
+[`ResServerTools`](ResServerTools.md).[`toObject`](ResServerTools.md#toobject)
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/abstract.d.ts:181
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/abstract.d.ts:181
 
-___
+***
 
-### toString
+### toString()
 
-▸ **toString**(): `string`
+> **toString**(): `string`
 
 Returns a string representation of an object.
 
@@ -1841,23 +1660,21 @@ Returns a string representation of an object.
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[toString](ResServerTools.md#tostring)
+[`ResServerTools`](ResServerTools.md).[`toString`](ResServerTools.md#tostring)
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:128
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:128
 
-___
+***
 
-### unforward
+### unforward()
 
-▸ **unforward**(`events`): `void`
+> **unforward**(`events`): `void`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `events` | `string` \| `string`[] |
+• **events**: `string` \| `string`[]
 
 #### Returns
 
@@ -1865,13 +1682,13 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:80](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-server.ts#L80)
+[packages/ai-tool/src/funcs/event-server.ts:80](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-server.ts#L80)
 
-___
+***
 
-### unregister
+### unregister()
 
-▸ **unregister**(): `any`
+> **unregister**(): `any`
 
 #### Returns
 
@@ -1879,17 +1696,17 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[unregister](ResServerTools.md#unregister)
+[`ResServerTools`](ResServerTools.md).[`unregister`](ResServerTools.md#unregister)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:250](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L250)
+[packages/ai-tool/src/tool-func.ts:250](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L250)
 
-___
+***
 
-### valueOf
+### valueOf()
 
-▸ **valueOf**(): `Object`
+> **valueOf**(): `Object`
 
 Returns the primitive value of the specified object.
 
@@ -1899,195 +1716,257 @@ Returns the primitive value of the specified object.
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[valueOf](ResServerTools.md#valueof)
+[`ResServerTools`](ResServerTools.md).[`valueOf`](ResServerTools.md#valueof)
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:134
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:134
 
-___
+***
 
-### alreadyForward
+### alreadyForward()
 
-▸ **alreadyForward**(`event`): `undefined` \| ``true``
+> `static` **alreadyForward**(`event`): `undefined` \| `true`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `event` | `string` |
+• **event**: `string`
 
 #### Returns
 
-`undefined` \| ``true``
+`undefined` \| `true`
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:50](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-server.ts#L50)
+[packages/ai-tool/src/funcs/event-server.ts:50](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-server.ts#L50)
 
-___
+***
 
-### assign
+### assign()
 
-▸ **assign**\<`T`, `U`\>(`target`, `source`): `T` & `U`
+#### assign(target, source)
+
+> `static` **assign**\<`T`, `U`\>(`target`, `source`): `T` & `U`
 
 Copy the values of all of the enumerable own properties from one or more source objects to a
 target object. Returns the target object.
 
-#### Type parameters
+##### Type Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `Object` |
-| `U` | `U` |
+• **T** *extends* `object`
 
-#### Parameters
+• **U**
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `target` | `T` | The target object to copy to. |
-| `source` | `U` | The source object from which to copy properties. |
+##### Parameters
 
-#### Returns
+• **target**: `T`
+
+The target object to copy to.
+
+• **source**: `U`
+
+The source object from which to copy properties.
+
+##### Returns
 
 `T` & `U`
 
-#### Inherited from
+##### Inherited from
 
-[ResServerTools](ResServerTools.md).[assign](ResServerTools.md#assign-1)
+[`ResServerTools`](ResServerTools.md).[`assign`](ResServerTools.md#assign-2)
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.core.d.ts:284
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2015.core.d.ts:286
 
-▸ **assign**\<`T`, `U`, `V`\>(`target`, `source1`, `source2`): `T` & `U` & `V`
+#### assign(target, source1, source2)
+
+> `static` **assign**\<`T`, `U`, `V`\>(`target`, `source1`, `source2`): `T` & `U` & `V`
 
 Copy the values of all of the enumerable own properties from one or more source objects to a
 target object. Returns the target object.
 
-#### Type parameters
+##### Type Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `Object` |
-| `U` | `U` |
-| `V` | `V` |
+• **T** *extends* `object`
 
-#### Parameters
+• **U**
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `target` | `T` | The target object to copy to. |
-| `source1` | `U` | The first source object from which to copy properties. |
-| `source2` | `V` | The second source object from which to copy properties. |
+• **V**
 
-#### Returns
+##### Parameters
+
+• **target**: `T`
+
+The target object to copy to.
+
+• **source1**: `U`
+
+The first source object from which to copy properties.
+
+• **source2**: `V`
+
+The second source object from which to copy properties.
+
+##### Returns
 
 `T` & `U` & `V`
 
-#### Inherited from
+##### Inherited from
 
-[ResServerTools](ResServerTools.md).[assign](ResServerTools.md#assign-1)
+[`ResServerTools`](ResServerTools.md).[`assign`](ResServerTools.md#assign-2)
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.core.d.ts:293
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2015.core.d.ts:295
 
-▸ **assign**\<`T`, `U`, `V`, `W`\>(`target`, `source1`, `source2`, `source3`): `T` & `U` & `V` & `W`
+#### assign(target, source1, source2, source3)
+
+> `static` **assign**\<`T`, `U`, `V`, `W`\>(`target`, `source1`, `source2`, `source3`): `T` & `U` & `V` & `W`
 
 Copy the values of all of the enumerable own properties from one or more source objects to a
 target object. Returns the target object.
 
-#### Type parameters
+##### Type Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `Object` |
-| `U` | `U` |
-| `V` | `V` |
-| `W` | `W` |
+• **T** *extends* `object`
 
-#### Parameters
+• **U**
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `target` | `T` | The target object to copy to. |
-| `source1` | `U` | The first source object from which to copy properties. |
-| `source2` | `V` | The second source object from which to copy properties. |
-| `source3` | `W` | The third source object from which to copy properties. |
+• **V**
 
-#### Returns
+• **W**
+
+##### Parameters
+
+• **target**: `T`
+
+The target object to copy to.
+
+• **source1**: `U`
+
+The first source object from which to copy properties.
+
+• **source2**: `V`
+
+The second source object from which to copy properties.
+
+• **source3**: `W`
+
+The third source object from which to copy properties.
+
+##### Returns
 
 `T` & `U` & `V` & `W`
 
-#### Inherited from
+##### Inherited from
 
-[ResServerTools](ResServerTools.md).[assign](ResServerTools.md#assign-1)
+[`ResServerTools`](ResServerTools.md).[`assign`](ResServerTools.md#assign-2)
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.core.d.ts:303
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2015.core.d.ts:305
 
-▸ **assign**(`target`, `...sources`): `any`
+#### assign(target, sources)
+
+> `static` **assign**(`target`, ...`sources`): `any`
 
 Copy the values of all of the enumerable own properties from one or more source objects to a
 target object. Returns the target object.
 
-#### Parameters
+##### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `target` | `object` | The target object to copy to. |
-| `...sources` | `any`[] | One or more source objects from which to copy properties |
+• **target**: `object`
 
-#### Returns
+The target object to copy to.
+
+• ...**sources**: `any`[]
+
+One or more source objects from which to copy properties
+
+##### Returns
 
 `any`
 
-#### Inherited from
+##### Inherited from
 
-[ResServerTools](ResServerTools.md).[assign](ResServerTools.md#assign-1)
+[`ResServerTools`](ResServerTools.md).[`assign`](ResServerTools.md#assign-2)
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.core.d.ts:311
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2015.core.d.ts:313
 
-___
+***
 
-### create
+### create()
 
-▸ **create**(`o`): `any`
+#### create(o)
+
+> `static` **create**(`o`): `any`
 
 Creates an object that has the specified prototype or that has null prototype.
 
-#### Parameters
+##### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | ``null`` \| `object` | Object to use as a prototype. May be null. |
+• **o**: `null` \| `object`
 
-#### Returns
+Object to use as a prototype. May be null.
+
+##### Returns
 
 `any`
 
-#### Inherited from
+##### Inherited from
 
-[ResServerTools](ResServerTools.md).[create](ResServerTools.md#create)
+[`ResServerTools`](ResServerTools.md).[`create`](ResServerTools.md#create)
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:188
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:188
 
-▸ **create**(`o`, `properties`): `any`
+#### create(o, properties)
+
+> `static` **create**(`o`, `properties`): `any`
 
 Creates an object that has the specified prototype, and that optionally contains specified properties.
 
+##### Parameters
+
+• **o**: `null` \| `object`
+
+Object to use as a prototype. May be null
+
+• **properties**: `PropertyDescriptorMap` & `ThisType`\<`any`\>
+
+JavaScript object that contains one or more property descriptors.
+
+##### Returns
+
+`any`
+
+##### Inherited from
+
+[`ResServerTools`](ResServerTools.md).[`create`](ResServerTools.md#create)
+
+##### Defined in
+
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:195
+
+***
+
+### defineProperties()
+
+> `static` **defineProperties**(`aTarget`, `aProperties`, `recreate`?): `any`
+
+Adds one or more properties to an object, and/or modifies attributes of existing properties.
+
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | ``null`` \| `object` | Object to use as a prototype. May be null |
-| `properties` | `PropertyDescriptorMap` & `ThisType`\<`any`\> | JavaScript object that contains one or more property descriptors. |
+• **aTarget**: `any`
+
+• **aProperties**: `PropDescriptors`
+
+• **recreate?**: `boolean`
 
 #### Returns
 
@@ -2095,59 +1974,37 @@ Creates an object that has the specified prototype, and that optionally contains
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[create](ResServerTools.md#create)
+[`ResServerTools`](ResServerTools.md).[`defineProperties`](ResServerTools.md#defineproperties-1)
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:195
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/advance.d.ts:11
 
-___
+***
 
-### defineProperties
+### defineProperty()
 
-▸ **defineProperties**(`aTarget`, `aProperties`, `recreate?`): `any`
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `aTarget` | `any` |
-| `aProperties` | `PropDescriptors` |
-| `recreate?` | `boolean` |
-
-#### Returns
-
-`any`
-
-#### Inherited from
-
-[ResServerTools](ResServerTools.md).[defineProperties](ResServerTools.md#defineproperties-1)
-
-#### Defined in
-
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/advance.d.ts:11
-
-___
-
-### defineProperty
-
-▸ **defineProperty**\<`T`\>(`o`, `p`, `attributes`): `T`
+> `static` **defineProperty**\<`T`\>(`o`, `p`, `attributes`): `T`
 
 Adds a property to an object, or modifies attributes of an existing property.
 
-#### Type parameters
+#### Type Parameters
 
-| Name |
-| :------ |
-| `T` |
+• **T**
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `T` | Object on which to add or modify the property. This can be a native JavaScript object (that is, a user-defined object or a built in object) or a DOM object. |
-| `p` | `PropertyKey` | The property name. |
-| `attributes` | `PropertyDescriptor` & `ThisType`\<`any`\> | Descriptor for the property. It can be for a data property or an accessor property. |
+• **o**: `T`
+
+Object on which to add or modify the property. This can be a native JavaScript object (that is, a user-defined object or a built in object) or a DOM object.
+
+• **p**: `PropertyKey`
+
+The property name.
+
+• **attributes**: `PropertyDescriptor` & `ThisType`\<`any`\>
+
+Descriptor for the property. It can be for a data property or an accessor property.
 
 #### Returns
 
@@ -2155,220 +2012,223 @@ Adds a property to an object, or modifies attributes of an existing property.
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[defineProperty](ResServerTools.md#defineproperty)
+[`ResServerTools`](ResServerTools.md).[`defineProperty`](ResServerTools.md#defineproperty)
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:203
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:203
 
-___
+***
 
-### entries
+### entries()
 
-▸ **entries**\<`T`\>(`o`): [`string`, `T`][]
+#### entries(o)
 
-Returns an array of key/values of the enumerable properties of an object
+> `static` **entries**\<`T`\>(`o`): [`string`, `T`][]
 
-#### Type parameters
+Returns an array of key/values of the enumerable own properties of an object
 
-| Name |
-| :------ |
-| `T` |
+##### Type Parameters
 
-#### Parameters
+• **T**
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | \{ `[s: string]`: `T`;  } \| `ArrayLike`\<`T`\> | Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object. |
+##### Parameters
 
-#### Returns
+• **o**: `object` \| `ArrayLike`\<`T`\>
+
+Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object.
+
+##### Returns
 
 [`string`, `T`][]
 
-#### Inherited from
+##### Inherited from
 
-[ResServerTools](ResServerTools.md).[entries](ResServerTools.md#entries)
+[`ResServerTools`](ResServerTools.md).[`entries`](ResServerTools.md#entries)
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2017.object.d.ts:36
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2017.object.d.ts:36
 
-▸ **entries**(`o`): [`string`, `any`][]
+#### entries(o)
 
-Returns an array of key/values of the enumerable properties of an object
+> `static` **entries**(`o`): [`string`, `any`][]
 
-#### Parameters
+Returns an array of key/values of the enumerable own properties of an object
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `Object` | Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object. |
+##### Parameters
 
-#### Returns
+• **o**
+
+Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object.
+
+##### Returns
 
 [`string`, `any`][]
 
-#### Inherited from
+##### Inherited from
 
-[ResServerTools](ResServerTools.md).[entries](ResServerTools.md#entries)
+[`ResServerTools`](ResServerTools.md).[`entries`](ResServerTools.md#entries)
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2017.object.d.ts:42
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2017.object.d.ts:42
 
-___
+***
 
-### freeze
+### freeze()
 
-▸ **freeze**\<`T`\>(`f`): `T`
+#### freeze(f)
+
+> `static` **freeze**\<`T`\>(`f`): `T`
 
 Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
 
-#### Type parameters
+##### Type Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `Function` |
+• **T** *extends* `Function`
 
-#### Parameters
+##### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `f` | `T` | Object on which to lock the attributes. |
+• **f**: `T`
 
-#### Returns
+Object on which to lock the attributes.
+
+##### Returns
 
 `T`
 
-#### Inherited from
+##### Inherited from
 
-[ResServerTools](ResServerTools.md).[freeze](ResServerTools.md#freeze)
+[`ResServerTools`](ResServerTools.md).[`freeze`](ResServerTools.md#freeze)
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:222
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:222
 
-▸ **freeze**\<`T`, `U`\>(`o`): `Readonly`\<`T`\>
+#### freeze(o)
 
-Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
-
-#### Type parameters
-
-| Name | Type |
-| :------ | :------ |
-| `T` | extends `Object` |
-| `U` | extends `string` \| `number` \| `bigint` \| `boolean` \| `symbol` |
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `T` | Object on which to lock the attributes. |
-
-#### Returns
-
-`Readonly`\<`T`\>
-
-#### Inherited from
-
-[ResServerTools](ResServerTools.md).[freeze](ResServerTools.md#freeze)
-
-#### Defined in
-
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:228
-
-▸ **freeze**\<`T`\>(`o`): `Readonly`\<`T`\>
+> `static` **freeze**\<`T`, `U`\>(`o`): `Readonly`\<`T`\>
 
 Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
 
-#### Type parameters
+##### Type Parameters
 
-| Name |
-| :------ |
-| `T` |
+• **T** *extends* `object`
 
-#### Parameters
+• **U** *extends* `string` \| `number` \| `bigint` \| `boolean` \| `symbol`
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `T` | Object on which to lock the attributes. |
+##### Parameters
 
-#### Returns
+• **o**: `T`
+
+Object on which to lock the attributes.
+
+##### Returns
 
 `Readonly`\<`T`\>
 
-#### Inherited from
+##### Inherited from
 
-[ResServerTools](ResServerTools.md).[freeze](ResServerTools.md#freeze)
+[`ResServerTools`](ResServerTools.md).[`freeze`](ResServerTools.md#freeze)
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:234
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:228
 
-___
+#### freeze(o)
 
-### fromEntries
+> `static` **freeze**\<`T`\>(`o`): `Readonly`\<`T`\>
 
-▸ **fromEntries**\<`T`\>(`entries`): `Object`
+Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
+
+##### Type Parameters
+
+• **T**
+
+##### Parameters
+
+• **o**: `T`
+
+Object on which to lock the attributes.
+
+##### Returns
+
+`Readonly`\<`T`\>
+
+##### Inherited from
+
+[`ResServerTools`](ResServerTools.md).[`freeze`](ResServerTools.md#freeze)
+
+##### Defined in
+
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:234
+
+***
+
+### fromEntries()
+
+#### fromEntries(entries)
+
+> `static` **fromEntries**\<`T`\>(`entries`): `object`
 
 Returns an object created by key-value entries for properties and methods
 
-#### Type parameters
+##### Type Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `T` | `any` |
+• **T** = `any`
 
-#### Parameters
+##### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `entries` | `Iterable`\<readonly [`PropertyKey`, `T`]\> | An iterable object that contains key-value entries for properties and methods. |
+• **entries**: `Iterable`\<readonly [`PropertyKey`, `T`], `any`, `any`\>
 
-#### Returns
+An iterable object that contains key-value entries for properties and methods.
 
-`Object`
+##### Returns
 
-#### Inherited from
+`object`
 
-[ResServerTools](ResServerTools.md).[fromEntries](ResServerTools.md#fromentries)
+##### Inherited from
 
-#### Defined in
+[`ResServerTools`](ResServerTools.md).[`fromEntries`](ResServerTools.md#fromentries)
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2019.object.d.ts:26
+##### Defined in
 
-▸ **fromEntries**(`entries`): `any`
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2019.object.d.ts:26
+
+#### fromEntries(entries)
+
+> `static` **fromEntries**(`entries`): `any`
 
 Returns an object created by key-value entries for properties and methods
 
-#### Parameters
+##### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `entries` | `Iterable`\<readonly `any`[]\> | An iterable object that contains key-value entries for properties and methods. |
+• **entries**: `Iterable`\<readonly `any`[], `any`, `any`\>
 
-#### Returns
+An iterable object that contains key-value entries for properties and methods.
+
+##### Returns
 
 `any`
 
-#### Inherited from
+##### Inherited from
 
-[ResServerTools](ResServerTools.md).[fromEntries](ResServerTools.md#fromentries)
+[`ResServerTools`](ResServerTools.md).[`fromEntries`](ResServerTools.md#fromentries)
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2019.object.d.ts:32
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2019.object.d.ts:32
 
-___
+***
 
-### get
+### get()
 
-▸ **get**(`name`): [`ToolFunc`](ToolFunc.md)
+> `static` **get**(`name`): [`ToolFunc`](ToolFunc.md)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
+• **name**: `string`
 
 #### Returns
 
@@ -2376,23 +2236,21 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[get](ResServerTools.md#get-1)
+[`ResServerTools`](ResServerTools.md).[`get`](ResServerTools.md#get-1)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:77](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L77)
+[packages/ai-tool/src/tool-func.ts:77](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L77)
 
-___
+***
 
-### getAllByTag
+### getAllByTag()
 
-▸ **getAllByTag**(`tagName`): [`ToolFunc`](ToolFunc.md)[]
+> `static` **getAllByTag**(`tagName`): [`ToolFunc`](ToolFunc.md)[]
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `tagName` | `string` |
+• **tagName**: `string`
 
 #### Returns
 
@@ -2400,23 +2258,21 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[getAllByTag](ResServerTools.md#getallbytag)
+[`ResServerTools`](ResServerTools.md).[`getAllByTag`](ResServerTools.md#getallbytag)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:105](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L105)
+[packages/ai-tool/src/tool-func.ts:105](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L105)
 
-___
+***
 
-### getByTag
+### getByTag()
 
-▸ **getByTag**(`tagName`): `undefined` \| [`ToolFunc`](ToolFunc.md)
+> `static` **getByTag**(`tagName`): `undefined` \| [`ToolFunc`](ToolFunc.md)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `tagName` | `string` |
+• **tagName**: `string`
 
 #### Returns
 
@@ -2424,23 +2280,21 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[getByTag](ResServerTools.md#getbytag)
+[`ResServerTools`](ResServerTools.md).[`getByTag`](ResServerTools.md#getbytag)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:85](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L85)
+[packages/ai-tool/src/tool-func.ts:85](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L85)
 
-___
+***
 
-### getFunc
+### getFunc()
 
-▸ **getFunc**(`name`): `any`
+> `static` **getFunc**(`name`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
+• **name**: `string`
 
 #### Returns
 
@@ -2448,23 +2302,21 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[getFunc](ResServerTools.md#getfunc-1)
+[`ResServerTools`](ResServerTools.md).[`getFunc`](ResServerTools.md#getfunc-1)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:146](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L146)
+[packages/ai-tool/src/tool-func.ts:146](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L146)
 
-___
+***
 
-### getFuncWithPos
+### getFuncWithPos()
 
-▸ **getFuncWithPos**(`name`): `any`
+> `static` **getFuncWithPos**(`name`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
+• **name**: `string`
 
 #### Returns
 
@@ -2472,27 +2324,30 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[getFuncWithPos](ResServerTools.md#getfuncwithpos-1)
+[`ResServerTools`](ResServerTools.md).[`getFuncWithPos`](ResServerTools.md#getfuncwithpos-1)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:167](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L167)
+[packages/ai-tool/src/tool-func.ts:167](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L167)
 
-___
+***
 
-### getOwnPropertyDescriptor
+### getOwnPropertyDescriptor()
 
-▸ **getOwnPropertyDescriptor**(`o`, `p`): `undefined` \| `PropertyDescriptor`
+> `static` **getOwnPropertyDescriptor**(`o`, `p`): `undefined` \| `PropertyDescriptor`
 
 Gets the own property descriptor of the specified object.
 An own property descriptor is one that is defined directly on the object and is not inherited from the object's prototype.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `any` | Object that contains the property. |
-| `p` | `PropertyKey` | Name of the property. |
+• **o**: `any`
+
+Object that contains the property.
+
+• **p**: `PropertyKey`
+
+Name of the property.
 
 #### Returns
 
@@ -2500,58 +2355,56 @@ An own property descriptor is one that is defined directly on the object and is 
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[getOwnPropertyDescriptor](ResServerTools.md#getownpropertydescriptor)
+[`ResServerTools`](ResServerTools.md).[`getOwnPropertyDescriptor`](ResServerTools.md#getownpropertydescriptor)
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:175
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:175
 
-___
+***
 
-### getOwnPropertyDescriptors
+### getOwnPropertyDescriptors()
 
-▸ **getOwnPropertyDescriptors**\<`T`\>(`o`): \{ [P in string \| number \| symbol]: TypedPropertyDescriptor\<T[P]\> } & \{ `[x: string]`: `PropertyDescriptor`;  }
+> `static` **getOwnPropertyDescriptors**\<`T`\>(`o`): \{ \[P in string \| number \| symbol\]: TypedPropertyDescriptor\<T\[P\]\> \} & `object`
 
 Returns an object containing all own property descriptors of an object
 
-#### Type parameters
+#### Type Parameters
 
-| Name |
-| :------ |
-| `T` |
+• **T**
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `T` | Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object. |
+• **o**: `T`
+
+Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object.
 
 #### Returns
 
-\{ [P in string \| number \| symbol]: TypedPropertyDescriptor\<T[P]\> } & \{ `[x: string]`: `PropertyDescriptor`;  }
+\{ \[P in string \| number \| symbol\]: TypedPropertyDescriptor\<T\[P\]\> \} & `object`
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[getOwnPropertyDescriptors](ResServerTools.md#getownpropertydescriptors)
+[`ResServerTools`](ResServerTools.md).[`getOwnPropertyDescriptors`](ResServerTools.md#getownpropertydescriptors)
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2017.object.d.ts:48
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2017.object.d.ts:48
 
-___
+***
 
-### getOwnPropertyNames
+### getOwnPropertyNames()
 
-▸ **getOwnPropertyNames**(`o`): `string`[]
+> `static` **getOwnPropertyNames**(`o`): `string`[]
 
 Returns the names of the own properties of an object. The own properties of an object are those that are defined directly
 on that object, and are not inherited from the object's prototype. The properties of an object include both fields (objects) and functions.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `any` | Object that contains the own properties. |
+• **o**: `any`
+
+Object that contains the own properties.
 
 #### Returns
 
@@ -2559,25 +2412,25 @@ on that object, and are not inherited from the object's prototype. The propertie
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[getOwnPropertyNames](ResServerTools.md#getownpropertynames)
+[`ResServerTools`](ResServerTools.md).[`getOwnPropertyNames`](ResServerTools.md#getownpropertynames)
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:182
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:182
 
-___
+***
 
-### getOwnPropertySymbols
+### getOwnPropertySymbols()
 
-▸ **getOwnPropertySymbols**(`o`): `symbol`[]
+> `static` **getOwnPropertySymbols**(`o`): `symbol`[]
 
 Returns an array of all symbol properties found directly on object o.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `any` | Object to retrieve the symbols from. |
+• **o**: `any`
+
+Object to retrieve the symbols from.
 
 #### Returns
 
@@ -2585,17 +2438,17 @@ Returns an array of all symbol properties found directly on object o.
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[getOwnPropertySymbols](ResServerTools.md#getownpropertysymbols)
+[`ResServerTools`](ResServerTools.md).[`getOwnPropertySymbols`](ResServerTools.md#getownpropertysymbols)
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.core.d.ts:317
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2015.core.d.ts:319
 
-___
+***
 
-### getProperties
+### getProperties()
 
-▸ **getProperties**(): `PropDescriptors`
+> `static` **getProperties**(): `PropDescriptors`
 
 get all properties descriptor include inherited.
 
@@ -2605,25 +2458,25 @@ get all properties descriptor include inherited.
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[getProperties](ResServerTools.md#getproperties-1)
+[`ResServerTools`](ResServerTools.md).[`getProperties`](ResServerTools.md#getproperties-1)
 
 #### Defined in
 
-node_modules/.pnpm/property-manager@2.0.0/node_modules/property-manager/lib/advance.d.ts:10
+node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-manager/lib/advance.d.ts:10
 
-___
+***
 
-### getPrototypeOf
+### getPrototypeOf()
 
-▸ **getPrototypeOf**(`o`): `any`
+> `static` **getPrototypeOf**(`o`): `any`
 
 Returns the prototype of an object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `any` | The object that references the prototype. |
+• **o**: `any`
+
+The object that references the prototype.
 
 #### Returns
 
@@ -2631,23 +2484,21 @@ Returns the prototype of an object.
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[getPrototypeOf](ResServerTools.md#getprototypeof)
+[`ResServerTools`](ResServerTools.md).[`getPrototypeOf`](ResServerTools.md#getprototypeof)
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:167
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:167
 
-___
+***
 
-### hasAsyncFeature
+### hasAsyncFeature()
 
-▸ **hasAsyncFeature**(`feature`): `boolean`
+> `static` **hasAsyncFeature**(`feature`): `boolean`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `feature` | [`AsyncFeatureBits`](../enums/AsyncFeatureBits.md) |
+• **feature**: [`AsyncFeatureBits`](../enumerations/AsyncFeatureBits.md)
 
 #### Returns
 
@@ -2655,26 +2506,29 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[hasAsyncFeature](ResServerTools.md#hasasyncfeature-1)
+[`ResServerTools`](ResServerTools.md).[`hasAsyncFeature`](ResServerTools.md#hasasyncfeature-1)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:123](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L123)
+[packages/ai-tool/src/tool-func.ts:123](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L123)
 
-___
+***
 
-### hasOwn
+### hasOwn()
 
-▸ **hasOwn**(`o`, `v`): `boolean`
+> `static` **hasOwn**(`o`, `v`): `boolean`
 
 Determines whether an object has a property with the specified name.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `object` | An object. |
-| `v` | `PropertyKey` | A property name. |
+• **o**: `object`
+
+An object.
+
+• **v**: `PropertyKey`
+
+A property name.
 
 #### Returns
 
@@ -2682,26 +2536,29 @@ Determines whether an object has a property with the specified name.
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[hasOwn](ResServerTools.md#hasown)
+[`ResServerTools`](ResServerTools.md).[`hasOwn`](ResServerTools.md#hasown)
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2022.object.d.ts:25
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2022.object.d.ts:25
 
-___
+***
 
-### is
+### is()
 
-▸ **is**(`value1`, `value2`): `boolean`
+> `static` **is**(`value1`, `value2`): `boolean`
 
 Returns true if the values are the same value, false otherwise.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `value1` | `any` | The first value. |
-| `value2` | `any` | The second value. |
+• **value1**: `any`
+
+The first value.
+
+• **value2**: `any`
+
+The second value.
 
 #### Returns
 
@@ -2709,25 +2566,25 @@ Returns true if the values are the same value, false otherwise.
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[is](ResServerTools.md#is)
+[`ResServerTools`](ResServerTools.md).[`is`](ResServerTools.md#is)
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.core.d.ts:330
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2015.core.d.ts:332
 
-___
+***
 
-### isExtensible
+### isExtensible()
 
-▸ **isExtensible**(`o`): `boolean`
+> `static` **isExtensible**(`o`): `boolean`
 
 Returns a value that indicates whether new properties can be added to an object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `any` | Object to test. |
+• **o**: `any`
+
+Object to test.
 
 #### Returns
 
@@ -2735,25 +2592,25 @@ Returns a value that indicates whether new properties can be added to an object.
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[isExtensible](ResServerTools.md#isextensible)
+[`ResServerTools`](ResServerTools.md).[`isExtensible`](ResServerTools.md#isextensible)
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:258
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:258
 
-___
+***
 
-### isFrozen
+### isFrozen()
 
-▸ **isFrozen**(`o`): `boolean`
+> `static` **isFrozen**(`o`): `boolean`
 
 Returns true if existing property attributes and values cannot be modified in an object, and new properties cannot be added to the object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `any` | Object to test. |
+• **o**: `any`
+
+Object to test.
 
 #### Returns
 
@@ -2761,25 +2618,25 @@ Returns true if existing property attributes and values cannot be modified in an
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[isFrozen](ResServerTools.md#isfrozen)
+[`ResServerTools`](ResServerTools.md).[`isFrozen`](ResServerTools.md#isfrozen)
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:252
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:252
 
-___
+***
 
-### isSealed
+### isSealed()
 
-▸ **isSealed**(`o`): `boolean`
+> `static` **isSealed**(`o`): `boolean`
 
 Returns true if existing property attributes cannot be modified in an object and new properties cannot be added to the object.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `any` | Object to test. |
+• **o**: `any`
+
+Object to test.
 
 #### Returns
 
@@ -2787,65 +2644,69 @@ Returns true if existing property attributes cannot be modified in an object and
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[isSealed](ResServerTools.md#issealed)
+[`ResServerTools`](ResServerTools.md).[`isSealed`](ResServerTools.md#issealed)
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:246
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:246
 
-___
+***
 
-### keys
+### keys()
 
-▸ **keys**(`o`): `string`[]
+#### keys(o)
+
+> `static` **keys**(`o`): `string`[]
 
 Returns the names of the enumerable string properties and methods of an object.
 
-#### Parameters
+##### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `object` | Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object. |
+• **o**: `object`
 
-#### Returns
+Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object.
+
+##### Returns
 
 `string`[]
 
-#### Inherited from
+##### Inherited from
 
-[ResServerTools](ResServerTools.md).[keys](ResServerTools.md#keys)
+[`ResServerTools`](ResServerTools.md).[`keys`](ResServerTools.md#keys)
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:264
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:264
 
-▸ **keys**(`o`): `string`[]
+#### keys(o)
+
+> `static` **keys**(`o`): `string`[]
 
 Returns the names of the enumerable string properties and methods of an object.
 
-#### Parameters
+##### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `Object` | Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object. |
+• **o**
 
-#### Returns
+Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object.
+
+##### Returns
 
 `string`[]
 
-#### Inherited from
+##### Inherited from
 
-[ResServerTools](ResServerTools.md).[keys](ResServerTools.md#keys)
+[`ResServerTools`](ResServerTools.md).[`keys`](ResServerTools.md#keys)
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.core.d.ts:323
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2015.core.d.ts:325
 
-___
+***
 
-### list
+### list()
 
-▸ **list**(): [`Funcs`](../interfaces/Funcs.md)
+> `static` **list**(): [`Funcs`](../interfaces/Funcs.md)
 
 #### Returns
 
@@ -2853,31 +2714,29 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[list](ResServerTools.md#list-1)
+[`ResServerTools`](ResServerTools.md).[`list`](ResServerTools.md#list-1)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:81](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L81)
+[packages/ai-tool/src/tool-func.ts:81](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L81)
 
-___
+***
 
-### preventExtensions
+### preventExtensions()
 
-▸ **preventExtensions**\<`T`\>(`o`): `T`
+> `static` **preventExtensions**\<`T`\>(`o`): `T`
 
 Prevents the addition of new properties to an object.
 
-#### Type parameters
+#### Type Parameters
 
-| Name |
-| :------ |
-| `T` |
+• **T**
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `T` | Object to make non-extensible. |
+• **o**: `T`
+
+Object to make non-extensible.
 
 #### Returns
 
@@ -2885,24 +2744,23 @@ Prevents the addition of new properties to an object.
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[preventExtensions](ResServerTools.md#preventextensions)
+[`ResServerTools`](ResServerTools.md).[`preventExtensions`](ResServerTools.md#preventextensions)
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:240
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:240
 
-___
+***
 
-### publish
+### publish()
 
-▸ **publish**(`data`, `event`): `undefined` \| `number`
+> `static` **publish**(`data`, `event`): `undefined` \| `number`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `data` | `any` |
-| `event` | `string` |
+• **data**: `any`
+
+• **event**: `string`
 
 #### Returns
 
@@ -2910,87 +2768,89 @@ ___
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:36](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-server.ts#L36)
+[packages/ai-tool/src/funcs/event-server.ts:36](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-server.ts#L36)
 
-___
+***
 
-### register
+### register()
 
-▸ **register**(`name`, `options`): `boolean` \| [`ToolFunc`](ToolFunc.md)
+#### register(name, options)
 
-#### Parameters
+> `static` **register**(`name`, `options`): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-| `options` | [`FuncItem`](../interfaces/FuncItem.md) |
+##### Parameters
 
-#### Returns
+• **name**: `string`
 
-`boolean` \| [`ToolFunc`](ToolFunc.md)
+• **options**: [`FuncItem`](../interfaces/FuncItem.md)
 
-#### Inherited from
-
-[ResServerTools](ResServerTools.md).[register](ResServerTools.md#register-1)
-
-#### Defined in
-
-[packages/ai-tool/src/tool-func.ts:172](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L172)
-
-▸ **register**(`func`, `options`): `boolean` \| [`ToolFunc`](ToolFunc.md)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `func` | `Function` |
-| `options` | [`FuncItem`](../interfaces/FuncItem.md) |
-
-#### Returns
+##### Returns
 
 `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-#### Inherited from
+##### Inherited from
 
-[ResServerTools](ResServerTools.md).[register](ResServerTools.md#register-1)
+[`ResServerTools`](ResServerTools.md).[`register`](ResServerTools.md#register-1)
 
-#### Defined in
+##### Defined in
 
-[packages/ai-tool/src/tool-func.ts:173](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L173)
+[packages/ai-tool/src/tool-func.ts:172](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L172)
 
-▸ **register**(`name`, `options?`): `boolean` \| [`ToolFunc`](ToolFunc.md)
+#### register(func, options)
 
-#### Parameters
+> `static` **register**(`func`, `options`): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` \| `Function` \| [`ToolFunc`](ToolFunc.md) \| [`FuncItem`](../interfaces/FuncItem.md) |
-| `options?` | [`FuncItem`](../interfaces/FuncItem.md) |
+##### Parameters
 
-#### Returns
+• **func**: `Function`
+
+• **options**: [`FuncItem`](../interfaces/FuncItem.md)
+
+##### Returns
 
 `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-#### Inherited from
+##### Inherited from
 
-[ResServerTools](ResServerTools.md).[register](ResServerTools.md#register-1)
+[`ResServerTools`](ResServerTools.md).[`register`](ResServerTools.md#register-1)
 
-#### Defined in
+##### Defined in
 
-[packages/ai-tool/src/tool-func.ts:174](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L174)
+[packages/ai-tool/src/tool-func.ts:173](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L173)
 
-___
+#### register(name, options)
 
-### run
+> `static` **register**(`name`, `options`?): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-▸ **run**(`name`, `params?`): `Promise`\<`any`\>
+##### Parameters
+
+• **name**: `string` \| `Function` \| [`ToolFunc`](ToolFunc.md) \| [`FuncItem`](../interfaces/FuncItem.md)
+
+• **options?**: [`FuncItem`](../interfaces/FuncItem.md)
+
+##### Returns
+
+`boolean` \| [`ToolFunc`](ToolFunc.md)
+
+##### Inherited from
+
+[`ResServerTools`](ResServerTools.md).[`register`](ResServerTools.md#register-1)
+
+##### Defined in
+
+[packages/ai-tool/src/tool-func.ts:174](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L174)
+
+***
+
+### run()
+
+> `static` **run**(`name`, `params`?): `Promise`\<`any`\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-| `params?` | `any` |
+• **name**: `string`
+
+• **params?**: `any`
 
 #### Returns
 
@@ -2998,24 +2858,23 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[run](ResServerTools.md#run-1)
+[`ResServerTools`](ResServerTools.md).[`run`](ResServerTools.md#run-1)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:130](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L130)
+[packages/ai-tool/src/tool-func.ts:130](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L130)
 
-___
+***
 
-### runSync
+### runSync()
 
-▸ **runSync**(`name`, `params?`): `any`
+> `static` **runSync**(`name`, `params`?): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-| `params?` | `any` |
+• **name**: `string`
+
+• **params?**: `any`
 
 #### Returns
 
@@ -3023,24 +2882,23 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[runSync](ResServerTools.md#runsync-1)
+[`ResServerTools`](ResServerTools.md).[`runSync`](ResServerTools.md#runsync-1)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:138](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L138)
+[packages/ai-tool/src/tool-func.ts:138](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L138)
 
-___
+***
 
-### runWithPos
+### runWithPos()
 
-▸ **runWithPos**(`name`, `...params`): `Promise`\<`any`\>
+> `static` **runWithPos**(`name`, ...`params`): `Promise`\<`any`\>
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-| `...params` | `any`[] |
+• **name**: `string`
+
+• ...**params**: `any`[]
 
 #### Returns
 
@@ -3048,24 +2906,23 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[runWithPos](ResServerTools.md#runwithpos-1)
+[`ResServerTools`](ResServerTools.md).[`runWithPos`](ResServerTools.md#runwithpos-1)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:151](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L151)
+[packages/ai-tool/src/tool-func.ts:151](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L151)
 
-___
+***
 
-### runWithPosSync
+### runWithPosSync()
 
-▸ **runWithPosSync**(`name`, `...params`): `any`
+> `static` **runWithPosSync**(`name`, ...`params`): `any`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
-| `...params` | `any`[] |
+• **name**: `string`
+
+• ...**params**: `any`[]
 
 #### Returns
 
@@ -3073,31 +2930,29 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[runWithPosSync](ResServerTools.md#runwithpossync-1)
+[`ResServerTools`](ResServerTools.md).[`runWithPosSync`](ResServerTools.md#runwithpossync-1)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:159](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L159)
+[packages/ai-tool/src/tool-func.ts:159](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L159)
 
-___
+***
 
-### seal
+### seal()
 
-▸ **seal**\<`T`\>(`o`): `T`
+> `static` **seal**\<`T`\>(`o`): `T`
 
 Prevents the modification of attributes of existing properties, and prevents the addition of new properties.
 
-#### Type parameters
+#### Type Parameters
 
-| Name |
-| :------ |
-| `T` |
+• **T**
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `T` | Object on which to lock the attributes. |
+• **o**: `T`
+
+Object on which to lock the attributes.
 
 #### Returns
 
@@ -3105,23 +2960,21 @@ Prevents the modification of attributes of existing properties, and prevents the
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[seal](ResServerTools.md#seal)
+[`ResServerTools`](ResServerTools.md).[`seal`](ResServerTools.md#seal)
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es5.d.ts:216
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:216
 
-___
+***
 
-### setApiRoot
+### setApiRoot()
 
-▸ **setApiRoot**(`v`): `void`
+> `static` **setApiRoot**(`v`): `void`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `v` | `string` |
+• **v**: `string`
 
 #### Returns
 
@@ -3129,26 +2982,29 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[setApiRoot](ResServerTools.md#setapiroot)
+[`ResServerTools`](ResServerTools.md).[`setApiRoot`](ResServerTools.md#setapiroot)
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:30](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/server-tools.ts#L30)
+[packages/ai-tool/src/server-tools.ts:30](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/server-tools.ts#L30)
 
-___
+***
 
-### setPrototypeOf
+### setPrototypeOf()
 
-▸ **setPrototypeOf**(`o`, `proto`): `any`
+> `static` **setPrototypeOf**(`o`, `proto`): `any`
 
 Sets the prototype of a specified object o to object proto or null. Returns the object o.
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `any` | The object to change its prototype. |
-| `proto` | ``null`` \| `object` | The value of the new prototype or null. |
+• **o**: `any`
+
+The object to change its prototype.
+
+• **proto**: `null` \| `object`
+
+The value of the new prototype or null.
 
 #### Returns
 
@@ -3156,69 +3012,73 @@ Sets the prototype of a specified object o to object proto or null. Returns the 
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[setPrototypeOf](ResServerTools.md#setprototypeof)
+[`ResServerTools`](ResServerTools.md).[`setPrototypeOf`](ResServerTools.md#setprototypeof)
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2015.core.d.ts:337
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2015.core.d.ts:339
 
-___
+***
 
-### subscribe
+### subscribe()
 
-▸ **subscribe**(`req`, `res`, `events?`): `Object`
+> `static` **subscribe**(`req`, `res`, `events`?): `object`
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `req` | `IncomingMessage` |
-| `res` | `ServerResponse`\<`IncomingMessage`\> |
-| `events?` | `string`[] |
+• **req**: `IncomingMessage`
+
+• **res**: `ServerResponse`\<`IncomingMessage`\>
+
+• **events?**: `string`[]
 
 #### Returns
 
-`Object`
+`object`
 
-| Name | Type |
-| :------ | :------ |
-| `events` | `undefined` \| `Events` |
-| `req` | `IncomingMessage` |
-| `res` | `ServerResponse`\<`IncomingMessage`\> |
+##### events
+
+> **events**: `undefined` \| `Events`
+
+##### req
+
+> **req**: `IncomingMessage`
+
+##### res
+
+> **res**: `ServerResponse`\<`IncomingMessage`\>
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-server.ts:46](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-server.ts#L46)
+[packages/ai-tool/src/funcs/event-server.ts:46](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-server.ts#L46)
 
-___
+***
 
-### toJSON
+### toJSON()
 
-▸ **toJSON**(): `Object`
+> `static` **toJSON**(): `object`
 
 #### Returns
 
-`Object`
+`object`
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[toJSON](ResServerTools.md#tojson-1)
+[`ResServerTools`](ResServerTools.md).[`toJSON`](ResServerTools.md#tojson-1)
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:44](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/server-tools.ts#L44)
+[packages/ai-tool/src/server-tools.ts:44](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/server-tools.ts#L44)
 
-___
+***
 
-### unregister
+### unregister()
 
-▸ **unregister**(`name`): `undefined` \| [`ToolFunc`](ToolFunc.md)
+> `static` **unregister**(`name`): `undefined` \| [`ToolFunc`](ToolFunc.md)
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `name` | `string` |
+• **name**: `string`
 
 #### Returns
 
@@ -3226,62 +3086,64 @@ ___
 
 #### Inherited from
 
-[ResServerTools](ResServerTools.md).[unregister](ResServerTools.md#unregister-1)
+[`ResServerTools`](ResServerTools.md).[`unregister`](ResServerTools.md#unregister-1)
 
 #### Defined in
 
-[packages/ai-tool/src/tool-func.ts:202](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/tool-func.ts#L202)
+[packages/ai-tool/src/tool-func.ts:202](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/tool-func.ts#L202)
 
-___
+***
 
-### values
+### values()
 
-▸ **values**\<`T`\>(`o`): `T`[]
+#### values(o)
 
-Returns an array of values of the enumerable properties of an object
+> `static` **values**\<`T`\>(`o`): `T`[]
 
-#### Type parameters
+Returns an array of values of the enumerable own properties of an object
 
-| Name |
-| :------ |
-| `T` |
+##### Type Parameters
 
-#### Parameters
+• **T**
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | \{ `[s: string]`: `T`;  } \| `ArrayLike`\<`T`\> | Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object. |
+##### Parameters
 
-#### Returns
+• **o**: `object` \| `ArrayLike`\<`T`\>
+
+Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object.
+
+##### Returns
 
 `T`[]
 
-#### Inherited from
+##### Inherited from
 
-[ResServerTools](ResServerTools.md).[values](ResServerTools.md#values)
+[`ResServerTools`](ResServerTools.md).[`values`](ResServerTools.md#values)
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2017.object.d.ts:24
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2017.object.d.ts:24
 
-▸ **values**(`o`): `any`[]
+#### values(o)
 
-Returns an array of values of the enumerable properties of an object
+> `static` **values**(`o`): `any`[]
 
-#### Parameters
+Returns an array of values of the enumerable own properties of an object
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `o` | `Object` | Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object. |
+##### Parameters
 
-#### Returns
+• **o**
+
+Object that contains the properties and methods. This can be an object that you created or an existing Document Object Model (DOM) object.
+
+##### Returns
 
 `any`[]
 
-#### Inherited from
+##### Inherited from
 
-[ResServerTools](ResServerTools.md).[values](ResServerTools.md#values)
+[`ResServerTools`](ResServerTools.md).[`values`](ResServerTools.md#values)
 
-#### Defined in
+##### Defined in
 
-node_modules/.pnpm/typescript@5.4.5/node_modules/typescript/lib/lib.es2017.object.d.ts:30
+node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2017.object.d.ts:30

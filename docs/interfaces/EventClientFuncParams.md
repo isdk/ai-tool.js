@@ -1,66 +1,55 @@
-[@isdk/ai-tool](../README.md) / [Exports](../modules.md) / EventClientFuncParams
+[**@isdk/ai-tool**](../README.md) • **Docs**
+
+***
+
+[@isdk/ai-tool](../globals.md) / EventClientFuncParams
 
 # Interface: EventClientFuncParams
 
-## Table of contents
-
-### Properties
-
-- [act](EventClientFuncParams.md#act)
-- [data](EventClientFuncParams.md#data)
-- [event](EventClientFuncParams.md#event)
-- [listener](EventClientFuncParams.md#listener)
-
 ## Properties
 
-### act
+### act?
 
-• `Optional` **act**: ``"sub"`` \| ``"pub"`` \| ``"unsub"`` \| ``"init"``
-
-#### Defined in
-
-[packages/ai-tool/src/funcs/event-client.ts:8](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-client.ts#L8)
-
-___
-
-### data
-
-• `Optional` **data**: `any`
+> `optional` **act**: `"sub"` \| `"pub"` \| `"unsub"` \| `"init"`
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-client.ts:7](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-client.ts#L7)
+[packages/ai-tool/src/funcs/event-client.ts:8](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-client.ts#L8)
 
-___
+***
 
-### event
+### data?
 
-• `Optional` **event**: `string` \| `string`[]
+> `optional` **data**: `any`
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-client.ts:6](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-client.ts#L6)
+[packages/ai-tool/src/funcs/event-client.ts:7](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-client.ts#L7)
 
-___
+***
 
-### listener
+### event?
 
-• `Optional` **listener**: (...`args`: `any`[]) => `void`
+> `optional` **event**: `string` \| `string`[]
 
-#### Type declaration
+#### Defined in
 
-▸ (`...args`): `void`
+[packages/ai-tool/src/funcs/event-client.ts:6](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-client.ts#L6)
 
-##### Parameters
+***
 
-| Name | Type |
-| :------ | :------ |
-| `...args` | `any`[] |
+### listener()?
 
-##### Returns
+> `optional` **listener**: (...`args`) => `void`
+
+#### Parameters
+
+• ...**args**: `any`[]
+
+#### Returns
 
 `void`
 
 #### Defined in
 
-[packages/ai-tool/src/funcs/event-client.ts:9](https://github.com/isdk/ai-tool.js/blob/c5e620338f3b80d6ef09148577c5087098896d8b/src/funcs/event-client.ts#L9)
+[packages/ai-tool/src/funcs/event-client.ts:9](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/funcs/event-client.ts#L9)
