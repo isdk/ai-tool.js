@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.2.1](https://github.com/isdk/ai-tool.js/compare/v0.2.0...v0.2.1) (2024-09-17)
+
+
+### Bug Fixes
+
+* TS1536: Octal escape sequences and backreferences are not allowed in a character class. ([5f9f008](https://github.com/isdk/ai-tool.js/commit/5f9f0083c734722103ff5468e424b48c212a55f0))
+
 ## [0.2.0](https://github.com/isdk/ai-tool.js/compare/v0.1.5...v0.2.0) (2024-09-16)
 
 
