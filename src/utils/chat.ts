@@ -29,6 +29,7 @@ export interface AIResult<TValue = any, TOptions = any> {
    */
   stop?: boolean
   taskId?: AsyncTaskId; // for stream chunk
+  [name: string]: any
 }
 
 // human: user role;  ai: assistant role ; generic means customize role
