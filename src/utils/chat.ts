@@ -4,8 +4,8 @@ import type { AsyncTaskId } from './cancelable-ability';
 export const AITextGenerationFinishReasons = [
   'stop',           // model generated stop sequence
   'length',         // model generated maximum number of tokens
-  'content-filter', // content filter violation stopped the model
-  'tool-calls',     // model triggered tool calls
+  'content_filter', // content filter violation stopped the model
+  'tool_calls',     // model triggered tool calls
   'function_call',  //
   'abort',          // aborted by user or timeout for stream
   'error',          // model stopped because of an error
