@@ -6,6 +6,7 @@ export const AITextGenerationFinishReasons = [
   'length',         // model generated maximum number of tokens
   'content-filter', // content filter violation stopped the model
   'tool-calls',     // model triggered tool calls
+  'function_call',  //
   'abort',          // aborted by user or timeout for stream
   'error',          // model stopped because of an error
   'other', null,    // model stopped for other reasons
