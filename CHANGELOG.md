@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.2.2](https://github.com/isdk/ai-tool.js/compare/v0.2.1...v0.2.2) (2024-09-25)
+
+
+### Refactor
+
+* easy extends any props for AIResult ([37ada54](https://github.com/isdk/ai-tool.js/commit/37ada542a786fbbc770f2d61beb564f6e603941d))
+* to keep openai compatibility ([e480d37](https://github.com/isdk/ai-tool.js/commit/e480d372a978acf9553c7e753dd34f2c3f65318f))
+* to keep openai compatibility ([e0a73f9](https://github.com/isdk/ai-tool.js/commit/e0a73f964b47e1648a79a6c60d60d5dae97ff738))
+
 ## [0.2.1](https://github.com/isdk/ai-tool.js/compare/v0.2.0...v0.2.1) (2024-09-17)
 
 
