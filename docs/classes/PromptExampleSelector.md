@@ -62,7 +62,7 @@ An optional configuration object.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:62](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/prompt-example-selector.ts#L62)
+[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:62](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/prompt/prompt-example-selector.ts#L62)
 
 ## Properties
 
@@ -74,7 +74,7 @@ The collection of prompt examples.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:55](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/prompt-example-selector.ts#L55)
+[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:55](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/prompt/prompt-example-selector.ts#L55)
 
 ***
 
@@ -84,7 +84,7 @@ The collection of prompt examples.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:47](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/prompt-example-selector.ts#L47)
+[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:47](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/prompt/prompt-example-selector.ts#L47)
 
 ***
 
@@ -96,7 +96,7 @@ The probability threshold (0-1) for selecting an example. If `undefined`, no fil
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:51](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/prompt-example-selector.ts#L51)
+[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:51](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/prompt/prompt-example-selector.ts#L51)
 
 ## Methods
 
@@ -114,7 +114,7 @@ An asynchronous iterator over the selected examples.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:119](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/prompt-example-selector.ts#L119)
+[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:119](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/prompt/prompt-example-selector.ts#L119)
 
 ***
 
@@ -140,7 +140,7 @@ An optional configuration object.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:71](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/prompt-example-selector.ts#L71)
+[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:71](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/prompt/prompt-example-selector.ts#L71)
 
 ***
 
@@ -168,7 +168,7 @@ The selected example, or `undefined` if not selected.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:92](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/prompt-example-selector.ts#L92)
+[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:92](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/prompt/prompt-example-selector.ts#L92)
 
 ***
 
@@ -192,4 +192,4 @@ An asynchronous iterator yielding selected examples.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:103](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/prompt/prompt-example-selector.ts#L103)
+[packages/ai-tool/src/utils/prompt/prompt-example-selector.ts:103](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/prompt/prompt-example-selector.ts#L103)

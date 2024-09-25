@@ -6,8 +6,8 @@
 
 # Variable: AITextGenerationFinishReasons
 
-> `const` **AITextGenerationFinishReasons**: readonly [`"stop"`, `"length"`, `"content-filter"`, `"tool-calls"`, `"abort"`, `"error"`, `"other"`, `null`]
+> `const` **AITextGenerationFinishReasons**: readonly [`"stop"`, `"length"`, `"content_filter"`, `"tool_calls"`, `"function_call"`, `"abort"`, `"error"`, `"other"`, `null`]
 
 ## Defined in
 
-[packages/ai-tool/src/utils/chat.ts:4](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L4)
+[packages/ai-tool/src/utils/chat.ts:4](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/chat.ts#L4)

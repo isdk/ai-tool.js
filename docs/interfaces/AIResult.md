@@ -12,6 +12,10 @@
 
 • **TOptions** = `any`
 
+## Indexable
+
+ \[`name`: `string`\]: `any`
+
 ## Properties
 
 ### content?
@@ -22,19 +26,19 @@ The generated value.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:19](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L19)
+[packages/ai-tool/src/utils/chat.ts:20](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/chat.ts#L20)
 
 ***
 
 ### finishReason?
 
-> `optional` **finishReason**: `null` \| `"abort"` \| `"stop"` \| `"length"` \| `"content-filter"` \| `"tool-calls"` \| `"error"` \| `"other"`
+> `optional` **finishReason**: `null` \| `"abort"` \| `"stop"` \| `"length"` \| `"content_filter"` \| `"tool_calls"` \| `"function_call"` \| `"error"` \| `"other"`
 
 The reason why the generation stopped.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:24](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L24)
+[packages/ai-tool/src/utils/chat.ts:25](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/chat.ts#L25)
 
 ***
 
@@ -44,7 +48,7 @@ The reason why the generation stopped.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:25](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L25)
+[packages/ai-tool/src/utils/chat.ts:26](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/chat.ts#L26)
 
 ***
 
@@ -56,7 +60,7 @@ for stream mode
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:29](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L29)
+[packages/ai-tool/src/utils/chat.ts:30](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/chat.ts#L30)
 
 ***
 
@@ -66,4 +70,4 @@ for stream mode
 
 #### Defined in
 
-[packages/ai-tool/src/utils/chat.ts:30](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/chat.ts#L30)
+[packages/ai-tool/src/utils/chat.ts:31](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/chat.ts#L31)

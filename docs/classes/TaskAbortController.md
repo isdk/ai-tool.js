@@ -30,7 +30,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:21](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L21)
+[packages/ai-tool/src/utils/cancelable-ability.ts:21](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L21)
 
 ## Properties
 
@@ -40,7 +40,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:16](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L16)
+[packages/ai-tool/src/utils/cancelable-ability.ts:16](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L16)
 
 ***
 
@@ -50,7 +50,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:19](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L19)
+[packages/ai-tool/src/utils/cancelable-ability.ts:19](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L19)
 
 ***
 
@@ -78,7 +78,7 @@ node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.dom.d.ts:2
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:18](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L18)
+[packages/ai-tool/src/utils/cancelable-ability.ts:18](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L18)
 
 ***
 
@@ -88,7 +88,7 @@ node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.dom.d.ts:2
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:17](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L17)
+[packages/ai-tool/src/utils/cancelable-ability.ts:17](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L17)
 
 ## Methods
 
@@ -116,7 +116,7 @@ Invoking this method will set this object's AbortSignal's aborted flag and signa
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:26](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L26)
+[packages/ai-tool/src/utils/cancelable-ability.ts:26](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L26)
 
 ***
 
@@ -134,4 +134,4 @@ Invoking this method will set this object's AbortSignal's aborted flag and signa
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:35](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L35)
+[packages/ai-tool/src/utils/cancelable-ability.ts:35](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L35)

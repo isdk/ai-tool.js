@@ -18,7 +18,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:11](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L11)
+[packages/ai-tool/src/utils/cancelable-ability.ts:11](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L11)
 
 ***
 
@@ -84,7 +84,7 @@ node\_modules/.pnpm/custom-ability@2.0.0/node\_modules/custom-ability/lib/custom
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:12](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L12)
+[packages/ai-tool/src/utils/cancelable-ability.ts:12](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L12)
 
 ***
 

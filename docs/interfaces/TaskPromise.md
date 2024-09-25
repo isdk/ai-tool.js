@@ -36,7 +36,7 @@ node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2015.sym
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:51](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L51)
+[packages/ai-tool/src/utils/cancelable-ability.ts:51](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L51)
 
 ## Methods
 

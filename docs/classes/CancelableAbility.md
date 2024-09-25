@@ -28,7 +28,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:65](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L65)
+[packages/ai-tool/src/utils/cancelable-ability.ts:65](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L65)
 
 ***
 
@@ -38,7 +38,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:66](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L66)
+[packages/ai-tool/src/utils/cancelable-ability.ts:66](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L66)
 
 ***
 
@@ -48,7 +48,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:55](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L55)
+[packages/ai-tool/src/utils/cancelable-ability.ts:55](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L55)
 
 ***
 
@@ -58,7 +58,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:56](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L56)
+[packages/ai-tool/src/utils/cancelable-ability.ts:56](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L56)
 
 ***
 
@@ -78,7 +78,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:63](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L63)
+[packages/ai-tool/src/utils/cancelable-ability.ts:63](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L63)
 
 ***
 
@@ -98,7 +98,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:62](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L62)
+[packages/ai-tool/src/utils/cancelable-ability.ts:62](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L62)
 
 ## Accessors
 
@@ -112,7 +112,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:68](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L68)
+[packages/ai-tool/src/utils/cancelable-ability.ts:68](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L68)
 
 ***
 
@@ -126,7 +126,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:72](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L72)
+[packages/ai-tool/src/utils/cancelable-ability.ts:72](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L72)
 
 ## Methods
 
@@ -146,7 +146,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:234](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L234)
+[packages/ai-tool/src/utils/cancelable-ability.ts:234](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L234)
 
 ***
 
@@ -166,7 +166,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:134](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L134)
+[packages/ai-tool/src/utils/cancelable-ability.ts:134](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L134)
 
 ***
 
@@ -186,7 +186,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:214](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L214)
+[packages/ai-tool/src/utils/cancelable-ability.ts:214](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L214)
 
 ***
 
@@ -206,7 +206,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:147](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L147)
+[packages/ai-tool/src/utils/cancelable-ability.ts:147](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L147)
 
 ***
 
@@ -226,7 +226,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:291](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L291)
+[packages/ai-tool/src/utils/cancelable-ability.ts:291](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L291)
 
 ***
 
@@ -244,7 +244,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:224](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L224)
+[packages/ai-tool/src/utils/cancelable-ability.ts:224](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L224)
 
 ***
 
@@ -266,7 +266,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:158](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L158)
+[packages/ai-tool/src/utils/cancelable-ability.ts:158](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L158)
 
 ***
 
@@ -296,7 +296,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:238](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L238)
+[packages/ai-tool/src/utils/cancelable-ability.ts:238](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L238)
 
 ***
 
@@ -314,7 +314,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:96](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L96)
+[packages/ai-tool/src/utils/cancelable-ability.ts:96](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L96)
 
 ***
 
@@ -328,7 +328,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:119](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L119)
+[packages/ai-tool/src/utils/cancelable-ability.ts:119](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L119)
 
 ***
 
@@ -346,7 +346,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:81](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L81)
+[packages/ai-tool/src/utils/cancelable-ability.ts:81](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L81)
 
 ***
 
@@ -376,4 +376,4 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:276](https://github.com/isdk/ai-tool.js/blob/5f9f0083c734722103ff5468e424b48c212a55f0/src/utils/cancelable-ability.ts#L276)
+[packages/ai-tool/src/utils/cancelable-ability.ts:276](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/cancelable-ability.ts#L276)
