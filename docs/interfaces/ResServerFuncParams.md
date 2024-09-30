@@ -22,7 +22,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:9](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/server-tools.ts#L9)
+[packages/ai-tool/src/server-tools.ts:9](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/server-tools.ts#L9)
 
 ***
 
@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/server-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/server-tools.ts#L10)
+[packages/ai-tool/src/server-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/server-tools.ts#L10)
 
 ***
 
@@ -50,7 +50,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/rpc-methods-server-tool.ts:7](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/rpc-methods-server-tool.ts#L7)
+[packages/ai-tool/src/rpc-methods-server-tool.ts:7](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/rpc-methods-server-tool.ts#L7)
 
 ***
 
@@ -60,7 +60,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:6](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/res-server-tools.ts#L6)
+[packages/ai-tool/src/res-server-tools.ts:6](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/res-server-tools.ts#L6)
 
 ***
 
@@ -70,4 +70,4 @@
 
 #### Defined in
 
-[packages/ai-tool/src/res-server-tools.ts:8](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/res-server-tools.ts#L8)
+[packages/ai-tool/src/res-server-tools.ts:8](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/res-server-tools.ts#L8)

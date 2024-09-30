@@ -34,4 +34,4 @@ console.log(splitSentence(text));  // returns ['Hello world!', 'How are you toda
 
 ## Defined in
 
-[packages/ai-tool/src/utils/split-sentence.ts:29](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/split-sentence.ts#L29)
+[packages/ai-tool/src/utils/split-sentence.ts:29](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/split-sentence.ts#L29)

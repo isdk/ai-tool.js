@@ -30,7 +30,7 @@ Configuration options and helper callback methods for stream lifecycle events.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:12](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/stream/create-callbacks-stream.ts#L12)
+[packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:12](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/stream/create-callbacks-stream.ts#L12)
 
 ***
 
@@ -50,7 +50,7 @@ Configuration options and helper callback methods for stream lifecycle events.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:11](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/stream/create-callbacks-stream.ts#L11)
+[packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:11](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/stream/create-callbacks-stream.ts#L11)
 
 ***
 
@@ -70,7 +70,7 @@ Configuration options and helper callback methods for stream lifecycle events.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:7](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/stream/create-callbacks-stream.ts#L7)
+[packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:7](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/stream/create-callbacks-stream.ts#L7)
 
 ***
 
@@ -92,4 +92,4 @@ Configuration options and helper callback methods for stream lifecycle events.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:9](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/stream/create-callbacks-stream.ts#L9)
+[packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:9](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/stream/create-callbacks-stream.ts#L9)

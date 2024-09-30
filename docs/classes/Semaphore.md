@@ -64,7 +64,7 @@ The maximum number of callers allowed to acquire the semaphore concurrently.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/async-semaphore.ts:207](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/async-semaphore.ts#L207)
+[packages/ai-tool/src/utils/async-semaphore.ts:207](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/async-semaphore.ts#L207)
 
 ## Properties
 
@@ -74,7 +74,7 @@ The maximum number of callers allowed to acquire the semaphore concurrently.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/async-semaphore.ts:151](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/async-semaphore.ts#L151)
+[packages/ai-tool/src/utils/async-semaphore.ts:151](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/async-semaphore.ts#L151)
 
 ***
 
@@ -84,7 +84,7 @@ The maximum number of callers allowed to acquire the semaphore concurrently.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/async-semaphore.ts:152](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/async-semaphore.ts#L152)
+[packages/ai-tool/src/utils/async-semaphore.ts:152](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/async-semaphore.ts#L152)
 
 ## Methods
 
@@ -104,7 +104,7 @@ Acquire a token from the semaphore, thus decrement the number of available execu
 
 #### Defined in
 
-[packages/ai-tool/src/utils/async-semaphore.ts:265](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/async-semaphore.ts#L265)
+[packages/ai-tool/src/utils/async-semaphore.ts:265](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/async-semaphore.ts#L265)
 
 ***
 
@@ -120,7 +120,7 @@ Drains the semaphore and returns all the initialized tokens in an array. Drainin
 
 #### Defined in
 
-[packages/ai-tool/src/utils/async-semaphore.ts:301](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/async-semaphore.ts#L301)
+[packages/ai-tool/src/utils/async-semaphore.ts:301](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/async-semaphore.ts#L301)
 
 ***
 
@@ -138,7 +138,7 @@ The number of waiters in the waiting list.
 
 #### Defined in
 
-[packages/ai-tool/src/utils/async-semaphore.ts:314](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/async-semaphore.ts#L314)
+[packages/ai-tool/src/utils/async-semaphore.ts:314](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/async-semaphore.ts#L314)
 
 ***
 
@@ -158,7 +158,7 @@ Release the semaphore, thus increment the number of free execution slots. If ini
 
 #### Defined in
 
-[packages/ai-tool/src/utils/async-semaphore.ts:294](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/async-semaphore.ts#L294)
+[packages/ai-tool/src/utils/async-semaphore.ts:294](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/async-semaphore.ts#L294)
 
 ***
 
@@ -174,4 +174,4 @@ Attempt to acquire a token from the semaphore, if one is available immediately. 
 
 #### Defined in
 
-[packages/ai-tool/src/utils/async-semaphore.ts:258](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/async-semaphore.ts#L258)
+[packages/ai-tool/src/utils/async-semaphore.ts:258](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/async-semaphore.ts#L258)

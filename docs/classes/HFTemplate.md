@@ -26,7 +26,7 @@ The template string
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:45](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/prompt/template/jinja/src/index.ts#L45)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:45](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/prompt/template/jinja/src/index.ts#L45)
 
 ## Properties
 
@@ -36,7 +36,7 @@ The template string
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:38](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/prompt/template/jinja/src/index.ts#L38)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:38](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/prompt/template/jinja/src/index.ts#L38)
 
 ***
 
@@ -46,7 +46,7 @@ The template string
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:40](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/prompt/template/jinja/src/index.ts#L40)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:40](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/prompt/template/jinja/src/index.ts#L40)
 
 ## Methods
 
@@ -64,4 +64,4 @@ The template string
 
 #### Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:55](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/prompt/template/jinja/src/index.ts#L55)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:55](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/prompt/template/jinja/src/index.ts#L55)

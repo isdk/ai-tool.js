@@ -6,44 +6,16 @@
 
 # Function: stringifyYaml()
 
-## stringifyYaml(value, options)
+> **stringifyYaml**(`content`): `string`
 
-> **stringifyYaml**(`value`, `options`?): `string`
+## Parameters
 
-Stringify a value as a YAML document.
+• **content**: `any`
 
-### Parameters
-
-• **value**: `any`
-
-• **options?**: `DocumentOptions` & `SchemaOptions` & `ParseOptions` & `CreateNodeOptions` & `ToStringOptions`
-
-### Returns
+## Returns
 
 `string`
 
-Will always include `\n` as the last character, as is expected of YAML documents.
+## Defined in
 
-### Defined in
-
-node\_modules/.pnpm/yaml@2.5.1/node\_modules/yaml/dist/public-api.d.ts:42
-
-## stringifyYaml(value, replacer, options)
-
-> **stringifyYaml**(`value`, `replacer`?, `options`?): `string`
-
-### Parameters
-
-• **value**: `any`
-
-• **replacer?**: `null` \| `Replacer`
-
-• **options?**: `string` \| `number` \| `DocumentOptions` & `SchemaOptions` & `ParseOptions` & `CreateNodeOptions` & `ToStringOptions`
-
-### Returns
-
-`string`
-
-### Defined in
-
-node\_modules/.pnpm/yaml@2.5.1/node\_modules/yaml/dist/public-api.d.ts:43
+[packages/ai-tool/src/utils/config.ts:28](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/config.ts#L28)

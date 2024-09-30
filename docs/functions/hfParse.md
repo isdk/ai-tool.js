@@ -21,4 +21,4 @@ Operator precedence can be found here: https://developer.mozilla.org/en-US/docs/
 
 ## Defined in
 
-[packages/ai-tool/src/utils/prompt/template/jinja/src/parser.ts:32](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/prompt/template/jinja/src/parser.ts#L32)
+[packages/ai-tool/src/utils/prompt/template/jinja/src/parser.ts:32](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/prompt/template/jinja/src/parser.ts#L32)

@@ -38,4 +38,4 @@ const output2 = trimStart("   text"); // "   text"
 
 ## Defined in
 
-[packages/ai-tool/src/utils/stream/ai-stream.ts:92](https://github.com/isdk/ai-tool.js/blob/37ada542a786fbbc770f2d61beb564f6e603941d/src/utils/stream/ai-stream.ts#L92)
+[packages/ai-tool/src/utils/stream/ai-stream.ts:92](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/stream/ai-stream.ts#L92)
