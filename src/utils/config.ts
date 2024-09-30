@@ -1,13 +1,12 @@
 import {existsSync, mkdirSync, readdirSync, statSync, writeFileSync, type Dirent} from 'fs'
 import path from 'path'
 import { Config as ConfigFile } from 'load-config-file'
-import { parse, stringify as stringifyYaml } from 'yaml'
+import { parse, stringify } from 'yaml'
 import { regexp } from 'yaml-types'
 import {mimeType} from 'mime-type/with-db'
 
 import { getMultiLevelExtname } from './filename'
 
-export { stringify as stringifyYaml } from 'yaml'
 export { mimeType }
 
 const YamlTags = [regexp]
@@ -24,6 +23,10 @@ export function registerYamlTag(tags: any) {
 
 export function parseYaml(content: string) {
   return parse(content, {customTags: YamlTags})
+}
+
+export function stringifyYaml(content: any) {
+  return stringify(content, { customTags: YamlTags })
 }
 
 function parseJson(content: string) {
