@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.2.3](https://github.com/isdk/ai-tool.js/compare/v0.2.2...v0.2.3) (2024-09-30)
+
+
+### Features
+
+* **util:** add hasDirectoryIn and isSubdirectory funcs ([718997b](https://github.com/isdk/ai-tool.js/commit/718997b3ef3551f7a22ffe2052ccd10e877f951b))
+* **util:** add RegExp func ([799d5bb](https://github.com/isdk/ai-tool.js/commit/799d5bb25ef79908243c5f22ad764b8ebed36395))
+
+
+### Bug Fixes
+
+* stringifyYaml should use customTags too ([fe6b47f](https://github.com/isdk/ai-tool.js/commit/fe6b47f429fb128627d2210e367fa914b891d314))
+
 ## [0.2.2](https://github.com/isdk/ai-tool.js/compare/v0.2.1...v0.2.2) (2024-09-25)
 
 
