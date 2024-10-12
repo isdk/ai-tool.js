@@ -108,7 +108,7 @@ export function loadTextFromPaths(filename: string, searchPaths?: string[], extN
   }
   const result = loadFileFromPaths(filename, searchPaths, extNames, options)
   if (encoding === undefined) {
-    encoding = jschardet.detect(result).encoding as any ?? 'utf8'
+    encoding = detectCharset(result) as any ?? 'utf8'
   }
   const decoder = new TextDecoder(encoding)
   return decoder.decode(result)
@@ -219,4 +219,8 @@ export function getHashAlgoBySize(size: number) {
     hashAlgo = HashAlgorithm.sha512
   }
   return hashAlgo as HashAlgorithm
+}
+
+export function detectCharset(content: Buffer|string, options?: any) {
+  return jschardet.detect(content, options).encoding
 }
