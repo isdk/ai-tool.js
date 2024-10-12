@@ -2,6 +2,8 @@ import path from 'path'
 import * as fs from 'fs'
 import { extNameLevel, getMultiLevelExtname } from './filename'
 import { NotFoundError } from './base-error'
+import { HashAlgoParams, HashAlgorithm, hashStream } from './hash'
+import _mimeType from 'mime-type/with-db'
 
 /**
  * Checks if a file (not a directory) exists at the specified path.
@@ -176,4 +178,38 @@ export function getRealFilepath(filepath: string) {
     filepath = fs.readlinkSync(filepath)
   }
   return filepath
+}
+
+export async function hashFile(filepath: string, options?: HashAlgoParams)
+{
+  const stream = (ReadableStream as any).from(fs.createReadStream(filepath))
+  return hashStream(stream, options)
+}
+
+// get file base info: created time, modified time, size, mime type, hash
+export async function getFileMetaInfo(filepath: string) {
+  const name = path.basename(filepath)
+  filepath = path.resolve(filepath)
+  const stat = await fs.promises.stat(filepath)
+  const mtime = stat.mtime
+  const ctime = stat.ctime
+  const size = stat.size
+  const hashAlgo = getHashAlgoBySize(size)
+  const hash = await hashFile(filepath, {hashAlgo})
+  const mimeType = _mimeType.lookup(filepath)
+  return {name, mtime, ctime, size, hash: HashAlgorithm[hashAlgo] + ':' + hash, mimeType, id: 'file://'+filepath}
+}
+
+export function getHashAlgoBySize(size: number) {
+  let hashAlgo = HashAlgorithm.xxhash
+  if (size <= 1024*2) {
+    hashAlgo = HashAlgorithm.xxhash32
+  } else if (size <= 1024*1024) {
+    hashAlgo = HashAlgorithm.xxhash64
+  } else if (size <= 10*1024*1024) {
+    hashAlgo = HashAlgorithm.xxhash128
+  } else if (size > 10*1024*1024) {
+    hashAlgo = HashAlgorithm.sha512
+  }
+  return hashAlgo as HashAlgorithm
 }

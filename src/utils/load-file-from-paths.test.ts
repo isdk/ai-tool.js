@@ -2,7 +2,7 @@ import {type Mock, vi} from 'vitest'
 import path from 'path';
 import * as fs from 'fs';
 
-import {loadFileFromPaths} from './load-file-from-paths'
+import {getFileMetaInfo, hashFile, loadFileFromPaths} from './load-file-from-paths'
 import { NotFoundError } from './base-error';
 
 vi.mock('fs', async (importOriginal) => {
@@ -100,3 +100,32 @@ describe('loadFileFromPaths', () => {
   });
 
 });
+
+describe('hashFile', () => {
+  it('returns correct hash for a given file', async () => {
+    const filePath = path.join(__dirname, '..', '..', 'test','test-file.md');
+    const expectedHash = '疨ꂉ鵵馂ɟ';
+
+    const result = await hashFile(filePath);
+
+    expect(result).toBe(expectedHash);
+  })
+})
+
+describe('getFileMetaInfo', () => {
+  it('returns metainfo for a given file', async () => {
+    const filePath = path.join(__dirname, '..', '..', 'test','test-file.md');
+
+    const result = await getFileMetaInfo(filePath);
+    expect(result).toMatchObject({
+      name: 'test-file.md',
+      mtime: new Date('2024-10-12T09:13:53.200Z'),
+      ctime: new Date('2024-10-12T09:13:53.200Z'),
+      size: 841,
+      hash: 'xxhash32:歨季ʟ',
+      mimeType: 'text/markdown',
+      id: 'file://' + path.resolve(filePath),
+    })
+
+  })
+})

@@ -1,4 +1,4 @@
-import { xxhash, uuid, XXHashAlgorithm, xxhashAsStr, base32768, uuidValidate } from '../src/utils'
+import { xxhash, uuid, HashAlgorithm, xxhashAsStr, base32768, uuidValidate } from '../src/utils'
 
 describe("hash", () => {
   it("should hash a string", () => {
@@ -10,12 +10,12 @@ describe("hash", () => {
     expect(xxhash(input)).toStrictEqual(result)
     expect(xxhashAsStr(input)).toStrictEqual(base32768.encode(result))
     expect(xxhash("hello worldx")).not.toStrictEqual(result)
-    result = xxhash(input, XXHashAlgorithm.xxhash32)
+    result = xxhash(input, HashAlgorithm.xxhash32)
     expect(result).toBeInstanceOf(Uint8Array)
     expect(result.length).toBe(4)
-    expect(xxhash(input, XXHashAlgorithm.xxhash32)).toStrictEqual(result)
-    expect(xxhashAsStr(input, XXHashAlgorithm.xxhash32)).toStrictEqual(base32768.encode(result))
-    expect(xxhash("hello worldx", XXHashAlgorithm.xxhash32)).not.toStrictEqual(result)
+    expect(xxhash(input, HashAlgorithm.xxhash32)).toStrictEqual(result)
+    expect(xxhashAsStr(input, HashAlgorithm.xxhash32)).toStrictEqual(base32768.encode(result))
+    expect(xxhash("hello worldx", HashAlgorithm.xxhash32)).not.toStrictEqual(result)
   })
 })
 
