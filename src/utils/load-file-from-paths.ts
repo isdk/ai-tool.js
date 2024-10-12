@@ -1,9 +1,12 @@
 import path from 'path'
 import * as fs from 'fs'
+import _mimeType from 'mime-type/with-db'
+import jschardet from 'jschardet'
+
 import { extNameLevel, getMultiLevelExtname } from './filename'
 import { NotFoundError } from './base-error'
 import { HashAlgoParams, HashAlgorithm, hashStream } from './hash'
-import _mimeType from 'mime-type/with-db'
+
 
 /**
  * Checks if a file (not a directory) exists at the specified path.
@@ -96,15 +99,19 @@ function tryGetFilepath(filename: string, searchPaths: string[], {extNames, sign
 }
 
 export function loadTextFromPaths(filename: string, searchPaths?: string[], extNames?: string[], options?: {encoding?: BufferEncoding, filepath?: string, signal?: AbortSignal}|BufferEncoding, exclude?: string[]|string) {
-  let encoding: BufferEncoding
+  let encoding: BufferEncoding|undefined
   if (typeof options === 'string') {
     encoding = options
     options = undefined
   } else {
-    encoding = options?.encoding ?? 'utf8'
+    encoding = options?.encoding
   }
   const result = loadFileFromPaths(filename, searchPaths, extNames, options)
-  return result.toString(encoding)
+  if (encoding === undefined) {
+    encoding = jschardet.detect(result).encoding as any ?? 'utf8'
+  }
+  const decoder = new TextDecoder(encoding)
+  return decoder.decode(result)
 }
 
 /**
@@ -182,7 +189,7 @@ export function getRealFilepath(filepath: string) {
 
 export async function hashFile(filepath: string, options?: HashAlgoParams)
 {
-  const stream = (ReadableStream as any).from(fs.createReadStream(filepath))
+  const stream = (ReadableStream as any).from(fs.createReadStream(filepath)) as ReadableStream<Buffer>
   return hashStream(stream, options)
 }
 

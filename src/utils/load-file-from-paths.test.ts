@@ -2,7 +2,7 @@ import {type Mock, vi} from 'vitest'
 import path from 'path';
 import * as fs from 'fs';
 
-import {getFileMetaInfo, hashFile, loadFileFromPaths} from './load-file-from-paths'
+import {getFileMetaInfo, hashFile, loadFileFromPaths, loadTextFromPaths} from './load-file-from-paths'
 import { NotFoundError } from './base-error';
 
 vi.mock('fs', async (importOriginal) => {
@@ -14,6 +14,21 @@ describe('loadFileFromPaths', () => {
   beforeEach(() => {
     // Reset the mocked fs module between tests
     vi.resetAllMocks();
+  });
+
+  it('loads a text file with detected encoding automatically', () => {
+    const mockFilePath = '/absolute/path/to/file';
+
+    (fs.statSync as Mock).mockReturnValue({isFile: ()=> true});
+    (fs.readFileSync as Mock).mockReturnValueOnce(Buffer.from([
+      0xa6, 0xb8, 0xb1, 0x60, 0xa5, 0xce, 0xb0, 0xea,
+      0xa6, 0x72, 0xbc, 0xd0, 0xb7, 0xc7, 0xa6, 0x72,
+      0xc5, 0xe9, 0xaa, 0xed
+    ]));
+    const result = loadTextFromPaths(mockFilePath)
+    expect(result).toBe('次常用國字標準字體表')
+    expect(fs.statSync).toHaveBeenCalledWith(path.resolve(mockFilePath), {throwIfNoEntry: false});
+    expect(fs.readFileSync).toHaveBeenCalledWith(mockFilePath);
   });
 
   it('loads a file from an absolute path', () => {
@@ -119,8 +134,8 @@ describe('getFileMetaInfo', () => {
     const result = await getFileMetaInfo(filePath);
     expect(result).toMatchObject({
       name: 'test-file.md',
-      mtime: new Date('2024-10-12T09:13:53.200Z'),
-      ctime: new Date('2024-10-12T09:13:53.200Z'),
+      mtime: new Date('2024-10-12T12:11:36.100Z'),
+      ctime: new Date('2024-10-12T12:11:36.100Z'),
       size: 841,
       hash: 'xxhash32:歨季ʟ',
       mimeType: 'text/markdown',
