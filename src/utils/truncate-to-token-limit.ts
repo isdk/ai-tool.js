@@ -43,6 +43,9 @@ export async function truncateToTokenLimit(content: string, options?: ITruncateT
           // this should never happen
           throw new CommonError(`Can not find sentence: ${lastSentence}`, 'truncateContentToTokenLimit')
         }
+        if (currentSize <= 1) {
+          throw new CommonError(`Can not truncate content to fit within the token limit: ${size}`, 'truncateContentToTokenLimit')
+        }
         content = content.slice(0, i)
       }
     }

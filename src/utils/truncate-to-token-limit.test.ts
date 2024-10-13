@@ -9,6 +9,13 @@ describe('truncateToTokenLimit', () => {
     expect(result).toBe(content);
   });
 
+  it('should throw error if sentence is too long to fit the token size', async () => {
+    const content = 'This is a very long long long simple test content sentence, can not be truncated to fit within the token limit.';
+    const options = { size: 10 };
+
+    expect(truncateToTokenLimit(content, options)).rejects.toThrow('Can not truncate content to fit within the token limit:');
+  });
+
   it('should truncate content if size is exceeded', async () => {
     const content = "This is an example text that will be truncated to fit within the token limit. It contains multiple sentences. Each sentence will be removed until the content fits within the specified token limit. This is the fourth sentence. This is the fifth sentence.";
     const options = { size: 36 };
@@ -23,13 +30,6 @@ describe('truncateToTokenLimit', () => {
     const result = await truncateToTokenLimit(content, options);
     expect(result).toBe('3.14 is pi. “你好！！！”')
   })
-
-  it('should empty string if all sentences removed', async () => {
-    const content = "This is an example text that will be truncated to fit within the token limit. It contains multiple sentences. Each sentence will be removed until the content fits within the specified token limit.";
-    const options = { size: 5 };
-    const result = await truncateToTokenLimit(content, options);
-    expect(result).toBe('')
-  });
 
   it('should handle default options', async () => {
     const content = 'This is a test content.';
