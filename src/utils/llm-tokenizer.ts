@@ -1,11 +1,12 @@
 import path from 'path'
 import { fileURLToPath } from 'url';
 import { AutoTokenizer, type PreTrainedTokenizer } from '@xenova/transformers';
+import { getPackageDir } from './get-package-dir';
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const cachePath = path.join(__dirname, '..', '.cache')
+const cachePath = path.join(getPackageDir(__dirname), '.cache')
 
 const TOKENIZER_MAPPINGS = new Map<string, Promise<PreTrainedTokenizer>>();
 
