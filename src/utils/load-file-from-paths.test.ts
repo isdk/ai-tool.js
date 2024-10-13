@@ -4,6 +4,7 @@ import * as fs from 'fs';
 
 import {getFileMetaInfo, hashFile, loadFileFromPaths, loadTextFromPaths} from './load-file-from-paths'
 import { NotFoundError } from './base-error';
+import { getPackageDir } from './get-package-dir';
 
 vi.mock('fs', async (importOriginal) => {
   const p = await importOriginal() as any
@@ -118,8 +119,8 @@ describe('loadFileFromPaths', () => {
 
 describe('hashFile', () => {
   it('returns correct hash for a given file', async () => {
-    const filePath = path.join(__dirname, '..', '..', 'test','test-file.md');
-    const expectedHash = '疨ꂉ鵵馂ɟ';
+    const filePath = path.join(getPackageDir(__dirname), 'test','test-file.md');
+    const expectedHash = '⣖杀笼雦Ɵ';
 
     const result = await hashFile(filePath);
 
@@ -129,15 +130,15 @@ describe('hashFile', () => {
 
 describe('getFileMetaInfo', () => {
   it('returns metainfo for a given file', async () => {
-    const filePath = path.join(__dirname, '..', '..', 'test','test-file.md');
+    const filePath = path.join(getPackageDir(__dirname), 'test','test-file.md');
 
     const result = await getFileMetaInfo(filePath);
     expect(result).toMatchObject({
       name: 'test-file.md',
-      mtime: new Date('2024-10-12T12:11:36.100Z'),
-      ctime: new Date('2024-10-12T12:11:36.100Z'),
-      size: 841,
-      hash: 'xxhash32:歨季ʟ',
+      mtime: new Date('2024-10-13T11:47:00.584Z'),
+      ctime: new Date('2024-10-13T11:47:00.584Z'),
+      size: 945,
+      hash: 'xxhash32:嘙蚥Ɵ',
       mimeType: 'text/markdown',
       id: 'file://' + path.resolve(filePath),
     })

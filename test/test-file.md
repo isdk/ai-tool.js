@@ -22,3 +22,5 @@ te.encode('\u00fc'); // Uint8Array(2) [195, 188]
 te.encode('u\u0308'.normalize('NFKC')); // Uint8Array(2) [195, 188]
 te.encode('\u00fc'.normalize('NFKC')); // Uint8Array(2) [195, 188]
 ```
+
+这是测试文件的内容。这是第二句。这是第三句。这是第四句。这是第五句。
