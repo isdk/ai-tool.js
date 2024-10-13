@@ -106,7 +106,11 @@ export function loadTextFromPaths(filename: string, searchPaths?: string[], extN
   } else {
     encoding = options?.encoding
   }
-  const result = loadFileFromPaths(filename, searchPaths, extNames, options)
+  const result = decodeCharset(loadFileFromPaths(filename, searchPaths, extNames, options), encoding)
+  return result
+}
+
+export function decodeCharset(result: Buffer, encoding?: BufferEncoding) {
   if (encoding === undefined) {
     encoding = detectCharset(result) as any ?? 'utf8'
   }
