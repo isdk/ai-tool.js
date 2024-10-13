@@ -4,6 +4,8 @@ const AB_SENIOR = /([A-Z][a-z]{1,2}\.)\s(\w)/g;
 const AB_ACRONYM = /(\.[a-zA-Z]\.)\s(\w)/g;
 const UNDO_AB_SENIOR = new RegExp('([A-Z][a-z]{1,2}\\.)' + SEPARATOR + '(\\w)', 'g');
 const UNDO_AB_ACRONYM = new RegExp('(\\.[a-zA-Z]\\.)' + SEPARATOR + '(\\w)', 'g');
+const RE_CODE_BLOCK = /(```)([\s\S]*?)(```)/g;
+const CODE_SYMBOL = "___CODE_BLOCK___";
 
 function replaceWithSeparator(text: string, separator: string, regexs: RegExp[]): string {
   const replacement = "$1" + separator + "$2";
@@ -27,6 +29,14 @@ function replaceWithSeparator(text: string, separator: string, regexs: RegExp[])
  * console.log(splitSentence(text));  // returns ['Hello world!', 'How are you today?', 'I am fine.']
  */
 export function splitSentence(text: string, best: boolean = true): string[] {
+  const codeBlocks: string[] = [];
+  let match: RegExpExecArray | null;
+  while ((match = RE_CODE_BLOCK.exec(text))) {
+    const codeBlock = match[0];
+    codeBlocks.push(codeBlock);
+    text = text.replace(codeBlock, '\n' + CODE_SYMBOL + (codeBlocks.length-1) + '\n');
+  }
+
   text = text.replace(/([。！？?])\1+/g, "$1");
   text = text.replace(/([。！？?])([^”’])/g, "$1\n$2");
   text = text.replace(/(\.{6})([^”’])/g, "$1\n$2");
@@ -37,6 +47,10 @@ export function splitSentence(text: string, best: boolean = true): string[] {
   for (let i = 0; i < chunks.length; i++) {
     let chunk = chunks[i].trim();
     if (!chunk) {
+      continue;
+    }
+    if (chunk.startsWith(CODE_SYMBOL)) {
+      result.push(codeBlocks[Number(chunk.slice(CODE_SYMBOL.length))]);
       continue;
     }
     if (!best) {

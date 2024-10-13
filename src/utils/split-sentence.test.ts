@@ -37,4 +37,21 @@ describe('split-sentence', () => {
       ]
     `)
   })
+
+  it('should split sentences with code block', () => {
+    let result = splitSentence('Hello world! ```ja\nGood beeter.\nNice day.\n```\nHow are you today? I am fine. Nice too.')
+    expect(result).toMatchInlineSnapshot(`
+      [
+        "Hello world!",
+        "\`\`\`ja
+      Good beeter.
+      Nice day.
+      \`\`\`",
+        "How are you today?",
+        "I am fine.",
+        "Nice too.",
+      ]
+    `)
+  })
+
 })
