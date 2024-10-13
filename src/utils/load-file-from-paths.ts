@@ -197,6 +197,16 @@ export async function hashFile(filepath: string, options?: HashAlgoParams)
   return hashStream(stream, options)
 }
 
+export interface IFileMetaInfo {
+  name: string;
+  mtime: Date;
+  ctime: Date;
+  size: number;
+  hash: string;
+  mimeType: string;
+  id: string;
+}
+
 // get file base info: created time, modified time, size, mime type, hash
 export async function getFileMetaInfo(filepath: string) {
   const name = path.basename(filepath)
@@ -208,7 +218,7 @@ export async function getFileMetaInfo(filepath: string) {
   const hashAlgo = getHashAlgoBySize(size)
   const hash = await hashFile(filepath, {hashAlgo})
   const mimeType = _mimeType.lookup(filepath)
-  return {name, mtime, ctime, size, hash: HashAlgorithm[hashAlgo] + ':' + hash, mimeType, id: 'file://'+filepath}
+  return {name, mtime, ctime, size, hash: HashAlgorithm[hashAlgo] + ':' + hash, mimeType, id: 'file://'+filepath} as IFileMetaInfo
 }
 
 export function getHashAlgoBySize(size: number) {
