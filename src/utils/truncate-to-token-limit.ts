@@ -3,6 +3,7 @@ import { CommonError, countLLMTokens, splitSentence } from "./"
 export interface ITruncateToTokenLimitOptions {
   size?: number
   modelId?: string
+  sentences?: string[]
 }
 
 /**
@@ -31,7 +32,7 @@ export async function truncateToTokenLimit(content: string, options?: ITruncateT
   if (size > 0) {
     let currentSize = await countLLMTokens(content, modelId)
     if (currentSize > size) {
-      const sentences = splitSentence(content)
+      const sentences = options?.sentences ?? splitSentence(content)
       while (currentSize > size) {
         const lastSentence = sentences.pop()!
         const len = await countLLMTokens(lastSentence, modelId)
