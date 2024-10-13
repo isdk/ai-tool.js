@@ -9,6 +9,8 @@ export default defineConfig({
     'test/util': 'test/util/index.ts'
   },
   format: ['cjs', 'esm'],
+  // Inject cjs and esm shims:https://tsup.egoist.dev/#inject-cjs-and-esm-shims
+  shims: true,
   minify: 'terser',
   terserOptions: {
     // compress: {
