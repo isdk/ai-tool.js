@@ -68,5 +68,37 @@ export function splitSentence(text: string, best: boolean = true): string[] {
       result.push(sentence);
     }
   }
+  result = completeSentences(result);
   return result;
+}
+
+export function completeSentences(sentences: string[]) {
+  const result: string[] = []
+  let i = 0
+  let left = ''
+  while (i < sentences.length) {
+    let sentence = sentences[i];
+    if (isSentenceEnding(sentence)) {
+      if (left) {
+        sentence = left + ' '+ sentence
+        left = ''
+      }
+      result.push(sentence);
+    } else {
+      if (left) {
+        sentence = left + ' ' + sentence
+      }
+      left = sentence
+    }
+    i++
+  };
+
+  if (left) {
+    result.push(left)
+  }
+  return result
+}
+
+export function isSentenceEnding(text: string): boolean {
+  return /(([.。!！？?]\s*['"”’]?)|```)\s*$/.test(text);
 }
