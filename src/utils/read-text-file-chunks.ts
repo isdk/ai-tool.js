@@ -1,6 +1,6 @@
 import fs from 'fs'
 import type { RequireAtLeastOne } from 'type-fest'
-import {countLLMTokens, decodeCharset, truncateToTokenLimit, IFileMetaInfo} from './'
+import {countLLMTokens, decodeCharset, truncateToTokenLimit, IFileMetaInfo, splitSentence} from './'
 
 
 /**
@@ -48,7 +48,6 @@ export async function* readTextFileChunks(filePath: string, options?: { size?: n
     if (len <= size) {
       yield content;
     } else {
-      // const sentences = splitSentence(content);
       do {
         const chunk = await truncateToTokenLimit(content, { modelId, size });
         yield chunk;
@@ -65,15 +64,28 @@ export async function* readTextFileChunks(filePath: string, options?: { size?: n
       const { done, value } = await reader.read();
       if (done) break;
       content += decodeCharset(value);
-      const chunk = await truncateToTokenLimit(content, { modelId, size });
-      content = content.slice(chunk.length);
-      yield chunk;
+      const sentences = splitSentence(content);
+      let last = sentences.pop();
+      if (last) {
+        const ix = content.lastIndexOf(last);
+        last = content.slice(ix);
+        content = content.slice(0, ix);
+      }
 
-      while (content.length >= size) {
+      if (content.length >= size) {
+        const chunk = await truncateToTokenLimit(content, { modelId, size, sentences });
+        content = content.slice(chunk.length)
+        yield chunk;
+      }
+
+      // the cache block could be much larger than the size
+      while (content.length > size) {
         const chunk = await truncateToTokenLimit(content, { modelId, size });
         content = content.slice(chunk.length);
         yield chunk;
       }
+
+      if (last !== undefined) content += last;
     }
 
     while (content) {
