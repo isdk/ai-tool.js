@@ -36,4 +36,12 @@ describe('truncateToTokenLimit', () => {
     const result = await truncateToTokenLimit(content);
     expect(result).toBe(content);
   });
+
+  it('should truncate content with completeSentence', async () => {
+    const content = '1. 中国;\n2.日本.\n 这是一个数字3.133。我们说:"良好".他们说我们.好不?不好!'
+    const options = { size: 11, completeSentence: true };
+    const result = await truncateToTokenLimit(content, options);
+    expect(result).toBe('1. 中国; 2.日本.')
+  })
+
 });

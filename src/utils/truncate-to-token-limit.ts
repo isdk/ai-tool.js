@@ -4,6 +4,8 @@ export interface ITruncateToTokenLimitOptions {
   size?: number
   modelId?: string
   sentences?: string[]
+  best?: boolean
+  completeSentence?: boolean
 }
 
 /**
@@ -32,21 +34,26 @@ export async function truncateToTokenLimit(content: string, options?: ITruncateT
   if (size > 0) {
     let currentSize = await countLLMTokens(content, modelId)
     if (currentSize > size) {
-      const sentences = options?.sentences ?? splitSentence(content)
+      const sentences = options?.sentences ?? splitSentence(content, options)
       while (currentSize > size) {
         const lastSentence = sentences.pop()!
         const len = await countLLMTokens(lastSentence, modelId)
         currentSize -= len
         // console.log('🚀 ~ truncateToTokenLimit ~ currentSize:', currentSize, len, lastSentence)
-        const i = content.lastIndexOf(lastSentence)
-        if (i === -1) {
-          // this should never happen
-          throw new CommonError(`Can not find sentence: ${lastSentence}`, 'truncateContentToTokenLimit')
+        if (!options?.completeSentence) {
+          const i = content.lastIndexOf(lastSentence)
+          if (i === -1) {
+            // this should never happen
+            throw new CommonError(`Can not find sentence: ${lastSentence}`, 'truncateContentToTokenLimit')
+          }
+          content = content.slice(0, i)
+        } else {
+          content = sentences.join(' ')
         }
+
         if (currentSize <= 1) {
           throw new CommonError(`Can not truncate content to fit within the token limit: ${size}`, 'truncateContentToTokenLimit')
         }
-        content = content.slice(0, i)
       }
     }
   }
