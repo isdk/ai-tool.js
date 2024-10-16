@@ -32,7 +32,7 @@ function replaceWithSeparator(text: string, separator: string, regexs: RegExp[])
  * const text = "Hello world! How are you today? I am fine.";
  * console.log(splitSentence(text));  // returns ['Hello world!', 'How are you today?', 'I am fine.']
  */
-export function splitSentence(text: string, best: boolean = true): string[] {
+export function splitSentence(text: string, {best = true, completeSentence}: {best?: boolean, completeSentence?: boolean} = {}): string[] {
   const codeBlocks: string[] = [];
   const inlineBlocks: string[] = [];
   let match: RegExpExecArray | null;
@@ -84,7 +84,7 @@ export function splitSentence(text: string, best: boolean = true): string[] {
     result.push(...sentences.map(s => restoreInlineBlocks(inlineBlocks, s)))
   }
 
-  if (best) {result = completeSentences(result)}
+  if (completeSentence) {result = completeSentences(result)}
   return result;
 }
 

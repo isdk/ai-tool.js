@@ -5,7 +5,8 @@ describe('split-sentence', () => {
     let result = splitSentence('1. 中国;\n2.日本.\n 这是一个数字3.133。我们说:"良好".他们说我们.好不?不好!')
     expect(result).toMatchInlineSnapshot(`
       [
-        "1. 中国; 2.日本.",
+        "1. 中国;",
+        "2.日本.",
         "这是一个数字3.133。",
         "我们说:"良好".他们说我们.好不?",
         "不好!",
@@ -56,7 +57,7 @@ describe('split-sentence', () => {
     let result = splitSentence(`栖守道德者，寂寞一时；依阿权势者，凄凉万古。达人观物外之物，思
 
   身后之身，守受一时之寂寞，毋取万古之凄凉。
-  `)
+  `, {completeSentence: true})
     expect(result).toMatchInlineSnapshot(`
       [
         "栖守道德者，寂寞一时；依阿权势者，凄凉万古。",
