@@ -5,13 +5,17 @@ const AB_ACRONYM = /(\.[a-zA-Z]\.)\s(\w)/g;
 const UNDO_AB_SENIOR = new RegExp('([A-Z][a-z]{1,2}\\.)' + SEPARATOR + '(\\w)', 'g');
 const UNDO_AB_ACRONYM = new RegExp('(\\.[a-zA-Z]\\.)' + SEPARATOR + '(\\w)', 'g');
 const RE_CODE_BLOCK = /(```)([\s\S]*?)(```)/g;
-const CODE_SYMBOL = "___CODE_BLOCK___";
+const CODE_SYMBOL = '>>>CODE_BLOCK<<<';
+const RE_EMPHASIS_INLINE_BLOCK = /([*_`]{1,3})(\S.*?\S)\1/;
+const INLINE_SYMLBOL = '>>> INLINE_BLOCK ';
+const RE_INLINE_SYMBOL = />>> INLINE_BLOCK (\d+) <<</;
+const MAX_LOOP = 10000;
 
 function replaceWithSeparator(text: string, separator: string, regexs: RegExp[]): string {
   const replacement = "$1" + separator + "$2";
   let result = text;
   for (let i = 0; i < regexs.length; i++) {
-      result = result.replace(regexs[i], replacement);
+    result = result.replace(regexs[i], replacement);
   }
   return result;
 }
@@ -30,11 +34,22 @@ function replaceWithSeparator(text: string, separator: string, regexs: RegExp[])
  */
 export function splitSentence(text: string, best: boolean = true): string[] {
   const codeBlocks: string[] = [];
+  const inlineBlocks: string[] = [];
   let match: RegExpExecArray | null;
-  while ((match = RE_CODE_BLOCK.exec(text))) {
+
+  let c = 0
+
+  while (c++ < MAX_LOOP && (match = RE_CODE_BLOCK.exec(text))) {
     const codeBlock = match[0];
     codeBlocks.push(codeBlock);
     text = text.replace(codeBlock, '\n' + CODE_SYMBOL + (codeBlocks.length-1) + '\n');
+  }
+
+  c = 0
+  while (c++ < MAX_LOOP && (match = RE_EMPHASIS_INLINE_BLOCK.exec(text))) {
+    const inlineBlock = match[0];
+    inlineBlocks.push(inlineBlock);
+    text = text.replace(inlineBlock, INLINE_SYMLBOL + (inlineBlocks.length-1) + ' <<<');
   }
 
   text = text.replace(/([。！？?])\1+/g, "$1");
@@ -59,16 +74,17 @@ export function splitSentence(text: string, best: boolean = true): string[] {
     }
     let processed = replaceWithSeparator(chunk, SEPARATOR, [AB_SENIOR, AB_ACRONYM]);
     let sents = Array.from(processed.matchAll(RE_SENTENCE));
+    let sentences = [] as string[]
     if (!sents.length) {
-      result.push(chunk);
-      continue;
+      sentences.push(chunk)
+    } else for (let j = 0; j < sents.length; j++) {
+      sentences.push(replaceWithSeparator(sents[j][0], " ", [UNDO_AB_SENIOR, UNDO_AB_ACRONYM]));
     }
-    for (let j = 0; j < sents.length; j++) {
-      let sentence = replaceWithSeparator(sents[j][0], " ", [UNDO_AB_SENIOR, UNDO_AB_ACRONYM]);
-      result.push(sentence);
-    }
+
+    result.push(...sentences.map(s => restoreInlineBlocks(inlineBlocks, s)))
   }
-  result = completeSentences(result);
+
+  if (best) {result = completeSentences(result)}
   return result;
 }
 
@@ -101,4 +117,14 @@ export function completeSentences(sentences: string[]) {
 
 export function isSentenceEnding(text: string): boolean {
   return /(([.。!！？?]\s*['"”’]?)|```)\s*$/.test(text);
+}
+
+function restoreInlineBlocks(inlineBlocks: string[], text: string): string {
+  let match: RegExpExecArray | null;
+  let c = 0
+  while (c++ < MAX_LOOP && (match = RE_INLINE_SYMBOL.exec(text))) {
+    const ix = Number(match[1]);
+    text = text.replace(match[0], inlineBlocks[ix]);
+  }
+  return text;
 }

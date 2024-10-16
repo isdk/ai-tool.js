@@ -64,4 +64,13 @@ describe('split-sentence', () => {
       ]
     `)
   })
+
+  it('should split sentences with inline EMPHASIS block', () => {
+    let result = splitSentence(`但是像**数据集中的核心主题是什么？**这类问题需要查询聚焦摘要（Query focused summary）而不是像我们上述RAG系统那样显式检索`)
+    expect(result).toMatchInlineSnapshot(`
+      [
+        "但是像**数据集中的核心主题是什么？**这类问题需要查询聚焦摘要（Query focused summary）而不是像我们上述RAG系统那样显式检索",
+      ]
+    `)
+  })
 })
