@@ -1,7 +1,12 @@
 import fs from 'fs'
 import type { RequireAtLeastOne } from 'type-fest'
-import {countLLMTokens, decodeCharset, truncateToTokenLimit, IFileMetaInfo, splitSentence} from './'
+import {countLLMTokens, decodeCharset, truncateToTokenLimit, IFileMetaInfo, splitSentence, ITruncateToTokenLimitOptions} from './'
 
+export interface IReadTextFileChunksOptions extends ITruncateToTokenLimitOptions {
+  size?: number
+  modelId?: string
+  metaInfo?: RequireAtLeastOne<Partial<IFileMetaInfo>, 'size'>
+}
 
 /**
  * Reads a text file and yields chunks of text that are within a specified token limit.
@@ -32,7 +37,7 @@ import {countLLMTokens, decodeCharset, truncateToTokenLimit, IFileMetaInfo, spli
  * }
  * ```
  */
-export async function* readTextFileChunks(filePath: string, options?: { size?: number; modelId?: string; metaInfo?: RequireAtLeastOne<Partial<IFileMetaInfo>, 'size'> }): AsyncIterable<string> {
+export async function* readTextFileChunks(filePath: string, options?: IReadTextFileChunksOptions): AsyncIterable<string> {
   // the max token size per chunk
   const size = options?.size ?? 1984;
   const modelId = options?.modelId;
@@ -49,7 +54,7 @@ export async function* readTextFileChunks(filePath: string, options?: { size?: n
       yield content;
     } else {
       do {
-        const chunk = await truncateToTokenLimit(content, { modelId, size });
+        const chunk = await truncateToTokenLimit(content, {...options, modelId, size});
         yield chunk;
         content = content.slice(chunk.length);
       } while (content);
@@ -73,14 +78,14 @@ export async function* readTextFileChunks(filePath: string, options?: { size?: n
       }
 
       if (content.length >= size) {
-        const chunk = await truncateToTokenLimit(content, { modelId, size, sentences });
+        const chunk = await truncateToTokenLimit(content, { ...options, modelId, size, sentences });
         content = content.slice(chunk.length)
         yield chunk;
       }
 
       // the cache block could be much larger than the size
       while (content.length > size) {
-        const chunk = await truncateToTokenLimit(content, { modelId, size });
+        const chunk = await truncateToTokenLimit(content, { ...options, modelId, size });
         content = content.slice(chunk.length);
         yield chunk;
       }
@@ -89,7 +94,7 @@ export async function* readTextFileChunks(filePath: string, options?: { size?: n
     }
 
     while (content) {
-      const chunk = await truncateToTokenLimit(content, { modelId, size });
+      const chunk = await truncateToTokenLimit(content, { ...options, modelId, size });
       content = content.slice(chunk.length);
       yield chunk;
     }
