@@ -24,7 +24,9 @@ describe('readTextFileChunks', () => {
 
   it('should read file in multiple chunks', async () => {
     const options = {
-      size: 132,
+      size: 133,
+      completeSentence: false,
+      corrected: false,
     };
 
     const chunks: string[] = [];

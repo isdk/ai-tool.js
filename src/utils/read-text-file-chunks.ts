@@ -63,39 +63,61 @@ export async function* readTextFileChunks(filePath: string, options?: IReadTextF
     const stream = (ReadableStream as any).from(fs.createReadStream(filePath));
     const reader = stream.getReader();
     let content = '';
+    const completeSentence = options?.completeSentence;
+    const corrected = options?.corrected;
+    const noCorrected = !completeSentence && !corrected
 
     // eslint-disable-next-line no-constant-condition
     while (true) {
       const { done, value } = await reader.read();
       if (done) break;
       content += decodeCharset(value);
-      const sentences = splitSentence(content);
+      const sentences = splitSentence(content, options);
       let last = sentences.pop();
+
       if (last) {
-        const ix = content.lastIndexOf(last);
-        last = content.slice(ix);
-        content = content.slice(0, ix);
+        if (noCorrected) {
+          const ix = content.lastIndexOf(last);
+          last = content.slice(ix);
+          content = content.slice(0, ix);
+        } else {
+          content = sentences.join('\n')
+        }
       }
 
       if (content.length >= size) {
         const chunk = await truncateToTokenLimit(content, { ...options, modelId, size, sentences });
-        content = content.slice(chunk.length)
+        if (noCorrected) {
+          content = content.slice(chunk.length)
+        } else {
+          content = sentences.slice(chunk.length).join('\n')
+        }
         yield chunk;
       }
 
       // the cache block could be much larger than the size
       while (content.length > size) {
-        const chunk = await truncateToTokenLimit(content, { ...options, modelId, size });
-        content = content.slice(chunk.length);
+        const sentences = splitSentence(content, options);
+        const chunk = await truncateToTokenLimit(content, { ...options, modelId, size, sentences });
+        if (!completeSentence && !corrected) {
+          content = content.slice(chunk.length)
+        } else {
+          content = sentences.slice(chunk.length).join('\n')
+        }
         yield chunk;
       }
 
-      if (last !== undefined) content += last;
+      if (last !== undefined) content += (content && !noCorrected ? '\n': '') + last;
     }
 
     while (content) {
-      const chunk = await truncateToTokenLimit(content, { ...options, modelId, size });
-      content = content.slice(chunk.length);
+      const sentences = splitSentence(content, options);
+      const chunk = await truncateToTokenLimit(content, { ...options, modelId, size, sentences });
+      if (!completeSentence && !corrected) {
+        content = content.slice(chunk.length)
+      } else {
+        content = sentences.slice(chunk.length).join('\n')
+      }
       yield chunk;
     }
   }
