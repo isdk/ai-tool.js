@@ -6,6 +6,7 @@ export interface ITruncateToTokenLimitOptions {
   sentences?: string[]
   best?: boolean
   completeSentence?: boolean
+  corrected?: boolean // default true, the completeSentence can not be true if false
 }
 
 /**
@@ -27,30 +28,39 @@ export interface ITruncateToTokenLimitOptions {
 export async function truncateToTokenLimit(content: string, options?: ITruncateToTokenLimitOptions) {
   let modelId
   let size = 1984
+  let corrected = true
+  let completeSentence = false
   if (options) {
     modelId = options.modelId
     if (options.size! >= 0) { size = options.size! }
+    if (options.corrected !== undefined) {
+      corrected = options.corrected
+    }
+    if (options.completeSentence !== undefined) {
+      completeSentence = options.completeSentence
+    }
   }
   if (size > 0) {
     let currentSize = await countLLMTokens(content, modelId)
     if (currentSize > size) {
       const sentences = options?.sentences ?? splitSentence(content, options)
-      while (currentSize > size) {
-        const lastSentence = sentences.pop()!
-        const len = await countLLMTokens(lastSentence, modelId)
-        currentSize -= len
-        // console.log('🚀 ~ truncateToTokenLimit ~ currentSize:', currentSize, len, lastSentence)
-        if (!options?.completeSentence) {
-          const i = content.lastIndexOf(lastSentence)
-          if (i === -1) {
-            // this should never happen
-            throw new CommonError(`Can not find sentence: ${lastSentence}`, 'truncateContentToTokenLimit')
+      while (currentSize > size && sentences.length) {
+        const lastSentence = sentences.pop()
+        if (lastSentence) {
+          const len = await countLLMTokens(lastSentence, modelId)
+          currentSize -= len
+          // console.log('🚀 ~ truncateToTokenLimit ~ currentSize:', currentSize, len, lastSentence)
+          if (!completeSentence && !corrected) {
+            const i = content.lastIndexOf(lastSentence)
+            if (i === -1) {
+              // this should never happen
+              throw new CommonError(`Can not find sentence: ${lastSentence}`, 'truncateContentToTokenLimit')
+            }
+            content = content.slice(0, i)
+          } else {
+            content = sentences.join('\n')
           }
-          content = content.slice(0, i)
-        } else {
-          content = sentences.join(' ')
         }
-
         if (currentSize <= 1) {
           throw new CommonError(`Can not truncate content to fit within the token limit: ${size}`, 'truncateContentToTokenLimit')
         }
