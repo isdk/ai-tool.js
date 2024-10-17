@@ -3,8 +3,8 @@ import { countLLMTokens, LLM_TOKENIZER_NAMES_MAP } from './llm-tokenizer'
 describe('countTokens', () => {
   it('should count tokens correctly by default', async () => {
     const text = 'Hello, world!'
-    const modelId = 'gpt-4'
-    let result = await countLLMTokens(text, modelId)
+    // const modelId = 'gpt-4'
+    let result = await countLLMTokens(text)
     expect(result).toBe(4)
   })
 
