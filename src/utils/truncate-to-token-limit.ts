@@ -60,12 +60,13 @@ export async function truncateToTokenLimit(content: string, options?: ITruncateT
           } else {
             content = sentences.join('\n')
           }
-        }
-        if (currentSize <= 1) {
-          throw new CommonError(`Can not truncate content to fit within the token limit: ${size}`, 'truncateContentToTokenLimit')
+          if (currentSize <= 1) {
+            throw new CommonError(`Can not truncate content to fit within the token limit: ${size}`, 'truncateContentToTokenLimit')
+          }
         }
       }
     }
   }
+  if (!content) throw new CommonError(`Can not truncate content to fit within the token limit: ${size}`, 'truncateContentToTokenLimit')
   return content
 }
