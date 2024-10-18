@@ -126,15 +126,25 @@ export function isSentenceEnding(text: string): boolean {
 }
 
 export function isSectionString(text: string): boolean {
+  let result = isTitleString(text)
+  if (!result) { result = isListItemString(text) }
+  return result
+}
+
+export function isTitleString(text: string): boolean {
   if (!text) {return false}
   let result = /^\s*第?\s*[壹贰叁肆伍陆柒捌玖拾一二三四五六七八九十百千萬万\d]+\s*([章節节编回部篇卷幕场場辑集段册冊期片題]|片段|段落|篇[章目]|小[节節]|(子)?部分|卷[册冊]|[单單]元|章[节節回]|[.、])/.test(text)
   if (!result) {
     result =/^\s*(Chapter|Book|Article|Part|Paragraph|Subsection|Subpart|Volume|Episode|Issue|Unit|Section|Segment|Act|Scene)\s*\d+/i.test(text)
   }
   if (!result) {
-    result = /^\s*(\*|#+) /.test(text)
+    result = /^(#+) /.test(text)
   }
   return result
+}
+
+export function isListItemString(text: string): boolean {
+  return /^(\s*[*+-]|\d+\.)/.test(text)
 }
 
 function restoreInlineBlocks(inlineBlocks: string[], text: string): string {
