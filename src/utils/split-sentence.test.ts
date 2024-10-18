@@ -91,8 +91,11 @@ describe('split-sentence', () => {
   * This is another list item
   - This is a list item
   + This is a list item
+  ---
   第一章 这是测试
+  ====
   一章 这是另一个测试
+  _____
   章 这不是
   章节。
   `, {completeSentence: true})
@@ -109,8 +112,11 @@ describe('split-sentence', () => {
         "* This is another list item",
         "- This is a list item",
         "+ This is a list item",
+        "---",
         "第一章 这是测试",
+        "====",
         "一章 这是另一个测试",
+        "_____",
         "章 这不是 章节。",
       ]
     `)

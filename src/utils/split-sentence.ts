@@ -128,6 +128,7 @@ export function isSentenceEnding(text: string): boolean {
 export function isSectionString(text: string): boolean {
   let result = isTitleString(text)
   if (!result) { result = isListItemString(text) }
+  if (!result) { result = isSepLineString(text) }
   return result
 }
 
@@ -145,6 +146,10 @@ export function isTitleString(text: string): boolean {
 
 export function isListItemString(text: string): boolean {
   return /^(\s*[*+-]|\d+\.)/.test(text)
+}
+
+export function isSepLineString(text: string): boolean {
+  return /^[-=_]{3,}$/.test(text)
 }
 
 function restoreInlineBlocks(inlineBlocks: string[], text: string): string {
