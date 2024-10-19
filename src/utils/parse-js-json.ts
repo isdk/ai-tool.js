@@ -1,5 +1,6 @@
 import { pick } from 'lodash-es'
 import { newFunction } from 'util-ex'
+// import { parseObjectArguments } from './parse-command'
 
 /**
  * Parses a JavaScript string into a JSON object.
@@ -14,12 +15,29 @@ import { newFunction } from 'util-ex'
  */
 export function parseJsJson(input: string, scope?: Record<string, any>) {
   if (scope) { scope = filterValidFnScope(scope) }
+  /*
+  if (input.startsWith('{') && input.endsWith('}')) {
+    const args = await parseObjectArguments(input.slice(1, -1), scope)
+  }
+    */
   if (scope) {
     const argNames = Object.keys(scope)
     if (argNames.length) {
       const argValues = Object.values(scope)
       // If a scope is provided, it is used as the global object for the function.
-      return newFunction('expression', argNames, `return ${input}`)(...argValues)
+      let c = 0
+      while(c++ < 100) try {
+        return newFunction('expression', argNames, `return ${input}`)(...argValues)
+      } catch(err) {
+        if (err instanceof ReferenceError) {
+          const match = /(.+)\s+is not defined/.exec(err.message)
+          if (!match) { throw err }
+          argNames.push(match[1])
+          argValues.push(undefined)
+        } else {
+          throw err
+        }
+      }
     }
   }
   // Dynamically creates a function using newFunction that, when executed, returns the parsed JSON object.

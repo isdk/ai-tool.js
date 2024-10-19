@@ -36,4 +36,10 @@ describe('parseJsJson', () => {
     const result = parseJsJson(input, {name: 'John', age: 20, 0: '124'});
     expect(result).toEqual({ name: 'John', age: 30 });
   });
+
+  it('should parse JS JSON with scope and undefined value', () => {
+    const input = `{name, age: age + 10, nosuch: unknown}`;
+    const result = parseJsJson(input, {name: 'John', age: 20});
+    expect(result).toEqual({ name: 'John', age: 30, nosuch: undefined });
+  });
 });
