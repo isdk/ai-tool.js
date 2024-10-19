@@ -18,6 +18,7 @@ export interface AIChoiceConfig {
 
 export interface ParseObjectArgumentOptions {
   delimiter?: string
+  assigner?: string
   argProcessor?: ArgProcessor
   returnArrayOnly?: boolean
   templateFormat?: string
@@ -291,6 +292,7 @@ async function parseObjectArgumentsAsStr(argsStr: string, scope?: Record<string,
  */
 export function parseObjectArgumentsAsArgInfos(argsStr: string, scope?: Record<string, any>, options?: ParseObjectArgumentOptions) {
   const delimiter = options?.delimiter ?? ','
+  const assigner = options?.assigner ?? '='
   // Stores the parsed argument information.
   let args: ArgInfo[] = [];
   // Indicates whether we are inside quotes.
@@ -361,7 +363,7 @@ export function parseObjectArgumentsAsArgInfos(argsStr: string, scope?: Record<s
         quoteChar = char;
       }
       arg += char
-    } else if (char === '=' && !inQuotes && !isNamedArg && /^[\p{L}\p{N}_ ]+$/u.test(arg)) {
+    } else if (char === assigner && !inQuotes && !isNamedArg && /^[\p{L}\p{N}_ ]+$/u.test(arg)) {
       // Handles the assignment operator.
       // Convert the equal sign to a colon to match internal handling logic.
       arg += ':'
