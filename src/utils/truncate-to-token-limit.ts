@@ -49,7 +49,7 @@ export async function truncateToTokenLimit(content: string, options?: ITruncateT
         if (lastSentence) {
           const len = await countLLMTokens(lastSentence, modelId)
           currentSize -= len
-          // console.log('🚀 ~ truncateToTokenLimit ~ currentSize:', currentSize, len, lastSentence)
+          console.log('🚀 ~ truncateToTokenLimit ~ currentSize:', currentSize, len, lastSentence)
           if (!completeSentence && !corrected) {
             const i = content.lastIndexOf(lastSentence)
             if (i === -1) {

@@ -134,4 +134,14 @@ describe('split-sentence', () => {
       ]
     `)
   })
+
+  it('should split sentences completeSentence with hyphenation long word', () => {
+    let result = splitSentence(`This is a long word that should be hyphen-\nated.\nThis is another long word that should be hy-\nphenated.`, {completeSentence: true})
+    expect(result).toMatchInlineSnapshot(`
+      [
+        "This is a long word that should be hyphenated.",
+        "This is another long word that should be hyphenated.",
+      ]
+    `)
+  })
 })

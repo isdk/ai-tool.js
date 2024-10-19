@@ -98,22 +98,13 @@ export function completeSentences(sentences: string[]) {
     let sentence = sentences[i];
     if (isEnding(sentence) || isSectionString(sentences[i+1])) {
       if (left) {
-        const s = left + ' ' + sentence
-        const lang = detectTextLanguage(s, {isoCode: true})
-        if (lang && !isLangUsingSpaces(lang)) {
-          if (isPunctuationChar(left)) {
-            left += ' '
-          }
-          sentence = left + sentence
-        } else {
-          sentence = s
-        }
+        sentence = concatText(left, sentence)
         left = ''
       }
       result.push(sentence);
     } else {
       if (left) {
-        sentence = left + ' ' + sentence
+        sentence = concatText(left, sentence)
       }
       left = sentence
     }
@@ -128,6 +119,25 @@ export function completeSentences(sentences: string[]) {
 
 function isEnding(text: string) {
   return isSentenceEnding(text) || isSectionString(text)
+}
+
+export function concatText(left: string, right: string): string {
+  const s = left + ' ' + right
+  const lang = detectTextLanguage(s, {isoCode: true})
+  if (lang && !isLangUsingSpaces(lang)) {
+    if (isPunctuationChar(left)) {
+      left += ' '
+    }
+    right = left + right
+  } else {
+    if (left.endsWith('-')) {
+      left = left.slice(0, -1)
+      right = left + right
+    } else {
+      right = s
+    }
+  }
+  return right
 }
 
 export function isSentenceEnding(text: string): boolean {

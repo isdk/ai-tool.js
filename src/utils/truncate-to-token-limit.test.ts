@@ -78,7 +78,7 @@ describe('truncateToTokenLimit', () => {
   章 这不是
   章节。
 `
-    const options = { size: 70, completeSentence: true };
+    const options = { size: 73, completeSentence: true };
     const result = await truncateToTokenLimit(content, options);
     expect(result).toBe('菜根谭(全文附译文) 菜根谭(全文附译文)\n1.弄权一时，凄凉万古')
   })
