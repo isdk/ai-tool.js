@@ -1,3 +1,5 @@
+import { detectTextLanguage } from "@isdk/detect-text-language";
+
 const SEPARATOR = '@';
 const RE_SENTENCE = /(\S.+?[.!?])(?=\s+|$)|(\S.+?)(?=[\n]|$)/g;
 const AB_SENIOR = /([A-Z][a-z]{1,2}\.)\s(\w)/g;
@@ -96,7 +98,16 @@ export function completeSentences(sentences: string[]) {
     let sentence = sentences[i];
     if (isEnding(sentence) || isSectionString(sentences[i+1])) {
       if (left) {
-        sentence = left + ' '+ sentence
+        const s = left + ' ' + sentence
+        const lang = detectTextLanguage(s, {isoCode: true})
+        if (lang && !isLangUsingSpaces(lang)) {
+          if (isPunctuationChar(left)) {
+            left += ' '
+          }
+          sentence = left + sentence
+        } else {
+          sentence = s
+        }
         left = ''
       }
       result.push(sentence);
@@ -152,6 +163,25 @@ export function isSepLineString(text: string): boolean {
   return /^[-=_]{3,}$/.test(text)
 }
 
+/**
+ * Checks if the given character is a punctuation mark.
+ * This function supports both Chinese and English punctuation marks.
+ *
+ * @param char - The character to check.
+ * @returns `true` if the character is a punctuation mark, otherwise `false`.
+ *
+ * @example
+ * ```typescript
+ * isPunctuationChar('。'); // returns true
+ * isPunctuationChar('!');  // returns true
+ * isPunctuationChar('a');  // returns false
+ * ```
+ */
+export function isPunctuationChar(char: string): boolean {
+  // check character is punctuation or not, includes Chinese and English punctuations:
+  return /[。！？?，、；;:：'""“”‘’~～《》<>〈〉【】（）{}【】\[\]\(\)…·]$/.test(char);
+}
+
 function restoreInlineBlocks(inlineBlocks: string[], text: string): string {
   let match: RegExpExecArray | null;
   let c = 0
@@ -160,4 +190,26 @@ function restoreInlineBlocks(inlineBlocks: string[], text: string): string {
     text = text.replace(match[0], inlineBlocks[ix]);
   }
   return text;
+}
+
+export function isLangUsingSpaces(isoCode: string): boolean {
+  // // Need Space seperator langs: ISO 639-1 Code
+  // const languagesWithSpaces = [
+  //     'en', 'fr', 'de', 'es', 'it', 'ru', 'ar', 'fi', 'hu', 'tr', 'ka', 'id', 'ms', 'ko'
+  // ];
+
+  // List of languages that do not require spaces between words (ISO 639-1 codes)
+  const languagesWithoutSpaces = [
+    'zh', // Chinese
+    'ja', // Japanese
+    'th', // Thai
+    'lo', // Lao
+    'ta', // Tamil
+    'ko', // Korean
+    // 'sa', // Sanskrit
+    // 'my', // Burmese
+    // 'km'  // Khmer
+  ];
+  const result = !languagesWithoutSpaces.includes(isoCode);
+  return result
 }
