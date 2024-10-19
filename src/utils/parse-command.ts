@@ -210,7 +210,14 @@ function isNonQuotedArg(arg: string) {
 
 async function getExpressionResult(arg: string, scope: any) {
   const fn = newFunction('async expression', [], `return ${arg};`, filterValidFnScope(scope))
-  let result = await fn.call(this)
+  let result: any
+  try {
+    result = await fn.call(this)
+  } catch(err) {
+    if (!(err instanceof ReferenceError)) {
+      throw err
+    }
+  }
   switch (typeof result) {
     case 'number':
     case 'boolean':
@@ -234,10 +241,10 @@ export async function parseObjectArgInfo(argInfo: ArgInfo, ix: number, scope?: R
     const ix = arg.indexOf(':')
     const k = arg.slice(0, ix).trim()
     const v = arg.slice(ix+1).trim()
-    if (!isNonQuotedArg(v) && (!scope || getByPath(scope, v) === undefined)) {
+    if (!isNonQuotedArg(v) && !scope) {
       return k + ':' + quoteStr(v)
     }
-    if (!isArrowFunctionExpression(arg)) try {
+    if (!isArrowFunctionExpression(v)) try {
       const result = await getExpressionResult.call(this, v, scope)
       return k+':'+ result
     } catch(e) {}
@@ -392,7 +399,10 @@ export async function parseCommand(commandStr: string, scope?: Record<string, an
 }
 
 
-const ArrowFunctionRegExp = /^\s*\(\)|[a-zA-Z_$][\w\d$]*|\(([a-zA-Z_$][\w\d$]*)(\s*,\s*([a-zA-Z_$][\w\d$]*))*\)\s*=>/;
+const ParameterRegExp = "[a-zA-Z_$][a-zA-Z_\\d$]*"
+const ParametersRegExp = `${ParameterRegExp}\\s*(,\\s*${ParameterRegExp})*`
+const ArrowFunctionRegExp = new RegExp(`^\\s*(\\(\\s*\\)|${ParameterRegExp}|\\(${ParametersRegExp}\\))\\s*=>`);
+// const ArrowFunctionRegExp = /^\s*(\(\)|[a-zA-Z_$][\w\d$]*|\(([a-zA-Z_$][\w\d$]*))(\s*,\s*([a-zA-Z_$][\w\d$]*))*\)\s*=>/;
 
 function isArrowFunctionExpression(code: string) {
   return ArrowFunctionRegExp.test(code);

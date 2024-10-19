@@ -204,4 +204,10 @@ describe('parseCommand function', async () => {
     const commandStr = 'command(arg1=name, age, arg2=" \\"  ")';
     expect(await parseCommand(commandStr, scope)).toEqual({ command: 'command', args: {arg1: scope.name, 1: scope.age, age: scope.age, arg2:' "  ' } });
   });
+
+  it.only('should handle commands with undefined property', async () => {
+    const scope = {name: 'John', age: 20}
+    const commandStr = 'command(arg1=noname, age, arg2=" \\"  ")';
+    expect(await parseCommand(commandStr, scope)).toEqual({ command: 'command', args: {arg1: undefined, 1: scope.age, age: scope.age, arg2:' "  ' } });
+  });
 });
