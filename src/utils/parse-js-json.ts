@@ -1,6 +1,6 @@
 import { pick } from 'lodash-es'
 import { newFunction } from 'util-ex'
-// import { parseObjectArguments } from './parse-command'
+import { parseObjectArguments } from './parse-command'
 
 /**
  * Parses a JavaScript string into a JSON object.
@@ -13,13 +13,20 @@ import { newFunction } from 'util-ex'
  * const json = parseJsJson(jsonString);
  * console.log(json); // { name: 'John' }
  */
-export function parseJsJson(input: string, scope?: Record<string, any>) {
+export async function parseJsJson(input: string, scope?: Record<string, any>) {
   if (scope) { scope = filterValidFnScope(scope) }
-  /*
-  if (input.startsWith('{') && input.endsWith('}')) {
-    const args = await parseObjectArguments(input.slice(1, -1), scope)
+  if (scope) {
+    input = input.trim()
+    if (input.startsWith('{') && input.endsWith('}')) {
+      const result = await parseObjectArguments(input.slice(1, -1), scope,{assigner: ':', ignoreIndexNamed: true})
+      return result
+    }
   }
-    */
+  return parseJsJsonSimpleSync(input, scope)
+}
+
+export function parseJsJsonSimpleSync(input: string, scope?: Record<string, any>) {
+  if (scope) { scope = filterValidFnScope(scope) }
   if (scope) {
     const argNames = Object.keys(scope)
     if (argNames.length) {
