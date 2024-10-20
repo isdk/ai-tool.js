@@ -1,5 +1,5 @@
 import { PromptTemplate, type PromptTemplateOptions } from "./prompt";
-import { filterValidFnScope, parseJsJson } from './parse-js-json'
+import { filterValidFnScope, parseJsJsonSimpleSync } from './parse-js-json'
 import { get as getByPath } from "lodash-es";
 import { newFunction } from "util-ex";
 
@@ -23,6 +23,7 @@ export interface ParseObjectArgumentOptions {
   returnArrayOnly?: boolean
   templateFormat?: string
   templateData?: Record<string, any>
+  ignoreIndexNamed?: boolean
 }
 
 /**
@@ -93,7 +94,7 @@ export async function parseObjectArgumentInfos(args: ArgInfo[], scope?: Record<s
     let result: any
     if (_args?.length) {
       const jsonStr = `{${_args.map((arg: string) => arg).join(',')}}`
-      result = parseJsJson(jsonStr, scope)
+      result = parseJsJsonSimpleSync(jsonStr, scope)
     }
 
     if (result && !returnArrayOnly) {
@@ -234,6 +235,7 @@ async function getExpressionResult(arg: string, scope: any) {
 export async function parseObjectArgInfo(argInfo: ArgInfo, ix: number, scope?: Record<string, any>, options?: ParseObjectArgumentOptions) {
   const [isNamedArg, arg] = argInfo
   const argProcessor = options?.argProcessor
+  const ignoreIndexNamed = options?.ignoreIndexNamed
   if (typeof argProcessor === 'function') {
     const result = await argProcessor(argInfo, ix, scope, options)
     if (result) {return result}
@@ -254,7 +256,8 @@ export async function parseObjectArgInfo(argInfo: ArgInfo, ix: number, scope?: R
   } else {
     const _arg = arg.trim()
     if (scope && getByPath(scope, _arg) !== undefined) {
-      return ix+':'+_arg + ', "' + _arg +'":' + _arg
+      const result = (!ignoreIndexNamed ?  ix+':'+ _arg + ',' : '')  + '"' + _arg +'":' + _arg
+      return result
     } else if (isNonQuotedArg(_arg)) {
       return ix+':'+_arg
     } else {

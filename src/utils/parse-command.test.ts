@@ -161,6 +161,21 @@ describe('parseObjectArguments', async () => {
     const result = await parseObjectArguments(argsStr);
     expect(result).toBeUndefined();
   });
+
+  test('should handle arguments with scope and ignoreIndexNamed', async () => {
+    const argsStr = '"arg1", arg2, arg3,arg4=random, random';
+    const scope = { arg2: 'value2', arg3: 'value3', random: 'random1' };
+    const result = await parseObjectArguments(argsStr, scope, {ignoreIndexNamed: true});
+    expect(result).toEqual({"0": "arg1", arg2: 'value2', arg3: 'value3', arg4: 'random1', random: 'random1'});
+  });
+
+  test('should handle arguments with custom delimiter and assigner', async () => {
+    const argsStr = '"arg1"; arg2; arg3;arg4:random; random';
+    const scope = { arg2: 'value2', arg3: 'value3', random: 'random1' };
+    const result = await parseObjectArguments(argsStr, scope, {ignoreIndexNamed: true, delimiter: ';', assigner: ':'});
+    expect(result).toEqual({"0": "arg1", arg2: 'value2', arg3: 'value3', arg4: 'random1', random: 'random1'});
+  });
+
 });
 
 describe('parseCommand function', async () => {
@@ -205,7 +220,7 @@ describe('parseCommand function', async () => {
     expect(await parseCommand(commandStr, scope)).toEqual({ command: 'command', args: {arg1: scope.name, 1: scope.age, age: scope.age, arg2:' "  ' } });
   });
 
-  it.only('should handle commands with undefined property', async () => {
+  it('should handle commands with undefined property', async () => {
     const scope = {name: 'John', age: 20}
     const commandStr = 'command(arg1=noname, age, arg2=" \\"  ")';
     expect(await parseCommand(commandStr, scope)).toEqual({ command: 'command', args: {arg1: undefined, 1: scope.age, age: scope.age, arg2:' "  ' } });
