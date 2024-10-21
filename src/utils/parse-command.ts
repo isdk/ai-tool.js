@@ -1,6 +1,6 @@
 import { PromptTemplate, type PromptTemplateOptions } from "./prompt";
 import { filterValidFnScope, parseJsJsonSimpleSync } from './parse-js-json'
-import { get as getByPath } from "lodash-es";
+import { get as getByPath, omitBy } from "lodash-es";
 import { newFunction } from "util-ex";
 
 type ArgInfo = [boolean, string]
@@ -123,7 +123,7 @@ export async function TemplateArgProcessor([isNamedArg, arg]: ArgInfo, ix: numbe
     value = arg
     name = ix + ''
   }
-  const data = {...scope, ...options?.templateData}
+  const data = {...omitBy(scope, (v, k) => !k || k[0] === '_' || typeof v === 'function'), ...options?.templateData}
 
   const formatOpts: PromptTemplateOptions = {template: value, data }
   if (options?.templateFormat) {
