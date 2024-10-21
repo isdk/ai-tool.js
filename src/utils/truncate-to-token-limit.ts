@@ -1,6 +1,7 @@
-import { CommonError, countLLMTokens as _countLLMTokens, isSectionString, splitSentence } from "./"
+import { CommonError, NotImplementationError, countLLMTokens as _countLLMTokens, isSectionString, splitSentence } from "./"
 
 export interface ITruncateToTokenLimitOptions {
+  bySentence?: boolean // Whether to truncate by sentence or token, defaults to true
   size?: number
   modelId?: string
   sentences?: string[]
@@ -34,6 +35,7 @@ export async function truncateToTokenLimit(content: string, options?: ITruncateT
   let completeSentence = false
   let truncLastSection = true
   let countLLMTokens = _countLLMTokens
+  let bySentence = true
   if (options) {
     modelId = options.modelId
     if (options.size! >= 0) { size = options.size! }
@@ -49,7 +51,12 @@ export async function truncateToTokenLimit(content: string, options?: ITruncateT
     if (typeof options.countLLMTokens === 'function') {
       countLLMTokens = options.countLLMTokens
     }
+    if (options.bySentence !== undefined) {
+      bySentence = options.bySentence
+    }
   }
+  if (!bySentence) {throw new NotImplementationError('truncateToTokenLimit only implemented by sentence', 'truncateToTokenLimit')}
+
   if (size > 0) {
     let currentSize = await countLLMTokens(content, modelId)
     if (currentSize > size) {
@@ -93,4 +100,23 @@ export async function truncateToTokenLimit(content: string, options?: ITruncateT
   }
   if (!content) throw new CommonError(`Can not truncate content to fit within the token limit: ${size}`, 'truncateContentToTokenLimit')
   return content
+}
+
+export async function truncateByToken(content: string, options?: ITruncateToTokenLimitOptions) {
+  // TODO: NOT FINISHED
+  let modelId
+  let size = 1984
+  let countLLMTokens = _countLLMTokens
+  if (options) {
+    modelId = options.modelId
+    if (typeof options.countLLMTokens === 'function') {
+      if (options.size! >= 0) { size = options.size! }
+      countLLMTokens = options.countLLMTokens
+    }
+  }
+  if (size > 0) {
+    let currentSize = await countLLMTokens(content, modelId)
+    if (currentSize > size) {
+    }
+  }
 }
