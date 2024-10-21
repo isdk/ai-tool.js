@@ -65,13 +65,13 @@ export async function getLLMTokenizer(modelId: string) {
   return tokenizerPromise
 }
 
-export async function encodeLLMTokens(text: string, modelId: string = 'gpt-4') {
+export async function encodeLLMTokens(text: string, modelId: string = 'qwen2.5') {
   if (LLM_TOKENIZER_NAMES_MAP[modelId]) { modelId = LLM_TOKENIZER_NAMES_MAP[modelId] }
   const tokenizer = await getLLMTokenizer(modelId)
   return tokenizer.encode(text)
 }
 
-export async function countLLMTokens(text: string, modelId: string = 'gpt-4') {
+export async function countLLMTokens(text: string, modelId: string = 'qwen2.5') {
   const encoded = await encodeLLMTokens(text, modelId)
   return encoded.length
 }
