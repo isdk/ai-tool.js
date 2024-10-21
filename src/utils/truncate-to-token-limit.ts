@@ -1,4 +1,4 @@
-import { CommonError, countLLMTokens, isSectionString, isSentenceEnding, splitSentence } from "./"
+import { CommonError, countLLMTokens, isSectionString, splitSentence } from "./"
 
 export interface ITruncateToTokenLimitOptions {
   size?: number
