@@ -1,4 +1,4 @@
-import { CommonError, countLLMTokens, isSectionString, splitSentence } from "./"
+import { CommonError, countLLMTokens as _countLLMTokens, isSectionString, splitSentence } from "./"
 
 export interface ITruncateToTokenLimitOptions {
   size?: number
@@ -8,6 +8,7 @@ export interface ITruncateToTokenLimitOptions {
   completeSentence?: boolean
   corrected?: boolean // default true, the completeSentence can not be true if false
   truncLastSection?: boolean // default true, the last section string will be truncated
+  countLLMTokens?: (text: string, modelId?: string) => Promise<number>
 }
 
 /**
@@ -32,6 +33,7 @@ export async function truncateToTokenLimit(content: string, options?: ITruncateT
   let corrected = true
   let completeSentence = false
   let truncLastSection = true
+  let countLLMTokens = _countLLMTokens
   if (options) {
     modelId = options.modelId
     if (options.size! >= 0) { size = options.size! }
@@ -43,6 +45,9 @@ export async function truncateToTokenLimit(content: string, options?: ITruncateT
     }
     if (options.truncLastSection !== undefined) {
       truncLastSection = options.truncLastSection
+    }
+    if (typeof options.countLLMTokens === 'function') {
+      countLLMTokens = options.countLLMTokens
     }
   }
   if (size > 0) {
