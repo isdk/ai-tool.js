@@ -1,4 +1,4 @@
-import { CommonError, countLLMTokens, splitSentence } from "./"
+import { CommonError, countLLMTokens, isSectionString, isSentenceEnding, splitSentence } from "./"
 
 export interface ITruncateToTokenLimitOptions {
   size?: number
@@ -7,6 +7,7 @@ export interface ITruncateToTokenLimitOptions {
   best?: boolean
   completeSentence?: boolean
   corrected?: boolean // default true, the completeSentence can not be true if false
+  truncLastSection?: boolean // default true, the last section string will be truncated
 }
 
 /**
@@ -30,6 +31,7 @@ export async function truncateToTokenLimit(content: string, options?: ITruncateT
   let size = 1984
   let corrected = true
   let completeSentence = false
+  let truncLastSection = true
   if (options) {
     modelId = options.modelId
     if (options.size! >= 0) { size = options.size! }
@@ -38,6 +40,9 @@ export async function truncateToTokenLimit(content: string, options?: ITruncateT
     }
     if (options.completeSentence !== undefined) {
       completeSentence = options.completeSentence
+    }
+    if (options.truncLastSection !== undefined) {
+      truncLastSection = options.truncLastSection
     }
   }
   if (size > 0) {
@@ -49,7 +54,7 @@ export async function truncateToTokenLimit(content: string, options?: ITruncateT
         if (lastSentence) {
           const len = await countLLMTokens(lastSentence, modelId)
           currentSize -= len
-          console.log('🚀 ~ truncateToTokenLimit ~ currentSize:', currentSize, len, lastSentence)
+          // console.log('🚀 ~ truncateToTokenLimit ~ currentSize:', currentSize, len, lastSentence)
           if (!completeSentence && !corrected) {
             const i = content.lastIndexOf(lastSentence)
             if (i === -1) {
@@ -62,6 +67,20 @@ export async function truncateToTokenLimit(content: string, options?: ITruncateT
           }
           if (currentSize <= 1) {
             throw new CommonError(`Can not truncate content to fit within the token limit: ${size}`, 'truncateContentToTokenLimit')
+          }
+          if (currentSize <= size && truncLastSection) {
+            const prevSentence = sentences[sentences.length - 1]
+            if (prevSentence && isSectionString(prevSentence)) {
+              const prevSize = await countLLMTokens(prevSentence, modelId)
+              if (currentSize - prevSize > 9) {
+                  const i = content.lastIndexOf(prevSentence)
+                  if (i === -1) {
+                    // this should never happen
+                    throw new CommonError(`Can not find sentence: ${prevSentence}`, 'truncateContentToTokenLimit')
+                  }
+                  content = content.slice(0, i).trimEnd()
+              }
+            }
           }
         }
       }
