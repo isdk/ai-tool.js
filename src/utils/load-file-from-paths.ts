@@ -140,13 +140,14 @@ export function readFilenamesRecursiveSync(dir: string|string[], options?: {isFi
   const signal = options?.signal
   const isFileMatched = options?.isFileMatched
   const maxLevel = options?.level
-  let level = 0
+  let level = 1
 
   while (stack.length > 0) {
     if (signal?.aborted) {
       throw signal.reason
     }
     const currentDir = getRealFilepath(stack.pop()!);
+    level--
     const absoluteDir = path.resolve(currentDir)
     if (visitedDirs.has(absoluteDir)) {continue}
     visitedDirs.add(absoluteDir)
@@ -159,11 +160,11 @@ export function readFilenamesRecursiveSync(dir: string|string[], options?: {isFi
         const filepath = path.join(currentDir, file.name)
         if (file.isDirectory()) {
           stack.push(filepath)
+          level++
         } else if (file.isFile() && (!isFileMatched || isFileMatched(filepath))) {
           result.push(filepath)
         }
       }
-      level++
       if (maxLevel && level >= maxLevel) {break}
     }
   }
