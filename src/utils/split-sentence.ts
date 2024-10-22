@@ -22,6 +22,12 @@ function replaceWithSeparator(text: string, separator: string, regexs: RegExp[])
   return result;
 }
 
+export interface SplitSentenceOptions {
+  best?: boolean;
+  completeSentence?: boolean;
+  isMarkdown?: boolean
+}
+
 /**
  * Splits a text into sentences.
  * This function is used to split a text into separate sentences, based on punctuation marks such as '.', '?', or '!' and other rules.
@@ -34,7 +40,7 @@ function replaceWithSeparator(text: string, separator: string, regexs: RegExp[])
  * const text = "Hello world! How are you today? I am fine.";
  * console.log(splitSentence(text));  // returns ['Hello world!', 'How are you today?', 'I am fine.']
  */
-export function splitSentence(text: string, {best = true, completeSentence}: {best?: boolean, completeSentence?: boolean} = {}): string[] {
+export function splitSentence(text: string, {best = true, completeSentence, isMarkdown}: SplitSentenceOptions = {}): string[] {
   const codeBlocks: string[] = [];
   const inlineBlocks: string[] = [];
   let match: RegExpExecArray | null;
@@ -64,6 +70,7 @@ export function splitSentence(text: string, {best = true, completeSentence}: {be
   for (let i = 0; i < chunks.length; i++) {
     let chunk = chunks[i].trim();
     if (!chunk) {
+      if (isMarkdown) {result.push('')}
       continue;
     }
     if (chunk.startsWith(CODE_SYMBOL)) {
@@ -86,27 +93,29 @@ export function splitSentence(text: string, {best = true, completeSentence}: {be
     result.push(...sentences.map(s => restoreInlineBlocks(inlineBlocks, s)))
   }
 
-  if (completeSentence) {result = completeSentences(result)}
+  if (completeSentence) {result = completeSentences(result, isMarkdown)}
   return result;
 }
 
-export function completeSentences(sentences: string[]) {
+export function completeSentences(sentences: string[], isMarkdown?: boolean) {
   const result: string[] = []
   let i = 0
   let left = ''
   while (i < sentences.length) {
     let sentence = sentences[i];
-    if (isEnding(sentence) || isSectionString(sentences[i+1])) {
-      if (left) {
-        sentence = concatText(left, sentence)
-        left = ''
+    if (sentence) {
+      if (isEnding(sentence) || (isMarkdown && sentences[i+1] === '') || isSectionString(findNonEmptyFrom(sentences, i+1)!)) {
+        if (left) {
+          sentence = concatText(left, sentence)
+          left = ''
+        }
+        result.push(sentence);
+      } else {
+        if (left) {
+          sentence = concatText(left, sentence)
+        }
+        left = sentence
       }
-      result.push(sentence);
-    } else {
-      if (left) {
-        sentence = concatText(left, sentence)
-      }
-      left = sentence
     }
     i++
   };
@@ -222,4 +231,14 @@ export function isLangUsingSpaces(isoCode: string): boolean {
   ];
   const result = !languagesWithoutSpaces.includes(isoCode);
   return result
+}
+
+function findNonEmptyFrom(strs: string[], start: number = 0) {
+  for (let i = start; i < strs.length; i++) {
+    const s = strs[i]
+    if (s) {
+      return s;
+    }
+  }
+  return undefined
 }
