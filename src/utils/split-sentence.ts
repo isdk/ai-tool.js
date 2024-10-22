@@ -68,7 +68,7 @@ export function splitSentence(text: string, {best = true, completeSentence, isMa
   const chunks = text.split("\n");
   let result: string[] = [];
   for (let i = 0; i < chunks.length; i++) {
-    let chunk = chunks[i].trim();
+    let chunk = chunks[i].trimEnd();
     if (!chunk) {
       if (isMarkdown) {result.push('')}
       continue;
@@ -104,7 +104,10 @@ export function completeSentences(sentences: string[], isMarkdown?: boolean) {
   while (i < sentences.length) {
     let sentence = sentences[i];
     if (sentence) {
-      if (isEnding(sentence) || (isMarkdown && sentences[i+1] === '') || isSectionString(findNonEmptyFrom(sentences, i+1)!)) {
+      const nextNonEmptyLineIx = findIndexNonEmptyFrom(sentences, i+1)
+      // the next non-empty line is a section?
+      const isSection = isSectionString(sentences[nextNonEmptyLineIx], {isMarkdown, nextLine: nextNonEmptyLineIx === -1 ? '': sentences[nextNonEmptyLineIx+1]})
+      if (isEnding(sentence) || (isMarkdown && sentences[i+1] === '') || isSection) {
         if (left) {
           sentence = concatText(left, sentence)
           left = ''
@@ -155,21 +158,29 @@ export function isSentenceEnding(text: string): boolean {
   return result
 }
 
-export function isSectionString(text: string): boolean {
-  let result = isTitleString(text)
+export interface SectionStringOptions {
+  isMarkdown?: boolean
+  nextLine?: string
+}
+export function isSectionString(text: string, options?: SectionStringOptions): boolean {
+  let result = isTitleString(text, options)
   if (!result) { result = isListItemString(text) }
   if (!result) { result = isSepLineString(text) }
   return result
 }
 
-export function isTitleString(text: string): boolean {
+export function isTitleString(text: string, options?: SectionStringOptions): boolean {
   if (!text) {return false}
   let result = /^\s*第?\s*[壹贰叁肆伍陆柒捌玖拾一二三四五六七八九十百千萬万\d]+\s*([章節节编回部篇卷幕场場辑集段册冊期片題]|片段|段落|篇[章目]|小[节節]|(子)?部分|卷[册冊]|[单單]元|章[节節回]|[.、])/.test(text)
   if (!result) {
     result =/^\s*(Chapter|Book|Article|Part|Paragraph|Subsection|Subpart|Volume|Episode|Issue|Unit|Section|Segment|Act|Scene)\s*\d+/i.test(text)
   }
-  if (!result) {
-    result = /^(#+) /.test(text)
+  if (!result && options?.isMarkdown) {
+    result = /^[ \t]{0,3}(#+) /.test(text)
+    const reTitleHyphens = /^(=+|-+)/
+    if (!result && options.nextLine && !reTitleHyphens.test(text) && /^[ \t]{0,3}\S/.test(text)) {
+       result = /^[-=]{3,}/.test(options.nextLine)
+    }
   }
   return result
 }
@@ -233,12 +244,12 @@ export function isLangUsingSpaces(isoCode: string): boolean {
   return result
 }
 
-function findNonEmptyFrom(strs: string[], start: number = 0) {
+function findIndexNonEmptyFrom(strs: string[], start: number = 0) {
   for (let i = start; i < strs.length; i++) {
     const s = strs[i]
     if (s) {
-      return s;
+      return i;
     }
   }
-  return undefined
+  return -1
 }
