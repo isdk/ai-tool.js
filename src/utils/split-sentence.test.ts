@@ -147,7 +147,7 @@ describe('split-sentence', () => {
 
   it('should split sentences completeSentence with markdown', () => {
     let result = splitSentence(`
-# This is a title. Multi?
+# This is a title. Multi? Or Not
 Description
 
 The first paragraph is
@@ -160,12 +160,11 @@ connected
 
 The third paragraph is
 connected
-
-      `, {completeSentence: true, isMarkdown: true})
+This is a SetextHeading Title
+---`, {completeSentence: true, isMarkdown: true})
     expect(result).toMatchInlineSnapshot(`
       [
-        "# This is a title. Multi?",
-        "",
+        "# This is a title. Multi? Or Not",
         "Description",
         "",
         "The first paragraph is connected",
@@ -173,7 +172,8 @@ connected
         "The second paragraph is connected",
         "",
         "The third paragraph is connected",
-        "",
+        "This is a SetextHeading Title",
+        "---",
       ]
     `)
   })

@@ -60,6 +60,19 @@ export function splitSentence(text: string, {best = true, completeSentence, isMa
     text = text.replace(inlineBlock, INLINE_SYMLBOL + (inlineBlocks.length-1) + ' <<<');
   }
 
+  if (isMarkdown) {
+    const chunks = text.split('\n');
+    for (let i = 0; i < chunks.length; i++) {
+      const chunk = chunks[i];
+      const match = isTitleString(chunk, {isMarkdown, nextLine: chunks[i+1]})
+      if (match) {
+        codeBlocks.push(chunk)
+        chunks[i] = CODE_SYMBOL + (codeBlocks.length-1)
+      }
+    }
+    text = chunks.join('\n')
+  }
+
   text = text.replace(/([。！？?])\1+/g, "$1");
   text = text.replace(/([。！？?])([^”’])/g, "$1\n$2");
   text = text.replace(/(\.{6})([^”’])/g, "$1\n$2");
@@ -74,6 +87,11 @@ export function splitSentence(text: string, {best = true, completeSentence, isMa
       continue;
     }
 
+    if (chunk.startsWith(CODE_SYMBOL)) {
+      result.push(codeBlocks[Number(chunk.slice(CODE_SYMBOL.length))]);
+      continue;
+    }
+
     if (isMarkdown) {
       if (isTitleString(chunk, {isMarkdown, nextLine: chunks[i+1]})) {
         result.push(chunk)
@@ -81,10 +99,6 @@ export function splitSentence(text: string, {best = true, completeSentence, isMa
       }
     }
 
-    if (chunk.startsWith(CODE_SYMBOL)) {
-      result.push(codeBlocks[Number(chunk.slice(CODE_SYMBOL.length))]);
-      continue;
-    }
     if (!best) {
       result.push(chunk);
       continue;
@@ -172,35 +186,38 @@ export interface SectionStringOptions {
   isMarkdown?: boolean
   nextLine?: string
 }
-export function isSectionString(text: string, options?: SectionStringOptions): boolean {
+export function isSectionString(text: string, options?: SectionStringOptions) {
   let result = isTitleString(text, options)
   if (!result) { result = isListItemString(text) }
   if (!result) { result = isSepLineString(text) }
   return result
 }
 
-export function isTitleString(text: string, options?: SectionStringOptions): boolean {
-  if (!text) {return false}
-  let result = /^\s*第?\s*[壹贰叁肆伍陆柒捌玖拾一二三四五六七八九十百千萬万\d]+\s*([章節节编回部篇卷幕场場辑集段册冊期片題]|片段|段落|篇[章目]|小[节節]|(子)?部分|卷[册冊]|[单單]元|章[节節回]|[.、])/.test(text)
+export function isTitleString(text: string, options?: SectionStringOptions) {
+  if (!text) {return null}
+  let result = /^\s*第?\s*[壹贰叁肆伍陆柒捌玖拾一二三四五六七八九十百千萬万\d]+\s*([章節节编回部篇卷幕场場辑集段册冊期片題]|片段|段落|篇[章目]|小[节節]|(子)?部分|卷[册冊]|[单單]元|章[节節回]|[.、]).*(?=\n|$)/.exec(text)
   if (!result) {
-    result =/^\s*(Chapter|Book|Article|Part|Paragraph|Subsection|Subpart|Volume|Episode|Issue|Unit|Section|Segment|Act|Scene)\s*\d+/i.test(text)
+    result =/^\s*(Chapter|Book|Article|Part|Paragraph|Subsection|Subpart|Volume|Episode|Issue|Unit|Section|Segment|Act|Scene)\s*\d+.*(?=\n|$)/i.exec(text)
   }
   if (!result && options?.isMarkdown) {
-    result = /^[ \t]{0,3}(#+) \S/.test(text)
-    const reSetextHeading = /^(=+|-+)/
+    result = /^[ \t]{0,3}(#+) \S/.exec(text)
+
+    const reSetextHeading = /^[ \t]{0,3}([-=]+)(?=\n|$)/
     if (!result && options.nextLine && !reSetextHeading.test(text) && /^[ \t]{0,3}\S/.test(text)) {
-       result = /^[-=]{3,}/.test(options.nextLine)
+       if (reSetextHeading.test(options.nextLine)) {
+        result = /^.*(?=\n|$)/.exec(text)
+       }
     }
   }
   return result
 }
 
-export function isListItemString(text: string): boolean {
-  return /^(\s*[*+-]|\d+\.)/.test(text)
+export function isListItemString(text: string) {
+  return /^(\s*[*+-]|\d+\.)/.exec(text)
 }
 
-export function isSepLineString(text: string): boolean {
-  return /^[-=_]{3,}$/.test(text)
+export function isSepLineString(text: string) {
+  return /^[-=_]{3,}$/.exec(text)
 }
 
 /**
