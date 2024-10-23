@@ -73,6 +73,14 @@ export function splitSentence(text: string, {best = true, completeSentence, isMa
       if (isMarkdown) {result.push('')}
       continue;
     }
+
+    if (isMarkdown) {
+      if (isTitleString(chunk, {isMarkdown, nextLine: chunks[i+1]})) {
+        result.push(chunk)
+        continue
+      }
+    }
+
     if (chunk.startsWith(CODE_SYMBOL)) {
       result.push(codeBlocks[Number(chunk.slice(CODE_SYMBOL.length))]);
       continue;
@@ -178,9 +186,9 @@ export function isTitleString(text: string, options?: SectionStringOptions): boo
     result =/^\s*(Chapter|Book|Article|Part|Paragraph|Subsection|Subpart|Volume|Episode|Issue|Unit|Section|Segment|Act|Scene)\s*\d+/i.test(text)
   }
   if (!result && options?.isMarkdown) {
-    result = /^[ \t]{0,3}(#+) /.test(text)
-    const reTitleHyphens = /^(=+|-+)/
-    if (!result && options.nextLine && !reTitleHyphens.test(text) && /^[ \t]{0,3}\S/.test(text)) {
+    result = /^[ \t]{0,3}(#+) \S/.test(text)
+    const reSetextHeading = /^(=+|-+)/
+    if (!result && options.nextLine && !reSetextHeading.test(text) && /^[ \t]{0,3}\S/.test(text)) {
        result = /^[-=]{3,}/.test(options.nextLine)
     }
   }
