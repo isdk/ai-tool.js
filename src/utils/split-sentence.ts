@@ -104,10 +104,10 @@ export function completeSentences(sentences: string[], isMarkdown?: boolean) {
   while (i < sentences.length) {
     let sentence = sentences[i];
     if (sentence) {
-      const nextNonEmptyLineIx = findIndexNonEmptyFrom(sentences, i+1)
+      const nextNonEmptyLineIx = isMarkdown ? i+1 : findIndexNonEmptyFrom(sentences, i+1)
       // the next non-empty line is a section?
       const isSection = isSectionString(sentences[nextNonEmptyLineIx], {isMarkdown, nextLine: nextNonEmptyLineIx === -1 ? '': sentences[nextNonEmptyLineIx+1]})
-      if (isEnding(sentence) || (isMarkdown && sentences[i+1] === '') || isSection) {
+      if (isEnding(sentence, {isMarkdown, nextLine: sentences[i+1]}) || (isMarkdown && sentences[i+1] === '') || isSection) {
         if (left) {
           sentence = concatText(left, sentence)
           left = ''
@@ -119,6 +119,8 @@ export function completeSentences(sentences: string[], isMarkdown?: boolean) {
         }
         left = sentence
       }
+    } else if (isMarkdown) {
+      if (result[result.length-1]) { result.push(sentence) }
     }
     i++
   };
@@ -129,8 +131,8 @@ export function completeSentences(sentences: string[], isMarkdown?: boolean) {
   return result
 }
 
-function isEnding(text: string) {
-  return isSentenceEnding(text) || isSectionString(text)
+function isEnding(text: string, options?: SectionStringOptions) {
+  return isSentenceEnding(text) || isSectionString(text, options)
 }
 
 export function concatText(left: string, right: string): string {
