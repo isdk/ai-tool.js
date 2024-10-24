@@ -106,20 +106,12 @@ export async function truncateToTokenLimit(content: string, options?: ITruncateT
 export async function truncateToTokenLimitEx(sentences: string[], options?: ITruncateToTokenLimitOptions) {
   let modelId
   let size = 1984
-  let corrected = true
-  let completeSentence = false
   let truncLastSection = true
   let countLLMTokens = _countLLMTokens
   let bySentence = true
   if (options) {
     modelId = options.modelId
     if (options.size! >= 0) { size = options.size! }
-    if (options.corrected !== undefined) {
-      corrected = options.corrected
-    }
-    if (options.completeSentence !== undefined) {
-      completeSentence = options.completeSentence
-    }
     if (options.truncLastSection !== undefined) {
       truncLastSection = options.truncLastSection
     }
