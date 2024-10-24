@@ -125,7 +125,6 @@ export async function* readTextFileChunksEx(filePath: string, options?: IReadTex
       let sentences = splitSentence(content, options);
       do {
         const chunk = await truncateToTokenLimitEx(sentences, {...options, modelId, size});
-        console.log('🚀 ~ function*readTextFileChunks ~ chunk:', chunk)
         yield chunk;
         sentences = sentences.slice(chunk.length);
       } while (sentences.length);
@@ -180,3 +179,20 @@ export async function* readTextFileChunksEx(filePath: string, options?: IReadTex
   }
 }
 
+export async function splitChunks(content: string, options?: IReadTextFileChunksOptions) {
+  const size = options?.size ?? 1984;
+  const modelId = options?.modelId;
+  let sentences = splitSentence(content, options);
+  const chunks: string[][] = []
+  const len = await countLLMTokens(content, modelId);
+  if (len <= size) {
+    chunks.push(sentences);
+  } else {
+    do {
+      const chunk = await truncateToTokenLimitEx(sentences, {...options, modelId, size});
+      chunks.push(chunk);
+      sentences = sentences.slice(chunk.length);
+    } while (sentences.length);
+  }
+  return chunks
+}
