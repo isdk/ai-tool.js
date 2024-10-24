@@ -135,37 +135,44 @@ export function decodeCharset(result: Buffer, encoding?: BufferEncoding) {
 */
 export function readFilenamesRecursiveSync(dir: string|string[], options?: {isFileMatched?: (filepath: string) => boolean, signal?: AbortSignal, level?: number}) {
   const result = [] as string[];
-  const stack: string[] = typeof dir === 'string' ? [dir] : [...dir];
+  const stack: {dir: string, level: number}[] = typeof dir === 'string' ? [{dir, level: 0}] : [...dir.map(d => ({dir:d, level:0}))];
   const visitedDirs = new Set<string>()
   const signal = options?.signal
   const isFileMatched = options?.isFileMatched
   const maxLevel = options?.level
-  let level = 1
+  let level = 0
 
   while (stack.length > 0) {
     if (signal?.aborted) {
       throw signal.reason
     }
-    const currentDir = getRealFilepath(stack.pop()!);
-    level--
+    const dirInStack = stack.pop()!
+    const currentDir = getRealFilepath(dirInStack.dir);
     const absoluteDir = path.resolve(currentDir)
     if (visitedDirs.has(absoluteDir)) {continue}
     visitedDirs.add(absoluteDir)
 
     const stat = fs.statSync(currentDir, {throwIfNoEntry: false})
     if (stat?.isDirectory()) {
+      level = dirInStack.level + 1
       const files = fs.readdirSync(currentDir, {withFileTypes: true})
       for (let j = 0; j < files.length; j++) {
-        const file = files[j]
-        const filepath = path.join(currentDir, file.name)
+        let file: fs.Dirent|fs.Stats = files[j]
+        let filepath = path.join(currentDir, file.name)
+        if (file.isSymbolicLink()) {
+          const fileDir = path.dirname(filepath)
+          filepath = fs.readlinkSync(filepath)
+          filepath = path.resolve(fileDir, filepath)
+          file = fs.statSync(filepath)
+        }
         if (file.isDirectory()) {
-          stack.push(filepath)
-          level++
+          if (!maxLevel || level < maxLevel) {
+            stack.push({dir: filepath, level})
+          }
         } else if (file.isFile() && (!isFileMatched || isFileMatched(filepath))) {
-          result.push(filepath)
+          if (!result.includes(filepath)) {result.push(filepath)}
         }
       }
-      if (maxLevel && level >= maxLevel) {break}
     }
   }
   return result
