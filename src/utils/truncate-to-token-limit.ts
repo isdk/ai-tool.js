@@ -102,6 +102,68 @@ export async function truncateToTokenLimit(content: string, options?: ITruncateT
   return content
 }
 
+// return sentences that fit within the token limit
+export async function truncateToTokenLimitEx(sentences: string[], options?: ITruncateToTokenLimitOptions) {
+  let modelId
+  let size = 1984
+  let corrected = true
+  let completeSentence = false
+  let truncLastSection = true
+  let countLLMTokens = _countLLMTokens
+  let bySentence = true
+  if (options) {
+    modelId = options.modelId
+    if (options.size! >= 0) { size = options.size! }
+    if (options.corrected !== undefined) {
+      corrected = options.corrected
+    }
+    if (options.completeSentence !== undefined) {
+      completeSentence = options.completeSentence
+    }
+    if (options.truncLastSection !== undefined) {
+      truncLastSection = options.truncLastSection
+    }
+    if (typeof options.countLLMTokens === 'function') {
+      countLLMTokens = options.countLLMTokens
+    }
+    if (options.bySentence !== undefined) {
+      bySentence = options.bySentence
+    }
+  }
+  if (!bySentence) {throw new NotImplementationError('truncateToTokenLimit only implemented by sentence', 'truncateToTokenLimit')}
+
+  if (size > 0) {
+    sentences = sentences.slice()
+    const content = sentences.join('\n')
+    let currentSize = await countLLMTokens(content, modelId)
+
+    if (currentSize > size) {
+      while (currentSize > size && sentences.length) {
+        const lastSentence = sentences.pop()
+        if (lastSentence) {
+          const len = await countLLMTokens(lastSentence, modelId)
+          currentSize -= len
+          // console.log('🚀 ~ truncateToTokenLimit ~ currentSize:', currentSize, len, lastSentence)
+          if (currentSize <= 1) {
+            throw new CommonError(`Can not truncate content to fit within the token limit: ${size}`, 'truncateContentToTokenLimit')
+          }
+          if (currentSize <= size && truncLastSection) {
+            const prevSentence = sentences[sentences.length - 1]
+            if (prevSentence && isSectionString(prevSentence)) {
+              const prevSize = await countLLMTokens(prevSentence, modelId)
+              if (currentSize - prevSize > 9) {
+                sentences.pop()
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  if (!sentences.length) throw new CommonError(`Empty. Can not truncate content to fit within the token limit: ${size}`, 'truncateContentToTokenLimit')
+  return sentences
+}
+
 export async function truncateByToken(content: string, options?: ITruncateToTokenLimitOptions) {
   // TODO: NOT FINISHED
   let modelId

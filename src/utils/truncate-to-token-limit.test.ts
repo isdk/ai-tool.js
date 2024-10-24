@@ -61,7 +61,6 @@ describe('truncateToTokenLimit', () => {
 
   it('should truncate content with completeSentence2', async () => {
     const content = `菜根谭(全文附译文)
-
 菜根谭(全文附译文)
 1.弄权一时，凄凉万古
 
@@ -78,7 +77,7 @@ describe('truncateToTokenLimit', () => {
   章 这不是
   章节。
 `
-    const options = { size: 73, completeSentence: true };
+    const options = { size: 50, completeSentence: true };
     const result = await truncateToTokenLimit(content, options);
     expect(result).toBe('菜根谭(全文附译文) 菜根谭(全文附译文)')
   })
@@ -104,17 +103,15 @@ describe('truncateToTokenLimit', () => {
 `
     const options = { size: 73, completeSentence: true, truncLastSection: false };
     const result = await truncateToTokenLimit(content, options);
-    expect(result).toBe('菜根谭(全文附译文) 菜根谭(全文附译文)\n1.弄权一时，凄凉万古')
+    expect(result).toBe('菜根谭(全文附译文)\n\n菜根谭(全文附译文)\n1.弄权一时，凄凉万古\n')
   })
 
   it('should truncate content with completeSentence do not include section string at last', async () => {
     const content = `菜根谭(全文附译文)
-
 菜根谭(全文附译文)
 1.弄权一时，凄凉万古
 
 栖守道德者，寂寞一时；依阿权势者，凄凉万古。达人观物外之物，思
-
   身后之身，守受一时之寂寞，毋取万古之凄凉。
   # This is a Title
   1. This is a numberic list item
@@ -130,8 +127,10 @@ describe('truncateToTokenLimit', () => {
     const result = await truncateToTokenLimit(content, options);
     expect(result).toBe(`菜根谭(全文附译文) 菜根谭(全文附译文)
 1.弄权一时，凄凉万古
+
 栖守道德者，寂寞一时；依阿权势者，凄凉万古。
 达人观物外之物，思身后之身，守受一时之寂寞，毋取万古之凄凉。
+
 # This is a Title
 1. This is a numberic list item
 2. This is another numberic list item
@@ -161,11 +160,15 @@ describe('truncateToTokenLimit', () => {
     const options: ITruncateToTokenLimitOptions = { size: 145, completeSentence: false};
     const result = await truncateToTokenLimit(content, options);
     expect(result).toBe(`菜根谭(全文附译文)
+
 菜根谭(全文附译文)
 1.弄权一时，凄凉万古
+
 栖守道德者，寂寞一时；依阿权势者，凄凉万古。
 达人观物外之物，思
+
 身后之身，守受一时之寂寞，毋取万古之凄凉。
+
 # This is a Title
 1. This is a numberic list item
 2. This is another numberic list item
