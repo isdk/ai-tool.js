@@ -83,7 +83,7 @@ export function splitSentence(text: string, {best = true, completeSentence, isMa
   for (let i = 0; i < chunks.length; i++) {
     let chunk = chunks[i].trimEnd();
     if (!chunk) {
-      if (isMarkdown) {result.push('')}
+      result.push('')
       continue;
     }
 
@@ -126,10 +126,12 @@ export function completeSentences(sentences: string[], isMarkdown?: boolean) {
   while (i < sentences.length) {
     let sentence = sentences[i];
     if (sentence) {
-      const nextNonEmptyLineIx = isMarkdown ? i+1 : findIndexNonEmptyFrom(sentences, i+1)
+      // const nextNonEmptyLineIx = isMarkdown ? i+1 : findIndexNonEmptyFrom(sentences, i+1)
       // the next non-empty line is a section?
-      const isSection = isSectionString(sentences[nextNonEmptyLineIx], {isMarkdown, nextLine: nextNonEmptyLineIx === -1 ? '': sentences[nextNonEmptyLineIx+1]})
-      if (isEnding(sentence, {isMarkdown, nextLine: sentences[i+1]}) || (isMarkdown && sentences[i+1] === '') || isSection) {
+      // const nextIsSection = isSectionString(sentences[nextNonEmptyLineIx], {isMarkdown, nextLine: nextNonEmptyLineIx === -1 ? '': sentences[nextNonEmptyLineIx+1]})
+      // pure text as sentence if next line is empty line. do not ignore the empty line now.
+      const nextIsSection = isSectionString(sentences[i+1], {isMarkdown, nextLine: sentences[i+2]})
+      if (isEnding(sentence, {isMarkdown, nextLine: sentences[i+1]}) || (sentences[i+1] === '') || nextIsSection ) {
         if (left) {
           sentence = concatText(left, sentence)
           left = ''
@@ -141,7 +143,7 @@ export function completeSentences(sentences: string[], isMarkdown?: boolean) {
         }
         left = sentence
       }
-    } else if (isMarkdown) {
+    } else {
       if (result[result.length-1]) { result.push(sentence) }
     }
     i++
@@ -271,10 +273,10 @@ export function isLangUsingSpaces(isoCode: string): boolean {
   return result
 }
 
-function findIndexNonEmptyFrom(strs: string[], start: number = 0) {
-  for (let i = start; i < strs.length; i++) {
-    const s = strs[i]
-    if (s) {
+export function findIndexNonEmptyFrom(arr: any[], start: number = 0) {
+  for (let i = start; i < arr.length; i++) {
+    const s = arr[i]
+    if (s != null && s !== '') {
       return i;
     }
   }

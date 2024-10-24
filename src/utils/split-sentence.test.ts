@@ -47,6 +47,7 @@ describe('split-sentence', () => {
       Good beeter.
       Nice day.
       \`\`\`",
+        "",
         "How are you today?",
         "I am fine.",
         "Nice too.",
@@ -55,13 +56,13 @@ describe('split-sentence', () => {
   })
   it('should split sentences with mutli new lines', () => {
     let result = splitSentence(`栖守道德者，寂寞一时；依阿权势者，凄凉万古。达人观物外之物，思
-
   身后之身，守受一时之寂寞，毋取万古之凄凉。
   `, {completeSentence: true})
     expect(result).toMatchInlineSnapshot(`
       [
         "栖守道德者，寂寞一时；依阿权势者，凄凉万古。",
         "达人观物外之物，思身后之身，守受一时之寂寞，毋取万古之凄凉。",
+        "",
       ]
     `)
   })
@@ -101,10 +102,16 @@ describe('split-sentence', () => {
   `, {completeSentence: true})
     expect(result).toMatchInlineSnapshot(`
       [
-        "菜根谭(全文附译文) 菜根谭(全文附译文)",
+        "菜根谭(全文附译文)",
+        "",
+        "菜根谭(全文附译文)",
         "1.弄权一时，凄凉万古",
+        "",
         "栖守道德者，寂寞一时；依阿权势者，凄凉万古。",
-        "达人观物外之物，思身后之身，守受一时之寂寞，毋取万古之凄凉。",
+        "达人观物外之物，思",
+        "",
+        "身后之身，守受一时之寂寞，毋取万古之凄凉。",
+        "",
         "# This is a Title",
         "1. This is a numberic list item",
         "2. This is another numberic list item",
@@ -118,18 +125,24 @@ describe('split-sentence', () => {
         "一章 这是另一个测试",
         "_____",
         "章 这不是章节。",
+        "",
       ]
     `)
   })
 
   it('should split sentences with complete sentence with section CRLF', () => {
-    let result = splitSentence('菜根谭(全文附译文)\r\n\r\n菜根谭(全文附译文)\r\n\r\n1.弄权一时，凄凉万古\r\n\r\n栖守道德者，寂寞一时；依阿权势者，凄凉万古。达人观物外之物，思\r\n\r\n身后之身，守受一时之寂寞，毋取万古之凄凉。\r\n\r\n# This is a Title', {completeSentence: true})
+    let result = splitSentence('菜根谭(全文附译文)\r\n\r\n菜根谭(全文附译文)\r\n\r\n1.弄权一时，凄凉万古\r\n\r\n栖守道德者，寂寞一时；依阿权势者，凄凉万古。达人观物外之物，思\r\n身后之身，守受一时之寂寞，毋取万古之凄凉。\r\n\r\n# This is a Title', {completeSentence: true})
     expect(result).toMatchInlineSnapshot(`
       [
-        "菜根谭(全文附译文) 菜根谭(全文附译文)",
+        "菜根谭(全文附译文)",
+        "",
+        "菜根谭(全文附译文)",
+        "",
         "1.弄权一时，凄凉万古",
+        "",
         "栖守道德者，寂寞一时；依阿权势者，凄凉万古。",
         "达人观物外之物，思身后之身，守受一时之寂寞，毋取万古之凄凉。",
+        "",
         "# This is a Title",
       ]
     `)
