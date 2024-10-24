@@ -1,6 +1,6 @@
 import fs from 'fs'
 import type { RequireAtLeastOne } from 'type-fest'
-import {countLLMTokens, decodeCharset, truncateToTokenLimit, IFileMetaInfo, splitSentence, ITruncateToTokenLimitOptions} from './'
+import {countLLMTokens, decodeCharset, truncateToTokenLimit, IFileMetaInfo, splitSentence, ITruncateToTokenLimitOptions, truncateToTokenLimitEx} from './'
 
 export interface IReadTextFileChunksOptions extends ITruncateToTokenLimitOptions {
   size?: number
@@ -16,6 +16,7 @@ export interface IReadTextFileChunksOptions extends ITruncateToTokenLimitOptions
  * Note: The specified `size` must not be less than the token count of the longest sentence.
  * If the `size` is less than the token count of the longest sentence, some sentences may not
  * fit completely into a single chunk.
+ * Without completeSentence and corrected Only!
  *
  * @param filePath - The path to the text file to be read.
  * @param options - optional Options for reading the file.
@@ -39,11 +40,12 @@ export interface IReadTextFileChunksOptions extends ITruncateToTokenLimitOptions
  */
 export async function* readTextFileChunks(filePath: string, options?: IReadTextFileChunksOptions): AsyncIterable<string> {
   // the max token size per chunk
-  const size = options?.size ?? 1984;
-  const modelId = options?.modelId;
+  options = {...options, completeSentence: false, corrected: false}
+  const size = options.size ?? 1984;
+  const modelId = options.modelId;
 
   // const fileMetaInfo = await getFileMetaInfo(filePath);
-  const fileSize = options?.metaInfo?.size ?? (await fs.promises.stat(filePath)).size;
+  const fileSize = options.metaInfo?.size ?? (await fs.promises.stat(filePath)).size;
 
   // Estimated file token size
   let len = Math.trunc(fileSize / 2);
@@ -63,9 +65,6 @@ export async function* readTextFileChunks(filePath: string, options?: IReadTextF
     const stream = (ReadableStream as any).from(fs.createReadStream(filePath));
     const reader = stream.getReader();
     let content = '';
-    const completeSentence = options?.completeSentence;
-    const corrected = options?.corrected;
-    const noCorrected = !completeSentence && !corrected
 
     // eslint-disable-next-line no-constant-condition
     while (true) {
@@ -76,22 +75,14 @@ export async function* readTextFileChunks(filePath: string, options?: IReadTextF
       let last = sentences.pop();
 
       if (last) {
-        if (noCorrected) {
-          const ix = content.lastIndexOf(last);
-          last = content.slice(ix);
-          content = content.slice(0, ix);
-        } else {
-          content = sentences.join('\n')
-        }
+        const ix = content.lastIndexOf(last);
+        last = content.slice(ix);
+        content = content.slice(0, ix);
       }
 
       if (content.length >= size) {
         const chunk = await truncateToTokenLimit(content, { ...options, modelId, size, sentences });
-        if (noCorrected) {
-          content = content.slice(chunk.length)
-        } else {
-          content = sentences.slice(chunk.length).join('\n')
-        }
+        content = content.slice(chunk.length)
         yield chunk;
       }
 
@@ -99,26 +90,93 @@ export async function* readTextFileChunks(filePath: string, options?: IReadTextF
       while (content.length > size) {
         const sentences = splitSentence(content, options);
         const chunk = await truncateToTokenLimit(content, { ...options, modelId, size, sentences });
-        if (!completeSentence && !corrected) {
-          content = content.slice(chunk.length)
-        } else {
-          content = sentences.slice(chunk.length).join('\n')
-        }
+        content = content.slice(chunk.length)
         yield chunk;
       }
 
-      if (last !== undefined) content += (content && !noCorrected ? '\n': '') + last;
+      if (last !== undefined) content += last;
     }
 
     while (content) {
       const sentences = splitSentence(content, options);
       const chunk = await truncateToTokenLimit(content, { ...options, modelId, size, sentences });
-      if (!completeSentence && !corrected) {
-        content = content.slice(chunk.length)
-      } else {
-        content = sentences.slice(chunk.length).join('\n')
-      }
+      content = content.slice(chunk.length)
       yield chunk;
     }
   }
 }
+
+export async function* readTextFileChunksEx(filePath: string, options?: IReadTextFileChunksOptions): AsyncIterable<string[]> {
+  // the max token size per chunk
+  const size = options?.size ?? 1984;
+  const modelId = options?.modelId;
+
+  // const fileMetaInfo = await getFileMetaInfo(filePath);
+  const fileSize = options?.metaInfo?.size ?? (await fs.promises.stat(filePath)).size;
+
+  // Estimated file token size
+  let len = Math.trunc(fileSize / 2);
+  if (len <= size) {
+    let content = decodeCharset(await fs.promises.readFile(filePath));
+    len = await countLLMTokens(content, modelId);
+    if (len <= size) {
+      yield splitSentence(content, options);
+    } else {
+      let sentences = splitSentence(content, options);
+      do {
+        const chunk = await truncateToTokenLimitEx(sentences, {...options, modelId, size});
+        console.log('🚀 ~ function*readTextFileChunks ~ chunk:', chunk)
+        yield chunk;
+        sentences = sentences.slice(chunk.length);
+      } while (sentences.length);
+    }
+  } else {
+    const stream = (ReadableStream as any).from(fs.createReadStream(filePath));
+    const reader = stream.getReader();
+    let content = '';
+    const completeSentence = options?.completeSentence;
+    const corrected = options?.corrected;
+    const noCorrected = !completeSentence && !corrected
+    let sentences: string[];
+
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      content += decodeCharset(value);
+      sentences = splitSentence(content, options);
+      let last = sentences.pop();
+
+      if (content.length >= size) {
+        const chunk = await truncateToTokenLimitEx(sentences, { ...options, modelId, size });
+        if (noCorrected) {
+          content = content.slice(chunk.length)
+        } else {
+          content = sentences.join('\n')//.slice(chunk.length) //.join('\n')
+        }
+        sentences = sentences.slice(chunk.length)
+        content = sentences.join('\n')
+        yield chunk;
+      }
+
+      // the cache block could be much larger than the size
+      while (content.length > size) {
+        // const sentences = splitSentence(content, options);
+        const chunk = await truncateToTokenLimitEx(sentences, { ...options, modelId, size });
+        sentences = sentences.slice(chunk.length)
+        content = sentences.join('\n')
+        yield chunk;
+      }
+
+      // if (last !== undefined) content += (content && !noCorrected ? '\n': '') + last;
+      if (last) {sentences.push(last)}
+    }
+
+    if (sentences!) while (sentences.length) {
+      const chunk = await truncateToTokenLimitEx(sentences, { ...options, modelId, size });
+      sentences = sentences.slice(chunk.length)
+      yield chunk;
+    }
+  }
+}
+
