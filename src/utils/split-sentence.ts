@@ -25,7 +25,8 @@ function replaceWithSeparator(text: string, separator: string, regexs: RegExp[])
 export interface SplitSentenceOptions {
   best?: boolean;
   completeSentence?: boolean;
-  isMarkdown?: boolean
+  isMarkdown?: boolean;
+  ignoreEmptyLine?: boolean; // for pure text, not Markdown
 }
 
 /**
@@ -40,7 +41,7 @@ export interface SplitSentenceOptions {
  * const text = "Hello world! How are you today? I am fine.";
  * console.log(splitSentence(text));  // returns ['Hello world!', 'How are you today?', 'I am fine.']
  */
-export function splitSentence(text: string, {best = true, completeSentence, isMarkdown}: SplitSentenceOptions = {}): string[] {
+export function splitSentence(text: string, {best = true, completeSentence, isMarkdown, ignoreEmptyLine}: SplitSentenceOptions = {}): string[] {
   const codeBlocks: string[] = [];
   const inlineBlocks: string[] = [];
   let match: RegExpExecArray | null;
@@ -83,7 +84,7 @@ export function splitSentence(text: string, {best = true, completeSentence, isMa
   for (let i = 0; i < chunks.length; i++) {
     let chunk = chunks[i].trimEnd();
     if (!chunk) {
-      result.push('')
+      if (isMarkdown || !ignoreEmptyLine) result.push('')
       continue;
     }
 
@@ -115,22 +116,27 @@ export function splitSentence(text: string, {best = true, completeSentence, isMa
     result.push(...sentences.map(s => restoreInlineBlocks(inlineBlocks, s)))
   }
 
-  if (completeSentence) {result = completeSentences(result, isMarkdown)}
+  if (completeSentence) {result = completeSentences(result, {isMarkdown, ignoreEmptyLine})}
   return result;
 }
 
-export function completeSentences(sentences: string[], isMarkdown?: boolean) {
+export function completeSentences(sentences: string[], {isMarkdown, ignoreEmptyLine}: SplitSentenceOptions = {}) {
   const result: string[] = []
   let i = 0
   let left = ''
+  ignoreEmptyLine = !isMarkdown && ignoreEmptyLine
   while (i < sentences.length) {
     let sentence = sentences[i];
     if (sentence) {
-      // const nextNonEmptyLineIx = isMarkdown ? i+1 : findIndexNonEmptyFrom(sentences, i+1)
-      // the next non-empty line is a section?
-      // const nextIsSection = isSectionString(sentences[nextNonEmptyLineIx], {isMarkdown, nextLine: nextNonEmptyLineIx === -1 ? '': sentences[nextNonEmptyLineIx+1]})
-      // pure text as sentence if next line is empty line. do not ignore the empty line now.
-      const nextIsSection = isSectionString(sentences[i+1], {isMarkdown, nextLine: sentences[i+2]})
+      let nextIsSection: any
+      if (ignoreEmptyLine) {
+        const nextNonEmptyLineIx = findIndexNonEmptyFrom(sentences, i+1)
+        // the next non-empty line is a section?
+        nextIsSection = isSectionString(sentences[nextNonEmptyLineIx], {isMarkdown, nextLine: nextNonEmptyLineIx === -1 ? '': sentences[nextNonEmptyLineIx+1]})
+      } else {
+        // pure text as sentence if next line is empty line. do not ignore the empty line default.
+        nextIsSection = isSectionString(sentences[i+1], {isMarkdown, nextLine: sentences[i+2]})
+      }
       if (isEnding(sentence, {isMarkdown, nextLine: sentences[i+1]}) || (sentences[i+1] === '') || nextIsSection ) {
         if (left) {
           sentence = concatText(left, sentence)
@@ -143,7 +149,7 @@ export function completeSentences(sentences: string[], isMarkdown?: boolean) {
         }
         left = sentence
       }
-    } else {
+    } else if (!ignoreEmptyLine) {
       if (result[result.length-1]) { result.push(sentence) }
     }
     i++
@@ -197,17 +203,17 @@ export function isSectionString(text: string, options?: SectionStringOptions) {
 
 export function isTitleString(text: string, options?: SectionStringOptions) {
   if (!text) {return null}
-  let result = /^\s*第?\s*[壹贰叁肆伍陆柒捌玖拾一二三四五六七八九十百千萬万\d]+\s*([章節节编回部篇卷幕场場辑集段册冊期片題]|片段|段落|篇[章目]|小[节節]|(子)?部分|卷[册冊]|[单單]元|章[节節回]|[.、]).*(?=\n|$)/.exec(text)
+  let result = /^\s*第?\s*[壹贰叁肆伍陆柒捌玖拾一二三四五六七八九十百千萬万\d]+\s*([章節节编回部篇卷幕场場辑集段册冊期片題]|片段|段落|篇[章目]|小[节節]|(子)?部分|卷[册冊]|[单單]元|章[节節回]|[.、])[ \t]*(?<title>.*)(?=\n|$)/.exec(text)
   if (!result) {
     result =/^\s*(Chapter|Book|Article|Part|Paragraph|Subsection|Subpart|Volume|Episode|Issue|Unit|Section|Segment|Act|Scene)\s*\d+.*(?=\n|$)/i.exec(text)
   }
   if (!result && options?.isMarkdown) {
-    result = /^[ \t]{0,3}(#+) \S/.exec(text)
+    result = /^[ \t]{0,3}(#+)\s+(?<title>\S.*)$/.exec(text)
 
     const reSetextHeading = /^[ \t]{0,3}([-=]+)(?=\n|$)/
     if (!result && options.nextLine && !reSetextHeading.test(text) && /^[ \t]{0,3}\S/.test(text)) {
        if (reSetextHeading.test(options.nextLine)) {
-        result = /^.*(?=\n|$)/.exec(text)
+        result = /^\s*(?<title>.*)(?=\n|$)/.exec(text)
        }
     }
   }
@@ -215,7 +221,7 @@ export function isTitleString(text: string, options?: SectionStringOptions) {
 }
 
 export function isListItemString(text: string) {
-  return /^(\s*[*+-]|\d+\.)/.exec(text)
+  return /^\s*([*+-]|\d+[.、])\s*(?<item>.*)(?=\n|$)/.exec(text)
 }
 
 export function isSepLineString(text: string) {
@@ -281,4 +287,30 @@ export function findIndexNonEmptyFrom(arr: any[], start: number = 0) {
     }
   }
   return -1
+}
+
+export function removeMarkdownBold(s: string, once?: boolean) {
+  const re = /(?!\\)([*_])\1(?![ \t]|\1)(.+?)(?<!\\)\1{2}/
+  let match
+  while (match = re.exec(s)) {
+    s = s.slice(0, match.index) + match[2] + s.slice(match.index + match[0].length)
+    if (once) break
+  }
+  return s
+}
+
+export function removeMarkdownItalic(s: string, once?: boolean) {
+  const re = /(?!\\)([*_])(?![ \t]|\1)(.+?)(?<!\\)\1/
+  let match
+  while (match = re.exec(s)) {
+    s = s.slice(0, match.index) + match[2] + s.slice(match.index + match[0].length)
+    if (once) break
+  }
+  return s
+}
+
+export function removeMarkdownBoldAndItalic(s: string, once?: boolean) {
+  s = removeMarkdownBold(s, once)
+  s = removeMarkdownItalic(s, once)
+  return s
 }

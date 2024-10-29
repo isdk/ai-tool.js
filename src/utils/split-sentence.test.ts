@@ -1,4 +1,4 @@
-import { splitSentence } from "./split-sentence"
+import { splitSentence, removeMarkdownBold, removeMarkdownItalic, removeMarkdownBoldAndItalic } from "./split-sentence"
 
 describe('split-sentence', () => {
   it('should split sentence', () => {
@@ -189,5 +189,81 @@ This is a SetextHeading Title
         "---",
       ]
     `)
+  })
+
+  it('should split sentences completeSentence with markdown', () => {
+    let result = splitSentence(`
+# This is a title. Multi? Or Not
+Description
+
+The first paragraph is
+connected.
+
+The second paragraph is
+connected.
+
+
+
+The third paragraph is
+connected.
+This is a SetextHeading Title
+---`, {completeSentence: true, ignoreEmptyLine: true})
+    expect(result).toMatchInlineSnapshot(`
+      [
+        "# This is a title.",
+        "Multi?",
+        "Or Not Description The first paragraph is connected.",
+        "The second paragraph is connected.",
+        "The third paragraph is connected.",
+        "This is a SetextHeading Title",
+        "---",
+      ]
+    `)
+  })
+})
+
+describe('removeMarkdownEmphasis', () => {
+  it('should remove markdown emphasis *', () => {
+    expect(removeMarkdownBold('**Hello**')).toBe('Hello')
+    expect(removeMarkdownBold('**He**ll**o**')).toBe('Hello')
+    expect(removeMarkdownBold('**Hello** World')).toBe('Hello World')
+    expect(removeMarkdownBold('**Hello** World **Goodbye**')).toBe('Hello World Goodbye')
+    expect(removeMarkdownBold('**Hello**World **Goodbye**')).toBe('HelloWorld Goodbye')
+  })
+
+  it('should remove markdown emphasis _', () => {
+    expect(removeMarkdownBold('__Hello__')).toBe('Hello')
+    expect(removeMarkdownBold('H__ell__o')).toBe('Hello')
+    expect(removeMarkdownBold('__Hello__ World')).toBe('Hello World')
+    expect(removeMarkdownBold('__Hello__ World __Goodbye__')).toBe('Hello World Goodbye')
+    expect(removeMarkdownBold('__Hello__World __Goodbye__')).toBe('HelloWorld Goodbye')
+  })
+
+  it('should not remove markdown emphasis with spaces', () => {
+    expect(removeMarkdownBold('__ Hello__G')).toBe('__ Hello__G')
+    expect(removeMarkdownBold('** Hello**G')).toBe('** Hello**G')
+  })
+})
+
+describe('removeMarkdownBoldAndItalic', () => {
+  it('should remove markdown emphasis *', () => {
+    expect(removeMarkdownBold('**Hello**')).toBe('Hello')
+    expect(removeMarkdownItalic('*Hello*')).toBe('Hello')
+    expect(removeMarkdownItalic('*Hello* World')).toBe('Hello World')
+    expect(removeMarkdownBoldAndItalic('*Hello* World **Goodbye**')).toBe('Hello World Goodbye')
+    expect(removeMarkdownBoldAndItalic('*Hello*World **Goodbye**')).toBe('HelloWorld Goodbye')
+  })
+
+  it('should remove markdown emphasis _', () => {
+    expect(removeMarkdownBold('__Hello__')).toBe('Hello')
+    expect(removeMarkdownItalic('_Hello_')).toBe('Hello')
+    expect(removeMarkdownItalic('_Hello_ World')).toBe('Hello World')
+    expect(removeMarkdownBoldAndItalic('_Hello_ World __Goodbye__')).toBe('Hello World Goodbye')
+    expect(removeMarkdownBoldAndItalic('_Hello_World __Goodbye__')).toBe('HelloWorld Goodbye')
+  })
+
+  it('should not remove markdown emphasis with spaces', () => {
+    expect(removeMarkdownBold('__ Hello__G')).toBe('__ Hello__G')
+    expect(removeMarkdownBold('** Hello**G')).toBe('** Hello**G')
   })
 })
