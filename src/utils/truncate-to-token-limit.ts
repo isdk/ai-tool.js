@@ -61,12 +61,13 @@ export async function truncateToTokenLimit(content: string, options?: ITruncateT
     let currentSize = await countLLMTokens(content, modelId)
     if (currentSize > size) {
       const sentences = options?.sentences ?? splitSentence(content, options)
+      currentSize = await countLLMTokens(sentences.join('\n'), modelId)
       while (currentSize > size && sentences.length) {
         const lastSentence = sentences.pop()
         if (lastSentence) {
-          const len = await countLLMTokens(lastSentence, modelId)
+          const len = await countLLMTokens(lastSentence+'\n', modelId)
           currentSize -= len
-          // console.log('🚀 ~ truncateToTokenLimit ~ currentSize:', currentSize, len, lastSentence)
+          console.log('🚀 ~ truncateToTokenLimit ~ currentSize:', currentSize, len, lastSentence)
           if (!completeSentence && !corrected) {
             const i = content.lastIndexOf(lastSentence)
             if (i === -1) {
@@ -94,6 +95,8 @@ export async function truncateToTokenLimit(content: string, options?: ITruncateT
               }
             }
           }
+        } else {
+          currentSize--
         }
       }
     }

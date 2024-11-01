@@ -197,7 +197,7 @@ summary）而不是像我们上述RAG系统那样显式检索，现有的QFS方�
 - **社区摘要到社区回答再到全局回答**：使用社区摘要生成最终答案的多阶段过程。准备社区摘要，社区摘要被随机打乱并分成预指定token大小的块。这确保了相关信息分散在各个块中，而不是集中在一个上下文窗口中（可能丢失）。映射社区回答，并行生成中间答案，每个块一个。LLM也被要求生成一个0&#45;100之间的分数，以指示生成的答案在回答目标问题方面的有用程度。得分为0的答案被过滤掉。汇总为全局答案，按有用性得分降序排列的中间社区答案被迭代地添加到新的上下文窗口中，直到达到token限制。这个最终上下文被用来生成返回给用户的全局答案。
 
 `
-    const options = { size: 187, completeSentence: true, isMarkdown: true };
+    const options = { size: 172, completeSentence: true, isMarkdown: true };
     const result = await truncateToTokenLimit(content, options);
     expect(result).toBe(`# 实战微软新一代RAG：GraphRAG强大的全局理解能力，碾压朴素RAG？微软近日开源了新一代RAG框架GraphRAG - 掘金
 
