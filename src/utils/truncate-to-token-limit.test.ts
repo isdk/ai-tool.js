@@ -77,7 +77,7 @@ describe('truncateToTokenLimit', () => {
   章 这不是
   章节。
 `
-    const options = { size: 50, completeSentence: true };
+    const options = { size: 16, completeSentence: true };
     const result = await truncateToTokenLimit(content, options);
     expect(result).toBe('菜根谭(全文附译文) 菜根谭(全文附译文)')
   })
@@ -101,7 +101,7 @@ describe('truncateToTokenLimit', () => {
   章 这不是
   章节。
 `
-    const options = { size: 73, completeSentence: true, truncLastSection: false };
+    const options = { size: 26, completeSentence: true, truncLastSection: false };
     const result = await truncateToTokenLimit(content, options);
     expect(result).toBe('菜根谭(全文附译文)\n\n菜根谭(全文附译文)\n1.弄权一时，凄凉万古\n')
   })
@@ -123,7 +123,7 @@ describe('truncateToTokenLimit', () => {
   章 这不是
   章节。
 `
-    const options = { size: 145, completeSentence: true };
+    const options = { size: 121, completeSentence: true };
     const result = await truncateToTokenLimit(content, options);
     expect(result).toBe(`菜根谭(全文附译文) 菜根谭(全文附译文)
 1.弄权一时，凄凉万古
@@ -157,7 +157,7 @@ describe('truncateToTokenLimit', () => {
   章 这不是
   章节。
 `
-    const options: ITruncateToTokenLimitOptions = { size: 145, completeSentence: false};
+    const options: ITruncateToTokenLimitOptions = { size: 119, completeSentence: false};
     const result = await truncateToTokenLimit(content, options);
     expect(result).toBe(`菜根谭(全文附译文)
 
