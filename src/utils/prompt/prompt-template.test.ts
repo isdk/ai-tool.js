@@ -14,15 +14,21 @@ describe('PromptTemplate', () => {
   beforeAll(() => {
     // @ts-ignore
     PromptTemplate.register(TestPromptTemplate)
+    PromptTemplate.register(HfPromptTemplate)
   })
   afterAll(() => {
     // @ts-ignore
     PromptTemplate.unregister(TestPromptTemplate)
+    PromptTemplate.unregister(HfPromptTemplate)
   })
 
   it('should get registered PromptTemplate', () => {
     expect(PromptTemplate.get('Test')).toStrictEqual(TestPromptTemplate)
     expect(new PromptTemplate('{{text}}', {templateFormat: 'Test'})).toBeInstanceOf(TestPromptTemplate)
+  })
+
+  it('should test isTemplate', () => {
+    expect(PromptTemplate.isTemplate({template: `a {{genre }}.`})).toBeTruthy()
   })
 
   it('should get partial PromptTemplate(string)', async () => {
