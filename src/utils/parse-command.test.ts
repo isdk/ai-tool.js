@@ -150,10 +150,10 @@ describe('parseObjectArguments', async () => {
   });
 
   test('should handle arguments with scope', async () => {
-    const argsStr = '"arg1", arg2, arg3,arg4=random, random';
+    const argsStr = '"arg1,f", arg2, arg3,arg4=random, random';
     const scope = { arg2: 'value2', arg3: 'value3', random: 'random1' };
     const result = await parseObjectArguments(argsStr, scope);
-    expect(result).toEqual({0:'arg1', 1: "value2", arg2: 'value2', 2: 'value3', arg3: 'value3', arg4: 'random1', 4: 'random1', random: 'random1'});
+    expect(result).toEqual({0:'arg1,f', 1: "value2", arg2: 'value2', 2: 'value3', arg3: 'value3', arg4: 'random1', 4: 'random1', random: 'random1'});
   });
 
   test('should return undefined if no arguments are provided', async () => {
