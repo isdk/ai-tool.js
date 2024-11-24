@@ -403,6 +403,84 @@ export async function parseCommand(commandStr: string, scope?: Record<string, an
   return { command: commandName.trim(), args };
 }
 
+export interface ReplacePlacehoderOptions {
+  startChar?: string|string[]
+  endChar?: string|string[]
+  placeholder?: string
+}
+
+const defaultPlaceholderName = '__PlacEhoLdeR_'
+
+/**
+ * Replaces substrings in the given content with placeholders.
+ *
+ * @param content - The string content to process.
+ * @param options - Optional configuration object with the following properties:
+ *   - `startChar` - The starting character(s) of the substrings to replace. Can be a single character or an array of characters. Defaults to `["\"", "'"]`.
+ *   - `endChar` - The ending character(s) of the substrings to replace. Can be a single character or an array of characters. Defaults to the value of `startChar`.
+ *   - `placeholder` - The prefix for the placeholder names. Defaults to `defaultPlaceholderName`.
+ * @returns An array containing:
+ *   - `content` - The modified content with placeholders.
+ *   - `placehoders` - An array of the original substrings that were replaced.
+ * @throws {Error} If the lengths of `startChar` and `endChar` are not the same.
+ */
+export function replaceWithPlaceholder(content: string, options?: ReplacePlacehoderOptions) {
+  let start =options?.startChar ? (Array.isArray(options.startChar) ? options.startChar : [options.startChar]) : ['"', "'"]
+  let end = options?.endChar ? (Array.isArray(options.endChar) ? options.endChar : [options.endChar]) : start
+  if (start.length !== end.length) {
+    throw new Error('start and end characters must have the same length')
+  }
+  const placeholder = options?.placeholder ?? defaultPlaceholderName
+  const isSame = start.every((s, i) => s === end[i])
+
+  const placehoders = [] as string[]
+  if (isSame) {
+    start = start.map(c => '\\' + c)
+    const regex = new RegExp(`(?<!\\\\)(${start.join('|')}).*?(?<!\\\\)\\1`)
+    let match: RegExpMatchArray|null
+    while ((match = regex.exec(content)) !== null) {
+      const placeholderName = `${placeholder}${placehoders.length}`
+      content = content.replace(match[0], placeholderName)
+      placehoders.push(match[0])
+    }
+  } else {
+    start = start.map(c => '\\' + c)
+    end = end.map(c => '\\' + c)
+    for (let i = 0; i < start.length; i++) {
+      const regex = new RegExp(`(?<!\\\\)${start[i]}.*?(?<!\\\\)${end[i]}`)
+      let match: RegExpMatchArray|null
+      while ((match = regex.exec(content)) !== null) {
+        const placeholderName = `${placeholder}${placehoders.length}`
+        content = content.replace(match[0], placeholderName)
+        placehoders.push(match[0])
+      }
+    }
+  }
+
+  return [ content, placehoders ]
+}
+
+/**
+ * Restores the original substrings from placeholders in the given content.
+ *
+ * @param content - The string content containing placeholders to be restored.
+ * @param placehoders - An array of the original substrings that were replaced by placeholders.
+ * @param options - Optional configuration object with the following properties:
+ *   - `placeholder` - The prefix for the placeholder names. Defaults to `__PlacEhoLdeR_`.
+ * @returns The modified content with the original substrings restored.
+ *
+ * @example
+ * ```typescript
+ * const contentWithPlaceholders = "Hello __PlacEhoLdeR_0, welcome to __PlacEhoLdeR_1!";
+ * const originalSubstrings = ["World", "the site"];
+ * const restoredContent = restoreFromPlacehoders(contentWithPlaceholders, originalSubstrings);
+ * console.log(restoredContent); // Output: "Hello World, welcome to the site!"
+ * ```
+ */
+export function restoreFromPlacehoders(content: string, placehoders: string[], options?: ReplacePlacehoderOptions) {
+  const placeholderName = options?.placeholder ?? defaultPlaceholderName
+  return placehoders.reduce((acc, placeholder, i) => acc.replace(new RegExp(placeholderName+i, 'g'), placeholder), content)
+}
 
 const ParameterRegExp = "[a-zA-Z_$][a-zA-Z_\\d$]*"
 const ParametersRegExp = `${ParameterRegExp}\\s*(,\\s*${ParameterRegExp})*`
