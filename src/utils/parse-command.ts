@@ -459,7 +459,7 @@ export function replaceWithPlaceholder(content: string, options?: ReplacePlaceho
     }
   }
 
-  return [ content, placehoders ]
+  return [ content, placehoders ] as [string, string[]]
 }
 
 /**
