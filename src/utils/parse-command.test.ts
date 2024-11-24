@@ -325,4 +325,11 @@ describe('restoreFromPlacehoders', () => {
     const restoredContent = restoreFromPlacehoders(contentWithPlaceholders, originalSubstrings);
     expect(restoredContent).toBe("Hello 'World\\'', welcome to 'the \\'site\\'!");
   });
+
+  test('restores no palceholders', () => {
+    const contentWithPlaceholders = "Hello world!";
+    const originalSubstrings = [];
+    const restoredContent = restoreFromPlacehoders(contentWithPlaceholders, originalSubstrings);
+    expect(restoredContent).toBe("Hello world!");
+  });
 });
