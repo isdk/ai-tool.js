@@ -407,6 +407,7 @@ export interface ReplacePlacehoderOptions {
   startChar?: string|string[]
   endChar?: string|string[]
   placeholder?: string
+  placehoders?: string[]
 }
 
 const defaultPlaceholderName = '__PlacEhoLdeR_'
@@ -419,6 +420,7 @@ const defaultPlaceholderName = '__PlacEhoLdeR_'
  *   - `startChar` - The starting character(s) of the substrings to replace. Can be a single character or an array of characters. Defaults to `["\"", "'"]`.
  *   - `endChar` - The ending character(s) of the substrings to replace. Can be a single character or an array of characters. Defaults to the value of `startChar`.
  *   - `placeholder` - The prefix for the placeholder names. Defaults to `defaultPlaceholderName`.
+ *   - `placehoders` - An array of placeholders to use instead of generating new one.
  * @returns An array containing:
  *   - `content` - The modified content with placeholders.
  *   - `placehoders` - An array of the original substrings that were replaced.
@@ -433,7 +435,7 @@ export function replaceWithPlaceholder(content: string, options?: ReplacePlaceho
   const placeholder = options?.placeholder ?? defaultPlaceholderName
   const isSame = start.every((s, i) => s === end[i])
 
-  const placehoders = [] as string[]
+  const placehoders = options?.placehoders ?? []
   if (isSame) {
     start = start.map(c => '\\' + c)
     const regex = new RegExp(`(?<!\\\\)(${start.join('|')}).*?(?<!\\\\)\\1`)
