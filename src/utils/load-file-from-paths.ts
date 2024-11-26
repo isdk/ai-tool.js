@@ -167,7 +167,9 @@ export function readFilenamesRecursiveSync(dir: string|string[], options?: {isFi
         }
         if (file.isDirectory()) {
           if (!maxLevel || level < maxLevel) {
-            stack.push({dir: filepath, level})
+            if (!isFileMatched || isFileMatched(filepath, file)) {
+              stack.push({dir: filepath, level})
+            }
           }
         } else if (file.isFile() && (!isFileMatched || isFileMatched(filepath, file))) {
           if (!result.includes(filepath)) {result.push(filepath)}
