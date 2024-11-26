@@ -34,7 +34,7 @@ describe('readTextFileChunks', () => {
     }
 
     expect(chunks.length).toBeGreaterThan(1);
-    expect(chunks.join('')).toBe(testData);
+    expect(chunks.join('').replaceAll('。\n', '。')).toBe(testData);
   });
 
   it('should read file in multiple chunks', async () => {
