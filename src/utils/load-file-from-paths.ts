@@ -133,7 +133,7 @@ export function decodeCharset(result: Buffer, encoding?: BufferEncoding) {
 * console.log(files); // Outputs an array of JavaScript file paths.
 * ```
 */
-export function readFilenamesRecursiveSync(dir: string|string[], options?: {isFileMatched?: (filepath: string) => boolean, signal?: AbortSignal, level?: number}) {
+export function readFilenamesRecursiveSync(dir: string|string[], options?: {isFileMatched?: (filepath: string, file: fs.Dirent|fs.Stats) => boolean, signal?: AbortSignal, level?: number}) {
   const result = [] as string[];
   const stack: {dir: string, level: number}[] = typeof dir === 'string' ? [{dir, level: 0}] : [...dir.map(d => ({dir:d, level:0}))];
   const visitedDirs = new Set<string>()
@@ -169,7 +169,7 @@ export function readFilenamesRecursiveSync(dir: string|string[], options?: {isFi
           if (!maxLevel || level < maxLevel) {
             stack.push({dir: filepath, level})
           }
-        } else if (file.isFile() && (!isFileMatched || isFileMatched(filepath))) {
+        } else if (file.isFile() && (!isFileMatched || isFileMatched(filepath, file))) {
           if (!result.includes(filepath)) {result.push(filepath)}
         }
       }
