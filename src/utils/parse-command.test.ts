@@ -50,6 +50,12 @@ describe('parseObjectArguments', async () => {
     expect(result).toEqual(["arg1", "arg2", "arg3", 6]);
   });
 
+  test('should parse simple arguments with templateData', async () => {
+    const argsStr = '"arg1", "arg2: {{a}}", "arg3", 6';
+    const result = await parseObjectArguments(argsStr, undefined, {templateData:{a:1}, argProcessor: TemplateArgProcessor});
+    expect(result).toEqual(["arg1", "arg2: 1", "arg3", 6]);
+  });
+
   test('should parse one argument', async () => {
     const argsStr = 'arg1';
     const result = await parseObjectArguments(argsStr, {arg1: '123'});

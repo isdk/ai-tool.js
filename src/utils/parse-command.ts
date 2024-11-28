@@ -112,7 +112,7 @@ export function ChoiceArgProcessor(argInfo: ArgInfo, _ix: number, scope?: Record
 }
 
 export async function TemplateArgProcessor([isNamedArg, arg]: ArgInfo, ix: number, scope?: Record<string, any>, options?: ParseObjectArgumentOptions) {
-  if (!scope) {return}
+  if (!scope) {scope = {}}
   let name: string
   let value: string
   if (isNamedArg) {
@@ -131,8 +131,8 @@ export async function TemplateArgProcessor([isNamedArg, arg]: ArgInfo, ix: numbe
   }
   const content = await PromptTemplate.formatIf(formatOpts) as string
   if (content) {
-    value = content
-    return name + ':' + JSON.stringify(value)
+    value = isQuotedStr(content) ? content : JSON.stringify(content)
+    return name + ':' + value
   }
 }
 
