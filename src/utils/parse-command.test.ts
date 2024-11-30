@@ -74,6 +74,12 @@ describe('parseObjectArguments', async () => {
     expect(result).toEqual(['This is apple', 'test11']);
   });
 
+  test('should parse expression arguments and preserveUnresolvedName 2', async () => {
+    const argsStr = '@test(2, "This is " + a, test11), @better("This is " + b, private)';
+    const result = await parseObjectArguments(argsStr, {a: 'apple'}, {preserveUnresolvedName: true});
+    expect(result).toEqual(['@test(2, "This is " + a, test11)', '@better("This is " + b, private)']);
+  });
+
   test('should parse expression argument with skipExpression', async () => {
     const argsStr = '"This is " + a';
     const result = await parseObjectArguments(argsStr, {a: 'apple'}, {skipExpression: true});
