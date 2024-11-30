@@ -50,7 +50,10 @@ export type AIChatMessageParam =
   | AIChatToolMessageParam;
 
   export interface AIChatMessageParamBase {
-    role: string;
+    role: string
+    toRole?: string|string[]
+    reply?: AIChatMessageParamBase|AIChatMessageParamBase[]
+    private?: boolean
     [name: string]: any
   }
 
