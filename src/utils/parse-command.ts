@@ -25,6 +25,7 @@ export interface ParseObjectArgumentOptions {
   templateData?: Record<string, any>
   ignoreIndexNamed?: boolean
   preserveUnresolvedName?: boolean
+  skipExpression?: boolean
 }
 
 /**
@@ -238,7 +239,11 @@ async function getArgValue(value: string, scope?: any, options?: ParseObjectArgu
   let result: any = value
   if (!(isNonQuotedArg(value) || (scope && getByPath(scope, value) !== undefined))) {
     if (!isArrowFunctionExpression(value)) try {
-      result = await getExpressionResult.call(this, value, scope, options?.preserveUnresolvedName)
+      if (options?.skipExpression) {
+        result = quoteStr(value)
+      } else {
+        result = await getExpressionResult.call(this, value, scope, options?.preserveUnresolvedName)
+      }
     } catch(e) {
       result = quoteStr(value)
     }

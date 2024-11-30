@@ -74,6 +74,12 @@ describe('parseObjectArguments', async () => {
     expect(result).toEqual(['This is apple', 'test11']);
   });
 
+  test('should parse expression argument with skipExpression', async () => {
+    const argsStr = '"This is " + a';
+    const result = await parseObjectArguments(argsStr, {a: 'apple'}, {skipExpression: true});
+    expect(result).toEqual('"This is " + a');
+  });
+
   test('should parse expression argument2', async () => {
     const argsStr = `format=(answer) => answer ? 'yes' : 'no'`;
     const result = await parseObjectArguments(argsStr);
