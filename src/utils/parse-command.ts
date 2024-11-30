@@ -233,10 +233,22 @@ async function getExpressionResult(arg: string, scope: any, raiseReferenceError?
   }
 }
 
+
+async function getArgValue(value: string, scope?: any, options?: ParseObjectArgumentOptions) {
+  let result: any = value
+  if (!(isNonQuotedArg(value) || (scope && getByPath(scope, value) !== undefined))) {
+    if (!isArrowFunctionExpression(value)) try {
+      result = await getExpressionResult.call(this, value, scope, options?.preserveUnresolvedName)
+    } catch(e) {
+      result = quoteStr(value)
+    }
+  }
+  return result
+}
+
 export async function parseObjectArgInfo(argInfo: ArgInfo, ix: number, scope?: Record<string, any>, options?: ParseObjectArgumentOptions) {
   const [isNamedArg, arg] = argInfo
   const argProcessor = options?.argProcessor
-  const preserveUnresolvedName = options?.preserveUnresolvedName
   const ignoreIndexNamed = options?.ignoreIndexNamed
   if (typeof argProcessor === 'function') {
     const result = await argProcessor(argInfo, ix, scope, options)
@@ -245,30 +257,18 @@ export async function parseObjectArgInfo(argInfo: ArgInfo, ix: number, scope?: R
   if (isNamedArg) {
     const ix = arg.indexOf(':')
     const k = arg.slice(0, ix).trim()
-    const v = arg.slice(ix+1).trim()
-    if (!isNonQuotedArg(v) && !scope) {
-      return k + ':' + quoteStr(v)
-    }
-    if (!isArrowFunctionExpression(v)) try {
-      const result = await getExpressionResult.call(this, v, scope)
-      return k+':'+ result
-    } catch(e) {}
+    const v = await getArgValue(arg.slice(ix+1).trim(), scope, options)
 
-    return arg
+    return k + ':' + v
   } else {
     const _arg = arg.trim()
+
     if (scope && getByPath(scope, _arg) !== undefined) {
       const result = (!ignoreIndexNamed ?  ix+':'+ _arg + ',' : '')  + '"' + _arg +'":' + _arg
       return result
-    } else if (isNonQuotedArg(_arg)) {
-      return ix+':'+_arg
     } else {
-      if (!isArrowFunctionExpression(arg)) try {
-        const result = await getExpressionResult.call(this, _arg, scope, preserveUnresolvedName)
-        return ix+':'+ result
-      } catch(e) {}
-
-      return ix+':'+ quoteStr(_arg)
+      const v = await getArgValue(arg.trim(), scope, options)
+      return ix+':'+ v
     }
   }
 }
