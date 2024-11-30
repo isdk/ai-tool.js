@@ -24,6 +24,7 @@ export interface ParseObjectArgumentOptions {
   templateFormat?: string
   templateData?: Record<string, any>
   ignoreIndexNamed?: boolean
+  preserveUnresolvedName?: boolean
 }
 
 /**
@@ -210,13 +211,13 @@ function isNonQuotedArg(arg: string) {
   return isQuoted(arg) || !Number.isNaN(parseFloat(arg)) || JSKeywords.includes(arg) || isArrowFunctionExpression(arg)
 }
 
-async function getExpressionResult(arg: string, scope: any) {
+async function getExpressionResult(arg: string, scope: any, raiseReferenceError?: boolean) {
   const fn = newFunction('async expression', [], `return ${arg};`, filterValidFnScope(scope))
   let result: any
   try {
     result = await fn.call(this)
   } catch(err) {
-    if (!(err instanceof ReferenceError)) {
+    if (raiseReferenceError || !(err instanceof ReferenceError)) {
       throw err
     }
   }
@@ -235,6 +236,7 @@ async function getExpressionResult(arg: string, scope: any) {
 export async function parseObjectArgInfo(argInfo: ArgInfo, ix: number, scope?: Record<string, any>, options?: ParseObjectArgumentOptions) {
   const [isNamedArg, arg] = argInfo
   const argProcessor = options?.argProcessor
+  const preserveUnresolvedName = options?.preserveUnresolvedName
   const ignoreIndexNamed = options?.ignoreIndexNamed
   if (typeof argProcessor === 'function') {
     const result = await argProcessor(argInfo, ix, scope, options)
@@ -262,7 +264,7 @@ export async function parseObjectArgInfo(argInfo: ArgInfo, ix: number, scope?: R
       return ix+':'+_arg
     } else {
       if (!isArrowFunctionExpression(arg)) try {
-        const result = await getExpressionResult.call(this, _arg, scope)
+        const result = await getExpressionResult.call(this, _arg, scope, preserveUnresolvedName)
         return ix+':'+ result
       } catch(e) {}
 
