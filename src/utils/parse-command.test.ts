@@ -68,6 +68,12 @@ describe('parseObjectArguments', async () => {
     expect(result).toEqual('This is apple');
   });
 
+  test('should parse expression arguments', async () => {
+    const argsStr = '"This is " + a, msg';
+    const result = await parseObjectArguments(argsStr, {a: 'apple', msg: true});
+    expect(result).toEqual({'0': 'This is apple', '1': true, msg: true});
+  });
+
   test('should parse expression arguments and preserveUnresolvedName', async () => {
     const argsStr = '"This is " + a, test11';
     const result = await parseObjectArguments(argsStr, {a: 'apple'}, {preserveUnresolvedName: true});
