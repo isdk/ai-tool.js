@@ -51,8 +51,8 @@ export type AIChatMessageParam =
 
   export interface AIChatMessageParamBase {
     role: string
-    toRole?: string|Record<string, AIChatMessageParamBase>
-    reply?: AIChatMessageParamBase|Record<string, AIChatMessageParamBase>
+    toRole?: string|string[]|Record<string,  Partial<AIChatMessageParam>>
+    replies?: Record<string, Partial<AIChatMessageParam>>
     private?: boolean
     [name: string]: any
   }
