@@ -42,4 +42,4 @@ IsModelNameMatched("gpt-2", (modelName) => modelName.startsWith("gpt-")) // retu
 
 ## Defined in
 
-[packages/ai-tool/src/utils/is-model-name-matched.ts:21](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/is-model-name-matched.ts#L21)
+[packages/ai-tool/src/utils/is-model-name-matched.ts:21](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/is-model-name-matched.ts#L21)

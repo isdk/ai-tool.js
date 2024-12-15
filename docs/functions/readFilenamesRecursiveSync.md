@@ -44,4 +44,4 @@ console.log(files); // Outputs an array of JavaScript file paths.
 
 ## Defined in
 
-[packages/ai-tool/src/utils/load-file-from-paths.ts:123](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/load-file-from-paths.ts#L123)
+[packages/ai-tool/src/utils/load-file-from-paths.ts:136](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/load-file-from-paths.ts#L136)

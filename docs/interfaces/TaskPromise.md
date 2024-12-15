@@ -26,7 +26,7 @@
 
 #### Defined in
 
-node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts:176
+node\_modules/.pnpm/typescript@5.6.3/node\_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts:176
 
 ***
 
@@ -36,7 +36,7 @@ node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2015.sym
 
 #### Defined in
 
-[packages/ai-tool/src/utils/cancelable-ability.ts:51](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/cancelable-ability.ts#L51)
+[packages/ai-tool/src/utils/cancelable-ability.ts:51](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/cancelable-ability.ts#L51)
 
 ## Methods
 
@@ -68,7 +68,7 @@ A Promise for the completion of the callback.
 
 #### Defined in
 
-node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:1557
+node\_modules/.pnpm/typescript@5.6.3/node\_modules/typescript/lib/lib.es5.d.ts:1557
 
 ***
 
@@ -97,7 +97,7 @@ A Promise for the completion of the callback.
 
 #### Defined in
 
-node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2018.promise.d.ts:29
+node\_modules/.pnpm/typescript@5.6.3/node\_modules/typescript/lib/lib.es2018.promise.d.ts:29
 
 ***
 
@@ -135,4 +135,4 @@ A Promise for the completion of which ever callback is executed.
 
 #### Defined in
 
-node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:1550
+node\_modules/.pnpm/typescript@5.6.3/node\_modules/typescript/lib/lib.es5.d.ts:1550

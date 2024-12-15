@@ -41,7 +41,7 @@ throw new AlreadyExistsError('user', { id: 123 })
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:128
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:140
 
 ## Properties
 
@@ -57,7 +57,7 @@ The name of the function that threw the error.
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:63
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:63
 
 ***
 
@@ -71,7 +71,7 @@ node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/di
 
 #### Defined in
 
-node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es2022.error.d.ts:24
+node\_modules/.pnpm/typescript@5.6.3/node\_modules/typescript/lib/lib.es2022.error.d.ts:24
 
 ***
 
@@ -87,7 +87,7 @@ the error code
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:64
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:64
 
 ***
 
@@ -103,7 +103,7 @@ Additional data associated with the error.
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:65
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:65
 
 ***
 
@@ -117,7 +117,7 @@ node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/di
 
 #### Defined in
 
-node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:1077
+node\_modules/.pnpm/typescript@5.6.3/node\_modules/typescript/lib/lib.es5.d.ts:1077
 
 ***
 
@@ -131,7 +131,7 @@ node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:1
 
 #### Defined in
 
-node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:1076
+node\_modules/.pnpm/typescript@5.6.3/node\_modules/typescript/lib/lib.es5.d.ts:1076
 
 ***
 
@@ -145,7 +145,7 @@ node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:1
 
 #### Defined in
 
-node\_modules/.pnpm/typescript@5.6.2/node\_modules/typescript/lib/lib.es5.d.ts:1078
+node\_modules/.pnpm/typescript@5.6.3/node\_modules/typescript/lib/lib.es5.d.ts:1078
 
 ***
 
@@ -161,7 +161,7 @@ The error code associated with the error.
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:127
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:139
 
 ***
 
@@ -191,7 +191,7 @@ https://v8.dev/docs/stack-trace-api#customizing-stack-traces
 
 #### Defined in
 
-node\_modules/.pnpm/@types+node@22.5.5/node\_modules/@types/node/globals.d.ts:143
+node\_modules/.pnpm/@types+node@22.7.6/node\_modules/@types/node/globals.d.ts:143
 
 ***
 
@@ -205,7 +205,7 @@ node\_modules/.pnpm/@types+node@22.5.5/node\_modules/@types/node/globals.d.ts:14
 
 #### Defined in
 
-node\_modules/.pnpm/@types+node@22.5.5/node\_modules/@types/node/globals.d.ts:145
+node\_modules/.pnpm/@types+node@22.7.6/node\_modules/@types/node/globals.d.ts:145
 
 ## Methods
 
@@ -233,7 +233,7 @@ A new BaseError instance.
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:87
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:93
 
 ***
 
@@ -255,7 +255,7 @@ A JSON representation of the error.
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:80
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:86
 
 ***
 
@@ -281,7 +281,37 @@ Create .stack property on a target object
 
 #### Defined in
 
-node\_modules/.pnpm/@types+node@22.5.5/node\_modules/@types/node/globals.d.ts:136
+node\_modules/.pnpm/@types+node@22.7.6/node\_modules/@types/node/globals.d.ts:136
+
+***
+
+### create()
+
+> `static` **create**(`__namedParameters`): [`CommonError`](CommonError.md)
+
+#### Parameters
+
+• **\_\_namedParameters**
+
+• **\_\_namedParameters.code?**: `string` \| `number`
+
+• **\_\_namedParameters.data?**: `any`
+
+• **\_\_namedParameters.error**: `string`
+
+• **\_\_namedParameters.name?**: `string`
+
+#### Returns
+
+[`CommonError`](CommonError.md)
+
+#### Inherited from
+
+[`CommonError`](CommonError.md).[`create`](CommonError.md#create)
+
+#### Defined in
+
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:96
 
 ***
 
@@ -315,4 +345,4 @@ the new Error Class
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:66
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:66

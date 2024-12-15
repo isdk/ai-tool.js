@@ -35,4 +35,4 @@ hasDirectoryIn('parentdir/subdir', ['parentdir', 'otherdir']); // true
 
 ## Defined in
 
-[packages/ai-tool/src/utils/has-directory-in.ts:37](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/has-directory-in.ts#L37)
+[packages/ai-tool/src/utils/has-directory-in.ts:37](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/has-directory-in.ts#L37)

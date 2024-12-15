@@ -17,7 +17,7 @@ This function is used to split a text into separate sentences, based on punctuat
 
 The input string that needs to be split into sentences.
 
-• **best**: `boolean` = `true`
+• **best**: [`SplitSentenceOptions`](../interfaces/SplitSentenceOptions.md) = `{}`
 
 A boolean flag indicating if the function should use the best possible sentence splitting method (default is true).
 If set to false, it will not perform any additional processing and simply split on newline characters ('\n').
@@ -34,4 +34,4 @@ console.log(splitSentence(text));  // returns ['Hello world!', 'How are you toda
 
 ## Defined in
 
-[packages/ai-tool/src/utils/split-sentence.ts:29](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/split-sentence.ts#L29)
+[packages/ai-tool/src/utils/split-sentence.ts:44](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/split-sentence.ts#L44)

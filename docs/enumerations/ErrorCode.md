@@ -14,7 +14,7 @@
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:19
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:19
 
 ***
 
@@ -24,7 +24,7 @@ node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/di
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:6
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:6
 
 ***
 
@@ -34,7 +34,7 @@ node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/di
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:23
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:23
 
 ***
 
@@ -44,7 +44,7 @@ node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/di
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:7
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:7
 
 ***
 
@@ -54,7 +54,7 @@ node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/di
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:16
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:16
 
 ***
 
@@ -64,7 +64,7 @@ node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/di
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:17
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:17
 
 ***
 
@@ -74,7 +74,7 @@ node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/di
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:11
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:11
 
 ***
 
@@ -84,7 +84,7 @@ node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/di
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:25
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:25
 
 ***
 
@@ -94,7 +94,7 @@ node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/di
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:20
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:20
 
 ***
 
@@ -104,7 +104,7 @@ node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/di
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:8
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:8
 
 ***
 
@@ -114,7 +114,7 @@ node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/di
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:13
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:13
 
 ***
 
@@ -124,7 +124,7 @@ node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/di
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:14
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:14
 
 ***
 
@@ -134,7 +134,7 @@ node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/di
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:12
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:12
 
 ***
 
@@ -144,7 +144,7 @@ node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/di
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:21
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:21
 
 ***
 
@@ -154,7 +154,7 @@ node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/di
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:22
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:22
 
 ***
 
@@ -164,7 +164,7 @@ node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/di
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:5
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:5
 
 ***
 
@@ -174,7 +174,7 @@ node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/di
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:10
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:10
 
 ***
 
@@ -184,7 +184,7 @@ node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/di
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:15
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:15
 
 ***
 
@@ -194,7 +194,7 @@ node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/di
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:24
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:24
 
 ***
 
@@ -204,7 +204,7 @@ node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/di
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:18
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:18
 
 ***
 
@@ -214,4 +214,4 @@ node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/di
 
 #### Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:9
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:9

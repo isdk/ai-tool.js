@@ -30,4 +30,4 @@ The total number of matches found.
 
 ## Defined in
 
-[packages/ai-tool/src/utils/count-regex-matches.ts:10](https://github.com/isdk/ai-tool.js/blob/fe6b47f429fb128627d2210e367fa914b891d314/src/utils/count-regex-matches.ts#L10)
+[packages/ai-tool/src/utils/count-regex-matches.ts:10](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/count-regex-matches.ts#L10)

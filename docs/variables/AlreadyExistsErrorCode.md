@@ -10,4 +10,4 @@
 
 ## Defined in
 
-node\_modules/.pnpm/@isdk+common-error@0.1.1/node\_modules/@isdk/common-error/dist/index.d.ts:30
+node\_modules/.pnpm/@isdk+common-error@0.1.3/node\_modules/@isdk/common-error/dist/index.d.ts:30
