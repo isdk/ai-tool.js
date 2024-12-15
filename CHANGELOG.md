@@ -2,6 +2,101 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.3.0](https://github.com/isdk/ai-tool.js/compare/v0.2.3...v0.3.0) (2024-12-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* add readTextFileChunksEx func and readTextFileChunks no completeSentence supports
+* following the newline paragraph for pure text now
+* use qwen2.5 as default llm token estimate count
+* add truncLastSection option
+* parseJsJson from sync to async
+* add corrected option
+* seperate a new line if next line is a list section
+* add best, completeSentence options to truncateToTokenLimit
+
+### Features
+
+* add assigner and ignoreIndexNamed options ([a555ff7](https://github.com/isdk/ai-tool.js/commit/a555ff7cf6f3cf318c01d91be2bbd4c9d1521d20))
+* add assigner option ([a8c9ef8](https://github.com/isdk/ai-tool.js/commit/a8c9ef87ed0776a3a016ceafdbd2138e6e3157b1))
+* add best, completeSentence options to truncateToTokenLimit ([3f8f800](https://github.com/isdk/ai-tool.js/commit/3f8f800f7da169dc12843d6956be4f7f98a27c24))
+* add bySentence option(NOT FINED) ([be3f0f1](https://github.com/isdk/ai-tool.js/commit/be3f0f1292d554c78b46789b3d7512719b37f5a2))
+* add completeSentence option ([0f97bb5](https://github.com/isdk/ai-tool.js/commit/0f97bb50a7b0a584a9aba0f7d5574307e18eb882))
+* add corrected option ([8943253](https://github.com/isdk/ai-tool.js/commit/89432533c82294c355ee979c0d33a12698d5ae52))
+* add countLLMTokens callback option ([3c8417f](https://github.com/isdk/ai-tool.js/commit/3c8417f32d5a25709a48a9f7f6502578d4c090c3))
+* add createYamlObjectTag ([471f8c2](https://github.com/isdk/ai-tool.js/commit/471f8c2e170112e7c19d5ffb6a180aac2ec5af7c))
+* add decodeCharset ([5be90be](https://github.com/isdk/ai-tool.js/commit/5be90beb229b8b70a64745cdd0c6f7b7fd902315))
+* add detect the language whether base on the space sperated ([1dcb85f](https://github.com/isdk/ai-tool.js/commit/1dcb85f9d0b77ed666b07444f46560c450f72dd8))
+* add detectCharset func ([5427def](https://github.com/isdk/ai-tool.js/commit/5427defd413ef88c46aca078c48664c0e78c5d97))
+* add EMPHASIS_INLINE_BLOCK process ([ac9c2dc](https://github.com/isdk/ai-tool.js/commit/ac9c2dce13ca50e191cb0cd9c973536ec274f4af))
+* add file argument to isFileMatched callback for readFilenamesRecursiveSync ([e78113a](https://github.com/isdk/ai-tool.js/commit/e78113ac610961a2c1c0e35dbeabf585ae4f74b3))
+* add formatTextWithSpace ([87107d9](https://github.com/isdk/ai-tool.js/commit/87107d9267ee1163f057bbe9b98596efe671b2b4))
+* add getFileMetaInfo and hashFile ([b82de24](https://github.com/isdk/ai-tool.js/commit/b82de24be2ab9136d9ee02a920caf69807eb8faf))
+* add hashStream ([f61ec08](https://github.com/isdk/ai-tool.js/commit/f61ec08dbc868888ad6ad17596d83d42112e3922))
+* add IFileMetaInfo ([e14a2f1](https://github.com/isdk/ai-tool.js/commit/e14a2f1acf28f969503fce0c3c607bdd41b44e70))
+* add ignoreEmptyLine option to splitSentence and add removeMarkdownBold, removeMarkdownItalic, removeMarkdownBoldAndItalic funcs ([2449990](https://github.com/isdk/ai-tool.js/commit/2449990ba65c6f8e74417e77633308632086c26c))
+* add isMarkdown option ([ec0d1ee](https://github.com/isdk/ai-tool.js/commit/ec0d1ee86f829b47900390b00bc0ce1aa4cca675))
+* add isTitleString, isListItemString funcs ([a08b936](https://github.com/isdk/ai-tool.js/commit/a08b9362e1d4195c4e4105d0e6d82735a1f5ddf1))
+* add line end long words hyphen supports ([1910ac2](https://github.com/isdk/ai-tool.js/commit/1910ac235d82c1fdfb775a8b0178b2115991186a))
+* add llm-tokenizer ([cf0517b](https://github.com/isdk/ai-tool.js/commit/cf0517b68abd2958afe090b1b8c2481ac7de80e6))
+* add more hash algorithm ([655d91b](https://github.com/isdk/ai-tool.js/commit/655d91bf19861d8fdc4dfcb661e27a72eefb63e3))
+* add more markdown format to completeSentences ([11a28da](https://github.com/isdk/ai-tool.js/commit/11a28da6b88be3c860b95b0a2df498cd31a6f9b2))
+* add placehoders option ([46b1b7a](https://github.com/isdk/ai-tool.js/commit/46b1b7ae52cf46cf682745def34b49fcc46a095a))
+* add preserveUnresolvedName option ([1c07ba5](https://github.com/isdk/ai-tool.js/commit/1c07ba5bc31d4514a9c06433fb0f2a1dc7ad0264))
+* add readTextFileChunks ([c81b475](https://github.com/isdk/ai-tool.js/commit/c81b4757e845e0a07c0b8da48e644a4e69a739f7))
+* add readTextFileChunksEx func and readTextFileChunks no completeSentence supports ([5e84f78](https://github.com/isdk/ai-tool.js/commit/5e84f78cdb07ebd01978fa55fc826352dc00b1a0))
+* add replaceWithPlaceholder,restoreFromPlacehoders funcs ([3085a32](https://github.com/isdk/ai-tool.js/commit/3085a324aa9e39eaa1b76337aebbbc1275c92c0b))
+* add sep line supports ([7cb40b9](https://github.com/isdk/ai-tool.js/commit/7cb40b9bfe782b2008b879a07a6182f08c5d20ee))
+* add skipExpression option ([3ae1712](https://github.com/isdk/ai-tool.js/commit/3ae17121a9ec4f5c7116775b658233bd7d9093ed))
+* add splitChunks ([ed484f9](https://github.com/isdk/ai-tool.js/commit/ed484f961c84ee426b3363a28dc725f1eb5b0944))
+* add splitParagraph func ([35c6b0a](https://github.com/isdk/ai-tool.js/commit/35c6b0a6b04ec22c71bdff406c8331c2a048217c))
+* add stripConsoleColor func ([e010be5](https://github.com/isdk/ai-tool.js/commit/e010be584cb6c92de962c933eba5232c7c2f3fcb))
+* add toRole, reply, private properties ([8a83be9](https://github.com/isdk/ai-tool.js/commit/8a83be9e51413fc15a67643d77731cc313fd5da8))
+* add truncateToTokenLimit ([83a4b68](https://github.com/isdk/ai-tool.js/commit/83a4b6877ff9cc20cc21e902a4c098fe21ab7984))
+* add truncateToTokenLimitEx ([81195dc](https://github.com/isdk/ai-tool.js/commit/81195dc927a6392f3d442d6ca3c6761de84ddc74))
+* add truncLastSection option ([b0a6404](https://github.com/isdk/ai-tool.js/commit/b0a6404bc0602fc7fe33ae32d51356bf9c555b96))
+* loads a text file with detected encoding automatically(loadTextFromPaths) ([b8a75c9](https://github.com/isdk/ai-tool.js/commit/b8a75c9621db109493b31b68788a075021814fa9))
+* pass options to splitSentences ([5067abc](https://github.com/isdk/ai-tool.js/commit/5067abca3cba4a119b7baf69ab245c929ebeec5d))
+* split code block as a sentence ([2ff46f6](https://github.com/isdk/ai-tool.js/commit/2ff46f6cefc197841d06ad954d978e35a9f0755a))
+* the directory should check isFileMatched now ([ecb654c](https://github.com/isdk/ai-tool.js/commit/ecb654c348ca8f1456fcf57369f23632fd55350d))
+* ts declration ([138ceeb](https://github.com/isdk/ai-tool.js/commit/138ceeb2a5576b6e9f41673a1fad11c8366a9463))
+
+
+### Bug Fixes
+
+* cache dir should be package root always ([a418211](https://github.com/isdk/ai-tool.js/commit/a4182118d870b411a3fc2881d83f646e88ddeb94))
+* can not template data if no scope ([1065a9c](https://github.com/isdk/ai-tool.js/commit/1065a9c670e7fb2bcdcc83fbaaf251cc5c0b02ae))
+* can pass undefined property name as undefined value now ([7517f89](https://github.com/isdk/ai-tool.js/commit/7517f89f5e505fe014927a3fe1fe61d289f5076c))
+* can pass undefined property name as undefined value now ([79a05fe](https://github.com/isdk/ai-tool.js/commit/79a05fe5f70510a40751de997adefdb09605ea5b))
+* correct the last sentence ([1530801](https://github.com/isdk/ai-tool.js/commit/15308016adb27906e6f6395cbe79b460cff9a496))
+* follow the corrected option ([eed5b15](https://github.com/isdk/ai-tool.js/commit/eed5b154157a047cd533b5448ca71338e01f4b01))
+* following the newline paragraph for pure text now ([87ee2e8](https://github.com/isdk/ai-tool.js/commit/87ee2e89314612043b3477dae18fab3ec9917f04))
+* forget calc "\n" ([9d782d3](https://github.com/isdk/ai-tool.js/commit/9d782d31044427c725c39371abbe3e04a89fa0e4))
+* isTitleString check markdown title ([36919e2](https://github.com/isdk/ai-tool.js/commit/36919e258b7d1bbf4ecd81d4034ba229d1133798))
+* keep markdown paragraph ([7a0a170](https://github.com/isdk/ai-tool.js/commit/7a0a1703fa0b87826d3f0fcef186ed5960fc08e3))
+* level algorithm error ([8e52e24](https://github.com/isdk/ai-tool.js/commit/8e52e24871cb41105fc3f194af18e30f17bc87ff))
+* level algorithm error and symlink supports ([db570ab](https://github.com/isdk/ai-tool.js/commit/db570ab0a172b60bc42a3bb626a6c732bb5743ed))
+* markdown heading text with mutli sentences should not be split ([238a6b4](https://github.com/isdk/ai-tool.js/commit/238a6b4ed3d242c6118bd9d73eb81ec8c66a7071))
+* omit the funtions from scope for template format ([a622ea6](https://github.com/isdk/ai-tool.js/commit/a622ea67b679b80b512c84c63390c29d16cb1174))
+* seperate a new line if next line is a list section ([77e514b](https://github.com/isdk/ai-tool.js/commit/77e514b9c61d5bb19e1b210081aa8d75922f77c5))
+* should be one sentence even if new line exists ([a328399](https://github.com/isdk/ai-tool.js/commit/a3283991d7065e3d6279aea9ba18a554520cfea1))
+* should split by sentence even if no trunc ([079734a](https://github.com/isdk/ai-tool.js/commit/079734a6532852d4e2c7d326200c8cf2da54bce4))
+* should throw error if all content removed ([edebbfd](https://github.com/isdk/ai-tool.js/commit/edebbfdf0a72d2f77b9330b4abb79fbca5a27660))
+* should throw error if single sentence can not fit the size ([bce590a](https://github.com/isdk/ai-tool.js/commit/bce590aa6e4458dc60bb4065d2ecc8a04fb37ec1))
+* store markdown heading text first to avoid split heading ([54b0b50](https://github.com/isdk/ai-tool.js/commit/54b0b503a643b6dbda0d4d6c99ad0c9787262485))
+* treat "1." without spaces as numberic list ([cc32898](https://github.com/isdk/ai-tool.js/commit/cc328982d864a1206db81bd7784788093f148916))
+
+
+### Refactor
+
+* add optional sentences option ([40ac530](https://github.com/isdk/ai-tool.js/commit/40ac530952ff0ae737ff717796e69bfc7fd5a80d))
+* extract getArgValue ([29aed88](https://github.com/isdk/ai-tool.js/commit/29aed88667fc3cebb57fc4fe495b531001e7203a))
+* parseJsJson from sync to async ([6147d86](https://github.com/isdk/ai-tool.js/commit/6147d86632b41807e636df61054178e9702bee2b))
+* toRole, replies ([e324043](https://github.com/isdk/ai-tool.js/commit/e324043799402aa2caa41711a9168487ab85c166))
+* use object instead of array ([9ce8e06](https://github.com/isdk/ai-tool.js/commit/9ce8e06d506c676b52f7c6ebd7a999893c638040))
+* use qwen2.5 as default llm token estimate count ([a6dbfae](https://github.com/isdk/ai-tool.js/commit/a6dbfae32469558fa5f925f1bb3227f8e12d4867))
+
 ## [0.2.3](https://github.com/isdk/ai-tool.js/compare/v0.2.2...v0.2.3) (2024-09-30)
 
 
