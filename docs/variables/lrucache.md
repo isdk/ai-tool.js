@@ -10,4 +10,4 @@
 
 ## Defined in
 
-[packages/ai-tool/src/funcs/lrucache.ts:40](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/funcs/lrucache.ts#L40)
+[packages/ai-tool/src/funcs/lrucache.ts:40](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/funcs/lrucache.ts#L40)

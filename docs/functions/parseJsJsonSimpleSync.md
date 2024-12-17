@@ -20,4 +20,4 @@
 
 ## Defined in
 
-[packages/ai-tool/src/utils/parse-js-json.ts:28](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/parse-js-json.ts#L28)
+[packages/ai-tool/src/utils/parse-js-json.ts:28](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/utils/parse-js-json.ts#L28)

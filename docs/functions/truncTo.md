@@ -44,4 +44,4 @@ truncTo(1.2345, 2, 0.6)
 
 ## Defined in
 
-[packages/ai-tool/src/utils/trunc-to.ts:19](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/trunc-to.ts#L19)
+[packages/ai-tool/src/utils/trunc-to.ts:19](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/utils/trunc-to.ts#L19)

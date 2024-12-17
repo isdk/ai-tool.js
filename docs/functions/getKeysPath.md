@@ -35,4 +35,4 @@ console.log(getKeysPath(obj)); // Output: ['a.b.c', 'd[0]', 'd[1].e']
 
 ## Defined in
 
-[packages/ai-tool/src/utils/get-keys-path.ts:16](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/get-keys-path.ts#L16)
+[packages/ai-tool/src/utils/get-keys-path.ts:16](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/utils/get-keys-path.ts#L16)

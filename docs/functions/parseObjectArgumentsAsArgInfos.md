@@ -39,4 +39,4 @@ An array of parsed argument information, where each item contains a boolean indi
 
 ## Defined in
 
-[packages/ai-tool/src/utils/parse-command.ts:303](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/parse-command.ts#L303)
+[packages/ai-tool/src/utils/parse-command.ts:304](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/utils/parse-command.ts#L304)

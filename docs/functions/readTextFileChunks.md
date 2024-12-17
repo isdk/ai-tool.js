@@ -48,4 +48,4 @@ for await (const chunk of readTextFileChunks(filePath, options)) {
 
 ## Defined in
 
-[packages/ai-tool/src/utils/read-text-file-chunks.ts:41](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/read-text-file-chunks.ts#L41)
+[packages/ai-tool/src/utils/read-text-file-chunks.ts:41](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/utils/read-text-file-chunks.ts#L41)

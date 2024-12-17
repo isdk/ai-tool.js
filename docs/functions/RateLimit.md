@@ -30,4 +30,4 @@ Creates a rate limiter function that blocks with a promise whenever the rate lim
 
 ## Defined in
 
-[packages/ai-tool/src/utils/async-semaphore.ts:347](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/async-semaphore.ts#L347)
+[packages/ai-tool/src/utils/async-semaphore.ts:347](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/utils/async-semaphore.ts#L347)

@@ -84,4 +84,4 @@
 
 ## Defined in
 
-[packages/ai-tool/src/client-tools.ts:153](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/client-tools.ts#L153)
+[packages/ai-tool/src/client-tools.ts:153](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/client-tools.ts#L153)

@@ -14,7 +14,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/hash/xxhash.ts:76](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/hash/xxhash.ts#L76)
+[packages/ai-tool/src/utils/hash/xxhash.ts:76](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/utils/hash/xxhash.ts#L76)
 
 ***
 
@@ -24,7 +24,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/hash/xxhash.ts:78](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/hash/xxhash.ts#L78)
+[packages/ai-tool/src/utils/hash/xxhash.ts:78](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/utils/hash/xxhash.ts#L78)
 
 ***
 
@@ -34,4 +34,4 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/hash/xxhash.ts:77](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/hash/xxhash.ts#L77)
+[packages/ai-tool/src/utils/hash/xxhash.ts:77](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/utils/hash/xxhash.ts#L77)

@@ -14,7 +14,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/split-sentence.ts:194](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/split-sentence.ts#L194)
+[packages/ai-tool/src/utils/split-sentence.ts:194](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/utils/split-sentence.ts#L194)
 
 ***
 
@@ -24,4 +24,4 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/split-sentence.ts:195](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/split-sentence.ts#L195)
+[packages/ai-tool/src/utils/split-sentence.ts:195](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/utils/split-sentence.ts#L195)

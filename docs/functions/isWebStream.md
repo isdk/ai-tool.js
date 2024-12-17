@@ -18,4 +18,4 @@ val is ReadableStream\<any\> \| WritableStream\<any\>
 
 ## Defined in
 
-[packages/ai-tool/src/utils/stream/is-web-stream.ts:1](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/stream/is-web-stream.ts#L1)
+[packages/ai-tool/src/utils/stream/is-web-stream.ts:1](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/utils/stream/is-web-stream.ts#L1)

@@ -22,7 +22,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/truncate-to-token-limit.ts:8](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/truncate-to-token-limit.ts#L8)
+[packages/ai-tool/src/utils/truncate-to-token-limit.ts:8](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/utils/truncate-to-token-limit.ts#L8)
 
 ***
 
@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/truncate-to-token-limit.ts:4](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/truncate-to-token-limit.ts#L4)
+[packages/ai-tool/src/utils/truncate-to-token-limit.ts:4](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/utils/truncate-to-token-limit.ts#L4)
 
 ***
 
@@ -50,7 +50,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/truncate-to-token-limit.ts:9](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/truncate-to-token-limit.ts#L9)
+[packages/ai-tool/src/utils/truncate-to-token-limit.ts:9](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/utils/truncate-to-token-limit.ts#L9)
 
 ***
 
@@ -64,7 +64,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/truncate-to-token-limit.ts:10](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/truncate-to-token-limit.ts#L10)
+[packages/ai-tool/src/utils/truncate-to-token-limit.ts:10](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/utils/truncate-to-token-limit.ts#L10)
 
 ***
 
@@ -88,7 +88,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/truncate-to-token-limit.ts:12](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/truncate-to-token-limit.ts#L12)
+[packages/ai-tool/src/utils/truncate-to-token-limit.ts:12](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/utils/truncate-to-token-limit.ts#L12)
 
 ***
 
@@ -98,7 +98,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/read-text-file-chunks.ts:8](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/read-text-file-chunks.ts#L8)
+[packages/ai-tool/src/utils/read-text-file-chunks.ts:8](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/utils/read-text-file-chunks.ts#L8)
 
 ***
 
@@ -112,7 +112,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/read-text-file-chunks.ts:7](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/read-text-file-chunks.ts#L7)
+[packages/ai-tool/src/utils/read-text-file-chunks.ts:7](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/utils/read-text-file-chunks.ts#L7)
 
 ***
 
@@ -126,7 +126,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/truncate-to-token-limit.ts:7](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/truncate-to-token-limit.ts#L7)
+[packages/ai-tool/src/utils/truncate-to-token-limit.ts:7](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/utils/truncate-to-token-limit.ts#L7)
 
 ***
 
@@ -140,7 +140,7 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/read-text-file-chunks.ts:6](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/read-text-file-chunks.ts#L6)
+[packages/ai-tool/src/utils/read-text-file-chunks.ts:6](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/utils/read-text-file-chunks.ts#L6)
 
 ***
 
@@ -154,4 +154,4 @@
 
 #### Defined in
 
-[packages/ai-tool/src/utils/truncate-to-token-limit.ts:11](https://github.com/isdk/ai-tool.js/blob/e324043799402aa2caa41711a9168487ab85c166/src/utils/truncate-to-token-limit.ts#L11)
+[packages/ai-tool/src/utils/truncate-to-token-limit.ts:11](https://github.com/isdk/ai-tool.js/blob/b0813174e9b350ae47231f8e5f885150313123b0/src/utils/truncate-to-token-limit.ts#L11)
