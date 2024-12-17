@@ -26,6 +26,7 @@ export interface ParseObjectArgumentOptions {
   ignoreIndexNamed?: boolean
   preserveUnresolvedName?: boolean
   skipExpression?: boolean
+  raiseError?: boolean
 }
 
 /**
@@ -393,12 +394,13 @@ export function parseObjectArgumentsAsArgInfos(argsStr: string, scope?: Record<s
   return args
 }
 
-export async function parseCommand(commandStr: string, scope?: Record<string, any>, options?: ParseObjectArgumentOptions): Promise<{ command: string, args?: Record<string, any> }> {
+export async function parseCommand(commandStr: string, scope?: Record<string, any>, options?: ParseObjectArgumentOptions): Promise<{ command: string, args?: Record<string, any> }|undefined> {
   const pattern = /^([^(]+)(?:\((.*)\))?$/;
   const match = commandStr.match(pattern);
 
   if (!match) {
-      throw new Error("Invalid command format");
+    if (options?.raiseError) {throw new Error("Invalid command format")}
+    return
   }
 
   const [, commandName, rawArgs] = match;
