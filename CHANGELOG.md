@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.4.0](https://github.com/isdk/ai-tool.js/compare/v0.3.0...v0.4.0) (2024-12-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* add raiseError option and defaults to not raise error
+
+### Features
+
+* add raiseError option and defaults to not raise error ([b081317](https://github.com/isdk/ai-tool.js/commit/b0813174e9b350ae47231f8e5f885150313123b0))
+
 ## [0.3.0](https://github.com/isdk/ai-tool.js/compare/v0.2.3...v0.3.0) (2024-12-15)
 
 
