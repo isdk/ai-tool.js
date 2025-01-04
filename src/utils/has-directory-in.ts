@@ -37,3 +37,19 @@ export function isSubdirectory(parentDir: string, childDir: string): boolean {
 export function hasDirectoryIn(dir: string, dirs?: string[]) {
  return dirs?.some(d => isSubdirectory(d, dir))
 }
+
+/**
+ * Assigns directories from the source array to the destination array if they do not already exist in the destination.
+ *
+ * @param dest - The destination array to which new directories will be added.
+ * @param src - The source array containing directories to be assigned to the destination.
+ * @returns The updated destination array with newly assigned directories from the source.
+ */
+export function assignDirs(dest: string[], src: string[]) {
+  for (const dir of src) {
+    if (!hasDirectoryIn(dir, dest)) {
+      dest.push(dir)
+    }
+  }
+  return dest
+}
