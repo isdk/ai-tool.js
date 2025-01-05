@@ -1,6 +1,6 @@
 import {
   EventSourceParser,
-  ParsedEvent,
+  type EventSourceMessage,
   createParser,
 } from "eventsource-parser";
 
@@ -18,17 +18,17 @@ import {
 // Copied from https://github.com/rexxars/eventsource-parser/blob/main/src/stream.ts to avoid issues with the commonjs build.
 export class EventSourceParserStream extends TransformStream<
   string,
-  ParsedEvent
+  EventSourceMessage
 > {
   constructor() {
     let parser!: EventSourceParser;
 
     super({
       start(controller) {
-        parser = createParser((event) => {
-          if (event.type === "event") {
+        parser = createParser({
+          onEvent: (event) => {
             controller.enqueue(event);
-          }
+          },
         });
       },
       transform(chunk) {

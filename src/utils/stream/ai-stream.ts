@@ -1,8 +1,7 @@
 import {
   createParser,
   type EventSourceParser,
-  type ParsedEvent,
-  type ReconnectInterval,
+  type EventSourceMessage,
 } from 'eventsource-parser';
 import { getResponseErrorReadableStream } from './error-readable-stream'
 import { AIResult } from '../chat';
@@ -42,11 +41,10 @@ export function createEventStreamTransformer<TValue = any, TOptions = any>(
 
   return new TransformStream({
     async start(controller): Promise<void> {
-      eventSourceParser = createParser(
-        (event: ParsedEvent | ReconnectInterval) => {
+      eventSourceParser = createParser({
+        onEvent: (event: EventSourceMessage) => {
           if (
             ('data' in event &&
-              event.type === 'event' &&
               event.data === '[DONE]') ||
             // Replicate doesn't send [DONE] but does send a 'done' event
             // @see https://replicate.com/docs/streaming
@@ -65,7 +63,7 @@ export function createEventStreamTransformer<TValue = any, TOptions = any>(
             if (parsedMessage) {controller.enqueue(parsedMessage as any)}
           }
         },
-      );
+      });
     },
 
     transform(chunk) {
