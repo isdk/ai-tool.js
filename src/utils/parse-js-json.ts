@@ -52,7 +52,7 @@ export function parseJsJsonSimpleSync(input: string, scope?: Record<string, any>
   return fn()
 }
 
-const JsIdentifierRegex = /^[a-zA-Z_$][0-9a-zA-Z_$]*$/
+const JsIdentifierRegex = /^[a-zA-Z_$][0-9a-zA-Z_$.]*$/
 const isValidJsIdentifier = (str: string) => JsIdentifierRegex.test(str);
 
 export function filterValidFnScope(scope?: Record<string, any>) {
