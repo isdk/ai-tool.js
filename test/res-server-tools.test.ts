@@ -10,6 +10,7 @@ import { findPort } from '../src/utils/find-port'
 import { wait } from '../src/utils'
 import { ServerTools } from '../src/server-tools'
 import { ClientTools } from '../src/client-tools'
+import { omit } from 'lodash-es'
 
 class TestResTool extends ResServerTools {
   items: any = {}
@@ -92,6 +93,7 @@ describe('res server api', () => {
     server.all('/api/:toolId/:id?', async function(request, reply){
       const { toolId, id } = request.params as any;
       const func = ResServerTools.get(toolId)
+      // console.log('🚀 ~ server.all ~ func param:', toolId, id, request.method, func)
       if (!func) {
         reply.code(404).send({error: toolId + ' Not Found', data: {what: toolId}})
       }
@@ -114,10 +116,11 @@ describe('res server api', () => {
 
       // const result = JSON.stringify(await func.run(params))
       try {
+        // console.log('🚀 ~ server.all ~ params:', method, omit(params, ['_req', '_res']))
         let result = await func.run(params)
+        // console.log('🚀 ~ server.all ~ result:', method, omit(params, ['_req', '_res']), result)
         if (!func.isStream(params)) {
           result = JSON.stringify(result)
-          // console.log('🚀 ~ server.all ~ result:', result)
           reply.send(result)
         } else if (result) {
           reply.send(result)

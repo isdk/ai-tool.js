@@ -1,4 +1,4 @@
-import EventSource from 'eventsource'
+import {EventSource} from 'eventsource'
 global.EventSource = EventSource
 
 // can not use the `--no-file-parallelism` to test

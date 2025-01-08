@@ -73,7 +73,11 @@ export class ClientTools extends ToolFunc {
 
   async fetch(objParam?: any, act?: ActionName, subName?: any) {
     const fetchOptions = {...this.fetchOptions}
-    if (!fetchOptions.headers || !fetchOptions.headers['Content-Type']) {
+    const HasContentMethods = ['post', 'put', 'patch']
+    if (!act) { act = this.action || 'post'}
+    if (act === 'res') { act = 'get' }
+
+    if ((!fetchOptions.headers || !fetchOptions.headers['Content-Type']) && HasContentMethods.includes(act)) {
       fetchOptions.headers = {
         "Content-Type": "application/json",
         ...fetchOptions.headers,
@@ -82,8 +86,6 @@ export class ClientTools extends ToolFunc {
     if (objParam?.stream && !fetchOptions.headers.Connection) {
       fetchOptions.headers.Connection = 'keep-alive'
     }
-    if (!act) { act = this.action || 'post'}
-    if (act === 'res') { act = 'get' }
     if (subName) {
       if (typeof subName !== 'string') {subName = JSON.stringify(subName)}
       subName = this.name + '/' + subName
@@ -99,6 +101,10 @@ export class ClientTools extends ToolFunc {
     } else {
       fetchOptions.body = JSON.stringify(objParam)
       urlPart = subName!
+    }
+
+    if (fetchOptions.headers && !HasContentMethods.includes(act)) {
+      delete fetchOptions.headers['Content-Type']
     }
 
     const res = await fetch(`${this.apiRoot}/${urlPart}`, fetchOptions)
