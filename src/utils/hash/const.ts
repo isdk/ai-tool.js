@@ -1,4 +1,4 @@
-import { createMD5, createRIPEMD160, createSHA1, createSHA224, createSHA256, createSHA512, createXXHash128, createXXHash32, createXXHash64, type IDataType, type IHasher } from 'hash-wasm';
+import { createMD5, createRIPEMD160, createSHA1, createSHA224, createSHA256, createSHA512, createXXHash128, createXXHash32, createXXHash64 } from 'hash-wasm';
 
 export const SEED = 588213;
 
