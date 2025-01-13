@@ -7,9 +7,11 @@ import {mimeType} from 'mime-type/with-db'
 
 import { getMultiLevelExtname } from './filename'
 
+import type { CreateNodeOptions, DocumentOptions, ParseOptions, SchemaOptions, Tags, ToJSOptions, ToStringOptions } from 'yaml'
+
 export { mimeType }
 
-const YamlTags = [regexp]
+const YamlTags: Tags = [regexp]
 
 export function registerYamlTag(tags: any) {
   if (!Array.isArray(tags)) {
@@ -21,19 +23,43 @@ export function registerYamlTag(tags: any) {
   }
 }
 
-export function parseYaml(content: string) {
-  return parse(content, {customTags: YamlTags})
+export function parseYaml(content: string, options?: ParseOptions & DocumentOptions & SchemaOptions & ToJSOptions) {
+  if (!options) {
+    options = {customTags: YamlTags}
+  } else {
+    if (!options.customTags) {
+      options.customTags = YamlTags
+    } else if (Array.isArray(options.customTags)) {
+      options.customTags = YamlTags.concat(options.customTags)
+    } else if (typeof options.customTags === 'function') {
+      const customTags = options.customTags
+      options.customTags = (tags)=> customTags(YamlTags.concat(tags))
+    }
+  }
+  return parse(content, options)
 }
 
-export function stringifyYaml(content: any) {
-  return stringify(content, { customTags: YamlTags })
+export function stringifyYaml(content: any, options?: DocumentOptions & SchemaOptions & ParseOptions & CreateNodeOptions & ToStringOptions) {
+  if (!options) {
+    options = {customTags: YamlTags}
+  } else {
+    if (!options.customTags) {
+      options.customTags = YamlTags
+    } else if (Array.isArray(options.customTags)) {
+      options.customTags = YamlTags.concat(options.customTags)
+    } else if (typeof options.customTags === 'function') {
+      const customTags = options.customTags
+      options.customTags = (tags)=> customTags(YamlTags.concat(tags))
+    }
+  }
+  return stringify(content, options)
 }
 
 function parseJson(content: string) {
   return JSON.parse(content)
 }
 
-ConfigFile.register(['.yml', '.yaml'], parseYaml)
+ConfigFile.register(['.yml', '.yaml'], parseYaml as any)
 ConfigFile.register(['.json'], parseJson)
 
 export { ConfigFile }
