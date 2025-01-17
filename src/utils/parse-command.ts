@@ -134,7 +134,7 @@ export async function TemplateArgProcessor([isNamedArg, arg]: ArgInfo, ix: numbe
   }
   const content = await PromptTemplate.formatIf(formatOpts) as string
   if (content) {
-    value = isQuotedStr(content) ? content : JSON.stringify(content)
+    value = isQuoted(content) ? content : JSON.stringify(content)
     return name + ':' + value
   }
 }
@@ -147,25 +147,27 @@ export async function AIArgProcessor(argInfo: ArgInfo, ix: number, scope?: Recor
   return result
 }
 
-function isQuotedStr(s: string) {
+export function isQuoted(s: string) {
   const c = s[0]
   return (c === '"' || c === "'") && s[s.length-1] === c
 }
 
-function isQuoted(s: string, pairs = ['""', "''", '{}']) {
+export function isStrWrapped(s: string, pairs = ['""', "''", '{}']) {
   return pairs.some(pair => s[0] === pair[0] && s[s.length-1] === pair[1])
+}
+
+export function ensureQuoted(s: string, quoteChar = '"') {
+  if (!isQuoted(s)) {
+    return quoteChar + s + quoteChar
+  }
+  return s
 }
 
 function wrapQuotes(strs: string[], quoteChar = '"') {
   // check the item whether already quoted or not
-  return strs.map(str => {
-    if (isQuotedStr(str)) {
-      return str
-    } else {
-      return quoteChar + str + quoteChar
-    }
-  })
+  return strs.map(str => ensureQuoted(str, quoteChar))
 }
+
 function parseChoiceInfo(argsStr: string, scope?: Record<string, any>, options?: ParseObjectArgumentOptions) {
   const args = parseObjectArgumentsAsArgInfos(argsStr, scope, {...options, delimiter: ':'})
   const hasPicked = {} as Record<keyof AIChoiceConfig, boolean>
@@ -192,7 +194,7 @@ function parseChoiceInfo(argsStr: string, scope?: Record<string, any>, options?:
         hasPicked.type = true
         return 'type:"' + arg + '"'
       }
-      if (isQuotedStr(arg)) {
+      if (isQuoted(arg)) {
         if (hasPicked.separator) { throw new Error('Only one separator is allowed') }
         hasPicked.separator = true
         return 'separator:' + arg
@@ -210,7 +212,7 @@ export function quoteStr(str: string) {
 const JSKeywords = ['true', 'false', 'null', 'undefined', 'NaN', 'Infinity']
 
 function isNonQuotedArg(arg: string) {
-  return isQuoted(arg) || !Number.isNaN(parseFloat(arg)) || JSKeywords.includes(arg) || isArrowFunctionExpression(arg)
+  return isStrWrapped(arg) || !Number.isNaN(parseFloat(arg)) || JSKeywords.includes(arg) || isArrowFunctionExpression(arg)
 }
 
 async function getExpressionResult(arg: string, scope: any, raiseReferenceError?: boolean) {
