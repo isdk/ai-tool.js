@@ -240,7 +240,9 @@ async function getExpressionResult(arg: string, scope: any, raiseReferenceError?
 
 async function getArgValue(value: string, scope?: any, options?: ParseObjectArgumentOptions) {
   let result: any = value
-  if (!(isNonQuotedArg(value) || (scope && getByPath(scope, value) !== undefined))) {
+  if (['true', 'false'].includes(value.toLowerCase())) {
+    result = result.toLowerCase()
+  } else if (!(isNonQuotedArg(value) || (scope && getByPath(scope, value) !== undefined))) {
     if (!isArrowFunctionExpression(value)) try {
       if (options?.skipExpression) {
         result = quoteStr(value)

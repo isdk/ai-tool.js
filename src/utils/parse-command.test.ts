@@ -14,6 +14,12 @@ describe('parseObjectArguments', async () => {
     expect(result).toEqual({choice:{items: ['plant', 'animal'], minPick:1, maxPick: 2, separator: ';', prefix: "- ", suffix: "|"}});
   });
 
+  test('should parse bool arguments', async () => {
+    const argsStr = 'TRUE, arg2= False';
+    const result = await parseObjectArguments(argsStr);
+    expect(result).toStrictEqual({0: true, arg2: false});
+  });
+
   test('should parse arguments with template string', async () => {
     const argsStr = '{{ test }}, arg2= "value2"';
     const result = await parseObjectArguments(argsStr, {test: 'value1'}, {argProcessor: TemplateArgProcessor});
