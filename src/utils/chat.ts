@@ -49,7 +49,7 @@ export type AIChatMessageParam =
   | AIChatAssistantMessageParam
   | AIChatToolMessageParam;
 
-  export interface AIChatMessageParamBase {
+export interface AIChatMessageParamBase {
     role: string
     toRole?: string|string[]|Record<string,  Partial<AIChatMessageParam>>
     replies?: Record<string, Partial<AIChatMessageParam>>
@@ -57,7 +57,7 @@ export type AIChatMessageParam =
     [name: string]: any
   }
 
-  export interface AIChatSystemMessageParam extends AIChatMessageParamBase{
+export interface AIChatSystemMessageParam extends AIChatMessageParamBase{
   role: 'system';
   content: string;
   templateFormat?: string;
@@ -106,7 +106,7 @@ export interface AIChatMessageToolCall {
   type: 'function';
   id: string;
   function: {
-    arguments: string;
+    arguments: any;
     name: string;
   };
 }
@@ -116,6 +116,39 @@ export interface AIChatToolMessageParam extends AIChatMessageParamBase {
   content: string;
   tool_call_id: string;
   templateFormat?: string;
+}
+
+export interface AIChatToolParam {
+  type: string;
+  [key: string]: any;
+}
+
+export interface AIChatToolFuncParam extends AIChatToolParam {
+  type: 'function';
+  function: AIChatToolFunc;
+}
+
+export interface AIChatToolFunc {
+  name: string;
+  description?: string;
+  parameters?: any
+  strict?: boolean;
+}
+
+export type AIChatToolChoiceParam = 'auto'| 'none' | 'required' | AIChatToolChoiceObject
+
+export interface AIChatToolChoiceObject {
+  type: string
+  [key: string]: any
+}
+
+export interface AIChatToolChoiceFuncObject extends AIChatToolChoiceObject {
+  type: 'function'
+  function: AIChatToolTypeObject
+}
+
+export interface AIChatToolTypeObject {
+  name: string
 }
 
 export function messagesToText(messages: AIChatMessageParamBase[]) {
