@@ -106,7 +106,7 @@ export interface AIChatMessageToolCall {
   type: 'function';
   id: string;
   function: {
-    arguments: any;
+    arguments: string;
     name: string;
   };
 }
