@@ -219,6 +219,16 @@ describe("Test interpreter options", () => {
 		testTemplate(test)
 	});
 
+	it("should support string.split(sep)", () => {
+		const test = {
+			template: '{{ (s.split(","))[-1] }}',
+			data: {s: "test,it,ok"},
+			options: { lstrip_blocks: true, trim_blocks: true },
+			target: `ok`,
+		}
+		testTemplate(test)
+	});
+
 	it("should support user-defined filter", async () => {
 		const options = { lstrip_blocks: true, trim_blocks: true }
 		const env = new Environment();

@@ -124,6 +124,15 @@ export class StringValue extends RuntimeValue<string> {
 				return new StringValue(this.value.trimStart());
 			}),
 		],
+		[
+			"split",
+			new FunctionValue(([separator]) => {
+				if (!(separator instanceof StringValue)) {
+					throw new Error(`Expected a string separator: got ${separator.type}`);
+				}
+				return new ArrayValue(this.value.split(separator.value).map((x) => new StringValue(x)));
+			}),
+		],
 	]);
 }
 
