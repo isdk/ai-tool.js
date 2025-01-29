@@ -58,10 +58,18 @@ export function tojson(value: any, indent?: number|{indent?: number, depth?: num
   return toJSON(value, indent, depth)
 }
 
+export function join(value: any, separator: string = ',') {
+  if (Array.isArray(value)) {
+    return value.join(separator)
+  }
+  return value
+}
+
 export const builtins = {
   randomInt,
   select,
   tojson,
+  join,
 }
 
 
