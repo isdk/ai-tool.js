@@ -2,6 +2,7 @@ import type {
 	NumericLiteral,
 	StringLiteral,
 	BooleanLiteral,
+	NullLiteral,
 	ArrayLiteral,
 	Statement,
 	Program,
@@ -126,11 +127,44 @@ export class StringValue extends RuntimeValue<string> {
 		],
 		[
 			"split",
-			new FunctionValue(([separator]) => {
-				if (!(separator instanceof StringValue)) {
-					throw new Error(`Expected a string separator: got ${separator.type}`);
+			// follows Python's `str.split(sep=None, maxsplit=-1)` function behavior
+			// https://docs.python.org/3.13/library/stdtypes.html#str.split
+			new FunctionValue((args) => {
+				const sep = args[0] ?? new NullValue();
+				if (!(sep instanceof StringValue || sep instanceof NullValue)) {
+					throw new Error("sep argument must be a string or null");
 				}
-				return new ArrayValue(this.value.split(separator.value).map((x) => new StringValue(x)));
+				const maxsplit = args[1] ?? new NumericValue(-1);
+				if (!(maxsplit instanceof NumericValue)) {
+					throw new Error("maxsplit argument must be a number");
+				}
+
+				let result: string[] = [];
+				if (sep instanceof NullValue) {
+					// If sep is not specified or is None, runs of consecutive whitespace are regarded as a single separator, and the
+					// result will contain no empty strings at the start or end if the string has leading or trailing whitespace.
+					// Trailing whitespace may be present when maxsplit is specified and there aren't sufficient matches in the string.
+					const text = this.value.trimStart();
+					for (const { 0: match, index } of text.matchAll(/\S+/g)) {
+						if (maxsplit.value !== -1 && result.length >= maxsplit.value && index !== undefined) {
+							result.push(match + text.slice(index + match.length));
+							break;
+						}
+						result.push(match);
+					}
+				} else {
+					// If sep is specified, consecutive delimiters are not grouped together and are deemed to delimit empty strings.
+					if (sep.value === "") {
+						throw new Error("empty separator");
+					}
+					result = this.value.split(sep.value);
+					if (maxsplit.value !== -1 && result.length > maxsplit.value) {
+						// Follow Python's behavior: If maxsplit is given, at most maxsplit splits are done,
+						// with any remaining text returned as the final element of the list.
+						result.push(result.splice(maxsplit.value).join(sep.value));
+					}
+				}
+				return new ArrayValue(result.map((part) => new StringValue(part)));
 			}),
 		],
 	]);
@@ -577,6 +611,8 @@ export class Interpreter {
 								}
 							})
 						);
+					case "join":
+						return new StringValue(operand.value.map((x) => x.value).join(""));
 					default:
 						throw new Error(`Unknown ArrayValue filter: ${filter.value}`);
 				}
@@ -608,6 +644,7 @@ export class Interpreter {
 								)
 								.join("\n")
 						);
+					case "join":
 					case "string":
 						return operand; // no-op
 					default:
@@ -1094,6 +1131,8 @@ export class Interpreter {
 				return new StringValue((statement as StringLiteral).value);
 			case "BooleanLiteral":
 				return new BooleanValue((statement as BooleanLiteral).value);
+			case "NullLiteral":
+				return new NullValue((statement as NullLiteral).value);
 			case "ArrayLiteral":
 				return new ArrayValue((statement as ArrayLiteral).value.map((x) => this.evaluate(x, environment)));
 			case "TupleLiteral":
