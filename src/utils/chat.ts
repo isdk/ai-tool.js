@@ -55,6 +55,7 @@ export interface AIChatMessageParamBase {
     replies?: Record<string, Partial<AIChatMessageParam>>
     private?: boolean
     tools?: Record<string, string>
+    thinking?: string
     [name: string]: any
   }
 
