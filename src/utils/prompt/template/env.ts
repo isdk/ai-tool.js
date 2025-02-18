@@ -14,13 +14,23 @@ function _resolveEscapeSequences(value: string) {
   return value.replace(/\\\$/g, '$')
 }
 
-export function interpolateEnv(value: string, processEnv, parsed) {
+export function getEnvVairables(value: string) {
+  const result = new Set<string>()
+  let matched: RegExpExecArray|null
+  while (matched = DOTENV_SUBSTITUTION_REGEX.exec(value)) {
+    const key = matched[4]
+    result.add(key)
+  }
+  return [...result]
+}
+
+export function interpolateEnv(value: string, processEnv: Record<string, any>, parsed?: Record<string, any>) {
   return value.replace(DOTENV_SUBSTITUTION_REGEX, (match, escaped, dollarSign, openBrace, key, defaultValue, closeBrace) => {
     if (escaped === '\\') {
       return match.slice(1)
     } else {
       if (processEnv[key]) {
-        if (processEnv[key] === parsed[key]) {
+        if (processEnv[key] === parsed?.[key]) {
           return processEnv[key]
         } else {
           // scenario: PASSWORD_EXPAND_NESTED=${PASSWORD_EXPAND}
@@ -28,7 +38,7 @@ export function interpolateEnv(value: string, processEnv, parsed) {
         }
       }
 
-      if (parsed[key]) {
+      if (parsed?.[key]) {
         // avoid recursion from EXPAND_SELF=$EXPAND_SELF
         if (parsed[key] === value) {
           return parsed[key]

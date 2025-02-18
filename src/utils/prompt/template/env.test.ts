@@ -1,4 +1,20 @@
-import { expandEnv, expandObjEnv } from './env';
+import { expandEnv, expandObjEnv, getEnvVairables, interpolateEnv } from './env';
+
+describe('getEnvVairables', () => {
+  it('should get variable names correctly', () => {
+    const result = getEnvVairables('${VAR1} VAR3 ${VAR2}');
+
+    expect(result).toEqual(['VAR1', 'VAR2']);
+  });
+});
+
+describe('interpolateEnv', () => {
+  it('should interpolate environment variables correctly', () => {
+    const processEnv = { VAR1: 'value1', VAR2: 'value2' };
+    const result = interpolateEnv('hi ${VAR1} ok:${VAR2}', processEnv);
+    expect(result).toBe('hi value1 ok:value2');
+  })
+});
 
 describe('expandEnv', () => {
   let originalProcessEnv: NodeJS.ProcessEnv;
