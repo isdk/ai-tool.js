@@ -2,9 +2,9 @@ import { expandEnv, expandObjEnv, getEnvVairables, interpolateEnv } from './env'
 
 describe('getEnvVairables', () => {
   it('should get variable names correctly', () => {
-    const result = getEnvVairables('${VAR1} VAR3 ${VAR2}');
+    const result = getEnvVairables('${VAR1} VAR3 ${VAR2} ${Miss $VAR4');
 
-    expect(result).toEqual(['VAR1', 'VAR2']);
+    expect(result).toEqual(['VAR1', 'VAR2', 'VAR4']);
   });
 });
 
@@ -13,6 +13,12 @@ describe('interpolateEnv', () => {
     const processEnv = { VAR1: 'value1', VAR2: 'value2' };
     const result = interpolateEnv('hi ${VAR1} ok:${VAR2}', processEnv);
     expect(result).toBe('hi value1 ok:value2');
+  })
+
+  it('should not interpolate wrong variables', () => {
+    const processEnv = { VAR1: 'value1', VAR2: 'value2' };
+    const result = interpolateEnv('hi ${VAR1 ok:${VAR2}', processEnv);
+    expect(result).toBe('hi ${VAR1 ok:value2');
   })
 });
 

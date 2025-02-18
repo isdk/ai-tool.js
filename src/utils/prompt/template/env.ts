@@ -18,14 +18,19 @@ export function getEnvVairables(value: string) {
   const result = new Set<string>()
   let matched: RegExpExecArray|null
   while (matched = DOTENV_SUBSTITUTION_REGEX.exec(value)) {
-    const key = matched[4]
-    result.add(key)
+    const openBrace = matched[3]
+    const closeBrace = matched[6]
+    if ((openBrace && closeBrace) || (!openBrace && !closeBrace)) {
+      const key = matched[4]
+      result.add(key)
+    }
   }
   return [...result]
 }
 
 export function interpolateEnv(value: string, processEnv: Record<string, any>, parsed?: Record<string, any>) {
   return value.replace(DOTENV_SUBSTITUTION_REGEX, (match, escaped, dollarSign, openBrace, key, defaultValue, closeBrace) => {
+    if (openBrace && !closeBrace) {return match}
     if (escaped === '\\') {
       return match.slice(1)
     } else {
