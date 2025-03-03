@@ -1,4 +1,4 @@
-import { parseObjectArguments, parseCommand, ChoiceArgProcessor, TemplateArgProcessor, AIArgProcessor } from './parse-command';
+import { parseObjectArguments, parseCommand, ChoiceArgProcessor, TemplateArgProcessor, AIArgProcessor, ObjectArgsToArgsInfo } from './parse-command';
 import { replaceWithPlaceholder, restoreFromPlacehoders } from './parse-command';
 
 describe('parseObjectArguments', async () => {
@@ -159,6 +159,9 @@ describe('parseObjectArguments', async () => {
     expect(result).toEqual(1);
     result = await parseObjectArguments(argsStr, {test: {a:1,b:2}}, {returnArrayOnly: true});
     expect(result).toEqual({0: 1, "test.a": 1});
+    result = ObjectArgsToArgsInfo(result)
+    expect(result.args).toMatchObject([1])
+    expect(result.kvArgs).toMatchObject({})
   });
 
   test('should parse json func expression arguments', async () => {
@@ -189,8 +192,11 @@ describe('parseObjectArguments', async () => {
   test('should handle arguments with scope', async () => {
     const argsStr = '"arg1,f", arg2, arg3,arg4=random, random';
     const scope = { arg2: 'value2', arg3: 'value3', random: 'random1' };
-    const result = await parseObjectArguments(argsStr, scope);
+    let result = await parseObjectArguments(argsStr, scope);
     expect(result).toEqual({0:'arg1,f', 1: "value2", arg2: 'value2', 2: 'value3', arg3: 'value3', arg4: 'random1', 4: 'random1', random: 'random1'});
+    result = ObjectArgsToArgsInfo(result)
+    expect(result.args).toStrictEqual(['arg1,f', 'value2', 'value3', 'random1'])
+    expect(result.kvArgs).toMatchObject({arg4: 'random1'})
   });
 
   test('should return undefined if no arguments are provided', async () => {

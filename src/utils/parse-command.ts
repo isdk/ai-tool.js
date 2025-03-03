@@ -73,6 +73,51 @@ export async function parseObjectArguments(argsStr: string, scope?: Record<strin
   return parseObjectArgumentInfos(args, scope, options)
 }
 
+function isIncreasing(arr: number[]) {
+  for (let i = 1; i < arr.length; i++) {
+      if (arr[i] <= arr[i - 1]) {
+          return false;
+      }
+  }
+  return true;
+}
+
+
+export function ObjectArgsToArgsInfo(args: any): {args: any[], kvArgs?: Record<string, any>} {
+  if (args && !Array.isArray(args) && typeof args === 'object') {
+    const entries = Object.entries(args)
+    const keys = Object.keys(args)
+    const nums = keys.filter(k => !isNaN(parseInt(k)))
+    if (entries.length === 1) {
+      if (args[0] !== undefined) {
+        args = [args[0]]
+      }
+    } else if (keys.every(k => !isNaN(parseInt(k))) && isIncreasing(keys.map(k => parseInt(k)))) {
+      // convert to array
+      args = Object.values(args) // keys.sort((a,b) => parseInt(a) - parseInt(b)).map(k => args[k])
+    } else if (nums[0] === '0' && isIncreasing(nums.map(k => parseInt(k)))) {
+      const kvArgs = entries.filter(([k, v]) => isNaN(parseInt(k)))
+      args = entries.filter(([k, v]) => !isNaN(parseInt(k))).map(([k, v]) => v)
+      let i = 0
+      const canDeleted: number[] = []
+      while (i < kvArgs.length && kvArgs[i][1] === args[i]) {
+        canDeleted.push(i)
+        i++
+      }
+      while (canDeleted.length) {
+        kvArgs.splice(canDeleted.pop()!, 1)
+      }
+      args = {args, kvArgs: Object.fromEntries(kvArgs)}
+    } else {
+      args = {args: [], kvArgs: args}
+    }
+  }
+  if (Array.isArray(args)) {
+    args = {args}
+  }
+  return args
+}
+
 export function simplifyObjectArguments(args: any) {
   if (args && !Array.isArray(args) && typeof args === 'object') {
     const entries = Object.entries(args)
