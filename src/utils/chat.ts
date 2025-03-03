@@ -47,7 +47,8 @@ export type AIChatMessageParam =
   | AIChatSystemMessageParam
   | AIChatUserMessageParam
   | AIChatAssistantMessageParam
-  | AIChatToolMessageParam;
+  | AIChatToolMessageParam
+  | AIChatMessageParamBase;
 
 export interface AIChatMessageParamBase {
     role: string
