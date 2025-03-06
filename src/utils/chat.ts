@@ -44,11 +44,11 @@ export const AIChatRoles = ['user', 'assistant', 'system', 'tool', 'tool_calls']
 export type AIChatRole = (typeof AIChatRoles[number]) & string
 
 export type AIChatMessageParam =
+  | AIChatMessageParamBase
   | AIChatSystemMessageParam
   | AIChatUserMessageParam
   | AIChatAssistantMessageParam
   | AIChatToolMessageParam
-  | AIChatMessageParamBase;
 
 export interface AIChatMessageParamBase {
     role: string
