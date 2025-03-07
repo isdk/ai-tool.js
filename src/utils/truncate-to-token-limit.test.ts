@@ -13,7 +13,7 @@ describe('truncateToTokenLimit', () => {
     const content = 'This is a very long long long simple test content sentence, can not be truncated to fit within the token limit.';
     const options = { size: 10 };
 
-    expect(truncateToTokenLimit(content, options)).rejects.toThrow('Can not truncate content to fit within the token limit:');
+    await expect(truncateToTokenLimit(content, options)).rejects.toThrow('Can not truncate content to fit within the token limit:');
   });
 
   it('should truncate content if size is exceeded', async () => {

@@ -16,7 +16,7 @@ describe('parseJsJson', () => {
 
   it('should throw SyntaxError for invalid JSON string', async () => {
     const input = '{"name": "John", "age": 30';
-    expect(parseJsJson(input)).rejects.toThrow(SyntaxError);
+    await expect(parseJsJson(input)).rejects.toThrow(SyntaxError);
   });
 
   it('should handle empty string input', async () => {
