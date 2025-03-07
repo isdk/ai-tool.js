@@ -367,6 +367,6 @@ function onInjectionSuccess(Tool: typeof ToolFunc, options?: CancelableAbilityOp
 }
 
 
-type ToolFuncCancelableFn<T extends { new (...args: any[]): any } = typeof ToolFunc> = (Tool: T, options?: CancelableAbilityOptions) => T
+// type ToolFuncCancelableFn<T extends { new (...args: any[]): any } = typeof ToolFunc> = (Tool: T, options?: CancelableAbilityOptions) => T
 
 export const makeToolFuncCancelable = createAbilityInjector(CancelableAbility, 'abort', {afterInjection: onInjectionSuccess as any});
