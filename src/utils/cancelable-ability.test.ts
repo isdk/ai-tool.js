@@ -1,9 +1,23 @@
 import {vi as jest} from 'vitest'
-import { AsyncFeatureBits, AsyncFeatures, ToolAsyncCancelableBit, ToolAsyncMultiTaskBit, ToolFunc } from '../tool-func'
-import { AsyncTaskId, CancelableAbility, makeToolFuncCancelable, TaskAbortController, TaskAbortControllers, TaskPromise } from './cancelable-ability'
+import { ToolFunc } from '../tool-func'
+import { AsyncFeatureBits, AsyncFeatures, ToolAsyncCancelableBit, ToolAsyncMultiTaskBit, AsyncTaskId, CancelableAbility, makeToolFuncCancelable, TaskAbortController, TaskAbortControllers, TaskPromise } from './cancelable-ability'
 import { wait } from './wait'
 import { uuid } from './hash'
 import { AbortError } from './base-error'
+
+declare namespace TestSingleTask {
+  function hasAsyncFeature(feature: AsyncFeatureBits): boolean;
+}
+interface TestSingleTask extends CancelableAbility {}
+class TestSingleTask {
+  run(params: any) {
+    return this.runAsyncCancelableTask(params, async (params: any) => {
+      await wait(10)
+      return params
+    })
+  }
+}
+makeToolFuncCancelable(TestSingleTask)
 
 class TestSingleTaskFunc extends ToolFunc {
   func(params: any) {
@@ -74,13 +88,25 @@ describe('CancelableAbility', () => {
     jest.restoreAllMocks()
   })
 
+  it('should run single async task without ToolFunc', async () => {
+    const testSingleTask = new TestSingleTask()
+    expect(testSingleTask.hasAsyncFeature(AsyncFeatureBits.Cancelable)).toBeTruthy()
+    expect(TestSingleTaskFunc.hasAsyncFeature(ToolAsyncCancelableBit)).toBeTruthy()
+    const taskInfo = testSingleTask.run('12345') as TaskPromise<string>
+    expect(taskInfo.task).toBeInstanceOf(AbortController)
+
+    await expect(async () => {await wait(1); testSingleTask.run('345');}).rejects.toThrow('The task is running')
+    const result = await taskInfo
+    expect(result).toBe('12345')
+  })
+
   it('should run single async task only', async () => {
     expect(testSingleTask.hasAsyncFeature(AsyncFeatureBits.Cancelable)).toBeTruthy()
     expect(TestSingleTaskFunc.hasAsyncFeature(ToolAsyncCancelableBit)).toBeTruthy()
     const taskInfo = testSingleTask.run('12345') as TaskPromise<string>
     expect(taskInfo.task).toBeInstanceOf(AbortController)
 
-    expect(async () => {await wait(1); testSingleTask.run('345');}).rejects.toThrow('The task is running')
+    await expect(async () => {await wait(1); testSingleTask.run('345');}).rejects.toThrow('The task is running')
     const result = await taskInfo
     expect(result).toBe('12345')
   })
@@ -93,7 +119,7 @@ describe('CancelableAbility', () => {
     expect(taskInfo.task).toBeInstanceOf(AbortController)
     expect(taskInfo.task).toHaveProperty('id')
 
-    expect(testMultiTask.run('345')).resolves.toBe('345')
+    await expect(testMultiTask.run('345')).resolves.toBe('345')
     const result = await taskInfo
     expect(result).toBe('12345')
   })
@@ -142,7 +168,7 @@ describe('CancelableAbility', () => {
     expect(taskInfo.task).toBeInstanceOf(AbortController)
     expect(taskInfo.task).toHaveProperty('id')
 
-    expect(testMultiTask.run('345')).resolves.toBe('345')
+    await expect(testMultiTask.run('345')).resolves.toBe('345')
     const result = await taskInfo
     expect(result).toBeInstanceOf(ReadableStream)
     const reader = result.getReader()

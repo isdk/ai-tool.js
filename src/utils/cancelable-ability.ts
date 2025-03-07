@@ -1,9 +1,28 @@
 import { AbilityOptions, createAbilityInjector } from 'custom-ability'
 import { AbortError, CommonError, ErrorCode } from './base-error'
-import { AsyncFeatures, ToolAsyncMultiTaskBit, ToolFunc } from '../tool-func';
+import { ToolFunc } from '../tool-func';
 import { Semaphore } from './async-semaphore';
 import { createCallbacksTransformer } from './stream';
 import { defineProperty } from 'util-ex';
+import { IntSet } from './intset';
+
+// the binary bit position
+export const ToolAsyncMultiTaskBit = 0
+export const ToolAsyncCancelableBit = 1
+export const ToolAsyncPriorityBit = 2
+
+export enum AsyncFeatureBits {
+  MultiTask = ToolAsyncMultiTaskBit,
+  Cancelable = ToolAsyncCancelableBit,
+  Priority = ToolAsyncPriorityBit,
+}
+
+// bit fields
+export enum AsyncFeatures {
+  MultiTask = 1 << ToolAsyncMultiTaskBit, // B0001
+  Cancelable = 1 << ToolAsyncCancelableBit, // B010
+  Priority = 1 << ToolAsyncPriorityBit, // B0100
+}
 
 export type AsyncTaskId = string|number
 
@@ -76,6 +95,19 @@ export class CancelableAbility {
       result = this.__task_semaphore = new Semaphore(maxTaskConcurrency-1)
     }
     return result
+  }
+
+  static hasAsyncFeature(feature: AsyncFeatureBits) {
+    const proto = this.prototype
+    let features = proto.asyncFeatures
+    if (proto._asyncFeatures) { features |= proto._asyncFeatures }
+    return IntSet.has(features, feature)
+  }
+
+  hasAsyncFeature(feature: AsyncFeatureBits) {
+    let features = this.asyncFeatures
+    if (this._asyncFeatures) { features |= this._asyncFeatures }
+    return IntSet.has(features, feature)
   }
 
   isAborted(taskId?: AsyncTaskId) {
@@ -335,6 +367,6 @@ function onInjectionSuccess(Tool: typeof ToolFunc, options?: CancelableAbilityOp
 }
 
 
-type ToolFuncCancelableFn = (Tool: typeof ToolFunc, options?: CancelableAbilityOptions) => typeof ToolFunc
+type ToolFuncCancelableFn<T extends { new (...args: any[]): any } = typeof ToolFunc> = (Tool: T, options?: CancelableAbilityOptions) => T
 
-export const makeToolFuncCancelable = createAbilityInjector(CancelableAbility, 'abort', {afterInjection: onInjectionSuccess as any}) as unknown as ToolFuncCancelableFn;
+export const makeToolFuncCancelable = createAbilityInjector(CancelableAbility, 'abort', {afterInjection: onInjectionSuccess as any});
