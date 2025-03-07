@@ -41,7 +41,7 @@
     "mime-type": "^5.0.0",
     "pkg-dir": "^8.0.0",
     "property-manager": "^2.0.0",
-    "secondary-cache": "^2.0.0",
+    "secondary-cache": "^2.0.1",
     "secure-json-parse": "^3.0.2",
     "util-ex": "2.1.0",
     "uuid": "^11.0.3",
