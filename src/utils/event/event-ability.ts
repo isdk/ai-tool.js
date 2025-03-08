@@ -2,6 +2,8 @@ import { createAbilityInjector } from 'custom-ability'
 import type { Event, EventEmitter } from 'events-ex';
 import type { ToolFunc } from '../../tool-func'
 
+export { EventEmitter, eventable, states as EventStates } from 'events-ex';
+
 
 export const EventName = 'event'
 export const EventBusName = 'event-bus'
