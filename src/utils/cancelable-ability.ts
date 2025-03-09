@@ -29,6 +29,7 @@ export type AsyncTaskId = string|number
 export interface CancelableAbilityOptions extends AbilityOptions {
   asyncFeatures?: AsyncFeatures
   maxTaskConcurrency?: number
+  isReadyFn?: () => Promise<boolean>|boolean
 }
 
 export class TaskAbortController extends AbortController {
@@ -73,6 +74,7 @@ export interface TaskPromise<T = any> extends Promise<T> {
 export declare interface CancelableAbility {
   _asyncFeatures?: number
   _maxTaskConcurrency: number|undefined
+  _isReadyFn?: () => Promise<boolean>|boolean
   [name: string]: any;
 }
 
@@ -92,7 +94,7 @@ export class CancelableAbility {
     const maxTaskConcurrency = this._maxTaskConcurrency!
     let result = this.__task_semaphore
     if (maxTaskConcurrency > 0 && !result) {
-      result = this.__task_semaphore = new Semaphore(maxTaskConcurrency-1)
+      result = this.__task_semaphore = new Semaphore(maxTaskConcurrency-1, {isReadyFn: this._isReadyFn})
     }
     return result
   }
@@ -360,6 +362,9 @@ function onInjectionSuccess(Tool: typeof ToolFunc, options?: CancelableAbilityOp
     }
     if (options.maxTaskConcurrency! > 0) {
       Tool.prototype._maxTaskConcurrency = options.maxTaskConcurrency
+    }
+    if (options.isReadyFn && typeof options.isReadyFn === 'function') {
+      Tool.prototype._isReadyFn = options.isReadyFn
     }
   }
 
