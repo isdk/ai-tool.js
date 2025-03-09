@@ -1,5 +1,9 @@
 import { vi } from 'vitest'
+import { EventEmitter } from './event'
+import {wait} from './wait'
 import { Semaphore } from './async-semaphore'
+
+describe('Semaphore', () => {
 
 test('pendingCount() is sane', async () => {
 	const s = new Semaphore(1);
@@ -34,12 +38,12 @@ test('tryAcquire returns undefined', async () => {
 	const s = new Semaphore(2);
 
 	await s.acquire();
-	expect(s.tryAcquire()).toBeDefined();
-	expect(s.tryAcquire()).toBeUndefined();
+	expect(await s.tryAcquire()).toBeDefined();
+	expect(await s.tryAcquire()).toBeUndefined();
 
 	s.release();
-	expect(s.tryAcquire()).toBeDefined();
-	expect(s.tryAcquire()).toBeUndefined();
+	expect(await s.tryAcquire()).toBeDefined();
+	expect(await s.tryAcquire()).toBeUndefined();
 });
 
 test('Pausing works', () => {
@@ -76,4 +80,43 @@ test('Tokens are returned properly', async () => {
 
 	const tokens = await Promise.all([s.acquire(), s.acquire(), s.acquire()]);
 	expect(tokens).toEqual(expect.arrayContaining([0, 1, 2]));
+});
+
+test('isReadyFn async', async () => {
+	let ready = false;
+	let called = 0;
+
+	// const isReadyFn: any = new Promise<boolean>((resolve, reject) => {
+	// 	called++;
+	// 	if (ready) {resolve(ready)}
+	// 	const timeId = setInterval(() => {
+	// 		if (ready) {
+	// 			clearInterval(timeId);
+	// 			resolve(true);
+	// 		}
+	// 		console.log('🚀 ~ timeId ~ setInterval:', ready)
+	// 	}, 5);
+	// });
+	const isReadyFn = async () => {
+		called++;
+		let maxCount = 100;
+		while (!ready && maxCount--) {
+			await wait(5)
+		}
+		return true;
+	}
+	const s = new Semaphore(1, {
+		isReadyFn,
+	});
+	// setTimeout(() => {
+	// 	ready = true;
+	// }, 100);
+	s.acquire().catch(console.error);
+	expect(s.pendingCount()).toEqual(1);
+	expect(called).toEqual(1);
+	ready = true;
+	await wait(10)
+	expect(s.pendingCount()).toEqual(0);
+})
+
 });

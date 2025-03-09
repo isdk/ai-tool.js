@@ -1,3 +1,4 @@
+import {isAsync} from 'util-ex';
 import {EventEmitter} from 'events-ex';
 
 // async-sema Released under MIT
@@ -156,6 +157,7 @@ export class Semaphore {
 	private pauseFn?: () => void;
 	private resumeFn?: () => void;
 	private paused: boolean;
+	private isReady?: () => Promise<boolean>|boolean;
 
 	/**
    * Creates a semaphore object. The first argument is the maximum concurrently number and the second argument is optional.
@@ -211,11 +213,13 @@ export class Semaphore {
 			pauseFn,
 			resumeFn,
 			capacity = DefaultAsyncSemaphoreCapacity,
+			isReadyFn,
 		}: {
 			initFn?: () => any;
 			pauseFn?: () => void;
 			resumeFn?: () => void;
 			capacity?: number;
+			isReadyFn?: () => Promise<boolean>|boolean;
 		} = {}
 	) {
 		if (isFn(pauseFn) !== isFn(resumeFn)) {
@@ -232,6 +236,7 @@ export class Semaphore {
 		this.pauseFn = pauseFn;
 		this.resumeFn = resumeFn;
 		this.paused = false;
+		this.isReady = isReadyFn;
 
 		this.releaseEmitter.on('release', (token) => {
 			const p = this.waiting.shift();
@@ -255,21 +260,29 @@ export class Semaphore {
 	/**
    * Attempt to acquire a token from the semaphore, if one is available immediately. Otherwise, return undefined.
    */
-	tryAcquire(): any | undefined {
-		return this.free.pop();
+	tryAcquire(): Promise<any | undefined>|any | undefined {
+		let isReady = this.isReady as unknown as Promise<boolean>;
+		if (isReady && isAsync(isReady)) {
+			const isPromise = isReady instanceof Promise;
+			if (!isPromise) {isReady = (isReady as any)() as Promise<boolean>}
+			return isReady.then((ready: boolean) => {
+				if (ready) {
+					return this.free.pop();
+				}
+			}).then((token) => {
+				this.release(token);
+				return token
+			});
+		} else if (!isReady || (isReady as any)()) {
+			return this.free.pop();
+		}
 	}
 
   /**
    * Acquire a token from the semaphore, thus decrement the number of available execution slots. If initFn is not used then the return value of the function can be discarded.
    */
-  acquire(signal?: AbortSignal): Promise<any> {
-		let token = this.tryAcquire();
-
-		if (token !== undefined) {
-			return Promise.resolve(token);
-		}
-
-		return new Promise((resolve, reject) => {
+  async acquire(signal?: AbortSignal): Promise<any> {
+		const addWait = (resolve, reject) => {
 			if (this.pauseFn && !this.paused) {
 				this.paused = true;
 				this.pauseFn();
@@ -285,7 +298,18 @@ export class Semaphore {
 				});
 			}
 			return index
-		});
+		};
+
+		let token = this.tryAcquire();
+		if (token && isAsync(token)) {
+			return (new Promise(addWait)).then(token)
+		} else {
+			if (token !== undefined) {
+				return Promise.resolve(token);
+			}
+
+			return new Promise(addWait);
+		}
 	}
 
 	/**
