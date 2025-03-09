@@ -168,6 +168,9 @@ export class Semaphore {
    *    instead of piling up waiting promises and possibly running out of memory. See examples/pausing.js.
    * @param options.resumeFn An optional function that is called when there is room again to accept new waiters on the semaphore.
    *    This function must be declared if a pauseFn is declared.
+   * @param options.isReadyFn An optional function that determines if the semaphore is ready to accept new acquire requests.
+   *    When provided, the acquire() method will only proceed if this function returns true (or resolves to true for async cases).
+   *    This can be used to implement dynamic concurrency control based on runtime conditions.
    * @param options.capacity Sets the size of the preallocated waiting list inside the semaphore.
    *    This is typically used by high performance where the developer can make a rough estimate of the number of concurrent users of a semaphore.
    *
