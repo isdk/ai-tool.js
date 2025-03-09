@@ -43,7 +43,7 @@
     "property-manager": "^2.0.0",
     "secondary-cache": "^2.0.1",
     "secure-json-parse": "^3.0.2",
-    "util-ex": "2.1.0",
+    "util-ex": "2.2.1",
     "uuid": "^11.0.3",
     "xxhashjs": "^0.2.2",
     "yaml": "^2.7.0",
