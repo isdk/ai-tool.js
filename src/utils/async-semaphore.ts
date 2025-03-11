@@ -1,122 +1,58 @@
-import {isAsync} from 'util-ex';
-import {EventEmitter} from 'events-ex';
+import { isAsync } from 'util-ex';
+import { EventEmitter } from 'events-ex';
+import { Deque } from './deque'
+import { AbortError } from '@isdk/common-error';
 
 // async-sema Released under MIT
 // https://github.com/vercel/async-sema/blob/main/src/index.ts
 
 export const DefaultAsyncSemaphoreCapacity = 32;
 
-function arrayMove(
-	src: any[],
-	srcIndex: number,
-	dst: any[],
-	dstIndex: number,
-	len: number
-) {
-	for (let j = 0; j < len; ++j) {
-		dst[j + dstIndex] = src[j + srcIndex];
-		src[j + srcIndex] = undefined;
-	}
-}
-
-function pow2AtLeast(n: number) {
-	n = n >>> 0;
-	n = n - 1;
-	n = n | (n >> 1);
-	n = n | (n >> 2);
-	n = n | (n >> 4);
-	n = n | (n >> 8);
-	n = n | (n >> 16);
-	return n + 1;
-}
-
-function getCapacity(capacity: number) {
-	return pow2AtLeast(Math.min(Math.max(16, capacity), 1073741824));
-}
-
-// Deque is based on https://github.com/petkaantonov/deque/blob/master/js/deque.js
-// Released under the MIT License: https://github.com/petkaantonov/deque/blob/6ef4b6400ad3ba82853fdcc6531a38eb4f78c18c/LICENSE
-class Deque {
-	private _capacity: number;
-	private _length: number;
-	private _front: number;
-	private arr: Array<any>;
-
-	constructor(capacity: number) {
-		this._capacity = getCapacity(capacity);
-		this._length = 0;
-		this._front = 0;
-		this.arr = [];
-	}
-
-	push(item: any): number {
-		const length = this._length;
-
-		this.checkCapacity(length + 1);
-		const i = (this._front + length) & (this._capacity - 1);
-		this.arr[i] = item;
-		this._length = length + 1;
-
-		return i;
-	}
-
-	pop() {
-		const length = this._length;
-		if (length === 0) {
-			return undefined;
-		}
-		const i = (this._front + length - 1) & (this._capacity - 1);
-		const ret = this.arr[i];
-		this.arr[i] = undefined;
-		this._length = length - 1;
-
-		return ret;
-	}
-
-	shift() {
-		const length = this._length;
-		if (length === 0) {
-			return undefined;
-		}
-		const front = this._front;
-		const ret = this.arr[front];
-		this.arr[front] = undefined;
-		this._front = (front + 1) & (this._capacity - 1);
-		this._length = length - 1;
-
-		return ret;
-	}
-
-	get length(): number {
-		return this._length;
-	}
-
-	private checkCapacity(size: number) {
-		if (this._capacity < size) {
-			this.resizeTo(getCapacity(this._capacity * 1.5 + 16));
-		}
-	}
-
-	private resizeTo(capacity: number) {
-		const oldCapacity = this._capacity;
-		this._capacity = capacity;
-		const front = this._front;
-		const length = this._length;
-		if (front + length > oldCapacity) {
-			const moveItemsCount = (front + length) & (oldCapacity - 1);
-			arrayMove(this.arr, 0, this.arr, oldCapacity, moveItemsCount);
-		}
-	}
-}
-
-class ReleaseEmitter extends EventEmitter {}
+export type SemaphoreIsReadyFuncType = () => Promise<boolean> | boolean;
 
 function isFn(x: any) {
-	return typeof x === 'function';
+  return typeof x === 'function';
 }
 
 function defaultInit() {
-	return '1';
+  return '1';
+}
+
+export interface BinarySemaphoreOptions {
+  initFn?: () => any;
+  pauseFn?: () => void;
+  resumeFn?: () => void;
+  capacity?: number;
+}
+
+export interface BinarySemaphoreAcquireOptions {
+  signal?: AbortSignal;
+  [n: string]: any;
+}
+
+export interface BinarySemaphoreReleaseOptions {
+  token?: any;
+  [n: string]: any;
+}
+
+export interface BinarySemaphoreReleaserFunc extends BinarySemaphoreReleaseOptions {
+  (): void;
+}
+
+export interface SemaphoreOptions extends BinarySemaphoreOptions {
+  maxConcurrency?: number;
+  isReadyFn?: SemaphoreIsReadyFuncType;
+}
+
+// export interface SemaphoreAcquireOptions {
+// 	signal?: AbortSignal;
+// 	priority?: number;
+// }
+
+export interface SemaphoreTaskItem extends BinarySemaphoreAcquireOptions {
+  resolve: (value: any) => void;
+  reject: (reason?: any) => void;
+  token?: any;
 }
 
 /**
@@ -148,18 +84,18 @@ function defaultInit() {
  * const data = await Promise.all(array.map(fetchData));
  * ```
  */
-export class Semaphore {
-	readonly maxConcurrency: number;
-	readonly waiting: Deque;
-	private free: Deque;
-	private releaseEmitter: EventEmitter;
-	private useDefaultTokens: boolean;
-	private pauseFn?: () => void;
-	private resumeFn?: () => void;
-	private paused: boolean;
-	private isReady?: () => Promise<boolean>|boolean;
+export class BinarySemaphore {
+  readonly maxConcurrency: number;
+  readonly waiting: Deque<SemaphoreTaskItem | undefined>;
+  protected free: any;
+  protected emitter: EventEmitter;
+  protected useDefaultTokens: boolean;
+  protected pauseFn?: () => void;
+  protected resumeFn?: () => void;
+  protected initTokenFn: (token?: any) => void;
+  protected paused: boolean;
 
-	/**
+  /**
    * Creates a semaphore object. The first argument is the maximum concurrently number and the second argument is optional.
    *
    * @param maxConcurrency The maximum number of callers allowed to acquire the semaphore concurrently.
@@ -168,9 +104,6 @@ export class Semaphore {
    *    instead of piling up waiting promises and possibly running out of memory. See examples/pausing.js.
    * @param options.resumeFn An optional function that is called when there is room again to accept new waiters on the semaphore.
    *    This function must be declared if a pauseFn is declared.
-   * @param options.isReadyFn An optional function that determines if the semaphore is ready to accept new acquire requests.
-   *    When provided, the acquire() method will only proceed if this function returns true (or resolves to true for async cases).
-   *    This can be used to implement dynamic concurrency control based on runtime conditions.
    * @param options.capacity Sets the size of the preallocated waiting list inside the semaphore.
    *    This is typically used by high performance where the developer can make a rough estimate of the number of concurrent users of a semaphore.
    *
@@ -193,7 +126,7 @@ export class Semaphore {
    * 	rl.resume();
    * }
    *
-   * const s = new Semaphore(5, { pauseFn: pause, resumeFn: resume });
+   * const s = new BinarySemaphore({ pauseFn: pause, resumeFn: resume });
    *
    * async function parse(line) {
    * 	await s.acquire();
@@ -210,137 +143,232 @@ export class Semaphore {
    *
    */
   constructor(
-		maxConcurrency: number,
-		{
-			initFn = defaultInit,
-			pauseFn,
-			resumeFn,
-			capacity = DefaultAsyncSemaphoreCapacity,
-			isReadyFn,
-		}: {
-			initFn?: () => any;
-			pauseFn?: () => void;
-			resumeFn?: () => void;
-			capacity?: number;
-			isReadyFn?: () => Promise<boolean>|boolean;
-		} = {}
-	) {
-		if (isFn(pauseFn) !== isFn(resumeFn)) {
-			throw new Error(
-				'pauseFn and resumeFn must be both set for pausing'
-			);
-		}
+    options: BinarySemaphoreOptions = {}
+  ) {
+    const {
+      initFn = defaultInit,
+      pauseFn,
+      resumeFn,
+      capacity = DefaultAsyncSemaphoreCapacity,
+    } = options;
 
-		this.maxConcurrency = maxConcurrency;
-		this.free = new Deque(maxConcurrency);
-		this.waiting = new Deque(capacity);
-		this.releaseEmitter = new ReleaseEmitter();
-		this.useDefaultTokens = initFn === defaultInit;
-		this.pauseFn = pauseFn;
-		this.resumeFn = resumeFn;
-		this.paused = false;
-		this.isReady = isReadyFn;
+    if (isFn(pauseFn) !== isFn(resumeFn)) {
+      throw new Error(
+        'pauseFn and resumeFn must be both set for pausing'
+      );
+    }
 
-		this.releaseEmitter.on('release', (token) => {
-			const p = this.waiting.shift();
-			if (p) {
-				p.resolve(token);
-			} else {
-				if (this.resumeFn && this.paused) {
-					this.paused = false;
-					this.resumeFn();
-				}
+    this.waiting = new Deque(capacity);
+    this.emitter = new EventEmitter();
+    this.useDefaultTokens = initFn === defaultInit;
+    this.pauseFn = pauseFn;
+    this.resumeFn = resumeFn;
+    this.initTokenFn = initFn;
+    this.paused = false;
+    this.initFree(options);
+    this.init(options);
+  }
 
-				this.free.push(token);
-			}
-		});
+  initFree(options?: BinarySemaphoreOptions) {
+    this.free = this.initTokenFn();
+  }
 
-		for (let i = 0; i < maxConcurrency; i++) {
-			this.free.push(initFn());
-		}
-	}
+  onReleased(options?: BinarySemaphoreReleaseOptions) {
+    const token = options?.token
+    const task = this.waiting.shift(true);
 
-	/**
+    if (task) {
+      this._dispatchTask(task, options);
+    } else {
+      if (this.resumeFn && this.paused) {
+        this.paused = false;
+        this.resumeFn();
+      }
+
+      this.unlock(token);
+    }
+  }
+
+  init(options: BinarySemaphoreOptions) {
+    this.emitter.on('release', (item?: Partial<SemaphoreTaskItem>) => {
+      this.onReleased(item);
+    });
+  }
+
+  _newReleaser(options?: BinarySemaphoreReleaseOptions) {
+    let called = false;
+    const releaser = () => {
+      if (called) return;
+      called = true;
+
+      this.release(options);
+    };
+    if (options) {Object.assign(releaser, options)};
+
+    return releaser as BinarySemaphoreReleaserFunc;
+  }
+
+  _dispatchTask(task: SemaphoreTaskItem, options?: BinarySemaphoreReleaseOptions) {
+    const { resolve } = task;
+    resolve(this._newReleaser(options));
+  }
+
+  lock(options?: BinarySemaphoreAcquireOptions) {
+    let free = this.free
+    if (free) {
+      this.free = undefined
+      return free
+    }
+  }
+
+  unlock(token?: any) {
+    this.free = this.useDefaultTokens ? '1' : token ?? this.initTokenFn()
+  }
+
+  /**
    * Attempt to acquire a token from the semaphore, if one is available immediately. Otherwise, return undefined.
    */
-	tryAcquire(): Promise<any | undefined>|any | undefined {
+  tryAcquire(options?: BinarySemaphoreAcquireOptions): any | undefined {
+    return this.lock(options);
+  }
+
+  /**
+   * Acquire a token from the semaphore, thus decrement the number of available execution slots. If initFn is not used then the return value of the function can be discarded.
+   */
+  async acquire(options?: BinarySemaphoreAcquireOptions) {
+    const signal = options?.signal;
+    const addTaskToWait = (task: SemaphoreTaskItem) => {
+      if (this.pauseFn && !this.paused) {
+        this.paused = true;
+        this.pauseFn();
+      }
+
+      const index = this.waiting.push(task);
+      const reject = task.reject;
+      if (signal) {
+        signal.addEventListener('abort', () => {
+          this.waiting[index] = undefined;
+          const reason = signal.reason instanceof Error ? signal.reason : new AbortError(signal.reason || 'aborted');
+          (signal as any).alreadyRejected = true;
+          reject(reason);
+        });
+      }
+      return index
+    };
+
+    let token = this.tryAcquire(options);
+    const isAsyncToken = token && isAsync(token);
+    const newPromise = (token?: any) =>
+      new Promise<BinarySemaphoreReleaserFunc>((resolve, reject) => {
+        const task: SemaphoreTaskItem = { ...options, resolve, reject, token };
+        if (token === undefined) {
+          addTaskToWait(task)
+        } else {
+          this._dispatchTask(task, {...options, token})
+        }
+      })
+
+
+    // token !== undefined means that the semaphore is not full, so we can resolve the promise immediately.
+    //const result = token !== undefined ? Promise.resolve(token) : new Promise(addWait);
+    let result = isAsyncToken ? token.then(token => newPromise(token)) : newPromise(token);
+    return result;
+  }
+
+  /**
+   * Release the semaphore, thus increment the number of free execution slots. If initFn is used then the token returned by acquire() should be given as an argument when calling this function.
+   */
+  release(options?: BinarySemaphoreReleaseOptions): void {
+    this.emitter.emit('release', options);
+  }
+
+  /**
+   * Drains the semaphore and returns all the initialized tokens in an array. Draining is an ideal way to ensure there are no pending async tasks, for example before a process will terminate.
+   */
+  drain(): Promise<any[]> {
+    const a = [this.acquire()]
+    return Promise.all(a);
+  }
+
+  abort(reason?: any): void {
+    let p: SemaphoreTaskItem | undefined;
+    while (p = this.waiting.shift(true)) {
+      p.reject(new AbortError(reason));
+      // this.unlock(p.token);
+    }
+  }
+
+  /**
+   * Returns the number of callers waiting on the semaphore, i.e. the number of pending promises.
+   *
+   * @returns The number of waiters in the waiting list.
+   */
+  pendingCount(): number {
+    return this.waiting.size;
+  }
+}
+
+export class Semaphore extends BinarySemaphore {
+  readonly maxConcurrency: number;
+  protected free: Deque<any>;
+  private isReady?: SemaphoreIsReadyFuncType;
+
+  constructor(
+    maxConcurrency: number | SemaphoreOptions,
+    options?: SemaphoreOptions,
+  ) {
+    if (typeof maxConcurrency === 'number') {
+      options = options || {};
+      options.maxConcurrency = maxConcurrency;
+    } else {
+      options = maxConcurrency;
+      if (typeof options.maxConcurrency !== 'number') {
+        throw new Error('maxConcurrency must be set');
+      }
+      maxConcurrency = options.maxConcurrency;
+    }
+    super(options)
+		if (options?.isReadyFn) this.isReady = options.isReadyFn;
+    this.maxConcurrency = maxConcurrency;
+  }
+  initFree(options: SemaphoreOptions) {
+    const maxConcurrency = options.maxConcurrency!;
+    this.free = new Deque(maxConcurrency);
+    for (let i = 0; i < maxConcurrency; i++) {
+      this.free.push(this.initTokenFn());
+    }
+  }
+
+  tryAcquire(options?: BinarySemaphoreAcquireOptions): Promise<any | undefined>|any | undefined {
 		let isReady = this.isReady as unknown as Promise<boolean>;
 		if (isReady && isAsync(isReady)) {
 			const isPromise = isReady instanceof Promise;
 			if (!isPromise) {isReady = (isReady as any)() as Promise<boolean>}
 			return isReady.then((ready: boolean) => {
 				if (ready) {
-					return this.free.pop();
+					return this.lock(options);
 				}
-			}).then((token) => {
-				this.release(token);
-				return token
 			});
 		} else if (!isReady || (isReady as any)()) {
-			return this.free.pop();
+      return this.lock(options);
 		}
 	}
 
-  /**
-   * Acquire a token from the semaphore, thus decrement the number of available execution slots. If initFn is not used then the return value of the function can be discarded.
-   */
-  async acquire(signal?: AbortSignal): Promise<any> {
-		const addWait = (resolve, reject) => {
-			if (this.pauseFn && !this.paused) {
-				this.paused = true;
-				this.pauseFn();
-			}
+  unlock(token?: any) {
+    this.free.push(this.useDefaultTokens ? '1' : token ?? this.initTokenFn())
+  }
 
-			const index = this.waiting.push({ resolve, reject });
-			if (signal) {
-				signal.addEventListener('abort', () => {
-					this.waiting[index] = undefined;
-					const reason = signal.reason instanceof Error ? signal.reason : new Error(signal.reason || 'aborted');
-					(signal as any).alreadyRejected = true;
-					reject(reason);
-				});
-			}
-			return index
-		};
+  lock(options?: BinarySemaphoreAcquireOptions) {
+    return this.free.pop();
+  }
 
-		let token = this.tryAcquire();
-		if (token && isAsync(token)) {
-			return (new Promise(addWait)).then(token)
-		} else {
-			if (token !== undefined) {
-				return Promise.resolve(token);
-			}
-
-			return new Promise(addWait);
-		}
-	}
-
-	/**
-   * Release the semaphore, thus increment the number of free execution slots. If initFn is used then the token returned by acquire() should be given as an argument when calling this function.
-   */
-  release(token?: any): void {
-		this.releaseEmitter.emit('release', this.useDefaultTokens ? '1' : token);
-	}
-
-	/**
-   * Drains the semaphore and returns all the initialized tokens in an array. Draining is an ideal way to ensure there are no pending async tasks, for example before a process will terminate.
-   */
   drain(): Promise<any[]> {
-		const a = new Array(this.maxConcurrency);
-		for (let i = 0; i < this.maxConcurrency; i++) {
-			a[i] = this.acquire();
-		}
-		return Promise.all(a);
-	}
-
-	/**
-   * Returns the number of callers waiting on the semaphore, i.e. the number of pending promises.
-   *
-   * @returns The number of waiters in the waiting list.
-   */
-  pendingCount(): number {
-		return this.waiting.length;
-	}
+    const a = new Array(this.maxConcurrency);
+    for (let i = 0; i < this.maxConcurrency; i++) {
+      a[i] = this.acquire();
+    }
+    return Promise.all(a);
+  }
 }
 
 /**
@@ -372,20 +400,20 @@ export class Semaphore {
  *
  */
 export function RateLimit(
-	rps: number,
-	{
-		timeUnit = 1000,
-		uniformDistribution = false,
-	}: {
-		timeUnit?: number;
-		uniformDistribution?: boolean;
-	} = {}
+  rps: number,
+  {
+    timeUnit = 1000,
+    uniformDistribution = false,
+  }: {
+    timeUnit?: number;
+    uniformDistribution?: boolean;
+  } = {}
 ) {
-	const sema = new Semaphore(uniformDistribution ? 1 : rps);
-	const delay = uniformDistribution ? timeUnit / rps : timeUnit;
+  const sema = new Semaphore(uniformDistribution ? 1 : rps);
+  const delay = uniformDistribution ? timeUnit / rps : timeUnit;
 
-	return async function rl() {
-		await sema.acquire();
-		setTimeout(() => sema.release(), delay);
-	};
+  return async function rl() {
+    await sema.acquire();
+    setTimeout(() => sema.release(), delay);
+  };
 }
