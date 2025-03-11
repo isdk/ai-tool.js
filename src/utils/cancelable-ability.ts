@@ -1,7 +1,7 @@
 import { AbilityOptions, createAbilityInjector } from 'custom-ability'
 import { AbortError, CommonError, ErrorCode } from './base-error'
 import { ToolFunc } from '../tool-func';
-import { Semaphore } from './async-semaphore';
+import { Semaphore, SemaphoreIsReadyFuncType } from './async-semaphore';
 import { createCallbacksTransformer } from './stream';
 import { defineProperty } from 'util-ex';
 import { IntSet } from './intset';
@@ -29,7 +29,7 @@ export type AsyncTaskId = string|number
 export interface CancelableAbilityOptions extends AbilityOptions {
   asyncFeatures?: AsyncFeatures
   maxTaskConcurrency?: number
-  isReadyFn?: () => Promise<boolean>|boolean
+  isReadyFn?: SemaphoreIsReadyFuncType
 }
 
 export class TaskAbortController extends AbortController {
@@ -74,7 +74,7 @@ export interface TaskPromise<T = any> extends Promise<T> {
 export declare interface CancelableAbility {
   _asyncFeatures?: number
   _maxTaskConcurrency: number|undefined
-  _isReadyFn?: () => Promise<boolean>|boolean
+  _isReadyFn?: SemaphoreIsReadyFuncType
   [name: string]: any;
 }
 
@@ -91,10 +91,15 @@ export class CancelableAbility {
   }
 
   get semaphore() {
-    const maxTaskConcurrency = this._maxTaskConcurrency!
+    return this.getSemaphore()
+  }
+
+  getSemaphore(isReadyFn = this._isReadyFn) {
+    let maxTaskConcurrency = this._maxTaskConcurrency!
     let result = this.__task_semaphore
     if (maxTaskConcurrency > 0 && !result) {
-      result = this.__task_semaphore = new Semaphore(maxTaskConcurrency-1, {isReadyFn: this._isReadyFn})
+      maxTaskConcurrency = Math.max(1, maxTaskConcurrency-1)
+      result = this.__task_semaphore = new Semaphore(maxTaskConcurrency, {isReadyFn})
     }
     return result
   }
@@ -307,14 +312,14 @@ export class CancelableAbility {
     return taskPromise
   }
 
-  runAsyncCancelableTask<Output = any>(params: Record<string, any> = {}, runTask: (params: Record<string, any>, aborter: TaskAbortController) => Promise<Output>, options?: {taskId?: AsyncTaskId, raiseError?: boolean}) {
+  runAsyncCancelableTask<Output = any>(params: Record<string, any> = {}, runTask: (params: Record<string, any>, aborter: TaskAbortController) => Promise<Output>, options?: {taskId?: AsyncTaskId, raiseError?: boolean, isReadyFn?: SemaphoreIsReadyFuncType}) {
     let taskPromise = this.createTaskPromise(runTask, params, options)
 
-    const semaphore = this.semaphore
+    const semaphore = this.getSemaphore(options?.isReadyFn)
     if (semaphore) {
       const _taskPromise = taskPromise
       const task = _taskPromise.task!
-      taskPromise = semaphore.acquire(task.signal).then(() => _taskPromise).finally(() => {
+      taskPromise = semaphore.acquire({signal: task.signal}).then(() => _taskPromise).finally(() => {
         semaphore.release()
       })
       taskPromise.task = task

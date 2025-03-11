@@ -419,4 +419,56 @@ describe('CancelableAbility', () => {
     expect(pendingCountsBefore).toEqual([0, 0, 0])
     // expect(pendingCountsAfter).toEqual([7, 6, 5, 4, 3, 2, 1, 0, 0, 0])
   })
+
+  it('should respect isReadyFn to control task execution', async () => {
+    let ready = false;
+    let called = 0;
+    const isReadyFn = async () => {
+      called++;
+      let maxCount = 100;
+      while (!ready && maxCount--) {
+        await wait(5)
+      }
+      return true;
+    }
+
+    // 创建一个带有自定义 isReadyFn 的测试类
+    class TestIsReadyFunc extends ToolFunc {
+      func(params: any) {
+        return this.runAsyncCancelableTask(params, async (params: any) => {
+          await wait(10);
+          return params;
+        });
+      }
+    }
+    const testInstance = new TestIsReadyFunc('testIsReady');
+    makeToolFuncCancelable(TestIsReadyFunc, {
+      asyncFeatures: AsyncFeatures.MultiTask,
+      maxTaskConcurrency: 1,
+      isReadyFn,
+    });
+    expect(TestIsReadyFunc.prototype._isReadyFn).toBe(isReadyFn)
+
+    const taskPromise = testInstance.run('first');
+    const semaphore = testInstance.semaphore!;
+    expect(called).toBe(1);
+    // expect(semaphore).toBeDefined();
+    // 确保任务未完成且 pendingCount 正确
+    // await wait(15); // 等待超过任务执行时间
+
+    expect((taskPromise as any).task!.signal.aborted).toBeFalsy();
+
+    // 修改条件为 true 后任务应继续执行
+    ready = true;
+    await wait(15);
+    const result = await taskPromise;
+    expect(result).toBe('first');
+    expect(semaphore.pendingCount()).toBe(0);
+
+    // 第二次任务应立即执行
+    const secondPromise = testInstance.run('second');
+    await wait(15);
+    expect(semaphore.pendingCount()).toBe(0);
+    expect(await secondPromise).toBe('second');
+  });
 })
