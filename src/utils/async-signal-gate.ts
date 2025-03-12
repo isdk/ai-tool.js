@@ -18,12 +18,16 @@ import { AbortError } from "@isdk/common-error";
  * ```
  */
 export class SignalGate<T = void> {
-  private _isSignaled = false;
-  private _signalValue: T | undefined; // 存储信号值
-  private waitQueue: Array<{
+  protected _isSignaled = false;
+  protected _signalValue: T | undefined;
+  protected waitQueue: Array<{
     resolve: (value: T) => void;
     reject: (error: any) => void;
   }> = [];
+
+  get signaled() {
+    return this._isSignaled;
+  }
 
   /**
    * Emits the signal with an optional value, resolving all pending {@link wait} promises.
