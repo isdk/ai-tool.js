@@ -75,7 +75,7 @@ export interface SemaphoreTaskItem extends BinarySemaphoreAcquireOptions {
  * async function fetchData(x) {
  *   await semaphore.acquire()
  *   try {
- *     console.log(semaphore.pendingCount() + ' calls to fetch are waiting')
+ *     console.log(semaphore.pendingCount + ' calls to fetch are waiting')
  *     // ... do some async stuff with x
  *   } finally {
  *     semaphore.release();
@@ -320,11 +320,11 @@ export class BinarySemaphore {
   }
 
   /**
-   * Returns the number of callers waiting on the semaphore, i.e. the number of pending promises.
+   * Get the number of callers waiting on the semaphore, i.e. the number of pending promises.
    *
    * @returns The number of waiters in the waiting list.
    */
-  pendingCount(): number {
+  get pendingCount(): number {
     return this.waiting.size;
   }
 }

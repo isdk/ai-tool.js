@@ -9,17 +9,17 @@ describe('BinarySemaphore', () => {
     const s = new BinarySemaphore({ capacity: 10 });
 
     const release1 = await s.acquire();
-    expect(s.pendingCount()).toEqual(0);
+    expect(s.pendingCount).toEqual(0);
 
     s.acquire().catch(console.error);
-    expect(s.pendingCount()).toEqual(1);
+    expect(s.pendingCount).toEqual(1);
 
     release1();
 
-    expect(s.pendingCount()).toEqual(0);
+    expect(s.pendingCount).toEqual(0);
 
     s.release();
-    expect(s.pendingCount()).toEqual(0);
+    expect(s.pendingCount).toEqual(0);
   });
 
   test('tryAcquire returns undefined when no tokens are available', async () => {
@@ -36,13 +36,13 @@ describe('BinarySemaphore', () => {
     const s = new BinarySemaphore({ capacity: 1 });
 
     await s.acquire();
-    expect(s.pendingCount()).toEqual(0);
+    expect(s.pendingCount).toEqual(0);
 
     s.acquire().catch(console.error);
-    expect(s.pendingCount()).toEqual(1);
+    expect(s.pendingCount).toEqual(1);
 
     s.release();
-    expect(s.pendingCount()).toEqual(0);
+    expect(s.pendingCount).toEqual(0);
   });
 
   test('concurrent acquire and release work correctly', async () => {
@@ -55,7 +55,7 @@ describe('BinarySemaphore', () => {
       s.acquire().catch(console.error),
     ];
 
-    expect(s.pendingCount()).toEqual(3);
+    expect(s.pendingCount).toEqual(3);
     expect(s.activeCount).toEqual(4);
 
     setTimeout(async () => {
@@ -63,15 +63,15 @@ describe('BinarySemaphore', () => {
     }, 0);
 
     s.release();
-    expect(s.pendingCount()).toEqual(2);
+    expect(s.pendingCount).toEqual(2);
     expect(s.activeCount).toEqual(3);
 
     s.release();
-    expect(s.pendingCount()).toEqual(1);
+    expect(s.pendingCount).toEqual(1);
     expect(s.activeCount).toEqual(2);
 
     s.release();
-    expect(s.pendingCount()).toEqual(0);
+    expect(s.pendingCount).toEqual(0);
     expect(s.activeCount).toEqual(1);
   });
 
@@ -114,9 +114,9 @@ describe('BinarySemaphore', () => {
     abortController.abort('Test abort');
 
     await expect(promise).rejects.toThrow('Test abort');
-    expect(s.pendingCount()).toEqual(1);
+    expect(s.pendingCount).toEqual(1);
     s.release();
-    expect(s.pendingCount()).toEqual(0);
+    expect(s.pendingCount).toEqual(0);
   });
 
   test('abort method clears all pending tasks', async () => {
@@ -128,7 +128,7 @@ describe('BinarySemaphore', () => {
       s.acquire().catch(error => error),
     ];
 
-    expect(s.pendingCount()).toEqual(2);
+    expect(s.pendingCount).toEqual(2);
     expect(s.activeCount).toEqual(3);
 
     s.abort('Test abort');
@@ -140,7 +140,7 @@ describe('BinarySemaphore', () => {
       expect(result).toBeInstanceOf(AbortError);
       expect(result.message).toMatch(/Test abort/);
     });
-    expect(s.pendingCount()).toEqual(0);
+    expect(s.pendingCount).toEqual(0);
     expect(s.activeCount).toEqual(3);
     s.release();
     expect(s.activeCount).toEqual(2);
@@ -178,23 +178,23 @@ describe('BinarySemaphore', () => {
 
 describe('Semaphore', () => {
 
-  test('pendingCount() is sane', async () => {
+  test('pendingCount is sane', async () => {
     const s = new Semaphore(1);
 
     await s.acquire();
-    expect(s.pendingCount()).toEqual(0);
+    expect(s.pendingCount).toEqual(0);
     expect(s.activeCount).toEqual(1);
 
     // This would block with await
     s.acquire().catch(console.error);
-    expect(s.pendingCount()).toEqual(1);
+    expect(s.pendingCount).toEqual(1);
     expect(s.activeCount).toEqual(2);
 
     s.release();
-    expect(s.pendingCount()).toEqual(0);
+    expect(s.pendingCount).toEqual(0);
     expect(s.activeCount).toEqual(1);
     s.release();
-    expect(s.pendingCount()).toEqual(0);
+    expect(s.pendingCount).toEqual(0);
     expect(s.activeCount).toEqual(0);
   });
 
@@ -202,15 +202,15 @@ describe('Semaphore', () => {
     const s = new Semaphore(3);
 
     await s.acquire();
-    expect(s.pendingCount()).toEqual(0);
+    expect(s.pendingCount).toEqual(0);
     expect(s.activeCount).toEqual(1);
 
     await s.acquire();
-    expect(s.pendingCount()).toEqual(0);
+    expect(s.pendingCount).toEqual(0);
     expect(s.activeCount).toEqual(2);
 
     await s.acquire();
-    expect(s.pendingCount()).toEqual(0);
+    expect(s.pendingCount).toEqual(0);
     expect(s.activeCount).toEqual(3);
   });
 
@@ -285,12 +285,12 @@ describe('Semaphore', () => {
     // 	ready = true;
     // }, 100);
     s.acquire().catch(console.error);
-    expect(s.pendingCount()).toEqual(0);
+    expect(s.pendingCount).toEqual(0);
     expect(s.activeCount).toEqual(1);
     expect(called).toEqual(1);
     ready = true;
     await wait(10)
-    expect(s.pendingCount()).toEqual(0);
+    expect(s.pendingCount).toEqual(0);
   })
 
   test('isReadyFn async when maxConcurrency=0', async () => {
@@ -316,12 +316,12 @@ describe('Semaphore', () => {
     // }, 100);
     expect(s.maxConcurrency).toBe(1);
     s.acquire().catch(console.error);
-    expect(s.pendingCount()).toEqual(0);
+    expect(s.pendingCount).toEqual(0);
     expect(s.activeCount).toEqual(1);
     expect(called).toEqual(1);
     ready = true;
     await wait(10)
-    expect(s.pendingCount()).toEqual(0);
+    expect(s.pendingCount).toEqual(0);
   })
 
 });

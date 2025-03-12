@@ -143,12 +143,12 @@ describe('CancelableAbility', () => {
     const pendingCountsAfter = [] as number[];
     const asyncTask = async (item: string, ix: number) => {
       const semaphore = testMultiTask.semaphore;
-      let pendingCount = semaphore.pendingCount();
+      let pendingCount = semaphore.pendingCount;
       pendingCountsBefore.push(pendingCount)
       // console.log('🚀 ~ asyncTask ~ pendingCount before:', ix, pendingCount, ix < maxTaskConcurrency ? 0 : ix - maxTaskConcurrency+1)
       // expect(pendingCount).toBe(ix < maxTaskConcurrency ? 0 : ix - maxTaskConcurrency)
       await testMultiTask.run(item)
-      pendingCount = semaphore.pendingCount();
+      pendingCount = semaphore.pendingCount;
       pendingCountsAfter.push(pendingCount)
       // console.log('🚀 ~ asyncTask ~ pendingCount:', ix, pendingCount)
     };
@@ -356,7 +356,7 @@ describe('CancelableAbility', () => {
     const errs = {} as any
     const asyncTask = async (item: string, ix: number) => {
       const semaphore = testMultiTask.semaphore;
-      let pendingCount = semaphore.pendingCount();
+      let pendingCount = semaphore.pendingCount;
       pendingCountsBefore.push(pendingCount)
 
       const taskInfo = testMultiTask.run(item) as TaskPromise
@@ -368,7 +368,7 @@ describe('CancelableAbility', () => {
       } catch(e) {
         errs[item] = e
       }
-      pendingCount = semaphore.pendingCount();
+      pendingCount = semaphore.pendingCount;
       pendingCountsAfter.push(pendingCount)
     };
 
@@ -395,7 +395,7 @@ describe('CancelableAbility', () => {
     const errs = {} as any
     const asyncTask = async (item: string, ix: number) => {
       const semaphore = testMultiTask.semaphore;
-      let pendingCount = semaphore.pendingCount();
+      let pendingCount = semaphore.pendingCount;
       pendingCountsBefore.push(pendingCount)
 
       const taskInfo = testMultiTask.run(item) as TaskPromise
@@ -407,7 +407,7 @@ describe('CancelableAbility', () => {
       } catch(e) {
         errs[item] = e
       }
-      pendingCount = semaphore.pendingCount();
+      pendingCount = semaphore.pendingCount;
       pendingCountsAfter.push(pendingCount)
     };
 
@@ -466,12 +466,12 @@ describe('CancelableAbility', () => {
     await wait(15);
     const result = await taskPromise;
     expect(result).toBe('first');
-    expect(semaphore.pendingCount()).toBe(0);
+    expect(semaphore.pendingCount).toBe(0);
 
     // 第二次任务应立即执行
     const secondPromise = testInstance.run('second');
     await wait(15);
-    expect(semaphore.pendingCount()).toBe(0);
+    expect(semaphore.pendingCount).toBe(0);
     expect(await secondPromise).toBe('second');
   });
 })
