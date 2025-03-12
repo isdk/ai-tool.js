@@ -98,6 +98,7 @@ export class CancelableAbility {
     let maxTaskConcurrency = this._maxTaskConcurrency!
     let result = this.__task_semaphore
     if (maxTaskConcurrency > 0 && !result) {
+      if (isReadyFn) {isReadyFn = isReadyFn.bind(this)}
       result = this.__task_semaphore = new Semaphore(maxTaskConcurrency-1, {isReadyFn})
     }
     return result

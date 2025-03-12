@@ -423,7 +423,9 @@ describe('CancelableAbility', () => {
   it('should respect isReadyFn to control task execution', async () => {
     let ready = false;
     let called = 0;
-    const isReadyFn = async () => {
+    let readyFnThis;
+    const isReadyFn = async function() {
+      readyFnThis = this;
       called++;
       let maxCount = 100;
       while (!ready && maxCount--) {
@@ -452,6 +454,7 @@ describe('CancelableAbility', () => {
     const taskPromise = testInstance.run('first');
     const semaphore = testInstance.semaphore!;
     expect(called).toBe(1);
+    expect(readyFnThis).toBe(testInstance);
     // expect(semaphore).toBeDefined();
     // 确保任务未完成且 pendingCount 正确
     // await wait(15); // 等待超过任务执行时间
