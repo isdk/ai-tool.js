@@ -56,6 +56,7 @@ describe('BinarySemaphore', () => {
     ];
 
     expect(s.pendingCount()).toEqual(3);
+    expect(s.activeCount).toEqual(4);
 
     setTimeout(async () => {
       await Promise.all(promises);
@@ -63,12 +64,15 @@ describe('BinarySemaphore', () => {
 
     s.release();
     expect(s.pendingCount()).toEqual(2);
+    expect(s.activeCount).toEqual(3);
 
     s.release();
     expect(s.pendingCount()).toEqual(1);
+    expect(s.activeCount).toEqual(2);
 
     s.release();
     expect(s.pendingCount()).toEqual(0);
+    expect(s.activeCount).toEqual(1);
   });
 
   test('pauseFn and resumeFn are called correctly', () => {
@@ -125,6 +129,7 @@ describe('BinarySemaphore', () => {
     ];
 
     expect(s.pendingCount()).toEqual(2);
+    expect(s.activeCount).toEqual(3);
 
     s.abort('Test abort');
 
@@ -136,6 +141,9 @@ describe('BinarySemaphore', () => {
       expect(result.message).toMatch(/Test abort/);
     });
     expect(s.pendingCount()).toEqual(0);
+    expect(s.activeCount).toEqual(3);
+    s.release();
+    expect(s.activeCount).toEqual(2);
   });
 
   test('drain method returns all initialized tokens', async () => {
@@ -175,15 +183,19 @@ describe('Semaphore', () => {
 
     await s.acquire();
     expect(s.pendingCount()).toEqual(0);
+    expect(s.activeCount).toEqual(1);
 
     // This would block with await
     s.acquire().catch(console.error);
     expect(s.pendingCount()).toEqual(1);
+    expect(s.activeCount).toEqual(2);
 
     s.release();
     expect(s.pendingCount()).toEqual(0);
+    expect(s.activeCount).toEqual(1);
     s.release();
     expect(s.pendingCount()).toEqual(0);
+    expect(s.activeCount).toEqual(0);
   });
 
   test('nr of available semas seems correct', async () => {
@@ -191,12 +203,15 @@ describe('Semaphore', () => {
 
     await s.acquire();
     expect(s.pendingCount()).toEqual(0);
+    expect(s.activeCount).toEqual(1);
 
     await s.acquire();
     expect(s.pendingCount()).toEqual(0);
+    expect(s.activeCount).toEqual(2);
 
     await s.acquire();
     expect(s.pendingCount()).toEqual(0);
+    expect(s.activeCount).toEqual(3);
   });
 
   test('tryAcquire returns undefined', async () => {
@@ -282,6 +297,7 @@ describe('Semaphore', () => {
     // }, 100);
     s.acquire().catch(console.error);
     expect(s.pendingCount()).toEqual(0);
+    expect(s.activeCount).toEqual(1);
     expect(called).toEqual(1);
     ready = true;
     await wait(10)

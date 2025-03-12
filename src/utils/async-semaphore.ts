@@ -56,8 +56,9 @@ export interface SemaphoreTaskItem extends BinarySemaphoreAcquireOptions {
 }
 
 /**
- * A Semaphore implementation for managing concurrency in asynchronous operations.
- * Semaphores allow a fixed number of resources to be accessed concurrently.
+ * A binary semaphore implementation for managing concurrency in asynchronous operations.
+ * Unlike a general semaphore, a binary semaphore allows only one caller to acquire the semaphore at a time.
+ * It provides methods to acquire, release, and manage waiting tasks efficiently.
  *
  * Example usage:
  *
@@ -85,7 +86,6 @@ export interface SemaphoreTaskItem extends BinarySemaphoreAcquireOptions {
  * ```
  */
 export class BinarySemaphore {
-  readonly maxConcurrency: number;
   readonly waiting: Deque<SemaphoreTaskItem | undefined>;
   protected free: any;
   protected emitter: EventEmitter;
@@ -94,11 +94,11 @@ export class BinarySemaphore {
   protected resumeFn?: () => void;
   protected initTokenFn: (token?: any) => void;
   protected paused: boolean;
+  protected _activeCount: number;
 
   /**
-   * Creates a semaphore object. The first argument is the maximum concurrently number and the second argument is optional.
+   * Creates a binary semaphore object for managing concurrency in asynchronous operations.
    *
-   * @param maxConcurrency The maximum number of callers allowed to acquire the semaphore concurrently.
    * @param options.initFn Function that is used to initialize the tokens used to manage the semaphore. The default is () => '1'.
    * @param options.pauseFn An optional fuction that is called to opportunistically request pausing the the incoming stream of data,
    *    instead of piling up waiting promises and possibly running out of memory. See examples/pausing.js.
@@ -165,6 +165,7 @@ export class BinarySemaphore {
     this.resumeFn = resumeFn;
     this.initTokenFn = initFn;
     this.paused = false;
+    this._activeCount = 0;
     this.initFree(options);
     this.init(options);
   }
@@ -227,6 +228,8 @@ export class BinarySemaphore {
 
   /**
    * Attempt to acquire a token from the semaphore, if one is available immediately. Otherwise, return undefined.
+   *
+   * @return Returns a token if the semaphore is not full; otherwise, returns `undefined`.
    */
   tryAcquire(options?: BinarySemaphoreAcquireOptions): any | undefined {
     return this.lock(options);
@@ -234,8 +237,11 @@ export class BinarySemaphore {
 
   /**
    * Acquire a token from the semaphore, thus decrement the number of available execution slots. If initFn is not used then the return value of the function can be discarded.
+   * @param options.signal An optional AbortSignal to abort the acquisition process. If aborted, the promise will reject with an AbortError.
+   * @return A promise that resolves to a release function when a token is acquired. If the semaphore is full, the caller will be added to a waiting queue.
    */
   async acquire(options?: BinarySemaphoreAcquireOptions) {
+    this._activeCount++;
     const signal = options?.signal;
     const addTaskToWait = (task: SemaphoreTaskItem) => {
       if (this.pauseFn && !this.paused) {
@@ -271,14 +277,16 @@ export class BinarySemaphore {
 
     // token !== undefined means that the semaphore is not full, so we can resolve the promise immediately.
     //const result = token !== undefined ? Promise.resolve(token) : new Promise(addWait);
-    let result = isAsyncToken ? token.then(token => newPromise(token)) : newPromise(token);
-    return result;
+    const result = isAsyncToken ? token.then(token => newPromise(token)) : newPromise(token);
+    return result as Promise<BinarySemaphoreReleaserFunc>;
   }
 
   /**
-   * Release the semaphore, thus increment the number of free execution slots. If initFn is used then the token returned by acquire() should be given as an argument when calling this function.
+   * Releases the semaphore, incrementing the number of free execution slots. If there are tasks in the waiting queue, the next task will be dispatched.
+   * @param options.token Optional token returned by `acquire()` when using a custom `initFn`. If provided, it will be used to unlock the semaphore.
    */
   release(options?: BinarySemaphoreReleaseOptions): void {
+    this._activeCount--;
     this.emitter.emit('release', options);
   }
 
@@ -299,6 +307,19 @@ export class BinarySemaphore {
   }
 
   /**
+   * Get the total count of all active operations.
+   *
+   * This method returns the number of operations that are either:
+   * - Waiting in the queue to acquire the semaphore (`pendingCount`).
+   * - Already acquired the semaphore but have not yet released it.
+   *
+   * @returns {number} The total count of active operations, including both waiting and ongoing tasks.
+   */
+  get activeCount(): number {
+    return this._activeCount;
+  }
+
+  /**
    * Returns the number of callers waiting on the semaphore, i.e. the number of pending promises.
    *
    * @returns The number of waiters in the waiting list.
@@ -308,11 +329,64 @@ export class BinarySemaphore {
   }
 }
 
+/**
+ * A Semaphore implementation for managing concurrency in asynchronous operations.
+ * Semaphores allow a fixed number of resources to be accessed concurrently.
+ * This class extends BinarySemaphore and adds support for a maximum concurrency limit and an optional readiness check.
+ *
+ * Example usage:
+ *
+ * ```typescript
+ * const semaphore = new Semaphore(5); // Allows 5 concurrent operations.
+ *
+ * const semaphore = new Semaphore(
+ *   4, // Allow 4 concurrent async calls
+ *   {
+ *     capacity: 100, // Prealloc space for 100 tokens
+ *     isReadyFn: async () => {
+ *       // Check if the system is ready to handle more requests
+ *       return true;
+ *     },
+ *     pauseFn: () => {
+ *       console.log('Pausing the stream');
+ *     },
+ *     resumeFn: () => {
+ *       console.log('Resuming the stream');
+ *     }
+ *   }
+ * );
+ *
+ * async function fetchData(x) {
+ *   await semaphore.acquire()
+ *   try {
+ *     console.log(semaphore.pendingCount() + ' calls to fetch are waiting')
+ *     // ... do some async stuff with x
+ *   } finally {
+ *     semaphore.release();
+ *   }
+ * }
+ *
+ * const data = await Promise.all(array.map(fetchData));
+ * ```
+ */
 export class Semaphore extends BinarySemaphore {
   readonly maxConcurrency: number;
   protected free: Deque<any>;
   private isReady?: SemaphoreIsReadyFuncType;
 
+  /**
+   * Creates a semaphore object. The first argument is the maximum concurrently number and the second argument is optional.
+   *
+   * @param maxConcurrency The maximum number of callers allowed to acquire the semaphore concurrently.
+   * @param options.initFn Function that is used to initialize the tokens used to manage the semaphore. The default is () => '1'.
+   * @param options.pauseFn An optional function that is called to opportunistically request pausing the incoming stream of data,
+   *    instead of piling up waiting promises and possibly running out of memory. See examples/pausing.js.
+   * @param options.resumeFn An optional function that is called when there is room again to accept new waiters on the semaphore.
+   *    This function must be declared if a pauseFn is declared.
+   * @param options.capacity Sets the size of the preallocated waiting list inside the semaphore.
+   *    This is typically used by high performance where the developer can make a rough estimate of the number of concurrent users of a semaphore.
+   * @param options.isReadyFn An optional function that returns a boolean or a promise that resolves to a boolean indicating whether the semaphore is ready to accept new requests.
+   */
   constructor(
     maxConcurrency: number | SemaphoreOptions,
     options?: SemaphoreOptions,
