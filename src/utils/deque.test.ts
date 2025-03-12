@@ -88,4 +88,19 @@ describe('Deque Class', () => {
     expect(deque.pop()).toBe(5);
     expect(deque.shift()).toBe(2);
   });
+
+  it('should pop elements with skipNull option', () => {
+    const deque = new Deque<number | null>([1, null, 3, null]);
+    expect(deque.pop(true)).toBe(3);
+    expect(deque.pop(true)).toBe(1);
+    expect(deque.pop(true)).toBeUndefined();
+
+    const nullDeque = new Deque<number | null>([null, 1, null, null]);
+    expect(nullDeque.pop(true)).toBe(1);
+    expect(nullDeque.pop(false)).toBe(null);
+
+    const mixedDeque = new Deque<number | null>([null, 2, null, 4, null, null]);
+    expect(mixedDeque.pop(true)).toBe(4);
+    expect(mixedDeque.pop(true)).toBe(2);
+  });
 });
