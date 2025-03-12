@@ -76,19 +76,69 @@ export class Deque<T = any> extends Array<T> {
     return i;
   }
 
-  pop(): T|undefined {
-    const length = this._length;
+  /**
+   * Removes and returns the element at the back of the deque.
+   *
+   * @param skipNull When `true`, skips trailing `null`/`undefined` values until a valid element is found or all elements are processed.
+   * @returns The removed element, or `undefined` if the deque is empty or all elements are skipped.
+   *
+   * @example
+   * // Normal pop without skipping
+   * const deque = new Deque([1, 2, 3]);
+   * deque.pop(); // 3
+   *
+   * @example
+   * // Skipping null values
+   * const nullDeque = new Deque([null, 4, null]);
+   * nullDeque.pop(true); // 4
+   * nullDeque.pop(true); // undefined (skipped remaining nulls)
+   *
+   * @example
+   * // Mixed elements with skip
+   * const mixedDeque = new Deque([5, null, 6, null]);
+   * mixedDeque.pop(true); // 6
+   * mixedDeque.pop(false); // null (explicitly not skipping)
+   */
+  pop(skipNull?: boolean): T|undefined {
+    let length = this._length;
     if (length === 0) {
       return undefined;
     }
-    const i = (this._front + length - 1) & (this._capacity - 1);
-    const ret = this[i];
+    let i = (this._front + length - 1) & (this._capacity - 1);
+    let ret = this[i];
+    while (--length > 0 && skipNull && ret == null) {
+      i--;
+      ret = this[i];
+    }
     (this as any)[i] = undefined;
-    this._length = length - 1;
+    this._length = length;
 
     return ret;
   }
 
+  /**
+   * Removes and returns the element at the front of the deque.
+   *
+   * @param skipNull When `true`, skips leading `null`/`undefined` values until a valid element is found or all elements are processed.
+   * @returns The removed element, or `undefined` if the deque is empty or all elements are skipped.
+   *
+   * @example
+   * // Normal shift without skipping
+   * const deque = new Deque([1, 2, 3]);
+   * deque.shift(); // 1
+   *
+   * @example
+   * // Skipping null values
+   * const nullDeque = new Deque([null, 4, null]);
+   * nullDeque.shift(true); // 4
+   * nullDeque.shift(true); // undefined (skipped remaining nulls)
+   *
+   * @example
+   * // Mixed elements with skip
+   * const mixedDeque = new Deque([null, 5, null, 6]);
+   * mixedDeque.shift(true); // 5
+   * mixedDeque.shift(false); // null (explicitly not skipping)
+   */
   shift(skipNull?: boolean): T|undefined {
     let length = this._length;
     if (length === 0) {
@@ -107,6 +157,18 @@ export class Deque<T = any> extends Array<T> {
     return ret;
   }
 
+  /**
+   * Gets the number of elements in the deque.
+   *
+   * @returns The current count of elements in the deque.
+   *
+   * @example
+   * const deque = new Deque([1, 2, 3]);
+   * console.log(deque.size); // 3
+   *
+   * @important
+   * Do NOT use the native `Array.length` property. The Deque implementation uses a circular buffer with capacity management, so the native `length` reflects the underlying array capacity, not the actual element count. Always use `size` to get the correct element count.
+   */
   get size(): number {
     return this._length;
   }
