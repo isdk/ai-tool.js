@@ -314,6 +314,7 @@ describe('Semaphore', () => {
     // setTimeout(() => {
     // 	ready = true;
     // }, 100);
+    expect(s.maxConcurrency).toBe(1);
     s.acquire().catch(console.error);
     expect(s.pendingCount()).toEqual(0);
     expect(s.activeCount).toEqual(1);
