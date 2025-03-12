@@ -402,11 +402,11 @@ export class Semaphore extends BinarySemaphore {
       maxConcurrency = options.maxConcurrency;
     }
     super(options)
-		if (options?.isReadyFn) this.isReady = options.isReadyFn;
-    this.maxConcurrency = maxConcurrency;
+    this.maxConcurrency = options.maxConcurrency
+		if (options.isReadyFn) this.isReady = options.isReadyFn;
   }
   initFree(options: SemaphoreOptions) {
-    const maxConcurrency = options.maxConcurrency!;
+    const maxConcurrency = options.maxConcurrency = Math.max(1, options.maxConcurrency!);
     this.free = new Deque(maxConcurrency);
     for (let i = 0; i < maxConcurrency; i++) {
       this.free.push(this.initTokenFn());

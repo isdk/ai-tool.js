@@ -270,17 +270,6 @@ describe('Semaphore', () => {
     let ready = false;
     let called = 0;
 
-    // const isReadyFn: any = new Promise<boolean>((resolve, reject) => {
-    // 	called++;
-    // 	if (ready) {resolve(ready)}
-    // 	const timeId = setInterval(() => {
-    // 		if (ready) {
-    // 			clearInterval(timeId);
-    // 			resolve(true);
-    // 		}
-    // 		console.log('🚀 ~ timeId ~ setInterval:', ready)
-    // 	}, 5);
-    // });
     const isReadyFn = async () => {
       called++;
       let maxCount = 100;
@@ -290,6 +279,36 @@ describe('Semaphore', () => {
       return true;
     }
     const s = new Semaphore(1, {
+      isReadyFn,
+    });
+    // setTimeout(() => {
+    // 	ready = true;
+    // }, 100);
+    s.acquire().catch(console.error);
+    expect(s.pendingCount()).toEqual(0);
+    expect(s.activeCount).toEqual(1);
+    expect(called).toEqual(1);
+    ready = true;
+    await wait(10)
+    expect(s.pendingCount()).toEqual(0);
+  })
+
+  test('isReadyFn async when maxConcurrency=0', async () => {
+    let ready = false;
+    let called = 0;
+
+    const isReadyFn: any = new Promise<boolean>((resolve, reject) => {
+    	called++;
+    	if (ready) {resolve(ready)}
+    	const timeId = setInterval(() => {
+    		if (ready) {
+    			clearInterval(timeId);
+    			resolve(true);
+    		}
+    	}, 1);
+    });
+    const s = new Semaphore({
+      maxConcurrency: 0,
       isReadyFn,
     });
     // setTimeout(() => {
