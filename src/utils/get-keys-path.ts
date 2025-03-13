@@ -2,6 +2,11 @@ function isObject(value: any): value is object {
   return !!value && value.constructor === Object
 }
 
+interface IGetKeysOptions {
+  dot?: string
+  visited?: Set<any>
+}
+
 /**
  * Retrieves an array of all key paths as strings for a nested object or array.
  * @param value - The object or array to extract the paths from.
@@ -15,7 +20,7 @@ function isObject(value: any): value is object {
 */
 export function getKeysPath<TValue extends object>(value: TValue): string[] {
   if (!value) return []
-  return getKeys(value, [], '')
+  return getKeys(value, [], {dot: ''})
 }
 
 /**
@@ -31,15 +36,21 @@ export function getKeysPath<TValue extends object>(value: TValue): string[] {
  * console.log(getKeys(obj)); // Output: ['a.b.c', 'd[0]', 'd[1].e']
  * ```
  */
-function getKeys(obj: any, paths: string[], dot = '.'): string[] {
+function getKeys(obj: any, paths: string[], {dot = '.', visited = new Set<any>()}: IGetKeysOptions = {}): string[] {
+  if (visited.has(obj)) {
+    return [paths.join('')];
+  }
+
   // Perform a depth-first search, traversing each key until the deepest leaf node
   if (Array.isArray(obj)) {
-    return obj.flatMap((item, i) => getKeys(item, [...paths, `[${i}]`]))
+    visited.add(obj);
+    return obj.flatMap((item, i) => getKeys(item, [...paths, `[${i}]`], {dot: '.', visited}))
   }
 
   if (isObject(obj)) {
+    visited.add(obj);
     return Object.entries(obj).flatMap(([k, v]) =>
-      getKeys(v, [...paths, dot + k])
+      getKeys(v, [...paths, dot + k], {dot: '.', visited})
     )
   }
 

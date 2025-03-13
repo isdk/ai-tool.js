@@ -32,4 +32,19 @@ describe('getKeysPath function', () => {
       'enemies[0].power'
     ]);
   });
+
+  test('handles nested self-referential object', () => {
+    const obj: any = { a: { b: 1 }};
+    obj.a.self = obj.a;
+
+    expect(getKeysPath(obj)).toEqual(['a.b', 'a.self']);
+  });
+
+  test('handles nested self-referential array', () => {
+    const arr: any[] = [{r: 1}];
+    arr.push(arr);
+    const obj: any = { a: [arr]};
+
+    expect(getKeysPath(obj)).toEqual(['a[0][0].r', 'a[0][1]']);
+  });
 });
