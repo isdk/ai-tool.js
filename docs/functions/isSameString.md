@@ -8,7 +8,7 @@
 
 > **isSameString**(`str1`, `str2`): `boolean`
 
-Defined in: [packages/ai-tool/src/utils/is-same-string.ts:13](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/is-same-string.ts#L13)
+Defined in: [packages/ai-tool/src/utils/is-same-string.ts:13](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/is-same-string.ts#L13)
 
 Compares two strings to check if they are the same.
 

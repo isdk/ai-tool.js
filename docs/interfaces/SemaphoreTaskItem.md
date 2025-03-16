@@ -6,7 +6,7 @@
 
 # Interface: SemaphoreTaskItem
 
-Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:52](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/async-semaphore.ts#L52)
+Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:52](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/async-semaphore.ts#L52)
 
 ## Extends
 
@@ -22,7 +22,7 @@ Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:52](https://github.co
 
 > **reject**: (`reason`?) => `void`
 
-Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:54](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/async-semaphore.ts#L54)
+Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:54](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/async-semaphore.ts#L54)
 
 #### Parameters
 
@@ -40,7 +40,7 @@ Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:54](https://github.co
 
 > **resolve**: (`value`) => `void`
 
-Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:53](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/async-semaphore.ts#L53)
+Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:53](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/async-semaphore.ts#L53)
 
 #### Parameters
 
@@ -58,7 +58,7 @@ Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:53](https://github.co
 
 > `optional` **signal**: `AbortSignal`
 
-Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:29](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/async-semaphore.ts#L29)
+Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:29](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/async-semaphore.ts#L29)
 
 #### Inherited from
 
@@ -70,4 +70,4 @@ Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:29](https://github.co
 
 > `optional` **token**: `any`
 
-Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:55](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/async-semaphore.ts#L55)
+Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:55](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/async-semaphore.ts#L55)

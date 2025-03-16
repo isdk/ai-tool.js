@@ -8,7 +8,7 @@
 
 > **interpolateFString**(`nodes`, `values`): `string`
 
-Defined in: [packages/ai-tool/src/utils/prompt/template/python.ts:71](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/prompt/template/python.ts#L71)
+Defined in: [packages/ai-tool/src/utils/prompt/template/python.ts:71](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/prompt/template/python.ts#L71)
 
 Type that represents a function that takes a template string and a set
 of input values, and returns a string where all variables in the

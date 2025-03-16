@@ -8,4 +8,4 @@
 
 > **AITextGenerationFinishReason**: *typeof* [`AITextGenerationFinishReasons`](../variables/AITextGenerationFinishReasons.md)\[`number`\]
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:14](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/chat.ts#L14)
+Defined in: [packages/ai-tool/src/utils/chat.ts:14](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/chat.ts#L14)

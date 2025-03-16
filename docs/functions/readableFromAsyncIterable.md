@@ -8,7 +8,7 @@
 
 > **readableFromAsyncIterable**\<`T`\>(`iterable`): `ReadableStream`\<`T`\>
 
-Defined in: [packages/ai-tool/src/utils/stream/ai-stream.ts:164](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/stream/ai-stream.ts#L164)
+Defined in: [packages/ai-tool/src/utils/stream/ai-stream.ts:164](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/stream/ai-stream.ts#L164)
 
 Implements ReadableStream.from(asyncIterable), which isn't documented in MDN and isn't implemented in node.
 https://github.com/whatwg/streams/commit/8d7a0bf26eb2cc23e884ddbaac7c1da4b91cf2bc

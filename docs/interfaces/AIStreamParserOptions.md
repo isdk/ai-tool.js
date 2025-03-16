@@ -6,7 +6,7 @@
 
 # Interface: AIStreamParserOptions
 
-Defined in: [packages/ai-tool/src/utils/stream/ai-stream.ts:14](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/stream/ai-stream.ts#L14)
+Defined in: [packages/ai-tool/src/utils/stream/ai-stream.ts:14](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/stream/ai-stream.ts#L14)
 
 Options for the AIStreamParser.
 
@@ -16,6 +16,6 @@ Options for the AIStreamParser.
 
 > `optional` **event**: `string`
 
-Defined in: [packages/ai-tool/src/utils/stream/ai-stream.ts:15](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/stream/ai-stream.ts#L15)
+Defined in: [packages/ai-tool/src/utils/stream/ai-stream.ts:15](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/stream/ai-stream.ts#L15)
 
 The event (type) from the server side event stream.

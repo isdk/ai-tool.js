@@ -6,7 +6,7 @@
 
 # Class: YamlTypeBaseObject
 
-Defined in: [packages/ai-tool/src/utils/yaml-type-base-object.ts:3](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/yaml-type-base-object.ts#L3)
+Defined in: [packages/ai-tool/src/utils/yaml-type-base-object.ts:3](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/yaml-type-base-object.ts#L3)
 
 ## Indexable
 
@@ -18,7 +18,7 @@ Defined in: [packages/ai-tool/src/utils/yaml-type-base-object.ts:3](https://gith
 
 > **new YamlTypeBaseObject**(`options`?): [`YamlTypeBaseObject`](YamlTypeBaseObject.md)
 
-Defined in: [packages/ai-tool/src/utils/yaml-type-base-object.ts:5](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/yaml-type-base-object.ts#L5)
+Defined in: [packages/ai-tool/src/utils/yaml-type-base-object.ts:5](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/yaml-type-base-object.ts#L5)
 
 #### Parameters
 
