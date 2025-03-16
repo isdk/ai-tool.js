@@ -2,6 +2,65 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.5.0](https://github.com/isdk/ai-tool.js/compare/v0.4.0...v0.5.0) (2025-03-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* change pendingCount() function to pendingCount property
+* upgrade the eventsource and eventsource-parser
+
+### Features
+
+* add activeCount to BinarySemaphore ([0114ae3](https://github.com/isdk/ai-tool.js/commit/0114ae31533cb7ebbdf418a059c901c7ea9c3f5a))
+* add assignDirs func ([7c06ea1](https://github.com/isdk/ai-tool.js/commit/7c06ea1e4ffca820070dfb389c37dc5e1e047f90))
+* add async hash func ([e83274d](https://github.com/isdk/ai-tool.js/commit/e83274dfb0f1021caae1ab7efe33e25b31c44bd7))
+* add deque class ([dcc9abe](https://github.com/isdk/ai-tool.js/commit/dcc9abe7e2619ced6a9b0de843398696bb56af5f))
+* add env(js) prompt templatet ([1541fbe](https://github.com/isdk/ai-tool.js/commit/1541fbecd730b5dc0abb51378c8ee20a79740907))
+* add getEnvVairables ([85a1d9f](https://github.com/isdk/ai-tool.js/commit/85a1d9f798587e76d1542e56dbb3df43b5018124))
+* add isReadyFn feature to Semaphore ([defc460](https://github.com/isdk/ai-tool.js/commit/defc460f95285dacda996546c2ffbd7bdf2d93bb))
+* add isReadyFn option ([8919508](https://github.com/isdk/ai-tool.js/commit/8919508968faecd834b4d8a9708ddcc39fc43d07))
+* add isSameString func ([22296b5](https://github.com/isdk/ai-tool.js/commit/22296b556553722cd432ec900c3cb4ed0281ca0b))
+* add load-config ([1768a07](https://github.com/isdk/ai-tool.js/commit/1768a0716c5d6b03cdf5c3f21c8f6005bbee70ed))
+* add node/before-shutdown ([ec7b07d](https://github.com/isdk/ai-tool.js/commit/ec7b07df184e3f698f1500af9ea7ef17b7cacacd))
+* add NullLiteral and split following the python function ([df32d95](https://github.com/isdk/ai-tool.js/commit/df32d950ab0ad76651ca50bc6d998f04bf8614af))
+* add ObjectArgsToArgsInfo func ([f2595f3](https://github.com/isdk/ai-tool.js/commit/f2595f3c6d2f1a242a1db9f3b7a4547bebe23e89))
+* add semaphore ability(not ready yet) ([9a25719](https://github.com/isdk/ai-tool.js/commit/9a257196415139c7123dab347f277b34de990393))
+* add signaled readonly property ([9c7f338](https://github.com/isdk/ai-tool.js/commit/9c7f338c75ce38c29fd119cc6426faeac0290137))
+* add SignalGate class ([e5a3b12](https://github.com/isdk/ai-tool.js/commit/e5a3b128d1fd66ea3f483fce132b7347da98041c))
+* add thinking field to AIChatMessageParamBase ([efb1006](https://github.com/isdk/ai-tool.js/commit/efb10067890fc014ce0d100feed17b0130a20f0a))
+* add tools option to AIChatMessageParamBase ([bed7c27](https://github.com/isdk/ai-tool.js/commit/bed7c276d7ffdbff2e03c75c585c74430fa5b718))
+* CancelableAbility can supports any class now ([07fcce4](https://github.com/isdk/ai-tool.js/commit/07fcce48db5ef72fdf9ad57c468e5f6a3969bbde))
+* export events ([b5e0186](https://github.com/isdk/ai-tool.js/commit/b5e0186e167d2f769a7834e5234b8a856001c6cd))
+* export SecondaryCache, LRUCache direrctly ([d5afd6e](https://github.com/isdk/ai-tool.js/commit/d5afd6e4ea188495b59feb0c5c3abf0076c80d22))
+* export wrapEventEmitter ([7e389e0](https://github.com/isdk/ai-tool.js/commit/7e389e04a038937a39b7e5619d4aedc266d4cf2b))
+* **jinja2:** add split method to string ([ba460f6](https://github.com/isdk/ai-tool.js/commit/ba460f6f9c08aef24e89caf463ab685ff6c3de6d))
+* **jinja:** add join filter for array ([46d8c2c](https://github.com/isdk/ai-tool.js/commit/46d8c2c0b13c325451dafb05afe8dc0c8f1c1c75))
+* the boolean true/false value is casse insensitive now ([b6eca75](https://github.com/isdk/ai-tool.js/commit/b6eca7569b904e336ec0ca9fbbfe9ea71c6d78bf))
+* **ts:** add AIChatTool types ([310cfd0](https://github.com/isdk/ai-tool.js/commit/310cfd04a7a0584aecac46149eb459f14d8cfd31))
+
+
+### Bug Fixes
+
+* env(js) template should getEnvVairables correctly ([99c5ec9](https://github.com/isdk/ai-tool.js/commit/99c5ec921ffcf49a77e58ac3d2fe26d213e61fb6))
+* getKeysPath should supports self-referential object ([876c3bb](https://github.com/isdk/ai-tool.js/commit/876c3bb37654a45b1899d3b60141d76ca902d4f8))
+* Semaphore isReadyFn should work on maxConcurrency = 0 ([f7a39d9](https://github.com/isdk/ai-tool.js/commit/f7a39d9cb28079f92b7ba5c7c0fab2eca3b74956))
+* should allow . char ([f6e5efb](https://github.com/isdk/ai-tool.js/commit/f6e5efb51b3fcd2f07ec6aea1a80a45e8a9d57d9))
+* should bind this to isReadyFn ([1d6a0d8](https://github.com/isdk/ai-tool.js/commit/1d6a0d8234d20370ee443ede5323c192d21936fd))
+* **ts:** dynamic role name ([da8ee11](https://github.com/isdk/ai-tool.js/commit/da8ee11d565a72f62b17b8ce4809952ec2273ce7))
+* upgrade the eventsource-parser to v3 ([0acb41c](https://github.com/isdk/ai-tool.js/commit/0acb41cb4b22ba466213368f3400604c73e7e176))
+
+
+### Refactor
+
+* add options argument for yaml ([b70ea66](https://github.com/isdk/ai-tool.js/commit/b70ea66727ce8c04b631a392d320db02c389548a))
+* change pendingCount() function to pendingCount property ([83cd20d](https://github.com/isdk/ai-tool.js/commit/83cd20d8c95caae7a74cc915e49feba3bb453b8d))
+* export isQuoted, isStrWrapped funcs ([60de89c](https://github.com/isdk/ai-tool.js/commit/60de89c049ed3fcb4d4d87ce8bf366f47956d2d6))
+* extract BinarySemaphore from Semaphore ([338ca93](https://github.com/isdk/ai-tool.js/commit/338ca93c9ce901dda702a24d71472221cf02607a))
+* isReadyFn ([5a29b9a](https://github.com/isdk/ai-tool.js/commit/5a29b9ae4ccb1540d120e263cd15fba79632e81f))
+* rollback AIChatMessageToolCall arguments to string ([4544bee](https://github.com/isdk/ai-tool.js/commit/4544bee5cc11064b5efe9a33de62f68e6f0a0998))
+* upgrade the eventsource and eventsource-parser ([49b5334](https://github.com/isdk/ai-tool.js/commit/49b5334e00bce82a1057af944215a826de1124f3))
+
 ## [0.4.0](https://github.com/isdk/ai-tool.js/compare/v0.3.0...v0.4.0) (2024-12-17)
 
 
