@@ -8,7 +8,7 @@
 
 > **RateLimit**(`rps`, `__namedParameters`): () => `Promise`\<`void`\>
 
-Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:476](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/async-semaphore.ts#L476)
+Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:476](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/async-semaphore.ts#L476)
 
 Creates a rate limiter function that blocks with a promise whenever the rate limit is hit and resolves the promise once the call rate is within the limit set by rps. The second argument is optional.
 

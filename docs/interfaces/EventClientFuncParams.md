@@ -6,7 +6,7 @@
 
 # Interface: EventClientFuncParams
 
-Defined in: [packages/ai-tool/src/funcs/event-client.ts:5](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/funcs/event-client.ts#L5)
+Defined in: [packages/ai-tool/src/funcs/event-client.ts:5](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/funcs/event-client.ts#L5)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/ai-tool/src/funcs/event-client.ts:5](https://github.com/is
 
 > `optional` **act**: `"sub"` \| `"pub"` \| `"unsub"` \| `"init"`
 
-Defined in: [packages/ai-tool/src/funcs/event-client.ts:8](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/funcs/event-client.ts#L8)
+Defined in: [packages/ai-tool/src/funcs/event-client.ts:8](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/funcs/event-client.ts#L8)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/ai-tool/src/funcs/event-client.ts:8](https://github.com/is
 
 > `optional` **data**: `any`
 
-Defined in: [packages/ai-tool/src/funcs/event-client.ts:7](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/funcs/event-client.ts#L7)
+Defined in: [packages/ai-tool/src/funcs/event-client.ts:7](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/funcs/event-client.ts#L7)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [packages/ai-tool/src/funcs/event-client.ts:7](https://github.com/is
 
 > `optional` **event**: `string` \| `string`[]
 
-Defined in: [packages/ai-tool/src/funcs/event-client.ts:6](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/funcs/event-client.ts#L6)
+Defined in: [packages/ai-tool/src/funcs/event-client.ts:6](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/funcs/event-client.ts#L6)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [packages/ai-tool/src/funcs/event-client.ts:6](https://github.com/is
 
 > `optional` **listener**: (...`args`) => `void`
 
-Defined in: [packages/ai-tool/src/funcs/event-client.ts:9](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/funcs/event-client.ts#L9)
+Defined in: [packages/ai-tool/src/funcs/event-client.ts:9](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/funcs/event-client.ts#L9)
 
 #### Parameters
 

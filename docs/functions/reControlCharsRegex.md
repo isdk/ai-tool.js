@@ -8,7 +8,7 @@
 
 > **reControlCharsRegex**(): `RegExp`
 
-Defined in: [packages/ai-tool/src/utils/filename.ts:50](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/filename.ts#L50)
+Defined in: [packages/ai-tool/src/utils/filename.ts:50](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/filename.ts#L50)
 
 Returns a new regular expression instance for control characters in a filename with the 'g' flag.
 

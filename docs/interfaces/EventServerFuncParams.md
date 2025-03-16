@@ -6,7 +6,7 @@
 
 # Interface: EventServerFuncParams
 
-Defined in: [packages/ai-tool/src/funcs/event-server.ts:12](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/funcs/event-server.ts#L12)
+Defined in: [packages/ai-tool/src/funcs/event-server.ts:12](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/funcs/event-server.ts#L12)
 
 Convention: Always pass _req, _res
 
@@ -24,7 +24,7 @@ Convention: Always pass _req, _res
 
 > `optional` **\_req**: `IncomingMessage`
 
-Defined in: [packages/ai-tool/src/server-tools.ts:9](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/server-tools.ts#L9)
+Defined in: [packages/ai-tool/src/server-tools.ts:9](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/server-tools.ts#L9)
 
 #### Inherited from
 
@@ -36,7 +36,7 @@ Defined in: [packages/ai-tool/src/server-tools.ts:9](https://github.com/isdk/ai-
 
 > `optional` **\_res**: `ServerResponse`\<`IncomingMessage`\>
 
-Defined in: [packages/ai-tool/src/server-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/server-tools.ts#L10)
+Defined in: [packages/ai-tool/src/server-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/server-tools.ts#L10)
 
 #### Inherited from
 
@@ -48,7 +48,7 @@ Defined in: [packages/ai-tool/src/server-tools.ts:10](https://github.com/isdk/ai
 
 > `optional` **act**: `"sub"` \| `"pub"` \| `"unsub"`
 
-Defined in: [packages/ai-tool/src/funcs/event-server.ts:15](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/funcs/event-server.ts#L15)
+Defined in: [packages/ai-tool/src/funcs/event-server.ts:15](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/funcs/event-server.ts#L15)
 
 ***
 
@@ -56,7 +56,7 @@ Defined in: [packages/ai-tool/src/funcs/event-server.ts:15](https://github.com/i
 
 > `optional` **data**: `any`
 
-Defined in: [packages/ai-tool/src/funcs/event-server.ts:14](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/funcs/event-server.ts#L14)
+Defined in: [packages/ai-tool/src/funcs/event-server.ts:14](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/funcs/event-server.ts#L14)
 
 ***
 
@@ -64,4 +64,4 @@ Defined in: [packages/ai-tool/src/funcs/event-server.ts:14](https://github.com/i
 
 > `optional` **event**: `string` \| `string`[]
 
-Defined in: [packages/ai-tool/src/funcs/event-server.ts:13](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/funcs/event-server.ts#L13)
+Defined in: [packages/ai-tool/src/funcs/event-server.ts:13](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/funcs/event-server.ts#L13)

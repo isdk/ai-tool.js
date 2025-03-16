@@ -6,7 +6,7 @@
 
 # Interface: SanitizeFilenameOptions
 
-Defined in: [packages/ai-tool/src/utils/filename.ts:83](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/filename.ts#L83)
+Defined in: [packages/ai-tool/src/utils/filename.ts:83](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/filename.ts#L83)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/ai-tool/src/utils/filename.ts:83](https://github.com/isdk/
 
 > `optional` **maxLength**: `number`
 
-Defined in: [packages/ai-tool/src/utils/filename.ts:85](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/filename.ts#L85)
+Defined in: [packages/ai-tool/src/utils/filename.ts:85](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/filename.ts#L85)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [packages/ai-tool/src/utils/filename.ts:85](https://github.com/isdk/
 
 > `optional` **replacement**: `string`
 
-Defined in: [packages/ai-tool/src/utils/filename.ts:84](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/filename.ts#L84)
+Defined in: [packages/ai-tool/src/utils/filename.ts:84](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/filename.ts#L84)

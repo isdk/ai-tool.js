@@ -6,7 +6,7 @@
 
 # Interface: AIChatContentPartText
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:93](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/chat.ts#L93)
+Defined in: [packages/ai-tool/src/utils/chat.ts:93](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/chat.ts#L93)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/ai-tool/src/utils/chat.ts:93](https://github.com/isdk/ai-t
 
 > **text**: `string`
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:95](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/chat.ts#L95)
+Defined in: [packages/ai-tool/src/utils/chat.ts:95](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/chat.ts#L95)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [packages/ai-tool/src/utils/chat.ts:95](https://github.com/isdk/ai-t
 
 > **type**: `"text"`
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:94](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/chat.ts#L94)
+Defined in: [packages/ai-tool/src/utils/chat.ts:94](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/chat.ts#L94)

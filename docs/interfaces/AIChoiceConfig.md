@@ -6,7 +6,7 @@
 
 # Interface: AIChoiceConfig
 
-Defined in: [packages/ai-tool/src/utils/parse-command.ts:9](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/parse-command.ts#L9)
+Defined in: [packages/ai-tool/src/utils/parse-command.ts:9](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/parse-command.ts#L9)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/ai-tool/src/utils/parse-command.ts:9](https://github.com/i
 
 > `optional` **end**: `string`
 
-Defined in: [packages/ai-tool/src/utils/parse-command.ts:16](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/parse-command.ts#L16)
+Defined in: [packages/ai-tool/src/utils/parse-command.ts:16](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/parse-command.ts#L16)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/ai-tool/src/utils/parse-command.ts:16](https://github.com/
 
 > `optional` **items**: `string`[]
 
-Defined in: [packages/ai-tool/src/utils/parse-command.ts:10](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/parse-command.ts#L10)
+Defined in: [packages/ai-tool/src/utils/parse-command.ts:10](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/parse-command.ts#L10)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [packages/ai-tool/src/utils/parse-command.ts:10](https://github.com/
 
 > `optional` **maxPick**: `number`
 
-Defined in: [packages/ai-tool/src/utils/parse-command.ts:11](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/parse-command.ts#L11)
+Defined in: [packages/ai-tool/src/utils/parse-command.ts:11](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/parse-command.ts#L11)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [packages/ai-tool/src/utils/parse-command.ts:11](https://github.com/
 
 > `optional` **minPick**: `number`
 
-Defined in: [packages/ai-tool/src/utils/parse-command.ts:12](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/parse-command.ts#L12)
+Defined in: [packages/ai-tool/src/utils/parse-command.ts:12](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/parse-command.ts#L12)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [packages/ai-tool/src/utils/parse-command.ts:12](https://github.com/
 
 > `optional` **prefix**: `string`
 
-Defined in: [packages/ai-tool/src/utils/parse-command.ts:14](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/parse-command.ts#L14)
+Defined in: [packages/ai-tool/src/utils/parse-command.ts:14](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/parse-command.ts#L14)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [packages/ai-tool/src/utils/parse-command.ts:14](https://github.com/
 
 > `optional` **separator**: `string`
 
-Defined in: [packages/ai-tool/src/utils/parse-command.ts:13](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/parse-command.ts#L13)
+Defined in: [packages/ai-tool/src/utils/parse-command.ts:13](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/parse-command.ts#L13)
 
 ***
 
@@ -62,4 +62,4 @@ Defined in: [packages/ai-tool/src/utils/parse-command.ts:13](https://github.com/
 
 > `optional` **type**: `"ai"` \| `"random"`
 
-Defined in: [packages/ai-tool/src/utils/parse-command.ts:15](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/parse-command.ts#L15)
+Defined in: [packages/ai-tool/src/utils/parse-command.ts:15](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/parse-command.ts#L15)

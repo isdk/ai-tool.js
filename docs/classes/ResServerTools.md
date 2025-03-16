@@ -6,7 +6,7 @@
 
 # Class: ResServerTools
 
-Defined in: [packages/ai-tool/src/res-server-tools.ts:11](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/res-server-tools.ts#L11)
+Defined in: [packages/ai-tool/src/res-server-tools.ts:11](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/res-server-tools.ts#L11)
 
 ## Extends
 
@@ -26,7 +26,7 @@ Defined in: [packages/ai-tool/src/res-server-tools.ts:11](https://github.com/isd
 
 > **new ResServerTools**(`name`, `options`): [`ResServerTools`](ResServerTools.md)
 
-Defined in: [packages/ai-tool/src/res-server-tools.ts:27](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/res-server-tools.ts#L27)
+Defined in: [packages/ai-tool/src/res-server-tools.ts:27](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/res-server-tools.ts#L27)
 
 #### Parameters
 
@@ -56,7 +56,7 @@ Defined in: node\_modules/.pnpm/property-manager@2.0.0/node\_modules/property-ma
 
 > **action**: `"get"` \| `"post"` \| `"put"` \| `"delete"` \| `"patch"` \| `"list"` \| `"res"` = `'res'`
 
-Defined in: [packages/ai-tool/src/res-server-tools.ts:21](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/res-server-tools.ts#L21)
+Defined in: [packages/ai-tool/src/res-server-tools.ts:21](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/res-server-tools.ts#L21)
 
 ***
 
@@ -64,7 +64,7 @@ Defined in: [packages/ai-tool/src/res-server-tools.ts:21](https://github.com/isd
 
 > `optional` **allowExportFunc**: `boolean`
 
-Defined in: [packages/ai-tool/src/server-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/server-tools.ts#L14)
+Defined in: [packages/ai-tool/src/server-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/server-tools.ts#L14)
 
 ***
 
@@ -72,7 +72,7 @@ Defined in: [packages/ai-tool/src/server-tools.ts:14](https://github.com/isdk/ai
 
 > `optional` **apiRoot**: `string`
 
-Defined in: [packages/ai-tool/src/utils/consts.ts:34](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/consts.ts#L34)
+Defined in: [packages/ai-tool/src/utils/consts.ts:34](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/consts.ts#L34)
 
 ***
 
@@ -108,7 +108,7 @@ The default options for export and assign
 
 > `optional` **fetchOptions**: `any`
 
-Defined in: [packages/ai-tool/src/utils/consts.ts:36](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/consts.ts#L36)
+Defined in: [packages/ai-tool/src/utils/consts.ts:36](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/consts.ts#L36)
 
 ***
 
@@ -116,7 +116,7 @@ Defined in: [packages/ai-tool/src/utils/consts.ts:36](https://github.com/isdk/ai
 
 > `optional` **isApi**: `boolean`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:29](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L29)
+Defined in: [packages/ai-tool/src/tool-func.ts:29](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L29)
 
 ***
 
@@ -124,7 +124,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:29](https://github.com/isdk/ai-to
 
 > **methods**: `string`[]
 
-Defined in: [packages/ai-tool/src/rpc-methods-server-tool.ts:11](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/rpc-methods-server-tool.ts#L11)
+Defined in: [packages/ai-tool/src/rpc-methods-server-tool.ts:11](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/rpc-methods-server-tool.ts#L11)
 
 ***
 
@@ -132,7 +132,7 @@ Defined in: [packages/ai-tool/src/rpc-methods-server-tool.ts:11](https://github.
 
 > `optional` **name**: `string`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:23](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L23)
+Defined in: [packages/ai-tool/src/tool-func.ts:23](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L23)
 
 ***
 
@@ -150,7 +150,7 @@ the property with the default prefix '$' will not be exported.
 
 > **params**: [`FuncParams`](../interfaces/FuncParams.md)
 
-Defined in: [packages/ai-tool/src/res-server-tools.ts:22](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/res-server-tools.ts#L22)
+Defined in: [packages/ai-tool/src/res-server-tools.ts:22](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/res-server-tools.ts#L22)
 
 ***
 
@@ -158,7 +158,7 @@ Defined in: [packages/ai-tool/src/res-server-tools.ts:22](https://github.com/isd
 
 > `optional` **result**: `string`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:25](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L25)
+Defined in: [packages/ai-tool/src/tool-func.ts:25](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L25)
 
 ***
 
@@ -166,7 +166,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:25](https://github.com/isdk/ai-to
 
 > `optional` **scope**: `any`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:26](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L26)
+Defined in: [packages/ai-tool/src/tool-func.ts:26](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L26)
 
 ***
 
@@ -174,7 +174,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:26](https://github.com/isdk/ai-to
 
 > `optional` **setup**: (`this`, `options`?) => `void`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:28](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L28)
+Defined in: [packages/ai-tool/src/tool-func.ts:28](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L28)
 
 #### Parameters
 
@@ -196,7 +196,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:28](https://github.com/isdk/ai-to
 
 > `optional` **stream**: `boolean`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:30](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L30)
+Defined in: [packages/ai-tool/src/tool-func.ts:30](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L30)
 
 ***
 
@@ -204,7 +204,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:30](https://github.com/isdk/ai-to
 
 > `optional` **tags**: `string` \| `string`[]
 
-Defined in: [packages/ai-tool/src/tool-func.ts:27](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L27)
+Defined in: [packages/ai-tool/src/tool-func.ts:27](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L27)
 
 ***
 
@@ -212,7 +212,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:27](https://github.com/isdk/ai-to
 
 > `static` **dataPath**: `string`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:57](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L57)
+Defined in: [packages/ai-tool/src/tool-func.ts:57](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L57)
 
 ***
 
@@ -220,7 +220,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:57](https://github.com/isdk/ai-to
 
 > `static` **items**: [`Funcs`](../interfaces/Funcs.md) = `{}`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:56](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L56)
+Defined in: [packages/ai-tool/src/tool-func.ts:56](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L56)
 
 ***
 
@@ -228,7 +228,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:56](https://github.com/isdk/ai-to
 
 > `static` **SpecialRpcMethodNames**: `any`
 
-Defined in: [packages/ai-tool/src/res-server-tools.ts:20](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/res-server-tools.ts#L20)
+Defined in: [packages/ai-tool/src/res-server-tools.ts:20](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/res-server-tools.ts#L20)
 
 ## Accessors
 
@@ -238,7 +238,7 @@ Defined in: [packages/ai-tool/src/res-server-tools.ts:20](https://github.com/isd
 
 > **get** **SpecialRpcMethodNames**(): `any`
 
-Defined in: [packages/ai-tool/src/rpc-methods-server-tool.ts:22](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/rpc-methods-server-tool.ts#L22)
+Defined in: [packages/ai-tool/src/rpc-methods-server-tool.ts:22](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/rpc-methods-server-tool.ts#L22)
 
 ##### Returns
 
@@ -252,7 +252,7 @@ Defined in: [packages/ai-tool/src/rpc-methods-server-tool.ts:22](https://github.
 
 > **get** `static` **apiRoot**(): `undefined` \| `string`
 
-Defined in: [packages/ai-tool/src/server-tools.ts:26](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/server-tools.ts#L26)
+Defined in: [packages/ai-tool/src/server-tools.ts:26](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/server-tools.ts#L26)
 
 ##### Returns
 
@@ -264,7 +264,7 @@ Defined in: [packages/ai-tool/src/server-tools.ts:26](https://github.com/isdk/ai
 
 > **arr2ObjParams**(`params`): `any`[]
 
-Defined in: [packages/ai-tool/src/tool-func.ts:236](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L236)
+Defined in: [packages/ai-tool/src/tool-func.ts:236](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L236)
 
 #### Parameters
 
@@ -432,7 +432,7 @@ the dest object
 
 > **cast**(`key`, `value`): `any`
 
-Defined in: [packages/ai-tool/src/rpc-methods-server-tool.ts:48](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/rpc-methods-server-tool.ts#L48)
+Defined in: [packages/ai-tool/src/rpc-methods-server-tool.ts:48](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/rpc-methods-server-tool.ts#L48)
 
 #### Parameters
 
@@ -454,7 +454,7 @@ Defined in: [packages/ai-tool/src/rpc-methods-server-tool.ts:48](https://github.
 
 > **castParams**(`params`): `RpcMethodsServerFuncParams`
 
-Defined in: [packages/ai-tool/src/res-server-tools.ts:40](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/res-server-tools.ts#L40)
+Defined in: [packages/ai-tool/src/res-server-tools.ts:40](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/res-server-tools.ts#L40)
 
 #### Parameters
 
@@ -544,7 +544,7 @@ the defined attributes of the object
 
 > `optional` **delete**(`__namedParameters`): `any`
 
-Defined in: [packages/ai-tool/src/res-server-tools.ts:15](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/res-server-tools.ts#L15)
+Defined in: [packages/ai-tool/src/res-server-tools.ts:15](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/res-server-tools.ts#L15)
 
 #### Parameters
 
@@ -590,7 +590,7 @@ the dest object.
 
 > **func**(`params`): `any`
 
-Defined in: [packages/ai-tool/src/rpc-methods-server-tool.ts:68](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/rpc-methods-server-tool.ts#L68)
+Defined in: [packages/ai-tool/src/rpc-methods-server-tool.ts:68](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/rpc-methods-server-tool.ts#L68)
 
 #### Parameters
 
@@ -608,7 +608,7 @@ Defined in: [packages/ai-tool/src/rpc-methods-server-tool.ts:68](https://github.
 
 > `optional` **get**(`__namedParameters`): `any`
 
-Defined in: [packages/ai-tool/src/res-server-tools.ts:12](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/res-server-tools.ts#L12)
+Defined in: [packages/ai-tool/src/res-server-tools.ts:12](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/res-server-tools.ts#L12)
 
 #### Parameters
 
@@ -626,7 +626,7 @@ Defined in: [packages/ai-tool/src/res-server-tools.ts:12](https://github.com/isd
 
 > **getFunc**(`name`?): `any`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:289](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L289)
+Defined in: [packages/ai-tool/src/tool-func.ts:289](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L289)
 
 #### Parameters
 
@@ -644,7 +644,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:289](https://github.com/isdk/ai-t
 
 > **getFuncWithPos**(`name`?): `any`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:313](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L313)
+Defined in: [packages/ai-tool/src/tool-func.ts:313](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L313)
 
 #### Parameters
 
@@ -662,7 +662,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:313](https://github.com/isdk/ai-t
 
 > **getMethodFromParams**(`params`): `undefined` \| `string`
 
-Defined in: [packages/ai-tool/src/res-server-tools.ts:31](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/res-server-tools.ts#L31)
+Defined in: [packages/ai-tool/src/res-server-tools.ts:31](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/res-server-tools.ts#L31)
 
 #### Parameters
 
@@ -696,7 +696,7 @@ the descriptors of properties object
 
 > **hasAsyncFeature**(`feature`): `boolean`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:318](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L318)
+Defined in: [packages/ai-tool/src/tool-func.ts:318](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L318)
 
 #### Parameters
 
@@ -758,7 +758,7 @@ this object.
 
 > **initRpcMethods**(`methods`): `void`
 
-Defined in: [packages/ai-tool/src/rpc-methods-server-tool.ts:27](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/rpc-methods-server-tool.ts#L27)
+Defined in: [packages/ai-tool/src/rpc-methods-server-tool.ts:27](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/rpc-methods-server-tool.ts#L27)
 
 #### Parameters
 
@@ -824,7 +824,7 @@ The source object
 
 > **isStream**(`params`): `undefined` \| `boolean`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:324](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L324)
+Defined in: [packages/ai-tool/src/tool-func.ts:324](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L324)
 
 #### Parameters
 
@@ -842,7 +842,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:324](https://github.com/isdk/ai-t
 
 > `optional` **list**(`options`?): `any`
 
-Defined in: [packages/ai-tool/src/res-server-tools.ts:16](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/res-server-tools.ts#L16)
+Defined in: [packages/ai-tool/src/res-server-tools.ts:16](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/res-server-tools.ts#L16)
 
 #### Parameters
 
@@ -888,7 +888,7 @@ the dest object.
 
 > **obj2ArrParams**(`params`?): `any`[]
 
-Defined in: [packages/ai-tool/src/tool-func.ts:249](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L249)
+Defined in: [packages/ai-tool/src/tool-func.ts:249](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L249)
 
 #### Parameters
 
@@ -906,7 +906,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:249](https://github.com/isdk/ai-t
 
 > `optional` **post**(`options`): `any`
 
-Defined in: [packages/ai-tool/src/res-server-tools.ts:13](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/res-server-tools.ts#L13)
+Defined in: [packages/ai-tool/src/res-server-tools.ts:13](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/res-server-tools.ts#L13)
 
 #### Parameters
 
@@ -946,7 +946,7 @@ A property name.
 
 > `optional` **put**(`__namedParameters`): `any`
 
-Defined in: [packages/ai-tool/src/res-server-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/res-server-tools.ts#L14)
+Defined in: [packages/ai-tool/src/res-server-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/res-server-tools.ts#L14)
 
 #### Parameters
 
@@ -964,7 +964,7 @@ Defined in: [packages/ai-tool/src/res-server-tools.ts:14](https://github.com/isd
 
 > **register**(): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [packages/ai-tool/src/tool-func.ts:219](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L219)
+Defined in: [packages/ai-tool/src/tool-func.ts:219](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L219)
 
 #### Returns
 
@@ -976,7 +976,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:219](https://github.com/isdk/ai-t
 
 > **run**(`params`?): `Promise`\<`any`\>
 
-Defined in: [packages/ai-tool/src/tool-func.ts:276](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L276)
+Defined in: [packages/ai-tool/src/tool-func.ts:276](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L276)
 
 #### Parameters
 
@@ -994,7 +994,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:276](https://github.com/isdk/ai-t
 
 > **runAs**(`name`, `params`?): `Promise`\<`any`\>
 
-Defined in: [packages/ai-tool/src/tool-func.ts:280](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L280)
+Defined in: [packages/ai-tool/src/tool-func.ts:280](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L280)
 
 #### Parameters
 
@@ -1016,7 +1016,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:280](https://github.com/isdk/ai-t
 
 > **runAsSync**(`name`, `params`?): `any`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:284](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L284)
+Defined in: [packages/ai-tool/src/tool-func.ts:284](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L284)
 
 #### Parameters
 
@@ -1038,7 +1038,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:284](https://github.com/isdk/ai-t
 
 > **runSync**(`params`?): `any`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:262](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L262)
+Defined in: [packages/ai-tool/src/tool-func.ts:262](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L262)
 
 #### Parameters
 
@@ -1056,7 +1056,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:262](https://github.com/isdk/ai-t
 
 > **runWithPos**(...`params`): `Promise`\<`any`\>
 
-Defined in: [packages/ai-tool/src/tool-func.ts:305](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L305)
+Defined in: [packages/ai-tool/src/tool-func.ts:305](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L305)
 
 #### Parameters
 
@@ -1074,7 +1074,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:305](https://github.com/isdk/ai-t
 
 > **runWithPosAs**(`name`, ...`params`): `Promise`\<`any`\>
 
-Defined in: [packages/ai-tool/src/tool-func.ts:309](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L309)
+Defined in: [packages/ai-tool/src/tool-func.ts:309](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L309)
 
 #### Parameters
 
@@ -1096,7 +1096,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:309](https://github.com/isdk/ai-t
 
 > **runWithPosAsSync**(`name`, ...`params`): `any`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:301](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L301)
+Defined in: [packages/ai-tool/src/tool-func.ts:301](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L301)
 
 #### Parameters
 
@@ -1118,7 +1118,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:301](https://github.com/isdk/ai-t
 
 > **runWithPosSync**(...`params`): `any`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:294](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L294)
+Defined in: [packages/ai-tool/src/tool-func.ts:294](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L294)
 
 #### Parameters
 
@@ -1198,7 +1198,7 @@ Returns a string representation of an object.
 
 > **unregister**(): `any`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:232](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L232)
+Defined in: [packages/ai-tool/src/tool-func.ts:232](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L232)
 
 #### Returns
 
@@ -1666,7 +1666,7 @@ An iterable object that contains key-value entries for properties and methods.
 
 > `static` **get**(`name`): [`ToolFunc`](ToolFunc.md)
 
-Defined in: [packages/ai-tool/src/tool-func.ts:59](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L59)
+Defined in: [packages/ai-tool/src/tool-func.ts:59](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L59)
 
 #### Parameters
 
@@ -1684,7 +1684,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:59](https://github.com/isdk/ai-to
 
 > `static` **getAllByTag**(`tagName`): [`ToolFunc`](ToolFunc.md)[]
 
-Defined in: [packages/ai-tool/src/tool-func.ts:87](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L87)
+Defined in: [packages/ai-tool/src/tool-func.ts:87](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L87)
 
 #### Parameters
 
@@ -1702,7 +1702,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:87](https://github.com/isdk/ai-to
 
 > `static` **getByTag**(`tagName`): `undefined` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [packages/ai-tool/src/tool-func.ts:67](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L67)
+Defined in: [packages/ai-tool/src/tool-func.ts:67](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L67)
 
 #### Parameters
 
@@ -1720,7 +1720,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:67](https://github.com/isdk/ai-to
 
 > `static` **getFunc**(`name`): `any`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:128](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L128)
+Defined in: [packages/ai-tool/src/tool-func.ts:128](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L128)
 
 #### Parameters
 
@@ -1738,7 +1738,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:128](https://github.com/isdk/ai-t
 
 > `static` **getFuncWithPos**(`name`): `any`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:149](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L149)
+Defined in: [packages/ai-tool/src/tool-func.ts:149](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L149)
 
 #### Parameters
 
@@ -1892,7 +1892,7 @@ The object that references the prototype.
 
 > `static` **hasAsyncFeature**(`feature`): `boolean`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:105](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L105)
+Defined in: [packages/ai-tool/src/tool-func.ts:105](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L105)
 
 #### Parameters
 
@@ -2074,7 +2074,7 @@ Object that contains the properties and methods. This can be an object that you 
 
 > `static` **list**(): [`Funcs`](../interfaces/Funcs.md)
 
-Defined in: [packages/ai-tool/src/tool-func.ts:63](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L63)
+Defined in: [packages/ai-tool/src/tool-func.ts:63](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L63)
 
 #### Returns
 
@@ -2114,7 +2114,7 @@ Object to make non-extensible.
 
 > `static` **register**(`name`, `options`): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [packages/ai-tool/src/tool-func.ts:154](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L154)
+Defined in: [packages/ai-tool/src/tool-func.ts:154](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L154)
 
 ##### Parameters
 
@@ -2134,7 +2134,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:154](https://github.com/isdk/ai-t
 
 > `static` **register**(`func`, `options`): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [packages/ai-tool/src/tool-func.ts:155](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L155)
+Defined in: [packages/ai-tool/src/tool-func.ts:155](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L155)
 
 ##### Parameters
 
@@ -2154,7 +2154,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:155](https://github.com/isdk/ai-t
 
 > `static` **register**(`name`, `options`?): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [packages/ai-tool/src/tool-func.ts:156](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L156)
+Defined in: [packages/ai-tool/src/tool-func.ts:156](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L156)
 
 ##### Parameters
 
@@ -2176,7 +2176,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:156](https://github.com/isdk/ai-t
 
 > `static` **run**(`name`, `params`?): `Promise`\<`any`\>
 
-Defined in: [packages/ai-tool/src/tool-func.ts:112](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L112)
+Defined in: [packages/ai-tool/src/tool-func.ts:112](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L112)
 
 #### Parameters
 
@@ -2198,7 +2198,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:112](https://github.com/isdk/ai-t
 
 > `static` **runSync**(`name`, `params`?): `any`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:120](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L120)
+Defined in: [packages/ai-tool/src/tool-func.ts:120](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L120)
 
 #### Parameters
 
@@ -2220,7 +2220,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:120](https://github.com/isdk/ai-t
 
 > `static` **runWithPos**(`name`, ...`params`): `Promise`\<`any`\>
 
-Defined in: [packages/ai-tool/src/tool-func.ts:133](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L133)
+Defined in: [packages/ai-tool/src/tool-func.ts:133](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L133)
 
 #### Parameters
 
@@ -2242,7 +2242,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:133](https://github.com/isdk/ai-t
 
 > `static` **runWithPosSync**(`name`, ...`params`): `any`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:141](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L141)
+Defined in: [packages/ai-tool/src/tool-func.ts:141](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L141)
 
 #### Parameters
 
@@ -2290,7 +2290,7 @@ Object on which to lock the attributes.
 
 > `static` **setApiRoot**(`v`): `void`
 
-Defined in: [packages/ai-tool/src/server-tools.ts:30](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/server-tools.ts#L30)
+Defined in: [packages/ai-tool/src/server-tools.ts:30](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/server-tools.ts#L30)
 
 #### Parameters
 
@@ -2336,7 +2336,7 @@ The value of the new prototype or null.
 
 > `static` **toJSON**(): `object`
 
-Defined in: [packages/ai-tool/src/server-tools.ts:44](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/server-tools.ts#L44)
+Defined in: [packages/ai-tool/src/server-tools.ts:44](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/server-tools.ts#L44)
 
 #### Returns
 
@@ -2348,7 +2348,7 @@ Defined in: [packages/ai-tool/src/server-tools.ts:44](https://github.com/isdk/ai
 
 > `static` **unregister**(`name`): `undefined` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [packages/ai-tool/src/tool-func.ts:184](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L184)
+Defined in: [packages/ai-tool/src/tool-func.ts:184](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L184)
 
 #### Parameters
 

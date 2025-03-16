@@ -6,7 +6,7 @@
 
 # Interface: ToolFuncPackage
 
-Defined in: [packages/ai-tool/src/tool-func.ts:45](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L45)
+Defined in: [packages/ai-tool/src/tool-func.ts:45](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L45)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:45](https://github.com/isdk/ai-to
 
 > **name**: `string`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:46](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L46)
+Defined in: [packages/ai-tool/src/tool-func.ts:46](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L46)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:46](https://github.com/isdk/ai-to
 
 > **register**: (`data`?) => `void`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:47](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L47)
+Defined in: [packages/ai-tool/src/tool-func.ts:47](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L47)
 
 #### Parameters
 
@@ -40,7 +40,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:47](https://github.com/isdk/ai-to
 
 > `optional` **unregister**: () => `void`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:48](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L48)
+Defined in: [packages/ai-tool/src/tool-func.ts:48](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L48)
 
 #### Returns
 

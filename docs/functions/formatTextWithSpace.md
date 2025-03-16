@@ -8,7 +8,7 @@
 
 > **formatTextWithSpace**(`input`, `options`?): `string`
 
-Defined in: [packages/ai-tool/src/utils/format-text-with-space.ts:25](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/format-text-with-space.ts#L25)
+Defined in: [packages/ai-tool/src/utils/format-text-with-space.ts:25](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/format-text-with-space.ts#L25)
 
 Formats the input text by replacing delimiters with spaces and optionally capitalizing the first letter of each word.
 

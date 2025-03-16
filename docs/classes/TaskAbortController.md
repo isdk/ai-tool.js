@@ -6,7 +6,7 @@
 
 # Class: TaskAbortController
 
-Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:35](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/cancelable-ability.ts#L35)
+Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:35](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/cancelable-ability.ts#L35)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:35](https://github
 
 > **new TaskAbortController**(`parent`): [`TaskAbortController`](TaskAbortController.md)
 
-Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:41](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/cancelable-ability.ts#L41)
+Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:41](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/cancelable-ability.ts#L41)
 
 #### Parameters
 
@@ -40,7 +40,7 @@ Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:41](https://github
 
 > `optional` **id**: [`AsyncTaskId`](../type-aliases/AsyncTaskId.md)
 
-Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:36](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/cancelable-ability.ts#L36)
+Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:36](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/cancelable-ability.ts#L36)
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:36](https://github
 
 > **parent**: [`CancelableAbility`](CancelableAbility.md)
 
-Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:39](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/cancelable-ability.ts#L39)
+Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:39](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/cancelable-ability.ts#L39)
 
 ***
 
@@ -72,7 +72,7 @@ Returns the AbortSignal object associated with this object.
 
 > `optional` **streamController**: `ReadableStreamDefaultController`\<`any`\>
 
-Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:38](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/cancelable-ability.ts#L38)
+Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:38](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/cancelable-ability.ts#L38)
 
 ***
 
@@ -80,7 +80,7 @@ Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:38](https://github
 
 > `optional` **timeoutId**: `any`
 
-Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:37](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/cancelable-ability.ts#L37)
+Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:37](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/cancelable-ability.ts#L37)
 
 ## Methods
 
@@ -88,7 +88,7 @@ Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:37](https://github
 
 > **abort**(`reason`?, `data`?): `void`
 
-Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:46](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/cancelable-ability.ts#L46)
+Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:46](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/cancelable-ability.ts#L46)
 
 Invoking this method will set this object's AbortSignal's aborted flag and signal to any observers that the associated activity is to be aborted.
 
@@ -118,7 +118,7 @@ Invoking this method will set this object's AbortSignal's aborted flag and signa
 
 > **throwRejected**(`alreadyRejected`?): `undefined` \| `true`
 
-Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:55](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/utils/cancelable-ability.ts#L55)
+Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:55](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/utils/cancelable-ability.ts#L55)
 
 #### Parameters
 

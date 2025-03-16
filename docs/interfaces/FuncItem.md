@@ -6,7 +6,7 @@
 
 # Interface: FuncItem
 
-Defined in: [packages/ai-tool/src/tool-func.ts:33](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L33)
+Defined in: [packages/ai-tool/src/tool-func.ts:33](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L33)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:33](https://github.com/isdk/ai-to
 
 > `optional` **func**: [`TFunc`](../type-aliases/TFunc.md)
 
-Defined in: [packages/ai-tool/src/tool-func.ts:34](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L34)
+Defined in: [packages/ai-tool/src/tool-func.ts:34](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L34)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:34](https://github.com/isdk/ai-to
 
 > `optional` **isApi**: `boolean`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:29](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L29)
+Defined in: [packages/ai-tool/src/tool-func.ts:29](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L29)
 
 #### Inherited from
 
@@ -38,7 +38,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:29](https://github.com/isdk/ai-to
 
 > `optional` **name**: `string`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:23](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L23)
+Defined in: [packages/ai-tool/src/tool-func.ts:23](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L23)
 
 #### Inherited from
 
@@ -50,7 +50,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:23](https://github.com/isdk/ai-to
 
 > `optional` **params**: [`FuncParams`](FuncParams.md) \| [`FuncParam`](FuncParam.md)[]
 
-Defined in: [packages/ai-tool/src/tool-func.ts:24](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L24)
+Defined in: [packages/ai-tool/src/tool-func.ts:24](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L24)
 
 #### Inherited from
 
@@ -62,7 +62,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:24](https://github.com/isdk/ai-to
 
 > `optional` **result**: `string`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:25](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L25)
+Defined in: [packages/ai-tool/src/tool-func.ts:25](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L25)
 
 #### Inherited from
 
@@ -74,7 +74,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:25](https://github.com/isdk/ai-to
 
 > `optional` **scope**: `any`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:26](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L26)
+Defined in: [packages/ai-tool/src/tool-func.ts:26](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L26)
 
 #### Inherited from
 
@@ -86,7 +86,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:26](https://github.com/isdk/ai-to
 
 > `optional` **setup**: (`this`, `options`?) => `void`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:28](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L28)
+Defined in: [packages/ai-tool/src/tool-func.ts:28](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L28)
 
 #### Parameters
 
@@ -112,7 +112,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:28](https://github.com/isdk/ai-to
 
 > `optional` **stream**: `boolean`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:30](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L30)
+Defined in: [packages/ai-tool/src/tool-func.ts:30](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L30)
 
 #### Inherited from
 
@@ -124,7 +124,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:30](https://github.com/isdk/ai-to
 
 > `optional` **tags**: `string` \| `string`[]
 
-Defined in: [packages/ai-tool/src/tool-func.ts:27](https://github.com/isdk/ai-tool.js/blob/79d5773fa454dc7789b1291b1ebd73e4c1b93154/src/tool-func.ts#L27)
+Defined in: [packages/ai-tool/src/tool-func.ts:27](https://github.com/isdk/ai-tool.js/blob/7135b3a67072644f21685b76900b7f351401749e/src/tool-func.ts#L27)
 
 #### Inherited from
 
