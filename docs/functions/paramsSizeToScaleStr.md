@@ -8,7 +8,7 @@
 
 > **paramsSizeToScaleStr**(`paramsSize`, `fractionDigits`): `string`
 
-Defined in: [packages/ai-tool/src/utils/convert-params-size.ts:11](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/convert-params-size.ts#L11)
+Defined in: [packages/ai-tool/src/utils/convert-params-size.ts:11](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/convert-params-size.ts#L11)
 
 Formats a parameter size in bytes into a string with an appropriate scale (T, B, M, or K),
 optionally specifying the number of fractional digits to display.

@@ -8,7 +8,7 @@
 
 > **hasDirectoryIn**(`dir`, `dirs`?): `undefined` \| `boolean`
 
-Defined in: [packages/ai-tool/src/utils/has-directory-in.ts:37](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/has-directory-in.ts#L37)
+Defined in: [packages/ai-tool/src/utils/has-directory-in.ts:37](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/has-directory-in.ts#L37)
 
 Checks if a given directory is a subdirectory of any directory in the provided array.
 

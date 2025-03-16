@@ -6,7 +6,7 @@
 
 # Interface: AIResult\<TValue, TOptions\>
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:16](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/chat.ts#L16)
+Defined in: [packages/ai-tool/src/utils/chat.ts:16](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/chat.ts#L16)
 
 ## Type Parameters
 
@@ -24,7 +24,7 @@ Defined in: [packages/ai-tool/src/utils/chat.ts:16](https://github.com/isdk/ai-t
 
 > `optional` **content**: `TValue`
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:20](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/chat.ts#L20)
+Defined in: [packages/ai-tool/src/utils/chat.ts:20](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/chat.ts#L20)
 
 The generated value.
 
@@ -34,7 +34,7 @@ The generated value.
 
 > `optional` **finishReason**: `null` \| `"length"` \| `"abort"` \| `"stop"` \| `"content_filter"` \| `"tool_calls"` \| `"function_call"` \| `"error"` \| `"other"`
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:25](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/chat.ts#L25)
+Defined in: [packages/ai-tool/src/utils/chat.ts:25](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/chat.ts#L25)
 
 The reason why the generation stopped.
 
@@ -44,7 +44,7 @@ The reason why the generation stopped.
 
 > `optional` **options**: `TOptions`
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:26](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/chat.ts#L26)
+Defined in: [packages/ai-tool/src/utils/chat.ts:26](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/chat.ts#L26)
 
 ***
 
@@ -52,7 +52,7 @@ Defined in: [packages/ai-tool/src/utils/chat.ts:26](https://github.com/isdk/ai-t
 
 > `optional` **stop**: `boolean`
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:30](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/chat.ts#L30)
+Defined in: [packages/ai-tool/src/utils/chat.ts:30](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/chat.ts#L30)
 
 for stream mode
 
@@ -62,4 +62,4 @@ for stream mode
 
 > `optional` **taskId**: [`AsyncTaskId`](../type-aliases/AsyncTaskId.md)
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:31](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/chat.ts#L31)
+Defined in: [packages/ai-tool/src/utils/chat.ts:31](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/chat.ts#L31)

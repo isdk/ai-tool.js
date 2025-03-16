@@ -8,7 +8,7 @@
 
 > **shutdown**(`signalOrEvent`, `exitCode`): `Promise`\<`undefined`\>
 
-Defined in: [packages/ai-tool/src/utils/node/before-shutdown.ts:64](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/node/before-shutdown.ts#L64)
+Defined in: [packages/ai-tool/src/utils/node/before-shutdown.ts:64](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/node/before-shutdown.ts#L64)
 
 Main process shutdown handler. Will invoke every previously registered async shutdown listener
 in the queue and exit with a code of `0`. Any `Promise` rejections from any listener will

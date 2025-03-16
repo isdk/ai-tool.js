@@ -8,7 +8,7 @@
 
 > **SemaphoreIsReadyFuncType**: () => `Promise`\<`boolean`\> \| `boolean`
 
-Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:11](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/async-semaphore.ts#L11)
+Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:11](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/async-semaphore.ts#L11)
 
 ## Returns
 

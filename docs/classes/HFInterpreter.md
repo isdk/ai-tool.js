@@ -6,7 +6,7 @@
 
 # Class: HFInterpreter
 
-Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:426](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/prompt/template/jinja/src/runtime.ts#L426)
+Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:426](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/prompt/template/jinja/src/runtime.ts#L426)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:426
 
 > **new HFInterpreter**(`env`?): [`HFInterpreter`](HFInterpreter.md)
 
-Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:429](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/prompt/template/jinja/src/runtime.ts#L429)
+Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:429](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/prompt/template/jinja/src/runtime.ts#L429)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:429
 
 > **global**: `Environment`
 
-Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:427](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/prompt/template/jinja/src/runtime.ts#L427)
+Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:427](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/prompt/template/jinja/src/runtime.ts#L427)
 
 ## Methods
 
@@ -40,7 +40,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:427
 
 > **evaluate**(`statement`, `environment`): `AnyRuntimeValue`
 
-Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:1109](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/prompt/template/jinja/src/runtime.ts#L1109)
+Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:1109](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/prompt/template/jinja/src/runtime.ts#L1109)
 
 #### Parameters
 
@@ -62,7 +62,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:110
 
 > **run**(`program`): `AnyRuntimeValue`
 
-Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:436](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/prompt/template/jinja/src/runtime.ts#L436)
+Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/runtime.ts:436](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/prompt/template/jinja/src/runtime.ts#L436)
 
 Run the program.
 

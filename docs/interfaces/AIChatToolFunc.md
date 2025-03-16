@@ -6,7 +6,7 @@
 
 # Interface: AIChatToolFunc
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:134](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/chat.ts#L134)
+Defined in: [packages/ai-tool/src/utils/chat.ts:134](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/chat.ts#L134)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/ai-tool/src/utils/chat.ts:134](https://github.com/isdk/ai-
 
 > `optional` **description**: `string`
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:136](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/chat.ts#L136)
+Defined in: [packages/ai-tool/src/utils/chat.ts:136](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/chat.ts#L136)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/ai-tool/src/utils/chat.ts:136](https://github.com/isdk/ai-
 
 > **name**: `string`
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:135](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/chat.ts#L135)
+Defined in: [packages/ai-tool/src/utils/chat.ts:135](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/chat.ts#L135)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [packages/ai-tool/src/utils/chat.ts:135](https://github.com/isdk/ai-
 
 > `optional` **parameters**: `any`
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:137](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/chat.ts#L137)
+Defined in: [packages/ai-tool/src/utils/chat.ts:137](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/chat.ts#L137)
 
 ***
 
@@ -38,4 +38,4 @@ Defined in: [packages/ai-tool/src/utils/chat.ts:137](https://github.com/isdk/ai-
 
 > `optional` **strict**: `boolean`
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:138](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/chat.ts#L138)
+Defined in: [packages/ai-tool/src/utils/chat.ts:138](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/chat.ts#L138)

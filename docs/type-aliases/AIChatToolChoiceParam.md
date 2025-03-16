@@ -8,4 +8,4 @@
 
 > **AIChatToolChoiceParam**: `"auto"` \| `"none"` \| `"required"` \| [`AIChatToolChoiceObject`](../interfaces/AIChatToolChoiceObject.md)
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:141](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/chat.ts#L141)
+Defined in: [packages/ai-tool/src/utils/chat.ts:141](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/chat.ts#L141)

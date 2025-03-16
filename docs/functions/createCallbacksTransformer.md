@@ -8,7 +8,7 @@
 
 > **createCallbacksTransformer**\<`I`, `O`\>(`cb`): `TransformStream`\<`I`, `O`\>
 
-Defined in: [packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:36](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/stream/create-callbacks-stream.ts#L36)
+Defined in: [packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:36](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/stream/create-callbacks-stream.ts#L36)
 
 Creates a transform stream that invokes optional callback functions.
 The transform stream uses the provided callbacks to execute custom logic at different stages of the stream's lifecycle.

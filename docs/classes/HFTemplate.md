@@ -6,7 +6,7 @@
 
 # Class: HFTemplate
 
-Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:37](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/prompt/template/jinja/src/index.ts#L37)
+Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:37](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/prompt/template/jinja/src/index.ts#L37)
 
 ## Constructors
 
@@ -14,7 +14,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:37](h
 
 > **new HFTemplate**(`template`, `options`): [`HFTemplate`](HFTemplate.md)
 
-Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:45](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/prompt/template/jinja/src/index.ts#L45)
+Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:45](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/prompt/template/jinja/src/index.ts#L45)
 
 #### Parameters
 
@@ -38,7 +38,7 @@ The template string
 
 > **parsed**: `Program`
 
-Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:38](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/prompt/template/jinja/src/index.ts#L38)
+Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:38](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/prompt/template/jinja/src/index.ts#L38)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:38](h
 
 > `static` **global**: [`HFEnvironment`](HFEnvironment.md)
 
-Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:40](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/prompt/template/jinja/src/index.ts#L40)
+Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:40](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/prompt/template/jinja/src/index.ts#L40)
 
 ## Methods
 
@@ -54,7 +54,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:40](h
 
 > **render**(`items`?): `string`
 
-Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:55](https://github.com/isdk/ai-tool.js/blob/62dd65284e1c50d2e8546a14ae292154369bdb2c/src/utils/prompt/template/jinja/src/index.ts#L55)
+Defined in: [packages/ai-tool/src/utils/prompt/template/jinja/src/index.ts:55](https://github.com/isdk/ai-tool.js/blob/6a89194ac34437a1bc58f7ec590cd22976939ca6/src/utils/prompt/template/jinja/src/index.ts#L55)
 
 #### Parameters
 
