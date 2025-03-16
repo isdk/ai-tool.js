@@ -4,15 +4,7 @@
 const { exit } = process;
 
 let isShuttingDown = false;
-
-// hack to wait until all BeforeShutdownListener done
-(process as any).exit = (code?: number | string | null) => {
-  if (!isShuttingDown) {
-    shutdown(undefined, code).then();
-  }
-}
-
-
+let inited = false
 
 /**
  * @callback BeforeShutdownListener
@@ -101,16 +93,30 @@ export async function shutdown(signalOrEvent: string|number = 'shutdown', exitCo
  * @returns {BeforeShutdownListener} Echoes back the supplied `listener`.
  */
 export function beforeShutdown(listener: BeforeShutdownListener) {
+  if (!inited) {initShutdown()}
   if (!shutdownListeners.some((fn) => fn === listener)) {
     shutdownListeners.push(listener);
     return listener;
   }
 }
 
-// Register shutdown callback that kills the process after `SHUTDOWN_TIMEOUT` milliseconds
-// This prevents custom shutdown handlers from hanging the process indefinitely
-processOnce(SHUTDOWN_SIGNALS, forceExitAfter(SHUTDOWN_TIMEOUT));
+export function initShutdown() {
+  if (!inited) {
+    inited = true;
 
-// Register process shutdown callback
-// Will listen to incoming signal events and execute all registered handlers in the stack
-processOnce(SHUTDOWN_SIGNALS, shutdown);
+    // hack to wait until all BeforeShutdownListener done
+    (process as any).exit = (code?: number | string | null) => {
+      if (!isShuttingDown) {
+        shutdown(undefined, code).then();
+      }
+    }
+
+    // Register shutdown callback that kills the process after `SHUTDOWN_TIMEOUT` milliseconds
+    // This prevents custom shutdown handlers from hanging the process indefinitely
+    processOnce(SHUTDOWN_SIGNALS, forceExitAfter(SHUTDOWN_TIMEOUT));
+
+    // Register process shutdown callback
+    // Will listen to incoming signal events and execute all registered handlers in the stack
+    processOnce(SHUTDOWN_SIGNALS, shutdown);
+  }
+}
