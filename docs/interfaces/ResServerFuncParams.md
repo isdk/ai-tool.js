@@ -6,7 +6,7 @@
 
 # Interface: ResServerFuncParams
 
-Defined in: [packages/ai-tool/src/res-server-tools.ts:5](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/res-server-tools.ts#L5)
+Defined in: [packages/ai-tool/src/res-server-tools.ts:5](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/res-server-tools.ts#L5)
 
 ## Extends
 
@@ -22,7 +22,7 @@ Defined in: [packages/ai-tool/src/res-server-tools.ts:5](https://github.com/isdk
 
 > `optional` **\_req**: `IncomingMessage`
 
-Defined in: [packages/ai-tool/src/server-tools.ts:9](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/server-tools.ts#L9)
+Defined in: [packages/ai-tool/src/server-tools.ts:9](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/server-tools.ts#L9)
 
 #### Inherited from
 
@@ -34,7 +34,7 @@ Defined in: [packages/ai-tool/src/server-tools.ts:9](https://github.com/isdk/ai-
 
 > `optional` **\_res**: `ServerResponse`\<`IncomingMessage`\>
 
-Defined in: [packages/ai-tool/src/server-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/server-tools.ts#L10)
+Defined in: [packages/ai-tool/src/server-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/server-tools.ts#L10)
 
 #### Inherited from
 
@@ -46,7 +46,7 @@ Defined in: [packages/ai-tool/src/server-tools.ts:10](https://github.com/isdk/ai
 
 > `optional` **act**: `string`
 
-Defined in: [packages/ai-tool/src/rpc-methods-server-tool.ts:7](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/rpc-methods-server-tool.ts#L7)
+Defined in: [packages/ai-tool/src/rpc-methods-server-tool.ts:7](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/rpc-methods-server-tool.ts#L7)
 
 #### Inherited from
 
@@ -58,7 +58,7 @@ Defined in: [packages/ai-tool/src/rpc-methods-server-tool.ts:7](https://github.c
 
 > `optional` **id**: `string` \| `number`
 
-Defined in: [packages/ai-tool/src/res-server-tools.ts:6](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/res-server-tools.ts#L6)
+Defined in: [packages/ai-tool/src/res-server-tools.ts:6](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/res-server-tools.ts#L6)
 
 ***
 
@@ -66,4 +66,4 @@ Defined in: [packages/ai-tool/src/res-server-tools.ts:6](https://github.com/isdk
 
 > `optional` **val**: `any`
 
-Defined in: [packages/ai-tool/src/res-server-tools.ts:8](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/res-server-tools.ts#L8)
+Defined in: [packages/ai-tool/src/res-server-tools.ts:8](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/res-server-tools.ts#L8)

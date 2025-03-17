@@ -6,7 +6,7 @@
 
 # Interface: CancelableAbilityOptions
 
-Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:29](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/cancelable-ability.ts#L29)
+Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:29](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/cancelable-ability.ts#L29)
 
 ## Extends
 
@@ -22,7 +22,7 @@ Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:29](https://github
 
 > `optional` **asyncFeatures**: [`AsyncFeatures`](../enumerations/AsyncFeatures.md)
 
-Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:30](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/cancelable-ability.ts#L30)
+Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:30](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/cancelable-ability.ts#L30)
 
 ***
 
@@ -78,7 +78,7 @@ Defined in: node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/custom-abilit
 
 > `optional` **isReadyFn**: [`SemaphoreIsReadyFuncType`](../type-aliases/SemaphoreIsReadyFuncType.md)
 
-Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:32](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/cancelable-ability.ts#L32)
+Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:32](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/cancelable-ability.ts#L32)
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:32](https://github
 
 > `optional` **maxTaskConcurrency**: `number`
 
-Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:31](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/cancelable-ability.ts#L31)
+Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:31](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/cancelable-ability.ts#L31)
 
 ***
 

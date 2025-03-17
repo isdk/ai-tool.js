@@ -8,7 +8,7 @@
 
 > **\_lrucache**(`this`, `__namedParameters`): `Cache`
 
-Defined in: [packages/ai-tool/src/funcs/lrucache.ts:8](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/funcs/lrucache.ts#L8)
+Defined in: [packages/ai-tool/src/funcs/lrucache.ts:8](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/funcs/lrucache.ts#L8)
 
 ## Parameters
 

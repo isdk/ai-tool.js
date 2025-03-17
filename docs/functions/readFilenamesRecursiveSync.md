@@ -8,7 +8,7 @@
 
 > **readFilenamesRecursiveSync**(`dir`, `options`?): `string`[]
 
-Defined in: [packages/ai-tool/src/utils/load-file-from-paths.ts:136](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/load-file-from-paths.ts#L136)
+Defined in: [packages/ai-tool/src/utils/load-file-from-paths.ts:136](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/load-file-from-paths.ts#L136)
 
 Recursively reads all filenames in the given directory or directories.
 Optionally filters the results using a file matching callback.

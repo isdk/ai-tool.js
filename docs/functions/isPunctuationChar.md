@@ -8,7 +8,7 @@
 
 > **isPunctuationChar**(`char`): `boolean`
 
-Defined in: [packages/ai-tool/src/utils/split-sentence.ts:245](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/split-sentence.ts#L245)
+Defined in: [packages/ai-tool/src/utils/split-sentence.ts:245](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/split-sentence.ts#L245)
 
 Checks if the given character is a punctuation mark.
 This function supports both Chinese and English punctuation marks.

@@ -6,7 +6,7 @@
 
 # Enumeration: AsyncFeatureBits
 
-Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:14](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/cancelable-ability.ts#L14)
+Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:14](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/cancelable-ability.ts#L14)
 
 ## Enumeration Members
 
@@ -14,7 +14,7 @@ Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:14](https://github
 
 > **Cancelable**: `1`
 
-Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:16](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/cancelable-ability.ts#L16)
+Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:16](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/cancelable-ability.ts#L16)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:16](https://github
 
 > **MultiTask**: `0`
 
-Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:15](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/cancelable-ability.ts#L15)
+Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:15](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/cancelable-ability.ts#L15)
 
 ***
 
@@ -30,4 +30,4 @@ Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:15](https://github
 
 > **Priority**: `2`
 
-Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:17](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/cancelable-ability.ts#L17)
+Defined in: [packages/ai-tool/src/utils/cancelable-ability.ts:17](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/cancelable-ability.ts#L17)

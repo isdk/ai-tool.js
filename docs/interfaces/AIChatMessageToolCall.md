@@ -6,7 +6,7 @@
 
 # Interface: AIChatMessageToolCall
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:108](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/chat.ts#L108)
+Defined in: [packages/ai-tool/src/utils/chat.ts:108](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/chat.ts#L108)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/ai-tool/src/utils/chat.ts:108](https://github.com/isdk/ai-
 
 > **function**: `object`
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:111](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/chat.ts#L111)
+Defined in: [packages/ai-tool/src/utils/chat.ts:111](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/chat.ts#L111)
 
 #### arguments
 
@@ -30,7 +30,7 @@ Defined in: [packages/ai-tool/src/utils/chat.ts:111](https://github.com/isdk/ai-
 
 > **id**: `string`
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:110](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/chat.ts#L110)
+Defined in: [packages/ai-tool/src/utils/chat.ts:110](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/chat.ts#L110)
 
 ***
 
@@ -38,4 +38,4 @@ Defined in: [packages/ai-tool/src/utils/chat.ts:110](https://github.com/isdk/ai-
 
 > **type**: `"function"`
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:109](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/chat.ts#L109)
+Defined in: [packages/ai-tool/src/utils/chat.ts:109](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/chat.ts#L109)

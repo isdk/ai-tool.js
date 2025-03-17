@@ -8,7 +8,7 @@
 
 > **truncateToTokenLimit**(`content`, `options`?): `Promise`\<`string`\>
 
-Defined in: [packages/ai-tool/src/utils/truncate-to-token-limit.ts:31](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/truncate-to-token-limit.ts#L31)
+Defined in: [packages/ai-tool/src/utils/truncate-to-token-limit.ts:31](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/truncate-to-token-limit.ts#L31)
 
 Truncates the given content to fit within a specified token limit by removing sentences from the end.
 This function is suitable for text content with multiple sentences.

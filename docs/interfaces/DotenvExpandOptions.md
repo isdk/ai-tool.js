@@ -6,7 +6,7 @@
 
 # Interface: DotenvExpandOptions
 
-Defined in: [packages/ai-tool/src/utils/prompt/template/env.ts:202](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/template/env.ts#L202)
+Defined in: [packages/ai-tool/src/utils/prompt/template/env.ts:202](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/prompt/template/env.ts#L202)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/template/env.ts:202](https://gith
 
 > `optional` **error**: `Error`
 
-Defined in: [packages/ai-tool/src/utils/prompt/template/env.ts:203](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/template/env.ts#L203)
+Defined in: [packages/ai-tool/src/utils/prompt/template/env.ts:203](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/prompt/template/env.ts#L203)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/template/env.ts:203](https://gith
 
 > `optional` **parsed**: [`DotenvParseInput`](DotenvParseInput.md)
 
-Defined in: [packages/ai-tool/src/utils/prompt/template/env.ts:219](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/template/env.ts#L219)
+Defined in: [packages/ai-tool/src/utils/prompt/template/env.ts:219](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/prompt/template/env.ts#L219)
 
 Default: `object`
 
@@ -34,7 +34,7 @@ Object coming from dotenv's parsed result.
 
 > `optional` **processEnv**: [`DotenvPopulateInput`](DotenvPopulateInput.md)
 
-Defined in: [packages/ai-tool/src/utils/prompt/template/env.ts:212](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/template/env.ts#L212)
+Defined in: [packages/ai-tool/src/utils/prompt/template/env.ts:212](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/prompt/template/env.ts#L212)
 
 Default: `process.env`
 

@@ -6,7 +6,7 @@
 
 # Interface: Funcs
 
-Defined in: [packages/ai-tool/src/tool-func.ts:41](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/tool-func.ts#L41)
+Defined in: [packages/ai-tool/src/tool-func.ts:42](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/tool-func.ts#L42)
 
 ## Indexable
 

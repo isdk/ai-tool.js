@@ -6,7 +6,7 @@
 
 # Interface: AIChatContentPartImage
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:86](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/chat.ts#L86)
+Defined in: [packages/ai-tool/src/utils/chat.ts:86](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/chat.ts#L86)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/ai-tool/src/utils/chat.ts:86](https://github.com/isdk/ai-t
 
 > **image\_url**: `object`
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:88](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/chat.ts#L88)
+Defined in: [packages/ai-tool/src/utils/chat.ts:88](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/chat.ts#L88)
 
 #### url
 
@@ -26,4 +26,4 @@ Defined in: [packages/ai-tool/src/utils/chat.ts:88](https://github.com/isdk/ai-t
 
 > **type**: `"image_url"`
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:87](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/chat.ts#L87)
+Defined in: [packages/ai-tool/src/utils/chat.ts:87](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/chat.ts#L87)

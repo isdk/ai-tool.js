@@ -8,7 +8,7 @@
 
 > **parseObjectArguments**(`argsStr`, `scope`?, `options`?): `Promise`\<`any`\>
 
-Defined in: [packages/ai-tool/src/utils/parse-command.ts:71](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/parse-command.ts#L71)
+Defined in: [packages/ai-tool/src/utils/parse-command.ts:71](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/parse-command.ts#L71)
 
 Asynchronously parses a string of object arguments into an actual object.
 

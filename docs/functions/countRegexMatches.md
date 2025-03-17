@@ -8,7 +8,7 @@
 
 > **countRegexMatches**(`content`, `regex`): `number`
 
-Defined in: [packages/ai-tool/src/utils/count-regex-matches.ts:10](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/count-regex-matches.ts#L10)
+Defined in: [packages/ai-tool/src/utils/count-regex-matches.ts:10](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/count-regex-matches.ts#L10)
 
 Counts the number of matches for a given regular expression in a specified string.
 This function ensures that the regular expression is used globally by adding the 'g' flag,

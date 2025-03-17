@@ -8,7 +8,7 @@
 
 > **concatText**(`left`, `right`): `string`
 
-Defined in: [packages/ai-tool/src/utils/split-sentence.ts:168](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/split-sentence.ts#L168)
+Defined in: [packages/ai-tool/src/utils/split-sentence.ts:168](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/split-sentence.ts#L168)
 
 ## Parameters
 
