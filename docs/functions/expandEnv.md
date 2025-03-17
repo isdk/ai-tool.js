@@ -8,7 +8,7 @@
 
 > **expandEnv**(`options`): [`DotenvExpandOptions`](../interfaces/DotenvExpandOptions.md)
 
-Defined in: [packages/ai-tool/src/utils/prompt/template/env.ts:97](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/prompt/template/env.ts#L97)
+Defined in: [packages/ai-tool/src/utils/prompt/template/env.ts:97](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/template/env.ts#L97)
 
 Expand environment variables in the parsed object
 

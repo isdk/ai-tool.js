@@ -8,7 +8,7 @@
 
 > **assignDirs**(`dest`, `src`): `string`[]
 
-Defined in: [packages/ai-tool/src/utils/has-directory-in.ts:48](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/has-directory-in.ts#L48)
+Defined in: [packages/ai-tool/src/utils/has-directory-in.ts:48](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/has-directory-in.ts#L48)
 
 Assigns directories from the source array to the destination array if they do not already exist in the destination.
 

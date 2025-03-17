@@ -8,7 +8,7 @@
 
 > **expandPath**(`path`, `config`?): `any`
 
-Defined in: [packages/ai-tool/src/utils/load-config.ts:67](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/load-config.ts#L67)
+Defined in: [packages/ai-tool/src/utils/load-config.ts:67](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/load-config.ts#L67)
 
 ## Parameters
 

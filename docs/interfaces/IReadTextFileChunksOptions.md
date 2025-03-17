@@ -6,7 +6,7 @@
 
 # Interface: IReadTextFileChunksOptions
 
-Defined in: [packages/ai-tool/src/utils/read-text-file-chunks.ts:5](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/read-text-file-chunks.ts#L5)
+Defined in: [packages/ai-tool/src/utils/read-text-file-chunks.ts:5](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/read-text-file-chunks.ts#L5)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [packages/ai-tool/src/utils/read-text-file-chunks.ts:5](https://gith
 
 > `optional` **best**: `boolean`
 
-Defined in: [packages/ai-tool/src/utils/truncate-to-token-limit.ts:8](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/truncate-to-token-limit.ts#L8)
+Defined in: [packages/ai-tool/src/utils/truncate-to-token-limit.ts:8](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/truncate-to-token-limit.ts#L8)
 
 #### Inherited from
 
@@ -30,7 +30,7 @@ Defined in: [packages/ai-tool/src/utils/truncate-to-token-limit.ts:8](https://gi
 
 > `optional` **bySentence**: `boolean`
 
-Defined in: [packages/ai-tool/src/utils/truncate-to-token-limit.ts:4](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/truncate-to-token-limit.ts#L4)
+Defined in: [packages/ai-tool/src/utils/truncate-to-token-limit.ts:4](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/truncate-to-token-limit.ts#L4)
 
 #### Inherited from
 
@@ -42,7 +42,7 @@ Defined in: [packages/ai-tool/src/utils/truncate-to-token-limit.ts:4](https://gi
 
 > `optional` **completeSentence**: `boolean`
 
-Defined in: [packages/ai-tool/src/utils/truncate-to-token-limit.ts:9](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/truncate-to-token-limit.ts#L9)
+Defined in: [packages/ai-tool/src/utils/truncate-to-token-limit.ts:9](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/truncate-to-token-limit.ts#L9)
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ Defined in: [packages/ai-tool/src/utils/truncate-to-token-limit.ts:9](https://gi
 
 > `optional` **corrected**: `boolean`
 
-Defined in: [packages/ai-tool/src/utils/truncate-to-token-limit.ts:10](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/truncate-to-token-limit.ts#L10)
+Defined in: [packages/ai-tool/src/utils/truncate-to-token-limit.ts:10](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/truncate-to-token-limit.ts#L10)
 
 #### Inherited from
 
@@ -66,7 +66,7 @@ Defined in: [packages/ai-tool/src/utils/truncate-to-token-limit.ts:10](https://g
 
 > `optional` **countLLMTokens**: (`text`, `modelId`?) => `Promise`\<`number`\>
 
-Defined in: [packages/ai-tool/src/utils/truncate-to-token-limit.ts:12](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/truncate-to-token-limit.ts#L12)
+Defined in: [packages/ai-tool/src/utils/truncate-to-token-limit.ts:12](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/truncate-to-token-limit.ts#L12)
 
 #### Parameters
 
@@ -92,7 +92,7 @@ Defined in: [packages/ai-tool/src/utils/truncate-to-token-limit.ts:12](https://g
 
 > `optional` **metaInfo**: `RequireAtLeastOne`\<`Partial`\<[`IFileMetaInfo`](IFileMetaInfo.md)\>, `"size"`\>
 
-Defined in: [packages/ai-tool/src/utils/read-text-file-chunks.ts:8](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/read-text-file-chunks.ts#L8)
+Defined in: [packages/ai-tool/src/utils/read-text-file-chunks.ts:8](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/read-text-file-chunks.ts#L8)
 
 ***
 
@@ -100,7 +100,7 @@ Defined in: [packages/ai-tool/src/utils/read-text-file-chunks.ts:8](https://gith
 
 > `optional` **modelId**: `string`
 
-Defined in: [packages/ai-tool/src/utils/read-text-file-chunks.ts:7](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/read-text-file-chunks.ts#L7)
+Defined in: [packages/ai-tool/src/utils/read-text-file-chunks.ts:7](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/read-text-file-chunks.ts#L7)
 
 #### Overrides
 
@@ -112,7 +112,7 @@ Defined in: [packages/ai-tool/src/utils/read-text-file-chunks.ts:7](https://gith
 
 > `optional` **sentences**: `string`[]
 
-Defined in: [packages/ai-tool/src/utils/truncate-to-token-limit.ts:7](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/truncate-to-token-limit.ts#L7)
+Defined in: [packages/ai-tool/src/utils/truncate-to-token-limit.ts:7](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/truncate-to-token-limit.ts#L7)
 
 #### Inherited from
 
@@ -124,7 +124,7 @@ Defined in: [packages/ai-tool/src/utils/truncate-to-token-limit.ts:7](https://gi
 
 > `optional` **size**: `number`
 
-Defined in: [packages/ai-tool/src/utils/read-text-file-chunks.ts:6](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/read-text-file-chunks.ts#L6)
+Defined in: [packages/ai-tool/src/utils/read-text-file-chunks.ts:6](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/read-text-file-chunks.ts#L6)
 
 #### Overrides
 
@@ -136,7 +136,7 @@ Defined in: [packages/ai-tool/src/utils/read-text-file-chunks.ts:6](https://gith
 
 > `optional` **truncLastSection**: `boolean`
 
-Defined in: [packages/ai-tool/src/utils/truncate-to-token-limit.ts:11](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/truncate-to-token-limit.ts#L11)
+Defined in: [packages/ai-tool/src/utils/truncate-to-token-limit.ts:11](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/truncate-to-token-limit.ts#L11)
 
 #### Inherited from
 

@@ -6,7 +6,7 @@
 
 # Interface: BinarySemaphoreOptions
 
-Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:21](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/async-semaphore.ts#L21)
+Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:21](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/async-semaphore.ts#L21)
 
 ## Extended by
 
@@ -18,7 +18,7 @@ Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:21](https://github.co
 
 > `optional` **capacity**: `number`
 
-Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:25](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/async-semaphore.ts#L25)
+Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:25](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/async-semaphore.ts#L25)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:25](https://github.co
 
 > `optional` **initFn**: () => `any`
 
-Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:22](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/async-semaphore.ts#L22)
+Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:22](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/async-semaphore.ts#L22)
 
 #### Returns
 
@@ -38,7 +38,7 @@ Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:22](https://github.co
 
 > `optional` **pauseFn**: () => `void`
 
-Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:23](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/async-semaphore.ts#L23)
+Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:23](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/async-semaphore.ts#L23)
 
 #### Returns
 
@@ -50,7 +50,7 @@ Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:23](https://github.co
 
 > `optional` **resumeFn**: () => `void`
 
-Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:24](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/async-semaphore.ts#L24)
+Defined in: [packages/ai-tool/src/utils/async-semaphore.ts:24](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/async-semaphore.ts#L24)
 
 #### Returns
 

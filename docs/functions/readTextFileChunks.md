@@ -8,7 +8,7 @@
 
 > **readTextFileChunks**(`filePath`, `options`?): `AsyncIterable`\<`string`\>
 
-Defined in: [packages/ai-tool/src/utils/read-text-file-chunks.ts:41](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/read-text-file-chunks.ts#L41)
+Defined in: [packages/ai-tool/src/utils/read-text-file-chunks.ts:41](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/read-text-file-chunks.ts#L41)
 
 Reads a text file and yields chunks of text that are within a specified token limit.
 This function supports both small files that can be read entirely into memory,

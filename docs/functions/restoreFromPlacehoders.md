@@ -8,7 +8,7 @@
 
 > **restoreFromPlacehoders**(`content`, `placehoders`, `options`?): `string`
 
-Defined in: [packages/ai-tool/src/utils/parse-command.ts:540](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/parse-command.ts#L540)
+Defined in: [packages/ai-tool/src/utils/parse-command.ts:540](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/parse-command.ts#L540)
 
 Restores the original substrings from placeholders in the given content.
 

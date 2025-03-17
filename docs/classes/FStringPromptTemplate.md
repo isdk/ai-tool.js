@@ -6,7 +6,7 @@
 
 # Class: FStringPromptTemplate
 
-Defined in: [packages/ai-tool/src/utils/prompt/f-string-prompt-template.ts:15](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/prompt/f-string-prompt-template.ts#L15)
+Defined in: [packages/ai-tool/src/utils/prompt/f-string-prompt-template.ts:15](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/f-string-prompt-template.ts#L15)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/f-string-prompt-template.ts:15](h
 
 > **new FStringPromptTemplate**(`template`?, `options`?): [`FStringPromptTemplate`](FStringPromptTemplate.md)
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:69](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/prompt/prompt-template.ts#L69)
+Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:69](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/prompt-template.ts#L69)
 
 #### Parameters
 
@@ -44,7 +44,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:69](https://gi
 
 > **compiledTemplate**: [`FStringPromptTemplateNode`](../type-aliases/FStringPromptTemplateNode.md)[]
 
-Defined in: [packages/ai-tool/src/utils/prompt/f-string-prompt-template.ts:16](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/prompt/f-string-prompt-template.ts#L16)
+Defined in: [packages/ai-tool/src/utils/prompt/f-string-prompt-template.ts:16](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/f-string-prompt-template.ts#L16)
 
 #### Overrides
 
@@ -56,7 +56,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/f-string-prompt-template.ts:16](h
 
 > **data**: `undefined` \| `Record`\<`string`, `any`\>
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:24](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/prompt/prompt-template.ts#L24)
+Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:24](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/prompt-template.ts#L24)
 
 #### Inherited from
 
@@ -68,7 +68,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:24](https://gi
 
 > **inputVariables**: `undefined` \| `string`[]
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:25](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/prompt/prompt-template.ts#L25)
+Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:25](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/prompt-template.ts#L25)
 
 #### Inherited from
 
@@ -80,7 +80,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:25](https://gi
 
 > **template**: `string`
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:22](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/prompt/prompt-template.ts#L22)
+Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:22](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/prompt-template.ts#L22)
 
 #### Inherited from
 
@@ -92,7 +92,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:22](https://gi
 
 > **templateFormat**: `undefined` \| `string`
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:23](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/prompt/prompt-template.ts#L23)
+Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:23](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/prompt-template.ts#L23)
 
 #### Inherited from
 
@@ -262,7 +262,7 @@ The Root Factory class
 
 > **\_format**(`data`): `string`
 
-Defined in: [packages/ai-tool/src/utils/prompt/f-string-prompt-template.ts:56](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/prompt/f-string-prompt-template.ts#L56)
+Defined in: [packages/ai-tool/src/utils/prompt/f-string-prompt-template.ts:56](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/f-string-prompt-template.ts#L56)
 
 #### Parameters
 
@@ -284,7 +284,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/f-string-prompt-template.ts:56](h
 
 > **\_initialize**(`options`?): `void`
 
-Defined in: [packages/ai-tool/src/utils/prompt/f-string-prompt-template.ts:47](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/prompt/f-string-prompt-template.ts#L47)
+Defined in: [packages/ai-tool/src/utils/prompt/f-string-prompt-template.ts:47](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/f-string-prompt-template.ts#L47)
 
 #### Parameters
 
@@ -306,7 +306,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/f-string-prompt-template.ts:47](h
 
 > **filterData**(`data`): `Record`\<`string`, `any`\>
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:62](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/prompt/prompt-template.ts#L62)
+Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:62](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/prompt-template.ts#L62)
 
 Validate/filter the data in inputVariables
 
@@ -330,7 +330,7 @@ Validate/filter the data in inputVariables
 
 > **format**(`data`?): `Promise`\<`string`\>
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:109](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/prompt/prompt-template.ts#L109)
+Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:109](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/prompt-template.ts#L109)
 
 #### Parameters
 
@@ -352,7 +352,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:109](https://g
 
 > **getVariables**(`template`): `string`[]
 
-Defined in: [packages/ai-tool/src/utils/prompt/f-string-prompt-template.ts:43](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/prompt/f-string-prompt-template.ts#L43)
+Defined in: [packages/ai-tool/src/utils/prompt/f-string-prompt-template.ts:43](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/f-string-prompt-template.ts#L43)
 
 #### Parameters
 
@@ -370,7 +370,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/f-string-prompt-template.ts:43](h
 
 > `abstract` **initialize**(`options`?): `void`
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:96](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/prompt/prompt-template.ts#L96)
+Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:96](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/prompt-template.ts#L96)
 
 **`Internal`**
 
@@ -396,7 +396,7 @@ initialize instance method
 
 > **partial**(`data`): [`PromptTemplate`](PromptTemplate.md)
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:139](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/prompt/prompt-template.ts#L139)
+Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:139](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/prompt-template.ts#L139)
 
 it can make sense to "partial" a prompt template - eg pass in a subset of the required values, as to create a new prompt template which expects only the remaining subset of values.
 
@@ -424,7 +424,7 @@ the new partial PromptTemplate instance
 
 > **toJSON**(`options`): [`PromptTemplateOptions`](../interfaces/PromptTemplateOptions.md)
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:147](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/prompt/prompt-template.ts#L147)
+Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:147](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/prompt-template.ts#L147)
 
 #### Parameters
 
@@ -637,7 +637,7 @@ the forEach callback function
 
 > `static` **format**(`options`): `Promise`\<`string`\>
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:31](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/prompt/prompt-template.ts#L31)
+Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:31](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/prompt-template.ts#L31)
 
 #### Parameters
 
@@ -659,7 +659,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:31](https://gi
 
 > `static` **formatIf**(`options`): `Promise`\<`undefined` \| `string`\>
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:41](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/prompt/prompt-template.ts#L41)
+Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:41](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/prompt-template.ts#L41)
 
 If the given options.template is the template, perform formatting using that template.
 
@@ -747,7 +747,7 @@ the name to register
 
 > `static` **from**(`template`?, `options`?): [`PromptTemplate`](PromptTemplate.md)
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:27](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/prompt/prompt-template.ts#L27)
+Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:27](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/prompt-template.ts#L27)
 
 #### Parameters
 
@@ -929,7 +929,7 @@ the unique name in the factory
 
 > `static` **isTemplate**(`templateOpt`): `boolean`
 
-Defined in: [packages/ai-tool/src/utils/prompt/f-string-prompt-template.ts:18](https://github.com/isdk/ai-tool.js/blob/83a1524a1644365964efc043a7a7991d8fd46b49/src/utils/prompt/f-string-prompt-template.ts#L18)
+Defined in: [packages/ai-tool/src/utils/prompt/f-string-prompt-template.ts:18](https://github.com/isdk/ai-tool.js/blob/760349925bceb5de6b4188926a13bfb3f0ce4ced/src/utils/prompt/f-string-prompt-template.ts#L18)
 
 #### Parameters
 
