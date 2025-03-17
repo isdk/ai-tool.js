@@ -11,7 +11,7 @@ export default defineConfig({
   format: ['cjs', 'esm'],
   // Inject cjs and esm shims:https://tsup.egoist.dev/#inject-cjs-and-esm-shims
   shims: true,
-  // minify: 'terser',
+  minify: 'terser',
   terserOptions: {
     // compress: {
     //   drop_console: true,
