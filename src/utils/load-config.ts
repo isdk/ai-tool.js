@@ -12,7 +12,7 @@ export function loadConfigFile(filename: string, searchPaths: string[] = ['.']) 
   const configs = searchPaths.map(p => {
     return ConfigFile.loadSync(path.resolve(p, filename))
   }).filter(Boolean);
- return defaultsDeep({}, ...configs)
+  return defaultsDeep({}, ...configs.reverse())
 }
 
 export function expandConfig(config: any, defaultConfig: any) {
