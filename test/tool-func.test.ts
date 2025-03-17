@@ -10,6 +10,29 @@ describe('ToolFunc', () => {
     }
   })
 
+  it('should register a func with alias', async () => {
+    const params = {"a": "any", b: "any"}
+    ToolFunc.register({
+      name: 'test',
+      params,
+      func: ({a, b}: {a: any, b: any}) => {
+        return a >15 ? b : a
+      },
+      alias: ['test2', 'test3']
+    })
+    check(ToolFunc.get('test'))
+    check(ToolFunc.get('test2'))
+    check(ToolFunc.get('test3'))
+    ToolFunc.unregister('test')
+
+    function check(result: ToolFunc) {
+      expect(result).toBeInstanceOf(ToolFunc)
+      expect(result.name).toBe('test')
+      expect(result.params).toStrictEqual(params)
+      expect(result.func).toBeInstanceOf(Function)
+    }
+  })
+
   it('should register a func with named params', async () => {
     const params = {"a": "any", b: "any"}
     ToolFunc.register({
