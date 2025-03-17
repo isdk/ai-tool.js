@@ -28,6 +28,7 @@ export interface BaseFuncItem {
   setup?: (this: ToolFunc, options?: FuncItem) => void;
   isApi?: boolean; // treat as server API
   stream?: boolean,
+  alias?: string|string[];
 }
 
 export interface FuncItem extends BaseFuncItem {
@@ -54,10 +55,15 @@ export declare interface ToolFunc extends BaseFunc {
 
 export class ToolFunc extends AdvancePropertyManager {
   static items: Funcs = {};
+  static aliases: {[name: string]: string} = {};
   static dataPath: string;
 
   static get(name: string) {
-    return this.items[name]
+    let result = this.items[name];
+    if (!result && (name = this.aliases[name])) {
+      result = this.items[name]
+    }
+    return result
   }
 
   static list() {
@@ -176,6 +182,23 @@ export class ToolFunc extends AdvancePropertyManager {
         return result.register()
       }
       this.items[name] = options as ToolFunc
+
+      if (options.alias) {
+        const aliases = options.alias
+        if (typeof aliases === 'string') {
+          if (this.aliases[aliases]) {
+            throwError(`Alias ${aliases} already exists for ${name}`)
+          }
+          this.aliases[aliases] = name
+        } else if (Array.isArray(aliases)) {
+          for (const alias of aliases) {
+            if (this.aliases[alias]) {
+              throwError(`Alias ${alias} already exists for ${name}`)
+            }
+            this.aliases[alias] = name
+          }
+        }
+      }
       result = options as ToolFunc
     } else {result = false}
     return result
@@ -371,6 +394,7 @@ export const ToolFuncSchema = {
     //   return result;
     // },
   },
+  alias: {type: ['array', 'string']},
 }
 
 ToolFunc.defineProperties(ToolFunc, ToolFuncSchema)
