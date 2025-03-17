@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.5.7](https://github.com/isdk/ai-tool.js/compare/v0.5.6...v0.5.7) (2025-03-17)
+
+
+### Features
+
+* add alias option to ToolFunc ([c79b660](https://github.com/isdk/ai-tool.js/commit/c79b66002564cdad79b668b6133dd66d3560ca83))
+
+
+### Bug Fixes
+
+* should unregister alias too ([24a1aa8](https://github.com/isdk/ai-tool.js/commit/24a1aa8225b69a9f5700574863e517736665a39a))
+
 ## [0.5.6](https://github.com/isdk/ai-tool.js/compare/v0.5.5...v0.5.6) (2025-03-17)
 
 
