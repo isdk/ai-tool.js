@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.5.6](https://github.com/isdk/ai-tool.js/compare/v0.5.5...v0.5.6) (2025-03-17)
+
+
+### Bug Fixes
+
+* config files merge order error ([7603499](https://github.com/isdk/ai-tool.js/commit/760349925bceb5de6b4188926a13bfb3f0ce4ced))
+
 ## [0.5.5](https://github.com/isdk/ai-tool.js/compare/v0.5.4...v0.5.5) (2025-03-16)
 
 ## [0.5.4](https://github.com/isdk/ai-tool.js/compare/v0.5.3...v0.5.4) (2025-03-16)
