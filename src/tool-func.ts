@@ -205,9 +205,19 @@ export class ToolFunc extends AdvancePropertyManager {
   }
 
   static unregister(name: string): ToolFunc|undefined {
-    const result = this.items[name]
+    const result = this.get(name)
     if (result) {
       delete this.items[name]
+      if (result.alias) {
+        const aliases = result.alias
+        if (typeof aliases === 'string') {
+          delete this.aliases[aliases]
+        } else if (Array.isArray(aliases)) {
+          for (const alias of aliases) {
+            delete this.aliases[alias]
+          }
+        }
+      }
     }
     return result
   }
