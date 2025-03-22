@@ -29,6 +29,7 @@ export function getEnvVairables(value: string) {
 }
 
 export function interpolateEnv(value: string, processEnv: Record<string, any>, parsed?: Record<string, any>) {
+  value += ''
   return value.replace(DOTENV_SUBSTITUTION_REGEX, (match, escaped, dollarSign, openBrace, key, defaultValue, closeBrace) => {
     if (openBrace && !closeBrace) {return match}
     if (escaped === '\\') {

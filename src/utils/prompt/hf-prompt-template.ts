@@ -128,6 +128,20 @@ export class HfPromptTemplate extends PromptTemplate {
   }
 
   _format(data: Record<string, any>): string {
+    // clean the self references object in the data
+    data = Object.fromEntries(Object.entries(data).filter(([key, value]) => !isSelfReference(value)))
+    function isSelfReference(value: any, visited?: Set<any>) {
+      if (!visited) {visited = new Set()}
+      if (visited.has(value)) {
+        return true
+      }
+
+      if (typeof value === 'object' && value !== null) {
+        visited.add(value)
+        return Object.values(value).some(v => isSelfReference(v, visited))
+      }
+      return false
+    }
     return this.compiledTemplate.render(data)
   }
 }
