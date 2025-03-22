@@ -8,7 +8,7 @@
 
 > `const` **LLM\_TOKENIZER\_NAMES**: `object`
 
-Defined in: [packages/ai-tool/src/utils/llm-tokenizer.ts:13](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/llm-tokenizer.ts#L13)
+Defined in: [packages/ai-tool/src/utils/llm-tokenizer.ts:13](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/llm-tokenizer.ts#L13)
 
 ## Type declaration
 

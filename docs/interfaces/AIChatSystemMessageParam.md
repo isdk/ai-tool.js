@@ -6,7 +6,7 @@
 
 # Interface: AIChatSystemMessageParam
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:63](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/chat.ts#L63)
+Defined in: [packages/ai-tool/src/utils/chat.ts:63](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/chat.ts#L63)
 
 ## Extends
 
@@ -22,7 +22,7 @@ Defined in: [packages/ai-tool/src/utils/chat.ts:63](https://github.com/isdk/ai-t
 
 > **content**: `string`
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:65](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/chat.ts#L65)
+Defined in: [packages/ai-tool/src/utils/chat.ts:65](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/chat.ts#L65)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [packages/ai-tool/src/utils/chat.ts:65](https://github.com/isdk/ai-t
 
 > `optional` **private**: `boolean`
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:57](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/chat.ts#L57)
+Defined in: [packages/ai-tool/src/utils/chat.ts:57](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/chat.ts#L57)
 
 #### Inherited from
 
@@ -42,7 +42,7 @@ Defined in: [packages/ai-tool/src/utils/chat.ts:57](https://github.com/isdk/ai-t
 
 > `optional` **replies**: `Record`\<`string`, `Partial`\<[`AIChatMessageParam`](../type-aliases/AIChatMessageParam.md)\>\>
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:56](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/chat.ts#L56)
+Defined in: [packages/ai-tool/src/utils/chat.ts:56](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/chat.ts#L56)
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ Defined in: [packages/ai-tool/src/utils/chat.ts:56](https://github.com/isdk/ai-t
 
 > **role**: `"system"`
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:64](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/chat.ts#L64)
+Defined in: [packages/ai-tool/src/utils/chat.ts:64](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/chat.ts#L64)
 
 #### Overrides
 
@@ -66,7 +66,7 @@ Defined in: [packages/ai-tool/src/utils/chat.ts:64](https://github.com/isdk/ai-t
 
 > `optional` **templateFormat**: `string`
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:66](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/chat.ts#L66)
+Defined in: [packages/ai-tool/src/utils/chat.ts:66](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/chat.ts#L66)
 
 ***
 
@@ -74,7 +74,7 @@ Defined in: [packages/ai-tool/src/utils/chat.ts:66](https://github.com/isdk/ai-t
 
 > `optional` **thinking**: `string`
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:59](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/chat.ts#L59)
+Defined in: [packages/ai-tool/src/utils/chat.ts:59](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/chat.ts#L59)
 
 #### Inherited from
 
@@ -86,7 +86,7 @@ Defined in: [packages/ai-tool/src/utils/chat.ts:59](https://github.com/isdk/ai-t
 
 > `optional` **tools**: `Record`\<`string`, `string`\>
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:58](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/chat.ts#L58)
+Defined in: [packages/ai-tool/src/utils/chat.ts:58](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/chat.ts#L58)
 
 #### Inherited from
 
@@ -98,7 +98,7 @@ Defined in: [packages/ai-tool/src/utils/chat.ts:58](https://github.com/isdk/ai-t
 
 > `optional` **toRole**: `string` \| `string`[] \| `Record`\<`string`, `Partial`\<[`AIChatMessageParam`](../type-aliases/AIChatMessageParam.md)\>\>
 
-Defined in: [packages/ai-tool/src/utils/chat.ts:55](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/chat.ts#L55)
+Defined in: [packages/ai-tool/src/utils/chat.ts:55](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/chat.ts#L55)
 
 #### Inherited from
 

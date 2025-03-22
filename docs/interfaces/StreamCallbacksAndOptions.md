@@ -6,7 +6,7 @@
 
 # Interface: StreamCallbacksAndOptions\<I, O\>
 
-Defined in: [packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:5](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/stream/create-callbacks-stream.ts#L5)
+Defined in: [packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:5](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/stream/create-callbacks-stream.ts#L5)
 
 Configuration options and helper callback methods for stream lifecycle events.
 
@@ -22,7 +22,7 @@ Configuration options and helper callback methods for stream lifecycle events.
 
 > `optional` **onError**: (`error`) => `void` \| `Promise`\<`void`\>
 
-Defined in: [packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:12](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/stream/create-callbacks-stream.ts#L12)
+Defined in: [packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:12](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/stream/create-callbacks-stream.ts#L12)
 
 #### Parameters
 
@@ -40,7 +40,7 @@ Defined in: [packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:12](ht
 
 > `optional` **onFinal**: (`controller`) => `void` \| `Promise`\<`void`\>
 
-Defined in: [packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:11](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/stream/create-callbacks-stream.ts#L11)
+Defined in: [packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:11](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/stream/create-callbacks-stream.ts#L11)
 
 `onFinal`: Called once when the stream is closed with the final completion message.
 
@@ -60,7 +60,7 @@ Defined in: [packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:11](ht
 
 > `optional` **onStart**: (`controller`) => `void` \| `Promise`\<`void`\>
 
-Defined in: [packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:7](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/stream/create-callbacks-stream.ts#L7)
+Defined in: [packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:7](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/stream/create-callbacks-stream.ts#L7)
 
 `onStart`: Called once when the stream is initialized.
 
@@ -80,7 +80,7 @@ Defined in: [packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:7](htt
 
 > `optional` **onTransform**: (`chunk`, `controller`) => `void` \| `O` \| `Promise`\<`void` \| `O`\>
 
-Defined in: [packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:9](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/stream/create-callbacks-stream.ts#L9)
+Defined in: [packages/ai-tool/src/utils/stream/create-callbacks-stream.ts:9](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/stream/create-callbacks-stream.ts#L9)
 
 `onToken`: Called for each tokenized message.
 

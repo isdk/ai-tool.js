@@ -6,7 +6,7 @@
 
 # Interface: DotenvExpandOutput
 
-Defined in: [packages/ai-tool/src/utils/prompt/template/env.ts:222](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/prompt/template/env.ts#L222)
+Defined in: [packages/ai-tool/src/utils/prompt/template/env.ts:223](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/template/env.ts#L223)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/template/env.ts:222](https://gith
 
 > `optional` **error**: `Error`
 
-Defined in: [packages/ai-tool/src/utils/prompt/template/env.ts:223](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/prompt/template/env.ts#L223)
+Defined in: [packages/ai-tool/src/utils/prompt/template/env.ts:224](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/template/env.ts#L224)
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: [packages/ai-tool/src/utils/prompt/template/env.ts:223](https://gith
 
 > `optional` **parsed**: [`DotenvParseOutput`](DotenvParseOutput.md)
 
-Defined in: [packages/ai-tool/src/utils/prompt/template/env.ts:224](https://github.com/isdk/ai-tool.js/blob/077730e62e6c723611b64a587e36b69766741af4/src/utils/prompt/template/env.ts#L224)
+Defined in: [packages/ai-tool/src/utils/prompt/template/env.ts:225](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/template/env.ts#L225)
