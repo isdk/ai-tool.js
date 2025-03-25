@@ -1,5 +1,5 @@
 import { PromptExamples } from "./prompt-example-selector";
-import { PromptTemplate, PromptTemplateOptions } from "./prompt-template";
+import {StringTemplate as PromptTemplate, StringTemplateOptions as PromptTemplateOptions} from '@isdk/template-engines'
 
 export function sortedValues<T>(values: Record<string, T>): T[] {
   return Object.keys(values)

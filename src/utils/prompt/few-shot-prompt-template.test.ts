@@ -1,7 +1,6 @@
 import { FewShotPromptTemplate } from './few-shot-prompt-template'
-import './hf-prompt-template'
+import { PromptTemplate } from './index'
 import { PromptExampleSelector, PromptExamples } from './prompt-example-selector';
-import { PromptTemplate } from './prompt-template'
 
 class ExampleSelector extends PromptExampleSelector<Record<string, any>> {
   selectExample(example: Record<string, any>) {

@@ -15,7 +15,7 @@ export function loadConfigFile(filename: string, searchPaths: string[] = ['.']) 
   return defaultsDeep({}, ...configs.reverse())
 }
 
-export function expandConfig(config: any, defaultConfig: any) {
+export function expandConfig(config: any, defaultConfig?: any) {
   const processEnv = { ...process.env, ...defaultConfig }
 
   return expandObjEnv(config, {
