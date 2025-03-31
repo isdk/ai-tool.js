@@ -1,80 +1,12 @@
-import {existsSync, mkdirSync, readdirSync, statSync, writeFileSync, type Dirent} from 'fs'
+import {statSync, type Dirent} from 'fs'
 import path from 'path'
-import { Config as ConfigFile } from 'load-config-file'
-import { parse, stringify } from 'yaml'
+import { ConfigFile, registerYamlTag, traverseFolderSync } from '@isdk/util'
 import { regexp } from 'yaml-types'
-import {mimeType} from 'mime-type/with-db'
 
-import { getMultiLevelExtname } from './filename'
+export {mimeType} from 'mime-type/with-db'
+export { ConfigFile, registerYamlTag, parseYaml, stringifyYaml} from '@isdk/util'
 
-import type { CreateNodeOptions, DocumentOptions, ParseOptions, SchemaOptions, Tags, ToJSOptions, ToStringOptions } from 'yaml'
-
-export { mimeType }
-
-const YamlTags: Tags = [regexp]
-
-export function registerYamlTag(tags: any) {
-  if (!Array.isArray(tags)) {
-    tags = [tags]
-  }
-  for (const tag of tags) {
-    const result = YamlTags.indexOf(tag) === -1
-    if (result) { YamlTags.push(tag) }
-  }
-}
-
-export function parseYaml(content: string, options?: ParseOptions & DocumentOptions & SchemaOptions & ToJSOptions) {
-  if (!options) {
-    options = {customTags: YamlTags}
-  } else {
-    if (!options.customTags) {
-      options.customTags = YamlTags
-    } else if (Array.isArray(options.customTags)) {
-      options.customTags = YamlTags.concat(options.customTags)
-    } else if (typeof options.customTags === 'function') {
-      const customTags = options.customTags
-      options.customTags = (tags)=> customTags(YamlTags.concat(tags))
-    }
-  }
-  return parse(content, options)
-}
-
-export function stringifyYaml(content: any, options?: DocumentOptions & SchemaOptions & ParseOptions & CreateNodeOptions & ToStringOptions) {
-  if (!options) {
-    options = {customTags: YamlTags}
-  } else {
-    if (!options.customTags) {
-      options.customTags = YamlTags
-    } else if (Array.isArray(options.customTags)) {
-      options.customTags = YamlTags.concat(options.customTags)
-    } else if (typeof options.customTags === 'function') {
-      const customTags = options.customTags
-      options.customTags = (tags)=> customTags(YamlTags.concat(tags))
-    }
-  }
-  return stringify(content, options)
-}
-
-function parseJson(content: string) {
-  return JSON.parse(content)
-}
-
-ConfigFile.register(['.yml', '.yaml'], parseYaml as any)
-ConfigFile.register(['.json'], parseJson)
-
-export { ConfigFile }
-
-function traverseFolderSync(directoryPath: string, fileHandler: (filePath: string, entry: Dirent) => void) {
-  const files = readdirSync(directoryPath, { withFileTypes: true, recursive: true });
-
-  for (const entry of files) {
-    const filePath = path.join(directoryPath, entry.name);
-
-    if (entry.isFile()) {
-      fileHandler(filePath, entry);
-    }
-  }
-}
+registerYamlTag(regexp);
 
 interface ConfigFilesFilter {
   after?: {[filepath: string]: number},
@@ -92,7 +24,7 @@ export function getConfigFileNames(directoryPath: string, filter?: ConfigFilesFi
     ['.yml', '.yaml', '.json']
 
   traverseFolderSync(directoryPath, (filePath, entry: Dirent) => {
-    if (exclude?.includes(filePath)) { return }
+    if (exclude?.includes(filePath) || !entry.isFile()) { return }
     const extname = path.extname(filePath)
     const stat = statSync(filePath);
     if (extensions.includes(extname)) {
@@ -112,21 +44,5 @@ export function getConfigs(directoryPath: string, filter?: ConfigFilesFilter) {
 }
 
 export function saveConfigFile(filename: string, config: any, extLevel = 1) {
-  if (filename[0] === '.') {extLevel++}
-  const extname = getMultiLevelExtname(filename, extLevel)
-  if (!extname || (extname.split('.').length <= 1)) {filename += '.yaml'}
-  const mime = mimeType.lookup(filename) as string
-  if (mime === 'application/json')
-    config = JSON.stringify(config, null, 2)
-  else if (mime === 'text/yaml') {
-    config = stringifyYaml(config)
-  } else {
-    throw new Error(`${filename} unsupported mime type: ${mime}`)
-  }
-  const dirname = path.dirname(filename)
-  if (!existsSync(dirname)) {
-    mkdirSync(dirname, {recursive: true})
-  }
-  writeFileSync(filename, config, {encoding: 'utf8'})
-  return filename
+  return ConfigFile.saveSync(filename, config, {extLevel})
 }
