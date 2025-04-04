@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.6.0](https://github.com/isdk/ai-tool.js/compare/v0.5.8...v0.6.0) (2025-04-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* uses @isdk/util
+* extract PrmoptTemplates as @isdk/template-engines
+
+### Features
+
+* add resolveSymlinks option ([b0ee949](https://github.com/isdk/ai-tool.js/commit/b0ee9498dddfa5222989cf00502bb34c601df743))
+
+
+### Refactor
+
+* extract filename related functions to @isdk/util ([7903c21](https://github.com/isdk/ai-tool.js/commit/7903c21621167d0a92bb8854ffc6de7d95f0793f))
+* extract getMultiLevelExtname to @isdk/util ([801f271](https://github.com/isdk/ai-tool.js/commit/801f27101d518c0d4986d82d0d05d139ff6df581))
+* extract PrmoptTemplates as @isdk/template-engines ([1d95234](https://github.com/isdk/ai-tool.js/commit/1d952348af2f60b02e401e62a7110ef7c7a7e8e2))
+* uses @isdk/util ([4676dee](https://github.com/isdk/ai-tool.js/commit/4676deeb8aa340b0797ead9fcb2dc6a7ce59b73a))
+
 ## [0.5.8](https://github.com/isdk/ai-tool.js/compare/v0.5.7...v0.5.8) (2025-03-22)
 
 ## [0.5.7](https://github.com/isdk/ai-tool.js/compare/v0.5.6...v0.5.7) (2025-03-17)
