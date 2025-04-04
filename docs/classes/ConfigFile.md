@@ -6,41 +6,34 @@
 
 # Class: ConfigFile
 
-Defined in: node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:28
+Defined in: node\_modules/.pnpm/@isdk+util@0.3.0/node\_modules/@isdk/util/dist/index.d.ts:30
+
+Represents a configuration file utility class that provides methods to load and save configuration files.
+It supports multiple file formats such as YAML, JSON, etc., by registering corresponding parsers and stringifiers.
+
+## Example
+
+```typescript
+// Register a custom file type handler
+ConfigFile.register('.custom', (content) => {
+  return { data: content.toUpperCase() }; // Example parser
+}, (obj) => {
+  return obj.data.toLowerCase(); // Example stringifier
+});
+
+// Save a configuration file
+ConfigFile.saveSync('config.custom', { key: 'value' });
+
+// Load a configuration file
+const config = ConfigFile.loadSync('config.custom');
+console.log(config); // Output: { key: 'value' }
+```
 
 ## Constructors
 
 ### new ConfigFile()
 
-> **new ConfigFile**(`aOptions`?): [`ConfigFile`](ConfigFile.md)
-
-Defined in: node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:42
-
-#### Parameters
-
-##### aOptions?
-
-`IConfigOptions`
-
-#### Returns
-
-[`ConfigFile`](ConfigFile.md)
-
-### new ConfigFile()
-
-> **new ConfigFile**(`aPath`, `aOptions`?): [`ConfigFile`](ConfigFile.md)
-
-Defined in: node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:43
-
-#### Parameters
-
-##### aPath
-
-`string`
-
-##### aOptions?
-
-`IConfigOptions`
+> **new ConfigFile**(): [`ConfigFile`](ConfigFile.md)
 
 #### Returns
 
@@ -48,306 +41,129 @@ Defined in: node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config
 
 ## Properties
 
-### configurators
+### stringifys
 
-> **configurators**: `IConfigurator`
+> `static` **stringifys**: `Record`\<`string`, `StringifyFunc`\>
 
-Defined in: node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:37
+Defined in: node\_modules/.pnpm/@isdk+util@0.3.0/node\_modules/@isdk/util/dist/index.d.ts:34
 
-***
-
-### fs
-
-> **fs**: `IFileSystem`
-
-Defined in: node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:38
-
-***
-
-### path
-
-> **path**: `any`
-
-Defined in: node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:39
-
-***
-
-### readFile
-
-> **readFile**: `any`
-
-Defined in: node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:40
+A record of registered stringify functions for different file extensions.
 
 ## Methods
 
-### load()
-
-#### Call Signature
-
-> **load**(`aPath`, `done`): `void`
-
-Defined in: node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:44
-
-##### Parameters
-
-###### aPath
-
-`string`
-
-###### done
-
-`ConfigCallBackFn`
-
-##### Returns
-
-`void`
-
-#### Call Signature
-
-> **load**(`done`): `void`
-
-Defined in: node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:45
-
-##### Parameters
-
-###### done
-
-`ConfigCallBackFn`
-
-##### Returns
-
-`void`
-
-#### Call Signature
-
-> **load**(`aPath`, `aOptions`, `done`): `void`
-
-Defined in: node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:46
-
-##### Parameters
-
-###### aPath
-
-`string`
-
-###### aOptions
-
-`IConfigOptions`
-
-###### done
-
-`ConfigCallBackFn`
-
-##### Returns
-
-`void`
-
-#### Call Signature
-
-> **load**(`aPath`, `aOptions`?): `Promise`\<`any`\>
-
-Defined in: node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:47
-
-##### Parameters
-
-###### aPath
-
-`string`
-
-###### aOptions?
-
-`IConfigOptions`
-
-##### Returns
-
-`Promise`\<`any`\>
-
-#### Call Signature
-
-> **load**(`aOptions`?): `Promise`\<`any`\>
-
-Defined in: node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:48
-
-##### Parameters
-
-###### aOptions?
-
-`IConfigOptions`
-
-##### Returns
-
-`Promise`\<`any`\>
-
-***
-
 ### loadSync()
 
-#### Call Signature
+> `static` **loadSync**(`filename`, `options`?): `any`
 
-> **loadSync**(`aPath`, `aOptions`?): `any`
+Defined in: node\_modules/.pnpm/@isdk+util@0.3.0/node\_modules/@isdk/util/dist/index.d.ts:61
 
-Defined in: node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:49
-
-##### Parameters
-
-###### aPath
-
-`string`
-
-###### aOptions?
-
-`IConfigOptions`
-
-##### Returns
-
-`any`
-
-#### Call Signature
-
-> **loadSync**(`aOptions`?): `any`
-
-Defined in: node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:50
-
-##### Parameters
-
-###### aOptions?
-
-`IConfigOptions`
-
-##### Returns
-
-`any`
-
-***
-
-### load()
-
-#### Call Signature
-
-> `static` **load**(`aPath`, `aOptions`?): `Promise`\<`any`\>
-
-Defined in: node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:32
-
-##### Parameters
-
-###### aPath
-
-`string`
-
-###### aOptions?
-
-`IConfigOptions`
-
-##### Returns
-
-`Promise`\<`any`\>
-
-#### Call Signature
-
-> `static` **load**(`aPath`, `aOptions`, `done`): `void` \| `Promise`\<`any`\>
-
-Defined in: node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:33
-
-##### Parameters
-
-###### aPath
-
-`string`
-
-###### aOptions
-
-`IConfigOptions`
-
-###### done
-
-`true` | `ConfigCallBackFn`
-
-##### Returns
-
-`void` \| `Promise`\<`any`\>
-
-#### Call Signature
-
-> `static` **load**(`aPath`, `done`): `void` \| `Promise`\<`any`\>
-
-Defined in: node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:34
-
-##### Parameters
-
-###### aPath
-
-`string`
-
-###### done
-
-`true` | `ConfigCallBackFn`
-
-##### Returns
-
-`void` \| `Promise`\<`any`\>
-
-***
-
-### loadSync()
-
-> `static` **loadSync**(`aPath`, `aOptions`?): `any`
-
-Defined in: node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:35
+Loads a configuration file based on the provided filename and options.
 
 #### Parameters
 
-##### aPath
+##### filename
 
 `string`
 
-##### aOptions?
+The path to the configuration file.
 
-`IConfigOptions`
+##### options?
+
+`LoadConfigFileOptions`
+
+Additional options for loading the configuration file.
 
 #### Returns
 
 `any`
+
+The parsed configuration object.
+
+#### Example
+
+```typescript
+const config = ConfigFile.loadSync('config.yaml');
+console.log(config); // Output: { key: 'value' }
+```
 
 ***
 
 ### register()
 
-> `static` **register**(`aExts`, `aProcess`, `aConfigurators`?): `any`
+> `static` **register**(`extname`, `parser`, `stringify`): `void`
 
-Defined in: node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:29
+Defined in: node\_modules/.pnpm/@isdk+util@0.3.0/node\_modules/@isdk/util/dist/index.d.ts:47
+
+Registers a parser and stringifier for specific file extensions.
 
 #### Parameters
 
-##### aExts
+##### extname
+
+The file extension(s) to register the parser and stringifier for.
 
 `string` | `string`[]
 
-##### aProcess
+##### parser
 
-`ConfigAsyncProcessFn`
+(`content`) => `any`
 
-##### aConfigurators?
+A function that parses the file content into an object.
 
-`IConfigurator`
+##### stringify
+
+`StringifyFunc`
+
+A function that converts an object back into file content.
 
 #### Returns
 
-`any`
+`void`
+
+#### Example
+
+```typescript
+ConfigFile.register(['.json'], JSON.parse, (obj) => JSON.stringify(obj, null, 2));
+```
 
 ***
 
-### setFileSystem()
+### saveSync()
 
-> `static` **setFileSystem**(`aFileSystem`): `any`
+> `static` **saveSync**(`filename`, `config`, `options`?): `string`
 
-Defined in: node\_modules/.pnpm/load-config-file@2.0.0/node\_modules/load-config-file/lib/index.d.ts:30
+Defined in: node\_modules/.pnpm/@isdk+util@0.3.0/node\_modules/@isdk/util/dist/index.d.ts:75
+
+Saves a configuration object to a file with the specified filename and options.
 
 #### Parameters
 
-##### aFileSystem
+##### filename
 
-`IFileSystem`
+`string`
+
+The path where the configuration file should be saved.
+
+##### config
+
+`any`
+
+The configuration object to save.
+
+##### options?
+
+`LoadConfigFileOptions`
+
+Additional options for saving the configuration file.
 
 #### Returns
 
-`any`
+`string`
+
+The final filename where the configuration was saved.
+
+#### Example
+
+```typescript
+ConfigFile.saveSync('config.json', { key: 'value' });
+```

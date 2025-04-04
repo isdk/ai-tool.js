@@ -6,7 +6,7 @@
 
 # Interface: PromptTemplateOptions
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:10](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/prompt-template.ts#L10)
+Defined in: packages/template-engines/dist/index.d.ts:13
 
 ## Extended by
 
@@ -22,7 +22,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:10](https://gi
 
 > `optional` **compiledTemplate**: `any`
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:15](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/prompt-template.ts#L15)
+Defined in: packages/template-engines/dist/index.d.ts:18
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:15](https://gi
 
 > `optional` **data**: `Record`\<`string`, `any`\>
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:12](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/prompt-template.ts#L12)
+Defined in: packages/template-engines/dist/index.d.ts:15
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:12](https://gi
 
 > `optional` **ignoreInitialize**: `boolean`
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:16](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/prompt-template.ts#L16)
+Defined in: packages/template-engines/dist/index.d.ts:19
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:16](https://gi
 
 > `optional` **inputVariables**: `string`[]
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:14](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/prompt-template.ts#L14)
+Defined in: packages/template-engines/dist/index.d.ts:17
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:14](https://gi
 
 > `optional` **template**: `string`
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:11](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/prompt-template.ts#L11)
+Defined in: packages/template-engines/dist/index.d.ts:14
 
 ***
 
@@ -62,4 +62,4 @@ Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:11](https://gi
 
 > `optional` **templateFormat**: `string`
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:13](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/prompt-template.ts#L13)
+Defined in: packages/template-engines/dist/index.d.ts:16

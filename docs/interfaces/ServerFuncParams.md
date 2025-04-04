@@ -6,7 +6,7 @@
 
 # Interface: ServerFuncParams
 
-Defined in: [packages/ai-tool/src/server-tools.ts:8](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/server-tools.ts#L8)
+Defined in: [packages/ai-tool/src/server-tools.ts:8](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/server-tools.ts#L8)
 
 Convention: Always pass _req, _res
 
@@ -24,7 +24,7 @@ Convention: Always pass _req, _res
 
 > `optional` **\_req**: `IncomingMessage`
 
-Defined in: [packages/ai-tool/src/server-tools.ts:9](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/server-tools.ts#L9)
+Defined in: [packages/ai-tool/src/server-tools.ts:9](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/server-tools.ts#L9)
 
 ***
 
@@ -32,4 +32,4 @@ Defined in: [packages/ai-tool/src/server-tools.ts:9](https://github.com/isdk/ai-
 
 > `optional` **\_res**: `ServerResponse`\<`IncomingMessage`\>
 
-Defined in: [packages/ai-tool/src/server-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/server-tools.ts#L10)
+Defined in: [packages/ai-tool/src/server-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/server-tools.ts#L10)

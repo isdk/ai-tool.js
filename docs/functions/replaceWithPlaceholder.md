@@ -8,7 +8,7 @@
 
 > **replaceWithPlaceholder**(`content`, `options`?): \[`string`, `string`[]\]
 
-Defined in: [packages/ai-tool/src/utils/parse-command.ts:487](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/parse-command.ts#L487)
+Defined in: [packages/ai-tool/src/utils/parse-command.ts:487](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/utils/parse-command.ts#L487)
 
 Replaces substrings in the given content with placeholders.
 

@@ -6,9 +6,9 @@
 
 # Function: expandObjEnv()
 
-> **expandObjEnv**(`obj`, `options`, `parsedObjs`?): `any`
+> **expandObjEnv**(`obj`, `options`?, `parsedObjs`?): `any`
 
-Defined in: [packages/ai-tool/src/utils/prompt/template/env.ts:158](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/template/env.ts#L158)
+Defined in: packages/template-engines/dist/index.d.ts:695
 
 Expands environment variables in an object/array or string.
 
@@ -24,9 +24,9 @@ processes objects and arrays with environment variable references.
 The object/array or string to be processed. Can be any value, but
              primarily designed for objects, array and strings.
 
-### options
+### options?
 
-[`DotenvExpandOptions`](../interfaces/DotenvExpandOptions.md) = `{}`
+`DotenvExpandOptions`
 
 Configuration options:
   - processEnv: - An object to source environment variables from, defaults to `process.env`.

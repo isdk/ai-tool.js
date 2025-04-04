@@ -6,9 +6,9 @@
 
 # Function: expandEnv()
 
-> **expandEnv**(`options`): [`DotenvExpandOptions`](../interfaces/DotenvExpandOptions.md)
+> **expandEnv**(`options`): `DotenvExpandOptions`
 
-Defined in: [packages/ai-tool/src/utils/prompt/template/env.ts:98](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/template/env.ts#L98)
+Defined in: packages/template-engines/dist/index.d.ts:668
 
 Expand environment variables in the parsed object
 
@@ -16,11 +16,11 @@ Expand environment variables in the parsed object
 
 ### options
 
-[`DotenvExpandOptions`](../interfaces/DotenvExpandOptions.md)
+`DotenvExpandOptions`
 
 ## Returns
 
-[`DotenvExpandOptions`](../interfaces/DotenvExpandOptions.md)
+`DotenvExpandOptions`
 
 ## Example
 

@@ -8,7 +8,9 @@
 
 > **parseYaml**(`content`, `options`?): `any`
 
-Defined in: [packages/ai-tool/src/utils/config.ts:26](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/config.ts#L26)
+Defined in: node\_modules/.pnpm/@isdk+util@0.3.0/node\_modules/@isdk/util/dist/index.d.ts:271
+
+Parses a YAML string into a JavaScript object with optional custom tags.
 
 ## Parameters
 
@@ -16,10 +18,28 @@ Defined in: [packages/ai-tool/src/utils/config.ts:26](https://github.com/isdk/ai
 
 `string`
 
+The YAML string to parse.
+
 ### options?
 
 `ParseOptions` & `DocumentOptions` & `SchemaOptions` & `ToJSOptions`
 
+Optional parsing options, including custom tags.
+
 ## Returns
 
 `any`
+
+The parsed JavaScript object.
+
+## Example
+
+```typescript
+import { parseYaml } from './yaml';
+
+const yamlContent = `
+  example: !custom value
+`;
+const result = parseYaml(yamlContent);
+console.log(result); // { example: 'resolved-value' }
+```

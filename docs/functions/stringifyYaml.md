@@ -8,7 +8,9 @@
 
 > **stringifyYaml**(`content`, `options`?): `string`
 
-Defined in: [packages/ai-tool/src/utils/config.ts:42](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/config.ts#L42)
+Defined in: node\_modules/.pnpm/@isdk+util@0.3.0/node\_modules/@isdk/util/dist/index.d.ts:290
+
+Converts a JavaScript object into a YAML string with optional custom tags.
 
 ## Parameters
 
@@ -16,10 +18,28 @@ Defined in: [packages/ai-tool/src/utils/config.ts:42](https://github.com/isdk/ai
 
 `any`
 
+The JavaScript object to convert to YAML.
+
 ### options?
 
 `DocumentOptions` & `SchemaOptions` & `ParseOptions` & `CreateNodeOptions` & `ToStringOptions`
 
+Optional stringification options, including custom tags.
+
 ## Returns
 
 `string`
+
+The YAML string representation of the input object.
+
+## Example
+
+```typescript
+import { stringifyYaml } from './yaml';
+
+const data = {
+  example: 'value',
+};
+const yamlString = stringifyYaml(data);
+console.log(yamlString); // "example: value\n"
+```

@@ -6,7 +6,34 @@
 
 # Class: FewShotPromptTemplate\<T\>
 
-Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:39](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/few-shot-prompt-template.ts#L39)
+Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:39](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/utils/prompt/few-shot-prompt-template.ts#L39)
+
+The `StringTemplate` class is a versatile template engine that supports dynamic template creation,
+formatting, and partial data processing. It extends the `BaseFactory` class and provides methods
+for handling template strings, validating input variables, and managing template configurations.
+
+## Example
+
+```typescript
+import { StringTemplate } from './template';
+
+// Register a custom template class
+class CustomTemplate extends StringTemplate {
+  _initialize(options?: StringTemplateOptions): void {}
+  _format(data: Record<string, any>): string {
+    return `Formatted: ${data.text}`;
+  }
+}
+StringTemplate.register(CustomTemplate);
+
+// Create a new instance with a custom template format
+const template = new StringTemplate("{{text}}", { templateFormat: "Custom" });
+console.log(template instanceof CustomTemplate); // Output: true
+
+// Format the template with data
+const result = await template.format({ text: "Hello World" });
+console.log(result); // Output: "Formatted: Hello World"
+```
 
 ## Extends
 
@@ -22,7 +49,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:39](h
 
 > **new FewShotPromptTemplate**\<`T`\>(`options`): [`FewShotPromptTemplate`](FewShotPromptTemplate.md)\<`T`\>
 
-Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:50](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/few-shot-prompt-template.ts#L50)
+Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:50](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/utils/prompt/few-shot-prompt-template.ts#L50)
 
 #### Parameters
 
@@ -44,7 +71,9 @@ Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:50](h
 
 > **compiledTemplate**: `any`
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:21](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/prompt-template.ts#L21)
+Defined in: packages/template-engines/dist/index.d.ts:53
+
+Declares the compiled template instance.
 
 #### Inherited from
 
@@ -56,7 +85,9 @@ Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:21](https://gi
 
 > **data**: `undefined` \| `Record`\<`string`, `any`\>
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:24](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/prompt-template.ts#L24)
+Defined in: packages/template-engines/dist/index.d.ts:65
+
+Declares the data object used for template interpolation.
 
 #### Inherited from
 
@@ -68,7 +99,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:24](https://gi
 
 > **examplePrompt**: `undefined` \| [`PromptTemplate`](PromptTemplate.md)
 
-Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:41](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/few-shot-prompt-template.ts#L41)
+Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:41](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/utils/prompt/few-shot-prompt-template.ts#L41)
 
 ***
 
@@ -76,7 +107,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:41](h
 
 > **examples**: [`PromptExamples`](../type-aliases/PromptExamples.md)\<`T`\>
 
-Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:40](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/few-shot-prompt-template.ts#L40)
+Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:40](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/utils/prompt/few-shot-prompt-template.ts#L40)
 
 ***
 
@@ -84,7 +115,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:40](h
 
 > **exampleSeparator**: `string`
 
-Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:43](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/few-shot-prompt-template.ts#L43)
+Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:43](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/utils/prompt/few-shot-prompt-template.ts#L43)
 
 ***
 
@@ -92,7 +123,9 @@ Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:43](h
 
 > **inputVariables**: `undefined` \| `string`[]
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:25](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/prompt-template.ts#L25)
+Defined in: packages/template-engines/dist/index.d.ts:69
+
+Declares the list of input variables expected by the template.
 
 #### Inherited from
 
@@ -104,7 +137,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:25](https://gi
 
 > **prefix**: `string`
 
-Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:44](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/few-shot-prompt-template.ts#L44)
+Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:44](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/utils/prompt/few-shot-prompt-template.ts#L44)
 
 ***
 
@@ -112,7 +145,7 @@ Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:44](h
 
 > **suffix**: `string`
 
-Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:42](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/few-shot-prompt-template.ts#L42)
+Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:42](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/utils/prompt/few-shot-prompt-template.ts#L42)
 
 ***
 
@@ -120,7 +153,9 @@ Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:42](h
 
 > **template**: `string`
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:22](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/prompt-template.ts#L22)
+Defined in: packages/template-engines/dist/index.d.ts:57
+
+Declares the raw template string.
 
 #### Inherited from
 
@@ -132,7 +167,9 @@ Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:22](https://gi
 
 > **templateFormat**: `undefined` \| `string`
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:23](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/prompt-template.ts#L23)
+Defined in: packages/template-engines/dist/index.d.ts:61
+
+Declares the format of the template (e.g., 'default').
 
 #### Inherited from
 
@@ -302,7 +339,9 @@ The Root Factory class
 
 > **\_format**(`data`): `Promise`\<`string`\>
 
-Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:69](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/few-shot-prompt-template.ts#L69)
+Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:69](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/utils/prompt/few-shot-prompt-template.ts#L69)
+
+Placeholder method for formatting the template. Must be implemented by subclasses.
 
 #### Parameters
 
@@ -310,9 +349,13 @@ Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:69](h
 
 `Record`\<`string`, `any`\>
 
+The data object used for interpolation.
+
 #### Returns
 
 `Promise`\<`string`\>
+
+A formatted string or a promise resolving to the formatted string.
 
 #### Overrides
 
@@ -324,13 +367,17 @@ Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:69](h
 
 > **\_initialize**(`options`?): `void`
 
-Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:54](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/few-shot-prompt-template.ts#L54)
+Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:54](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/utils/prompt/few-shot-prompt-template.ts#L54)
+
+Placeholder method for initializing the template. Must be implemented by subclasses.
 
 #### Parameters
 
 ##### options?
 
 [`FewShotPromptTemplateOptions`](../interfaces/FewShotPromptTemplateOptions.md)\<`T`\>
+
+Configuration options for initialization.
 
 #### Returns
 
@@ -346,9 +393,9 @@ Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:54](h
 
 > **filterData**(`data`): `Record`\<`string`, `any`\>
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:62](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/prompt-template.ts#L62)
+Defined in: packages/template-engines/dist/index.d.ts:147
 
-Validate/filter the data in inputVariables
+Filters the input data to include only the specified input variables.
 
 #### Parameters
 
@@ -356,9 +403,23 @@ Validate/filter the data in inputVariables
 
 `Record`\<`string`, `any`\>
 
+The data object to validate and filter.
+
 #### Returns
 
 `Record`\<`string`, `any`\>
+
+The filtered data object containing only the allowed keys.
+
+#### Example
+
+```typescript
+const template = new StringTemplate({
+  inputVariables: ['name']
+});
+const filteredData = template.filterData({ name: "Alice", age: 30 });
+console.log(filteredData); // Output: { name: "Alice" }
+```
 
 #### Inherited from
 
@@ -370,7 +431,9 @@ Validate/filter the data in inputVariables
 
 > **format**(`data`?): `Promise`\<`string`\>
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:109](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/prompt-template.ts#L109)
+Defined in: packages/template-engines/dist/index.d.ts:194
+
+Formats the template using the provided data, supporting asynchronous processing.
 
 #### Parameters
 
@@ -378,9 +441,24 @@ Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:109](https://g
 
 `Record`\<`string`, `any`\>
 
+The data object used for interpolation.
+
 #### Returns
 
 `Promise`\<`string`\>
+
+A promise that resolves to the formatted template string.
+
+#### Example
+
+```typescript
+const template = new StringTemplate("{{text}}", {
+  templateFormat: "Test",
+  inputVariables: ['text']
+});
+const result = await template.format({ text: "Hello" });
+console.log(result); // Output: "Hello"
+```
 
 #### Inherited from
 
@@ -390,19 +468,19 @@ Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:109](https://g
 
 ### initialize()
 
-> `abstract` **initialize**(`options`?): `void`
+> **initialize**(`options`?): `void`
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:96](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/prompt-template.ts#L96)
+Defined in: packages/template-engines/dist/index.d.ts:172
 
-**`Internal`**
-
-initialize instance method
+Initializes the template instance with the provided options.
 
 #### Parameters
 
 ##### options?
 
 [`PromptTemplateOptions`](../interfaces/PromptTemplateOptions.md)
+
+Configuration options for initialization.
 
 #### Returns
 
@@ -418,9 +496,10 @@ initialize instance method
 
 > **partial**(`data`): [`PromptTemplate`](PromptTemplate.md)
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:139](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/prompt-template.ts#L139)
+Defined in: packages/template-engines/dist/index.d.ts:222
 
-it can make sense to "partial" a prompt template - eg pass in a subset of the required values, as to create a new prompt template which expects only the remaining subset of values.
+Creates a new `StringTemplate` instance with partially filled data.
+This is useful for pre-filling some variables while leaving others to be filled later.
 
 #### Parameters
 
@@ -428,13 +507,35 @@ it can make sense to "partial" a prompt template - eg pass in a subset of the re
 
 `Record`\<`string`, `any`\>
 
-the partial data
+The partial data to pre-fill in the new template.
 
 #### Returns
 
 [`PromptTemplate`](PromptTemplate.md)
 
-the new partial PromptTemplate instance
+A new `StringTemplate` instance with the partial data applied.
+
+#### Example
+
+```typescript
+const template = new StringTemplate("{{role}}:{{text}}", {
+  templateFormat: "Test",
+  inputVariables: ['role', 'text']
+});
+const partialTemplate = template.partial({ role: "user" });
+console.log(partialTemplate.data); // Output: { role: "user" }
+const result = await partialTemplate.format({ text: "Hello" });
+console.log(result); // Output: { role: "user", text: "Hello" }
+
+// Example with a function
+function getDate() {
+  return new Date();
+}
+const dateTemplate = template.partial({ date: getDate });
+console.log(dateTemplate.data); // Output: { date: getDate }
+const dateResult = await dateTemplate.format({ role: "user" });
+console.log(dateResult.date instanceof Date); // Output: true
+```
 
 #### Inherited from
 
@@ -446,7 +547,9 @@ the new partial PromptTemplate instance
 
 > **toJSON**(`options`): [`FewShotPromptTemplateOptions`](../interfaces/FewShotPromptTemplateOptions.md)\<`T`\>
 
-Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:94](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/few-shot-prompt-template.ts#L94)
+Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:94](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/utils/prompt/few-shot-prompt-template.ts#L94)
+
+Serializes the `StringTemplate` instance into a JSON-compatible object.
 
 #### Parameters
 
@@ -454,9 +557,25 @@ Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:94](h
 
 `this` = `...`
 
+Optional configuration for serialization.
+
 #### Returns
 
 [`FewShotPromptTemplateOptions`](../interfaces/FewShotPromptTemplateOptions.md)\<`T`\>
+
+A JSON-compatible object representing the template's state.
+
+#### Example
+
+```typescript
+const template = new StringTemplate("{{text}}", {
+  templateFormat: "Test",
+  inputVariables: ['text']
+});
+const serialized = template.toJSON();
+console.log(serialized);
+// Output: { template: "{{text}}", templateFormat: "Test", inputVariables: ['text'] }
+```
 
 #### Overrides
 
@@ -659,7 +778,9 @@ the forEach callback function
 
 > `static` **format**(`options`): `Promise`\<`string`\>
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:31](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/prompt-template.ts#L31)
+Defined in: packages/template-engines/dist/index.d.ts:101
+
+Formats a template using the provided options.
 
 #### Parameters
 
@@ -667,9 +788,24 @@ Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:31](https://gi
 
 [`PromptTemplateOptions`](../interfaces/PromptTemplateOptions.md)
 
+Configuration options for the template.
+
 #### Returns
 
 `Promise`\<`string`\>
+
+A promise that resolves to the formatted template string.
+
+#### Example
+
+```typescript
+const result = await StringTemplate.format({
+  template: "{{text}}",
+  data: { text: "Hello" },
+  templateFormat: "Test"
+});
+console.log(result); // Output: "Hello"
+```
 
 #### Inherited from
 
@@ -681,9 +817,9 @@ Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:31](https://gi
 
 > `static` **formatIf**(`options`): `Promise`\<`undefined` \| `string`\>
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:41](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/prompt-template.ts#L41)
+Defined in: packages/template-engines/dist/index.d.ts:117
 
-If the given options.template is the template, perform formatting using that template.
+Formats a template if the provided options represent a valid template.
 
 #### Parameters
 
@@ -691,13 +827,24 @@ If the given options.template is the template, perform formatting using that tem
 
 [`PromptTemplateOptions`](../interfaces/PromptTemplateOptions.md)
 
-The options object to check for being a template and to format.
+Configuration options to check and format.
 
 #### Returns
 
 `Promise`\<`undefined` \| `string`\>
 
-A Promise that resolves to the formatted result if options is a template; otherwise, no value is returned.
+A promise that resolves to the formatted template string if valid; otherwise, undefined.
+
+#### Example
+
+```typescript
+const result = await StringTemplate.formatIf({
+  template: "{{text}}",
+  data: { text: "Valid Template" },
+  templateFormat: "Test"
+});
+console.log(result); // Output: "Valid Template"
+```
 
 #### Inherited from
 
@@ -769,7 +916,9 @@ the name to register
 
 > `static` **from**\<`T`\>(`options`): [`FewShotPromptTemplate`](FewShotPromptTemplate.md)\<`T`\>
 
-Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:46](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/few-shot-prompt-template.ts#L46)
+Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:46](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/utils/prompt/few-shot-prompt-template.ts#L46)
+
+Creates a new instance of the `StringTemplate` class.
 
 #### Type Parameters
 
@@ -781,9 +930,23 @@ Defined in: [packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:46](h
 
 [`FewShotPromptTemplateOptions`](../interfaces/FewShotPromptTemplateOptions.md)\<`T`\>
 
+Additional configuration options for the template.
+
 #### Returns
 
 [`FewShotPromptTemplate`](FewShotPromptTemplate.md)\<`T`\>
+
+A new `StringTemplate` instance.
+
+#### Example
+
+```typescript
+const template = StringTemplate.from("{{text}}", {
+  templateFormat: "Test",
+  inputVariables: ['text']
+});
+console.log(template instanceof TestStringTemplate); // Output: true
+```
 
 #### Overrides
 
@@ -951,7 +1114,9 @@ the unique name in the factory
 
 > `static` **isTemplate**(`templateOpt`): `any`
 
-Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:48](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/prompt/prompt-template.ts#L48)
+Defined in: packages/template-engines/dist/index.d.ts:132
+
+Determines whether the given options represent a valid template.
 
 #### Parameters
 
@@ -959,9 +1124,23 @@ Defined in: [packages/ai-tool/src/utils/prompt/prompt-template.ts:48](https://gi
 
 [`PromptTemplateOptions`](../interfaces/PromptTemplateOptions.md)
 
+The options object to evaluate.
+
 #### Returns
 
 `any`
+
+A boolean indicating whether the options represent a valid template.
+
+#### Example
+
+```typescript
+const isValid = StringTemplate.isTemplate({
+  template: "{{text}}",
+  templateFormat: "Test"
+});
+console.log(isValid); // Output: true
+```
 
 #### Inherited from
 

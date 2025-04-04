@@ -8,7 +8,7 @@
 
 > **getKeysPath**\<`TValue`\>(`value`): `string`[]
 
-Defined in: [packages/ai-tool/src/utils/get-keys-path.ts:21](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/get-keys-path.ts#L21)
+Defined in: [packages/ai-tool/src/utils/get-keys-path.ts:21](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/utils/get-keys-path.ts#L21)
 
 Retrieves an array of all key paths as strings for a nested object or array.
 

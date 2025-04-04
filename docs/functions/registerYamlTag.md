@@ -8,14 +8,30 @@
 
 > **registerYamlTag**(`tags`): `void`
 
-Defined in: [packages/ai-tool/src/utils/config.ts:16](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/utils/config.ts#L16)
+Defined in: node\_modules/.pnpm/@isdk+util@0.3.0/node\_modules/@isdk/util/dist/index.d.ts:252
+
+Registers custom YAML tags to be used in parsing and stringifying YAML content.
 
 ## Parameters
 
 ### tags
 
-`any`
+A single tag or an array of tags to register.
+
+`"map"` | `"binary"` | `"null"` | `ScalarTag` | `CollectionTag` | `"bool"` | `"float"` | `"floatExp"` | `"floatNaN"` | `"floatTime"` | `"int"` | `"intHex"` | `"intOct"` | `"intTime"` | `"merge"` | `"omap"` | `"pairs"` | `"seq"` | `"set"` | `"timestamp"` | `Tags`
 
 ## Returns
 
 `void`
+
+## Example
+
+```typescript
+import { registerYamlTag } from './yaml';
+
+const customTag = {
+  tag: '!custom',
+  resolve: (value) => `resolved-${value}`,
+};
+registerYamlTag(customTag);
+```

@@ -6,7 +6,7 @@
 
 # Interface: FuncParam
 
-Defined in: [packages/ai-tool/src/tool-func.ts:7](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/tool-func.ts#L7)
+Defined in: [packages/ai-tool/src/tool-func.ts:7](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/tool-func.ts#L7)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:7](https://github.com/isdk/ai-too
 
 > `optional` **asyncFeatures**: `number`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:12](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/tool-func.ts#L12)
+Defined in: [packages/ai-tool/src/tool-func.ts:12](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/tool-func.ts#L12)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:12](https://github.com/isdk/ai-to
 
 > `optional` **depends**: `object`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:13](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/tool-func.ts#L13)
+Defined in: [packages/ai-tool/src/tool-func.ts:13](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/tool-func.ts#L13)
 
 #### Index Signature
 
@@ -34,7 +34,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:13](https://github.com/isdk/ai-to
 
 > `optional` **description**: `string`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:11](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/tool-func.ts#L11)
+Defined in: [packages/ai-tool/src/tool-func.ts:11](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/tool-func.ts#L11)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:11](https://github.com/isdk/ai-to
 
 > `optional` **name**: `string`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:8](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/tool-func.ts#L8)
+Defined in: [packages/ai-tool/src/tool-func.ts:8](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/tool-func.ts#L8)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [packages/ai-tool/src/tool-func.ts:8](https://github.com/isdk/ai-too
 
 > `optional` **required**: `boolean`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:10](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/tool-func.ts#L10)
+Defined in: [packages/ai-tool/src/tool-func.ts:10](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/tool-func.ts#L10)
 
 ***
 
@@ -58,4 +58,4 @@ Defined in: [packages/ai-tool/src/tool-func.ts:10](https://github.com/isdk/ai-to
 
 > `optional` **type**: `string`
 
-Defined in: [packages/ai-tool/src/tool-func.ts:9](https://github.com/isdk/ai-tool.js/blob/c084189f913fb955b91b492de68bd07ce78f8c82/src/tool-func.ts#L9)
+Defined in: [packages/ai-tool/src/tool-func.ts:9](https://github.com/isdk/ai-tool.js/blob/b0ee9498dddfa5222989cf00502bb34c601df743/src/tool-func.ts#L9)
