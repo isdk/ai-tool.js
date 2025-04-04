@@ -93,4 +93,14 @@ describe('readFilenamesRecursiveSync', () => {
     expect(files).toContain(testFile1);
   });
 
+  it('should find level 2 files recursively without following symlink', () => {
+    let files = readFilenamesRecursiveSync(subDir, {level: 3, resolveSymlinks: false});
+
+    expect(files).toHaveLength(4);
+    expect(files).toContain(subFile1);
+    expect(files).toContain(dFile);
+    expect(files).toContain(dFile2);
+    expect(files).not.toContain(testFile1);
+    expect(files).toContain(adSubFile);
+  });
 });

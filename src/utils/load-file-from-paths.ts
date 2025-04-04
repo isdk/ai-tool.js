@@ -125,6 +125,7 @@ export function decodeCharset(result: Buffer, encoding?: BufferEncoding) {
  * @param dir - A single directory path or an array of directory paths to start the search from.
  * @param options.isFileMatched - An optional callback that determines whether a file should be included in the result.
  * @param options.signal - An optional signal to abort the operation.
+ * @param options.resolveSymlinks - Whether to resolve symbolic links to their real paths. Defaults to true.
  * @returns An array of file paths that match the criteria.
  *
  * @example
@@ -133,13 +134,22 @@ export function decodeCharset(result: Buffer, encoding?: BufferEncoding) {
 * console.log(files); // Outputs an array of JavaScript file paths.
 * ```
 */
-export function readFilenamesRecursiveSync(dir: string|string[], options?: {isFileMatched?: (filepath: string, file: fs.Dirent|fs.Stats) => boolean, signal?: AbortSignal, level?: number}) {
+export function readFilenamesRecursiveSync(
+  dir: string|string[],
+  options?: {
+    isFileMatched?: (filepath: string, file: fs.Dirent|fs.Stats) => boolean,
+    signal?: AbortSignal,
+    level?: number,
+    resolveSymlinks?: boolean;
+  }
+) {
   const result = [] as string[];
   const stack: {dir: string, level: number}[] = typeof dir === 'string' ? [{dir, level: 0}] : [...dir.map(d => ({dir:d, level:0}))];
   const visitedDirs = new Set<string>()
   const signal = options?.signal
   const isFileMatched = options?.isFileMatched
   const maxLevel = options?.level
+  const resolveSymlinks = options?.resolveSymlinks ?? true
   let level = 0
 
   while (stack.length > 0) {
@@ -147,7 +157,7 @@ export function readFilenamesRecursiveSync(dir: string|string[], options?: {isFi
       throw signal.reason
     }
     const dirInStack = stack.pop()!
-    const currentDir = getRealFilepath(dirInStack.dir);
+    const currentDir = resolveSymlinks ? getRealFilepath(dirInStack.dir) : dirInStack.dir;
     const absoluteDir = path.resolve(currentDir)
     if (visitedDirs.has(absoluteDir)) {continue}
     visitedDirs.add(absoluteDir)
@@ -159,6 +169,7 @@ export function readFilenamesRecursiveSync(dir: string|string[], options?: {isFi
       for (let j = 0; j < files.length; j++) {
         let file: fs.Dirent|fs.Stats = files[j]
         let filepath = path.join(currentDir, file.name)
+        const _filepath = filepath
         if (file.isSymbolicLink()) {
           const fileDir = path.dirname(filepath)
           filepath = fs.readlinkSync(filepath)
@@ -172,7 +183,10 @@ export function readFilenamesRecursiveSync(dir: string|string[], options?: {isFi
             }
           }
         } else if (file.isFile() && (!isFileMatched || isFileMatched(filepath, file))) {
-          if (!result.includes(filepath)) {result.push(filepath)}
+          const finalPath = resolveSymlinks ? filepath : _filepath;
+          if (!result.includes(finalPath)) {
+            result.push(finalPath);
+          }
         }
       }
     }
