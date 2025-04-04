@@ -113,7 +113,7 @@
     "format:fix": "pnpm run format --write",
     "lint": "eslint .",
     "lint:fix": "pnpm run lint --fix",
-    "test": "vitest run",
+    "test": "FORCE_COLOR=1 vitest run",
     "release": "pnpm run clean && pnpm run build && git add -f docs && git ci -m 'docs: update API docs' && pnpm dlx commit-and-tag-version -s",
     "release.alpha": "npm run release -- --prerelease alpha"
   },
