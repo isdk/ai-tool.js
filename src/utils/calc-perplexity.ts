@@ -1,6 +1,18 @@
 export interface ProbabilityItem {
+  /**
+   * The id of the token.
+   */
   id?: number;
+  /**
+   * The token string being analyzed
+   */
   token: string;
+  /**
+   * The natural logarithm of the probability (log probability) assigned to this token.
+   * Using log probabilities helps prevent numerical underflow when multiplying
+   * many small probabilities together in language model calculations.
+   *
+   */
   probability: number;
 }
 
