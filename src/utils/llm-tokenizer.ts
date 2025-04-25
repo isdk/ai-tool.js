@@ -1,6 +1,6 @@
 import path from 'path'
 import { fileURLToPath } from 'url';
-import { AutoTokenizer, type PreTrainedTokenizer } from '@xenova/transformers';
+import { AutoTokenizer, type PreTrainedTokenizer } from '@huggingface/transformers';
 import { getPackageDir } from './get-package-dir';
 
 const __filename = fileURLToPath(import.meta.url)
