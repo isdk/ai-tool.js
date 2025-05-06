@@ -37,3 +37,8 @@ export async function hash(value: IDataType,
   const result: string|Uint8Array = outputType !== 'string'? hash.digest(outputType as any) : _base32768.encode(hash.digest('binary'))
   return result
 }
+
+export async function hashObject(value: any, options?: HashAlgoParams) {
+  value = canonicalize(value)
+  return hash(value, options)
+}
