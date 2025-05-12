@@ -1,3 +1,4 @@
+import { assign } from 'lodash-es';
 import { AdvancePropertyManager } from 'property-manager';
 import { _createFunction } from 'util-ex';
 import { NotFoundError, throwError } from './utils/base-error';
@@ -27,8 +28,10 @@ export interface BaseFuncItem {
   tags?: string|string[];
   setup?: (this: ToolFunc, options?: FuncItem) => void;
   isApi?: boolean; // treat as server API
-  stream?: boolean,
+  stream?: boolean;
   alias?: string|string[];
+  description?: string;
+  title?: string;
 }
 
 export interface FuncItem extends BaseFuncItem {
@@ -363,6 +366,7 @@ export class ToolFunc extends AdvancePropertyManager {
 export const ToolFuncSchema = {
   name: {type: 'string'},
   description: {type: 'string'},
+  title: {type: 'string'},
   func: {
     type: 'function',
     assign(value: Function|string, dest:ToolFunc, src?:ToolFunc, name?: string, options?: any) {
@@ -408,3 +412,23 @@ export const ToolFuncSchema = {
 }
 
 ToolFunc.defineProperties(ToolFunc, ToolFuncSchema)
+
+/**
+ * Adds metadata to a function or ToolFunc object.
+ *
+ * This function attaches additional metadata to the provided function or ToolFunc.
+ * Metadata is only merged if the second argument is a non-null object.
+ *
+ * @param fn - The function or ToolFunc to which metadata will be added.
+ * @param meta - The metadata to attach. Must be a non-null object for the operation to succeed.
+ * @returns The updated function or ToolFunc with metadata if successful; otherwise, `undefined`.
+ */
+export function funcWithMeta(fn: Function|ToolFunc, meta: any) {
+  if (meta && typeof meta === 'object') {
+    if (typeof fn === 'function') {
+      return assign<Function, Function>(fn, meta)
+    } else if (fn instanceof ToolFunc) {
+      return fn.assign(meta)
+    }
+  }
+}
