@@ -1,6 +1,6 @@
 import { format as formatDateTime, parse as parseDateFormat, parseISO } from 'date-fns'
 
-export {formatISO, parseISO, toDate} from 'date-fns'
+export {add as addDate, formatISO, parseISO, toDate} from 'date-fns'
 
 export { parseDateFormat }
 
