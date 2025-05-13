@@ -674,6 +674,7 @@ export const ToolFuncSchema = {
 
 ToolFunc.defineProperties(ToolFunc, ToolFuncSchema)
 
+export const FuncMetaSymbol = Symbol('meta')
 /**
  * Adds metadata to a function or ToolFunc object.
  *
@@ -684,12 +685,31 @@ ToolFunc.defineProperties(ToolFunc, ToolFuncSchema)
  * @param meta - The metadata to attach. Must be a non-null object for the operation to succeed.
  * @returns The updated function or ToolFunc with metadata if successful; otherwise, `undefined`.
  */
-export function funcWithMeta(fn: Function|ToolFunc, meta: any) {
+export function funcWithMeta(fn: Function | ToolFunc, meta: any) {
   if (meta && typeof meta === 'object') {
     if (typeof fn === 'function') {
-      return assign<Function, Function>(fn, meta)
+      meta = assign({}, fn[FuncMetaSymbol], meta)
+      fn[FuncMetaSymbol] = meta
+      return fn
     } else if (fn instanceof ToolFunc) {
       return fn.assign(meta)
     }
+  }
+}
+
+/**
+ * Retrieves metadata associated with a function or ToolFunc instance.
+ *
+ * If the provided value is a function, it returns the metadata stored under the `FuncMetaSymbol` symbol.
+ * If the provided value is a ToolFunc instance, it converts and returns the metadata as a plain object.
+ *
+ * @param fn - The function or ToolFunc instance from which to retrieve metadata.
+ * @returns The metadata as a plain object, or `undefined` if no metadata is found.
+ */
+export function funcGetMeta(fn: Function | ToolFunc) {
+  if (typeof fn === 'function') {
+    return fn[FuncMetaSymbol]
+  } else if (fn instanceof ToolFunc) {
+    return fn.toObject()
   }
 }

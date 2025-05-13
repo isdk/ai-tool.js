@@ -1,5 +1,5 @@
 import { vi } from 'vitest';
-import { funcWithMeta, ToolFunc } from './tool-func';
+import { funcGetMeta, funcWithMeta, FuncMetaSymbol, ToolFunc } from './tool-func';
 
 describe('funcWithMeta', () => {
   it('should return the function with merged metadata when meta is an object', () => {
@@ -9,7 +9,7 @@ describe('funcWithMeta', () => {
     const result = funcWithMeta(testFn, meta);
 
     expect(result).toBe(testFn);
-    expect((result as any).key).toBe('value');
+    expect((testFn[FuncMetaSymbol] as any).key).toBe('value');
   });
 
   it('should return undefined when meta is null', () => {
@@ -50,6 +50,49 @@ describe('funcWithMeta', () => {
     const result = funcWithMeta(toolFunc, null);
 
     expect(spy).not.toHaveBeenCalled();
+    expect(result).toBeUndefined();
+  });
+});
+
+describe('funcGetMeta', () => {
+  // A simple test function for metadata testing
+  function testFunction() {}
+
+  it('should return undefined when no metadata is attached', () => {
+    const result = funcGetMeta(testFunction);
+    expect(result).toBeUndefined();
+  });
+
+  it('should retrieve metadata correctly when set via funcWithMeta', () => {
+    const meta = { author: 'Alice', version: '1.0' };
+    funcWithMeta(testFunction, meta);
+
+    const result = funcGetMeta(testFunction);
+    expect(result).toEqual(meta);
+  });
+
+  it('should return undefined if the input function has no FuncMetaSymbol property', () => {
+    // @ts-ignore - Deliberately removing symbol property for testing
+    delete testFunction[FuncMetaSymbol];
+
+    const result = funcGetMeta(testFunction);
+    expect(result).toBeUndefined();
+  });
+
+  it('should handle ToolFunc instances and return their metadata as plain objects', () => {
+    class TestToolFunc extends ToolFunc {}
+    const toolFuncInstance = new TestToolFunc('testFunc', {});
+
+    // Assign metadata using funcWithMeta
+    const meta = { description: 'A test function' };
+    funcWithMeta(toolFuncInstance, meta);
+
+    const result = funcGetMeta(toolFuncInstance);
+    expect(result).toEqual(expect.objectContaining(meta));
+  });
+
+  it('should return undefined when input is neither a function nor ToolFunc', () => {
+    const result = funcGetMeta({} as any); // Non-function input
     expect(result).toBeUndefined();
   });
 });
