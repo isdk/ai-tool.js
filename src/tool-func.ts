@@ -1,4 +1,4 @@
-import { assign } from 'lodash-es';
+import { assign, defaultsDeep } from 'lodash-es';
 import { AdvancePropertyManager } from 'property-manager';
 import { _createFunction } from 'util-ex';
 import { NotFoundError, throwError } from './utils/base-error';
@@ -683,12 +683,13 @@ export const FuncMetaSymbol = Symbol('meta')
  *
  * @param fn - The function or ToolFunc to which metadata will be added.
  * @param meta - The metadata to attach. Must be a non-null object for the operation to succeed.
+ * @param ignoreExists - If true, existing metadata will be ignored and the new metadata will be used. defaults to true
  * @returns The updated function or ToolFunc with metadata if successful; otherwise, `undefined`.
  */
-export function funcWithMeta(fn: Function | ToolFunc, meta: any) {
+export function funcWithMeta(fn: Function | ToolFunc, meta: any, ignoreExists: boolean = true) {
   if (meta && typeof meta === 'object') {
     if (typeof fn === 'function') {
-      meta = assign({}, fn[FuncMetaSymbol], meta)
+      meta = ignoreExists ? assign({}, fn[FuncMetaSymbol], meta) : defaultsDeep({}, fn[FuncMetaSymbol], meta)
       fn[FuncMetaSymbol] = meta
       return fn
     } else if (fn instanceof ToolFunc) {
