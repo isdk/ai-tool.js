@@ -4,7 +4,7 @@ const regexInheritMerge = /^\s*@inheritMerge\s*(?:[(]\s*(?<arg>\.start|\.end|fal
 const MergeWaySymbol = Symbol('MergeWay')
 
 const MergeWay = {
-  off: 0,
+  replace: 0,
   start: 1,
   end: 2,
 } as const;
@@ -105,7 +105,7 @@ export function mergeArray(targetArr: any[], srcArr: any[]) {
   }
 
 
-  if (mergedWay === MergeWay.off) {
+  if (mergedWay === MergeWay.replace) {
     targetArr = srcArr
   } else if (mergedWay === MergeWay.end) {
     targetArr = targetArr.concat(srcArr)
@@ -138,7 +138,7 @@ function getMergeWay(targetArr: any[]) {
   if (mergedWayStr) {mergedWayStr = mergedWayStr.toLowerCase()}
   let mergedWay: MergeWay = MergeWay.start
   if (mergedWayStr === 'false' || mergedWayStr === 'no' || mergedWayStr === 'not') {
-    mergedWay = MergeWay.off
+    mergedWay = MergeWay.replace
   } else if (mergedWayStr === '.end') {
     mergedWay = MergeWay.end
   }
