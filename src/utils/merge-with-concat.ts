@@ -1,14 +1,14 @@
 import { mergeWith } from 'lodash-es'
 
 const regexInheritMerge = /^\s*@inheritMerge\s*(?:[(]\s*(?<arg>\.start|\.end|false)[)])?/
-const MergeWaySymbol = Symbol('MergeWay')
+export const ArrayMergeWaySymbol = Symbol('MergeWay')
 
-const MergeWay = {
+export const ArrayMergeWay = {
   replace: 0,
   start: 1,
   end: 2,
 } as const;
-type MergeWay = typeof MergeWay[keyof typeof MergeWay]
+export type ArrayMergeWay = typeof ArrayMergeWay[keyof typeof ArrayMergeWay]
 
 /**
  * Merges multiple source objects into the target object with a custom merging strategy.
@@ -98,22 +98,22 @@ export function defaultsWithConcat(target: any, ...source: any[]) {
  * ```
  */
 export function mergeArray(targetArr: any[], srcArr: any[]) {
-  let mergedWay = targetArr[MergeWaySymbol]
+  let mergedWay = targetArr[ArrayMergeWaySymbol]
   if (mergedWay === undefined) {
     targetArr = getMergeWay(targetArr)
-    mergedWay = targetArr[MergeWaySymbol]
+    mergedWay = targetArr[ArrayMergeWaySymbol]
   }
 
 
-  if (mergedWay === MergeWay.replace) {
+  if (mergedWay === ArrayMergeWay.replace) {
     targetArr = srcArr
-  } else if (mergedWay === MergeWay.end) {
+  } else if (mergedWay === ArrayMergeWay.end) {
     targetArr = targetArr.concat(srcArr)
   } else { // defaults to .start
     targetArr = srcArr.concat(targetArr)
   }
 
-  Object.defineProperty(targetArr, MergeWaySymbol, {
+  Object.defineProperty(targetArr, ArrayMergeWaySymbol, {
     value: mergedWay,
     enumerable: false,
   })
@@ -136,14 +136,14 @@ function getMergeWay(targetArr: any[]) {
     targetArr = targetArr.slice(1)
   }
   if (mergedWayStr) {mergedWayStr = mergedWayStr.toLowerCase()}
-  let mergedWay: MergeWay = MergeWay.start
+  let mergedWay: ArrayMergeWay = ArrayMergeWay.start
   if (mergedWayStr === 'false' || mergedWayStr === 'no' || mergedWayStr === 'not') {
-    mergedWay = MergeWay.replace
+    mergedWay = ArrayMergeWay.replace
   } else if (mergedWayStr === '.end') {
-    mergedWay = MergeWay.end
+    mergedWay = ArrayMergeWay.end
   }
 
-  Object.defineProperty(targetArr, MergeWaySymbol, {
+  Object.defineProperty(targetArr, ArrayMergeWaySymbol, {
     value: mergedWay,
     enumerable: false,
   })
