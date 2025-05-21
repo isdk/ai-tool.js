@@ -61,4 +61,9 @@ describe('merge obj', ()=>{
     let result = defaultsWithConcat({a: 1, b: 2, arr: [{'@inheritMerge': '.end'}, 23,453]}, {b: 3, c: 4,arr: [1,2,3]})
     expect(result).toEqual({a: 1, b: 2,c:4, arr: [23,453,1,2,3]})
   })
+
+  it('should merge array for obj element', ()=>{
+    let result = defaultsWithConcat({a: 1, b: 2, obj: {o: 3, arr: [{'@inheritMerge': '.end'}, 23,453]}}, {b: 3, c: 4, obj: {arr: [1,2,3]}})
+    expect(result).toEqual({a: 1, b: 2,c:4, obj: {o: 3, arr: [23,453,1,2,3]}})
+  })
 })
