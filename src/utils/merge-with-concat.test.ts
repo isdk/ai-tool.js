@@ -1,4 +1,4 @@
-import { mergeArray, defaultsWithConcat} from './merge-with-concat'
+import { mergeArray, defaultsWithConcat, ArrayMergeWaySymbol, ArrayMergeWay} from './merge-with-concat'
 
 describe('merge array', ()=>{
   it('should merge array defaults to .start', ()=>{
@@ -67,8 +67,17 @@ describe('merge obj', ()=>{
     expect(result).toEqual({a: 1, b: 2,c:4, obj: {o: 3, arr: [23,453,1,2,3]}})
   })
 
-  it('should merge multiple objects', ()=>{
+  it('should merge multiple objects .end', ()=>{
     let result = defaultsWithConcat({a: 1, b: 2, ar:[7,8], obj: {o: 3, arr: [{'@inheritMerge': '.end'}, 23,453]}}, {b: 3, c: 4, ar:[3,4], obj: {arr: [1,2,3]}}, {e: 5, obj: {arr: [4,5]}})
     expect(result).toEqual({a: 1, b: 2,c:4, e:5, ar:[3,4,7,8], obj: {o: 3, arr: [23,453,1,2,3,4,5]}})
+    expect(result.ar[ArrayMergeWaySymbol]).toBe(ArrayMergeWay.start)
+    expect(result.obj.arr[ArrayMergeWaySymbol]).toBe(ArrayMergeWay.end)
+  })
+
+  it('should merge multiple objects .start(default)', ()=>{
+    let result = defaultsWithConcat({a: 1, b: 2, ar:[7,8], obj: {o: 3, arr: [{'@inheritMerge': '.start'}, 23,453]}}, {b: 3, c: 4, ar:[3,4], obj: {arr: [1,2,3]}}, {e: 5, obj: {arr: [4,5]}})
+    expect(result).toEqual({a: 1, b: 2,c:4, e:5, ar:[3,4,7,8], obj: {o: 3, arr: [4,5,1,2,3,23,453]}})
+    expect(result.ar[ArrayMergeWaySymbol]).toBe(ArrayMergeWay.start)
+    expect(result.obj.arr[ArrayMergeWaySymbol]).toBe(ArrayMergeWay.start)
   })
 })
