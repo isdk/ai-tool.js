@@ -1,6 +1,14 @@
 import { mergeWith } from 'lodash-es'
 
 const regexInheritMerge = /^\s*@inheritMerge\s*(?:[(]\s*(?<arg>\.start|\.end|false)[)])?/
+const MergeWaySymbol = Symbol('MergeWay')
+
+const MergeWay = {
+  off: 0,
+  start: 1,
+  end: 2,
+} as const;
+type MergeWay = typeof MergeWay[keyof typeof MergeWay]
 
 /**
  * Merges multiple source objects into the target object with a custom merging strategy.
@@ -90,32 +98,55 @@ export function defaultsWithConcat(target: any, ...source: any[]) {
  * ```
  */
 export function mergeArray(targetArr: any[], srcArr: any[]) {
-  const firstLine = targetArr[0]
-  let mergedWay: string = '.start'
-  // const hasInitStatement = targetArr.some((line) => typeof line === 'string' && line.trim() === '$initDone')
-  // if (hasInitStatement) {
-  //   // filter out the $initDone statement for srcArr
-  //   srcArr = srcArr.filter((line) => typeof line !== 'string' || line.trim() !== '$initDone')
-  // }
-
-  if (typeof firstLine === 'string') {
-    const match = regexInheritMerge.exec(firstLine)
-    if (match) {
-      if (match.groups?.arg) mergedWay = match.groups?.arg
-      targetArr = targetArr.slice(1)
-    }
-  } else if (firstLine && typeof firstLine === 'object' && firstLine.hasOwnProperty('@inheritMerge')) {
-    mergedWay = firstLine['@inheritMerge'] || mergedWay
-    targetArr = targetArr.slice(1)
+  let mergedWay = targetArr[MergeWaySymbol]
+  if (mergedWay === undefined) {
+    targetArr = getMergeWay(targetArr)
+    mergedWay = targetArr[MergeWaySymbol]
   }
-  if (mergedWay) {mergedWay = mergedWay.toLowerCase()}
-  if (mergedWay === 'false' || mergedWay === 'no' || mergedWay === 'not') {
+
+
+  if (mergedWay === MergeWay.off) {
     targetArr = srcArr
-  } else if (mergedWay === '.end') {
+  } else if (mergedWay === MergeWay.end) {
     targetArr = targetArr.concat(srcArr)
   } else { // defaults to .start
     targetArr = srcArr.concat(targetArr)
   }
+
+  Object.defineProperty(targetArr, MergeWaySymbol, {
+    value: mergedWay,
+    enumerable: false,
+  })
+
+  return targetArr
+}
+
+function getMergeWay(targetArr: any[]) {
+  const firstLine = targetArr[0]
+  let mergedWayStr: string = '.start'
+
+  if (typeof firstLine === 'string') {
+    const match = regexInheritMerge.exec(firstLine)
+    if (match) {
+      if (match.groups?.arg) mergedWayStr = match.groups?.arg
+      targetArr = targetArr.slice(1)
+    }
+  } else if (firstLine && typeof firstLine === 'object' && firstLine.hasOwnProperty('@inheritMerge')) {
+    mergedWayStr = firstLine['@inheritMerge'] || mergedWayStr
+    targetArr = targetArr.slice(1)
+  }
+  if (mergedWayStr) {mergedWayStr = mergedWayStr.toLowerCase()}
+  let mergedWay: MergeWay = MergeWay.start
+  if (mergedWayStr === 'false' || mergedWayStr === 'no' || mergedWayStr === 'not') {
+    mergedWay = MergeWay.off
+  } else if (mergedWayStr === '.end') {
+    mergedWay = MergeWay.end
+  }
+
+  Object.defineProperty(targetArr, MergeWaySymbol, {
+    value: mergedWay,
+    enumerable: false,
+  })
 
   return targetArr
 }
