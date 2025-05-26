@@ -1,6 +1,6 @@
 import path from 'path'
 
-import { isSubdirectory, hasDirectoryIn } from './has-directory-in'
+import { isSubdirectory, hasDirectoryIn, pruneSubdirectoriesInPlace, pruneSubdirectories } from './has-directory-in'
 
 describe('isSubdirectory function', () => {
   it('should return true when childDir is a subdirectory of parentDir', () => {
@@ -79,5 +79,70 @@ describe('hasDirectoryIn', () => {
   it('should handle null or undefined input correctly', () => {
     expect(hasDirectoryIn(null as unknown as string, ['/folder'])).toBe(false)
     expect(hasDirectoryIn('/folder/subfolder', null as unknown as string[])).toBeUndefined()
+  })
+})
+
+
+describe('pruneSubdirectories', () => {
+  it('should keep parent directories and remove subdirectories', () => {
+    const paths = ['/usr/local', '/usr/local/include', '/home/user/project', '/home/user']
+    const result = pruneSubdirectories(paths)
+    expect(result).toEqual(['/usr/local', '/home/user'])
+  })
+
+  it('should handle multiple nested levels', () => {
+    const paths = [
+      '/home/user/project',
+      '/home/user',
+      '/home/user/project/src',
+      '/var/log',
+      '/var/log/test',
+    ]
+    const result = pruneSubdirectories(paths)
+    expect(result).toEqual(['/var/log', '/home/user'])
+  })
+
+  it('should not remove anything if no subdirectories exist', () => {
+    const paths = ['/a', '/b', '/c']
+    const result = pruneSubdirectories(paths)
+    expect(result).toEqual(['/a', '/b', '/c'])
+  })
+
+  it('should deduplicate identical paths', () => {
+    const paths = ['/a', '/a']
+    const result = pruneSubdirectories(paths)
+    expect(result).toEqual(['/a'])
+  })
+})
+
+describe('pruneSubdirectoriesInPlace', () => {
+  it('should modify the original array and keep only parent directories', () => {
+    const paths = ['/usr/local', '/usr/local/include', '/home/user/project']
+    pruneSubdirectoriesInPlace(paths)
+    expect(paths).toEqual(['/usr/local', '/home/user/project'])
+  })
+
+  it('should handle multiple nested levels in-place', () => {
+    const paths = [
+      '/home/user/project',
+      '/home/user',
+      '/home/user/project/src',
+      '/var/log',
+      '/var/log/test',
+    ]
+    pruneSubdirectoriesInPlace(paths)
+    expect(paths).toEqual(['/var/log', '/home/user'])
+  })
+
+  it('should not remove anything if no subdirectories exist in-place', () => {
+    const paths = ['/a', '/b', '/c']
+    pruneSubdirectoriesInPlace(paths)
+    expect(paths).toEqual(['/a', '/b', '/c'])
+  })
+
+  it('should deduplicate identical paths in-place', () => {
+    const paths = ['/a', '/a']
+    pruneSubdirectoriesInPlace(paths)
+    expect(paths).toEqual(['/a'])
   })
 })

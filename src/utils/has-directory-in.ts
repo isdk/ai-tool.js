@@ -53,3 +53,54 @@ export function assignDirs(dest: string[], src: string[]) {
   }
   return dest
 }
+
+/**
+ * Filters out subdirectories from the given array of paths, keeping only the top-level (parent) directories.
+ *
+ * @param paths - An array of directory paths.
+ * @returns A new array containing only the paths that are not subdirectories of any other path in the input.
+ *
+ * @example
+ * ```ts
+ * const paths = ['/usr/local', '/usr/local/include', '/home/user/project'];
+ * const result = pruneSubdirectories(paths);
+ * // result: ['/usr/local', '/home/user/project']
+ * ```
+ */
+export function pruneSubdirectories(paths: string[]): string[] {
+  const sorted = [...paths].sort((a, b) => a.length - b.length);
+  const result: string[] = [];
+  for (const p of sorted) {
+    if (!result.some(fp => isSubdirectory(fp, p))) {
+      result.push(p);
+    }
+  }
+  return result;
+}
+
+/**
+ * Filters out subdirectories from the given array of paths in-place, keeping only the top-level (parent) directories.
+ *
+ * This function modifies the original array.
+ *
+ * @param paths - An array of directory paths to be filtered in-place.
+ *
+ * @example
+ * ```ts
+ * let paths = ['/usr/local', '/usr/local/include', '/home/user/project'];
+ * pruneSubdirectoriesInPlace(paths);
+ * // paths is now: ['/usr/local', '/home/user/project']
+ * ```
+ */
+export function pruneSubdirectoriesInPlace(paths: string[]): void {
+  paths.sort((a, b) => a.length - b.length);
+  let i = 0;
+  while (i < paths.length) {
+    const isChild = paths.slice(0, i).some(p => isSubdirectory(p, paths[i]));
+    if (isChild) {
+      paths.splice(i, 1);
+    } else {
+      i++;
+    }
+  }
+}
