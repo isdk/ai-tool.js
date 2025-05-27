@@ -5,7 +5,7 @@ import path from 'path'
  *
  * @param parentDir - The directory to check as the potential parent.
  * @param childDir - The directory to check as the potential child.
- * @returns true if `childDir` is a subdirectory of `parentDir`, otherwise false.
+ * @returns true if `childDir` is a subdirectory of `parentDir` or same folder, otherwise false.
  *
  * @example
 * ```typescript
@@ -68,22 +68,20 @@ export function assignDirs(dest: string[], src: string[]) {
  * ```
  */
 export function pruneSubdirectories(paths: string[]): string[] {
-  const sorted = [...paths].sort((a, b) => a.length - b.length);
-  const result: string[] = [];
-  for (const p of sorted) {
-    if (!result.some(fp => isSubdirectory(fp, p))) {
-      result.push(p);
-    }
-  }
-  return result;
+  const result = paths.slice()
+  pruneSubdirectoriesInPlace(result)
+  return result
 }
 
 /**
  * Filters out subdirectories from the given array of paths in-place, keeping only the top-level (parent) directories.
  *
- * This function modifies the original array.
+ * This function helps organize file paths by:
+ * * Removing any subfolders that are completely contained within other folders
+ * * Preserving the original order of paths you added
+ * * Eliminating duplicate paths
  *
- * @param paths - An array of directory paths to be filtered in-place.
+ * @param paths - Array of directory paths to clean (can mix different OS path formats)
  *
  * @example
  * ```ts
@@ -93,14 +91,67 @@ export function pruneSubdirectories(paths: string[]): string[] {
  * ```
  */
 export function pruneSubdirectoriesInPlace(paths: string[]): void {
-  paths.sort((a, b) => a.length - b.length);
-  let i = 0;
-  while (i < paths.length) {
-    const isChild = paths.slice(0, i).some(p => isSubdirectory(p, paths[i]));
-    if (isChild) {
-      paths.splice(i, 1);
-    } else {
-      i++;
+  const length = paths.length;
+  if (length <= 1) return;
+
+  // 创建索引映射，保持原始顺序
+  const indexMap = new Map<string, number>();
+  const normalizedPaths: string[] = [];
+
+  for (let i = 0; i < length; i++) {
+    const normalized = normalizePath(paths[i]);
+    if (!indexMap.has(normalized)) {
+      normalizedPaths.push(normalized);
+      indexMap.set(normalized, i);
     }
   }
+
+  // 按路径排序（字典序）
+  const sortedPaths = [...normalizedPaths].sort();
+
+  // 找出所有非子目录的路径
+  const keepSet = new Set<string>();
+
+  for (let i = 0; i < sortedPaths.length; i++) {
+    const currentPath = sortedPaths[i];
+    let isSubDir = false;
+
+    // 检查是否是已保留路径的子目录
+    for (const keptPath of keepSet) {
+      if (isSubdirectory(keptPath, currentPath)) {
+        isSubDir = true;
+        break;
+      }
+    }
+
+    if (!isSubDir) {
+      keepSet.add(currentPath);
+    }
+  }
+
+  // 重建原数组，保持原始顺序
+  let writeIndex = 0;
+  for (let i = 0; i < length; i++) {
+    if (keepSet.has(normalizedPaths[i])) {
+      if (writeIndex !== i) {
+        paths[writeIndex] = paths[i];
+      }
+      writeIndex++;
+    }
+  }
+
+  paths.length = writeIndex;
+}
+
+export function normalizePath(inputPath: string): string {
+  let normalized = path.normalize(inputPath);
+
+  normalized = normalized.split(/[/\\]/).join(path.posix.sep);
+
+  // remove trailing slash, but keep root
+  if (normalized.length > 1 && normalized.endsWith('/')) {
+    normalized = normalized.slice(0, -1);
+  }
+
+  return normalized;
 }

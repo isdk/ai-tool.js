@@ -99,7 +99,7 @@ describe('pruneSubdirectories', () => {
       '/var/log/test',
     ]
     const result = pruneSubdirectories(paths)
-    expect(result).toEqual(['/var/log', '/home/user'])
+    expect(result).toEqual(['/home/user', '/var/log'])
   })
 
   it('should not remove anything if no subdirectories exist', () => {
@@ -131,7 +131,7 @@ describe('pruneSubdirectoriesInPlace', () => {
       '/var/log/test',
     ]
     pruneSubdirectoriesInPlace(paths)
-    expect(paths).toEqual(['/var/log', '/home/user'])
+    expect(paths).toEqual(['/home/user', '/var/log'])
   })
 
   it('should not remove anything if no subdirectories exist in-place', () => {
@@ -144,5 +144,23 @@ describe('pruneSubdirectoriesInPlace', () => {
     const paths = ['/a', '/a']
     pruneSubdirectoriesInPlace(paths)
     expect(paths).toEqual(['/a'])
+  })
+
+  it('should handle paths with trailing slashes', () => {
+    const paths = ['/usr/local/', '/usr/local/include', '/home/user/project/']
+    pruneSubdirectoriesInPlace(paths)
+    expect(paths).toEqual(['/usr/local/', '/home/user/project/'])
+  })
+
+  it('should handle paths with Windows style separators', () => {
+    const paths = ['C:\\Users\\user\\project\\', 'C:\\Users\\user', 'D:\\Data', 'C:\\Users\\John\\Documents', 'C:\\Users\\John\\']
+    pruneSubdirectoriesInPlace(paths)
+    expect(paths).toEqual(['C:\\Users\\user', 'D:\\Data', 'C:\\Users\\John\\'])
+  })
+
+  it('should handle paths with mixture style separators', () => {
+    const paths = ['/home/user/', 'C:\\Program Files\\app', '/home/user/docs', 'C:\\Program Files\\']
+    pruneSubdirectoriesInPlace(paths)
+    expect(paths).toEqual(['/home/user/', 'C:\\Program Files\\'])
   })
 })
