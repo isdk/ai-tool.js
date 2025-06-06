@@ -4,7 +4,13 @@ export {add as addDate, formatISO, parseISO, toDate} from 'date-fns'
 
 export { parseDateFormat }
 
-const FormatDateStr = "MMMM d, y 'at' h:m:s b 'GMT'x"
+let FormatDateStr = "MMMM d, y 'at' h:m:s b 'GMT'x"
+// let FormatDateStr = "yyyy-MM-dd 'at' hh:mm:ss"
+
+export function DefaultDateFormat(format?: string) {
+  if (format) {FormatDateStr = format}
+  return FormatDateStr
+}
 
 export function toDateTime(date: Date|string|number) {
   let result: Date|undefined
