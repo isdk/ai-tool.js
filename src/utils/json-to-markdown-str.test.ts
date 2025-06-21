@@ -44,5 +44,10 @@ describe('jsonToMarkdownStr', () => {
     expect(result).toEqual('null');
   });
 
-  // Add more test cases as needed
+  it('should handle nesting array with title', () => {
+    const obj: any = [{name: 'John', age: 30}, {name: 'Jane', age: 28}];
+    const result = jsonToMarkdownStr(obj, {title: 'name'});
+    expect(result).toEqual('- John\n  * `age`: 30\n- Jane\n  * `age`: 28');
+  });
+
 });
