@@ -1,4 +1,4 @@
-import { defaultsDeep, omit } from "lodash-es"
+import { defaultsDeep, get as getByPath, omit, set as setByPath } from "lodash-es"
 import path from 'path'
 import { ConfigFile, expandObjEnv} from ".";
 
@@ -47,7 +47,9 @@ export function loadConfig(filename: string, config: Config) {
     filename = defaultConfig.AI_CONFIG_BASENAME
   }
   const result = expandConfig(loadConfigFile(filename, searchPaths), defaultConfig)
-  return defaultsDeep(result, omit(defaultConfig, Object.keys(XDGConfigs)))
+  defaultsDeep(result, omit(defaultConfig, Object.keys(XDGConfigs)))
+  expandPathInObject(result)
+  return result
 }
 
 export function loadAIConfig(config: Config) {
@@ -70,4 +72,25 @@ export function expandPath(path: string, config?: any) {
   }
   const result = expandConfig(path, config)
   return result
+}
+
+export function expandPaths(paths: string[], config?: any) {
+  const result = paths.map(path => expandPath(path, config))
+  return result
+}
+
+export function expandPathInObject(obj: any, pathKeys: string[] = ['configDirs', 'brainDir', 'agentDirs', 'promptDirs', 'chatsDir', 'inputsDir'], config?: any) {
+  for (const key of pathKeys) {
+    const value = getByPath(obj, key)
+    if (!value) {continue}
+    let newValue: string|string[]|undefined
+    if (Array.isArray(value) && value.length) {
+      newValue = expandPaths(value, config)
+    } else if (typeof value === 'string') {
+      newValue = expandPath(value, config)
+    }
+    if (newValue) {
+      setByPath(obj, key, newValue)
+    }
+  }
 }
