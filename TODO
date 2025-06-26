@@ -1,0 +1,23 @@
+feat:
+  ✔ 增加tool(ai-tool)的标识`asyncFeatures`,表明该tool是单任务的,还是允许多任务的,以及是否可以用aborter撤销指定的任务 @done(24-07-20 08:35)
+  ✔ 为 `tool-func` 提供 aborter 能力: `src/utils/cancelable-ability.ts`, 在注入的时候修改`_asyncFeatures`的值 @done(24-07-20 19:41)
+    ✔ 增加了事件`aborting`,在执行abort前发出的通知 @done(24-07-22 11:20)
+    ✔ 实现多任务支持(简单自动taskId) @done(24-07-22 11:22)
+      还要提炼,目前少量代码逻辑在`ai-tool-llm-llamacpp`中,用于传递回当前任务的带taskId的aborter对象.
+    ✔ 实现tiemout abort 可选能力, 有参数`defaultTimeout`. @done(24-07-25 11:04)
+    ✔ ResServerTool 需要再次抽象提取,不需要认为默认有`CRUD`接口,或者直接将这部分放到ServerTool上,不妥,还是需要一个新类`RpcMethodsServerTool`: 该函数上有多个rpc方法接口 @done(24-08-19 10:39)
+    ☐ ServerTool 需要规范 `api_token` and `password`?
+      目前只规范了`isStream`
+      ServerTool 只是一个 Factory 汇集(注册)所有server函数的工厂类
+      ResServerTool 只是在`func`上约定了暴露的`CRUD`接口
+      具体如何实现,没有约定,你可以自己决定在HTTP服务上实现,或wsSocket上实现.
+      RpcServerTool
+      ServerTool 是一个基类 同时也是一个工厂类, 从 ServerTool 派生的工具默认只有一个远程调用(`func`), 而 RpcServerTool 则是通过约定`func`的对象参数`method`实现多个远程调用的, 那么 我的问题是RpcServerTool是否是最合适的命名,你有没有更好的推荐
+      RpcServerMethods 这个名没有ServerTool
+      RpcMethodsServerTool
+      ☐ refactor: rename `ResServerTools` to `ResServerTool`, `ResClientTools` to `ResHttpClientTool`, `ClientTools` to `HttpClientTools` 是否加`http`??
+      ☐ refactor: xxhash using async function(hash-wasm) instead of sync function(xxhashjs)
+bugs:
+  ✔ 当多任务被阻塞的时候，如果被abort，会出问题？因为这个时候，是在信号量的Promise中的，所以，这个任务不会被立马取消，而是继续等待，直到在执行该任务的时候。这是个bug. @done(24-07-26 09:18)
+  ✔ 新增 `TaskAbortController::throwRejected`用于在任务中正确判断是否该终止执行(因为abort)，因为在semaphore中，会`reject()`，如果不正确判断会导致二次`reject`. @done(24-07-26 10:09)
+  ☐ splitSentence: 对于纯文本是否忽略空行？目前是忽略的。应该不能忽略。
