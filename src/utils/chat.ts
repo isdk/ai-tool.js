@@ -41,6 +41,7 @@ export type AIMessageType = typeof AIMessageTypes[number]
 // tool_calls: the tool calls in the message, eg, [{type: "function", function: {name: "getCurrentLocation", arguments: "{}"}, id: "123"}
 // https://github.com/openai/openai-node/blob/master/README.md
 export const AIChatRoles = ['user', 'assistant', 'system', 'tool', 'tool_calls'] as const
+export const StrangeHumanName = '陌生人'
 export type AIChatRole = (typeof AIChatRoles[number]) & string
 
 export type AIChatMessageParam =
