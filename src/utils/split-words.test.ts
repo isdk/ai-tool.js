@@ -95,8 +95,14 @@ describe('splitWords', () => {
 
   // Special characters
   it('should preserve special characters within words', () => {
-    expect(splitWords('user_name')).toEqual(['user_name']);
+    expect(splitWords('user-name')).toEqual(['user-name']);
     expect(splitWords('email@domain.com')).toEqual(['email@domain.com']);
     expect(splitWords('price$100')).toEqual(['price$100']);
   });
+
+  it('should handle underline', () => {
+    expect(splitWords('hello_World')).toEqual(['hello', 'World']);
+    expect(splitWords('hello _world')).toEqual(['hello', 'world']);
+  });
+
 });

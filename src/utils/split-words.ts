@@ -43,8 +43,8 @@ export function splitWords(input: string): string[] {
     // 1. 小写字母后跟大写字母 (如: oW -> "o" 和 "W")
     // 2. 数字后跟字母 (如: 1G -> "1" 和 "G")
     // 3. 大写字母后跟大写字母+小写字母 (如: PRe -> "P" 和 "R"，其中 R 后跟小写字母)
-    // 4. 空格分隔符
+    // 4. 空格或下划线分隔符
     return input
-        .split(/(?<=[a-z])(?=[A-Z])|(?<=\d)(?=[A-Za-z])|(?<=[A-Z])(?=[A-Z][a-z])|\s+/g)
+        .split(/(?<=[a-z])(?=[A-Z])|(?<=\d)(?=[A-Za-z])|(?<=[A-Z])(?=[A-Z][a-z])|[\s_]+/g)
         .filter(word => word.length > 0);
 }
