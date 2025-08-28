@@ -56,7 +56,15 @@ export class ServerTools extends ToolFunc {
     return result
   }
 
-  func({}): Promise<any>|any {}
+  run(params: ServerFuncParams, context?: { req: any, reply: any }) {
+    if (context) {
+      params._req = context.req;
+      params._res = context.reply;
+    }
+    return super.run(params);
+  }
+
+  func(params: ServerFuncParams): Promise<any>|any {}
 }
 
 export const ServerToolFuncSchema = { ...RemoteToolFuncSchema }

@@ -103,7 +103,7 @@ Resource-based server tools, where resources are named ToolFunc.
 
 #### Custom Methods
 
-Methods prefixed with `$` are custom resource methods, accessible via `POST`.
+Methods prefixed with ` are custom resource methods, accessible via `POST`.
 
 Example
 
@@ -176,6 +176,67 @@ if (resFunc) {
   result = await res.get({id: '...'})
   result = await res.customMethod({id: '...'})
 }
+```
+
+### Transports (RPC)
+
+The new `transports` layer decouples `ClientTools` and `ServerTools` from the underlying communication protocol (like HTTP), making the RPC mechanism more flexible and extensible. It defines clear interfaces for both client and server transports.
+
+#### Server-Side Usage (`FastifyServerToolTransport`)
+
+On the server, you can use `FastifyServerToolTransport` to expose your `ServerTools` over a Fastify web server.
+
+**Example:**
+
+```ts
+// server.ts
+import { ServerTools } from '@isdk/ai-tool';
+import { FastifyServerToolTransport } from '@isdk/ai-tool/transports';
+
+// 1. Register your tools as usual
+ServerTools.register({
+  name: 'calculator',
+  isApi: true,
+  func: ({ a, b }: { a: number; b: number }) => a + b,
+});
+
+// 2. Setup the server transport and mount the tools
+const serverTransport = new FastifyServerToolTransport();
+serverTransport.mount(ServerTools, '/api'); // Expose tools under the /api prefix
+
+// 3. Start the server
+serverTransport.start({ port: 3000 });
+```
+
+#### Client-Side Usage (`HttpClientToolTransport`)
+
+On the client, you use `HttpClientToolTransport` to connect to the server and execute remote tools.
+
+**Example:**
+
+```ts
+// client.ts
+import { ClientTools } from '@isdk/ai-tool';
+import { HttpClientToolTransport } from '@isdk/ai-tool/transports';
+
+async function main() {
+  const apiRoot = 'http://localhost:3000/api';
+
+  // 1. Setup the client transport
+  const clientTransport = new HttpClientToolTransport(apiRoot);
+  ClientTools.setTransport(clientTransport);
+
+  // 2. Load tool definitions from the server
+  await ClientTools.loadFrom();
+
+  // 3. Get the tool and run it
+  const calculatorTool = ClientTools.get('calculator');
+  const result = await calculatorTool.run({ a: 40, b: 2 });
+
+  console.log(result); // 42
+}
+
+main();
 ```
 
 ### SSE (Server-Sent Events)

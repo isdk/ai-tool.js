@@ -6,6 +6,7 @@ import { Funcs, ToolFunc } from '../src/tool-func'
 import { ServerTools } from "../src/server-tools"
 import { ClientTools } from '../src/client-tools'
 import { findPort } from '../src/utils/find-port'
+import { HttpClientTransport } from '../src/transports'
 
 describe('ServerTools', () => {
   beforeEach(()=>{
@@ -213,7 +214,10 @@ describe('server api', () => {
     apiRoot = `http://localhost:${port}/api`
 
     ServerTools.setApiRoot(apiRoot)
-    ClientTools.setApiRoot(apiRoot)
+    const clientTransport = new HttpClientTransport(apiRoot);
+    ClientTools.setTransport(clientTransport);
+
+    // ClientTools.setApiRoot(apiRoot)
     await ClientTools.loadFrom()
   })
 

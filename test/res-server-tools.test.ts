@@ -11,6 +11,7 @@ import { wait } from '../src/utils'
 import { ServerTools } from '../src/server-tools'
 import { ClientTools } from '../src/client-tools'
 import { omit } from 'lodash-es'
+import { HttpClientToolTransport } from '../src/transports'
 
 class TestResTool extends ResServerTools {
   items: any = {}
@@ -147,8 +148,10 @@ describe('res server api', () => {
     ResServerTools.setApiRoot(apiRoot)
     const res = new TestResTool('res')
     res.register()
+    const clientTransport = new HttpClientToolTransport(apiRoot);
+    ResClientTools.setTransport(clientTransport);
 
-    ResClientTools.setApiRoot(apiRoot)
+    // ResClientTools.setApiRoot(apiRoot)
     await ResClientTools.loadFrom()
   })
 

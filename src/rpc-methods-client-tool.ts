@@ -8,12 +8,24 @@ export interface RpcMethodsClientFuncParams {
 
 export class RpcMethodsClientTool extends ClientTools {
   async _func(action: ActionName, options: RpcMethodsClientFuncParams) {
-    const res = await this.fetch(options, action)
-    if (options?.stream) {
-      return res
+    // @ts-ignore: check for private transport property to ensure backward compatibility.
+    if (ClientTools._transport) {
+      // New transport-based logic
+      const params = { ...options };
+      if (action) {
+        params.act = action;
+      }
+      return super.func(params);
+    } else {
+      // Old fetch-based logic for backward compatibility
+      /** @deprecated use transport instead */
+      const res = await this.fetch(options, action)
+      if (options?.stream) {
+        return res
+      }
+      const result = await res.json()
+      return result
     }
-    const result = await res.json()
-    return result
   }
 
   async func(options: RpcMethodsClientFuncParams) {
