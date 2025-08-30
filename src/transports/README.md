@@ -20,10 +20,8 @@ graph TD
         C --> D{ClientTools};
     end
     subgraph Transport Layer
-        D -->|Uses| E[IClientToolTransport
-(e.g., HttpClientToolTransport)];
-        E -- HTTP Request --> F[IServerToolTransport
-(e.g., FastifyServerToolTransport)];
+        D --> |Uses| E[IClientToolTransport];
+        E -- HTTP Request --> F[IServerToolTransport];
     end
     subgraph Server-Side
         F -->|Calls| G{ServerTools};
