@@ -6,13 +6,13 @@ The `transports` layer provides a flexible mechanism for communication between `
 
 The layer is built around two main interfaces:
 
--   **`IServerToolTransport`**: Defines the contract for server-side transports. Its primary responsibility is to expose `ServerTools` to the network. This involves:
-    -   A `mount()` method to register the `ServerTools` and create the necessary API endpoints (e.g., a discovery endpoint to list tools and RPC endpoints to execute them).
-    -   A `start()` method to begin listening for incoming connections.
+- **`IServerToolTransport`**: Defines the contract for server-side transports. Its primary responsibility is to expose `ServerTools` to the network. This involves:
+  - A `mount()` method to register the `ServerTools` and create the necessary API endpoints (e.g., a discovery endpoint to list tools and RPC endpoints to execute them).
+  - A `start()` method to begin listening for incoming connections.
 
--   **`IClientToolTransport`**: Defines the contract for client-side transports. Its role is to communicate with a server transport to execute tools remotely. This involves:
-    -   A `load()` method to connect to the server's discovery endpoint and retrieve the list of available tool definitions.
-    -   A `run()` method to execute a specific tool on the server by name, passing the required parameters.
+- **`IClientToolTransport`**: Defines the contract for client-side transports. Its role is to communicate with a server transport to execute tools remotely. This involves:
+  - A `load()` method to connect to the server's discovery endpoint and retrieve the list of available tool definitions.
+  - A `run()` method to execute a specific tool on the server by name, passing the required parameters.
 
 ## Implementations
 
@@ -20,12 +20,12 @@ This directory includes the following concrete implementations:
 
 ### Server-Side
 
--   **`ServerToolTransport`**: An abstract base class that provides the generic logic for mounting `ServerTools`. It iterates through the registered tools and maps them to RPC handlers.
--   **`FastifyServerToolTransport`**: A concrete implementation based on the [Fastify](https://www.fastify.io/) web framework. It creates HTTP `GET` and `POST` routes for tool discovery and execution.
+- **`ServerToolTransport`**: An abstract base class that provides the generic logic for mounting `ServerTools`. It iterates through the registered tools and maps them to RPC handlers.
+- **`FastifyServerToolTransport`**: A concrete implementation based on the [Fastify](https://www.fastify.io/) web framework. It creates HTTP `GET` and `POST` routes for tool discovery and execution.
 
 ### Client-Side
 
--   **`HttpClientToolTransport`**: A concrete implementation that uses the standard `fetch` API to communicate with an HTTP-based server transport. It's compatible with browsers and Node.js environments.
+- **`HttpClientToolTransport`**: A concrete implementation that uses the standard `fetch` API to communicate with an HTTP-based server transport. It's compatible with browsers and Node.js environments.
 
 ## End-to-End Usage Example
 

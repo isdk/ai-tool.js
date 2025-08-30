@@ -1,7 +1,8 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import { findPort } from '../src/utils/find-port';
-import { NotFoundError } from '../src/utils';
+import { NotFoundError, sleep } from '../src/utils';
 
+import { ToolFunc, Funcs } from '../src/tool-func'
 import { ServerTools } from '../src/server-tools';
 import { ClientTools } from '../src/client-tools';
 import { ResServerTools, ResServerFuncParams } from '../src/res-server-tools';
@@ -9,8 +10,7 @@ import { ResClientTools } from '../src/res-client-tools';
 import { RpcMethodsServerTool } from '../src/rpc-methods-server-tool';
 import { RpcMethodsClientTool } from '../src/rpc-methods-client-tool';
 
-import { FastifyRestfulToolTransport } from '../src/transports/fastify-restful-server';
-import { HttpClientToolTransport } from '../src/transports/client';
+import { FastifyServerToolTransport, HttpClientToolTransport } from '../src/transports';
 import type { FastifyInstance } from 'fastify';
 
 // Server-side implementation of a resource tool for testing
@@ -76,36 +76,38 @@ class TestRpcTool extends RpcMethodsServerTool {
 }
 
 describe('FastifyRestfulToolTransport', () => {
-  let serverTransport: FastifyRestfulToolTransport;
+  let serverTransport: FastifyServerToolTransport;
   let apiRoot: string;
 
   beforeAll(async () => {
-    // 1. Register server-side tools
-    ServerTools.items = {};
-    ClientTools.items = {};
-    new TestResTool('resTest');
-    new TestRpcTool('rpcTest');
+    // 让 items 属性继承 ToolFunc.items
+    const ServerToolItems: {[name:string]: ServerTools|ToolFunc} = {}
+    Object.setPrototypeOf(ServerToolItems, ToolFunc.items)
+    ServerTools.items = ServerToolItems
+
+    const ClientToolItems: Funcs = {}
+    Object.setPrototypeOf(ClientToolItems, ToolFunc.items)
+    ClientTools.items = ClientToolItems
+
+    const res = new TestResTool('resTest')
+    res.register()
+    const rpc = new TestRpcTool('rpcTest')
+    ResServerTools.register(rpc)
 
     // 2. Use the new, specialized transport to mount all tools
-    serverTransport = new FastifyRestfulToolTransport();
-    serverTransport.mount(ServerTools, '/api');
+    serverTransport = new FastifyServerToolTransport();
+    serverTransport.mount(ResServerTools, '/api');
 
     const port = await findPort(3003);
-    await serverTransport.start({ port });
+    await serverTransport.start({ port, host: 'localhost' });
     apiRoot = `http://localhost:${port}/api`;
+
 
     // 3. Setup the client transport and load tools
     const clientTransport = new HttpClientToolTransport(apiRoot);
-    ClientTools.setTransport(clientTransport);
-
-    // DEBUG: Check what the discovery endpoint returns
-    const discoveryResp = await fetch(apiRoot);
-    const discoveredItems = await discoveryResp.json();
-    console.log('--- Discovered Items from Server ---', discoveredItems);
-
-    // The key fix: Use the specific class to load the tools.
-    // This ensures the correct client-side classes are instantiated.
-    ClientTools.loadFromSync(discoveredItems);
+    // ResClientTools.setTransport(clientTransport);
+    // await ResClientTools.loadFrom();
+    await clientTransport.mount(ResClientTools)
   });
 
   afterAll(async () => {
@@ -114,28 +116,40 @@ describe('FastifyRestfulToolTransport', () => {
 
   describe('ResServerTools mounted via transport', () => {
     it('should instantiate TestResTool as ResClientTools', () => {
-      const resTool = ClientTools.get('resTest');
+      const resTool = ResClientTools.get('resTest');
       expect(resTool).toBeInstanceOf(ResClientTools);
     });
 
-    it('should call the list method via GET /resTest', async () => {
-      const resTool = ClientTools.get('resTest') as ResClientTools;
+    it('should call the list method', async () => {
+      const resTool = ResClientTools.get('resTest') as ResClientTools;
       const result = await resTool.list!();
       expect(Object.keys(result).length).toBe(2);
       expect(result['1']).toEqual({ id: '1', name: 'Item 1' });
+    });
+
+    it('should call the get method', async () => {
+      const resTool = ResClientTools.get('resTest') as ResClientTools;
+      const result = await resTool.get!({id: 1});
+      expect(result).toEqual({ id: '1', name: 'Item 1' });
+    });
+
+    it('should call customMethod', async () => {
+      const resTool = ResClientTools.get('resTest') as ResClientTools;
+      const result = await resTool.customMethod({id: 2});
+      expect(result).toEqual({ id: '2', name: 'Item 2', custom: true });
     });
   });
 
   describe('RpcMethodsServerTool mounted via transport', () => {
     it('should instantiate TestRpcTool as RpcMethodsClientTool', () => {
-      const rpcTool = ClientTools.get('rpcTest');
+      const rpcTool = RpcMethodsClientTool.get('rpcTest');
       expect(rpcTool).toBeInstanceOf(RpcMethodsClientTool);
     });
 
     it('should call a method via POST /rpcTest', async () => {
-        const rpcTool = ClientTools.get('rpcTest') as RpcMethodsClientTool & { add: Function };
-        const result = await rpcTool.add({a: 100, b: 50});
-        expect(result).toBe(150);
+      const rpcTool = RpcMethodsClientTool.get('rpcTest') as RpcMethodsClientTool & { add: Function };
+      const result = await rpcTool.add({a: 100, b: 50});
+      expect(result).toBe(150);
     });
   });
 });

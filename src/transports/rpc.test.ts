@@ -7,7 +7,7 @@ import { ClientTools } from '../client-tools';
 import { ToolFunc } from '../tool-func';
 
 import { FastifyServerToolTransport } from './fastify-server';
-import { HttpClientToolTransport } from './client';
+import { HttpClientToolTransport } from './http-client';
 
 describe('RPC End-to-End Test', () => {
   let serverInstance: FastifyInstance;
@@ -68,8 +68,7 @@ describe('RPC End-to-End Test', () => {
 
   it('should handle remote errors correctly', async () => {
     const clientTransport = new HttpClientToolTransport(apiRoot);
-    ClientTools.setTransport(clientTransport);
-    await ClientTools.loadFrom();
+    await clientTransport.mount(ClientTools);
 
     const dividerTool = ClientTools.get('divider');
 
