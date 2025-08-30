@@ -9,7 +9,7 @@ import { ToolFunc } from '../tool-func';
 import { FastifyServerToolTransport } from './fastify-server';
 import { HttpClientToolTransport } from './http-client';
 
-describe('RPC End-to-End Test', () => {
+describe('ServerTools/ClientTools Test', () => {
   let serverInstance: FastifyInstance;
   let serverTransport: FastifyServerToolTransport;
   let apiRoot: string;
