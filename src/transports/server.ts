@@ -1,6 +1,6 @@
 import { defaultsDeep } from 'lodash-es';
 import type { ServerTools } from '../server-tools';
-import { ToolTransport, type IToolTransport, type RpcMethodHandler } from './base';
+import { ToolTransport, type IToolTransport } from './base';
 
 /**
  * Defines the public interface for a server-side transport,
