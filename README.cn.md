@@ -122,7 +122,7 @@ TODO: 需要约定方法是否为stream?,而不是Func是否为stream.
 
 RES基本都是约定,可以没有实质的类?还是需要一个类,来告诉后代get,list,post,put,delete方法的存在?
 
-新增约定，以`$`打头的方法为供客户端调用的自定义资源方法method, 然后它们的HTTP Method统一为`POST`
+新增约定，以`打头的方法为供客户端调用的自定义资源方法method, 然后它们的HTTP Method统一为`POST`
 
 ```ts
 class TestResTool extends ResServerTools {
@@ -222,7 +222,7 @@ try {
 
 根据ServerTools的加载项中的methods约定,生成对应ClientTools中的方法.
 
-如果是调用自定义资源方法,那么去掉服务器中自定义方法的前缀(`$`)即可.
+如果是调用自定义资源方法,那么去掉服务器中自定义方法的前缀(`)即可.
 
 ```ts
 ResClientTools.apiRoot = apiRoot
@@ -235,6 +235,67 @@ if (resFunc) {
   result = await res.get({id: '...'})
   result = await res.customMethod({id: '...'})
 }
+```
+
+### Transports (RPC 通信)
+
+新增的 `transports` 层将 `ClientTools` 和 `ServerTools` 与底层通信协议（如HTTP）解耦，使RPC机制更加灵活和可扩展。它为客户端和服务器端传输定义了清晰的接口。
+
+#### 服务器端用法 (`FastifyServerToolTransport`)
+
+在服务器上，您可以使用 `FastifyServerToolTransport` 通过 Fastify Web 服务器暴露您的 `ServerTools`。
+
+**示例:**
+
+```ts
+// server.ts
+import { ServerTools } from '@isdk/ai-tool';
+import { FastifyServerToolTransport } from '@isdk/ai-tool/transports';
+
+// 1. 像往常一样注册您的工具
+ServerTools.register({
+  name: 'calculator',
+  isApi: true,
+  func: ({ a, b }: { a: number; b: number }) => a + b,
+});
+
+// 2. 设置服务器传输并挂载工具
+const serverTransport = new FastifyServerToolTransport();
+serverTransport.mount(ServerTools, '/api'); // 在 /api 前缀下暴露工具
+
+// 3. 启动服务器
+serverTransport.start({ port: 3000 });
+```
+
+#### 客户端用法 (`HttpClientToolTransport`)
+
+在客户端，您可以使用 `HttpClientToolTransport` 连接到服务器并执行远程工具。
+
+**示例:**
+
+```ts
+// client.ts
+import { ClientTools } from '@isdk/ai-tool';
+import { HttpClientToolTransport } from '@isdk/ai-tool/transports';
+
+async function main() {
+  const apiRoot = 'http://localhost:3000/api';
+
+  // 1. 设置客户端传输
+  const clientTransport = new HttpClientToolTransport(apiRoot);
+  ClientTools.setTransport(clientTransport);
+
+  // 2. 从服务器加载工具定义
+  await ClientTools.loadFrom();
+
+  // 3. 获取工具并运行它
+  const calculatorTool = ClientTools.get('calculator');
+  const result = await calculatorTool.run({ a: 40, b: 2 });
+
+  console.log(result); // 42
+}
+
+main();
 ```
 
 ### SSE

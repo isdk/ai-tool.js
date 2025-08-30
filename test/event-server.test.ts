@@ -8,6 +8,7 @@ import { EventBusName, EventName, backendEventable } from "../src/utils/event"
 import { wait } from '../src/utils'
 import { findPort } from '../src/utils/find-port'
 import { Funcs, ToolFunc } from '../src/tool-func'
+import { HttpClientToolTransport } from '../src/transports'
 backendEventable(EventClient)
 backendEventable(EventServer)
 
@@ -113,7 +114,10 @@ describe('Event Server api', () => {
     apiRoot = `http://localhost:${port}/api`
 
     ServerTools.setApiRoot(apiRoot)
-    ClientTools.setApiRoot(apiRoot)
+    const clientTransport = new HttpClientToolTransport(apiRoot);
+    ClientTools.setTransport(clientTransport);
+
+    // ClientTools.setApiRoot(apiRoot)
     await ClientTools.loadFrom()
   })
 

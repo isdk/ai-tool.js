@@ -8,12 +8,11 @@ export interface RpcMethodsClientFuncParams {
 
 export class RpcMethodsClientTool extends ClientTools {
   async _func(action: ActionName, options: RpcMethodsClientFuncParams) {
-    const res = await this.fetch(options, action)
-    if (options?.stream) {
-      return res
+    const params = { ...options };
+    if (action) {
+      params.act = action;
     }
-    const result = await res.json()
-    return result
+    return super.func(params);
   }
 
   async func(options: RpcMethodsClientFuncParams) {
