@@ -38,20 +38,20 @@ export type AIModelNameRules = AIModelNameRule|AIModelNameRule[]
  * @internal
  */
 export const RemoteToolFuncSchema = {
-  /**
-   * The root endpoint for the remote service.
-   * For HTTP, this is a URL. For IPC, it could be a channel name.
-   * @deprecated Use `transport` instead.
-   */
-  apiRoot: {
-    type: 'string',
-    get(this: any){
-      return this._apiRoot ?? (this.constructor as any).apiRoot
-    },
-    set(this: any, value: string) {
-      this._apiRoot = value
-    },
-  },
+  // /**
+  //  * The root endpoint for the remote service.
+  //  * For HTTP, this is a URL. For IPC, it could be a channel name.
+  //  * @deprecated Use `transport` instead.
+  //  */
+  // apiRoot: {
+  //   type: 'string',
+  //   get(this: any){
+  //     return this._apiRoot ?? (this.constructor as any).apiRoot
+  //   },
+  //   set(this: any, value: string) {
+  //     this._apiRoot = value
+  //   },
+  // },
   /**
    * The action for the remote call. This is primarily interpreted as an RPC method name.
    * For HTTP transports, it defaults to being sent as a custom RPC method name (e.g., via POST).
