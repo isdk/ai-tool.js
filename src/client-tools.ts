@@ -15,6 +15,7 @@ export declare interface ClientTools extends ClientFuncItem {
  */
 export interface ClientFuncItem extends RemoteFuncItem {}
 
+const NoTransportErrorMsg = 'A client transport has not been set. Use ClientTools.setTransport() or transport.mount(ClientTools) first.';
 
 /**
  * Represents a client-side proxy for a remote tool function.
@@ -27,15 +28,19 @@ export interface ClientFuncItem extends RemoteFuncItem {}
  * These tools are typically created dynamically by loading definitions from a server.
  */
 export class ClientTools extends ToolFunc {
-  /**
-   * @deprecated This property is now mainly for informational purposes.
-   * The actual endpoint is managed by the transport.
-   */
-  declare apiRoot: string | undefined;
   // the default action name
   declare static action?: ActionName | string;
 
   private static _transport: IClientToolTransport;
+
+  /**
+   * @deprecated This property is now mainly for informational purposes.
+   * The actual endpoint is managed by the transport.
+   */
+  static get apiRoot() {
+    if (!this._transport) {throwError(NoTransportErrorMsg, 'ClientTools')}
+    return this._transport.apiRoot
+  }
 
   /**
    * Injects the client-side transport implementation. This is a crucial step
@@ -63,7 +68,7 @@ export class ClientTools extends ToolFunc {
   static async loadFrom(items?: Funcs) {
     if (!items) {
       if (!this._transport) {
-        throwError('A client transport has not been set. Use ClientTools.setTransport() first.', 'ClientTools');
+        throwError(NoTransportErrorMsg, 'ClientTools');
       }
       items = await this._transport.loadApis();
     }
@@ -97,12 +102,21 @@ export class ClientTools extends ToolFunc {
     }
   }
 
+  /**
+   * @deprecated This property is now mainly for informational purposes.
+   * The actual endpoint is managed by the transport.
+   */
+  get apiRoot() {
+    const ctor = this.constructor as typeof ClientTools
+    return ctor.apiRoot
+  }
+
   async fetch(objParam?: any, act?: ActionName, subName?: any) {
     const ctor = this.constructor as typeof ClientTools
     if (ctor._transport) {
       return ctor._transport.fetch(this.name!, objParam, act, subName, this.fetchOptions)
     } else {
-      throwError('A client transport has not been set. Use ClientTools.setTransport() first.', 'ClientTools');
+      throwError(NoTransportErrorMsg, 'ClientTools');
     }
   }
 
