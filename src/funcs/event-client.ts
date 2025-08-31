@@ -1,4 +1,4 @@
-import { EventName, getUrlParams } from '../utils'
+import { EventName, genUrlParamsStr } from '../utils'
 import type { Event } from 'events-ex'
 import { ResClientTools } from '../res-client-tools'
 
@@ -54,7 +54,7 @@ export class EventClient extends ResClientTools {
         this._es.close()
       }
     }
-    const urlParams = events ? getUrlParams({event: events}) : ''
+    const urlParams = events ? genUrlParamsStr({event: events}) : ''
     const url = `${this.apiRoot}/${this.name}${urlParams}`
     const evtSource = this._es = new EventSource(url)
     // re-add the subscribed events

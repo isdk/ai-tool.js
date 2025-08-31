@@ -1,6 +1,6 @@
 import { createError } from "../utils/base-error";
 import { Funcs } from '../tool-func';
-import { ActionName, getUrlParams } from '../utils';
+import { ActionName, genUrlParamsStr } from '../utils';
 import { ClientToolTransport } from "./client";
 
 /**
@@ -47,7 +47,7 @@ export class HttpClientToolTransport extends ClientToolTransport {
     fetchOptions.method =act.toUpperCase()
     let urlPart: string
     if (act === 'get' || act === 'delete') {
-      urlPart  = subName + getUrlParams(args)
+      urlPart  = subName + genUrlParamsStr(args)
     } else {
       fetchOptions.body = JSON.stringify(args)
       urlPart = subName!
