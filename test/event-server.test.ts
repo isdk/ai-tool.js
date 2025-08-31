@@ -5,10 +5,11 @@ import { ServerTools } from "../src/server-tools"
 import { ClientTools } from '../src/client-tools'
 import { EventServer, EventClient, event, EventToolFunc } from '../src/funcs'
 import { EventBusName, EventName, backendEventable } from "../src/utils/event"
-import { wait } from '../src/utils'
+import { sleep } from '../src/utils'
 import { findPort } from '../src/utils/find-port'
 import { Funcs, ToolFunc } from '../src/tool-func'
 import { HttpClientToolTransport } from '../src/transports'
+
 backendEventable(EventClient)
 backendEventable(EventServer)
 
@@ -146,7 +147,7 @@ describe('Event Server api', () => {
       // publish the t1 event to the server
       // await event.run({event: 't1', act: 'pub', data: [1, 2, 3]})
       await event.publish({ event: 't1', data: [1, 2, 3] })
-      await wait(10)
+      await sleep(10)
       expect(t1).toBe(1)
 
       event.on('t2', function (...data: any[]) {
@@ -164,25 +165,25 @@ describe('Event Server api', () => {
         // it should not be here
         t2j++
       }
-      await wait(10)
+      await sleep(10)
 
       // forward the local t2 event to server
       event.forwardEvent('t2')
       // emit the t2 event
       event.emit('t2', 4, 5, 6)
-      await wait(250)
+      await sleep(250)
       expect(t1).toBe(1)
       expect(t2).toBe(1)
       expect(t2j).toBe(1)
       // await event.run({event: 't1', act: 'pub', data: [1, 2, 3]})
       await event.publish({ event: 't1', data: [1, 2, 3] })
-      await wait(10)
+      await sleep(10)
       expect(t1).toBe(2)
       // await event.run({event: ['t1', 't2'], act: 'unsub'})
       await event.unsubscribe(['t1', 't2'])
       // await event.run({event: 't1', act: 'pub', data: [1, 2, 3]})
       await event.publish({ event: 't1', data: [1, 2, 3] })
-      await wait(10)
+      await sleep(10)
       expect(t1).toBe(2)
     } finally {
       event.active = false
@@ -201,7 +202,7 @@ describe('Event Server api', () => {
     // subscribe the t1 and t2 event on the server
     // await event.run({event: ['t1', 't2'], act: 'sub'})
     let res = await event.subscribe('t1')
-    await wait(10) // the eventsource need time to connect
+    await sleep(10) // the eventsource need time to connect
     expect(res).toStrictEqual({ event: 't1' })
     try {
       let t1 = 0
@@ -212,20 +213,20 @@ describe('Event Server api', () => {
         data = dat
       })
       eventServer.emit('t1', 1, 2, 3)
-      await wait(380)
+      await sleep(380)
       expect(t1).toBe(1)
       expect(data).toStrictEqual([EventName, 1, 2, 3])
       await event.publish({ event: 't1', data: [2, 3] })
-      await wait(1)
+      await sleep(1)
       expect(t1).toBe(2)
       expect(data).toStrictEqual([2, 3])
       eventServer.emit('t1', 'hi')
-      await wait(1)
+      await sleep(1)
       expect(t1).toBe(3)
       expect(data).toStrictEqual([EventName, 'hi'])
       res = await event.unsubscribe('t1')
       eventServer.emit('t1', 'hi')
-      await wait(1)
+      await sleep(1)
       expect(t1).toBe(3)
     } finally {
       event.active = false

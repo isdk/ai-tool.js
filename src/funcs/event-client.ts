@@ -1,4 +1,4 @@
-import { EventName } from '../utils'
+import { EventName, getUrlParams } from '../utils'
 import type { Event } from 'events-ex'
 import { ResClientTools } from '../res-client-tools'
 
@@ -54,7 +54,7 @@ export class EventClient extends ResClientTools {
         this._es.close()
       }
     }
-    const urlParams = events ? this.getUrlParams({event: events}) : ''
+    const urlParams = events ? getUrlParams({event: events}) : ''
     const url = `${this.apiRoot}/${this.name}${urlParams}`
     const evtSource = this._es = new EventSource(url)
     // re-add the subscribed events
@@ -65,13 +65,12 @@ export class EventClient extends ResClientTools {
     return evtSource
   }
 
-  // pass server sent event to eventBus
+  // pass server sent event to eventBus if any
   esListener(event: MessageEvent) {
     const data = event.data ? JSON.parse(event.data) : undefined
     const evtType = event.type
     if (!this._forwardEvents.has(evtType)) {
-      // console.log(event))
-      const emitter = this.emitter
+      const emitter = this.emitter // the event emitter if any
       if (emitter && data && evtType) {
         if (Array.isArray(data)) {
           emitter.emit(evtType, ...data)

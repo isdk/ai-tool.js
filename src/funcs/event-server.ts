@@ -7,6 +7,7 @@ import type { Event } from 'events-ex';
 import { ResServerTools } from '../res-server-tools';
 import { ErrorCode, throwError } from '../utils';
 
+// the singleton instance of event-bus
 const eventBus = event.runSync()
 
 export interface EventServerFuncParams extends ServerFuncParams {
