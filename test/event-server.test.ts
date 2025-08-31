@@ -1,6 +1,5 @@
 // @vitest-environment node
 // import { describe, expect, it } from 'vitest'
-import fastify from 'fastify'
 import { ServerTools } from "../src/server-tools"
 import { ClientTools } from '../src/client-tools'
 import { EventServer, EventClient, event, EventToolFunc } from '../src/funcs'
@@ -8,7 +7,7 @@ import { EventBusName, EventName, backendEventable } from "../src/utils/event"
 import { sleep } from '../src/utils'
 import { findPort } from '../src/utils/find-port'
 import { Funcs, ToolFunc } from '../src/tool-func'
-import { HttpClientToolTransport } from '../src/transports'
+import { FastifyServerToolTransport, HttpClientToolTransport } from '../src/transports'
 
 backendEventable(EventClient)
 backendEventable(EventServer)
@@ -17,7 +16,7 @@ const event4Client = new EventToolFunc(EventBusName)
 
 describe('Event Server api', () => {
   let apiRoot: string // = 'http://localhost:3000/api'
-  const server = fastify()
+  let server: any
 
   beforeAll(async () => {
     const ServerToolItems: {[name:string]: ServerTools|ToolFunc} = {}
@@ -46,72 +45,12 @@ describe('Event Server api', () => {
       result: 'number',
     })
 
-
-    server.get('/api', async function (request, reply) {
-      reply.send(ServerTools)
-    })
-
-    server.all('/api/:toolId/:id?', async function (request, reply) {
-      const { toolId, id } = request.params as any;
-      const func = ServerTools.get(toolId)
-      if (!func) {
-        reply.code(404).send({ error: toolId + ' Not Found', data: { what: toolId } })
-      }
-      let params: any
-      const method = request.method
-      if (method === 'GET' || method == 'DELETE') {
-        params = (request.query as any).p
-        if (params) {
-          params = JSON.parse(params)
-        } else {
-          params = {}
-        }
-      } else {
-        params = request.body;
-        if (typeof params === 'string') { params = JSON.parse(params) }
-      }
-      // console.log('🚀 ~ server.all ~ toolId:', toolId, params, id)
-      params._req = request.raw
-      params._res = reply.raw
-      if (id !== undefined) { params.id = id }
-
-      // const result = JSON.stringify(await func.run(params))
-      try {
-        let result = await func.run(params)
-        if (!func.isStream(params)) {
-          result = JSON.stringify(result)
-          // console.log('🚀 ~ server.all ~ result:', result)
-          reply.send(result)
-          // reply.send({params: request.params as any, query: request.query, url: request.url})
-        } else if (result) {
-          reply.send(result)
-          // } else if (func.result && func.result !== 'any' && func.result !== 'void') {
-          //   // maybe should valid result type
-          //   reply.code(500).send({error: 'no result'})
-          // } else {
-          //   reply.send()
-        }
-      } catch (e) {
-        if (e.code !== undefined) {
-          const err: any = { ...e, error: e.message }
-          // console.log('🚀 ~ server.all ~ err:', err)
-          if (err.stack) { delete err.stack }
-          if (typeof err.code === 'number') {
-            reply.code(err.code).send(JSON.stringify(err))
-          } else {
-            reply.code(500).send(JSON.stringify(err))
-          }
-        } else if (e.message) {
-          reply.code(500).send({ error: e.message })
-        } else {
-          reply.code(500).send({ error: e })
-        }
-      }
-    })
-
     const port = await findPort(3002)
-    const result = await server.listen({ port })
-    console.log('server listening on ', result)
+    server = new FastifyServerToolTransport()
+    server.mount(ServerTools, '/api')
+    server.start({ port })
+    // const result = await server.listen({ port })
+    // console.log('server listening on ', result)
     apiRoot = `http://localhost:${port}/api`
 
     ServerTools.setApiRoot(apiRoot)
@@ -123,7 +62,7 @@ describe('Event Server api', () => {
   })
 
   afterAll(async () => {
-    await server.close()
+    await server.stop()
     delete (ClientTools as any).items
     delete (ServerTools as any).items
   })
