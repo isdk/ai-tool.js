@@ -1,6 +1,6 @@
 import { createError } from "../utils/base-error";
 import { Funcs } from '../tool-func';
-import { ActionName } from '../utils';
+import { ActionName, getUrlParams } from '../utils';
 import { ClientToolTransport } from "./client";
 
 /**
@@ -47,7 +47,7 @@ export class HttpClientToolTransport extends ClientToolTransport {
     fetchOptions.method =act.toUpperCase()
     let urlPart: string
     if (act === 'get' || act === 'delete') {
-      urlPart  = subName + this.getUrlParams(args)
+      urlPart  = subName + getUrlParams(args)
     } else {
       fetchOptions.body = JSON.stringify(args)
       urlPart = subName!
@@ -63,23 +63,6 @@ export class HttpClientToolTransport extends ClientToolTransport {
       throw err
     }
     return res
-  }
-
-  /**
-   * @internal
-   * Utility to serialize an object into a URL query parameter string.
-   * @param {any} objParam - The parameter object.
-   * @returns {string} The URL-encoded query string or an empty string.
-   */
-  getUrlParams(objParam: any) {
-    if (objParam !== undefined) {
-      const objParamStr = JSON.stringify(objParam)
-      if (objParamStr !== '{}' && objParamStr !== '[]' && objParamStr !== '""') {
-        // not empty params
-        return '?p=' + encodeURIComponent(objParamStr)
-      }
-    }
-    return ''
   }
 
   /**
