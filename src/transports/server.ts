@@ -22,6 +22,13 @@ export interface IServerToolTransport extends IToolTransport{
   start(options?: any): Promise<any>;
 
   /**
+   * Stops the server instance gracefully.
+   * @param force - Optional flag to force shutdown immediately
+   * @returns Promise<void> when server is fully stopped
+   */
+  stop(force?: boolean): Promise<void>;
+
+  /**
    * Gets the underlying raw server instance.
    */
   getRaw?(): any;
@@ -36,10 +43,10 @@ export abstract class ServerToolTransport extends ToolTransport implements IServ
   declare Tools: typeof ServerTools;
   declare options?: any;
 
-  public _mount(serverTools: typeof ServerTools, apiPrefix: string, options?: any): void {
+  public _mount(Tools: typeof ServerTools, apiPrefix: string, options?: any): void {
     // Mount the discovery endpoint first.
-    this.addDiscoveryHandler(apiPrefix, () => serverTools.toJSON());
-    this.addRpcHandler(serverTools, apiPrefix, options);
+    this.addDiscoveryHandler(apiPrefix, () => Tools);
+    this.addRpcHandler(Tools, apiPrefix, options);
   }
 
   public start(options?: any): Promise<any> {
@@ -49,7 +56,7 @@ export abstract class ServerToolTransport extends ToolTransport implements IServ
 
   public abstract addDiscoveryHandler(path: string, handler: () => any): void;
   public abstract addRpcHandler(serverTools: typeof ServerTools, apiPrefix: string, options?: any): void;
-  // public abstract addRpcMethod(path: string, handler: RpcMethodHandler): void;
   public abstract _start(options?: any): Promise<any>;
+  public abstract stop(force?: boolean): Promise<void>;
   public abstract getRaw?(): any;
 }

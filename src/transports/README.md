@@ -73,7 +73,7 @@ This is the highest-level abstraction, providing a RESTful-like interface over t
 
 ## 2. Transport Abstractions & Implementations
 
-- **`IServerToolTransport`**: The contract for server-side transports. Its key methods are `mount()` (to set up API endpoints for the tools) and `start()` (to begin listening for connections).
+- **`IServerToolTransport`**: The contract for server-side transports. Its key methods are `mount()` (to set up API endpoints for the tools), `start()` (to begin listening for connections) and `stop()` (to stop listening).
 - **`IClientToolTransport`**: The contract for client-side transports. Its key methods are `loadApis()` (to fetch tool definitions from the server) and `fetch()` (to execute a remote tool).
 - **`FastifyServerToolTransport`**: A concrete server implementation using the [Fastify](https://www.fastify.io/) framework. It automatically creates two types of endpoints when mounted:
     1. **Discovery Endpoint**: A `GET` route on the `apiRoot` (e.g., `GET /api`) which returns a JSON list of all registered `ServerTools`.

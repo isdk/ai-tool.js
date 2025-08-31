@@ -82,6 +82,10 @@ export class FastifyServerToolTransport extends ServerToolTransport {
     }
   }
 
+  public async stop(force?: boolean): Promise<void> {
+    return this.server.close();
+  }
+
   public getRaw(): FastifyInstance {
     return this.server;
   }
