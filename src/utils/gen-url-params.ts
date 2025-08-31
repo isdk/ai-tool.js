@@ -3,7 +3,7 @@
    * @param {any} objParam - The parameter object.
    * @returns {string} The URL-encoded query string or an empty string.
    */
-export function getUrlParams(objParam: any) {
+export function genUrlParamsStr(objParam: any) {
   if (objParam !== undefined) {
     const objParamStr = JSON.stringify(objParam)
     if (objParamStr !== '{}' && objParamStr !== '[]' && objParamStr !== '""') {
