@@ -41,8 +41,7 @@ export class EventClient extends ResClientTools {
       if (v) {
         this.initEventStream(this._streamEvents)
       } else if (this._stream) {
-        (this.constructor as typeof EventClient).pubSubTransport.disconnect?.(this._stream) ?? this._stream.close()
-        this._stream = undefined
+        this.close()
       }
     }
   }
@@ -176,7 +175,12 @@ export class EventClient extends ResClientTools {
   }
 
   close() {
-    return this._stream?.close()
+    const stream = this._stream
+    if (stream) {
+      // (this.constructor as typeof EventClient).pubSubTransport.disconnect?.(this._stream)
+      this._stream = undefined
+      return stream.close()
+    }
   }
 }
 
