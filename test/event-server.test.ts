@@ -8,6 +8,7 @@ import { sleep } from '../src/utils'
 import { findPort } from '../src/utils/find-port'
 import { Funcs, ToolFunc } from '../src/tool-func'
 import { FastifyServerToolTransport, HttpClientToolTransport } from '../src/transports'
+import { SseClientPubSubTransport, SseServerPubSubTransport } from "../src/transports/pubsub"
 
 backendEventable(EventClient)
 backendEventable(EventServer)
@@ -19,6 +20,9 @@ describe('Event Server api', () => {
   let server: any
 
   beforeAll(async () => {
+    EventClient.setPubSubTransport(new SseClientPubSubTransport())
+    EventServer.setPubSubTransport(new SseServerPubSubTransport())
+
     const ServerToolItems: {[name:string]: ServerTools|ToolFunc} = {}
     Object.setPrototypeOf(ServerToolItems, ToolFunc.items)
     ServerTools.items = ServerToolItems
@@ -62,6 +66,8 @@ describe('Event Server api', () => {
   })
 
   afterAll(async () => {
+    EventClient.setPubSubTransport(undefined)
+    EventServer.setPubSubTransport(undefined)
     await server.stop()
     delete (ClientTools as any).items
     delete (ServerTools as any).items
