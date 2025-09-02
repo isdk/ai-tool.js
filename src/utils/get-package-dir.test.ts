@@ -1,6 +1,5 @@
 import { vi } from 'vitest';
 import path from 'path';
-import { packageDirectorySync } from 'pkg-dir';
 import { getPackageDir } from './get-package-dir';
 import fs from 'fs';
 import { existsSync } from 'fs';

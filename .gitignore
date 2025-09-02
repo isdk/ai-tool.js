@@ -7,6 +7,6 @@ npm*
 dev.md
 dist/
 .nyc_output/
-docs/
+docs/api/
 web/
 bun.lock*

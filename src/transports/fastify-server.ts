@@ -1,15 +1,18 @@
-import fastify, { FastifyInstance, FastifyServerOptions } from 'fastify';
+import fastify from 'fastify';
 import { ServerToolTransport } from './server';
 import { defaultsDeep } from 'lodash-es';
+// import type { FastifyInstance, FastifyServerOptions } from 'fastify';
+
 import { ServerTools } from '../server-tools';
+
 
 /**
  * A concrete server transport implementation for Fastify.
  */
 export class FastifyServerToolTransport extends ServerToolTransport {
-  public server: FastifyInstance;
+  public server: any;
 
-  constructor(options?: FastifyServerOptions) {
+  constructor(options?: any) {
     super();
     this.server = fastify(options);
   }
@@ -86,7 +89,7 @@ export class FastifyServerToolTransport extends ServerToolTransport {
     return this.server.close();
   }
 
-  public getRaw(): FastifyInstance {
+  public getRaw(): any {
     return this.server;
   }
 }

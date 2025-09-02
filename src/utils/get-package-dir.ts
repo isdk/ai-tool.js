@@ -1,5 +1,5 @@
 import path from 'path'
-import {packageDirectorySync} from 'pkg-dir';
+import {packageDirectorySync} from 'package-directory';
 
 /**
  * Retrieves the package directory from the current working directory.
