@@ -49,9 +49,7 @@
     "uuid": "^11.1.0",
     "xxhashjs": "^0.2.2",
     "yaml": "^2.8.1",
-    "yaml-types": "^0.4.0",
-    "zod": "^4.1.4",
-    "zod-to-json-schema": "^3.24.6"
+    "yaml-types": "^0.4.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.12.1",
