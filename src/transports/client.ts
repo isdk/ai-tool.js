@@ -43,7 +43,7 @@ export abstract class ClientToolTransport extends ToolTransport implements IClie
       throw new Error('apiRoot is required for HttpClientTransport');
     }
     super();
-    this.apiRoot = apiRoot;
+    this.setApiRoot(apiRoot);
   }
 
   async _mount(clientTools: typeof ClientTools, apiPrefix: string, options?: any) {

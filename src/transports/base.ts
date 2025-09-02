@@ -35,6 +35,10 @@ export abstract class ToolTransport implements IToolTransport {
   declare Tools: typeof ToolFunc;
   declare options?: any;
 
+  public setApiRoot(apiRoot: string) {
+    this.apiRoot = apiRoot;
+  }
+
   public mount(Tools: typeof ToolFunc, apiRoot?: string, options?: any) {
     if (!apiRoot) {
       apiRoot = this.apiRoot
@@ -42,7 +46,7 @@ export abstract class ToolTransport implements IToolTransport {
         throw new Error('apiRoot is required');
       }
     } else {
-      this.apiRoot = apiRoot;
+      this.setApiRoot(apiRoot);
     }
 
     this.Tools = Tools;
