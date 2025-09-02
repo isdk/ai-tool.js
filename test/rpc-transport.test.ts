@@ -111,7 +111,7 @@ describe('FastifyRestfulToolTransport', () => {
   });
 
   afterAll(async () => {
-    await (serverTransport.getRaw() as FastifyInstance).close();
+    await serverTransport.stop();
   });
 
   describe('ResServerTools mounted via transport', () => {

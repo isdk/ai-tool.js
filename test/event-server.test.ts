@@ -51,7 +51,7 @@ describe('Event Server api', () => {
 
     const port = await findPort(3002)
     server = new FastifyServerToolTransport({forceCloseConnections: true})
-    server.mount(ServerTools, '/api')
+    await server.mount(ServerTools, '/api')
     server.start({ port })
     // const result = await server.listen({ port })
     // console.log('server listening on ', result)
@@ -59,10 +59,7 @@ describe('Event Server api', () => {
 
     ServerTools.setApiRoot(apiRoot)
     const clientTransport = new HttpClientToolTransport(apiRoot);
-    ClientTools.setTransport(clientTransport);
-
-    // ClientTools.setApiRoot(apiRoot)
-    await ClientTools.loadFrom()
+    await clientTransport.mount(ClientTools)
   })
 
   afterAll(async () => {
