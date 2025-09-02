@@ -42,7 +42,7 @@
     "memoizee": "^0.4.17",
     "mime-type": "^5.0.3",
     "package-directory": "^8.1.0",
-    "property-manager": "^3.0.0",
+    "property-manager": "^3.0.3",
     "secondary-cache": "^2.0.1",
     "secure-json-parse": "^4.0.0",
     "util-ex": "2.3.0",
