@@ -1,234 +1,147 @@
 # @isdk/ai-tool
 
-A library for abstracting AI utility functions (`ToolFunc`), providing a series of convenient helper functions.
+A powerful TypeScript framework for creating, managing, and communicating with modular functions. It's perfect for building AI agent tools, backend services, and extensible plugin systems with a clean, decoupled architecture.
 
-**Note:** All `ToolFunc` parameters are object-based, not positional.
+## Core Features
+
+- **Modular & Inheritable Tools:** Define functions in a structured way with a clear class hierarchy (`ToolFunc` -> `ServerTools` -> `ResServerTools`).
+- **Pluggable RPC Transport:** Decouple your business logic from the network layer. Communicate between client and server using HTTP, IPC, or any custom protocol.
+- **Pluggable PubSub Transport:** Create real-time, bidirectional event buses for features like notifications and live updates. Implementations for SSE (Server-Sent Events) and Electron IPC are included.
+- **Global Registry:** Easily access any registered function from anywhere in your application.
 
 ## Installation
 
-1. Install the package:
+```bash
+npm install @isdk/ai-tool
+```
 
-   ```bash
-   npm install @isdk/ai-tool
-   ```
+## Core Architecture: Tool Inheritance
 
-## Usage
+`@isdk/ai-tool` is built on a foundation of extensible classes. Understanding their hierarchy and design is key to using the library effectively.
 
-## ToolFunc
+### Design Philosophy: Static vs. Instance
 
-Register ordinary functions as `ToolFunc`.
+A key design principle in `ToolFunc` is the separation of roles between the static class and its instances:
 
-### Example
+- **The Static Class as Manager:** The static side of `ToolFunc` (e.g., `ToolFunc.register`, `ToolFunc.run`, `ToolFunc.get`) acts as a global **registry** and **executor**. It manages all tool definitions, allowing any part of your application to discover and run tools by name without needing a direct reference to the tool's instance.
 
-```ts
-import { ToolFunc } from '@isdk/ai-tool';
+- **The Instance as the Tool:** An instance (`new ToolFunc(...)`) represents a single, concrete **tool**. It holds the actual function logic, all its metadata (name, description, parameters), and any internal state.
 
-// Register a function directly
-ToolFunc.register({
-  name: 'add',
-  description: 'Return the sum of a and b',
-  params: { a: { type: 'number' }, b: { type: 'number' } },
-  result: 'number',
-  func: ({ a, b }: { a: number; b: number }) => a + b,
+This separation provides the best of both worlds: the power of object-oriented encapsulation for defining individual tools and the convenience of a globally accessible service for managing and executing them.
+
+### Tool Inheritance Hierarchy
+
+The library follows a clear inheritance path, adding specialized features at each level. For a detailed breakdown of each type and how they separate business logic from communication, see the [**Guide to Server & Client Tools**](./docs/server_client_tools.md).
+
+**Server-Side Inheritance:**
+`ToolFunc` -> `ServerTools` -> `RpcMethodsServerTool` -> `ResServerTools`
+
+- **`ToolFunc`**: The base for any function, containing core logic and metadata. For more details, see the [ToolFunc Guide](./docs/toolFunc.md).
+- **`ServerTools`**: Extends `ToolFunc` to be discoverable and callable by remote clients.
+- **`RpcMethodsServerTool`**: Extends `ServerTools` to allow a single tool to expose multiple methods (e.g., a `Math` tool with `add` and `subtract` methods).
+- **`ResServerTools`**: Extends `RpcMethodsServerTool` to automatically provide a resource-oriented (CRUD) interface.
+
+**Client-Side Inheritance:**
+A parallel hierarchy exists for the client, designed to seamlessly call the server-side tools.
+`ToolFunc` -> `ClientTools` -> `RpcMethodsClientTool` -> `ResClientTools`
+
+## Client-Server RPC with Transports
+
+The framework shines in a client-server setup, allowing you to call backend functions as if they were local.
+
+### Server-Side Example
+
+Use `ServerTools` to define a backend function and `FastifyServerToolTransport` to expose it over HTTP.
+
+```typescript
+// server.ts
+import { ServerTools, FastifyServerToolTransport } from '@isdk/ai-tool';
+
+// Define a tool that can be called remotely
+ServerTools.register({
+  name: 'getUserProfile',
+  params: { id: { type: 'string' } },
+  func: async ({ id }: { id: string }) => {
+    return { id, name: 'Jane Doe', email: 'jane.doe@example.com' };
+  },
 });
 
-console.log('Result:', ToolFunc.runSync('add', { a: 1, b: 2 }));
-// Result: 3
+// Create a transport and mount the tools under the '/api' prefix
+const serverTransport = new FastifyServerToolTransport();
+serverTransport.mount(ServerTools, '/api');
+
+// Start the server
+serverTransport.start({ port: 3000 });
 ```
 
-Properties
+### Client-Side Example
 
-* `func`: The main body of the tool function.
-* `name`: Name of the tool function.
-* `params`: Parameter schema for the tool function.
-* `result`: Return type of the tool function.
-* `scope`: Scope of the function.
-* `description`: Description of the tool function.
-* `setup`: Executed during the construction of the ToolFunc instance.
-* `depends`: Dependencies on other ToolFunc instances.
+The `mount` method handles both setting the transport and loading tool definitions from the server in one step.
 
-### ServerTools (extends ToolFunc)
+```typescript
+// client.ts
+import { ClientTools, HttpClientToolTransport } from '@isdk/ai-tool';
 
-Server-side AI tool functions.
+async function main() {
+  const apiRoot = 'http://localhost:3000/api';
 
-**Features**
+  // 1. Setup the client transport and mount the tools
+  const clientTransport = new HttpClientToolTransport(apiRoot);
+  await clientTransport.mount(ClientTools);
 
-* Allows exporting the function body as a string for local execution.
-* Provides a static `toJSON()` method to export all service API definitions.
+  // 2. Get the remote tool and run it
+  const getUserProfile = ClientTools.get('getUserProfile');
+  const profile = await getUserProfile.run({ id: '123' });
 
-```ts
-interface ServerFuncItem extends FuncItem {
-  apiRoot?: string
-  /**
-   * API request method, can be 'get' or 'post'
-   */
-  action?: 'get'|'post'
-  // Options for the Node.js fetch function
-  fetchOptions?: any
-  // Whether to allow exporting the func body itself, default to false
-  allowExportFunc?: boolean
+  console.log(profile);
 }
+main();
 ```
 
-Usage: Parameters are sent via query string for GET requests and in the body for POST requests.
+> For a deeper dive into how transports work, see the [Transport Layer Guide](./docs/transport.md).
 
-### ClientTools (extends ToolFunc)
+## Real-Time Events with PubSub
 
-Used to call remote AI tool functions (ServerTools).
+`@isdk/ai-tool` includes a powerful event system for real-time communication, built on a pluggable PubSub transport layer.
 
-**Features**
+### Quick Example: SSE (Server-Sent Events)
 
-* Supports loading all remote calls with static loadFromSync(items) and static async loadFrom().
-* Prioritizes local execution over remote calls.
+**Server-Side:**
+```typescript
+// server.ts (additions)
+import { EventServer, SseServerPubSubTransport, eventServer } from '@isdk/ai-tool';
 
-```ts
-interface ClientFuncItem extends FuncItem {
-  apiRoot?: string
-  action?: 'get'|'post'
-  fetchOptions?: any
-}
+// Set the PubSub transport for the EventServer
+EventServer.setPubSubTransport(new SseServerPubSubTransport());
+eventServer.register(); // Register the default event tool
+
+// Now you can publish events from anywhere in your backend
+setInterval(() => {
+  EventServer.publish('server-time', { time: new Date().toISOString() });
+}, 2000);
 ```
 
-### ResServerTools
+**Client-Side:**
+```typescript
+// client.ts (additions)
+import { EventClient, SseClientPubSubTransport, eventClient, backendEventable } from '@isdk/ai-tool';
 
-Resource-based server tools, where resources are named ToolFunc.
+// Set the PubSub transport for the EventClient
+EventClient.setPubSubTransport(new SseClientPubSubTransport());
 
-#### Methods
+// Make the client event-aware and register it
+backendEventable(EventClient);
+eventClient.setApiRoot('http://localhost:3000/api'); // Your API root
+eventClient.register();
 
-* `GET /api/res/:id`: Get resource.
-* `GET /api/res`: List resources.
-* `POST /api/res`: Create resource.
-* `PUT /api/res/:id`: Update resource.
-* `DELETE /api/res/:id`: Delete resource.
-
-#### Custom Methods
-
-Methods prefixed with `$` are custom resource methods, accessible via `POST`.
-
-Example
-
-```ts
-class TestResTool extends ResServerTools {
-  items: any = {}
-  params: FuncParams = {
-    'id': {type: 'number'},
-    'val': {type: 'any'},
-  }
-  $customMethod({id}: ResServerFuncParams) {
-    if (id) {
-      const item = this.items[id]
-      if (!item) {
-        throw new NotFoundError(id, 'res')
-      }
-      return {name: 'customMethod', id, item}
-    }
-  }
-  get({id}: ResServerFuncParams) {
-    if (id) {
-      const item = this.items[id]
-      if (!item) {
-        throw new NotFoundError(id, 'res')
-      }
-      return item
-    }
-  }
-  post({id, val}: ResServerFuncParams) {
-    if (id !== undefined && val !== undefined) {
-      this.items[id] = val
-      return {id}
-    } else {
-      throwError('id or val is undefined')
-    }
-  }
-  list() {
-    return Object.keys(this.items)
-  }
-  delete({id}: ResServerFuncParams) {
-    if (id) {
-      const item = this.items[id]
-      if (item === undefined) {
-        throw new NotFoundError(id, 'res')
-      }
-      delete this.items[id]
-      return {id}
-    }
-  }
-}
-ResServerTools.apiRoot = apiRoot
-const res = new TestResTool('res')
-res.register()
+// Subscribe to and listen for server events
+await eventClient.subscribe('server-time');
+eventClient.on('server-time', (data) => {
+  console.log('Live time from server:', data.time);
+});
 ```
 
-### ResClientTools
-
-Resource-based client tools that generate methods based on ServerTools agreements.
-
-Example
-
-```ts
-ResClientTools.apiRoot = apiRoot
-await ResClientTools.loadFrom()
-
-const resFunc = ResClientTools.getFunc(funcName)
-if (resFunc) {
-  let result = await res.post({id: '...', val: '...'})
-  result = await res.put({id: '...', val: '...'})
-  result = await res.get({id: '...'})
-  result = await res.customMethod({id: '...'})
-}
-```
-
-### SSE (Server-Sent Events)
-
-Endpoints
-
-* `GET /api/event`: List server event channel (stream).
-* `POST /api/event`: Subscribe to server events.
-* `DELETE /api/event`: Unsubscribe from server events.
-* `PUT /api/event`: Publish messages to server events.
-
-### EventClient
-
-The `EventClient` component facilitates communication between the client and server through Server-Sent Events (SSE). Its primary responsibilities include subscribing to server events and publishing messages to the server.
-
-#### Key Features
-
-- **Subscription**: Subscribes to server events and forwards them to the local client's event bus.
-- **Publication**: Publishes messages to the server.
-
-#### EventClient Methods
-
-- `initEventSource(events)`: Specifies which events to receive from the server. If `events` is not provided, all events are received.
-- `subscribe(events)`: Subscribes to specified server events and forwards them to the local event bus.
-  - Note: It's important to distinguish between local and server-originated messages. Server messages that were previously forwarded from local events should not be re-forwarded to avoid infinite loops.
-- `unsubscribe(events)`: Cancels subscriptions to specified server events.
-- `forwardEvent(events)`: Forwards specific local events to the server.
-- `unforwardEvent(events)`: Stops forwarding specific local events to the server.
-
-#### Considerations
-
-- Local events that need to be forwarded to the server can be managed independently through the `forwardEvent` method.
-- Event handling logic should be decoupled from the core functionality of `ToolFunc` to maintain flexibility and separation of concerns.
-
-### EventServer
-
-The `EventServer` component manages server-side event processing, including publishing and subscribing to events.
-
-**Key Features**
-
-- **Publishing**: Publishes events to clients via SSE.
-- **Subscribing**: Manages subscriptions to events on the server side.
-
-**Actions**
-
-- `pub`: Publishes an SSE event.
-- `sub`: Subscribes to server events.
-- `unsub`: Unsubscribes from server events.
-
-**Usage**
-
-- Functions without an `act` or with only `events` specified are used for server-side event handling.
-- Functions with an `act` define specific actions such as publishing, subscribing, or unsubscribing from events.
+> For more detailed examples, including the Electron IPC transport, see the [**Real-time Events (PubSub) Guide**](./docs/pubsub.md).
 
 ## Contribution
 
@@ -239,6 +152,8 @@ If you would like to contribute to the project, please read the [CONTRIBUTING.md
 The project is licensed under the MIT License. See the [LICENSE-MIT](./LICENSE-MIT) file for more details.
 
 ## Credit
+
+This project is inspired by and uses code from several excellent open-source projects:
 
 * [@huggingface/jinja](https://github.com/huggingface/huggingface.js)
 * [eventsource-parser](https://github.com/rexxars/eventsource-parser)

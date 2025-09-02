@@ -1,6 +1,7 @@
-import { EventName } from '../utils'
+import { EventName, genUrlParamsStr } from '../utils'
 import type { Event } from 'events-ex'
 import { ResClientTools } from '../res-client-tools'
+import { PubSubCtx, IPubSubClientTransport, PubSubClientStream } from '../transports/pubsub'
 
 export interface EventClientFuncParams {
   event?: string | string[]
@@ -10,74 +11,70 @@ export interface EventClientFuncParams {
 }
 
 export class EventClient extends ResClientTools {
-  _es: EventSource|undefined
-  // the events on _es
-  _esEvents: string[]|undefined
-  // subscribed sse events
-  _sseEvents: Record<string, (e: MessageEvent)=>void> = {}
+  static _pubSubTransport: IPubSubClientTransport | undefined
+  static setPubSubTransport(t?: IPubSubClientTransport) { this._pubSubTransport = t }
+  static get pubSubTransport(): IPubSubClientTransport {
+    if (!this._pubSubTransport) throw new Error('EventClient pubSubTransport not set')
+    return this._pubSubTransport
+  }
+
+  _stream: PubSubClientStream | undefined
+  _streamEvents: string[] | undefined
+
+   _sseListeners: Record<string, (data:any, ctx?: PubSubCtx)=>void> = {}
   _forwardEvents: Set<string> = new Set()
 
   get evtSource() {
-    let result = this._es
-    if (!result || result.readyState === EventSource.CLOSED) {
-      result = this.initEventSource(this._esEvents)
+    let result = this._stream
+    if (!result || result.readyState === 2 /* CLOSED */) {
+      result = this.initEventStream(this._streamEvents)
     }
-
-    return result as EventSource
+    return result as PubSubClientStream
   }
 
   get active() {
-    return !!this._es && (this._es.readyState !== EventSource.CLOSED)
+    return !!this._stream && (this._stream.readyState !== 2 /* CLOSED */)
   }
 
   set active(v : boolean) {
     if (v !== this.active) {
       if (v) {
-        this.initEventSource(this._esEvents)
-      } else if (this._es) {
-        this._es.close()
-        this._es = undefined
+        this.initEventStream(this._streamEvents)
+      } else if (this._stream) {
+        this.close()
       }
     }
   }
 
-  name = EventName
-  description = 'subscribe server sent event'
+  description = 'subscribe server event'
 
-  initEventSource(events?: string|string[]) {
-    if (typeof events === 'string') { events = [events] }
-    if (this._es && this._es.readyState !== EventSource.CLOSED) {
-      // check whether _esEvents include events
-      if (!this._esEvents || (events && events.every(e => this._esEvents!.includes(e)))) {
-        return this._es
+  initEventStream(events?: string|string[]) {
+    const list = typeof events === 'string' ? [events] : events
+    if (this._stream && this._stream.readyState !== 2 /* CLOSED */) {
+      if (!this._streamEvents || (list && list.every(e => this._streamEvents!.includes(e)))) {
+        return this._stream
       } else {
-        this._es.close()
+        this._stream.close()
       }
     }
-    const urlParams = events ? this.getUrlParams({event: events}) : ''
+    const urlParams = list ? genUrlParamsStr({event: list}) : ''
     const url = `${this.apiRoot}/${this.name}${urlParams}`
-    const evtSource = this._es = new EventSource(url)
-    // re-add the subscribed events
-    Object.entries(this._sseEvents).forEach(([event, listener]) => {
-      evtSource.addEventListener(event, listener)
+    const stream = this._stream = (this.constructor as typeof EventClient).pubSubTransport.connect(url)
+    // 重新挂载已订阅事件
+    Object.entries(this._sseListeners).forEach(([event, listener]) => {
+      stream.on(event, listener)
     })
-    this._esEvents = events
-    return evtSource
+    this._streamEvents = list
+    return stream
   }
 
-  // pass server sent event to eventBus
-  esListener(event: MessageEvent) {
-    const data = event.data ? JSON.parse(event.data) : undefined
-    const evtType = event.type
+  // pass server sent event to eventBus if any
+  esListener(evtType: string, data: any, ctx?: PubSubCtx) {
     if (!this._forwardEvents.has(evtType)) {
-      // console.log(event))
       const emitter = this.emitter
-      if (emitter && data && evtType) {
-        if (Array.isArray(data)) {
-          emitter.emit(evtType, ...data)
-        } else {
-          emitter.emit(evtType, data)
-        }
+      if (emitter && evtType) {
+        if (Array.isArray(data)) emitter.emit(evtType, ...data)
+        else emitter.emit(evtType, data)
       }
     }
   }
@@ -102,9 +99,9 @@ export class EventClient extends ResClientTools {
     }
     const evtSource = this.evtSource
     for (const event of events) {
-      if (!this._sseEvents[event]) {
-        const listener = this._sseEvents[event] = this.esListener.bind(this)
-        evtSource.addEventListener(event, listener)
+      if (!this._sseListeners[event]) {
+        const listener = this._sseListeners[event] = (data:any, ctx?: PubSubCtx) => this.esListener(event, data, ctx);
+        evtSource.on(event, listener)
       }
     }
     return result
@@ -115,15 +112,16 @@ export class EventClient extends ResClientTools {
    * @param events
    */
   async unsubscribe(events: string|string[]) {
-    const result = await this.unsub({event: events})
     if (typeof events === 'string') {
       events = [events]
     }
+    const result = await this.unsub({event: events})
+    const evtSource = this.evtSource
     for (const event of events) {
-      const listener = this._sseEvents[event]
+      const listener = this._sseListeners[event]
       if (listener) {
-        delete this._sseEvents[event]
-        this.evtSource.removeEventListener(event, listener)
+        delete this._sseListeners[event]
+        evtSource.off(event, listener)
       }
     }
     return result
@@ -172,8 +170,17 @@ export class EventClient extends ResClientTools {
   async init(events: string|string[]) {
     // close eventsource and re-init event source
     this.active = false
-    this.initEventSource(events)
+    this.initEventStream(events)
     if (events) {return await this.subscribe(events)}
+  }
+
+  close() {
+    const stream = this._stream
+    if (stream) {
+      // (this.constructor as typeof EventClient).pubSubTransport.disconnect?.(this._stream)
+      this._stream = undefined
+      return stream.close()
+    }
   }
 }
 

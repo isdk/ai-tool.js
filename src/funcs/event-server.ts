@@ -1,12 +1,14 @@
 import { EventName, EventBusName } from '../utils/event';
 import { event } from './event'
-import { SSEChannel } from '../utils/event/sse-channel';
+// import { SSEChannel } from '../utils/event/sse-channel';
 import { type ServerFuncParams } from '../server-tools';
 import type { IncomingMessage, ServerResponse } from 'http';
 import type { Event } from 'events-ex';
 import { ResServerTools } from '../res-server-tools';
 import { ErrorCode, throwError } from '../utils';
+import type { IPubSubServerTransport } from '../transports/pubsub/server';
 
+// the singleton instance of event-bus
 const eventBus = event.runSync()
 
 export interface EventServerFuncParams extends ServerFuncParams {
@@ -16,41 +18,45 @@ export interface EventServerFuncParams extends ServerFuncParams {
 }
 
 export class EventServer extends ResServerTools {
-  static _sse: SSEChannel | undefined
-  static get sse() {
-    if (!this._sse) {
-      this._sse = new SSEChannel()
+  private static _boundEbListener?: (this: Event, ...data: any[]) => any;
+
+  static _pubSubTransport: IPubSubServerTransport | undefined
+  static setPubSubTransport(t?: IPubSubServerTransport) { this._pubSubTransport = t }
+  static get pubSubTransport() {
+    if (!this._pubSubTransport) {
+      // keep compatibility 兼容的话就设置
+      // this._pubSubTransport = new SSEChannel()
+      throw new Error('EventServer pubSubTransport not set')
     }
-    return this._sse
+    return this._pubSubTransport
   }
 
-  name = EventName
-  description = 'subscribe server sent event'
+  description = 'subscribe server event'
   result = 'event'
   depends = { [EventBusName]: event }
 
-  get sse() {
-    return (this.constructor as unknown as any).sse
+  get pubSubTransport() {
+    return (this.constructor as typeof EventServer).pubSubTransport
   }
 
   static publish(data: any, event: string) {
     // console.log('event-server rePub', event, data)
-    return EventServer.sse.publish(data, event)
+    return this.pubSubTransport.publish(event, data)
   }
 
   // the local event-bus listener to forward to SSE
-  static ebListener = function ebListener(this: Event,...data: any[]) {
-    EventServer.sse.publish(data, this.type)
+  static ebListener(eventType: string,...data: any[]) {
+    this.pubSubTransport.publish(eventType, data)
   }
 
   static subscribe(req: IncomingMessage, res: ServerResponse, events?: string[]) {
-    return EventServer.sse.subscribe(req, res, events)
+    return this.pubSubTransport.subscribe(events, {req, res})
   }
 
   static alreadyForward(event: string) {
     const listeners = eventBus.listeners(event)
     for (const listener of listeners) {
-      if (listener === EventServer.ebListener) { return true }
+      if (listener === this._boundEbListener) { return true }
     }
   }
 
@@ -70,9 +76,15 @@ export class EventServer extends ResServerTools {
     if (!Array.isArray(events)) {
       events = [events]
     }
+    const ctor = this.constructor as typeof EventServer
+    if (!ctor._boundEbListener) {
+      ctor._boundEbListener = function _ebListener(this: Event, ...data: any[]) {
+        return ctor.ebListener(this.type, ...data)
+      }
+    }
     for (const event of events) {
       if (!EventServer.alreadyForward(event)) {
-        eventBus.on(event, EventServer.ebListener)
+        eventBus.on(event, ctor._boundEbListener)
       }
     }
   }
@@ -81,8 +93,11 @@ export class EventServer extends ResServerTools {
     if (typeof events === 'string') {
       events = [events]
     }
-    for (const event of events) {
-      eventBus.off(event, EventServer.ebListener)
+    const ctor = this.constructor as typeof EventServer
+    if (ctor._boundEbListener) {
+      for (const event of events) {
+        eventBus.off(event, ctor._boundEbListener)
+      }
     }
   }
 

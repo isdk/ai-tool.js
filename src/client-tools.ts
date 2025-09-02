@@ -1,161 +1,149 @@
-import { createError, throwError } from "./utils/base-error";
+import { throwError } from "./utils/base-error";
 import { Funcs, ToolFunc } from "./tool-func";
 import { RemoteToolFuncSchema, type RemoteFuncItem, type ActionName } from "./utils/consts";
+import type { IClientToolTransport } from "./transports/client";
 
-export interface ClientFuncItem extends RemoteFuncItem {
-}
-
+/**
+ * Declaration merging to extend the `ClientTools` class with `ClientFuncItem` properties.
+ */
 export declare interface ClientTools extends ClientFuncItem {
   [name: string]: any;
 }
 
-// const ClientToolItems: Funcs = {}
-// Object.setPrototypeOf(ClientToolItems, ToolFunc.items)
+/**
+ * Alias for `RemoteFuncItem` on the client side.
+ */
+export interface ClientFuncItem extends RemoteFuncItem {}
 
+const NoTransportErrorMsg = 'A client transport has not been set. Use ClientTools.setTransport() or transport.mount(ClientTools) first.';
+
+/**
+ * Represents a client-side proxy for a remote tool function.
+ *
+ * A `ClientTools` instance is a `ToolFunc` that, when executed, does not run
+ * local code. Instead, it serializes the parameters and uses an injected
+ * transport layer (`IClientToolTransport`) to make a remote procedure call
+ * to its corresponding `ServerTools` counterpart.
+ *
+ * These tools are typically created dynamically by loading definitions from a server.
+ */
 export class ClientTools extends ToolFunc {
-  declare apiRoot: string|undefined;
+  // the default action name
+  declare static action?: ActionName | string;
 
-  private static _apiRoot?: string;
+  private static _transport: IClientToolTransport;
+
+  /**
+   * @deprecated This property is now mainly for informational purposes.
+   * The actual endpoint is managed by the transport.
+   */
   static get apiRoot() {
-    return ClientTools._apiRoot
+    if (!this._transport) {throwError(NoTransportErrorMsg, 'ClientTools')}
+    return this._transport.apiRoot
   }
 
-  static setApiRoot(v: string) {
-    ClientTools._apiRoot = v
-  }
-
-  // static items = ClientToolItems;
-
-  static async loadFrom() {
-    if (this._apiRoot) {
-      const res = await fetch(this._apiRoot, {headers: {
-        "Content-Type": "application/json",
-      },})
-      const items = await res.json()
-      if (items) this.loadFromSync(items)
-    } else {
-      throwError('missing apiRoot to load tools', 'ClientTools')
+  /**
+   * Injects the client-side transport implementation. This is a crucial step
+   * to enable communication with the server.
+   * @param {IClientToolTransport} transport - The transport instance to use for all client-server communication.
+   */
+  static setTransport(transport: IClientToolTransport) {
+    if (transport) {
+      this._transport = transport;
+      const ctor = this.constructor as typeof ToolFunc;
+      if (transport.Tools !== ctor) {
+        transport.Tools = ctor;
+      }
     }
   }
 
+  static get transport() {
+    return this._transport;
+  }
+
+  /**
+   * Loads tool definitions from the remote server via the configured transport.
+   * This method populates the local `ToolFunc` registry with `ClientTools` stubs.
+   */
+  static async loadFrom(items?: Funcs) {
+    if (!items) {
+      if (!this._transport) {
+        throwError(NoTransportErrorMsg, 'ClientTools');
+      }
+      items = await this._transport.loadApis();
+    }
+    if (items) this.loadFromSync(items);
+    return items;
+  }
+
+  /**
+   * Synchronously loads tool definitions from a provided object, registering
+   * each one as a `ClientTools` instance.
+   * @param items - A map of tool function metadata, typically from a server.
+   */
   static loadFromSync(items: Funcs) {
     for (const name in items) {
-      const item = this.get(name)
+      const item = this.get(name);
       const funcItem = items[name] as ClientFuncItem;
       if (!item) {
         this.register(funcItem);
       } else if (item instanceof ClientTools) {
-        item.assign(funcItem)
-        // console.warn('🚀 ~ ClientTools ~ loadFromSync:', name, 'already registered', item.apiRoot, this.apiRoot)
+        item.assign(funcItem);
       } else {
-        throwError(`${name} already registered as ${item.constructor.name}`, 'ClientTools')
+        throwError(`${name} already registered as ${item.constructor.name}`, 'ClientTools');
       }
     }
   }
 
-  static async fetch(name: string, objParam?: any) {
+  static async fetch(name: string, objParam?: any, ...args: any[]) {
     const func = this.get(name)
-    if (func && func.fetch) {
-      return func.fetch(objParam)
+    if (func) {
+      if (func.fetch) return func.fetch(objParam, ...args)
     }
   }
 
-  getUrlParams(objParam: any) {
-    if (objParam !== undefined) {
-      const objParamStr = JSON.stringify(objParam)
-      if (objParamStr !== '{}' && objParamStr !== '[]' && objParamStr !== '""') {
-        // not empty params
-        return '?p=' + encodeURIComponent(objParamStr)
-      }
-    }
-    return ''
+  /**
+   * @deprecated This property is now mainly for informational purposes.
+   * The actual endpoint is managed by the transport.
+   */
+  get apiRoot() {
+    const ctor = this.constructor as typeof ClientTools
+    return ctor.apiRoot
   }
 
   async fetch(objParam?: any, act?: ActionName, subName?: any) {
-    const fetchOptions = {...this.fetchOptions}
-    const HasContentMethods = ['post', 'put', 'patch']
-    if (!act) { act = this.action || 'post'}
-    if (act === 'res') { act = 'get' }
-
-    if ((!fetchOptions.headers || !fetchOptions.headers['Content-Type']) && HasContentMethods.includes(act)) {
-      fetchOptions.headers = {
-        "Content-Type": "application/json",
-        ...fetchOptions.headers,
-      }
-    }
-    if (objParam?.stream && !fetchOptions.headers.Connection) {
-      fetchOptions.headers.Connection = 'keep-alive'
-    }
-    if (subName) {
-      if (typeof subName !== 'string') {subName = JSON.stringify(subName)}
-      subName = this.name + '/' + subName
-
+    const ctor = this.constructor as typeof ClientTools
+    if (ctor._transport) {
+      return ctor._transport.fetch(this.name!, objParam, act, subName, this.fetchOptions)
     } else {
-      subName = this.name
+      throwError(NoTransportErrorMsg, 'ClientTools');
     }
-
-    fetchOptions.method =act.toUpperCase()
-    let urlPart: string
-    if (act === 'get' || act === 'delete') {
-      urlPart  = subName + this.getUrlParams(objParam)
-    } else {
-      fetchOptions.body = JSON.stringify(objParam)
-      urlPart = subName!
-    }
-
-    if (fetchOptions.headers && !HasContentMethods.includes(act)) {
-      delete fetchOptions.headers['Content-Type']
-    }
-
-    const res = await fetch(`${this.apiRoot}/${urlPart}`, fetchOptions)
-    if (!res.ok) {
-      const err = await this.errorFrom(res)
-      throw err
-    }
-    return res
   }
 
-  async errorFrom(res: Response) {
-    let errCode = res.status
-    let errMsg = res.statusText
-    let name = this.name
-    let data: any
-    if (res.body) {
-      const text = await res.text()
-      try {
-        const body = JSON.parse(text)
-        if (body) {
-          if (body.error) {errMsg = body.error}
-          if (body.name) {name = body.name}
-          if (body.data) {
-            data = body.data
-            data.name = name
-            if (data.what) {
-              data.msg = errMsg
-              errMsg = data.what
-            }
-          }
-          if (body.message) {
-            errMsg = errMsg + ':' + body.message;
-          }
-        }
-      } catch (e) {
-        console.warn('🚀 ~ parse error body to json:', e)
-      }
-    }
-    return createError(errMsg, name, errCode)
-  }
-
+  /**
+   * The core implementation for a client-side tool. When a `ClientTools` instance
+   * is "run", this `func` method is executed. It delegates the call to the
+   * configured transport, which handles the network communication.
+   *
+   * @param objParam - The parameters to send to the remote tool.
+   * @param objParam.stream [boolean] - the optional stream flag. if true, the tool will return a stream(ReadableStream).
+   * @returns The result from the remote tool.
+   */
   async func(objParam: any) {
     const res = await this.fetch(objParam)
-    if (objParam?.stream) {
-      return res
-    }
-    const result = await res.json()
-    return result
+    return res
+    // if (objParam?.stream) {
+    //   return res
+    // }
+    // const result = await res.json()
+    // return result
   }
 }
 
+/**
+ * The schema definition for `ClientTools` properties.
+ * @internal
+ */
 export const ClientToolFuncSchema =  { ...RemoteToolFuncSchema }
 
 ClientTools.defineProperties(ClientTools, ClientToolFuncSchema)

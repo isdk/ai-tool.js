@@ -11,7 +11,7 @@ export interface ResClientTools {
   post?(options: ResClientFuncParams): any
   put?({id}: ResClientFuncParams): any
   delete?({id}: ResClientFuncParams): any
-  list?(options: ResClientFuncParams): any
+  list?(options?: ResClientFuncParams): any
 }
 
 export class ResClientTools extends RpcMethodsClientTool {

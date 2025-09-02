@@ -7,13 +7,18 @@ export interface RpcMethodsClientFuncParams {
 }
 
 export class RpcMethodsClientTool extends ClientTools {
-  async _func(action: ActionName, options: RpcMethodsClientFuncParams) {
-    const res = await this.fetch(options, action)
-    if (options?.stream) {
-      return res
+  async fetch(options: RpcMethodsClientFuncParams, action: ActionName, subName?: any) {
+    if (!options) {options = {} as any}
+    if (action?.startsWith('$')) {
+      options.act = action
+      action = 'post'
     }
-    const result = await res.json()
-    return result
+    return await super.fetch(options, action, subName)
+  }
+
+  async _func(action: ActionName, options: RpcMethodsClientFuncParams) {
+    const result = await this.fetch(options, action);
+    return result;
   }
 
   async func(options: RpcMethodsClientFuncParams) {
@@ -39,7 +44,7 @@ export class RpcMethodsClientTool extends ClientTools {
 export const RpcMethodsClientToolSchema = {
   methods: {
     type: 'array',
-    assign(value: string[], dest: any, src?: any, name?: string, options?: any) {
+    assign(value: string[], dest: RpcMethodsClientTool, src?: any, name?: string, options?: any) {
       if (!options?.isExported) {
         dest.assignMethods(value)
       }
