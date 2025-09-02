@@ -134,8 +134,9 @@ console.log(myFunc.runSync()); // Outputs: 'configured'
 ### Streaming Output (`stream` and `isStream`)
 
 To create a function that can optionally stream its output:
-1.  Set `stream: true` in its definition. This marks it as *capable* of streaming.
-2.  The `isStream(params)` method determines if a *specific call* should be streamed. The default logic checks for a `stream` parameter in the function's declaration and the runtime arguments.
+
+1. Set `stream: true` in its definition. This marks it as *capable* of streaming.
+2. The `isStream(params)` method determines if a *specific call* should be streamed. The default logic checks for a `stream` parameter in the function's declaration and the runtime arguments.
 
 ```typescript
 const streamableTask = new ToolFunc({

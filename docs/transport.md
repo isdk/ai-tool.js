@@ -4,8 +4,8 @@ This guide provides a comprehensive overview of the `ai-tool` transport layer, a
 
 This system is composed of two main parts:
 
-1.  **Tools (`ServerTools`/`ClientTools`):** Classes that define the functions to be executed.
-2.  **The Transport Layer:** The underlying bridge that handles network communication.
+1. **Tools (`ServerTools`/`ClientTools`):** Classes that define the functions to be executed.
+2. **The Transport Layer:** The underlying bridge that handles network communication.
 
 **Prerequisite:** This document assumes you have a basic understanding of the `ToolFunc` framework. If not, please review the [`toolFunc.md`](./toolFunc.md) first.
 
