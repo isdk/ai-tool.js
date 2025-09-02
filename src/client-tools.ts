@@ -95,10 +95,10 @@ export class ClientTools extends ToolFunc {
     }
   }
 
-  static async fetch(name: string, objParam?: any) {
+  static async fetch(name: string, objParam?: any, ...args: any[]) {
     const func = this.get(name)
     if (func) {
-      if (func.fetch) return func.fetch(objParam)
+      if (func.fetch) return func.fetch(objParam, ...args)
     }
   }
 
