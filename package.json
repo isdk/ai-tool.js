@@ -22,7 +22,7 @@
     }
   },
   "dependencies": {
-    "@isdk/common-error": "^0.1.4",
+    "@isdk/common-error": "^0.2.0",
     "@isdk/detect-text-language": "workspace:*",
     "@isdk/template-engines": "workspace:*",
     "@isdk/util": "^0.3.2",
