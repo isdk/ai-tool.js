@@ -3,7 +3,7 @@ import type { PubSubCtx } from './base';
 export interface PubSubClientStream {
   protocol: 'sse' | 'ws' | 'ipc' | string;
   readyState?: number; // 便于对齐 EventSource/WebSocket
-  on: (event: string, listener: (data: any, ctx?: PubSubCtx) => void) => void;
+  on: (event: string, listener: (data: any, ctx?: PubSubCtx) => void) => any;
   off: (event: string, listener: (data: any, ctx?: PubSubCtx) => void) => void;
   close: () => void;
   send?: (event: string, data: any, ctx?: PubSubCtx) => void; // WS/IPC 可上行，SSE 无
