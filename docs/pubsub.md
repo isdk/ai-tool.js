@@ -198,8 +198,12 @@ Once the setup is complete, the API for using the event bus is the same regardle
 
 ### Forwarding and Publishing Events (Server-Side)
 
+The server can push events to clients either by forwarding them from a central event bus or by publishing them directly. With the latest updates, the `publish` method now supports targeted delivery to specific clients, in addition to broadcasting.
+
+**Note:** The availability of targeted publishing depends on the underlying transport implementation. While the `EventServer` API supports it, some transports (like the current SSE transport) may only be capable of broadcasting.
+
 ```typescript
-import { eventServer } from '@isdk/ai-tool';
+import { eventServer, EventServer } from '@isdk/ai-tool';
 import { event } from '@isdk/ai-tool/funcs/event'; // The global eventBus
 
 const eventBus = event.runSync();
@@ -214,15 +218,32 @@ function updateUser(user: any) {
 }
 
 // **Direct Publishing**
-// Send a one-off event directly to clients subscribed to 'broadcast-message'.
+// The `EventServer.publish` method allows sending an event directly to clients.
+// Its signature is: `publish(event: string, data: any, target?: { clientId: string | string[] })`.
+
+// 1. Broadcast to all clients subscribed to 'broadcast-message'.
+// This is the default behavior when `target` is omitted.
 function sendBroadcast() {
-    EventServer.publish({ message: 'Server is restarting soon!' }, 'broadcast-message');
+    EventServer.publish('broadcast-message', { message: 'Server is restarting soon!' });
+}
+
+// 2. Send a targeted event to a specific client.
+// This requires knowing the `clientId` of the recipient.
+function sendDirectMessage(clientId: string, message: string) {
+    const target = { clientId };
+    EventServer.publish('private-message', { text: message }, target);
+}
+
+// 3. Send an event to a group of specific clients.
+function sendToGroup(clientIds: string[], message: string) {
+    const target = { clientId: clientIds };
+    EventServer.publish('group-message', { text: message }, target);
 }
 
 // **Receiving Client Events**
 // Listen for events that were published or forwarded from a client.
 eventBus.on('client-action', (data: any, event: any) => {
-  console.log(`Received event "${event.type}" from a client:`, data);
+  console.log(`Received event "$\{event.type\}" from a client:`, data);
 });
 ```
 
@@ -251,3 +272,55 @@ function onSettingsSave(newSettings: any) {
 ```
 
 This transport-agnostic architecture provides a clean, powerful, and decoupled way to build real-time, interactive applications. By separating the event logic from the communication protocol, you can choose the best transport for your needs while maintaining a consistent, unified event model.
+
+---
+
+## Implementing a Custom PubSub Transport
+
+For developers who need to integrate a different messaging protocol (e.g., WebSockets, MQTT), you can create your own transport by implementing the `IPubSubServerTransport` interface from `@isdk/ai-tool/transports/pubsub/server`.
+
+The core interface is defined as follows:
+
+```typescript
+export interface IPubSubServerTransport {
+  readonly name: string;
+  readonly protocol: string;
+
+  // Optional: For transports that need to hook into an HTTP server
+  mount?: (path: string, options?: Record<string, any>) => void;
+
+  // Establish a connection with a client and subscribe them to events.
+  // The `options` object is a generic container for transport-specific
+  // parameters, like HTTP request/response objects for SSE.
+  subscribe: (
+    events?: string[],
+    options?: {
+      req?: any;
+      res?: any;
+      clientId?: string;
+      [k: string]: any;
+    }
+  ) => PubSubClient; // Return a client object, minimally with a `clientId`.
+
+  // Publish an event from the server to clients.
+  // The `target` parameter allows for broadcasting (default) or
+  // targeted delivery to specific client IDs.
+  publish: (
+    event: string,
+    data: any,
+    target?: { clientId?: string | string[] }
+  ) => void;
+
+  // Lifecycle hooks to let the EventServer know about connections.
+  onConnection: (cb: (session: PubSubServerSession) => void) => void;
+  onDisconnect: (cb: (session: PubSubServerSession) => void) => void;
+
+  // Optional: For bidirectional transports (e.g., WebSockets)
+  // to handle messages received from the client.
+  onMessage?: (
+    cb: (session: PubSubServerSession, event: string, data: any) => void
+  ) => void;
+}
+```
+
+By implementing this interface, your custom transport can be plugged directly into the `EventServer` using `EventServer.setPubSubTransport(new YourCustomTransport())`, enabling the entire real-time event system over your chosen protocol.

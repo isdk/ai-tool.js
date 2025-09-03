@@ -39,9 +39,10 @@ export class EventServer extends ResServerTools {
     return (this.constructor as typeof EventServer).pubSubTransport
   }
 
-  static publish(data: any, event: string) {
+  static publish(data: any, event: string, target?: {
+    clientId?: string | string[]}) {
     // console.log('event-server rePub', event, data)
-    return this.pubSubTransport.publish(event, data)
+    return this.pubSubTransport.publish(event, data, target)
   }
 
   // the local event-bus listener to forward to SSE
@@ -49,8 +50,8 @@ export class EventServer extends ResServerTools {
     this.pubSubTransport.publish(eventType, data)
   }
 
-  static subscribe(req: IncomingMessage, res: ServerResponse, events?: string[]) {
-    return this.pubSubTransport.subscribe(events, {req, res})
+  static subscribe(req: IncomingMessage, res: ServerResponse, events?: string[], options?: any) {
+    return this.pubSubTransport.subscribe(events, {...options, req, res})
   }
 
   static alreadyForward(event: string) {

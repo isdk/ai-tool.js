@@ -1,14 +1,30 @@
 import { IncomingMessage, ServerResponse } from "http";
 import { throwError } from "../base-error";
 
-type Events = (string | RegExp)[]
-type Client = { req: IncomingMessage; res: ServerResponse; events?: Events }
+type Events = (string | RegExp)[];
+
+/**
+ * Represents a client connected to the SSE channel.
+ */
+type Client = {
+  /** The incoming HTTP request from the client. */
+  req: IncomingMessage;
+  /** The server response object used to send events to the client. */
+  res: ServerResponse;
+  /** An array of event names or patterns that the client is subscribed to. */
+  events?: Events;
+  /**
+   * A unique identifier for the client.
+   * If not provided during subscription, it defaults to `remoteAddress:remotePort`.
+   */
+  clientId?: string;
+}
 
 /**
  * Checks if an event matches with the subscription list.
- * @param {Events | undefined} subscriptionList - A list of events to check.
- * @param {string} eventName - The name of the event.
- * @returns {boolean} - Returns true if the event matches with the subscription list, otherwise false.
+ * @param subscriptionList - A list of events to check.
+ * @param eventName - The name of the event.
+ * @returns - Returns true if the event matches with the subscription list, otherwise false.
  */
 function hasEventMatch(subscriptionList: Events | undefined, eventName: string) {
   return !subscriptionList || subscriptionList.some(pat => pat instanceof RegExp ? pat.test(eventName) : pat === eventName);
@@ -84,13 +100,15 @@ export class SSEChannel {
   }
 
   /**
-   * Publishes a message to the SSE channel.
-   * @param {string | Record<string, any>} data - The data to send. It can be a string or an object.
-   * @param {string} eventName - The name of the event.
-   * @returns {number | undefined} - Returns the ID of the message.
-   * @throws Will throw an error if the channel is closed.
+   * Publishes data to the channel.
+   *
+   * @param data The data to send. Can be a string or a serializable object.
+   * @param eventName Optional name for the event.
+   * @param target Optional. If provided, the message will be sent only to clients with matching `clientId`s, bypassing event subscriptions.
+   * @returns The ID of the message, or `undefined` if no message was sent.
+   * @throws An error if the channel is closed.
    */
-  publish(data?: string | Record<string, any>, eventName?: string) {
+  publish(data?: string | Record<string, any>, eventName?: string, target?: { clientId?: string | string[] }) {
     // console.log('🚀 ~ SSEChannel ~ publish ~ eventName:', eventName, data)
     if (!this.active) throwError('Channel closed', 'SSEChannel', SSEChannelAlreadyClosedErrCode);
     let output: string;
@@ -119,11 +137,19 @@ export class SSEChannel {
       this.messages.push({ id, _eventName, output });
     }
 
-    // [...this.clients].filter(c => !_eventName || hasEventMatch(c.events, _eventName)).forEach(c => c.res.write(output));
-    ;[...this.clients].filter(c => !_eventName || hasEventMatch(c.events, _eventName)).forEach((c, i) => {
-      // console.log(i, '🚀 ~ SSEChannel ~ publish ~ output:', c.req.socket.remoteAddress ?? '', output)
-      c.res.write(output)
-    });
+    if (target?.clientId) {
+      const targetIds = Array.isArray(target.clientId) ? target.clientId : [target.clientId];
+      [...this.clients]
+        .filter(c => c.clientId && targetIds.includes(c.clientId))
+        .forEach(c => c.res.write(output));
+    } else {
+      [...this.clients]
+        .filter(c => !_eventName || hasEventMatch(c.events, _eventName))
+        .forEach((c, i) => {
+          // console.log(i, '🚀 ~ SSEChannel ~ publish ~ output:', c.req.socket.remoteAddress ?? '', output)
+          c.res.write(output)
+        });
+    }
 
     while (this.messages.length > this.options.historySize) {
       this.messages.shift();
@@ -134,16 +160,24 @@ export class SSEChannel {
 
   /**
    * Subscribes a client to the SSE channel.
-   * @param {IncomingMessage} req - The request object.
-   * @param {ServerResponse} res - The response object.
-   * @param {Events} events - The events to subscribe to.
-   * @returns {Client} - Returns the client object.
-   * @throws Will throw an error if the channel is closed.
+   *
+   * @param req The incoming HTTP request.
+   * @param res The server response.
+   * @param events An array of event names or patterns to subscribe to.
+   * @param clientId An optional unique ID for the client. If not provided, it defaults to `remoteAddress:remotePort`.
+   * @returns The newly created client object.
+   * @throws An error if the channel is closed.
    */
-  subscribe(req: IncomingMessage, res: ServerResponse, events?: Events) {
+  subscribe(req: IncomingMessage, res: ServerResponse, events?: Events, clientId?: string) {
     if (!this.active) throwError('Channel closed', 'SSEChannel', SSEChannelAlreadyClosedErrCode);
     // console.log('🚀 ~ SSEChannel ~ subscribe ~ events:', events)
-    const c = { req, res, events };
+    if (!clientId) {
+      const { remoteAddress, remotePort } = req.socket;
+      if (remoteAddress && remotePort) {
+        clientId = `${remoteAddress}:${remotePort}`;
+      }
+    }
+    const c: Client = { req, res, events, clientId };
     const maxStreamDuration = this.options.maxStreamDuration
     let cacheControl = 'max-age=0, stale-while-revalidate=0, stale-if-error=0, no-transform'
     if (maxStreamDuration > 0) {
@@ -185,7 +219,7 @@ export class SSEChannel {
 
   /**
    * Unsubscribes a client from the SSE channel.
-   * @param {Client} c - The client to unsubscribe.
+   * @param c - The client to unsubscribe.
    */
   unsubscribe(c: Client) {
     c.res.end()
