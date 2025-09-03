@@ -26,7 +26,8 @@ export class EventServer extends ResServerTools {
     if (!this._pubSubTransport) {
       // keep compatibility 兼容的话就设置
       // this._pubSubTransport = new SSEChannel()
-      throw new Error('EventServer pubSubTransport not set')
+      // throw new Error('EventServer pubSubTransport not set')
+      console.warn('EventServer pubSubTransport not set')
     }
     return this._pubSubTransport
   }
@@ -42,16 +43,16 @@ export class EventServer extends ResServerTools {
   static publish(data: any, event: string, target?: {
     clientId?: string | string[]}) {
     // console.log('event-server rePub', event, data)
-    return this.pubSubTransport.publish(event, data, target)
+    return this.pubSubTransport?.publish(event, data, target)
   }
 
   // the local event-bus listener to forward to SSE
   static ebListener(eventType: string,...data: any[]) {
-    this.pubSubTransport.publish(eventType, data)
+    this.pubSubTransport?.publish(eventType, data)
   }
 
   static subscribe(req: IncomingMessage, res: ServerResponse, events?: string[], options?: any) {
-    return this.pubSubTransport.subscribe(events, {...options, req, res})
+    return this.pubSubTransport?.subscribe(events, {...options, req, res})
   }
 
   static alreadyForward(event: string) {
