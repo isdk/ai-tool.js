@@ -1,7 +1,7 @@
 import {vi as jest} from 'vitest'
 import { ToolFunc } from '../tool-func'
 import { AsyncFeatureBits, AsyncFeatures, ToolAsyncCancelableBit, ToolAsyncMultiTaskBit, AsyncTaskId, CancelableAbility, makeToolFuncCancelable, TaskAbortController, TaskAbortControllers, TaskPromise } from './cancelable-ability'
-import { wait } from './wait'
+import { sleep } from './wait'
 import { uuid } from './hash'
 import { AbortError } from './base-error'
 
@@ -11,8 +11,12 @@ declare namespace TestSingleTask {
 interface TestSingleTask extends CancelableAbility {}
 class TestSingleTask {
   run(params: any) {
-    return this.runAsyncCancelableTask(params, async (params: any) => {
-      await wait(10)
+    return this.runAsyncCancelableTask(params, async (params: any, aborter: TaskAbortController) => {
+      const lastTick = Date.now() + (params?.waitTime ?? 10)
+      while (Date.now() < lastTick) {
+        if (aborter.throwRejected()) { return }
+        await sleep(1)
+      }
       return params
     })
   }
@@ -21,8 +25,12 @@ makeToolFuncCancelable(TestSingleTask)
 
 class TestSingleTaskFunc extends ToolFunc {
   func(params: any) {
-    return this.runAsyncCancelableTask(params, async (params: any) => {
-      await wait(10)
+    return this.runAsyncCancelableTask(params, async (params: any, aborter: TaskAbortController) => {
+      const lastTick = Date.now() + (params?.waitTime ?? 10)
+      while (Date.now() < lastTick) {
+        if (aborter.throwRejected()) { return }
+        await sleep(1)
+      }
       return params
     })
   }
@@ -35,7 +43,7 @@ class TestMultiTaskFunc extends ToolFunc {
     return this.runAsyncCancelableTask(params, async (params: any, aborter: TaskAbortController) => {
       for (let i = 0; i < 5; i++) {
         if (aborter.throwRejected()) { return }
-        await wait(10)
+        await sleep(10)
       }
       return params
     })
@@ -95,7 +103,7 @@ describe('CancelableAbility', () => {
     const taskInfo = testSingleTask.run('12345') as TaskPromise<string>
     expect(taskInfo.task).toBeInstanceOf(AbortController)
 
-    await expect(async () => {await wait(1); testSingleTask.run('345');}).rejects.toThrow('The task is running')
+    await expect(async () => {await sleep(1); testSingleTask.run('345');}).rejects.toThrow('The task is running')
     const result = await taskInfo
     expect(result).toBe('12345')
   })
@@ -106,7 +114,7 @@ describe('CancelableAbility', () => {
     const taskInfo = testSingleTask.run('12345') as TaskPromise<string>
     expect(taskInfo.task).toBeInstanceOf(AbortController)
 
-    await expect(async () => {await wait(1); testSingleTask.run('345');}).rejects.toThrow('The task is running')
+    await expect(async () => {await sleep(1); testSingleTask.run('345');}).rejects.toThrow('The task is running')
     const result = await taskInfo
     expect(result).toBe('12345')
   })
@@ -203,7 +211,7 @@ describe('CancelableAbility', () => {
 
       func(params: any) {
         return this.runAsyncCancelableTask(params, async (params: any) => {
-          await wait(10)
+          await sleep(10)
           return params
         })
       }
@@ -245,7 +253,7 @@ describe('CancelableAbility', () => {
 
       func(params: any) {
         return this.runAsyncCancelableTask(params, async (params: any) => {
-          await wait(10)
+          await sleep(10)
           if (params === 'error') {throw new Error('test')}
           return params
         })
@@ -263,7 +271,7 @@ describe('CancelableAbility', () => {
     expect(aborter).toHaveProperty('id', ids[0])
     expect(typeof aborter.id).toBe('number')
     await expect(taskInfo).rejects.toThrow('test')
-    await wait(10)
+    await sleep(10)
     expect(rmIds).toHaveLength(1)
     expect(aborter.id).toBe(rmIds[0])
   })
@@ -429,7 +437,7 @@ describe('CancelableAbility', () => {
       called++;
       let maxCount = 100;
       while (!ready && maxCount--) {
-        await wait(5)
+        await sleep(5)
       }
       return true;
     }
@@ -438,7 +446,7 @@ describe('CancelableAbility', () => {
     class TestIsReadyFunc extends ToolFunc {
       func(params: any) {
         return this.runAsyncCancelableTask(params, async (params: any) => {
-          await wait(10);
+          await sleep(10);
           return params;
         });
       }
@@ -463,15 +471,71 @@ describe('CancelableAbility', () => {
 
     // 修改条件为 true 后任务应继续执行
     ready = true;
-    await wait(15);
+    await sleep(15);
     const result = await taskPromise;
     expect(result).toBe('first');
     expect(semaphore.pendingCount).toBe(0);
 
     // 第二次任务应立即执行
     const secondPromise = testInstance.run('second');
-    await wait(15);
+    await sleep(15);
     expect(semaphore.pendingCount).toBe(0);
     expect(await secondPromise).toBe('second');
+  });
+
+  it('should support multiple external signals for cancellation', async () => {
+    // Case 1: One of the signals is aborted during execution
+    const extAborter1 = new AbortController();
+    const extAborter2 = new AbortController();
+    let taskPromise = testSingleTask.run({
+      waitTime: 50,
+      content: 'test1',
+      signals: [extAborter1.signal, extAborter2.signal],
+    }) as TaskPromise<string>;
+
+    await sleep(5); // wait a bit
+    extAborter1.abort('external abort 1');
+    await expect(taskPromise).rejects.toThrow(AbortError);
+    await expect(taskPromise).rejects.toHaveProperty('message',  expect.stringMatching(/external abort 1/));
+
+    // Case 2: A signal is already aborted before starting
+    const extAborter3 = new AbortController();
+    extAborter3.abort('already aborted');
+    taskPromise = testSingleTask.run({
+      waitTime: 50,
+      content: 'test2',
+      signals: [extAborter2.signal, extAborter3.signal],
+    }) as TaskPromise<string>;
+
+    await expect(taskPromise).rejects.toThrow(AbortError);
+    await expect(taskPromise).rejects.toHaveProperty('message', expect.stringMatching(/already aborted/));
+
+    // Case 3: Using singular `signal` property
+    const extAborter4 = new AbortController();
+    taskPromise = testSingleTask.run({
+      waitTime: 50,
+      content: 'test3',
+      signal: extAborter4.signal,
+    }) as TaskPromise<string>;
+
+    await sleep(5);
+    extAborter4.abort('external abort 2');
+    await expect(taskPromise).rejects.toThrow(AbortError);
+    await expect(taskPromise).rejects.toHaveProperty('message', expect.stringMatching(/external abort 2/));
+
+    // Case 4: Mix of `signal` and `signals`
+    const extAborter5 = new AbortController();
+    const extAborter6 = new AbortController();
+    taskPromise = testSingleTask.run({
+      waitTime: 50,
+      content: 'test4',
+      signal: extAborter5.signal,
+      signals: [extAborter6.signal],
+    }) as TaskPromise<string>;
+
+    await sleep(5);
+    extAborter6.abort('external abort 3');
+    await expect(taskPromise).rejects.toThrow(AbortError);
+    await expect(taskPromise).rejects.toHaveProperty('message', expect.stringMatching(/external abort 3/));
   });
 })

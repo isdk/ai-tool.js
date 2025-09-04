@@ -207,9 +207,7 @@ export class CancelableAbility {
     }
 
     if (isMultiTask) {
-      if (this.__task_aborter == null) {
-        this.__task_aborter = {}
-      }
+      if (this.__task_aborter == null) { this.__task_aborter = {} }
       const aborters = this.__task_aborter as unknown as TaskAbortControllers
 
       if (taskId == null) {
@@ -220,6 +218,16 @@ export class CancelableAbility {
       aborters[taskId] = result
     } else {
       this.__task_aborter = result
+    }
+
+    // 2) 任一取消即可：收集外部信号并链接
+    // 支持 params.signal: AbortSignal | AbortSignal[]；也兼容 params.signals
+    const extSignals = [
+      ...toSignalArray(params?.signal),
+      ...toSignalArray(params?.signals),
+    ];
+    if (extSignals.length) {
+      linkAnyAbort(result, extSignals);
     }
 
     const timeout = params?.timeout
@@ -242,7 +250,7 @@ export class CancelableAbility {
           this.emit('aborting', signal.reason, signal.reason?.data)
         }
       } finally {
-        result.streamController?.error(signal.reason)
+        try { result.streamController?.error?.(signal.reason) } catch {}
       }
 
     })
@@ -376,6 +384,44 @@ function onInjectionSuccess(Tool: typeof ToolFunc, options?: CancelableAbilityOp
   Tool.prototype._asyncFeatures = asyncFeatures
 }
 
+function linkAnyAbort(aborter: TaskAbortController, externalSignals: AbortSignal[]) {
+  if (!externalSignals.length) return;
+
+  const offs: Array<() => void> = [];
+  const handleAborterAborted = () => {
+    // 内部已中止时，清理所有外部监听
+    for (const off of offs) { try { off(); } catch {} }
+    offs.length = 0;
+  };
+
+  // 如果任一外部 signal 已经中止，立即触发内部 abort
+  const already = externalSignals.find(s => s.aborted);
+  if (already) {
+    const reason = (already as any).reason;
+    try { aborter.abort(reason || 'aborted'); } catch {}
+    return; // 内部 abort 会触发 handleAborterAborted 清理
+  }
+
+  // 监听任一外部 signal
+  for (const s of externalSignals) {
+    const fn = () => {
+      const reason = (s as any).reason;
+      try { aborter.abort(reason || 'aborted'); } catch(e) {console.log(e)}
+    };
+    s.addEventListener('abort', fn, { once: true });
+    offs.push(() => s.removeEventListener('abort', fn));
+  }
+
+  // 当内部 abort 时，移除全部外部监听
+  const onInner = () => handleAborterAborted();
+  aborter.signal.addEventListener('abort', onInner, { once: true });
+  offs.push(() => aborter.signal.removeEventListener('abort', onInner));
+}
+
+function toSignalArray(sig?: AbortSignal | AbortSignal[] | null): AbortSignal[] {
+  if (!sig) return [];
+  return Array.isArray(sig) ? sig.filter(Boolean) as AbortSignal[] : [sig];
+}
 
 // type ToolFuncCancelableFn<T extends { new (...args: any[]): any } = typeof ToolFunc> = (Tool: T, options?: CancelableAbilityOptions) => T
 
