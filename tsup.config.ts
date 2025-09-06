@@ -37,4 +37,7 @@ export default defineConfig({
   // splitting: true,
   // sourcemap: true,
   clean: true,
+  external: [
+    'fastify',
+  ],
 })
