@@ -174,7 +174,8 @@ export function readFilenamesRecursiveSync(
           const fileDir = path.dirname(filepath)
           filepath = fs.readlinkSync(filepath)
           filepath = path.resolve(fileDir, filepath)
-          file = fs.statSync(filepath)
+          file = fs.statSync(filepath, {throwIfNoEntry: false}) as any
+          if (!file) {continue}
         }
         if (file.isDirectory()) {
           if (!maxLevel || level < maxLevel) {
