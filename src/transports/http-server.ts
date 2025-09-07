@@ -83,7 +83,7 @@ export class HttpServerToolTransport extends ServerToolTransport {
 
     // remove query string from url before splitting
     const urlPath = request.url.split('?')[0].substring(prefix.length);
-    const [toolId, id] = urlPath.split('/');
+    const [toolId, id] = urlPath.split('/').map(s => s === undefined ? s : decodeURIComponent(s));
 
     const func = serverTools.get(toolId);
 
@@ -119,7 +119,7 @@ export class HttpServerToolTransport extends ServerToolTransport {
             } else if (!reply.writableEnded) {
                 // If it's a stream but no result, or result is not a stream, just end.
                 // The function might have handled the response itself.
-                reply.end();
+                // reply.end();
             }
         } else {
             reply.setHeader('Content-Type', 'application/json');
@@ -173,10 +173,13 @@ export class HttpServerToolTransport extends ServerToolTransport {
     });
   }
 
-  public async stop(): Promise<void> {
+  public async stop(force?: boolean): Promise<void> {
     return new Promise((resolve, reject) => {
-        if (!this.server.listening) {
+        if (!this.server || !this.server.listening) {
             return resolve();
+        }
+        if (force) {
+          this.server.closeAllConnections();
         }
         this.server.close((err) => {
             if (err) {

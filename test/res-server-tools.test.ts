@@ -8,7 +8,7 @@ import { type FuncParams, ToolFunc, Funcs } from '../src/tool-func'
 import { findPort } from '../src/utils/find-port'
 import { ServerTools } from '../src/server-tools'
 import { ClientTools } from '../src/client-tools'
-import { FastifyServerToolTransport, HttpClientToolTransport } from '../src/transports'
+import { HttpServerToolTransport, HttpClientToolTransport } from '../src/transports'
 
 class TestResTool extends ResServerTools {
   items: any = {}
@@ -85,7 +85,7 @@ describe('res server api', () => {
     ClientTools.items = ClientToolItems
 
     const port = await findPort(3001)
-    server = new FastifyServerToolTransport({forceCloseConnections: true})
+    server = new HttpServerToolTransport()
     await server.mount(ServerTools, '/api')
     server.start({ port })
 
@@ -102,7 +102,7 @@ describe('res server api', () => {
   })
 
   afterAll(async () => {
-    await server.stop()
+    await server.stop(true)
     delete (ClientTools as any).items
     delete (ServerTools as any).items
   })

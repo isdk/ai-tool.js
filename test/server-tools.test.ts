@@ -1,12 +1,10 @@
 // @vitest-environment node
 // import { describe, expect, it } from 'vitest'
-import fastify from 'fastify'
-
 import { Funcs, ToolFunc } from '../src/tool-func'
 import { ServerTools } from "../src/server-tools"
 import { ClientTools } from '../src/client-tools'
 import { findPort } from '../src/utils/find-port'
-import { HttpClientToolTransport } from '../src/transports'
+import { HttpClientToolTransport, HttpServerToolTransport } from '../src/transports'
 
 describe('ServerTools', () => {
   beforeEach(()=>{
@@ -121,7 +119,7 @@ describe('ServerTools', () => {
 
 describe('server api', () => {
   let apiRoot: string // = 'http://localhost:3000/api'
-  const server = fastify()
+  let server: HttpServerToolTransport
 
   beforeAll(async () => {
     const ServerToolItems: {[name:string]: ServerTools|ToolFunc} = {}
@@ -165,55 +163,14 @@ describe('server api', () => {
       result: 'number',
     })
 
-    server.get('/api', async function(request, reply){
-      reply.send(ServerTools.toJSON())
-    })
-
-    server.get('/api/:toolId', async function(request, reply){
-      const { toolId } = request.params as any;
-      const func = ServerTools.get(toolId)
-      if (!func) {
-        reply.code(404).send({error: toolId + ' Not Found'})
-      }
-      let params: any = (request.query as any).p
-      if (params) {
-        params = JSON.parse(params)
-      } else {
-        params = {}
-      }
-      params._req = request.raw
-      params._res = reply.raw
-
-      const result = JSON.stringify(await func.run(params))
-      reply.send(result)
-      // reply.send({params: request.params as any, query: request.query, url: request.url})
-    })
-
-    server.post('/api/:toolId', async function(request, reply){
-      const { toolId } = request.params as any;
-      const func = ServerTools.get(toolId)
-      if (!func) {
-        reply.code(404).send({error: toolId + ' Not Found'})
-      }
-      let body: any = request.body;
-      if (typeof body === 'string') {body = JSON.parse(body)}
-      body._req = request.raw
-      body._res = reply.raw
-      let result = await func.run(body)
-      if (!func.isStream(body)) {
-        result = JSON.stringify(result)
-        reply.send(result)
-      } else if (result) {
-        reply.send(result)
-      }
-      // reply.send({params: request.params as any, query: request.query, url: request.url})
-    })
+    server = new HttpServerToolTransport()
+    await server.mount(ServerTools, '/api')
     const port = await findPort(3000)
-    const result = await server.listen({port})
-    console.log('server listening on ', result)
+    const result = await server.start({port})
+    // console.log('server listening on ', result)
     apiRoot = `http://localhost:${port}/api`
 
-    ServerTools.setApiRoot(apiRoot)
+    // ServerTools.setApiRoot(apiRoot)
     const clientTransport = new HttpClientToolTransport(apiRoot);
     ClientTools.setTransport(clientTransport);
 
@@ -222,7 +179,7 @@ describe('server api', () => {
   })
 
   afterAll(async () => {
-    await server.close()
+    await server.stop()
     delete (ClientTools as any).items
     delete (ServerTools as any).items
   })

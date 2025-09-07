@@ -7,7 +7,7 @@ import { EventBusName, EventName, backendEventable } from "../src/utils/event"
 import { sleep } from '../src/utils'
 import { findPort } from '../src/utils/find-port'
 import { Funcs, ToolFunc } from '../src/tool-func'
-import { FastifyServerToolTransport, HttpClientToolTransport } from '../src/transports'
+import { HttpServerToolTransport, HttpClientToolTransport } from '../src/transports'
 import { SseClientPubSubTransport, SseServerPubSubTransport } from "../src/transports/pubsub"
 
 backendEventable(EventClient)
@@ -50,7 +50,7 @@ describe('Event Server api', () => {
     })
 
     const port = await findPort(3002)
-    server = new FastifyServerToolTransport({forceCloseConnections: true})
+    server = new HttpServerToolTransport()
     await server.mount(ServerTools, '/api')
     server.start({ port })
     // const result = await server.listen({ port })
@@ -67,7 +67,7 @@ describe('Event Server api', () => {
     event.close()
     EventClient.setPubSubTransport(undefined)
     EventServer.setPubSubTransport(undefined)
-    await server.stop()
+    await server.stop(true)
     delete (ClientTools as any).items
     delete (ServerTools as any).items
   })

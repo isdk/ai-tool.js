@@ -9,7 +9,7 @@ import { EventServer } from '../src/funcs/event-server';
 import { EventClient } from '../src/funcs/event-client';
 import { event as eventBusProvider } from '../src/funcs/event';
 
-import { FastifyServerToolTransport, HttpClientToolTransport } from '../src/transports';
+import { HttpServerToolTransport, HttpClientToolTransport } from '../src/transports';
 import { SseClientPubSubTransport, SseServerPubSubTransport } from "../src/transports/pubsub"
 
 
@@ -24,7 +24,7 @@ function makeEventable(tool: any) {
 }
 
 describe('EventTransport End-to-End Test', () => {
-  let serverTransport: FastifyServerToolTransport;
+  let serverTransport: HttpServerToolTransport;
   let apiRoot: string;
   const eventServer1 = new EventServer('events1');
   const eventServer2 = new EventServer('events2');
@@ -47,7 +47,7 @@ describe('EventTransport End-to-End Test', () => {
     ResServerTools.register(eventServer1);
     ResServerTools.register(eventServer2);
 
-    serverTransport = new FastifyServerToolTransport();
+    serverTransport = new HttpServerToolTransport();
     serverTransport.mount(ResServerTools, '/api');
 
     const port = await findPort(3004);
@@ -64,7 +64,7 @@ describe('EventTransport End-to-End Test', () => {
     ResServerTools.unregister(eventServer2.name!);
     EventClient.setPubSubTransport(undefined)
     EventServer.setPubSubTransport(undefined)
-    await serverTransport.stop();
+    await serverTransport.stop(true);
     // Unregister using the static method as well
   });
 

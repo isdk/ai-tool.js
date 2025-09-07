@@ -10,8 +10,7 @@ import { ResClientTools } from '../src/res-client-tools';
 import { RpcMethodsServerTool } from '../src/rpc-methods-server-tool';
 import { RpcMethodsClientTool } from '../src/rpc-methods-client-tool';
 
-import { FastifyServerToolTransport, HttpClientToolTransport } from '../src/transports';
-import type { FastifyInstance } from 'fastify';
+import { HttpServerToolTransport, HttpClientToolTransport } from '../src/transports';
 
 // Server-side implementation of a resource tool for testing
 class TestResTool extends ResServerTools {
@@ -76,7 +75,7 @@ class TestRpcTool extends RpcMethodsServerTool {
 }
 
 describe('FastifyRestfulToolTransport', () => {
-  let serverTransport: FastifyServerToolTransport;
+  let serverTransport: HttpServerToolTransport;
   let apiRoot: string;
 
   beforeAll(async () => {
@@ -95,7 +94,7 @@ describe('FastifyRestfulToolTransport', () => {
     ResServerTools.register(rpc)
 
     // 2. Use the new, specialized transport to mount all tools
-    serverTransport = new FastifyServerToolTransport();
+    serverTransport = new HttpServerToolTransport();
     serverTransport.mount(ResServerTools, '/api');
 
     const port = await findPort(3003);
