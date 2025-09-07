@@ -8,7 +8,7 @@
 
 > **splitParagraph**(`value`, `options`?): `string`[][]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/split-paragraph.ts:12](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/split-paragraph.ts#L12)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/split-paragraph.ts:12](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/split-paragraph.ts#L12)
 
 Splits the input string into paragraphs based on empty lines and title lines.
 Each paragraph is represented as an array of strings, where each string is a line in the paragraph.

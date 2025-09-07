@@ -8,7 +8,7 @@
 
 > **scaleStrToParamsSize**(`scale`): `number`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/convert-params-size.ts:44](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/convert-params-size.ts#L44)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/convert-params-size.ts:44](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/convert-params-size.ts#L44)
 
 Converts a formatted parameters size string (with units T, B, M, or K) back to its byte value.
 

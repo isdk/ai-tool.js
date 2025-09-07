@@ -6,7 +6,7 @@
 
 # Interface: AIChoiceConfig
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:9](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/parse-command.ts#L9)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:9](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/parse-command.ts#L9)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:9](https
 
 > `optional` **end**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:16](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/parse-command.ts#L16)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:16](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/parse-command.ts#L16)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:16](http
 
 > `optional` **items**: `string`[]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:10](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/parse-command.ts#L10)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:10](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/parse-command.ts#L10)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:10](http
 
 > `optional` **maxPick**: `number`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:11](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/parse-command.ts#L11)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:11](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/parse-command.ts#L11)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:11](http
 
 > `optional` **minPick**: `number`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:12](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/parse-command.ts#L12)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:12](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/parse-command.ts#L12)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:12](http
 
 > `optional` **prefix**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:14](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/parse-command.ts#L14)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:14](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/parse-command.ts#L14)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:14](http
 
 > `optional` **separator**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:13](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/parse-command.ts#L13)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:13](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/parse-command.ts#L13)
 
 ***
 
@@ -62,4 +62,4 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:13](http
 
 > `optional` **type**: `"ai"` \| `"random"`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:15](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/parse-command.ts#L15)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:15](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/parse-command.ts#L15)

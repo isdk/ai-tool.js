@@ -6,7 +6,7 @@
 
 # Interface: ToolFuncPackage
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:216](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L216)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:216](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L216)
 
 Describes a package of tool functions, including methods for registration and unregistration.
 
@@ -16,7 +16,7 @@ Describes a package of tool functions, including methods for registration and un
 
 > **name**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:221](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L221)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:221](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L221)
 
 The name of the tool function package.
 
@@ -26,7 +26,7 @@ The name of the tool function package.
 
 > **register**: (`data`?) => `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:226](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L226)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:226](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L226)
 
 A method to register all functions within the package.
 
@@ -48,7 +48,7 @@ Optional data to pass to the registration process.
 
 > `optional` **unregister**: () => `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:230](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L230)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:230](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L230)
 
 An optional method to unregister all functions within the package.
 

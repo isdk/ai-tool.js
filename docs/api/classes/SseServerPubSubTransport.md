@@ -6,7 +6,7 @@
 
 # Class: SseServerPubSubTransport
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/sse-server.ts:5](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/pubsub/sse-server.ts#L5)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/sse-server.ts:5](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/pubsub/sse-server.ts#L5)
 
 Defines the interface for a server-side PubSub transport layer.
 
@@ -35,7 +35,7 @@ connections, subscriptions, and message passing.
 
 > `readonly` **name**: `"sse"` = `'sse'`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/sse-server.ts:6](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/pubsub/sse-server.ts#L6)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/sse-server.ts:6](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/pubsub/sse-server.ts#L6)
 
 A unique, human-readable name for the transport (e.g., 'sse', 'websocket').
 
@@ -49,7 +49,7 @@ A unique, human-readable name for the transport (e.g., 'sse', 'websocket').
 
 > `readonly` **protocol**: `"sse"`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/sse-server.ts:7](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/pubsub/sse-server.ts#L7)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/sse-server.ts:7](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/pubsub/sse-server.ts#L7)
 
 The protocol identifier.
 
@@ -63,7 +63,7 @@ The protocol identifier.
 
 > `optional` **mount**(): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/sse-server.ts:13](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/pubsub/sse-server.ts#L13)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/sse-server.ts:13](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/pubsub/sse-server.ts#L13)
 
 Optional method to mount or register the transport's endpoint with an HTTP
 server or framework. This is typically required for protocols like SSE or
@@ -83,7 +83,7 @@ WebSockets that need to handle incoming HTTP requests at a specific path.
 
 > **onConnection**(`cb`): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/sse-server.ts:44](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/pubsub/sse-server.ts#L44)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/sse-server.ts:44](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/pubsub/sse-server.ts#L44)
 
 Registers a callback to be invoked when a new client connection is established
 and a session is created.
@@ -110,7 +110,7 @@ The callback function that receives the new `PubSubServerSession`.
 
 > **onDisconnect**(`cb`): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/sse-server.ts:45](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/pubsub/sse-server.ts#L45)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/sse-server.ts:45](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/pubsub/sse-server.ts#L45)
 
 Registers a callback to be invoked when a client disconnects.
 
@@ -137,7 +137,7 @@ The callback function that receives the `PubSubServerSession` of the
 
 > **publish**(`event`, `data`, `target`?): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/sse-server.ts:40](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/pubsub/sse-server.ts#L40)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/sse-server.ts:40](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/pubsub/sse-server.ts#L40)
 
 Publishes an event from the server to connected clients.
 
@@ -184,7 +184,7 @@ A single `PubSubClientId` or an array of IDs to
 
 > **subscribe**(`events`?, `options`?): `Client`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/sse-server.ts:15](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/pubsub/sse-server.ts#L15)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/sse-server.ts:15](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/pubsub/sse-server.ts#L15)
 
 Establishes a connection with a client and subscribes it to an event stream.
 

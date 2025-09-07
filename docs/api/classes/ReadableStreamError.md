@@ -6,7 +6,7 @@
 
 # Class: ReadableStreamError
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/stream/error-readable-stream.ts:6](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/stream/error-readable-stream.ts#L6)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/stream/error-readable-stream.ts:6](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/stream/error-readable-stream.ts#L6)
 
 BaseError class that extends the Error class.
 
@@ -47,7 +47,7 @@ fromJSON - Creates a new BaseError instance from a JSON representation.
 
 > **new ReadableStreamError**(`msg`, `code`): [`ReadableStreamError`](ReadableStreamError.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/stream/error-readable-stream.ts:7](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/stream/error-readable-stream.ts#L7)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/stream/error-readable-stream.ts:7](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/stream/error-readable-stream.ts#L7)
 
 #### Parameters
 

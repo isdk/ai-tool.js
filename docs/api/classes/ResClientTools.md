@@ -6,11 +6,20 @@
 
 # Class: ResClientTools
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:9](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/res-client-tools.ts#L9)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:9](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/res-client-tools.ts#L9)
+
+Represents a client-side proxy for a remote tool function.
+
+A `ClientTools` instance is a `ToolFunc` that, when executed, does not run
+local code. Instead, it serializes the parameters and uses an injected
+transport layer (`IClientToolTransport`) to make a remote procedure call
+to its corresponding `ServerTools` counterpart.
+
+These tools are typically created dynamically by loading definitions from a server.
 
 ## Extends
 
-- `RpcMethodsClientTool`
+- [`RpcMethodsClientTool`](RpcMethodsClientTool.md)
 
 ## Extended by
 
@@ -26,9 +35,9 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:9](https://
 
 > **new ResClientTools**(`name`, `options`?): [`ResClientTools`](ResClientTools.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:571](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L571)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:571](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L571)
 
-Initializes a new `ToolFunc` instance.
+The initial value of Object.prototype.constructor is the standard built-in Object constructor.
 
 #### Parameters
 
@@ -48,6 +57,10 @@ Configuration options if not provided in the first argument.
 
 [`ResClientTools`](ResClientTools.md)
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`constructor`](RpcMethodsClientTool.md#constructors)
+
 ## Properties
 
 ### $attributes
@@ -56,16 +69,24 @@ Configuration options if not provided in the first argument.
 
 Defined in: [property-manager.js/src/advance.d.ts:5](https://github.com/snowyu/property-manager.js/blob/e9ebf4c62be9b6d84e5868ed098df041a53bb90a/src/advance.d.ts#L5)
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`$attributes`](RpcMethodsClientTool.md#$attributes)
+
 ***
 
 ### action?
 
 > `optional` **action**: `"get"` \| `"post"` \| `"put"` \| `"delete"` \| `"patch"` \| `"list"` \| `"res"`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/consts.ts:95](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/consts.ts#L95)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/consts.ts:95](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/consts.ts#L95)
 
 The action to be used for the remote call. This typically represents an RPC method name.
 Only for RESTful HTTP transports, it might be mapped to a standard HTTP method (e.g., GET, POST)
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`action`](RpcMethodsClientTool.md#action)
 
 ***
 
@@ -73,9 +94,13 @@ Only for RESTful HTTP transports, it might be mapped to a standard HTTP method (
 
 > `optional` **alias**: `string` \| `string`[]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:130](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L130)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:130](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L130)
 
 Optional aliases for the function name.
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`alias`](RpcMethodsClientTool.md#alias)
 
 ***
 
@@ -83,7 +108,7 @@ Optional aliases for the function name.
 
 > `optional` **asyncFeatures**: `number`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:144](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L144)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:144](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L144)
 
 A bitmask representing asynchronous features supported by the function, built from `AsyncFeatureBits`.
 This allows the system to understand if a function supports capabilities like cancellation or multi-tasking.
@@ -102,6 +127,10 @@ const func = new ToolFunc({
   // ...
 });
 ```
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`asyncFeatures`](RpcMethodsClientTool.md#asyncfeatures)
 
 ***
 
@@ -131,13 +160,17 @@ The default options for export and assign
 
 > `optional` **export**: `IMergeOptions`
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`defaultOptions`](RpcMethodsClientTool.md#defaultoptions)
+
 ***
 
 ### depends?
 
 > `optional` **depends**: `object`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:167](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L167)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:167](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L167)
 
 A map of dependencies this function has on other tool functions.
 Declaring dependencies ensures that they are automatically registered when this function is registered.
@@ -166,15 +199,23 @@ const mainFunc = new ToolFunc({
 mainFunc.register();
 ```
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`depends`](RpcMethodsClientTool.md#depends)
+
 ***
 
 ### description?
 
 > `optional` **description**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:172](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L172)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:172](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L172)
 
 A detailed description of what the function does.
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`description`](RpcMethodsClientTool.md#description)
 
 ***
 
@@ -182,7 +223,7 @@ A detailed description of what the function does.
 
 > `optional` **fetchOptions**: `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/consts.ts:101](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/consts.ts#L101)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/consts.ts:101](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/consts.ts#L101)
 
 Options to be passed to the underlying `fetch` call in an HTTP transport.
 
@@ -190,15 +231,23 @@ Options to be passed to the underlying `fetch` call in an HTTP transport.
 
 Use `transport` instead.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`fetchOptions`](RpcMethodsClientTool.md#fetchoptions)
+
 ***
 
 ### isApi?
 
 > `optional` **isApi**: `boolean`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:119](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L119)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:119](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L119)
 
 If true, indicates that this function should be treated as a server-side API.
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`isApi`](RpcMethodsClientTool.md#isapi)
 
 ***
 
@@ -206,9 +255,13 @@ If true, indicates that this function should be treated as a server-side API.
 
 > `optional` **name**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:76](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L76)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:76](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L76)
 
 The unique name of the function.
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`name`](RpcMethodsClientTool.md#name-3)
 
 ***
 
@@ -220,15 +273,23 @@ Defined in: [property-manager.js/src/abstract.d.ts:78](https://github.com/snowyu
 
 the property with the default prefix '$' will not be exported.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`nonExported1stChar`](RpcMethodsClientTool.md#nonexported1stchar)
+
 ***
 
 ### params?
 
 > `optional` **params**: [`FuncParams`](../interfaces/FuncParams.md) \| [`FuncParam`](../interfaces/FuncParam.md)[]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:81](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L81)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:81](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L81)
 
 Parameter definitions, which can be an object mapping names to definitions or an array for positional parameters.
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`params`](RpcMethodsClientTool.md#params)
 
 ***
 
@@ -236,9 +297,13 @@ Parameter definitions, which can be an object mapping names to definitions or an
 
 > `optional` **result**: `string` \| `Record`\<`string`, `any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:86](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L86)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:86](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L86)
 
 The expected return type of the function, described as a string or a JSON schema object.
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`result`](RpcMethodsClientTool.md#result)
 
 ***
 
@@ -246,9 +311,13 @@ The expected return type of the function, described as a string or a JSON schema
 
 > `optional` **scope**: `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:91](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L91)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:91](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L91)
 
 The execution scope or context (`this`) for the function.
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`scope`](RpcMethodsClientTool.md#scope)
 
 ***
 
@@ -256,7 +325,7 @@ The execution scope or context (`this`) for the function.
 
 > `optional` **setup**: (`this`, `options`?) => `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:114](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L114)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:114](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L114)
 
 A lifecycle hook called once during the `ToolFunc` instance's initialization.
 It allows for initial setup, state configuration, or property modification on the instance
@@ -292,16 +361,24 @@ const myFunc = new ToolFunc({
 console.log(myFunc.customState); // Outputs: 'configured'
 ```
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`setup`](RpcMethodsClientTool.md#setup)
+
 ***
 
 ### stream?
 
 > `optional` **stream**: `boolean`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:125](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L125)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:125](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L125)
 
 If true, indicates that the function has the *capability* to stream its output.
 Whether a specific call is streamed is determined by a `stream` property in the runtime parameters.
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`stream`](RpcMethodsClientTool.md#stream)
 
 ***
 
@@ -309,9 +386,13 @@ Whether a specific call is streamed is determined by a `stream` property in the 
 
 > `optional` **tags**: `string` \| `string`[]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:96](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L96)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:96](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L96)
 
 Tags for grouping or filtering functions.
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`tags`](RpcMethodsClientTool.md#tags)
 
 ***
 
@@ -319,9 +400,13 @@ Tags for grouping or filtering functions.
 
 > `optional` **title**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:177](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L177)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:177](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L177)
 
 A concise, human-readable title for the function, often used in UI or by AI.
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`title`](RpcMethodsClientTool.md#title)
 
 ***
 
@@ -329,7 +414,11 @@ A concise, human-readable title for the function, often used in UI or by AI.
 
 > `static` `optional` **action**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:32](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/client-tools.ts#L32)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:32](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/client-tools.ts#L32)
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`action`](RpcMethodsClientTool.md#action-1)
 
 ***
 
@@ -337,7 +426,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:32](https://git
 
 > `static` **aliases**: `object` = `{}`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:305](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L305)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:305](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L305)
 
 A static map of aliases to their corresponding function names.
 
@@ -345,17 +434,25 @@ A static map of aliases to their corresponding function names.
 
 \[`name`: `string`\]: `string`
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`aliases`](RpcMethodsClientTool.md#aliases)
+
 ***
 
 ### dataPath
 
 > `static` **dataPath**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:312](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L312)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:312](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L312)
 
 A conventional property to designate a file path for saving the registered `ToolFunc` data.
 Note: The `ToolFunc` class itself does not implement persistence logic. It is up to the
 developer to use this path to save and load the `ToolFunc.items` registry if needed.
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`dataPath`](RpcMethodsClientTool.md#datapath)
 
 ***
 
@@ -363,19 +460,23 @@ developer to use this path to save and load the `ToolFunc.items` registry if nee
 
 > `static` **items**: [`Funcs`](../interfaces/Funcs.md) = `{}`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:300](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L300)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:300](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L300)
 
 A static registry of all `ToolFunc` instances, indexed by name.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`items`](RpcMethodsClientTool.md#items)
+
 ## Accessors
 
-### apiRoot
+### ~~apiRoot~~
 
 #### Get Signature
 
 > **get** **apiRoot**(): `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:109](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/client-tools.ts#L109)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:109](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/client-tools.ts#L109)
 
 ##### Deprecated
 
@@ -385,6 +486,16 @@ The actual endpoint is managed by the transport.
 ##### Returns
 
 `string`
+
+The root endpoint for the remote service.
+
+#### Deprecated
+
+Use `transport` instead.
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`apiRoot`](RpcMethodsClientTool.md#apiroot)
 
 ***
 
@@ -394,7 +505,7 @@ The actual endpoint is managed by the transport.
 
 > **get** `static` **apiRoot**(): `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:40](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/client-tools.ts#L40)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:40](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/client-tools.ts#L40)
 
 ##### Deprecated
 
@@ -405,6 +516,10 @@ The actual endpoint is managed by the transport.
 
 `string`
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`apiRoot`](RpcMethodsClientTool.md#apiroot-2)
+
 ***
 
 ### transport
@@ -413,11 +528,15 @@ The actual endpoint is managed by the transport.
 
 > **get** `static` **transport**(): [`IClientToolTransport`](../interfaces/IClientToolTransport.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:60](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/client-tools.ts#L60)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:60](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/client-tools.ts#L60)
 
 ##### Returns
 
 [`IClientToolTransport`](../interfaces/IClientToolTransport.md)
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`transport`](RpcMethodsClientTool.md#transport)
 
 ## Methods
 
@@ -425,7 +544,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:60](https://git
 
 > **\_func**(`action`, `options`): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:19](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/rpc-methods-client-tool.ts#L19)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:19](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/rpc-methods-client-tool.ts#L19)
 
 #### Parameters
 
@@ -435,11 +554,15 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:19](
 
 ##### options
 
-`RpcMethodsClientFuncParams`
+[`RpcMethodsClientFuncParams`](../interfaces/RpcMethodsClientFuncParams.md)
 
 #### Returns
 
 `Promise`\<`any`\>
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`_func`](RpcMethodsClientTool.md#_func)
 
 ***
 
@@ -447,7 +570,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:19](
 
 > **arr2ObjParams**(`params`): `any`[]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:629](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L629)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:629](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L629)
 
 Converts an array of positional arguments into a named parameters object.
 This is used internally to support functions defined with named parameters.
@@ -465,6 +588,10 @@ An array of positional arguments.
 `any`[]
 
 An array containing a single parameters object.
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`arr2ObjParams`](RpcMethodsClientTool.md#arr2objparams)
 
 ***
 
@@ -494,13 +621,17 @@ the source object
 
 this object
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`assign`](RpcMethodsClientTool.md#assign)
+
 ***
 
 ### assignMethods()
 
 > **assignMethods**(`methods`): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:32](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/rpc-methods-client-tool.ts#L32)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:32](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/rpc-methods-client-tool.ts#L32)
 
 #### Parameters
 
@@ -511,6 +642,10 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:32](
 #### Returns
 
 `void`
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`assignMethods`](RpcMethodsClientTool.md#assignmethods)
 
 ***
 
@@ -555,6 +690,10 @@ the attributes object
 #### Returns
 
 `void`
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`assignProperty`](RpcMethodsClientTool.md#assignproperty)
 
 ***
 
@@ -606,6 +745,10 @@ The attributes object of the property
 
 `void`
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`assignPropertyTo`](RpcMethodsClientTool.md#assignpropertyto)
+
 ***
 
 ### assignTo()
@@ -634,6 +777,10 @@ the destination object
 
 the dest object
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`assignTo`](RpcMethodsClientTool.md#assignto)
+
 ***
 
 ### clone()
@@ -655,6 +802,10 @@ Create a new object with the same values of attributes.
 `any`
 
 the new object
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`clone`](RpcMethodsClientTool.md#clone)
 
 ***
 
@@ -684,6 +835,10 @@ the destination object
 
 the new dest object
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`cloneTo`](RpcMethodsClientTool.md#cloneto)
+
 ***
 
 ### defineProperties()
@@ -706,13 +861,17 @@ the defined attributes of the object
 
 `any`
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`defineProperties`](RpcMethodsClientTool.md#defineproperties)
+
 ***
 
 ### delete()?
 
 > `optional` **delete**(`__namedParameters`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:13](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/res-client-tools.ts#L13)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:13](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/res-client-tools.ts#L13)
 
 #### Parameters
 
@@ -752,13 +911,17 @@ the destination object
 
 the dest object.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`exportTo`](RpcMethodsClientTool.md#exportto)
+
 ***
 
 ### fetch()
 
 > **fetch**(`options`, `action`): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:18](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/res-client-tools.ts#L18)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:18](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/res-client-tools.ts#L18)
 
 #### Parameters
 
@@ -774,13 +937,17 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:18](https:/
 
 `Promise`\<`any`\>
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`fetch`](RpcMethodsClientTool.md#fetch)
+
 ***
 
 ### func()
 
 > **func**(`options`): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:24](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/rpc-methods-client-tool.ts#L24)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:24](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/rpc-methods-client-tool.ts#L24)
 
 The core implementation for a client-side tool. When a `ClientTools` instance
 is "run", this `func` method is executed. It delegates the call to the
@@ -790,7 +957,7 @@ configured transport, which handles the network communication.
 
 ##### options
 
-`RpcMethodsClientFuncParams`
+[`RpcMethodsClientFuncParams`](../interfaces/RpcMethodsClientFuncParams.md)
 
 #### Returns
 
@@ -798,13 +965,17 @@ configured transport, which handles the network communication.
 
 The result from the remote tool.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`func`](RpcMethodsClientTool.md#func)
+
 ***
 
 ### get()?
 
 > `optional` **get**(`__namedParameters`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/res-client-tools.ts#L10)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/res-client-tools.ts#L10)
 
 #### Parameters
 
@@ -822,7 +993,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:10](https:/
 
 > **getFunc**(`name`?): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:720](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L720)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:720](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L720)
 
 Gets a bound function reference for execution with named parameters.
 If a name is provided, it retrieves a different function from the registry.
@@ -842,13 +1013,17 @@ Optional name of the function to retrieve.
 
 A function reference or `undefined` if not found.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`getFunc`](RpcMethodsClientTool.md#getfunc)
+
 ***
 
 ### getFuncWithPos()
 
 > **getFuncWithPos**(`name`?): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:777](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L777)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:777](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L777)
 
 Gets a bound function reference suitable for positional argument execution.
 If a name is provided, it retrieves a different function from the registry.
@@ -868,6 +1043,10 @@ Optional name of the function to retrieve.
 
 A function reference or `undefined` if not found.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`getFuncWithPos`](RpcMethodsClientTool.md#getfuncwithpos)
+
 ***
 
 ### getProperties()
@@ -884,13 +1063,17 @@ Get the defined attributes.
 
 the descriptors of properties object
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`getProperties`](RpcMethodsClientTool.md#getproperties)
+
 ***
 
 ### hasAsyncFeature()
 
 > **hasAsyncFeature**(`feature`): `boolean`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:787](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L787)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:787](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L787)
 
 Checks if the current function instance supports a specific async feature.
 
@@ -907,6 +1090,10 @@ The async feature bit to check for.
 `boolean`
 
 `true` if the feature is supported, otherwise `false`.
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`hasAsyncFeature`](RpcMethodsClientTool.md#hasasyncfeature)
 
 ***
 
@@ -930,6 +1117,10 @@ A property name.
 
 `boolean`
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`hasOwnProperty`](RpcMethodsClientTool.md#hasownproperty)
+
 ***
 
 ### initialize()
@@ -952,6 +1143,10 @@ Initialize object and assign attribute values from src if src exists.
 
 this object.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`initialize`](RpcMethodsClientTool.md#initialize)
+
 ***
 
 ### isPrototypeOf()
@@ -973,6 +1168,10 @@ Another object whose prototype chain is to be checked.
 #### Returns
 
 `boolean`
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`isPrototypeOf`](RpcMethodsClientTool.md#isprototypeof)
 
 ***
 
@@ -1000,13 +1199,17 @@ The source object
 
 `boolean`
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`isSame`](RpcMethodsClientTool.md#issame)
+
 ***
 
 ### isStream()
 
 > **isStream**(`params`): `undefined` \| `boolean`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:805](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L805)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:805](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L805)
 
 Determines if a function call should produce a stream.
 
@@ -1030,13 +1233,17 @@ The runtime parameters passed to the function call.
 
 `true` if the call should be streamed, `false` or `undefined` otherwise.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`isStream`](RpcMethodsClientTool.md#isstream)
+
 ***
 
 ### list()?
 
 > `optional` **list**(`options`?): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/res-client-tools.ts#L14)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/res-client-tools.ts#L14)
 
 #### Parameters
 
@@ -1076,13 +1283,17 @@ The destination object
 
 the dest object.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`mergeTo`](RpcMethodsClientTool.md#mergeto)
+
 ***
 
 ### obj2ArrParams()
 
 > **obj2ArrParams**(`params`?): `any`[]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:648](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L648)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:648](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L648)
 
 Converts a named parameters object into an array of positional arguments.
 This is used for functions defined with positional parameters.
@@ -1101,13 +1312,17 @@ A named parameters object.
 
 An array of positional arguments.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`obj2ArrParams`](RpcMethodsClientTool.md#obj2arrparams)
+
 ***
 
 ### post()?
 
 > `optional` **post**(`options`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:11](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/res-client-tools.ts#L11)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:11](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/res-client-tools.ts#L11)
 
 #### Parameters
 
@@ -1141,13 +1356,17 @@ A property name.
 
 `boolean`
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`propertyIsEnumerable`](RpcMethodsClientTool.md#propertyisenumerable)
+
 ***
 
 ### put()?
 
 > `optional` **put**(`__namedParameters`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:12](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/res-client-tools.ts#L12)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:12](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/res-client-tools.ts#L12)
 
 #### Parameters
 
@@ -1165,7 +1384,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:12](https:/
 
 > **register**(): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:602](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L602)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:602](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L602)
 
 Registers the current `ToolFunc` instance into the static registry.
 Also registers any declared dependencies.
@@ -1176,13 +1395,17 @@ Also registers any declared dependencies.
 
 The instance itself upon successful registration, or `false` if it already exists.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`register`](RpcMethodsClientTool.md#register)
+
 ***
 
 ### run()
 
 > **run**(`params`?): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:686](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L686)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:686](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L686)
 
 Executes the function asynchronously with a named parameters object.
 
@@ -1200,13 +1423,17 @@ The parameters object for the function.
 
 A promise that resolves with the function's result.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`run`](RpcMethodsClientTool.md#run)
+
 ***
 
 ### runAs()
 
 > **runAs**(`name`, `params`?): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:697](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L697)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:697](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L697)
 
 Asynchronously executes another registered function by name.
 This method delegates to `runAsSync()` internally.
@@ -1231,13 +1458,17 @@ Optional parameters to pass to the function.
 
 A promise that resolves with the result of the function execution.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`runAs`](RpcMethodsClientTool.md#runas)
+
 ***
 
 ### runAsSync()
 
 > **runAsSync**(`name`, `params`?): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:708](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L708)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:708](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L708)
 
 Synchronously executes another registered function by name.
 This is a convenience method that forwards the call to the static `runSync()` method.
@@ -1262,13 +1493,17 @@ Optional parameters to pass to the function.
 
 The result of the function execution.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`runAsSync`](RpcMethodsClientTool.md#runassync)
+
 ***
 
 ### runSync()
 
 > **runSync**(`params`?): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:667](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L667)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:667](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L667)
 
 Executes the function synchronously with a named parameters object.
 
@@ -1290,13 +1525,17 @@ The result of the function execution.
 
 Will throw an error if an array of parameters is passed to a function that expects an object.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`runSync`](RpcMethodsClientTool.md#runsync)
+
 ***
 
 ### runWithPos()
 
 > **runWithPos**(...`params`): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:755](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L755)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:755](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L755)
 
 Executes the function asynchronously using positional arguments.
 Delegates to `runWithPosSync()` internally.
@@ -1315,13 +1554,17 @@ Positional arguments passed to the function.
 
 A promise that resolves with the result of the function execution.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`runWithPos`](RpcMethodsClientTool.md#runwithpos)
+
 ***
 
 ### runWithPosAs()
 
 > **runWithPosAs**(`name`, ...`params`): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:766](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L766)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:766](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L766)
 
 Asynchronously executes another function by name using positional arguments.
 Delegates to `runWithPosAsSync()` internally.
@@ -1346,13 +1589,17 @@ Positional arguments to pass to the function.
 
 A promise that resolves with the result of the function execution.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`runWithPosAs`](RpcMethodsClientTool.md#runwithposas)
+
 ***
 
 ### runWithPosAsSync()
 
 > **runWithPosAsSync**(`name`, ...`params`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:745](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L745)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:745](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L745)
 
 Synchronously executes another function by name using positional arguments.
 This is a convenience wrapper around the static `runWithPosSync()` method.
@@ -1377,13 +1624,17 @@ Positional arguments to pass to the function.
 
 The result of the function execution.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`runWithPosAsSync`](RpcMethodsClientTool.md#runwithposassync)
+
 ***
 
 ### runWithPosSync()
 
 > **runWithPosSync**(...`params`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:731](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L731)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:731](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L731)
 
 Executes the function synchronously using positional arguments.
 If the function expects named parameters, it converts the arguments automatically.
@@ -1402,6 +1653,10 @@ Positional arguments passed to the function.
 
 The result of the function execution.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`runWithPosSync`](RpcMethodsClientTool.md#runwithpossync)
+
 ***
 
 ### toJSON()
@@ -1413,6 +1668,10 @@ Defined in: [property-manager.js/src/abstract.d.ts:182](https://github.com/snowy
 #### Returns
 
 `any`
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`toJSON`](RpcMethodsClientTool.md#tojson)
 
 ***
 
@@ -1427,6 +1686,10 @@ Returns a date converted to a string using the current locale.
 #### Returns
 
 `string`
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`toLocaleString`](RpcMethodsClientTool.md#tolocalestring)
 
 ***
 
@@ -1450,6 +1713,10 @@ Convert the attributes to the json object
 
 the json object.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`toObject`](RpcMethodsClientTool.md#toobject)
+
 ***
 
 ### toString()
@@ -1464,13 +1731,17 @@ Returns a string representation of an object.
 
 `string`
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`toString`](RpcMethodsClientTool.md#tostring)
+
 ***
 
 ### unregister()
 
 > **unregister**(): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:619](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L619)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:619](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L619)
 
 Removes the current `ToolFunc` instance from the static registry.
 
@@ -1479,6 +1750,10 @@ Removes the current `ToolFunc` instance from the static registry.
 `any`
 
 The instance that was unregistered.
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`unregister`](RpcMethodsClientTool.md#unregister)
 
 ***
 
@@ -1493,6 +1768,10 @@ Returns the primitive value of the specified object.
 #### Returns
 
 `Object`
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`valueOf`](RpcMethodsClientTool.md#valueof)
 
 ***
 
@@ -1530,6 +1809,10 @@ The source object from which to copy properties.
 ##### Returns
 
 `T` & `U`
+
+##### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`assign`](RpcMethodsClientTool.md#assign-2)
 
 #### Call Signature
 
@@ -1571,6 +1854,10 @@ The second source object from which to copy properties.
 ##### Returns
 
 `T` & `U` & `V`
+
+##### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`assign`](RpcMethodsClientTool.md#assign-2)
 
 #### Call Signature
 
@@ -1621,6 +1908,10 @@ The third source object from which to copy properties.
 
 `T` & `U` & `V` & `W`
 
+##### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`assign`](RpcMethodsClientTool.md#assign-2)
+
 #### Call Signature
 
 > `static` **assign**(`target`, ...`sources`): `any`
@@ -1648,6 +1939,10 @@ One or more source objects from which to copy properties
 
 `any`
 
+##### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`assign`](RpcMethodsClientTool.md#assign-2)
+
 ***
 
 ### create()
@@ -1671,6 +1966,10 @@ Object to use as a prototype. May be null.
 ##### Returns
 
 `any`
+
+##### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`create`](RpcMethodsClientTool.md#create)
 
 #### Call Signature
 
@@ -1697,6 +1996,10 @@ JavaScript object that contains one or more property descriptors.
 ##### Returns
 
 `any`
+
+##### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`create`](RpcMethodsClientTool.md#create)
 
 ***
 
@@ -1725,6 +2028,10 @@ Adds one or more properties to an object, and/or modifies attributes of existing
 #### Returns
 
 `any`
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`defineProperties`](RpcMethodsClientTool.md#defineproperties-2)
 
 ***
 
@@ -1764,6 +2071,10 @@ Descriptor for the property. It can be for a data property or an accessor proper
 
 `T`
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`defineProperty`](RpcMethodsClientTool.md#defineproperty)
+
 ***
 
 ### entries()
@@ -1792,6 +2103,10 @@ Object that contains the properties and methods. This can be an object that you 
 
 \[`string`, `T`\][]
 
+##### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`entries`](RpcMethodsClientTool.md#entries)
+
 #### Call Signature
 
 > `static` **entries**(`o`): \[`string`, `any`\][]
@@ -1810,13 +2125,17 @@ Object that contains the properties and methods. This can be an object that you 
 
 \[`string`, `any`\][]
 
+##### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`entries`](RpcMethodsClientTool.md#entries)
+
 ***
 
 ### fetch()
 
 > `static` **fetch**(`name`, `objParam`?, ...`args`?): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:98](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/client-tools.ts#L98)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:98](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/client-tools.ts#L98)
 
 #### Parameters
 
@@ -1835,6 +2154,10 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:98](https://git
 #### Returns
 
 `Promise`\<`any`\>
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`fetch`](RpcMethodsClientTool.md#fetch-2)
 
 ***
 
@@ -1864,6 +2187,10 @@ Object on which to lock the attributes.
 
 `T`
 
+##### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`freeze`](RpcMethodsClientTool.md#freeze)
+
 #### Call Signature
 
 > `static` **freeze**\<`T`, `U`\>(`o`): `Readonly`\<`T`\>
@@ -1890,6 +2217,10 @@ Object on which to lock the attributes.
 
 `Readonly`\<`T`\>
 
+##### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`freeze`](RpcMethodsClientTool.md#freeze)
+
 #### Call Signature
 
 > `static` **freeze**\<`T`\>(`o`): `Readonly`\<`T`\>
@@ -1913,6 +2244,10 @@ Object on which to lock the attributes.
 ##### Returns
 
 `Readonly`\<`T`\>
+
+##### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`freeze`](RpcMethodsClientTool.md#freeze)
 
 ***
 
@@ -1942,6 +2277,10 @@ An iterable object that contains key-value entries for properties and methods.
 
 `object`
 
+##### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`fromEntries`](RpcMethodsClientTool.md#fromentries)
+
 #### Call Signature
 
 > `static` **fromEntries**(`entries`): `any`
@@ -1962,13 +2301,17 @@ An iterable object that contains key-value entries for properties and methods.
 
 `any`
 
+##### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`fromEntries`](RpcMethodsClientTool.md#fromentries)
+
 ***
 
 ### get()
 
 > `static` **get**(`name`): [`ToolFunc`](ToolFunc.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:319](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L319)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:319](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L319)
 
 Retrieves a registered function by its name or alias.
 
@@ -1986,13 +2329,17 @@ The name or alias of the function to retrieve.
 
 The `ToolFunc` instance if found, otherwise `undefined`.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`get`](RpcMethodsClientTool.md#get)
+
 ***
 
 ### getAllByTag()
 
 > `static` **getAllByTag**(`tagName`): [`ToolFunc`](ToolFunc.md)[]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:365](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L365)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:365](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L365)
 
 Retrieves all registered functions that have a specific tag.
 
@@ -2010,13 +2357,17 @@ The tag to search for.
 
 An array of matching `ToolFunc` instances.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`getAllByTag`](RpcMethodsClientTool.md#getallbytag)
+
 ***
 
 ### getByTag()
 
 > `static` **getByTag**(`tagName`): `undefined` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:340](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L340)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:340](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L340)
 
 Finds the first registered function that has a specific tag.
 
@@ -2034,13 +2385,17 @@ The tag to search for.
 
 The first matching `ToolFunc` instance, or `undefined` if none is found.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`getByTag`](RpcMethodsClientTool.md#getbytag)
+
 ***
 
 ### getFunc()
 
 > `static` **getFunc**(`name`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:431](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L431)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:431](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L431)
 
 Retrieves a bound, runnable function reference for a registered function.
 This reference is suitable for execution with an object of named parameters.
@@ -2059,13 +2414,17 @@ The name of the function.
 
 A bound function reference, or `undefined` if not found.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`getFunc`](RpcMethodsClientTool.md#getfunc-2)
+
 ***
 
 ### getFuncWithPos()
 
 > `static` **getFuncWithPos**(`name`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:472](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L472)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:472](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L472)
 
 Retrieves a bound, runnable function reference for a registered function.
 This reference is suitable for execution with positional arguments.
@@ -2083,6 +2442,10 @@ The name of the function.
 `any`
 
 A bound function reference, or `undefined` if not found.
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`getFuncWithPos`](RpcMethodsClientTool.md#getfuncwithpos-2)
 
 ***
 
@@ -2113,6 +2476,10 @@ Name of the property.
 
 `undefined` \| `PropertyDescriptor`
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`getOwnPropertyDescriptor`](RpcMethodsClientTool.md#getownpropertydescriptor)
+
 ***
 
 ### getOwnPropertyDescriptors()
@@ -2139,6 +2506,10 @@ Object that contains the properties and methods. This can be an object that you 
 
 \{ \[P in string \| number \| symbol\]: TypedPropertyDescriptor\<T\[P\]\> \} & `object`
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`getOwnPropertyDescriptors`](RpcMethodsClientTool.md#getownpropertydescriptors)
+
 ***
 
 ### getOwnPropertyNames()
@@ -2162,6 +2533,10 @@ Object that contains the own properties.
 
 `string`[]
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`getOwnPropertyNames`](RpcMethodsClientTool.md#getownpropertynames)
+
 ***
 
 ### getOwnPropertySymbols()
@@ -2184,6 +2559,10 @@ Object to retrieve the symbols from.
 
 `symbol`[]
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`getOwnPropertySymbols`](RpcMethodsClientTool.md#getownpropertysymbols)
+
 ***
 
 ### getProperties()
@@ -2197,6 +2576,10 @@ get all properties descriptor include inherited.
 #### Returns
 
 `PropDescriptors`
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`getProperties`](RpcMethodsClientTool.md#getproperties-2)
 
 ***
 
@@ -2220,13 +2603,17 @@ The object that references the prototype.
 
 `any`
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`getPrototypeOf`](RpcMethodsClientTool.md#getprototypeof)
+
 ***
 
 ### hasAsyncFeature()
 
 > `static` **hasAsyncFeature**(`feature`): `boolean`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:388](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L388)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:388](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L388)
 
 Checks if any registered function has a specific asynchronous feature.
 
@@ -2243,6 +2630,10 @@ The async feature bit to check for.
 `boolean`
 
 `true` if the feature is present in any function, otherwise `false`.
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`hasAsyncFeature`](RpcMethodsClientTool.md#hasasyncfeature-2)
 
 ***
 
@@ -2272,6 +2663,10 @@ A property name.
 
 `boolean`
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`hasOwn`](RpcMethodsClientTool.md#hasown)
+
 ***
 
 ### is()
@@ -2300,6 +2695,10 @@ The second value.
 
 `boolean`
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`is`](RpcMethodsClientTool.md#is)
+
 ***
 
 ### isExtensible()
@@ -2321,6 +2720,10 @@ Object to test.
 #### Returns
 
 `boolean`
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`isExtensible`](RpcMethodsClientTool.md#isextensible)
 
 ***
 
@@ -2344,6 +2747,10 @@ Object to test.
 
 `boolean`
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`isFrozen`](RpcMethodsClientTool.md#isfrozen)
+
 ***
 
 ### isSealed()
@@ -2365,6 +2772,10 @@ Object to test.
 #### Returns
 
 `boolean`
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`isSealed`](RpcMethodsClientTool.md#issealed)
 
 ***
 
@@ -2390,6 +2801,10 @@ Object that contains the properties and methods. This can be an object that you 
 
 `string`[]
 
+##### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`keys`](RpcMethodsClientTool.md#keys)
+
 #### Call Signature
 
 > `static` **keys**(`o`): `string`[]
@@ -2408,13 +2823,17 @@ Object that contains the properties and methods. This can be an object that you 
 
 `string`[]
 
+##### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`keys`](RpcMethodsClientTool.md#keys)
+
 ***
 
 ### list()
 
 > `static` **list**(): [`Funcs`](../interfaces/Funcs.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:331](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L331)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:331](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L331)
 
 Returns the complete map of all registered functions.
 
@@ -2424,13 +2843,17 @@ Returns the complete map of all registered functions.
 
 The map of `ToolFunc` instances.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`list`](RpcMethodsClientTool.md#list)
+
 ***
 
 ### loadFrom()
 
 > `static` **loadFrom**(`items`?): `Promise`\<[`Funcs`](../interfaces/Funcs.md)\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:68](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/client-tools.ts#L68)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:68](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/client-tools.ts#L68)
 
 Loads tool definitions from the remote server via the configured transport.
 This method populates the local `ToolFunc` registry with `ClientTools` stubs.
@@ -2445,13 +2868,17 @@ This method populates the local `ToolFunc` registry with `ClientTools` stubs.
 
 `Promise`\<[`Funcs`](../interfaces/Funcs.md)\>
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`loadFrom`](RpcMethodsClientTool.md#loadfrom)
+
 ***
 
 ### loadFromSync()
 
 > `static` **loadFromSync**(`items`): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:84](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/client-tools.ts#L84)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:84](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/client-tools.ts#L84)
 
 Synchronously loads tool definitions from a provided object, registering
 each one as a `ClientTools` instance.
@@ -2467,6 +2894,10 @@ A map of tool function metadata, typically from a server.
 #### Returns
 
 `void`
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`loadFromSync`](RpcMethodsClientTool.md#loadfromsync)
 
 ***
 
@@ -2494,6 +2925,10 @@ Object to make non-extensible.
 
 `T`
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`preventExtensions`](RpcMethodsClientTool.md#preventextensions)
+
 ***
 
 ### register()
@@ -2502,7 +2937,7 @@ Object to make non-extensible.
 
 > `static` **register**(`name`, `options`): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:495](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L495)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:495](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L495)
 
 Registers a new tool function.
 
@@ -2530,11 +2965,15 @@ The new `ToolFunc` instance, or `false` if a function with that name already exi
 
 The new `ToolFunc` instance, or `false` if a function with that name already exists.
 
+##### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`register`](RpcMethodsClientTool.md#register-2)
+
 #### Call Signature
 
 > `static` **register**(`func`, `options`): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:496](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L496)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:496](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L496)
 
 Registers a new tool function.
 
@@ -2562,11 +3001,15 @@ The new `ToolFunc` instance, or `false` if a function with that name already exi
 
 The new `ToolFunc` instance, or `false` if a function with that name already exists.
 
+##### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`register`](RpcMethodsClientTool.md#register-2)
+
 #### Call Signature
 
 > `static` **register**(`name`, `options`?): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:497](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L497)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:497](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L497)
 
 Registers a new tool function.
 
@@ -2594,13 +3037,17 @@ The new `ToolFunc` instance, or `false` if a function with that name already exi
 
 The new `ToolFunc` instance, or `false` if a function with that name already exists.
 
+##### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`register`](RpcMethodsClientTool.md#register-2)
+
 ***
 
 ### run()
 
 > `static` **run**(`name`, `params`?): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:402](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L402)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:402](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L402)
 
 Asynchronously executes a registered function by name with named parameters.
 
@@ -2628,13 +3075,17 @@ A promise that resolves with the function's result.
 
 If the function with the given name is not found.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`run`](RpcMethodsClientTool.md#run-2)
+
 ***
 
 ### runSync()
 
 > `static` **runSync**(`name`, `params`?): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:417](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L417)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:417](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L417)
 
 Synchronously executes a registered function by name with named parameters.
 
@@ -2662,13 +3113,17 @@ The result of the function's execution.
 
 If the function with the given name is not found.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`runSync`](RpcMethodsClientTool.md#runsync-2)
+
 ***
 
 ### runWithPos()
 
 > `static` **runWithPos**(`name`, ...`params`): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:443](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L443)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:443](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L443)
 
 Asynchronously executes a function using positional arguments.
 
@@ -2696,13 +3151,17 @@ A promise that resolves with the function's result.
 
 If the function with the given name is not found.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`runWithPos`](RpcMethodsClientTool.md#runwithpos-2)
+
 ***
 
 ### runWithPosSync()
 
 > `static` **runWithPosSync**(`name`, ...`params`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:458](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L458)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:458](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L458)
 
 Synchronously executes a function using positional arguments.
 
@@ -2730,6 +3189,10 @@ The result of the function's execution.
 
 If the function with the given name is not found.
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`runWithPosSync`](RpcMethodsClientTool.md#runwithpossync-2)
+
 ***
 
 ### seal()
@@ -2755,6 +3218,10 @@ Object on which to lock the attributes.
 #### Returns
 
 `T`
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`seal`](RpcMethodsClientTool.md#seal)
 
 ***
 
@@ -2784,13 +3251,17 @@ The value of the new prototype or null.
 
 `any`
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`setPrototypeOf`](RpcMethodsClientTool.md#setprototypeof)
+
 ***
 
 ### setTransport()
 
 > `static` **setTransport**(`transport`): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:50](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/client-tools.ts#L50)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:50](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/client-tools.ts#L50)
 
 Injects the client-side transport implementation. This is a crucial step
 to enable communication with the server.
@@ -2807,13 +3278,17 @@ The transport instance to use for all client-server communication.
 
 `void`
 
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`setTransport`](RpcMethodsClientTool.md#settransport)
+
 ***
 
 ### unregister()
 
 > `static` **unregister**(`name`): `undefined` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:547](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L547)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:547](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/tool-func.ts#L547)
 
 Unregisters a function by its name, also removing any associated aliases.
 
@@ -2830,6 +3305,10 @@ The name of the function to unregister.
 `undefined` \| [`ToolFunc`](ToolFunc.md)
 
 The unregistered `ToolFunc` instance, or `undefined` if it was not found.
+
+#### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`unregister`](RpcMethodsClientTool.md#unregister-2)
 
 ***
 
@@ -2859,6 +3338,10 @@ Object that contains the properties and methods. This can be an object that you 
 
 `T`[]
 
+##### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`values`](RpcMethodsClientTool.md#values)
+
 #### Call Signature
 
 > `static` **values**(`o`): `any`[]
@@ -2876,3 +3359,7 @@ Object that contains the properties and methods. This can be an object that you 
 ##### Returns
 
 `any`[]
+
+##### Inherited from
+
+[`RpcMethodsClientTool`](RpcMethodsClientTool.md).[`values`](RpcMethodsClientTool.md#values)

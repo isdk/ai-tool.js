@@ -6,7 +6,7 @@
 
 # Interface: EventServerFuncParams
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/funcs/event-server.ts:14](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/funcs/event-server.ts#L14)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/funcs/event-server.ts:14](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/funcs/event-server.ts#L14)
 
 Defines the structure for parameters passed to a `ServerTools` function.
 By convention, it includes optional `_req` and `_res` properties for direct
@@ -26,7 +26,7 @@ access to the underlying transport's request and response objects (e.g., from No
 
 > `optional` **\_req**: `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/server-tools.ts:15](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/server-tools.ts#L15)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/server-tools.ts:15](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/server-tools.ts#L15)
 
 The underlying request object from the transport layer (e.g., `IncomingMessage`).
 
@@ -40,7 +40,7 @@ The underlying request object from the transport layer (e.g., `IncomingMessage`)
 
 > `optional` **\_res**: `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/server-tools.ts:20](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/server-tools.ts#L20)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/server-tools.ts:20](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/server-tools.ts#L20)
 
 The underlying response or reply object from the transport layer (e.g., `ServerResponse`).
 
@@ -54,7 +54,7 @@ The underlying response or reply object from the transport layer (e.g., `ServerR
 
 > `optional` **act**: `"sub"` \| `"pub"` \| `"unsub"`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/funcs/event-server.ts:17](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/funcs/event-server.ts#L17)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/funcs/event-server.ts:17](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/funcs/event-server.ts#L17)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/funcs/event-server.ts:17](https
 
 > `optional` **data**: `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/funcs/event-server.ts:16](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/funcs/event-server.ts#L16)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/funcs/event-server.ts:16](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/funcs/event-server.ts#L16)
 
 ***
 
@@ -70,4 +70,4 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/funcs/event-server.ts:16](https
 
 > `optional` **event**: `string` \| `string`[]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/funcs/event-server.ts:15](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/funcs/event-server.ts#L15)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/funcs/event-server.ts:15](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/funcs/event-server.ts#L15)

@@ -8,7 +8,7 @@
 
 > **pruneSubdirectoriesInPlace**(`paths`): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/has-directory-in.ts:93](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/has-directory-in.ts#L93)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/has-directory-in.ts:93](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/has-directory-in.ts#L93)
 
 Filters out subdirectories from the given array of paths in-place, keeping only the top-level (parent) directories.
 

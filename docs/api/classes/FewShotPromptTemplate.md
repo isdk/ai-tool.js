@@ -6,7 +6,7 @@
 
 # Class: FewShotPromptTemplate\<T\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:39](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/prompt/few-shot-prompt-template.ts#L39)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:39](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/prompt/few-shot-prompt-template.ts#L39)
 
 The `StringTemplate` class is a versatile template engine that supports dynamic template creation,
 formatting, and partial data processing. It extends the `BaseFactory` class and provides methods
@@ -49,7 +49,7 @@ console.log(result); // Output: "Formatted: Hello World"
 
 > **new FewShotPromptTemplate**\<`T`\>(`options`): [`FewShotPromptTemplate`](FewShotPromptTemplate.md)\<`T`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:50](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/prompt/few-shot-prompt-template.ts#L50)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:50](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/prompt/few-shot-prompt-template.ts#L50)
 
 #### Parameters
 
@@ -99,7 +99,7 @@ Declares the data object used for template interpolation.
 
 > **examplePrompt**: `undefined` \| [`PromptTemplate`](PromptTemplate.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:41](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/prompt/few-shot-prompt-template.ts#L41)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:41](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/prompt/few-shot-prompt-template.ts#L41)
 
 ***
 
@@ -107,7 +107,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-te
 
 > **examples**: [`PromptExamples`](../type-aliases/PromptExamples.md)\<`T`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:40](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/prompt/few-shot-prompt-template.ts#L40)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:40](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/prompt/few-shot-prompt-template.ts#L40)
 
 ***
 
@@ -115,7 +115,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-te
 
 > **exampleSeparator**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:43](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/prompt/few-shot-prompt-template.ts#L43)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:43](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/prompt/few-shot-prompt-template.ts#L43)
 
 ***
 
@@ -137,7 +137,7 @@ Declares the list of input variables expected by the template.
 
 > **prefix**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:44](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/prompt/few-shot-prompt-template.ts#L44)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:44](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/prompt/few-shot-prompt-template.ts#L44)
 
 ***
 
@@ -145,7 +145,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-te
 
 > **suffix**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:42](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/prompt/few-shot-prompt-template.ts#L42)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:42](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/prompt/few-shot-prompt-template.ts#L42)
 
 ***
 
@@ -339,7 +339,7 @@ The Root Factory class
 
 > **\_format**(`data`): `Promise`\<`string`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:69](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/prompt/few-shot-prompt-template.ts#L69)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:69](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/prompt/few-shot-prompt-template.ts#L69)
 
 Placeholder method for formatting the template. Must be implemented by subclasses.
 
@@ -367,7 +367,7 @@ A formatted string or a promise resolving to the formatted string.
 
 > **\_initialize**(`options`?): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:54](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/prompt/few-shot-prompt-template.ts#L54)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:54](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/prompt/few-shot-prompt-template.ts#L54)
 
 Placeholder method for initializing the template. Must be implemented by subclasses.
 
@@ -547,7 +547,7 @@ console.log(dateResult.date instanceof Date); // Output: true
 
 > **toJSON**(`options`): [`FewShotPromptTemplateOptions`](../interfaces/FewShotPromptTemplateOptions.md)\<`T`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:94](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/prompt/few-shot-prompt-template.ts#L94)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:94](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/prompt/few-shot-prompt-template.ts#L94)
 
 Serializes the `StringTemplate` instance into a JSON-compatible object.
 
@@ -916,7 +916,7 @@ the name to register
 
 > `static` **from**\<`T`\>(`options`): [`FewShotPromptTemplate`](FewShotPromptTemplate.md)\<`T`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:46](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/prompt/few-shot-prompt-template.ts#L46)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:46](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/prompt/few-shot-prompt-template.ts#L46)
 
 Creates a new instance of the `StringTemplate` class.
 

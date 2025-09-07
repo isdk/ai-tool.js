@@ -6,7 +6,7 @@
 
 # Interface: TaskPromise\<T\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:70](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/cancelable-ability.ts#L70)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:70](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/cancelable-ability.ts#L70)
 
 ## Extends
 
@@ -34,7 +34,7 @@ Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/ty
 
 > `optional` **task**: [`TaskAbortController`](../classes/TaskAbortController.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:71](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/cancelable-ability.ts#L71)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:71](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/cancelable-ability.ts#L71)
 
 ## Methods
 

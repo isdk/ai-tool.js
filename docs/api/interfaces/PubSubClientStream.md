@@ -6,7 +6,7 @@
 
 # Interface: PubSubClientStream
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:11](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/pubsub/client.ts#L11)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:11](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/pubsub/client.ts#L11)
 
 Represents the client-side stream for a PubSub connection.
 
@@ -21,7 +21,7 @@ and managing the connection state.
 
 > `optional` **addEventListener**: (`event`, `listener`) => `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:59](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/pubsub/client.ts#L59)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:59](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/pubsub/client.ts#L59)
 
 Optional alias for the `on` method for compatibility with the
 standard `EventTarget` interface.
@@ -46,7 +46,7 @@ standard `EventTarget` interface.
 
 > **close**: () => `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:43](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/pubsub/client.ts#L43)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:43](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/pubsub/client.ts#L43)
 
 Closes the connection stream.
 
@@ -60,7 +60,7 @@ Closes the connection stream.
 
 > **off**: (`event`, `listener`) => `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:38](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/pubsub/client.ts#L38)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:38](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/pubsub/client.ts#L38)
 
 Removes a previously registered event listener.
 
@@ -88,7 +88,7 @@ The listener function to remove.
 
 > **on**: (`event`, `listener`) => `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:31](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/pubsub/client.ts#L31)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:31](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/pubsub/client.ts#L31)
 
 Registers a listener for a specific event from the server.
 
@@ -117,7 +117,7 @@ The callback function to execute when the event is received.
 
 > **protocol**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:15](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/pubsub/client.ts#L15)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:15](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/pubsub/client.ts#L15)
 
 The protocol being used for this stream (e.g., 'sse', 'ws', 'ipc').
 
@@ -127,7 +127,7 @@ The protocol being used for this stream (e.g., 'sse', 'ws', 'ipc').
 
 > `optional` **readyState**: `number`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:23](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/pubsub/client.ts#L23)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:23](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/pubsub/client.ts#L23)
 
 Optional. Represents the state of the connection.
 This is provided for compatibility with the `EventSource.readyState`
@@ -140,7 +140,7 @@ and `WebSocket.readyState` properties.
 
 > `optional` **removeEventListener**: (`event`, `listener`) => `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:65](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/pubsub/client.ts#L65)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:65](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/pubsub/client.ts#L65)
 
 Optional alias for the `off` method for compatibility with the
 standard `EventTarget` interface.
@@ -165,7 +165,7 @@ standard `EventTarget` interface.
 
 > `optional` **send**: (`event`, `data`, `ctx`?) => `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:53](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/pubsub/client.ts#L53)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:53](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/pubsub/client.ts#L53)
 
 Optional. Sends a message from the client to the server.
 This method is only available for bidirectional transports like WebSockets or IPC.

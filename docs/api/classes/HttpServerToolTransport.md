@@ -6,7 +6,7 @@
 
 # Class: HttpServerToolTransport
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/http-server.ts:12](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/http-server.ts#L12)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/http-server.ts:12](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/http-server.ts#L12)
 
 A concrete server transport implementation using Node.js's built-in HTTP server.
 
@@ -20,7 +20,7 @@ A concrete server transport implementation using Node.js's built-in HTTP server.
 
 > **new HttpServerToolTransport**(`options`?): [`HttpServerToolTransport`](HttpServerToolTransport.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/http-server.ts:17](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/http-server.ts#L17)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/http-server.ts:17](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/http-server.ts#L17)
 
 #### Parameters
 
@@ -42,7 +42,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/http-server.ts:17](h
 
 > **apiRoot**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/server.ts:42](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/server.ts#L42)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/server.ts:42](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/server.ts#L42)
 
 The root endpoint for the remote service.
 For HTTP, this is a URL. For IPC, it could be a channel name.
@@ -57,7 +57,7 @@ For HTTP, this is a URL. For IPC, it could be a channel name.
 
 > `optional` **options**: `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/server.ts:44](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/server.ts#L44)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/server.ts:44](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/server.ts#L44)
 
 Additional options for the transport start or fetch, passed by mount.
 
@@ -71,7 +71,7 @@ Additional options for the transport start or fetch, passed by mount.
 
 > **server**: `Server`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/http-server.ts:13](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/http-server.ts#L13)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/http-server.ts:13](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/http-server.ts#L13)
 
 ***
 
@@ -79,7 +79,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/http-server.ts:13](h
 
 > **Tools**: *typeof* [`ServerTools`](ServerTools.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/server.ts:43](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/server.ts#L43)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/server.ts:43](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/server.ts#L43)
 
 #### Inherited from
 
@@ -91,7 +91,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/server.ts:43](https:
 
 > **\_mount**(`Tools`, `apiPrefix`, `options`?): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/server.ts:46](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/server.ts#L46)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/server.ts:46](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/server.ts#L46)
 
 #### Parameters
 
@@ -121,7 +121,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/server.ts:46](https:
 
 > **\_start**(`options`): `Promise`\<`void`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/http-server.ts:160](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/http-server.ts#L160)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/http-server.ts:160](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/http-server.ts#L160)
 
 #### Parameters
 
@@ -149,7 +149,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/http-server.ts:160](
 
 > **addDiscoveryHandler**(`apiPrefix`, `handler`): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/http-server.ts:62](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/http-server.ts#L62)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/http-server.ts:62](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/http-server.ts#L62)
 
 #### Parameters
 
@@ -175,7 +175,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/http-server.ts:62](h
 
 > **addRpcHandler**(`serverTools`, `apiPrefix`, `options`?): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/http-server.ts:67](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/http-server.ts#L67)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/http-server.ts:67](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/http-server.ts#L67)
 
 #### Parameters
 
@@ -205,7 +205,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/http-server.ts:67](h
 
 > **getRaw**(): `Server`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/http-server.ts:190](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/http-server.ts#L190)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/http-server.ts:193](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/http-server.ts#L193)
 
 Gets the underlying raw server instance.
 
@@ -223,7 +223,7 @@ Gets the underlying raw server instance.
 
 > **mount**(`Tools`, `apiRoot`?, `options`?): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/base.ts:42](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/base.ts#L42)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/base.ts:42](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/base.ts#L42)
 
 Mounts the ServerTools registry, creating the necessary API routes.
 
@@ -261,7 +261,7 @@ Additional options for the transport start.
 
 > **setApiRoot**(`apiRoot`): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/base.ts:38](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/base.ts#L38)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/base.ts:38](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/base.ts#L38)
 
 #### Parameters
 
@@ -283,7 +283,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/base.ts:38](https://
 
 > **start**(`options`?): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/server.ts:52](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/server.ts#L52)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/server.ts:52](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/server.ts#L52)
 
 Starts the transport layer, making it listen for incoming connections.
 
@@ -307,11 +307,19 @@ Protocol-specific options (e.g., { port, host }).
 
 ### stop()
 
-> **stop**(): `Promise`\<`void`\>
+> **stop**(`force`?): `Promise`\<`void`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/http-server.ts:176](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/http-server.ts#L176)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/http-server.ts:176](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/transports/http-server.ts#L176)
 
 Stops the server instance gracefully.
+
+#### Parameters
+
+##### force?
+
+`boolean`
+
+Optional flag to force shutdown immediately
 
 #### Returns
 

@@ -8,7 +8,7 @@
 
 > **createEventStreamTransformer**\<`TValue`, `TOptions`\>(`customParser`?): `TransformStream`\<`Uint8Array`\<`ArrayBufferLike`\>, [`AIResult`](../interfaces/AIResult.md)\<`TValue`, `TOptions`\>\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/stream/ai-stream.ts:36](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/stream/ai-stream.ts#L36)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/stream/ai-stream.ts:36](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/stream/ai-stream.ts#L36)
 
 Creates a TransformStream that parses events from an EventSource stream using a custom parser.
 

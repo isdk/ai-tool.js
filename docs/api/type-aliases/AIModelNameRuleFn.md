@@ -8,7 +8,7 @@
 
 > **AIModelNameRuleFn**: (`name`) => `string` \| `RegExpExecArray` \| `undefined`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/consts.ts:23](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/consts.ts#L23)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/consts.ts:23](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/consts.ts#L23)
 
 Defines the signature for a function that processes an AI model's name,
 typically for matching or validation purposes.

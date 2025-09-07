@@ -8,7 +8,7 @@
 
 > **getPackageDir**(`cwd`): `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/get-package-dir.ts:18](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/get-package-dir.ts#L18)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/get-package-dir.ts:18](https://github.com/isdk/ai-tool.js/blob/4ebf370aaec9c78535cb40ffc19656d7bddcb145/src/utils/get-package-dir.ts#L18)
 
 Retrieves the package directory from the current working directory.
 
