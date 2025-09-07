@@ -1,4 +1,4 @@
-# Guide: Server & Client Tool Types
+# Guide: Server & Client ToolFunc Types
 
 This guide provides a detailed description of the different `ServerTools` and `ClientTools` subclasses. It focuses on their specific purpose and how each one separates its business logic from the communication logic handled by the transport layer.
 
