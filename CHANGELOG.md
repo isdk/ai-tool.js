@@ -2,6 +2,53 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.7.0](https://github.com/isdk/ai-tool.js/compare/v0.6.0...v0.7.0) (2025-09-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* extract fastify to ai-tool-fastify
+* do not throw error if no pubsubTransport
+
+### Features
+
+* add calcPerplexity ([aace4be](https://github.com/isdk/ai-tool.js/commit/aace4be9ede3af796a283ff094cb937b6e6f4c85))
+* add DefaultDateFormat func to get/set the default date format ([10e6f8b](https://github.com/isdk/ai-tool.js/commit/10e6f8b7fa4de7978650115d299dcc0f33a0bc84))
+* add expandPathInObject, expandPaths funcs ([9958028](https://github.com/isdk/ai-tool.js/commit/99580282f0586d2e7ba1c4ca18e79588bb0b9707))
+* add funcGetMeta ([2f09e97](https://github.com/isdk/ai-tool.js/commit/2f09e97cddd1f8e7a4940f977b832415d6b83e67))
+* add funcWithMeta function ([7d0be2d](https://github.com/isdk/ai-tool.js/commit/7d0be2d4ba3ac683a3959b4cd5830b2325068236))
+* add hashObject func ([70466da](https://github.com/isdk/ai-tool.js/commit/70466dacefa99a46a6f7ebf4c94d66c57f26221e))
+* add http-server transport ([955550f](https://github.com/isdk/ai-tool.js/commit/955550f2be9501d6a3b3a87ed79b405440df6379))
+* add new const ([084941e](https://github.com/isdk/ai-tool.js/commit/084941e38a259e19490fbe00ed099a7f8c9484df))
+* add pruneSubdirectories, pruneSubdirectoriesInPlace funcs ([be567ad](https://github.com/isdk/ai-tool.js/commit/be567ad3943c262be46521e5d9d0d82623200320))
+* add setApiRoot method ([9bfacd6](https://github.com/isdk/ai-tool.js/commit/9bfacd6ea83601ea116f09f9c19013a5a1fed9c0))
+* add splitWords and joinSplitWords funcs ([7782cd5](https://github.com/isdk/ai-tool.js/commit/7782cd55c0810a604aac61603cc756483e20ff19))
+* add title option to jsonToMarkdown ([8c4143d](https://github.com/isdk/ai-tool.js/commit/8c4143daac696b01c1358a9ec585edbbf4b2d64c))
+* add yieldExec async func ([9993842](https://github.com/isdk/ai-tool.js/commit/99938428529beb2d09154687b686efa2013e340d))
+* **CancelableAbility:** add support multiple external signals for cancellation ([ccf2455](https://github.com/isdk/ai-tool.js/commit/ccf24554927b85f0e55a95d808ef9548466f587a))
+* export addDate ([36c8972](https://github.com/isdk/ai-tool.js/commit/36c8972418b79264e855686cacd9b1df906335c2))
+* publish can send event to target directly now ([80e3fa6](https://github.com/isdk/ai-tool.js/commit/80e3fa6114f8a4b1271aceb06a0113633d5b4c20))
+
+
+### Bug Fixes
+
+* brainDir should be a path not array ([6a70ab3](https://github.com/isdk/ai-tool.js/commit/6a70ab334338e7748a453690bd60fb70a317eb53))
+* should not pack fastify ([bb065f7](https://github.com/isdk/ai-tool.js/commit/bb065f7e4f966c9eae13e670c55f797e8882454a))
+* should split underline too ([62c797c](https://github.com/isdk/ai-tool.js/commit/62c797c0afd2e30019cee87b8bc96bb8cc32a9fb))
+* the merged order error when merging multiple arrays in  objects ([3011e83](https://github.com/isdk/ai-tool.js/commit/3011e838b7b58e5b88085997c4344ddb31f018df))
+* the symbol link to non-exists path ([343e0e6](https://github.com/isdk/ai-tool.js/commit/343e0e68f3d03c5ba46e8e1d92979f3a316f1c44))
+
+
+### Refactor
+
+* add ignoreExists argument ([0052af4](https://github.com/isdk/ai-tool.js/commit/0052af446255b7eb547db08c9891363e5a942cb9))
+* do not throw error if no pubsubTransport ([4b81229](https://github.com/isdk/ai-tool.js/commit/4b81229665b19c8ca2e084ee12ac9340fa67ae70))
+* export ArrayMergeWay and ArrayMergeWaySymbol ([84dcddd](https://github.com/isdk/ai-tool.js/commit/84dcdddd9e7c361f923fdee7541f1ad350e3d045))
+* extract fastify to ai-tool-fastify ([209a871](https://github.com/isdk/ai-tool.js/commit/209a87173b5eabb2f81db6ea9a6784f34c24e271))
+* pruneSubdirectoriesInPlace should keep original order ([9abada0](https://github.com/isdk/ai-tool.js/commit/9abada0e02c3e7a130e6b55189773739d7d6f073))
+* **PubSubClientStream:** on return as any ([a9277d8](https://github.com/isdk/ai-tool.js/commit/a9277d807a5d2e377826feed3dfb9fe4967b8896))
+* use replace instead of off ([956e4f0](https://github.com/isdk/ai-tool.js/commit/956e4f00fe33956d3f39a92f24a94b8a8dba8f69))
+
 ## [0.6.0](https://github.com/isdk/ai-tool.js/compare/v0.5.8...v0.6.0) (2025-04-04)
 
 
