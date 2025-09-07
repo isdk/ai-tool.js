@@ -6,7 +6,7 @@
 
 # Interface: CancelableAbilityOptions
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:29](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/cancelable-ability.ts#L29)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:29](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/cancelable-ability.ts#L29)
 
 ## Extends
 
@@ -22,7 +22,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:29](https
 
 > `optional` **asyncFeatures**: [`AsyncFeatures`](../enumerations/AsyncFeatures.md)
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:30](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/cancelable-ability.ts#L30)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:30](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/cancelable-ability.ts#L30)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:30](https
 
 > `optional` **classMethods**: `Record`\<`string`, `Function`\>
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/custom-ability/lib/custom-ability.d.ts:13
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/custom-ability/lib/custom-ability.d.ts:13
 
 #### Inherited from
 
@@ -42,7 +42,7 @@ Defined in: ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/cust
 
 > `optional` **exclude**: `string` \| `string`[]
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/custom-ability/lib/custom-ability.d.ts:11
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/custom-ability/lib/custom-ability.d.ts:11
 
 #### Inherited from
 
@@ -54,7 +54,7 @@ Defined in: ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/cust
 
 > `optional` **id**: `string`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/custom-ability/lib/custom-ability.d.ts:8
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/custom-ability/lib/custom-ability.d.ts:8
 
 #### Inherited from
 
@@ -66,7 +66,7 @@ Defined in: ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/cust
 
 > `optional` **include**: `string` \| `string`[]
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/custom-ability/lib/custom-ability.d.ts:10
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/custom-ability/lib/custom-ability.d.ts:10
 
 #### Inherited from
 
@@ -78,7 +78,7 @@ Defined in: ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/cust
 
 > `optional` **isReadyFn**: [`SemaphoreIsReadyFuncType`](../type-aliases/SemaphoreIsReadyFuncType.md)
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:32](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/cancelable-ability.ts#L32)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:32](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/cancelable-ability.ts#L32)
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:32](https
 
 > `optional` **maxTaskConcurrency**: `number`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:31](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/cancelable-ability.ts#L31)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:31](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/cancelable-ability.ts#L31)
 
 ***
 
@@ -94,7 +94,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:31](https
 
 > `optional` **methods**: `Record`\<`string`, `Function`\>
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/custom-ability/lib/custom-ability.d.ts:12
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/custom-ability/lib/custom-ability.d.ts:12
 
 #### Inherited from
 
@@ -106,7 +106,7 @@ Defined in: ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/cust
 
 > `optional` **mode**: `number`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/custom-ability/lib/custom-ability.d.ts:9
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/custom-ability/lib/custom-ability.d.ts:9
 
 #### Inherited from
 

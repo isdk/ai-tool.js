@@ -8,7 +8,7 @@
 
 > **uuidStringify**(`arr`, `offset`?): `string`
 
-Defined in: ai-tools/node\_modules/.pnpm/uuid@11.1.0/node\_modules/uuid/dist/esm-browser/stringify.d.ts:2
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/uuid@11.1.0/node\_modules/uuid/dist/esm-browser/stringify.d.ts:2
 
 ## Parameters
 

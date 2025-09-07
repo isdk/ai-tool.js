@@ -6,7 +6,7 @@
 
 # Class: ConfigFile
 
-Defined in: util/dist/index.d.ts:30
+Defined in: @isdk/util/dist/index.d.ts:30
 
 Represents a configuration file utility class that provides methods to load and save configuration files.
 It supports multiple file formats such as YAML, JSON, etc., by registering corresponding parsers and stringifiers.
@@ -45,7 +45,7 @@ console.log(config); // Output: { key: 'value' }
 
 > `static` **stringifys**: `Record`\<`string`, `StringifyFunc`\>
 
-Defined in: util/dist/index.d.ts:34
+Defined in: @isdk/util/dist/index.d.ts:34
 
 A record of registered stringify functions for different file extensions.
 
@@ -55,7 +55,7 @@ A record of registered stringify functions for different file extensions.
 
 > `static` **existsSync**(`filename`, `options`?): `boolean`
 
-Defined in: util/dist/index.d.ts:102
+Defined in: @isdk/util/dist/index.d.ts:102
 
 Checks if a configuration file exists at the specified path.
 
@@ -104,7 +104,7 @@ console.log(existsWithExt); // true or false
 
 > `static` **loadSync**(`filename`, `options`?): `any`
 
-Defined in: util/dist/index.d.ts:61
+Defined in: @isdk/util/dist/index.d.ts:61
 
 Loads a configuration file based on the provided filename and options.
 
@@ -141,7 +141,7 @@ console.log(config); // Output: { key: 'value' }
 
 > `static` **register**(`extname`, `parser`, `stringify`): `void`
 
-Defined in: util/dist/index.d.ts:47
+Defined in: @isdk/util/dist/index.d.ts:47
 
 Registers a parser and stringifier for specific file extensions.
 
@@ -181,7 +181,7 @@ ConfigFile.register(['.json'], JSON.parse, (obj) => JSON.stringify(obj, null, 2)
 
 > `static` **saveSync**(`filename`, `config`, `options`?): `string`
 
-Defined in: util/dist/index.d.ts:75
+Defined in: @isdk/util/dist/index.d.ts:75
 
 Saves a configuration object to a file with the specified filename and options.
 

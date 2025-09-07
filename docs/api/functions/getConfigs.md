@@ -8,7 +8,7 @@
 
 > **getConfigs**(`directoryPath`, `filter`?): `any`[]
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/config.ts:41](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/config.ts#L41)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/config.ts:41](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/config.ts#L41)
 
 ## Parameters
 

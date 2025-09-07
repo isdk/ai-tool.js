@@ -6,7 +6,7 @@
 
 # Class: PromptTemplate
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:50
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:50
 
 The `StringTemplate` class is a versatile template engine that supports dynamic template creation,
 formatting, and partial data processing. It extends the `BaseFactory` class and provides methods
@@ -52,7 +52,7 @@ console.log(result); // Output: "Formatted: Hello World"
 
 > **new PromptTemplate**(`template`?, `options`?): [`PromptTemplate`](PromptTemplate.md)
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:187
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:187
 
 Initializes a new instance of the `StringTemplate` class.
 
@@ -94,7 +94,7 @@ console.log(template instanceof TestStringTemplate); // Output: true
 
 > **compiledTemplate**: `any`
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:54
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:54
 
 Declares the compiled template instance.
 
@@ -104,7 +104,7 @@ Declares the compiled template instance.
 
 > **data**: `undefined` \| `Record`\<`string`, `any`\>
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:66
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:66
 
 Declares the data object used for template interpolation.
 
@@ -114,7 +114,7 @@ Declares the data object used for template interpolation.
 
 > **inputVariables**: `undefined` \| `string`[]
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:70
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:70
 
 Declares the list of input variables expected by the template.
 
@@ -124,7 +124,7 @@ Declares the list of input variables expected by the template.
 
 > **template**: `string`
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:58
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:58
 
 Declares the raw template string.
 
@@ -134,7 +134,7 @@ Declares the raw template string.
 
 > **templateFormat**: `undefined` \| `string`
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:62
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:62
 
 Declares the format of the template (e.g., 'default').
 
@@ -144,7 +144,7 @@ Declares the format of the template (e.g., 'default').
 
 > `abstract` `static` **\_aliases**: \[`string`\]
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:59
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:59
 
 **`Internal`**
 
@@ -161,7 +161,7 @@ the key is alias name, the value is the registered name
 
 > `static` **\_baseNameOnly**: `number`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:82
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:82
 
 **`Internal`**
 
@@ -202,7 +202,7 @@ _baseNameOnly
 
 > `abstract` `static` **\_children**: `object`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:49
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:49
 
 **`Internal`**
 
@@ -226,7 +226,7 @@ _children
 
 > `abstract` `static` **\_Factory**: *typeof* `BaseFactory`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:41
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:41
 
 **`Internal`**
 
@@ -248,7 +248,7 @@ _Factory
 
 > **get** `static` **aliases**(): `string`[]
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:200
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:200
 
 the aliases of itself
 
@@ -260,7 +260,7 @@ the aliases of itself
 
 > **set** `static` **aliases**(`value`): `void`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:196
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:196
 
 ##### Parameters
 
@@ -284,7 +284,7 @@ Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/cust
 
 > **get** `static` **Factory**(): *typeof* `BaseFactory`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:63
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:63
 
 The Root Factory class
 
@@ -302,7 +302,7 @@ The Root Factory class
 
 > **\_format**(`data`): `string` \| `Promise`\<`string`\>
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:203
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:203
 
 Placeholder method for formatting the template. Must be implemented by subclasses.
 
@@ -326,7 +326,7 @@ A formatted string or a promise resolving to the formatted string.
 
 > **\_initialize**(`options`?): `void`
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:192
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:192
 
 Placeholder method for initializing the template. Must be implemented by subclasses.
 
@@ -348,7 +348,7 @@ Configuration options for initialization.
 
 > **filterData**(`data`): `Record`\<`string`, `any`\>
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:172
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:172
 
 Filters the input data to include only the specified input variables.
 
@@ -382,7 +382,7 @@ console.log(filteredData); // Output: { name: "Alice" }
 
 > **format**(`data`?): `Promise`\<`string`\>
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:219
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:219
 
 Formats the template using the provided data, supporting asynchronous processing.
 
@@ -417,7 +417,7 @@ console.log(result); // Output: "Hello"
 
 > **initialize**(`options`?): `void`
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:197
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:197
 
 Initializes the template instance with the provided options.
 
@@ -443,7 +443,7 @@ Configuration options for initialization.
 
 > **partial**(`data`): [`PromptTemplate`](PromptTemplate.md)
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:247
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:247
 
 Creates a new `StringTemplate` instance with partially filled data.
 This is useful for pre-filling some variables while leaving others to be filled later.
@@ -490,7 +490,7 @@ console.log(dateResult.date instanceof Date); // Output: true
 
 > **toJSON**(`options`?): [`PromptTemplateOptions`](../interfaces/PromptTemplateOptions.md)
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:264
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:264
 
 Serializes the `StringTemplate` instance into a JSON-compatible object.
 
@@ -526,7 +526,7 @@ console.log(serialized);
 
 > `static` **\_findRootFactory**(`aClass`): `undefined` \| *typeof* `BaseFactory`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:99
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:99
 
 **`Internal`**
 
@@ -554,7 +554,7 @@ the abstract root factory class
 
 > `static` **\_get**(`name`): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:234
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:234
 
 #### Parameters
 
@@ -576,7 +576,7 @@ Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/cust
 
 > `static` **\_register**(`aClass`, `aOptions`?): `boolean`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:145
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:145
 
 **`Internal`**
 
@@ -612,7 +612,7 @@ return true if successful.
 
 > `static` **cleanAliases**(`aName`): `void`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:162
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:162
 
 remove all aliases of the registered item or itself
 
@@ -638,7 +638,7 @@ the registered item or name
 
 > `static` **createObject**(`aName`, `aOptions`): `undefined` \| `BaseFactory`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:241
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:241
 
 Create a new object instance of Factory
 
@@ -666,7 +666,7 @@ Create a new object instance of Factory
 
 > `abstract` `static` **findRootFactory**(): `undefined` \| *typeof* `BaseFactory`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:92
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:92
 
 **`Internal`**
 
@@ -691,7 +691,7 @@ the root factory class
 
 > `static` **forEach**(`cb`): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:227
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:227
 
 executes a provided callback function once for each registered element.
 
@@ -717,7 +717,7 @@ the forEach callback function
 
 > `static` **format**(`options`): `Promise`\<`string`\>
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:102
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:102
 
 Formats a template using the provided options.
 
@@ -752,7 +752,7 @@ console.log(result); // Output: "Hello"
 
 > `static` **formatIf**(`options`): `Promise`\<`undefined` \| `string`\>
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:118
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:118
 
 Formats a template if the provided options represent a valid template.
 
@@ -787,7 +787,7 @@ console.log(result); // Output: "Valid Template"
 
 > `abstract` `static` **formatName**(`aName`): `string`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:116
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:116
 
 **`Internal`**
 
@@ -815,7 +815,7 @@ defaults to returning the name unchanged. By overloading this method, case-insen
 
 > `static` **formatNameFromClass**(`aClass`, `aBaseNameOnly`?): `string`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:130
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:130
 
 **`Internal`**
 
@@ -847,7 +847,7 @@ the name to register
 
 > `static` **from**(`template`?, `options`?): [`PromptTemplate`](PromptTemplate.md)
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:86
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:86
 
 Creates a new instance of the `StringTemplate` class.
 
@@ -887,7 +887,7 @@ console.log(template instanceof TestStringTemplate); // Output: true
 
 > `static` **get**(`name`): `undefined` \| *typeof* `BaseFactory`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:233
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:233
 
 Get the registered class via name
 
@@ -913,7 +913,7 @@ return the registered class if found the name
 
 > `static` **getAliases**(`aClass`): `string`[]
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:195
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:195
 
 get the aliases of the aClass
 
@@ -941,7 +941,7 @@ aliases
 
 > `static` **getDisplayName**(`aClass`): `undefined` \| `string`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:206
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:206
 
 Get the display name from aClass
 
@@ -967,7 +967,7 @@ the class, name or itself, means itself if no aClass
 
 > `static` **getNameFrom**(`aClass`): `string`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:122
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:122
 
 Get the unique(registered) name in the factory
 
@@ -993,7 +993,7 @@ the unique name in the factory
 
 > `static` **getRealName**(`name`): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:100
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:100
 
 #### Parameters
 
@@ -1015,7 +1015,7 @@ Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/cust
 
 > `static` **getRealNameFromAlias**(`alias`): `undefined` \| `string`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:106
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:106
 
 get the unique name in the factory from an alias name
 
@@ -1043,7 +1043,7 @@ the unique name in the factory
 
 > `static` **isTemplate**(`templateOpt`): `any`
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:133
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:133
 
 Determines whether the given options represent a valid template.
 
@@ -1077,7 +1077,7 @@ console.log(isValid); // Output: true
 
 > `static` **matchTemplateSegment**(`templateOpt`, `index`?): `undefined` \| `RegExpExecArray`
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:157
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:157
 
 Matches and extracts a single template segment from the provided template options.
 This method is designed to identify individual segments of a template string.
@@ -1121,7 +1121,7 @@ while (match) {
 
 > `static` **register**(...`args`): `boolean`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:137
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:137
 
 register the aClass to the factory
 
@@ -1147,7 +1147,7 @@ return true if successful.
 
 > `static` **registeredClass**(`aName`): `false` \| *typeof* `BaseFactory`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:151
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:151
 
 Check the name, alias or itself whether registered.
 
@@ -1175,7 +1175,7 @@ the registered class if registered, otherwise returns false
 
 > `static` **removeAlias**(...`aliases`): `void`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:167
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:167
 
 remove specified aliases
 
@@ -1201,7 +1201,7 @@ the aliases to remove
 
 > `static` **setAlias**(`aClass`, `alias`): `void`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:189
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:189
 
 set alias to a class
 
@@ -1231,7 +1231,7 @@ the class to set alias
 
 > `static` **setAliases**(`aClass`, ...`aAliases`): `void`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:183
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:183
 
 set aliases to a class
 
@@ -1273,7 +1273,7 @@ import { BaseFactory } from 'custom-factory'
 
 > `static` **setDisplayName**(`aClass`, `aDisplayName`): `void`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:212
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:212
 
 Set the display name to the aClass
 
@@ -1305,7 +1305,7 @@ the display name to set
 
 > `static` **unregister**(`aName`): `boolean`
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:157
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:157
 
 unregister this class in the factory
 

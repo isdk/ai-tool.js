@@ -8,7 +8,7 @@
 
 > **wrapEventEmitter**(`o`?): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/wrap-event-emitter.d.ts:6
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/wrap-event-emitter.d.ts:6
 
 Create or inject the eventable instance into the object
 

@@ -6,7 +6,7 @@
 
 # Enumeration: ErrorCode
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:4
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:4
 
 ## Enumeration Members
 
@@ -14,7 +14,7 @@ Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/
 
 > **Aborted**: `499`
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:19
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:19
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/
 
 > **Accepted**: `202`
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:6
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:6
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/
 
 > **BadGateway**: `502`
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:23
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:23
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/
 
 > **BadRequest**: `400`
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:7
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:7
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/
 
 > **Conflict**: `409`
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:16
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:16
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/
 
 > **Corruption**: `409`
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:17
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:17
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/
 
 > **Forbidden**: `403`
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:11
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:11
 
 ***
 
@@ -70,7 +70,7 @@ Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/
 
 > **GatewayTimeout**: `504`
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:25
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:25
 
 ***
 
@@ -78,7 +78,7 @@ Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/
 
 > **InternalError**: `500`
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:20
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:20
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/
 
 > **InvalidArgument**: `400`
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:8
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:8
 
 ***
 
@@ -94,7 +94,7 @@ Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/
 
 > **MethodNotAllowed**: `405`
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:13
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:13
 
 ***
 
@@ -102,7 +102,7 @@ Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/
 
 > **NotAcceptable**: `406`
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:14
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:14
 
 ***
 
@@ -110,7 +110,7 @@ Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/
 
 > **NotFound**: `404`
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:12
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:12
 
 ***
 
@@ -118,7 +118,7 @@ Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/
 
 > **NotImplemented**: `501`
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:21
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:21
 
 ***
 
@@ -126,7 +126,7 @@ Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/
 
 > **NotSupported**: `501`
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:22
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:22
 
 ***
 
@@ -134,7 +134,7 @@ Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/
 
 > **OK**: `200`
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:5
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:5
 
 ***
 
@@ -142,7 +142,7 @@ Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/
 
 > **PaymentRequired**: `402`
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:10
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:10
 
 ***
 
@@ -150,7 +150,7 @@ Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/
 
 > **RequestTimeout**: `408`
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:15
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:15
 
 ***
 
@@ -158,7 +158,7 @@ Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/
 
 > **ServiceUnavailable**: `503`
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:24
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:24
 
 ***
 
@@ -166,7 +166,7 @@ Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/
 
 > **TooManyRequests**: `429`
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:18
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:18
 
 ***
 
@@ -174,4 +174,4 @@ Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/
 
 > **Unauthorized**: `401`
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:9
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:9

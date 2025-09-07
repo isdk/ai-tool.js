@@ -6,7 +6,7 @@
 
 # Class: ServerTools
 
-Defined in: [ai-tools/packages/ai-tool/src/server-tools.ts:41](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/server-tools.ts#L41)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/server-tools.ts:41](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/server-tools.ts#L41)
 
 Represents a function that runs on a server and can be exposed to clients.
 
@@ -28,7 +28,7 @@ server-side execution contexts. It is designed to work with a transport layer
 
 > **new ServerTools**(`name`, `options`?): [`ServerTools`](ServerTools.md)
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:571](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L571)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:571](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L571)
 
 The initial value of Object.prototype.constructor is the standard built-in Object constructor.
 
@@ -60,7 +60,7 @@ Configuration options if not provided in the first argument.
 
 > **$attributes**: `Properties`
 
-Defined in: ai-tools/node\_modules/.pnpm/property-manager@3.0.0/node\_modules/property-manager/lib/advance.d.ts:5
+Defined in: [property-manager.js/src/advance.d.ts:5](https://github.com/snowyu/property-manager.js/blob/e9ebf4c62be9b6d84e5868ed098df041a53bb90a/src/advance.d.ts#L5)
 
 #### Inherited from
 
@@ -72,7 +72,7 @@ Defined in: ai-tools/node\_modules/.pnpm/property-manager@3.0.0/node\_modules/pr
 
 > `optional` **action**: `"get"` \| `"post"` \| `"put"` \| `"delete"` \| `"patch"` \| `"list"` \| `"res"`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/consts.ts:95](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/consts.ts#L95)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/consts.ts:95](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/consts.ts#L95)
 
 The action to be used for the remote call. This typically represents an RPC method name.
 Only for RESTful HTTP transports, it might be mapped to a standard HTTP method (e.g., GET, POST)
@@ -87,7 +87,7 @@ Only for RESTful HTTP transports, it might be mapped to a standard HTTP method (
 
 > `optional` **alias**: `string` \| `string`[]
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:130](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L130)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:130](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L130)
 
 Optional aliases for the function name.
 
@@ -101,7 +101,7 @@ Optional aliases for the function name.
 
 > `optional` **allowExportFunc**: `boolean`
 
-Defined in: [ai-tools/packages/ai-tool/src/server-tools.ts:35](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/server-tools.ts#L35)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/server-tools.ts:35](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/server-tools.ts#L35)
 
 If set to true, the body of the function (`func`) will be serialized and sent
 to the client when tools are loaded. This allows the client to execute the
@@ -117,7 +117,7 @@ function locally instead of making a remote call. Defaults to false.
 
 > `optional` **apiRoot**: `string`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/consts.ts:89](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/consts.ts#L89)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/consts.ts:89](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/consts.ts#L89)
 
 The root endpoint for the remote service.
 
@@ -135,7 +135,7 @@ Use `transport` instead.
 
 > `optional` **asyncFeatures**: `number`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:144](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L144)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:144](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L144)
 
 A bitmask representing asynchronous features supported by the function, built from `AsyncFeatureBits`.
 This allows the system to understand if a function supports capabilities like cancellation or multi-tasking.
@@ -165,7 +165,7 @@ const func = new ToolFunc({
 
 > **constructor**: `Function`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:125
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:125
 
 The initial value of Object.prototype.constructor is the standard built-in Object constructor.
 
@@ -175,7 +175,7 @@ The initial value of Object.prototype.constructor is the standard built-in Objec
 
 > **defaultOptions**: `object`
 
-Defined in: ai-tools/node\_modules/.pnpm/property-manager@3.0.0/node\_modules/property-manager/lib/abstract.d.ts:74
+Defined in: [property-manager.js/src/abstract.d.ts:74](https://github.com/snowyu/property-manager.js/blob/e9ebf4c62be9b6d84e5868ed098df041a53bb90a/src/abstract.d.ts#L74)
 
 The default options for export and assign
 
@@ -197,7 +197,7 @@ The default options for export and assign
 
 > `optional` **depends**: `object`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:167](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L167)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:167](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L167)
 
 A map of dependencies this function has on other tool functions.
 Declaring dependencies ensures that they are automatically registered when this function is registered.
@@ -236,7 +236,7 @@ mainFunc.register();
 
 > `optional` **description**: `string`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:172](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L172)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:172](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L172)
 
 A detailed description of what the function does.
 
@@ -250,7 +250,7 @@ A detailed description of what the function does.
 
 > `optional` **fetchOptions**: `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/consts.ts:101](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/consts.ts#L101)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/consts.ts:101](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/consts.ts#L101)
 
 Options to be passed to the underlying `fetch` call in an HTTP transport.
 
@@ -268,7 +268,7 @@ Use `transport` instead.
 
 > `optional` **isApi**: `boolean`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:119](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L119)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:119](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L119)
 
 If true, indicates that this function should be treated as a server-side API.
 
@@ -282,7 +282,7 @@ If true, indicates that this function should be treated as a server-side API.
 
 > `optional` **name**: `string`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:76](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L76)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:76](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L76)
 
 The unique name of the function.
 
@@ -296,7 +296,7 @@ The unique name of the function.
 
 > **nonExported1stChar**: `string`
 
-Defined in: ai-tools/node\_modules/.pnpm/property-manager@3.0.0/node\_modules/property-manager/lib/abstract.d.ts:78
+Defined in: [property-manager.js/src/abstract.d.ts:78](https://github.com/snowyu/property-manager.js/blob/e9ebf4c62be9b6d84e5868ed098df041a53bb90a/src/abstract.d.ts#L78)
 
 the property with the default prefix '$' will not be exported.
 
@@ -310,7 +310,7 @@ the property with the default prefix '$' will not be exported.
 
 > `optional` **params**: [`FuncParams`](../interfaces/FuncParams.md) \| [`FuncParam`](../interfaces/FuncParam.md)[]
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:81](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L81)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:81](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L81)
 
 Parameter definitions, which can be an object mapping names to definitions or an array for positional parameters.
 
@@ -324,7 +324,7 @@ Parameter definitions, which can be an object mapping names to definitions or an
 
 > `optional` **result**: `string` \| `Record`\<`string`, `any`\>
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:86](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L86)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:86](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L86)
 
 The expected return type of the function, described as a string or a JSON schema object.
 
@@ -338,7 +338,7 @@ The expected return type of the function, described as a string or a JSON schema
 
 > `optional` **scope**: `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:91](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L91)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:91](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L91)
 
 The execution scope or context (`this`) for the function.
 
@@ -352,7 +352,7 @@ The execution scope or context (`this`) for the function.
 
 > `optional` **setup**: (`this`, `options`?) => `void`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:114](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L114)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:114](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L114)
 
 A lifecycle hook called once during the `ToolFunc` instance's initialization.
 It allows for initial setup, state configuration, or property modification on the instance
@@ -398,7 +398,7 @@ console.log(myFunc.customState); // Outputs: 'configured'
 
 > `optional` **stream**: `boolean`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:125](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L125)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:125](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L125)
 
 If true, indicates that the function has the *capability* to stream its output.
 Whether a specific call is streamed is determined by a `stream` property in the runtime parameters.
@@ -413,7 +413,7 @@ Whether a specific call is streamed is determined by a `stream` property in the 
 
 > `optional` **tags**: `string` \| `string`[]
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:96](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L96)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:96](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L96)
 
 Tags for grouping or filtering functions.
 
@@ -427,7 +427,7 @@ Tags for grouping or filtering functions.
 
 > `optional` **title**: `string`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:177](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L177)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:177](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L177)
 
 A concise, human-readable title for the function, often used in UI or by AI.
 
@@ -441,7 +441,7 @@ A concise, human-readable title for the function, often used in UI or by AI.
 
 > `static` **aliases**: `object` = `{}`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:305](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L305)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:305](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L305)
 
 A static map of aliases to their corresponding function names.
 
@@ -459,7 +459,7 @@ A static map of aliases to their corresponding function names.
 
 > `static` **dataPath**: `string`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:312](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L312)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:312](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L312)
 
 A conventional property to designate a file path for saving the registered `ToolFunc` data.
 Note: The `ToolFunc` class itself does not implement persistence logic. It is up to the
@@ -475,7 +475,7 @@ developer to use this path to save and load the `ToolFunc.items` registry if nee
 
 > `static` **items**: [`Funcs`](../interfaces/Funcs.md) = `{}`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:300](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L300)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:300](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L300)
 
 A static registry of all `ToolFunc` instances, indexed by name.
 
@@ -491,7 +491,7 @@ A static registry of all `ToolFunc` instances, indexed by name.
 
 > **get** `static` **apiRoot**(): `undefined` \| `string`
 
-Defined in: [ai-tools/packages/ai-tool/src/server-tools.ts:57](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/server-tools.ts#L57)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/server-tools.ts:57](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/server-tools.ts#L57)
 
 The conventional root path for the API endpoint.
 
@@ -509,7 +509,7 @@ The conventional root path for the API endpoint.
 
 > **arr2ObjParams**(`params`): `any`[]
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:629](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L629)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:629](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L629)
 
 Converts an array of positional arguments into a named parameters object.
 This is used internally to support functions defined with named parameters.
@@ -538,7 +538,7 @@ An array containing a single parameters object.
 
 > **assign**(`src`, `options`?): `this`
 
-Defined in: ai-tools/node\_modules/.pnpm/property-manager@3.0.0/node\_modules/property-manager/lib/abstract.d.ts:106
+Defined in: [property-manager.js/src/abstract.d.ts:106](https://github.com/snowyu/property-manager.js/blob/e9ebf4c62be9b6d84e5868ed098df041a53bb90a/src/abstract.d.ts#L106)
 
 Assign the values from the src object.
 
@@ -570,7 +570,7 @@ this object
 
 > **assignProperty**(`src`, `name`, `value`, `attrs`?, `options`?): `void`
 
-Defined in: ai-tools/node\_modules/.pnpm/property-manager@3.0.0/node\_modules/property-manager/lib/abstract.d.ts:117
+Defined in: [property-manager.js/src/abstract.d.ts:117](https://github.com/snowyu/property-manager.js/blob/e9ebf4c62be9b6d84e5868ed098df041a53bb90a/src/abstract.d.ts#L117)
 
 Assign a property of src to this object.
 
@@ -618,7 +618,7 @@ the attributes object
 
 > `abstract` **assignPropertyTo**(`dest`, `src`, `name`, `value`, `attrs`?, `options`?): `void`
 
-Defined in: ai-tools/node\_modules/.pnpm/property-manager@3.0.0/node\_modules/property-manager/lib/abstract.d.ts:131
+Defined in: [property-manager.js/src/abstract.d.ts:131](https://github.com/snowyu/property-manager.js/blob/e9ebf4c62be9b6d84e5868ed098df041a53bb90a/src/abstract.d.ts#L131)
 
 Assign the property value from the src to destination object.
 
@@ -672,7 +672,7 @@ The attributes object of the property
 
 > **assignTo**(`dest`?, `options`?): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/property-manager@3.0.0/node\_modules/property-manager/lib/abstract.d.ts:191
+Defined in: [property-manager.js/src/abstract.d.ts:191](https://github.com/snowyu/property-manager.js/blob/e9ebf4c62be9b6d84e5868ed098df041a53bb90a/src/abstract.d.ts#L191)
 
 Assign this attributes to the dest object
 
@@ -704,7 +704,7 @@ the dest object
 
 > **clone**(`options`?): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/property-manager@3.0.0/node\_modules/property-manager/lib/abstract.d.ts:155
+Defined in: [property-manager.js/src/abstract.d.ts:155](https://github.com/snowyu/property-manager.js/blob/e9ebf4c62be9b6d84e5868ed098df041a53bb90a/src/abstract.d.ts#L155)
 
 Create a new object with the same values of attributes.
 
@@ -730,7 +730,7 @@ the new object
 
 > **cloneTo**(`dest`, `options`?): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/property-manager@3.0.0/node\_modules/property-manager/lib/abstract.d.ts:148
+Defined in: [property-manager.js/src/abstract.d.ts:148](https://github.com/snowyu/property-manager.js/blob/e9ebf4c62be9b6d84e5868ed098df041a53bb90a/src/abstract.d.ts#L148)
 
 Create and assign the values to the destination object.
 
@@ -762,7 +762,7 @@ the new dest object
 
 > `abstract` **defineProperties**(`aProperties`): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/property-manager@3.0.0/node\_modules/property-manager/lib/abstract.d.ts:89
+Defined in: [property-manager.js/src/abstract.d.ts:89](https://github.com/snowyu/property-manager.js/blob/e9ebf4c62be9b6d84e5868ed098df041a53bb90a/src/abstract.d.ts#L89)
 
 Define the attributes of this object.
 
@@ -788,7 +788,7 @@ the defined attributes of the object
 
 > **exportTo**(`dest`, `options`?): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/property-manager@3.0.0/node\_modules/property-manager/lib/abstract.d.ts:173
+Defined in: [property-manager.js/src/abstract.d.ts:173](https://github.com/snowyu/property-manager.js/blob/e9ebf4c62be9b6d84e5868ed098df041a53bb90a/src/abstract.d.ts#L173)
 
 Export attributes to the dest json object.
 
@@ -820,7 +820,7 @@ the dest object.
 
 > **func**(`params`): `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/server-tools.ts:112](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/server-tools.ts#L112)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/server-tools.ts:112](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/server-tools.ts#L112)
 
 Placeholder for the actual server-side function implementation.
 This method is intended to be defined when a `ServerTools` instance is created.
@@ -849,7 +849,7 @@ The result of the function.
 
 > **getFunc**(`name`?): `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:720](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L720)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:720](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L720)
 
 Gets a bound function reference for execution with named parameters.
 If a name is provided, it retrieves a different function from the registry.
@@ -879,7 +879,7 @@ A function reference or `undefined` if not found.
 
 > **getFuncWithPos**(`name`?): `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:777](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L777)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:777](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L777)
 
 Gets a bound function reference suitable for positional argument execution.
 If a name is provided, it retrieves a different function from the registry.
@@ -909,7 +909,7 @@ A function reference or `undefined` if not found.
 
 > `abstract` **getProperties**(): `PropDescriptors`
 
-Defined in: ai-tools/node\_modules/.pnpm/property-manager@3.0.0/node\_modules/property-manager/lib/abstract.d.ts:98
+Defined in: [property-manager.js/src/abstract.d.ts:98](https://github.com/snowyu/property-manager.js/blob/e9ebf4c62be9b6d84e5868ed098df041a53bb90a/src/abstract.d.ts#L98)
 
 Get the defined attributes.
 
@@ -929,7 +929,7 @@ the descriptors of properties object
 
 > **hasAsyncFeature**(`feature`): `boolean`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:787](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L787)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:787](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L787)
 
 Checks if the current function instance supports a specific async feature.
 
@@ -957,7 +957,7 @@ The async feature bit to check for.
 
 > **hasOwnProperty**(`v`): `boolean`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:140
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:140
 
 Determines whether an object has a property with the specified name.
 
@@ -983,7 +983,7 @@ A property name.
 
 > **initialize**(`src`?): `this`
 
-Defined in: ai-tools/node\_modules/.pnpm/property-manager@3.0.0/node\_modules/property-manager/lib/abstract.d.ts:139
+Defined in: [property-manager.js/src/abstract.d.ts:139](https://github.com/snowyu/property-manager.js/blob/e9ebf4c62be9b6d84e5868ed098df041a53bb90a/src/abstract.d.ts#L139)
 
 Initialize object and assign attribute values from src if src exists.
 
@@ -1009,7 +1009,7 @@ this object.
 
 > **isPrototypeOf**(`v`): `boolean`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:146
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:146
 
 Determines whether an object exists in another object's prototype chain.
 
@@ -1035,7 +1035,7 @@ Another object whose prototype chain is to be checked.
 
 > **isSame**(`src`, `options`?): `boolean`
 
-Defined in: ai-tools/node\_modules/.pnpm/property-manager@3.0.0/node\_modules/property-manager/lib/abstract.d.ts:200
+Defined in: [property-manager.js/src/abstract.d.ts:200](https://github.com/snowyu/property-manager.js/blob/e9ebf4c62be9b6d84e5868ed098df041a53bb90a/src/abstract.d.ts#L200)
 
 Check the src object whether “equals” this object.
 
@@ -1065,7 +1065,7 @@ The source object
 
 > **isStream**(`params`): `undefined` \| `boolean`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:805](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L805)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:805](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L805)
 
 Determines if a function call should produce a stream.
 
@@ -1099,7 +1099,7 @@ The runtime parameters passed to the function call.
 
 > **mergeTo**(`dest`, `options`?): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/property-manager@3.0.0/node\_modules/property-manager/lib/abstract.d.ts:164
+Defined in: [property-manager.js/src/abstract.d.ts:164](https://github.com/snowyu/property-manager.js/blob/e9ebf4c62be9b6d84e5868ed098df041a53bb90a/src/abstract.d.ts#L164)
 
 Merge this attributes to dest object.
 
@@ -1131,7 +1131,7 @@ the dest object.
 
 > **obj2ArrParams**(`params`?): `any`[]
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:648](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L648)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:648](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L648)
 
 Converts a named parameters object into an array of positional arguments.
 This is used for functions defined with positional parameters.
@@ -1160,7 +1160,7 @@ An array of positional arguments.
 
 > **propertyIsEnumerable**(`v`): `boolean`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:152
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:152
 
 Determines whether a specified property is enumerable.
 
@@ -1186,7 +1186,7 @@ A property name.
 
 > **register**(): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:602](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L602)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:602](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L602)
 
 Registers the current `ToolFunc` instance into the static registry.
 Also registers any declared dependencies.
@@ -1207,7 +1207,7 @@ The instance itself upon successful registration, or `false` if it already exist
 
 > **run**(`params`, `context`?): `Promise`\<`any`\>
 
-Defined in: [ai-tools/packages/ai-tool/src/server-tools.ts:98](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/server-tools.ts#L98)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/server-tools.ts:98](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/server-tools.ts#L98)
 
 Overrides the base `run` method to inject transport-specific context.
 If a `context` object containing `req` and `reply` is provided, these are
@@ -1249,7 +1249,7 @@ The result of the function execution.
 
 > **runAs**(`name`, `params`?): `Promise`\<`any`\>
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:697](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L697)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:697](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L697)
 
 Asynchronously executes another registered function by name.
 This method delegates to `runAsSync()` internally.
@@ -1284,7 +1284,7 @@ A promise that resolves with the result of the function execution.
 
 > **runAsSync**(`name`, `params`?): `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:708](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L708)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:708](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L708)
 
 Synchronously executes another registered function by name.
 This is a convenience method that forwards the call to the static `runSync()` method.
@@ -1319,7 +1319,7 @@ The result of the function execution.
 
 > **runSync**(`params`?): `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:667](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L667)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:667](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L667)
 
 Executes the function synchronously with a named parameters object.
 
@@ -1351,7 +1351,7 @@ Will throw an error if an array of parameters is passed to a function that expec
 
 > **runWithPos**(...`params`): `Promise`\<`any`\>
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:755](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L755)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:755](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L755)
 
 Executes the function asynchronously using positional arguments.
 Delegates to `runWithPosSync()` internally.
@@ -1380,7 +1380,7 @@ A promise that resolves with the result of the function execution.
 
 > **runWithPosAs**(`name`, ...`params`): `Promise`\<`any`\>
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:766](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L766)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:766](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L766)
 
 Asynchronously executes another function by name using positional arguments.
 Delegates to `runWithPosAsSync()` internally.
@@ -1415,7 +1415,7 @@ A promise that resolves with the result of the function execution.
 
 > **runWithPosAsSync**(`name`, ...`params`): `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:745](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L745)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:745](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L745)
 
 Synchronously executes another function by name using positional arguments.
 This is a convenience wrapper around the static `runWithPosSync()` method.
@@ -1450,7 +1450,7 @@ The result of the function execution.
 
 > **runWithPosSync**(...`params`): `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:731](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L731)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:731](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L731)
 
 Executes the function synchronously using positional arguments.
 If the function expects named parameters, it converts the arguments automatically.
@@ -1479,7 +1479,7 @@ The result of the function execution.
 
 > **toJSON**(): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/property-manager@3.0.0/node\_modules/property-manager/lib/abstract.d.ts:182
+Defined in: [property-manager.js/src/abstract.d.ts:182](https://github.com/snowyu/property-manager.js/blob/e9ebf4c62be9b6d84e5868ed098df041a53bb90a/src/abstract.d.ts#L182)
 
 #### Returns
 
@@ -1495,7 +1495,7 @@ Defined in: ai-tools/node\_modules/.pnpm/property-manager@3.0.0/node\_modules/pr
 
 > **toLocaleString**(): `string`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:131
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:131
 
 Returns a date converted to a string using the current locale.
 
@@ -1513,7 +1513,7 @@ Returns a date converted to a string using the current locale.
 
 > **toObject**(`options`?): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/property-manager@3.0.0/node\_modules/property-manager/lib/abstract.d.ts:181
+Defined in: [property-manager.js/src/abstract.d.ts:181](https://github.com/snowyu/property-manager.js/blob/e9ebf4c62be9b6d84e5868ed098df041a53bb90a/src/abstract.d.ts#L181)
 
 Convert the attributes to the json object
 
@@ -1539,7 +1539,7 @@ the json object.
 
 > **toString**(): `string`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:128
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:128
 
 Returns a string representation of an object.
 
@@ -1557,7 +1557,7 @@ Returns a string representation of an object.
 
 > **unregister**(): `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:619](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L619)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:619](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L619)
 
 Removes the current `ToolFunc` instance from the static registry.
 
@@ -1577,7 +1577,7 @@ The instance that was unregistered.
 
 > **valueOf**(): `Object`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:134
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:134
 
 Returns the primitive value of the specified object.
 
@@ -1597,7 +1597,7 @@ Returns the primitive value of the specified object.
 
 > `static` **assign**\<`T`, `U`\>(`target`, `source`): `T` & `U`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2015.core.d.ts:286
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2015.core.d.ts:286
 
 Copy the values of all of the enumerable own properties from one or more source objects to a
 target object. Returns the target object.
@@ -1634,7 +1634,7 @@ The source object from which to copy properties.
 
 > `static` **assign**\<`T`, `U`, `V`\>(`target`, `source1`, `source2`): `T` & `U` & `V`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2015.core.d.ts:295
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2015.core.d.ts:295
 
 Copy the values of all of the enumerable own properties from one or more source objects to a
 target object. Returns the target object.
@@ -1679,7 +1679,7 @@ The second source object from which to copy properties.
 
 > `static` **assign**\<`T`, `U`, `V`, `W`\>(`target`, `source1`, `source2`, `source3`): `T` & `U` & `V` & `W`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2015.core.d.ts:305
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2015.core.d.ts:305
 
 Copy the values of all of the enumerable own properties from one or more source objects to a
 target object. Returns the target object.
@@ -1732,7 +1732,7 @@ The third source object from which to copy properties.
 
 > `static` **assign**(`target`, ...`sources`): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2015.core.d.ts:313
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2015.core.d.ts:313
 
 Copy the values of all of the enumerable own properties from one or more source objects to a
 target object. Returns the target object.
@@ -1767,7 +1767,7 @@ One or more source objects from which to copy properties
 
 > `static` **create**(`o`): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:188
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:188
 
 Creates an object that has the specified prototype or that has null prototype.
 
@@ -1791,7 +1791,7 @@ Object to use as a prototype. May be null.
 
 > `static` **create**(`o`, `properties`): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:195
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:195
 
 Creates an object that has the specified prototype, and that optionally contains specified properties.
 
@@ -1823,7 +1823,7 @@ JavaScript object that contains one or more property descriptors.
 
 > `static` **defineProperties**(`aTarget`, `aProperties`, `recreate`?): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/property-manager@3.0.0/node\_modules/property-manager/lib/advance.d.ts:11
+Defined in: [property-manager.js/src/advance.d.ts:11](https://github.com/snowyu/property-manager.js/blob/e9ebf4c62be9b6d84e5868ed098df041a53bb90a/src/advance.d.ts#L11)
 
 Adds one or more properties to an object, and/or modifies attributes of existing properties.
 
@@ -1855,7 +1855,7 @@ Adds one or more properties to an object, and/or modifies attributes of existing
 
 > `static` **defineProperty**\<`T`\>(`o`, `p`, `attributes`): `T`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:203
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:203
 
 Adds a property to an object, or modifies attributes of an existing property.
 
@@ -1899,7 +1899,7 @@ Descriptor for the property. It can be for a data property or an accessor proper
 
 > `static` **entries**\<`T`\>(`o`): \[`string`, `T`\][]
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2017.object.d.ts:36
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2017.object.d.ts:36
 
 Returns an array of key/values of the enumerable own properties of an object
 
@@ -1927,7 +1927,7 @@ Object that contains the properties and methods. This can be an object that you 
 
 > `static` **entries**(`o`): \[`string`, `any`\][]
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2017.object.d.ts:42
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2017.object.d.ts:42
 
 Returns an array of key/values of the enumerable own properties of an object
 
@@ -1953,7 +1953,7 @@ Object that contains the properties and methods. This can be an object that you 
 
 > `static` **freeze**\<`T`\>(`f`): `T`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:222
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:222
 
 Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
 
@@ -1981,7 +1981,7 @@ Object on which to lock the attributes.
 
 > `static` **freeze**\<`T`, `U`\>(`o`): `Readonly`\<`T`\>
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:228
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:228
 
 Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
 
@@ -2011,7 +2011,7 @@ Object on which to lock the attributes.
 
 > `static` **freeze**\<`T`\>(`o`): `Readonly`\<`T`\>
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:234
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:234
 
 Prevents the modification of existing property attributes and values, and prevents the addition of new properties.
 
@@ -2043,7 +2043,7 @@ Object on which to lock the attributes.
 
 > `static` **fromEntries**\<`T`\>(`entries`): `object`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2019.object.d.ts:26
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2019.object.d.ts:26
 
 Returns an object created by key-value entries for properties and methods
 
@@ -2071,7 +2071,7 @@ An iterable object that contains key-value entries for properties and methods.
 
 > `static` **fromEntries**(`entries`): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2019.object.d.ts:32
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2019.object.d.ts:32
 
 Returns an object created by key-value entries for properties and methods
 
@@ -2097,7 +2097,7 @@ An iterable object that contains key-value entries for properties and methods.
 
 > `static` **get**(`name`): [`ToolFunc`](ToolFunc.md)
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:319](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L319)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:319](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L319)
 
 Retrieves a registered function by its name or alias.
 
@@ -2125,7 +2125,7 @@ The `ToolFunc` instance if found, otherwise `undefined`.
 
 > `static` **getAllByTag**(`tagName`): [`ToolFunc`](ToolFunc.md)[]
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:365](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L365)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:365](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L365)
 
 Retrieves all registered functions that have a specific tag.
 
@@ -2153,7 +2153,7 @@ An array of matching `ToolFunc` instances.
 
 > `static` **getByTag**(`tagName`): `undefined` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:340](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L340)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:340](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L340)
 
 Finds the first registered function that has a specific tag.
 
@@ -2181,7 +2181,7 @@ The first matching `ToolFunc` instance, or `undefined` if none is found.
 
 > `static` **getFunc**(`name`): `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:431](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L431)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:431](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L431)
 
 Retrieves a bound, runnable function reference for a registered function.
 This reference is suitable for execution with an object of named parameters.
@@ -2210,7 +2210,7 @@ A bound function reference, or `undefined` if not found.
 
 > `static` **getFuncWithPos**(`name`): `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:472](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L472)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:472](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L472)
 
 Retrieves a bound, runnable function reference for a registered function.
 This reference is suitable for execution with positional arguments.
@@ -2239,7 +2239,7 @@ A bound function reference, or `undefined` if not found.
 
 > `static` **getOwnPropertyDescriptor**(`o`, `p`): `undefined` \| `PropertyDescriptor`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:175
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:175
 
 Gets the own property descriptor of the specified object.
 An own property descriptor is one that is defined directly on the object and is not inherited from the object's prototype.
@@ -2272,7 +2272,7 @@ Name of the property.
 
 > `static` **getOwnPropertyDescriptors**\<`T`\>(`o`): \{ \[P in string \| number \| symbol\]: TypedPropertyDescriptor\<T\[P\]\> \} & `object`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2017.object.d.ts:48
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2017.object.d.ts:48
 
 Returns an object containing all own property descriptors of an object
 
@@ -2302,7 +2302,7 @@ Object that contains the properties and methods. This can be an object that you 
 
 > `static` **getOwnPropertyNames**(`o`): `string`[]
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:182
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:182
 
 Returns the names of the own properties of an object. The own properties of an object are those that are defined directly
 on that object, and are not inherited from the object's prototype. The properties of an object include both fields (objects) and functions.
@@ -2329,7 +2329,7 @@ Object that contains the own properties.
 
 > `static` **getOwnPropertySymbols**(`o`): `symbol`[]
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2015.core.d.ts:319
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2015.core.d.ts:319
 
 Returns an array of all symbol properties found directly on object o.
 
@@ -2355,7 +2355,7 @@ Object to retrieve the symbols from.
 
 > `static` **getProperties**(): `PropDescriptors`
 
-Defined in: ai-tools/node\_modules/.pnpm/property-manager@3.0.0/node\_modules/property-manager/lib/advance.d.ts:10
+Defined in: [property-manager.js/src/advance.d.ts:10](https://github.com/snowyu/property-manager.js/blob/e9ebf4c62be9b6d84e5868ed098df041a53bb90a/src/advance.d.ts#L10)
 
 get all properties descriptor include inherited.
 
@@ -2373,7 +2373,7 @@ get all properties descriptor include inherited.
 
 > `static` **getPrototypeOf**(`o`): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:167
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:167
 
 Returns the prototype of an object.
 
@@ -2399,7 +2399,7 @@ The object that references the prototype.
 
 > `static` **hasAsyncFeature**(`feature`): `boolean`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:388](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L388)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:388](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L388)
 
 Checks if any registered function has a specific asynchronous feature.
 
@@ -2427,7 +2427,7 @@ The async feature bit to check for.
 
 > `static` **hasOwn**(`o`, `v`): `boolean`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2022.object.d.ts:25
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2022.object.d.ts:25
 
 Determines whether an object has a property with the specified name.
 
@@ -2459,7 +2459,7 @@ A property name.
 
 > `static` **is**(`value1`, `value2`): `boolean`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2015.core.d.ts:332
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2015.core.d.ts:332
 
 Returns true if the values are the same value, false otherwise.
 
@@ -2491,7 +2491,7 @@ The second value.
 
 > `static` **isExtensible**(`o`): `boolean`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:258
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:258
 
 Returns a value that indicates whether new properties can be added to an object.
 
@@ -2517,7 +2517,7 @@ Object to test.
 
 > `static` **isFrozen**(`o`): `boolean`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:252
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:252
 
 Returns true if existing property attributes and values cannot be modified in an object, and new properties cannot be added to the object.
 
@@ -2543,7 +2543,7 @@ Object to test.
 
 > `static` **isSealed**(`o`): `boolean`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:246
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:246
 
 Returns true if existing property attributes cannot be modified in an object and new properties cannot be added to the object.
 
@@ -2571,7 +2571,7 @@ Object to test.
 
 > `static` **keys**(`o`): `string`[]
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:264
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:264
 
 Returns the names of the enumerable string properties and methods of an object.
 
@@ -2595,7 +2595,7 @@ Object that contains the properties and methods. This can be an object that you 
 
 > `static` **keys**(`o`): `string`[]
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2015.core.d.ts:325
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2015.core.d.ts:325
 
 Returns the names of the enumerable string properties and methods of an object.
 
@@ -2619,7 +2619,7 @@ Object that contains the properties and methods. This can be an object that you 
 
 > `static` **list**(): [`Funcs`](../interfaces/Funcs.md)
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:331](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L331)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:331](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L331)
 
 Returns the complete map of all registered functions.
 
@@ -2639,7 +2639,7 @@ The map of `ToolFunc` instances.
 
 > `static` **preventExtensions**\<`T`\>(`o`): `T`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:240
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:240
 
 Prevents the addition of new properties to an object.
 
@@ -2671,7 +2671,7 @@ Object to make non-extensible.
 
 > `static` **register**(`name`, `options`): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:495](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L495)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:495](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L495)
 
 Registers a new tool function.
 
@@ -2707,7 +2707,7 @@ The new `ToolFunc` instance, or `false` if a function with that name already exi
 
 > `static` **register**(`func`, `options`): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:496](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L496)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:496](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L496)
 
 Registers a new tool function.
 
@@ -2743,7 +2743,7 @@ The new `ToolFunc` instance, or `false` if a function with that name already exi
 
 > `static` **register**(`name`, `options`?): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:497](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L497)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:497](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L497)
 
 Registers a new tool function.
 
@@ -2781,7 +2781,7 @@ The new `ToolFunc` instance, or `false` if a function with that name already exi
 
 > `static` **run**(`name`, `params`?): `Promise`\<`any`\>
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:402](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L402)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:402](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L402)
 
 Asynchronously executes a registered function by name with named parameters.
 
@@ -2819,7 +2819,7 @@ If the function with the given name is not found.
 
 > `static` **runSync**(`name`, `params`?): `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:417](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L417)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:417](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L417)
 
 Synchronously executes a registered function by name with named parameters.
 
@@ -2857,7 +2857,7 @@ If the function with the given name is not found.
 
 > `static` **runWithPos**(`name`, ...`params`): `Promise`\<`any`\>
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:443](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L443)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:443](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L443)
 
 Asynchronously executes a function using positional arguments.
 
@@ -2895,7 +2895,7 @@ If the function with the given name is not found.
 
 > `static` **runWithPosSync**(`name`, ...`params`): `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:458](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L458)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:458](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L458)
 
 Synchronously executes a function using positional arguments.
 
@@ -2933,7 +2933,7 @@ If the function with the given name is not found.
 
 > `static` **seal**\<`T`\>(`o`): `T`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:216
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:216
 
 Prevents the modification of attributes of existing properties, and prevents the addition of new properties.
 
@@ -2963,7 +2963,7 @@ Object on which to lock the attributes.
 
 > `static` **setApiRoot**(`v`): `void`
 
-Defined in: [ai-tools/packages/ai-tool/src/server-tools.ts:61](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/server-tools.ts#L61)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/server-tools.ts:61](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/server-tools.ts#L61)
 
 #### Parameters
 
@@ -2981,7 +2981,7 @@ Defined in: [ai-tools/packages/ai-tool/src/server-tools.ts:61](https://github.co
 
 > `static` **setPrototypeOf**(`o`, `proto`): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2015.core.d.ts:339
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2015.core.d.ts:339
 
 Sets the prototype of a specified object o to object proto or null. Returns the object o.
 
@@ -3013,7 +3013,7 @@ The value of the new prototype or null.
 
 > `static` **toJSON**(): `object`
 
-Defined in: [ai-tools/packages/ai-tool/src/server-tools.ts:74](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/server-tools.ts#L74)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/server-tools.ts:74](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/server-tools.ts#L74)
 
 Serializes all registered `ServerTools` instances into a JSON object.
 This method is typically called by a transport's discovery endpoint.
@@ -3033,7 +3033,7 @@ A map of serializable tool definitions.
 
 > `static` **unregister**(`name`): `undefined` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [ai-tools/packages/ai-tool/src/tool-func.ts:547](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/tool-func.ts#L547)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:547](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/tool-func.ts#L547)
 
 Unregisters a function by its name, also removing any associated aliases.
 
@@ -3063,7 +3063,7 @@ The unregistered `ToolFunc` instance, or `undefined` if it was not found.
 
 > `static` **values**\<`T`\>(`o`): `T`[]
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2017.object.d.ts:24
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2017.object.d.ts:24
 
 Returns an array of values of the enumerable own properties of an object
 
@@ -3091,7 +3091,7 @@ Object that contains the properties and methods. This can be an object that you 
 
 > `static` **values**(`o`): `any`[]
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2017.object.d.ts:30
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2017.object.d.ts:30
 
 Returns an array of values of the enumerable own properties of an object
 

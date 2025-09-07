@@ -6,7 +6,7 @@
 
 # Interface: IClientToolTransport
 
-Defined in: [ai-tools/packages/ai-tool/src/transports/client.ts:10](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/transports/client.ts#L10)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/client.ts:10](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/client.ts#L10)
 
 Defines the public interface for a client-side transport,
 responsible for communicating with a ServerTransport.
@@ -25,7 +25,7 @@ responsible for communicating with a ServerTransport.
 
 > **apiRoot**: `string`
 
-Defined in: [ai-tools/packages/ai-tool/src/transports/base.ts:22](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/transports/base.ts#L22)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/base.ts:22](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/base.ts#L22)
 
 The root endpoint for the remote service.
 For HTTP, this is a URL. For IPC, it could be a channel name.
@@ -40,7 +40,7 @@ For HTTP, this is a URL. For IPC, it could be a channel name.
 
 > `optional` **options**: `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/transports/base.ts:26](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/transports/base.ts#L26)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/base.ts:26](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/base.ts#L26)
 
 Additional options for the transport start or fetch, passed by mount.
 
@@ -54,7 +54,7 @@ Additional options for the transport start or fetch, passed by mount.
 
 > **Tools**: *typeof* [`ToolFunc`](../classes/ToolFunc.md)
 
-Defined in: [ai-tools/packages/ai-tool/src/transports/base.ts:17](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/transports/base.ts#L17)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/base.ts:17](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/base.ts#L17)
 
 #### Inherited from
 
@@ -66,7 +66,7 @@ Defined in: [ai-tools/packages/ai-tool/src/transports/base.ts:17](https://github
 
 > **fetch**(`name`, `args`?, `act`?, `subName`?, `options`?): `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/transports/client.ts:28](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/transports/client.ts#L28)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/client.ts:28](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/client.ts#L28)
 
 Fetches data from the server.
 
@@ -114,7 +114,7 @@ A promise that resolves with the fetched data.
 
 > **loadApis**(): `Promise`\<[`Funcs`](Funcs.md)\>
 
-Defined in: [ai-tools/packages/ai-tool/src/transports/client.ts:15](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/transports/client.ts#L15)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/client.ts:15](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/client.ts#L15)
 
 Connects to the server's discovery endpoint to get the list of available tools.
 
@@ -130,7 +130,7 @@ A promise that resolves to a map of tool function metadata.
 
 > **mount**(`clientTools`, `apiPrefix`?, `options`?): `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/transports/client.ts:17](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/transports/client.ts#L17)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/client.ts:17](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/client.ts#L17)
 
 #### Parameters
 

@@ -8,6 +8,6 @@
 
 > `const` **WindowsReservedNameRegex**: `RegExp`
 
-Defined in: util/dist/index.d.ts:379
+Defined in: @isdk/util/dist/index.d.ts:379
 
 Regular expression pattern for reserved names on Windows systems.

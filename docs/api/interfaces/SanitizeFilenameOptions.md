@@ -6,7 +6,7 @@
 
 # Interface: SanitizeFilenameOptions
 
-Defined in: util/dist/index.d.ts:407
+Defined in: @isdk/util/dist/index.d.ts:407
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: util/dist/index.d.ts:407
 
 > `optional` **maxLength**: `number`
 
-Defined in: util/dist/index.d.ts:409
+Defined in: @isdk/util/dist/index.d.ts:409
 
 ***
 
@@ -22,4 +22,4 @@ Defined in: util/dist/index.d.ts:409
 
 > `optional` **replacement**: `string`
 
-Defined in: util/dist/index.d.ts:408
+Defined in: @isdk/util/dist/index.d.ts:408

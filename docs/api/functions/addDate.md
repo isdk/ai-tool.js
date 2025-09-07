@@ -8,7 +8,7 @@
 
 > **addDate**\<`DateType`, `ResultDate`\>(`date`, `duration`, `options`?): `ResultDate`
 
-Defined in: ai-tools/node\_modules/.pnpm/date-fns@4.1.0/node\_modules/date-fns/add.d.ts:37
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/date-fns@4.1.0/node\_modules/date-fns/add.d.ts:37
 
 ## Type Parameters
 

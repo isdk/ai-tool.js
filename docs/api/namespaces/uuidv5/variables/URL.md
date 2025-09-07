@@ -8,4 +8,4 @@
 
 > **URL**: `string`
 
-Defined in: ai-tools/node\_modules/.pnpm/uuid@11.1.0/node\_modules/uuid/dist/esm-browser/v5.d.ts:7
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/uuid@11.1.0/node\_modules/uuid/dist/esm-browser/v5.d.ts:7

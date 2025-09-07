@@ -6,7 +6,7 @@
 
 # Interface: TaskPromise\<T\>
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:70](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/cancelable-ability.ts#L70)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:70](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/cancelable-ability.ts#L70)
 
 ## Extends
 
@@ -22,7 +22,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:70](https
 
 > `readonly` **\[toStringTag\]**: `string`
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts:176
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts:176
 
 #### Inherited from
 
@@ -34,7 +34,7 @@ Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescri
 
 > `optional` **task**: [`TaskAbortController`](../classes/TaskAbortController.md)
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:71](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/cancelable-ability.ts#L71)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:71](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/cancelable-ability.ts#L71)
 
 ## Methods
 
@@ -42,7 +42,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:71](https
 
 > **catch**\<`TResult`\>(`onrejected`?): `Promise`\<`T` \| `TResult`\>
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:1557
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:1557
 
 Attaches a callback for only the rejection of the Promise.
 
@@ -74,7 +74,7 @@ A Promise for the completion of the callback.
 
 > **finally**(`onfinally`?): `Promise`\<`T`\>
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2018.promise.d.ts:29
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es2018.promise.d.ts:29
 
 Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
 resolved value cannot be modified from the callback.
@@ -103,7 +103,7 @@ A Promise for the completion of the callback.
 
 > **then**\<`TResult1`, `TResult2`\>(`onfulfilled`?, `onrejected`?): `Promise`\<`TResult1` \| `TResult2`\>
 
-Defined in: ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:1550
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/typescript/lib/lib.es5.d.ts:1550
 
 Attaches callbacks for the resolution and/or rejection of the Promise.
 

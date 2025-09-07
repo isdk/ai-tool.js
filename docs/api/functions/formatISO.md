@@ -8,7 +8,7 @@
 
 > **formatISO**(`date`, `options`?): `string`
 
-Defined in: ai-tools/node\_modules/.pnpm/date-fns@4.1.0/node\_modules/date-fns/formatISO.d.ts:43
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/date-fns@4.1.0/node\_modules/date-fns/formatISO.d.ts:43
 
 ## Parameters
 

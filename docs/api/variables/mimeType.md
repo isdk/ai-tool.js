@@ -8,4 +8,4 @@
 
 > `const` **mimeType**: `MimeType`
 
-Defined in: ai-tools/node\_modules/.pnpm/mime-type@5.0.3/node\_modules/mime-type/src/with-db.d.ts:3
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/mime-type@5.0.3/node\_modules/mime-type/src/with-db.d.ts:3

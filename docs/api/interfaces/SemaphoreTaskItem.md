@@ -6,7 +6,7 @@
 
 # Interface: SemaphoreTaskItem
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:52](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/async-semaphore.ts#L52)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:52](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/async-semaphore.ts#L52)
 
 ## Extends
 
@@ -22,7 +22,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:52](https://
 
 > **reject**: (`reason`?) => `void`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:54](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/async-semaphore.ts#L54)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:54](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/async-semaphore.ts#L54)
 
 #### Parameters
 
@@ -40,7 +40,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:54](https://
 
 > **resolve**: (`value`) => `void`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:53](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/async-semaphore.ts#L53)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:53](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/async-semaphore.ts#L53)
 
 #### Parameters
 
@@ -58,7 +58,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:53](https://
 
 > `optional` **signal**: `AbortSignal`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:29](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/async-semaphore.ts#L29)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:29](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/async-semaphore.ts#L29)
 
 #### Inherited from
 
@@ -70,4 +70,4 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:29](https://
 
 > `optional` **token**: `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:55](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/async-semaphore.ts#L55)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:55](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/async-semaphore.ts#L55)

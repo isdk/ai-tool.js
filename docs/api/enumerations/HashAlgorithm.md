@@ -6,7 +6,7 @@
 
 # Enumeration: HashAlgorithm
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:5](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/hash/const.ts#L5)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:5](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/hash/const.ts#L5)
 
 ## Enumeration Members
 
@@ -14,7 +14,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:5](https://github
 
 > **md5**: `1`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:6](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/hash/const.ts#L6)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:6](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/hash/const.ts#L6)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:6](https://github
 
 > **ripemd**: `3`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:8](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/hash/const.ts#L8)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:8](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/hash/const.ts#L8)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:8](https://github
 
 > **sha1**: `2`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:7](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/hash/const.ts#L7)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:7](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/hash/const.ts#L7)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:7](https://github
 
 > **sha224**: `11`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:12](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/hash/const.ts#L12)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:12](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/hash/const.ts#L12)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:12](https://githu
 
 > **sha256**: `8`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:9](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/hash/const.ts#L9)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:9](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/hash/const.ts#L9)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:9](https://github
 
 > **sha384**: `9`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:10](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/hash/const.ts#L10)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:10](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/hash/const.ts#L10)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:10](https://githu
 
 > **sha512**: `10`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:11](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/hash/const.ts#L11)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:11](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/hash/const.ts#L11)
 
 ***
 
@@ -70,7 +70,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:11](https://githu
 
 > **xxhash**: `111`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:13](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/hash/const.ts#L13)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:13](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/hash/const.ts#L13)
 
 ***
 
@@ -78,7 +78,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:13](https://githu
 
 > **xxhash128**: `113`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:16](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/hash/const.ts#L16)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:16](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/hash/const.ts#L16)
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:16](https://githu
 
 > **xxhash32**: `112`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:15](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/hash/const.ts#L15)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:15](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/hash/const.ts#L15)
 
 ***
 
@@ -94,4 +94,4 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:15](https://githu
 
 > **xxhash64**: `111`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/hash/const.ts:14](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/hash/const.ts#L14)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:14](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/hash/const.ts#L14)

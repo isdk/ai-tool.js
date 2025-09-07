@@ -8,7 +8,7 @@
 
 > **parseISO**\<`DateType`, `ResultDate`\>(`argument`, `options`?): `ResultDate`
 
-Defined in: ai-tools/node\_modules/.pnpm/date-fns@4.1.0/node\_modules/date-fns/parseISO.d.ts:43
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/date-fns@4.1.0/node\_modules/date-fns/parseISO.d.ts:43
 
 ## Type Parameters
 

@@ -8,7 +8,7 @@
 
 > `const` **FilenameReservedRegex**: `RegExp`
 
-Defined in: util/dist/index.d.ts:375
+Defined in: @isdk/util/dist/index.d.ts:375
 
 Regular expression pattern for reserved characters in a filename.
 do not use /g global option here: when the regex is executed multiple times, it will always begin where it left off last time.

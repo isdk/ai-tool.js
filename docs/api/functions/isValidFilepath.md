@@ -8,7 +8,7 @@
 
 > **isValidFilepath**(`filepath`): `boolean`
 
-Defined in: util/dist/index.d.ts:406
+Defined in: @isdk/util/dist/index.d.ts:406
 
 Validates whether the given filepath is valid.
 

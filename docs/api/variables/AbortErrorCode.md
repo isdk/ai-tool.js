@@ -8,4 +8,4 @@
 
 > `const` **AbortErrorCode**: [`Aborted`](../enumerations/ErrorCode.md#aborted) = `ErrorCode.Aborted`
 
-Defined in: ai-tools/node\_modules/.pnpm/@isdk+common-error@0.1.4/node\_modules/@isdk/common-error/dist/index.d.ts:31
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/@isdk+common-error@0.2.0/node\_modules/@isdk/common-error/dist/index.d.ts:31

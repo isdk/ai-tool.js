@@ -6,7 +6,12 @@
 
 # Interface: IPubSubClientTransport
 
-Defined in: [ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:15](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/transports/pubsub/client.ts#L15)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:74](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/pubsub/client.ts#L74)
+
+Defines the interface for a client-side PubSub transport.
+
+This abstraction is responsible for creating and managing the connection
+stream (`PubSubClientStream`) to the server.
 
 ## Properties
 
@@ -14,7 +19,9 @@ Defined in: [ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:15](https
 
 > **connect**: (`url`, `params`?) => [`PubSubClientStream`](PubSubClientStream.md)
 
-Defined in: [ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:16](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/transports/pubsub/client.ts#L16)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:82](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/pubsub/client.ts#L82)
+
+Establishes a connection to a server endpoint.
 
 #### Parameters
 
@@ -22,13 +29,20 @@ Defined in: [ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:16](https
 
 `string`
 
+The URL of the server's PubSub endpoint.
+
 ##### params?
 
 `Record`\<`string`, `any`\>
 
+Optional parameters for the connection, which might include
+  things like authentication tokens, initial subscription topics, or a client ID.
+
 #### Returns
 
 [`PubSubClientStream`](PubSubClientStream.md)
+
+A `PubSubClientStream` instance that represents the active connection.
 
 ***
 
@@ -36,13 +50,20 @@ Defined in: [ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:16](https
 
 > `optional` **disconnect**: (`stream`) => `void`
 
-Defined in: [ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:17](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/transports/pubsub/client.ts#L17)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/client.ts:91](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/pubsub/client.ts#L91)
+
+Optional. Disconnects a given stream.
+While the `close` method exists on the stream itself, placing `disconnect`
+on the transport can be semantically clearer in some architectures.
+By default, this should delegate to `stream.close()`.
 
 #### Parameters
 
 ##### stream
 
 [`PubSubClientStream`](PubSubClientStream.md)
+
+The stream to disconnect.
 
 #### Returns
 

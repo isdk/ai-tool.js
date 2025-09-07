@@ -8,7 +8,7 @@
 
 > **expandObjEnv**(`obj`, `options`?, `parsedObjs`?): `any`
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:732
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:732
 
 Expands environment variables in an object/array or string.
 

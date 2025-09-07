@@ -8,4 +8,4 @@
 
 > `const` **DONE**: `1`
 
-Defined in: ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/consts.d.ts:9
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/consts.d.ts:9

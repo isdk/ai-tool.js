@@ -6,7 +6,7 @@
 
 # Class: LRUCache
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:40
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:40
 
 Least Recently Used (LRU) Cache.
 
@@ -33,7 +33,7 @@ const cache = new LRUCache({
 
 > **new LRUCache**(`options`?): [`LRUCache`](LRUCache.md)
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:69
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:69
 
 Represents a Least Recently Used (LRU) Cache.
 
@@ -72,7 +72,7 @@ const cache = new LRUCache({
 
 > **\_cacheLRU**: `Object`
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:45
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:45
 
 ***
 
@@ -80,7 +80,7 @@ Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/sec
 
 > **\_lruQueue**: `LRUQueue`
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:46
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:46
 
 ***
 
@@ -88,7 +88,7 @@ Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/sec
 
 > **cleanInterval**: `number`
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:43
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:43
 
 ***
 
@@ -96,7 +96,7 @@ Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/sec
 
 > **maxAge**: `number`
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:42
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:42
 
 ***
 
@@ -104,7 +104,7 @@ Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/sec
 
 > **maxCapacity**: `number`
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:41
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:41
 
 ## Methods
 
@@ -112,7 +112,7 @@ Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/sec
 
 > **clear**(): [`LRUCache`](LRUCache.md)
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:154
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:154
 
 Deletes all items from the cache.
 
@@ -134,7 +134,7 @@ cache.clear(); // removes all items from the cache
 
 > **clearExpires**(): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:180
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:180
 
 Deletes all expires items from the cache.
 
@@ -156,7 +156,7 @@ cache.clearExpires(); // removes all expires items from the cache
 
 > **del**(`id`, `isInternal`?): `boolean`
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:110
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:110
 
 Alias for `delete()`.
 
@@ -192,7 +192,7 @@ cache.del('key1'); // removes the item with key 'key1'
 
 > **delete**(`id`, `isInternal`?): `boolean`
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:100
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:100
 
 Deletes an item from the cache.
 
@@ -228,7 +228,7 @@ cache.delete('key1'); // removes the item with key 'key1'
 
 > **delListener**(`type`, `listener`): [`LRUCache`](LRUCache.md)
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:70
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:70
 
 #### Parameters
 
@@ -250,7 +250,7 @@ Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/sec
 
 > **forEach**(`callback`, `thisArg`?): `void`
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:172
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:172
 
 Iterates over each item in the cache and calls a function for each item.
 
@@ -284,7 +284,7 @@ cache.forEach((value, key, cache) => console.log(key, value));
 
 > **free**(): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:163
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:163
 
 Frees up the memory used by the cache.
 
@@ -306,7 +306,7 @@ cache.free(); // frees up the memory used by the cache
 
 > **get**(`id`): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:134
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:134
 
 Returns the value of an item in the cache and updates its last-used time.
 
@@ -336,7 +336,7 @@ const value = cache.get('key1');
 
 > **has**(`id`): `boolean`
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:80
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:80
 
 Checks whether an item exists in the cache.
 
@@ -366,7 +366,7 @@ const exists = cache.has("someItem");
 
 > **isExist**(`id`): `boolean`
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:85
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:85
 
 Wether the id is in the cache
 
@@ -388,7 +388,7 @@ the id to check
 
 > **isExists**(`id`): `boolean`
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:90
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:90
 
 Wether the id is in the cache
 
@@ -410,7 +410,7 @@ the id to check
 
 > **isExpired**(`item`): `boolean`
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:116
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:116
 
 Check the item whether already expired, the item will be removed from the cache if expired
 
@@ -432,7 +432,7 @@ the item to check
 
 > **length**(): `number`
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:192
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:192
 
 Get the number of items in the cache.
 
@@ -448,7 +448,7 @@ The number of items in the LRUCache.
 
 > **off**(`type`, `listener`): [`LRUCache`](LRUCache.md)
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:72
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:72
 
 #### Parameters
 
@@ -470,7 +470,7 @@ Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/sec
 
 > **on**(`type`, `listener`): [`LRUCache`](LRUCache.md)
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:71
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:71
 
 #### Parameters
 
@@ -492,7 +492,7 @@ Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/sec
 
 > **peek**(`id`): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:125
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:125
 
 Returns the value of an item in the cache without updating its last-used time.
 
@@ -522,7 +522,7 @@ const value = cache.peek('key1');
 
 > **reset**(`options`?): [`LRUCache`](LRUCache.md)
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:155
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:155
 
 #### Parameters
 
@@ -540,7 +540,7 @@ Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/sec
 
 > **set**(`id`, `value`, `expires`?): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:146
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:146
 
 Adds or updates an item in the cache.
 
@@ -583,7 +583,7 @@ cache.set('key1', 'value1', 5000); // add an item with expiration time of 5 seco
 
 > **setDefaultOptions**(`options`?): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:187
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/secondary-cache@2.0.1/node\_modules/secondary-cache/lib/lru-cache.d.ts:187
 
 Sets the default options for LRUCache.
 

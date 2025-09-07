@@ -6,7 +6,7 @@
 
 # Class: SSEChannel
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:25](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/event/sse-channel.ts#L25)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:41](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/event/sse-channel.ts#L41)
 
 A class for creating Server-Sent Events (SSE) channels.
 
@@ -23,7 +23,7 @@ sseChannel.publish('Hello, world!', 'greeting')
 
 > **new SSEChannel**(`options`?): [`SSEChannel`](SSEChannel.md)
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:65](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/event/sse-channel.ts#L65)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:81](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/event/sse-channel.ts#L81)
 
 Creates a new SSE channel.
 
@@ -45,7 +45,7 @@ The options for the SSE channel.
 
 > **\_active**: `boolean`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:26](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/event/sse-channel.ts#L26)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:42](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/event/sse-channel.ts#L42)
 
 ***
 
@@ -53,7 +53,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:26](https:
 
 > **clients**: `Set`\<`Client`\>
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:27](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/event/sse-channel.ts#L27)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:43](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/event/sse-channel.ts#L43)
 
 ***
 
@@ -61,7 +61,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:27](https:
 
 > **messages**: `Record`\<`string`, `any`\>[]
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:28](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/event/sse-channel.ts#L28)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:44](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/event/sse-channel.ts#L44)
 
 ***
 
@@ -69,7 +69,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:28](https:
 
 > **nextID**: `number`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:29](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/event/sse-channel.ts#L29)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:45](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/event/sse-channel.ts#L45)
 
 ***
 
@@ -77,7 +77,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:29](https:
 
 > **options**: `Record`\<`string`, `any`\>
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:30](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/event/sse-channel.ts#L30)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:46](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/event/sse-channel.ts#L46)
 
 ***
 
@@ -85,7 +85,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:30](https:
 
 > `optional` **pingTimer**: `Timeout`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:31](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/event/sse-channel.ts#L31)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:47](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/event/sse-channel.ts#L47)
 
 ## Accessors
 
@@ -95,7 +95,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:31](https:
 
 > **get** **active**(): `boolean`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:33](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/event/sse-channel.ts#L33)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:49](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/event/sse-channel.ts#L49)
 
 ##### Returns
 
@@ -105,7 +105,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:33](https:
 
 > **set** **active**(`v`): `void`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:37](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/event/sse-channel.ts#L37)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:53](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/event/sse-channel.ts#L53)
 
 ##### Parameters
 
@@ -123,7 +123,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:37](https:
 
 > **clearClients**(): `void`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:195](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/event/sse-channel.ts#L195)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:229](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/event/sse-channel.ts#L229)
 
 #### Returns
 
@@ -135,7 +135,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:195](https
 
 > **getSubscriberCount**(): `number`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:220](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/event/sse-channel.ts#L220)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:254](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/event/sse-channel.ts#L254)
 
 Gets the number of clients subscribed to the SSE channel.
 
@@ -151,7 +151,7 @@ Gets the number of clients subscribed to the SSE channel.
 
 > **listClients**(): `Record`\<`string`, `number`\>
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:204](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/event/sse-channel.ts#L204)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:238](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/event/sse-channel.ts#L238)
 
 Lists the clients connected to the SSE channel grouped by IP address.
 
@@ -165,17 +165,17 @@ Lists the clients connected to the SSE channel grouped by IP address.
 
 ### publish()
 
-> **publish**(`data`?, `eventName`?): `undefined` \| `number`
+> **publish**(`data`?, `eventName`?, `target`?): `undefined` \| `number`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:93](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/event/sse-channel.ts#L93)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:111](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/event/sse-channel.ts#L111)
 
-Publishes a message to the SSE channel.
+Publishes data to the channel.
 
 #### Parameters
 
 ##### data?
 
-The data to send. It can be a string or an object.
+The data to send. Can be a string or a serializable object.
 
 `string` | `Record`\<`string`, `any`\>
 
@@ -183,25 +183,33 @@ The data to send. It can be a string or an object.
 
 `string`
 
-The name of the event.
+Optional name for the event.
+
+##### target?
+
+Optional. If provided, the message will be sent only to clients with matching `clientId`s, bypassing event subscriptions.
+
+###### clientId?
+
+`string` \| `string`[]
 
 #### Returns
 
 `undefined` \| `number`
 
-- Returns the ID of the message.
+The ID of the message, or `undefined` if no message was sent.
 
 #### Throws
 
-Will throw an error if the channel is closed.
+An error if the channel is closed.
 
 ***
 
 ### subscribe()
 
-> **subscribe**(`req`, `res`, `events`?): `object`
+> **subscribe**(`req`, `res`, `events`?, `clientId`?): `Client`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:143](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/event/sse-channel.ts#L143)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:171](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/event/sse-channel.ts#L171)
 
 Subscribes a client to the SSE channel.
 
@@ -211,41 +219,35 @@ Subscribes a client to the SSE channel.
 
 `IncomingMessage`
 
-The request object.
+The incoming HTTP request.
 
 ##### res
 
 `ServerResponse`
 
-The response object.
+The server response.
 
 ##### events?
 
 `Events`
 
-The events to subscribe to.
+An array of event names or patterns to subscribe to.
+
+##### clientId?
+
+`string`
+
+An optional unique ID for the client. If not provided, it defaults to `remoteAddress:remotePort`.
 
 #### Returns
 
-`object`
+`Client`
 
-- Returns the client object.
-
-##### events
-
-> **events**: `undefined` \| `Events`
-
-##### req
-
-> **req**: `IncomingMessage`
-
-##### res
-
-> **res**: `ServerResponse`\<`IncomingMessage`\>
+The newly created client object.
 
 #### Throws
 
-Will throw an error if the channel is closed.
+An error if the channel is closed.
 
 ***
 
@@ -253,7 +255,7 @@ Will throw an error if the channel is closed.
 
 > **unsubscribe**(`c`): `void`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:190](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/event/sse-channel.ts#L190)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/event/sse-channel.ts:224](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/event/sse-channel.ts#L224)
 
 Unsubscribes a client from the SSE channel.
 

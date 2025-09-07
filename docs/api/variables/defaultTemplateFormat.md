@@ -8,4 +8,4 @@
 
 > `const` **defaultTemplateFormat**: `"default"` = `"default"`
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:12
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:12

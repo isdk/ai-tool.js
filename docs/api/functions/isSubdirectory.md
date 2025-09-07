@@ -8,7 +8,7 @@
 
 > **isSubdirectory**(`parentDir`, `childDir`): `boolean`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/has-directory-in.ts:17](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/has-directory-in.ts#L17)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/has-directory-in.ts:17](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/has-directory-in.ts#L17)
 
 Determines whether the `childDir` is a subdirectory of `parentDir`.
 

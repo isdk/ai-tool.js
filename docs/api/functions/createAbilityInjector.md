@@ -10,7 +10,7 @@
 
 > **createAbilityInjector**\<`A`\>(`abilityClass`, `isGetClassFunc`?, `injectorOpts`?): `ClassAbilityFn`\<`A`\>
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/custom-ability/lib/custom-ability.d.ts:35
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/custom-ability/lib/custom-ability.d.ts:35
 
 ### Type Parameters
 
@@ -38,7 +38,7 @@ Defined in: ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/cust
 
 > **createAbilityInjector**\<`A`\>(`abilityClass`, `aCoreMethod`?, `isGetClassFunc`?, `injectorOpts`?): `ClassAbilityFn`\<`A`\>
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/custom-ability/lib/custom-ability.d.ts:36
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/custom-ability/lib/custom-ability.d.ts:36
 
 ### Type Parameters
 
@@ -70,7 +70,7 @@ Defined in: ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/cust
 
 > **createAbilityInjector**\<`A`\>(`abilityClass`, `aCoreMethod`?, `injectorOpts`?): `ClassAbilityFn`\<`A`\>
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/custom-ability/lib/custom-ability.d.ts:37
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/custom-ability/lib/custom-ability.d.ts:37
 
 ### Type Parameters
 
@@ -98,7 +98,7 @@ Defined in: ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/cust
 
 > **createAbilityInjector**\<`A`\>(`abilityClass`, `injectorOpts`?): `ClassAbilityFn`\<`A`\>
 
-Defined in: ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/custom-ability/lib/custom-ability.d.ts:38
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_modules/custom-ability/lib/custom-ability.d.ts:38
 
 ### Type Parameters
 

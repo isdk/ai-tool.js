@@ -10,7 +10,7 @@
 
 > **uuidv5**(`value`, `namespace`, `buf`?, `offset`?): `string`
 
-Defined in: ai-tools/node\_modules/.pnpm/uuid@11.1.0/node\_modules/uuid/dist/esm-browser/v5.d.ts:3
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/uuid@11.1.0/node\_modules/uuid/dist/esm-browser/v5.d.ts:3
 
 ### Parameters
 
@@ -38,7 +38,7 @@ Defined in: ai-tools/node\_modules/.pnpm/uuid@11.1.0/node\_modules/uuid/dist/esm
 
 > **uuidv5**\<`TBuf`\>(`value`, `namespace`, `buf`, `offset`?): `TBuf`
 
-Defined in: ai-tools/node\_modules/.pnpm/uuid@11.1.0/node\_modules/uuid/dist/esm-browser/v5.d.ts:4
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/uuid@11.1.0/node\_modules/uuid/dist/esm-browser/v5.d.ts:4
 
 ### Type Parameters
 

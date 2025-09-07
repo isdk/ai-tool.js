@@ -8,7 +8,7 @@
 
 > **toDate**\<`DateType`, `ResultDate`\>(`argument`, `context`?): `ResultDate`
 
-Defined in: ai-tools/node\_modules/.pnpm/date-fns@4.1.0/node\_modules/date-fns/toDate.d.ts:40
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/date-fns@4.1.0/node\_modules/date-fns/toDate.d.ts:40
 
 ## Type Parameters
 

@@ -8,7 +8,7 @@
 
 > **parseDateFormat**\<`DateType`, `ResultDate`\>(`dateStr`, `formatStr`, `referenceDate`, `options`?): `ResultDate`
 
-Defined in: ai-tools/node\_modules/.pnpm/date-fns@4.1.0/node\_modules/date-fns/parse.d.ts:319
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/date-fns@4.1.0/node\_modules/date-fns/parse.d.ts:319
 
 ## Type Parameters
 

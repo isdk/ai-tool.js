@@ -6,7 +6,7 @@
 
 # Interface: PromptTemplateOptions
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:13
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:13
 
 ## Extended by
 
@@ -22,7 +22,7 @@ Defined in: ai-tools/packages/template-engines/dist/index.d.ts:13
 
 > `optional` **compiledTemplate**: `any`
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:18
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:18
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: ai-tools/packages/template-engines/dist/index.d.ts:18
 
 > `optional` **data**: `Record`\<`string`, `any`\>
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:15
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:15
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: ai-tools/packages/template-engines/dist/index.d.ts:15
 
 > `optional` **ignoreInitialize**: `boolean`
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:19
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:19
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: ai-tools/packages/template-engines/dist/index.d.ts:19
 
 > `optional` **index**: `number`
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:20
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:20
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: ai-tools/packages/template-engines/dist/index.d.ts:20
 
 > `optional` **inputVariables**: `string`[]
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:17
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:17
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: ai-tools/packages/template-engines/dist/index.d.ts:17
 
 > `optional` **template**: `string`
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:14
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:14
 
 ***
 
@@ -70,4 +70,4 @@ Defined in: ai-tools/packages/template-engines/dist/index.d.ts:14
 
 > `optional` **templateFormat**: `string`
 
-Defined in: ai-tools/packages/template-engines/dist/index.d.ts:16
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:16

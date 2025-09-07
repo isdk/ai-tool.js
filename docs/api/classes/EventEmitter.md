@@ -6,7 +6,7 @@
 
 # Class: EventEmitter
 
-Defined in: ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:6
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:6
 
 Class that represents an event emitter.
 
@@ -26,7 +26,7 @@ Class that represents an event emitter.
 
 > `static` **defaultMaxListeners**: `number`
 
-Defined in: ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:7
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:7
 
 ## Methods
 
@@ -34,7 +34,7 @@ Defined in: ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex
 
 > **emit**(`eventName`, ...`args`): `any`
 
-Defined in: ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:38
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:38
 
 Emits the specified event type with the given arguments.
 
@@ -62,7 +62,7 @@ The result of the event.
 
 > **emitAsync**(`eventName`, ...`args`): `Promise`\<`any`\>
 
-Defined in: ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:44
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:44
 
 Asynchronously emits the specified event type with the given arguments.
 
@@ -90,7 +90,7 @@ A promise that resolves with the result of the event.
 
 > **listenerCount**(`eventName`): `number`
 
-Defined in: ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:66
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:66
 
 Returns the count of listeners that are registered to listen for the specified event.
 
@@ -114,7 +114,7 @@ The name of the event to get the listeners for.
 
 > **listeners**(`eventName`): `Function`[]
 
-Defined in: ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:59
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:59
 
 Returns an array of functions that are registered to listen for the specified event.
 
@@ -138,7 +138,7 @@ The name of the event to get the listeners for.
 
 > **off**(`eventName`, `listener`): [`EventEmitter`](EventEmitter.md)
 
-Defined in: ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:32
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:32
 
 Removes a listener function from the specified event type.
 
@@ -170,7 +170,7 @@ If the listener is not a function.
 
 > **on**(`eventName`, `listener`): [`EventEmitter`](EventEmitter.md)
 
-Defined in: ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:16
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:16
 
 Adds a listener function to the specified event type.
 
@@ -202,7 +202,7 @@ If the listener is not a function.
 
 > **once**(`eventName`, `listener`): [`EventEmitter`](EventEmitter.md)
 
-Defined in: ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:24
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:24
 
 Adds a one-time listener function to the specified event type.
 
@@ -234,7 +234,7 @@ If the listener is not a function.
 
 > **removeAllListeners**(`eventName`?): [`EventEmitter`](EventEmitter.md)
 
-Defined in: ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:51
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:51
 
 Removes all listeners for a specific event or all events from an event emitter.
 
@@ -258,7 +258,7 @@ The event to remove listeners for. If not provided, all listeners for all events
 
 > **setMaxListeners**(`n`): [`EventEmitter`](EventEmitter.md)
 
-Defined in: ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:52
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:52
 
 #### Parameters
 
@@ -276,7 +276,7 @@ Defined in: ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex
 
 > `static` **listenerCount**(`emitter`, `eventName`): `number`
 
-Defined in: ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:74
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/events-ex@2.1.0/node\_modules/events-ex/lib/event-emitter.d.ts:74
 
 Returns the count of listeners that are registered to listen for the specified event.
 

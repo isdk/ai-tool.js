@@ -8,7 +8,7 @@
 
 > **canonicalize**(`obj`, `allowCircular`?): `string`
 
-Defined in: ai-tools/node\_modules/.pnpm/json-canonicalize@2.0.0/node\_modules/json-canonicalize/types/canonicalize.d.ts:8
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/json-canonicalize@2.0.0/node\_modules/json-canonicalize/types/canonicalize.d.ts:8
 
 The main function for JSON canonicalization. It takes a JavaScript object and returns its canonical string representation.
 

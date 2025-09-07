@@ -6,7 +6,7 @@
 
 # Interface: IFileMetaInfo
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:224](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/load-file-from-paths.ts#L224)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:225](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/load-file-from-paths.ts#L225)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:224](ht
 
 > **ctime**: `Date`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:227](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/load-file-from-paths.ts#L227)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:228](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/load-file-from-paths.ts#L228)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:227](ht
 
 > **hash**: `string`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:229](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/load-file-from-paths.ts#L229)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:230](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/load-file-from-paths.ts#L230)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:229](ht
 
 > **id**: `string`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:231](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/load-file-from-paths.ts#L231)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:232](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/load-file-from-paths.ts#L232)
 
 ***
 
@@ -38,7 +38,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:231](ht
 
 > **mimeType**: `string`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:230](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/load-file-from-paths.ts#L230)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:231](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/load-file-from-paths.ts#L231)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:230](ht
 
 > **mtime**: `Date`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:226](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/load-file-from-paths.ts#L226)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:227](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/load-file-from-paths.ts#L227)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:226](ht
 
 > **name**: `string`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:225](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/load-file-from-paths.ts#L225)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:226](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/load-file-from-paths.ts#L226)
 
 ***
 
@@ -62,4 +62,4 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:225](ht
 
 > **size**: `number`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:228](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/load-file-from-paths.ts#L228)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/load-file-from-paths.ts:229](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/load-file-from-paths.ts#L229)

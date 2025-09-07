@@ -6,7 +6,7 @@
 
 # Interface: ResServerFuncParams
 
-Defined in: [ai-tools/packages/ai-tool/src/res-server-tools.ts:5](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/res-server-tools.ts#L5)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-server-tools.ts:5](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/res-server-tools.ts#L5)
 
 ## Extends
 
@@ -22,7 +22,7 @@ Defined in: [ai-tools/packages/ai-tool/src/res-server-tools.ts:5](https://github
 
 > `optional` **\_req**: `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/server-tools.ts:15](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/server-tools.ts#L15)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/server-tools.ts:15](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/server-tools.ts#L15)
 
 The underlying request object from the transport layer (e.g., `IncomingMessage`).
 
@@ -36,7 +36,7 @@ The underlying request object from the transport layer (e.g., `IncomingMessage`)
 
 > `optional` **\_res**: `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/server-tools.ts:20](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/server-tools.ts#L20)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/server-tools.ts:20](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/server-tools.ts#L20)
 
 The underlying response or reply object from the transport layer (e.g., `ServerResponse`).
 
@@ -50,7 +50,7 @@ The underlying response or reply object from the transport layer (e.g., `ServerR
 
 > `optional` **act**: `string`
 
-Defined in: [ai-tools/packages/ai-tool/src/rpc-methods-server-tool.ts:7](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/rpc-methods-server-tool.ts#L7)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-server-tool.ts:7](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/rpc-methods-server-tool.ts#L7)
 
 #### Inherited from
 
@@ -62,7 +62,7 @@ Defined in: [ai-tools/packages/ai-tool/src/rpc-methods-server-tool.ts:7](https:/
 
 > `optional` **id**: `string` \| `number`
 
-Defined in: [ai-tools/packages/ai-tool/src/res-server-tools.ts:6](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/res-server-tools.ts#L6)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-server-tools.ts:6](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/res-server-tools.ts#L6)
 
 ***
 
@@ -70,4 +70,4 @@ Defined in: [ai-tools/packages/ai-tool/src/res-server-tools.ts:6](https://github
 
 > `optional` **val**: `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/res-server-tools.ts:8](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/res-server-tools.ts#L8)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-server-tools.ts:8](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/res-server-tools.ts#L8)

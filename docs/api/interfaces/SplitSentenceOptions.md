@@ -6,7 +6,7 @@
 
 # Interface: SplitSentenceOptions
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/split-sentence.ts:25](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/split-sentence.ts#L25)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/split-sentence.ts:25](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/split-sentence.ts#L25)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/split-sentence.ts:25](https://g
 
 > `optional` **best**: `boolean`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/split-sentence.ts:26](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/split-sentence.ts#L26)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/split-sentence.ts:26](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/split-sentence.ts#L26)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/split-sentence.ts:26](https://g
 
 > `optional` **completeSentence**: `boolean`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/split-sentence.ts:27](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/split-sentence.ts#L27)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/split-sentence.ts:27](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/split-sentence.ts#L27)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/split-sentence.ts:27](https://g
 
 > `optional` **ignoreEmptyLine**: `boolean`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/split-sentence.ts:29](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/split-sentence.ts#L29)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/split-sentence.ts:29](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/split-sentence.ts#L29)
 
 ***
 
@@ -38,4 +38,4 @@ Defined in: [ai-tools/packages/ai-tool/src/utils/split-sentence.ts:29](https://g
 
 > `optional` **isMarkdown**: `boolean`
 
-Defined in: [ai-tools/packages/ai-tool/src/utils/split-sentence.ts:28](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/utils/split-sentence.ts#L28)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/split-sentence.ts:28](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/utils/split-sentence.ts#L28)

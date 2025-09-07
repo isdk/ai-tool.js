@@ -6,7 +6,7 @@
 
 # Class: `abstract` ToolTransport
 
-Defined in: [ai-tools/packages/ai-tool/src/transports/base.ts:33](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/transports/base.ts#L33)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/base.ts:33](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/base.ts#L33)
 
 ## Extended by
 
@@ -33,7 +33,7 @@ Defined in: [ai-tools/packages/ai-tool/src/transports/base.ts:33](https://github
 
 > **apiRoot**: `string`
 
-Defined in: [ai-tools/packages/ai-tool/src/transports/base.ts:34](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/transports/base.ts#L34)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/base.ts:34](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/base.ts#L34)
 
 The root endpoint for the remote service.
 For HTTP, this is a URL. For IPC, it could be a channel name.
@@ -48,7 +48,7 @@ For HTTP, this is a URL. For IPC, it could be a channel name.
 
 > `optional` **options**: `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/transports/base.ts:36](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/transports/base.ts#L36)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/base.ts:36](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/base.ts#L36)
 
 Additional options for the transport start or fetch, passed by mount.
 
@@ -62,7 +62,7 @@ Additional options for the transport start or fetch, passed by mount.
 
 > **Tools**: *typeof* [`ToolFunc`](ToolFunc.md)
 
-Defined in: [ai-tools/packages/ai-tool/src/transports/base.ts:35](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/transports/base.ts#L35)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/base.ts:35](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/base.ts#L35)
 
 #### Implementation of
 
@@ -74,7 +74,7 @@ Defined in: [ai-tools/packages/ai-tool/src/transports/base.ts:35](https://github
 
 > `abstract` **\_mount**(`Tools`, `apiRoot`, `options`?): `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/transports/base.ts:53](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/transports/base.ts#L53)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/base.ts:57](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/base.ts#L57)
 
 #### Parameters
 
@@ -100,7 +100,7 @@ Defined in: [ai-tools/packages/ai-tool/src/transports/base.ts:53](https://github
 
 > **mount**(`Tools`, `apiRoot`?, `options`?): `any`
 
-Defined in: [ai-tools/packages/ai-tool/src/transports/base.ts:38](https://github.com/isdk/ai-tool.js/blob/a24331161aecd2d7bbd8dc9f9cd3d984871261cb/src/transports/base.ts#L38)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/base.ts:42](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/base.ts#L42)
 
 #### Parameters
 
@@ -123,3 +123,21 @@ Defined in: [ai-tools/packages/ai-tool/src/transports/base.ts:38](https://github
 #### Implementation of
 
 [`IToolTransport`](../interfaces/IToolTransport.md).[`mount`](../interfaces/IToolTransport.md#mount)
+
+***
+
+### setApiRoot()
+
+> **setApiRoot**(`apiRoot`): `void`
+
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/base.ts:38](https://github.com/isdk/ai-tool.js/blob/209a87173b5eabb2f81db6ea9a6784f34c24e271/src/transports/base.ts#L38)
+
+#### Parameters
+
+##### apiRoot
+
+`string`
+
+#### Returns
+
+`void`
