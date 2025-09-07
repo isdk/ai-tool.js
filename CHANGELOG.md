@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.7.1](https://github.com/isdk/ai-tool.js/compare/v0.7.0...v0.7.1) (2025-09-07)
+
+
+### Bug Fixes
+
+* forget to export the RpcMethodsServerTools/RpcMethodsClientTools ([6fdae9a](https://github.com/isdk/ai-tool.js/commit/6fdae9a86971c82b6e19400a8c02b8271799fcfe))
+* **http-server:** event stream not work and url params should decode ([4ebf370](https://github.com/isdk/ai-tool.js/commit/4ebf370aaec9c78535cb40ffc19656d7bddcb145))
+
 ## [0.7.0](https://github.com/isdk/ai-tool.js/compare/v0.6.0...v0.7.0) (2025-09-07)
 
 
