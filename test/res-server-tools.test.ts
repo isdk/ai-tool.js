@@ -9,6 +9,7 @@ import { findPort } from '../src/utils/find-port'
 import { ServerTools } from '../src/server-tools'
 import { ClientTools } from '../src/client-tools'
 import { HttpServerToolTransport, HttpClientToolTransport } from '../src/transports'
+import { sleep } from "../src/utils"
 
 class TestResTool extends ResServerTools {
   items: any = {}
@@ -87,7 +88,8 @@ describe('res server api', () => {
     const port = await findPort(3001)
     server = new HttpServerToolTransport()
     await server.mount(ServerTools, '/api')
-    server.start({ port })
+    await sleep(100)
+    server.start({ port, host: 'localhost' })
 
     apiRoot = `http://localhost:${port}/api`
 
