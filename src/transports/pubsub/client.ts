@@ -79,7 +79,7 @@ export interface IPubSubClientTransport {
    *   things like authentication tokens, initial subscription topics, or a client ID.
    * @returns A `PubSubClientStream` instance that represents the active connection.
    */
-  connect: (url: string, params?: Record<string, any>) => PubSubClientStream;
+  connect: (url: string, params?: any) => PubSubClientStream;
 
   /**
    * Optional. Disconnects a given stream.
