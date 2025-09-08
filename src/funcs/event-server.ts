@@ -62,11 +62,11 @@ export class EventServer extends ResServerTools {
     }
   }
 
-  publishSSE(data: any, event: string) {
+  publishServerEvent(data: any, event: string) {
     return (this.constructor as any).publish(data, event)
   }
 
-  subscribeSSE(req: IncomingMessage, res: ServerResponse, events?: string|string[]) {
+  subscribeServerEvent(req: IncomingMessage, res: ServerResponse, events?: string|string[]) {
     if (typeof events === 'string') {
       events = [events]
     }
@@ -105,7 +105,7 @@ export class EventServer extends ResServerTools {
 
   list({ _req, _res, event}: EventServerFuncParams) {
     if (_req && _res) {
-      this.subscribeSSE(_req, _res, event)
+      this.subscribeServerEvent(_req, _res, event)
     }
   }
 
@@ -133,7 +133,7 @@ export class EventServer extends ResServerTools {
         events = [events]
       }
       for (const event of events) {
-        this.publishSSE(data, event)
+        this.publishServerEvent(data, event)
       }
       return {event: events}
     } else {
