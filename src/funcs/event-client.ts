@@ -1,4 +1,4 @@
-import { EventName, genUrlParamsStr } from '../utils'
+import { EventName } from '../utils'
 import type { Event } from 'events-ex'
 import { ResClientTools } from '../res-client-tools'
 import { PubSubCtx, IPubSubClientTransport, PubSubClientStream } from '../transports/pubsub'
@@ -57,9 +57,9 @@ export class EventClient extends ResClientTools {
         this._stream.close()
       }
     }
-    const urlParams = list ? genUrlParamsStr({event: list}) : ''
-    const url = `${this.apiRoot}/${this.name}${urlParams}`
-    const stream = this._stream = (this.constructor as typeof EventClient).pubSubTransport.connect(url)
+    const url = `${this.apiRoot}/${this.name}`
+    const params = list ? {event: list} : undefined
+    const stream = this._stream = (this.constructor as typeof EventClient).pubSubTransport.connect(url, params)
     // 重新挂载已订阅事件
     Object.entries(this._sseListeners).forEach(([event, listener]) => {
       stream.on(event, listener)
