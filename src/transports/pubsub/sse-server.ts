@@ -10,7 +10,7 @@ export class SseServerPubSubTransport implements IPubSubServerTransport {
   private onConn?: (s: PubSubServerSession) => void;
   private onDis?: (s: PubSubServerSession) => void;
 
-  mount?() {/* SSEChannel 内部已处理路径时可忽略 */}
+  mount?() {/* SSE 是通过约定使用在http上的 RESTful list API 来实现，所以没有自定义 path */}
 
   subscribe(events?: string[], options?: { req?: IncomingMessage; res?: ServerResponse; clientId?: string }) {
     const { req, res, clientId } = options ?? {};
