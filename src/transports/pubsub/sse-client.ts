@@ -1,10 +1,17 @@
 import type { IPubSubClientTransport, PubSubClientStream } from './client';
 import type { PubSubCtx } from './base';
+import { genUrlParamsStr } from '../../utils';
 
 export class SseClientPubSubTransport implements IPubSubClientTransport {
-  connect(url: string, params?: Record<string, any>): PubSubClientStream {
-    const qs = params ? `?${new URLSearchParams(params as any).toString()}` : '';
-    const es = new EventSource(`${url}${qs}`);
+  connect(url: string, params?: string[]): PubSubClientStream {
+    let finalUrl = url;
+    if (params) {
+      const qs = genUrlParamsStr(params as any, true);
+      if (qs) {
+        finalUrl += (url.includes('?') ? '&' : '?') + qs;
+      }
+    }
+    const es = new EventSource(finalUrl);
 
     // 包装监听器映射，确保 off 能卸载
     const wrapMap = new Map<string, Map<Function, EventListener>>();
