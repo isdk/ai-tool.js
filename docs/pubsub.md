@@ -277,7 +277,11 @@ This transport-agnostic architecture provides a clean, powerful, and decoupled w
 
 ## Implementing a Custom PubSub Transport
 
-For developers who need to integrate a different messaging protocol (e.g., WebSockets, MQTT), you can create your own transport by implementing the `IPubSubServerTransport` interface from `@isdk/ai-tool/transports/pubsub/server`.
+For developers who need to integrate a different messaging protocol (e.g., WebSockets, MQTT), you can create your own transport by implementing the server-side and client-side PubSub interfaces.
+
+### Server-Side: `IPubSubServerTransport`
+
+The server-side implementation is responsible for managing client connections and broadcasting events. You implement the `IPubSubServerTransport` interface from `@isdk/ai-tool/transports/pubsub/server`.
 
 The core interface is defined as follows:
 
@@ -323,4 +327,33 @@ export interface IPubSubServerTransport {
 }
 ```
 
-By implementing this interface, your custom transport can be plugged directly into the `EventServer` using `EventServer.setPubSubTransport(new YourCustomTransport())`, enabling the entire real-time event system over your chosen protocol.
+By implementing this interface, your custom transport can be plugged directly into the `EventServer` using `EventServer.setPubSubTransport(new YourCustomTransport())`.
+
+### Client-Side: `IPubSubClientTransport`
+
+The client-side implementation is responsible for establishing a connection to the server and receiving events. This is defined by the `IPubSubClientTransport` interface from `@isdk/ai-tool/transports/pubsub/client`.
+
+The core interface is defined as follows:
+
+```typescript
+export interface IPubSubClientTransport {
+  /**
+   * Establishes a connection to a server endpoint.
+   * @param url The base URL of the server's PubSub endpoint.
+   * @param params Optional parameters for the connection. This is where
+   *   data like initial event subscriptions should be passed. The transport
+   *   is responsible for encoding these params into the request (e.g., as a query string).
+   * @returns A `PubSubClientStream` instance representing the connection.
+   */
+  connect: (url: string, params?: Record<string, any>) => PubSubClientStream;
+
+  /**
+   * Optional. Disconnects a given stream.
+   */
+  disconnect?: (stream: PubSubClientStream) => void;
+}
+```
+
+The `connect` method is the most critical part. It decouples the `EventClient` from the specifics of how connection parameters (like initial subscriptions) are sent to the server. The `EventClient` simply passes them in the `params` object, and the transport implementation handles the rest.
+
+By implementing both interfaces, you can enable the entire real-time event system over your chosen protocol.
