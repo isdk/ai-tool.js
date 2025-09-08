@@ -85,6 +85,7 @@ describe('res server api', () => {
     Object.setPrototypeOf(ClientToolItems, ToolFunc.items)
     ClientTools.items = ClientToolItems
 
+    await sleep(100)
     const port = await findPort(3001)
     server = new HttpServerToolTransport()
     await server.mount(ServerTools, '/api')
