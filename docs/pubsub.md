@@ -2,7 +2,7 @@
 
 This guide provides a comprehensive overview of the `EventServer` and `EventClient` tools, a powerful system for real-time, bidirectional communication. It is built on a **pluggable PubSub transport layer**, making it independent of the underlying communication protocol. You can use Server-Sent Events (SSE), WebSockets, IPC, or any other protocol by providing a corresponding transport implementation.
 
-**Prerequisite:** This document assumes you understand the base transport layer. If not, please review the [`transport_readme.md`](./transport_readme.md) first.
+**Prerequisite:** This document assumes you understand the base transport layer. If not, please review the [`transport.md`](./transport.md) first.
 
 ## Core Concept: The Unified Event Bus
 
@@ -14,7 +14,7 @@ The key feature is the ability to **"forward"** events. You can configure the se
 
 A crucial concept is that `EventClient` (and `ClientTools` in general) can be enhanced with event emitter capabilities. By using a library like `events-ex`, you can give your client-side tool instances standard `on`, `off`, and `emit` methods. This allows `EventClient` to act as a local event bus that is transparently synchronized with the server.
 
-## Example 1: HTTP and Server-Sent Events (SSE)
+## Example: HTTP and Server-Sent Events (SSE)
 
 ### Architecture (SSE)
 
@@ -35,9 +35,9 @@ graph TD
     end
 
     subgraph Server-Side
-        S_Transport[FastifyServerToolTransport] -- "receives RPC" --> ES[EventServer]
-        ES -- "uses" --> S_PubSub[SseServerPubSubTransport]
-        S_PubSub -- "handles SSE connections" --> ES
+        S_Transport[HttpServerToolTransport] -- "receives RPC" --> ES[EventServer]
+        ES -- "delegates to" --> S_PubSub[SseServerPubSubTransport]
+        S_PubSub -- "handles SSE connection" --> ES
         ES -- "interacts with" --> S_EventBus[Global Server EventBus]
         OtherServices[Other Server Logic] -- "emit/on" --> S_EventBus
     end
@@ -49,13 +49,13 @@ graph TD
 
 ### Server-Side Setup (SSE)
 
-In your server setup, you must first tell `EventServer` which transport to use, then register the `eventServer` instance.
+On the server, you must set the desired PubSub transport on the `EventServer` class. When a client makes a request to the `eventServer`'s `list` endpoint, the `EventServer` delegates the connection handling to the transport.
 
 ```typescript
 // In your server entry file (e.g., server.ts)
 import {
   eventServer,
-  FastifyServerToolTransport,
+  HttpServerToolTransport, // Using a generic HTTP transport
   ResServerTools,
   EventServer, // Import EventServer class
   SseServerPubSubTransport // Import the SSE transport
@@ -68,7 +68,7 @@ async function main() {
   // Register the eventServer tool instance
   eventServer.register();
 
-  const serverTransport = new FastifyServerToolTransport();
+  const serverTransport = new HttpServerToolTransport();
   // Mount the base class; the transport finds all registered tools
   serverTransport.mount(ResServerTools, '/api');
 
@@ -79,7 +79,7 @@ async function main() {
 
 ### Client-Side Setup (SSE)
 
-On the client, you must set the appropriate PubSub transport (matching the server's), enhance the `EventClient` with `EventEmitter` capabilities, and register the instance.
+On the client, the setup is designed to be simple and robust. You set up your main RPC transport first, and then you set the PubSub transport. The `EventClient` is smart enough to automatically configure the PubSub transport with the `apiRoot` from the main transport.
 
 ```typescript
 // In your client-side code
@@ -93,101 +93,23 @@ import {
 } from '@isdk/ai-tool';
 
 async function main() {
-  const apiRoot = 'http://localhost:3003/api';
-  const clientTransport = new HttpClientToolTransport(apiRoot);
-  await clientTransport.mount(ResClientTools);
+  const apiRoot = 'http://localhost:3000/api';
+  const clientTransport = new HttpClientToolTransport();
+  // Mount the main transport, which configures the static ClientTools.apiRoot
+  await clientTransport.mount(ResClientTools, apiRoot);
 
   // **Crucial Step 1: Set the PubSub transport for the client**
+  // It is **critical** that `setPubSubTransport` is called *after* the main
+  // transport has been mounted, as this is what makes the `apiRoot` available
+  // for automatic configuration.
   EventClient.setPubSubTransport(new SseClientPubSubTransport());
 
   // **Crucial Step 2: Make the client eventable**
   backendEventable(EventClient);
   eventClient.register();
 
-  // Now you can use eventClient.on, .off, .emit
+  // Now you can use eventClient.on, .off, .emit to interact with the server
 }
-```
-
----
-
-## Example 2: Electron IPC Transport
-
-This transport uses Electron's Inter-Process Communication (IPC) to create an event bus between the main process (server) and renderer processes (clients).
-
-### Server-Side Setup (Electron Main Process)
-
-In your Electron main process, you instantiate an `ElectronServerPubSubTransport` with a unique namespace. This namespace acts like an `apiRoot` and ensures that different event buses don't conflict.
-
-```typescript
-// In your Electron main process (e.g., main.ts)
-import {
-  EventServer,
-  eventServer,
-  ElectronServerPubSubTransport,
-} from '@isdk/ai-tool';
-
-// 1. Define a unique namespace for this event bus
-const electronApiRoot = '/electron/events';
-
-// 2. Create a transport instance for this specific namespace
-const electronTransport = new ElectronServerPubSubTransport(electronApiRoot);
-
-// 3. Set the transport on the EventServer
-// Note: This is a static property. For multiple, different event servers
-// (e.g., one for SSE, one for Electron), you would create subclasses of EventServer
-// to hold each static transport instance separately.
-EventServer.setPubSubTransport(electronTransport);
-
-// 4. Register the eventServer tool instance. It will now use the Electron transport.
-eventServer.register();
-
-// Now you can use the global eventBus to emit events, and the EventServer
-// will forward them to any connected renderer process.
-```
-
-### Client-Side Setup (Electron Renderer Process)
-
-In the renderer process, you must use the same namespace (`apiRoot`) to connect to the correct event bus in the main process.
-
-**Important:** The `EventClient` still relies on an RPC mechanism for actions like `subscribe` and `unsubscribe`. You must have a corresponding RPC transport set up between the renderer and main process for the full functionality to work. The example below focuses only on setting up the PubSub portion.
-
-```typescript
-// In your Electron renderer process (e.g., preload.ts or renderer.ts)
-import {
-  EventClient,
-  eventClient,
-  ElectronClientPubSubTransport,
-  backendEventable,
-} from '@isdk/ai-tool';
-
-// 1. The apiRoot MUST match the namespace used in the main process
-const electronApiRoot = '/electron/events';
-
-// 2. Set the PubSub transport on the EventClient class
-EventClient.setPubSubTransport(new ElectronClientPubSubTransport());
-
-// 3. Make the EventClient class event-aware
-backendEventable(EventClient);
-
-// 4. Configure the eventClient INSTANCE
-// This tells the client which event bus to connect to.
-eventClient.setApiRoot(electronApiRoot);
-eventClient.register();
-
-// 5. Now you can use the event client
-async function setupEvents() {
-  await eventClient.subscribe('some-event-from-main');
-
-  eventClient.on('some-event-from-main', (data) => {
-    console.log('Received event from main process:', data);
-  });
-
-  // Forward a local event to the main process
-  eventClient.forwardEvent('event-from-renderer');
-  eventClient.emit('event-from-renderer', { my: 'data' });
-}
-
-setupEvents();
 ```
 
 ---
@@ -198,9 +120,7 @@ Once the setup is complete, the API for using the event bus is the same regardle
 
 ### Forwarding and Publishing Events (Server-Side)
 
-The server can push events to clients either by forwarding them from a central event bus or by publishing them directly. With the latest updates, the `publish` method now supports targeted delivery to specific clients, in addition to broadcasting.
-
-**Note:** The availability of targeted publishing depends on the underlying transport implementation. While the `EventServer` API supports it, some transports (like the current SSE transport) may only be capable of broadcasting.
+The server can push events to clients either by forwarding them from a central event bus or by publishing them directly.
 
 ```typescript
 import { eventServer, EventServer } from '@isdk/ai-tool';
@@ -243,7 +163,7 @@ function sendToGroup(clientIds: string[], message: string) {
 // **Receiving Client Events**
 // Listen for events that were published or forwarded from a client.
 eventBus.on('client-action', (data: any, event: any) => {
-  console.log(`Received event "$\{event.type\}" from a client:`, data);
+  console.log(`Received event "${event.type}" from a client:`, data);
 });
 ```
 
@@ -290,25 +210,32 @@ export interface IPubSubServerTransport {
   readonly name: string;
   readonly protocol: string;
 
-  // Optional: For transports that need to hook into an HTTP server
-  mount?: (path: string, options?: Record<string, any>) => void;
-
-  // Establish a connection with a client and subscribe them to events.
-  // The `options` object is a generic container for transport-specific
-  // parameters, like HTTP request/response objects for SSE.
+  /**
+   * Subscribes a client to an event stream by taking over an incoming request.
+   *
+   * This method is designed to be generic. Transport-specific details, such as
+   * HTTP request/response objects, are passed inside the `options` parameter.
+   *
+   * @param events Optional array of event names to initially subscribe the client to.
+   * @param options A container for transport-specific parameters.
+   * @returns A `PubSubClient` object representing the newly connected client.
+   */
   subscribe: (
     events?: string[],
     options?: {
-      req?: any;
-      res?: any;
+      req: any; // e.g., http.IncomingMessage
+      res: any; // e.g., http.ServerResponse
       clientId?: string;
       [k: string]: any;
     }
   ) => PubSubClient; // Return a client object, minimally with a `clientId`.
 
-  // Publish an event from the server to clients.
-  // The `target` parameter allows for broadcasting (default) or
-  // targeted delivery to specific client IDs.
+  /**
+   * Publishes an event from the server to clients.
+   *
+   * The `target` parameter allows for broadcasting (default) or
+   * targeted delivery to specific client IDs.
+   */
   publish: (
     event: string,
     data: any,
@@ -319,8 +246,10 @@ export interface IPubSubServerTransport {
   onConnection: (cb: (session: PubSubServerSession) => void) => void;
   onDisconnect: (cb: (session: PubSubServerSession) => void) => void;
 
-  // Optional: For bidirectional transports (e.g., WebSockets)
-  // to handle messages received from the client.
+  /**
+   * Optional: For bidirectional transports (e.g., WebSockets)
+   * to handle messages received from the client.
+   */
   onMessage?: (
     cb: (session: PubSubServerSession, event: string, data: any) => void
   ) => void;
@@ -339,10 +268,8 @@ The core interface is defined as follows:
 export interface IPubSubClientTransport {
   /**
    * Establishes a connection to a server endpoint.
-   * @param url The base URL of the server's PubSub endpoint.
-   * @param params Optional parameters for the connection. This is where
-   *   data like initial event subscriptions should be passed. The transport
-   *   is responsible for encoding these params into the request (e.g., as a query string).
+   * @param url The path of the endpoint, relative to the `apiRoot` configured on the transport. For advanced use or compatibility, this can also be a full, absolute URL.
+   * @param params Optional parameters for the connection, such as initial event subscriptions.
    * @returns A `PubSubClientStream` instance representing the connection.
    */
   connect: (url: string, params?: Record<string, any>) => PubSubClientStream;
@@ -351,9 +278,17 @@ export interface IPubSubClientTransport {
    * Optional. Disconnects a given stream.
    */
   disconnect?: (stream: PubSubClientStream) => void;
+
+  /**
+   * Optional. Configures the transport with a base URL.
+   * If implemented, this allows the transport to resolve relative paths
+   * passed to the `connect` method. This is called automatically by `EventClient.setPubSubTransport`.
+   * @param apiRoot The base URL for the API.
+   */
+  setApiRoot?: (apiRoot: string) => void;
 }
 ```
 
-The `connect` method is the most critical part. It decouples the `EventClient` from the specifics of how connection parameters (like initial subscriptions) are sent to the server. The `EventClient` simply passes them in the `params` object, and the transport implementation handles the rest.
+The `EventClient` automatically handles the `apiRoot` configuration, making the system easy to use. The `connect` method is the most critical part, as it decouples the `EventClient` from the specifics of how a connection is made.
 
 By implementing both interfaces, you can enable the entire real-time event system over your chosen protocol.
