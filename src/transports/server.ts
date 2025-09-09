@@ -9,9 +9,15 @@ import { ToolTransport, type IToolTransport } from './base';
 export interface IServerToolTransport extends IToolTransport{
   /**
    * Mounts the ServerTools registry, creating the necessary API routes.
-   * @param serverTools The ServerTools class.
-   * @param apiPrefix An optional prefix for all API routes.
-   * @param options Additional options for the transport start.
+   *
+   * This method is responsible for integrating the tool-handling logic with a
+   * running server instance.
+   *
+   * @param serverTools The ServerTools class containing the tool definitions.
+   * @param apiPrefix An optional prefix for all API routes (e.g., '/api').
+   * @param options A container for transport-specific options. For example,
+   *   an HTTP-based transport would expect an `{ server: http.Server }` object
+   *   to attach its route handlers to.
    */
   mount(serverTools: typeof ServerTools, apiPrefix?: string, options?: any): void;
 
