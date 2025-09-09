@@ -63,9 +63,10 @@ export class EventClient extends ResClientTools {
         this._stream.close()
       }
     }
-    const url = `${this.apiRoot}/${this.name}`
     const params = list ? {event: list} : undefined
-    const stream = this._stream = (this.constructor as typeof EventClient).pubSubTransport.connect(url, params)
+    // Pass the relative path (this.name) to the transport.
+    // The transport is responsible for combining it with the apiRoot.
+    const stream = this._stream = (this.constructor as typeof EventClient).pubSubTransport.connect(this.name!, params)
     // 重新挂载已订阅事件
     Object.entries(this._sseListeners).forEach(([event, listener]) => {
       stream.on(event, listener)
