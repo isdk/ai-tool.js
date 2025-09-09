@@ -86,7 +86,7 @@ describe('res server api', () => {
     ClientTools.items = ClientToolItems
 
     await sleep(100)
-    const port = await findPort(3001)
+    const port = await findPort(3002)
     server = new HttpServerToolTransport()
     await server.mount(ServerTools, '/api')
     await sleep(100)
