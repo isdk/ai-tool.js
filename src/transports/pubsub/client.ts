@@ -74,7 +74,7 @@ export interface PubSubClientStream {
 export interface IPubSubClientTransport {
   /**
    * Establishes a connection to a server endpoint.
-   * @param url The URL of the server's PubSub endpoint.
+   * @param url The full URL of the endpoint, or a path relative to the `apiRoot` that may have been configured on the transport.
    * @param params Optional parameters for the connection, which might include
    *   things like authentication tokens, initial subscription topics, or a client ID.
    * @returns A `PubSubClientStream` instance that represents the active connection.
@@ -89,4 +89,12 @@ export interface IPubSubClientTransport {
    * @param stream The stream to disconnect.
    */
   disconnect?: (stream: PubSubClientStream) => void;
+
+  /**
+   * Optional. Configures the transport with a base URL.
+   * If implemented, this allows the transport to resolve relative paths
+   * passed to the `connect` method.
+   * @param apiRoot The base URL for the API.
+   */
+  setApiRoot?: (apiRoot: string) => void;
 }

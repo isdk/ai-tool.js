@@ -34,8 +34,8 @@ export class ClientTools extends ToolFunc {
   private static _transport: IClientToolTransport;
 
   /**
-   * @deprecated This property is now mainly for informational purposes.
-   * The actual endpoint is managed by the transport.
+   * Gets the root URL for API endpoints from the configured transport.
+   * This is used as the base for constructing request URLs.
    */
   static get apiRoot() {
     if (!this._transport) {throwError(NoTransportErrorMsg, 'ClientTools')}
@@ -103,8 +103,8 @@ export class ClientTools extends ToolFunc {
   }
 
   /**
-   * @deprecated This property is now mainly for informational purposes.
-   * The actual endpoint is managed by the transport.
+   * Gets the root URL for API endpoints from the configured transport.
+   * This is used as the base for constructing request URLs.
    */
   get apiRoot() {
     const ctor = this.constructor as typeof ClientTools

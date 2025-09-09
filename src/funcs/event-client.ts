@@ -12,7 +12,13 @@ export interface EventClientFuncParams {
 
 export class EventClient extends ResClientTools {
   static _pubSubTransport: IPubSubClientTransport | undefined
-  static setPubSubTransport(t?: IPubSubClientTransport) { this._pubSubTransport = t }
+  static setPubSubTransport(t?: IPubSubClientTransport) {
+    if (t?.setApiRoot) {
+      // Automatically configure the transport with the static apiRoot
+      t.setApiRoot(this.apiRoot);
+    }
+    this._pubSubTransport = t;
+  }
   static get pubSubTransport(): IPubSubClientTransport {
     if (!this._pubSubTransport) throw new Error('EventClient pubSubTransport not set')
     return this._pubSubTransport

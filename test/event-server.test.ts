@@ -20,9 +20,6 @@ describe('Event Server api', () => {
   let server: any
 
   beforeAll(async () => {
-    EventClient.setPubSubTransport(new SseClientPubSubTransport())
-    EventServer.setPubSubTransport(new SseServerPubSubTransport())
-
     const ServerToolItems: {[name:string]: ServerTools|ToolFunc} = {}
     Object.setPrototypeOf(ServerToolItems, ToolFunc.items)
     ServerTools.items = ServerToolItems
@@ -60,6 +57,9 @@ describe('Event Server api', () => {
     ServerTools.setApiRoot(apiRoot)
     const clientTransport = new HttpClientToolTransport(apiRoot);
     await clientTransport.mount(ClientTools)
+
+    EventClient.setPubSubTransport(new SseClientPubSubTransport())
+    EventServer.setPubSubTransport(new SseServerPubSubTransport())
   })
 
   afterAll(async () => {

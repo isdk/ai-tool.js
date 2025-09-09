@@ -30,10 +30,6 @@ describe('EventTransport End-to-End Test', () => {
   const eventServer2 = new EventServer('events2');
 
   beforeAll(async () => {
-    EventClient.setPubSubTransport(new SseClientPubSubTransport())
-    EventServer.setPubSubTransport(new SseServerPubSubTransport())
-
-
     // Isolate the tool registries for this test suite to prevent name collisions
     const ServerToolItems: {[name:string]: ResServerTools|ToolFunc} = {}
     Object.setPrototypeOf(ServerToolItems, ToolFunc.items)
@@ -57,6 +53,9 @@ describe('EventTransport End-to-End Test', () => {
     const clientTransport = new HttpClientToolTransport(apiRoot);
     // Mount ResClientTools as the base class, since EventClient extends it.
     await clientTransport.mount(EventClient);
+
+    EventClient.setPubSubTransport(new SseClientPubSubTransport())
+    EventServer.setPubSubTransport(new SseServerPubSubTransport())
   });
 
   afterAll(async () => {

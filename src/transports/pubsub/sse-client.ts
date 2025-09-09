@@ -3,12 +3,24 @@ import type { PubSubCtx } from './base';
 import { genUrlParamsStr } from '../../utils';
 
 export class SseClientPubSubTransport implements IPubSubClientTransport {
-  connect(url: string, params?: string[]): PubSubClientStream {
-    let finalUrl = url;
+  private apiRoot: string = '';
+
+  setApiRoot(apiRoot: string) {
+    this.apiRoot = apiRoot;
+  }
+
+  connect(url: string, params?: any): PubSubClientStream {
+    if (!this.apiRoot && !url.startsWith('http')) {
+      throw new Error('SseClientPubSubTransport requires apiRoot to be set or a full URL to be provided.');
+    }
+
+    // url can be a full URL or a path relative to apiRoot
+    let finalUrl = url.startsWith('http') ? url : `${this.apiRoot}/${url}`;
+
     if (params) {
       const qs = genUrlParamsStr(params as any, true);
       if (qs) {
-        finalUrl += (url.includes('?') ? '&' : '?') + qs;
+        finalUrl += (finalUrl.includes('?') ? '&' : '?') + qs;
       }
     }
     const es = new EventSource(finalUrl);
