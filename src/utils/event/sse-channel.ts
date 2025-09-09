@@ -177,6 +177,7 @@ export class SSEChannel {
         clientId = `${remoteAddress}:${remotePort}`;
       }
     }
+    if (events instanceof RegExp || typeof events === 'string') {events = [events]};
     const c: SSEClient = { req, res, events, clientId };
     const maxStreamDuration = this.options.maxStreamDuration
     let cacheControl = 'max-age=0, stale-while-revalidate=0, stale-if-error=0, no-transform'
