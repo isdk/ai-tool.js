@@ -6,7 +6,7 @@ type Events = (string | RegExp)[];
 /**
  * Represents a client connected to the SSE channel.
  */
-type Client = {
+type SSEClient = {
   /** The incoming HTTP request from the client. */
   req: IncomingMessage;
   /** The server response object used to send events to the client. */
@@ -40,7 +40,7 @@ export const SSEChannelAlreadyClosedErrCode = 498
  */
 export class SSEChannel {
   _active: boolean
-  clients: Set<Client>
+  clients: Set<SSEClient>
   messages: Record<string, any>[]
   nextID: number
   options: Record<string, any>
@@ -177,7 +177,7 @@ export class SSEChannel {
         clientId = `${remoteAddress}:${remotePort}`;
       }
     }
-    const c: Client = { req, res, events, clientId };
+    const c: SSEClient = { req, res, events, clientId };
     const maxStreamDuration = this.options.maxStreamDuration
     let cacheControl = 'max-age=0, stale-while-revalidate=0, stale-if-error=0, no-transform'
     if (maxStreamDuration > 0) {
@@ -221,7 +221,7 @@ export class SSEChannel {
    * Unsubscribes a client from the SSE channel.
    * @param c - The client to unsubscribe.
    */
-  unsubscribe(c: Client) {
+  unsubscribe(c: SSEClient) {
     c.res.end()
     this.clients.delete(c)
   }
