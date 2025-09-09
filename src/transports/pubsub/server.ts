@@ -1,4 +1,3 @@
-// import type { IncomingMessage, ServerResponse } from 'http';
 import type { PubSubCtx } from './base';
 
 /**
@@ -79,38 +78,21 @@ export interface IPubSubServerTransport {
   readonly protocol: 'sse' | 'ws' | 'ipc' | string;
 
   /**
-   * Optional method to mount or register the transport's endpoint with an HTTP
-   * server or framework. This is typically required for protocols like SSE or
-   * WebSockets that need to handle incoming HTTP requests at a specific path.
-   *
-   * @param path The URL path to handle (e.g., '/api/events').
-   * @param options Additional options for mounting, specific to the framework.
-   */
-  mount?: (path: string, options?: Record<string, any>) => void;
-
-  /**
-   * Establishes a connection with a client and subscribes it to an event stream.
+   * Subscribes a client to an event stream by taking over an incoming request.
    *
    * This method is designed to be generic. Transport-specific details, such as
-   * HTTP request/response objects or connection handles, should be passed
-   * inside the `options` parameter to avoid polluting the abstraction layer.
+   * HTTP request/response objects, are passed inside the `options` parameter.
    *
    * @param events Optional array of event names to initially subscribe the client to.
    * @param options A container for transport-specific parameters.
-   * @param options.req The underlying request object (e.g., `http.IncomingMessage`).
-   * @param options.res The underlying response object (e.g., `http.ServerResponse`).
-   * @param options.clientId An optional ID provided by the client. If not provided,
-   *   the transport should generate one.
-   * @param options.headers HTTP headers from the client request.
    * @returns A `PubSubClient` object representing the newly connected client.
    */
   subscribe: (
     events?: string[],
     options?: {
-      req?: any; //IncomingMessage;
-      res?: any; //ServerResponse;
+      req: any; // e.g., http.IncomingMessage
+      res: any; // e.g., http.ServerResponse
       clientId?: PubSubClientId;
-      headers?: Record<string, string>;
       [k: string]: any;
     }
   ) => PubSubClient;
