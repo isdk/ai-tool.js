@@ -1,8 +1,6 @@
 import { EventName, EventBusName } from '../utils/event';
 import { event } from './event'
-// import { SSEChannel } from '../utils/event/sse-channel';
 import { type ServerFuncParams } from '../server-tools';
-import type { IncomingMessage, ServerResponse } from 'http';
 import type { Event } from 'events-ex';
 import { ResServerTools } from '../res-server-tools';
 import { ErrorCode, throwError } from '../utils';
@@ -42,17 +40,12 @@ export class EventServer extends ResServerTools {
 
   static publish(data: any, event: string, target?: {
     clientId?: string | string[]}) {
-    // console.log('event-server rePub', event, data)
     return this.pubSubTransport?.publish(event, data, target)
   }
 
-  // the local event-bus listener to forward to SSE
+  // the local event-bus listener to forward to the transport
   static ebListener(eventType: string,...data: any[]) {
     this.pubSubTransport?.publish(eventType, data)
-  }
-
-  static subscribe(req: IncomingMessage, res: ServerResponse, events?: string[], options?: any) {
-    return this.pubSubTransport?.subscribe(events, {...options, req, res})
   }
 
   static alreadyForward(event: string) {
@@ -64,13 +57,6 @@ export class EventServer extends ResServerTools {
 
   publishServerEvent(data: any, event: string) {
     return (this.constructor as any).publish(data, event)
-  }
-
-  subscribeServerEvent(req: IncomingMessage, res: ServerResponse, events?: string|string[]) {
-    if (typeof events === 'string') {
-      events = [events]
-    }
-    return (this.constructor as any).subscribe(req, res, events)
   }
 
   // forward the events on the event-bus to client
@@ -104,8 +90,10 @@ export class EventServer extends ResServerTools {
   }
 
   list({ _req, _res, event}: EventServerFuncParams) {
-    if (_req && _res) {
-      this.subscribeServerEvent(_req, _res, event)
+    if (this.pubSubTransport) {
+      this.pubSubTransport.subscribe(event as string[], { req: _req, res: _res })
+    } else {
+      throwError('PubSub transport not available', 'list', ErrorCode.NotImplemented)
     }
   }
 
