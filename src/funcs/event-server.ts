@@ -38,7 +38,7 @@ export class EventServer extends ResServerTools {
     return (this.constructor as typeof EventServer).pubSubTransport
   }
 
-  static publish(data: any, event: string, target?: {
+  static publish(event: string, data: any, target?: {
     clientId?: string | string[]}) {
     return this.pubSubTransport?.publish(event, data, target)
   }
@@ -55,8 +55,8 @@ export class EventServer extends ResServerTools {
     }
   }
 
-  publishServerEvent(data: any, event: string) {
-    return (this.constructor as any).publish(data, event)
+  publishServerEvent(event: string, data: any) {
+    return (this.constructor as any).publish(event, data)
   }
 
   // forward the events on the event-bus to client
@@ -121,7 +121,7 @@ export class EventServer extends ResServerTools {
         events = [events]
       }
       for (const event of events) {
-        this.publishServerEvent(data, event)
+        this.publishServerEvent(event, data)
       }
       return {event: events}
     } else {
