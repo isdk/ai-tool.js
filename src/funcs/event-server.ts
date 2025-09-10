@@ -13,6 +13,7 @@ export interface EventServerFuncParams extends ServerFuncParams {
   event?: string | string[]
   data?: any
   act?: 'sub' | 'pub' | 'unsub'
+  clientId?: string
 }
 
 export class EventServer extends ResServerTools {
@@ -91,25 +92,49 @@ export class EventServer extends ResServerTools {
 
   list({ _req, _res, event}: EventServerFuncParams) {
     if (this.pubSubTransport) {
-      this.pubSubTransport.subscribe(event as string[], { req: _req, res: _res })
+      return this.pubSubTransport.connect({ req: _req, res: _res, events: event as string[] })
     } else {
       throwError('PubSub transport not available', 'list', ErrorCode.NotImplemented)
     }
   }
 
-  $sub({event}: EventServerFuncParams) {
+  $sub({event, _req}: EventServerFuncParams) {
+    if (!this.pubSubTransport) {
+      throwError('PubSub transport not available', 'sub', ErrorCode.NotImplemented);
+    }
+
     if (event) {
       this.forward(event)
-      return {event}
-    } else {
-      throwError('event is required', 'sub', ErrorCode.InvalidArgument)
+
+      const { remoteAddress, remotePort } = _req.socket;
+      if (event && remoteAddress && remotePort) {
+        const clientId = `${remoteAddress}:${remotePort}`;
+        // TODO: transport should support addSubscription
+        const result = (this.pubSubTransport as any).subscribe?.(clientId, event as string[]);
+        return { subscribed: result, event, clientId };
+      } else {
+        throwError('event and a valid client request are required', 'sub', ErrorCode.InvalidArgument)
+      }
     }
   }
 
-  $unsub({event}: EventServerFuncParams) {
+  $unsub({event, _req}: EventServerFuncParams) {
+    if (!this.pubSubTransport) {
+      throwError('PubSub transport not available', 'unsub', ErrorCode.NotImplemented);
+    }
+
     if (event) {
       this.unforward(event)
-      return {event}
+      const { remoteAddress, remotePort } = _req.socket;
+      if (event && remoteAddress && remotePort) {
+        const clientId = `${remoteAddress}:${remotePort}`;
+        // TODO: transport should support removeSubscription
+        const result = (this.pubSubTransport as any).unsubscribe?.(clientId, event as string[]);
+        return { unsubscribed: result, event, clientId };
+      } else {
+        throwError('event and a valid client request are required', 'unsub', ErrorCode.InvalidArgument)
+      }
+
     } else {
       throwError('event is required', 'unsub', ErrorCode.InvalidArgument)
     }
