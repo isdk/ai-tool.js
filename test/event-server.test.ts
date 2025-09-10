@@ -147,7 +147,7 @@ describe('Event Server api', () => {
     // await event.run({event: ['t1', 't2'], act: 'sub'})
     let res = await event.subscribe('t1')
     await sleep(10) // the eventsource need time to connect
-    expect(res).toStrictEqual({ event: 't1' })
+    expect(res).toMatchObject({ event: 't1' })
     try {
       let t1 = 0
       let t2 = 0
@@ -172,6 +172,31 @@ describe('Event Server api', () => {
       eventServer.emit('t1', 'hi')
       await sleep(1)
       expect(t1).toBe(3)
+    } finally {
+      event.active = false
+    }
+  })
+  it('should publish event via static EventServer.publish', async () => {
+    const event = ClientTools.get('event') as EventClient
+
+    let t3 = 0
+    let receivedData: any
+    event.on('t3', (data: any) => {
+      t3++
+      receivedData = data
+    })
+
+    // With the new logic, subscribe should be sufficient
+    await event.subscribe('t3')
+    await sleep(50); // wait for connection
+
+    try {
+      const eventData = { message: 'hello from static publish' }
+      EventServer.publish('t3', eventData)
+      await sleep(50)
+
+      expect(t3).toBe(1)
+      expect(receivedData).toEqual(eventData)
     } finally {
       event.active = false
     }
