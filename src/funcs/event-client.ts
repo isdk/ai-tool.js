@@ -96,7 +96,7 @@ export class EventClient extends ResClientTools {
   }
 
   /**
-   * subscribe server sent event(SSE)
+   * subscribe server event
    * @param events
    */
   async subscribe(events: string|string[]) {
@@ -115,7 +115,7 @@ export class EventClient extends ResClientTools {
   }
 
   /**
-   * unsubscribe server sent event(SSE)
+   * unsubscribe server event
    * @param events
    */
   async unsubscribe(events: string|string[]) {
