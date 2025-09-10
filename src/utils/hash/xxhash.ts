@@ -39,5 +39,5 @@ export function xxhash(value: HashValue,
 
 export function xxhashAsStr(value: string|Uint8Array,
                             hashAlgo = HashAlgorithm.xxhash64, seed = SEED): string {
-  return _base32768.encode(xxhash(value, hashAlgo, seed));
+  return _base32768.encode(xxhash(value as any, hashAlgo, seed));
 }
