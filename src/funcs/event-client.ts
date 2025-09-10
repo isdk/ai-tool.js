@@ -100,6 +100,9 @@ export class EventClient extends ResClientTools {
    * @param events
    */
   async subscribe(events: string|string[]) {
+    if (!this.active) {
+      this.initEventStream(events)
+    }
     const result = await this.sub({event: events})
     if (typeof events === 'string') {
       events = [events]
