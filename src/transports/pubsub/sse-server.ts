@@ -1,5 +1,5 @@
 import { SSEChannel } from '../../utils/event/sse-channel';
-import type { IPubSubServerTransport, PubSubClientId, PubSubServerSession, PubSubClient } from './server';
+import type { IPubSubServerTransport, PubSubClientId, PubSubServerSession } from './server';
 import type { IncomingMessage, ServerResponse } from 'http';
 
 export class SseServerPubSubTransport implements IPubSubServerTransport {
