@@ -78,24 +78,48 @@ export interface IPubSubServerTransport {
   readonly protocol: 'sse' | 'ws' | 'ipc' | string;
 
   /**
-   * Subscribes a client to an event stream by taking over an incoming request.
+   * Connects a client, establishing a persistent communication channel.
    *
    * This method is designed to be generic. Transport-specific details, such as
    * HTTP request/response objects, are passed inside the `options` parameter.
+   * For protocols like SSE, initial events can be passed to be subscribed to at connection time.
    *
-   * @param events Optional array of event names to initially subscribe the client to.
-   * @param options A container for transport-specific parameters.
-   * @returns A `PubSubClient` object representing the newly connected client.
+   * @param options A container for transport-specific parameters, including optional initial events.
+   * @returns A `PubSubServerSession` object representing the newly connected client session.
    */
-  subscribe: (
-    events?: string[],
+  connect: (
     options?: {
       req: any; // e.g., http.IncomingMessage
       res: any; // e.g., http.ServerResponse
       clientId?: PubSubClientId;
+      events?: string[];
       [k: string]: any;
     }
-  ) => PubSubClient;
+  ) => PubSubServerSession;
+
+  /**
+   * Subscribes a client session to one or more events.
+   *
+   * Note: Not all transports may support subscribing to new events after the
+   * initial connection. For transports like SSE, this might be a no-op or
+   * throw an error.
+   *
+   * @param session The `PubSubServerSession` of the client.
+   * @param events An array of event names to subscribe to.
+   */
+  subscribe: (session: PubSubServerSession, events: string[]) => void;
+
+  /**
+   * Unsubscribes a client session from one or more events.
+   *
+   * Note: Not all transports may support unsubscribing from events after the
+   * initial connection. For transports like SSE, this might be a no-op or
+   * throw an error.
+   *
+   * @param session The `PubSubServerSession` of the client.
+   * @param events An array of event names to unsubscribe from.
+   */
+  unsubscribe: (session: PubSubServerSession, events: string[]) => void;
 
   /**
    * Publishes an event from the server to connected clients.

@@ -10,12 +10,12 @@ export class SseServerPubSubTransport implements IPubSubServerTransport {
   private onConn?: (s: PubSubServerSession) => void;
   private onDis?: (s: PubSubServerSession) => void;
 
-  subscribe(events?: string[], options?: { req: IncomingMessage; res: ServerResponse; clientId?: string }): PubSubClient {
-    const { req, res, clientId } = options ?? {};
-    if (!req || !res) throw new Error('SSE subscribe requires options.req and options.res');
+  connect(options?: { req: IncomingMessage; res: ServerResponse; clientId?: string, events?: string[] }): PubSubServerSession {
+    const { req, res, clientId, events } = options ?? {};
+    if (!req || !res) throw new Error('SSE connect requires options.req and options.res');
 
     // Let SSEChannel do its work
-    const client = this.channel.subscribe(req, res, events, clientId);
+    const client = this.channel.connect(req, res, events, clientId);
 
     // Create a temporary session to notify the upper layer
     const session: PubSubServerSession = {
@@ -32,7 +32,19 @@ export class SseServerPubSubTransport implements IPubSubServerTransport {
     this.onConn?.(session);
 
     req.on('close', () => this.onDis?.(session));
-    return client;
+    return session;
+  }
+
+  subscribe(session: PubSubServerSession, events: string[]) {
+    if (session.clientId) {
+      this.channel.subscribe(session.clientId, events);
+    }
+  }
+
+  unsubscribe(session: PubSubServerSession, events: string[]) {
+    if (session.clientId) {
+      this.channel.unsubscribe(session.clientId, events);
+    }
   }
 
   publish(event: string, data: any, target?: { clientId?: PubSubClientId | PubSubClientId[] }) {
