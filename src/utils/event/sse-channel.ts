@@ -15,9 +15,8 @@ type SSEClient = {
   events?: Events;
   /**
    * A unique identifier for the client.
-   * If not provided during subscription, it defaults to `remoteAddress:remotePort`.
    */
-  clientId?: string;
+  clientId: string;
 }
 
 /**
@@ -40,7 +39,7 @@ export const SSEChannelAlreadyClosedErrCode = 498
  */
 export class SSEChannel {
   _active: boolean
-  clients: Set<SSEClient>
+  clients: Map<string, SSEClient>
   messages: Record<string, any>[]
   nextID: number
   options: Record<string, any>
@@ -94,7 +93,7 @@ export class SSEChannel {
     )
 
     this.nextID = this.options.startId
-    this.clients = new Set()
+    this.clients = new Map()
     this.messages = []
     this.active = true
   }
@@ -139,16 +138,18 @@ export class SSEChannel {
 
     if (target?.clientId) {
       const targetIds = Array.isArray(target.clientId) ? target.clientId : [target.clientId];
-      [...this.clients]
-        .filter(c => c.clientId && targetIds.includes(c.clientId))
-        .forEach(c => c.res.write(output));
+      targetIds.forEach(id => {
+        const client = this.clients.get(id);
+        if (client) {
+          client.res.write(output);
+        }
+      });
     } else {
-      [...this.clients]
-        .filter(c => !_eventName || hasEventMatch(c.events, _eventName))
-        .forEach((c, i) => {
-          // console.log(i, '🚀 ~ SSEChannel ~ publish ~ output:', c.req.socket.remoteAddress ?? '', output)
+      this.clients.forEach(c => {
+        if (!_eventName || hasEventMatch(c.events, _eventName)) {
           c.res.write(output)
-        });
+        }
+      });
     }
 
     while (this.messages.length > this.options.historySize) {
@@ -159,26 +160,87 @@ export class SSEChannel {
   }
 
   /**
+   * Adds event subscriptions to an active client.
+   * @param clientId The ID of the client to modify.
+   * @param events An array of event names or patterns to add.
+   * @returns `true` if the client was found and updated, otherwise `false`.
+   */
+  subscribe(clientId: string, events: Events): boolean {
+    if (!this.active) throwError('Channel closed', 'SSEChannel', SSEChannelAlreadyClosedErrCode);
+    if (events instanceof RegExp || typeof events === 'string') { events = [events]; }
+
+    const client = this.clients.get(clientId);
+    if (client) {
+      if (!client.events) {
+        client.events = [];
+      }
+      for (const event of events) {
+        if (!client.events.some(e => e.toString() === event.toString())) {
+          client.events.push(event);
+        }
+      }
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Removes event subscriptions from an active client.
+   * @param clientId The ID of the client to modify.
+   * @param events An array of event names or patterns to remove.
+   * @returns `true` if the client was found and updated, otherwise `false`.
+   */
+  unsubscribe(clientId: string, events: Events): boolean {
+    if (!this.active) throwError('Channel closed', 'SSEChannel', SSEChannelAlreadyClosedErrCode);
+    if (events instanceof RegExp || typeof events === 'string') { events = [events]; }
+
+    const client = this.clients.get(clientId);
+    if (client) {
+      if (client.events) {
+        client.events = client.events.filter(existingEvent =>
+          !events.some(eventToRemove => eventToRemove.toString() === existingEvent.toString())
+        );
+      }
+      return true;
+    }
+    return false;
+  }
+
+  /**
    * Subscribes a client to the SSE channel.
    *
    * @param req The incoming HTTP request.
    * @param res The server response.
    * @param events An array of event names or patterns to subscribe to.
-   * @param clientId An optional unique ID for the client. If not provided, it defaults to `remoteAddress:remotePort`.
+   * @param clientId An optional unique ID for the client. If not provided, a new UUID will be generated.
    * @returns The newly created client object.
-   * @throws An error if the channel is closed.
+   * @throws An error if the channel is closed or the clientId is already in use.
    */
-  subscribe(req: IncomingMessage, res: ServerResponse, events?: Events, clientId?: string) {
+  connect(req: IncomingMessage, res: ServerResponse, events?: Events, clientId?: string) {
     if (!this.active) throwError('Channel closed', 'SSEChannel', SSEChannelAlreadyClosedErrCode);
-    // console.log('🚀 ~ SSEChannel ~ subscribe ~ events:', events)
-    if (!clientId) {
+
+    let finalClientId = clientId;
+    if (!finalClientId) {
       const { remoteAddress, remotePort } = req.socket;
       if (remoteAddress && remotePort) {
-        clientId = `${remoteAddress}:${remotePort}`;
+        finalClientId = `${remoteAddress}:${remotePort}`;
+      } else {
+        // Cannot identify client with a predictable ID.
+        throw new Error('Cannot determine a predictable client ID for the connection from request.');
       }
     }
+
+    // Handle collisions: if a client with this ID already exists, disconnect the old one.
+    // This is better than throwing an error, as it handles legitimate reconnects.
+    if (this.clients.has(finalClientId)) {
+      const oldClient = this.clients.get(finalClientId);
+      if (oldClient) {
+        this.disconnect(oldClient);
+      }
+    }
+
     if (events instanceof RegExp || typeof events === 'string') {events = [events]};
-    const c: SSEClient = { req, res, events, clientId };
+    const c: SSEClient = { req, res, events, clientId: finalClientId };
     const maxStreamDuration = this.options.maxStreamDuration
     let cacheControl = 'max-age=0, stale-while-revalidate=0, stale-if-error=0, no-transform'
     if (maxStreamDuration > 0) {
@@ -205,16 +267,16 @@ export class SSEChannel {
     }
 
     c.res.write(body);
-    this.clients.add(c);
+    this.clients.set(c.clientId, c);
 
     if (maxStreamDuration > 0) {
       setTimeout(() => {
         if (!c.res.writableEnded) {
-          this.unsubscribe(c);
+          this.disconnect(c);
         }
       }, maxStreamDuration);
     }
-    c.res.on('close', () => this.unsubscribe(c));
+    c.res.on('close', () => this.disconnect(c));
     return c;
   }
 
@@ -222,9 +284,9 @@ export class SSEChannel {
    * Unsubscribes a client from the SSE channel.
    * @param c - The client to unsubscribe.
    */
-  unsubscribe(c: SSEClient) {
+  disconnect(c: SSEClient) {
     c.res.end()
-    this.clients.delete(c)
+    this.clients.delete(c.clientId)
   }
 
   clearClients() {
