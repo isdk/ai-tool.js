@@ -120,48 +120,58 @@ Once the setup is complete, the API for using the event bus is the same regardle
 
 ### Forwarding and Publishing Events (Server-Side)
 
-The server can push events to clients either by forwarding them from a central event bus or by publishing them directly.
+There are two ways to send events from the server to clients: through the global `eventBus` (standard approach) or by publishing directly to the transport (advanced approach).
+
+#### Standard Approach: Forwarding from the Event Bus
+
+The recommended and most common way to send events is to emit them on the global `eventBus`. You can configure the `eventServer` to automatically listen for specific events on this bus and forward them to subscribed clients. This creates a clean, decoupled architecture.
 
 ```typescript
-import { eventServer, EventServer } from '@isdk/ai-tool';
+import { eventServer } from '@isdk/ai-tool';
 import { event } from '@isdk/ai-tool/funcs/event'; // The global eventBus
 
 const eventBus = event.runSync();
 
-// **Forwarding (Recommended)**
-// Automatically relay events from the global eventBus to subscribed clients.
+// 1. Configure the server to forward events.
 eventServer.forward(['user-updated', 'item-added']);
 
-// Now, any other part of your server can simply emit events on the bus:
+// 2. Now, any other part of your server can simply emit events on the bus.
 function updateUser(user: any) {
   eventBus.emit('user-updated', { userId: user.id, status: 'active' });
 }
+```
 
-// **Direct Publishing**
-// The `EventServer.publish` method allows sending an event directly to clients.
-// Its signature is: `publish(event: string, data: any, target?: { clientId: string | string[] })`.
+#### Advanced Approach: Direct Publishing to the Transport
 
-// 1. Broadcast to all clients subscribed to 'broadcast-message'.
-// This is the default behavior when `target` is omitted.
+For special cases where you need to bypass the global `eventBus` and send an event directly to the transport layer, you can use the static `EventServer.publish()` method.
+
+This is an advanced feature. For it to work correctly, the client must have explicitly registered its interest in the event at the transport level, typically by using `eventClient.init(['event-name'])`.
+
+```typescript
+import { EventServer } from '@isdk/ai-tool';
+
+// The signature is: `publish(event: string, data: any, target?: { clientId: string | string[] })`.
+
+// 1. Broadcast to all clients that used init() to subscribe to 'broadcast-message'.
 function sendBroadcast() {
     EventServer.publish('broadcast-message', { message: 'Server is restarting soon!' });
 }
 
 // 2. Send a targeted event to a specific client.
-// This requires knowing the `clientId` of the recipient.
 function sendDirectMessage(clientId: string, message: string) {
     const target = { clientId };
     EventServer.publish('private-message', { text: message }, target);
 }
+```
 
-// 3. Send an event to a group of specific clients.
-function sendToGroup(clientIds: string[], message: string) {
-    const target = { clientId: clientIds };
-    EventServer.publish('group-message', { text: message }, target);
-}
+### Receiving Client Events
 
-// **Receiving Client Events**
-// Listen for events that were published or forwarded from a client.
+You can listen for events that were published or forwarded from a client on the global `eventBus`.
+
+```typescript
+import { event } from '@isdk/ai-tool/funcs/event';
+const eventBus = event.runSync();
+
 eventBus.on('client-action', (data: any, event: any) => {
   console.log(`Received event "${event.type}" from a client:`, data);
 });

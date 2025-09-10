@@ -49,8 +49,10 @@ class CalculatorTool extends RpcMethodsServerTool {
 }
 
 // The main 'func' inherited from the base class handles the routing.
-new CalculatorTool('calculator').register();
+const calculator = new CalculatorTool('calculator').register();
 ```
+
+**Note:** When an `RpcMethodsServerTool` instance is created, it automatically creates alias methods for its RPC methods (those prefixed with `$`). For example, an alias `add` is created for `$add`, provided the `add` method doesn't already exist. This allows for direct server-side calls (e.g., `calculator.add({a: 1, b: 2})`). The key reason for this is to maintain consistency with the client-side API, as the proxy methods on `RpcMethodsClientTool` are also created without the `$` prefix.
 
 ### `RpcMethodsClientTool`
 
