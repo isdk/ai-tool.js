@@ -104,17 +104,18 @@ export class EventServer extends ResServerTools {
     }
 
     if (event) {
-      this.forward(event)
+      this.forward(event);
 
-      const { remoteAddress, remotePort } = _req.socket;
-      if (event && remoteAddress && remotePort) {
-        const clientId = `${remoteAddress}:${remotePort}`;
-        // TODO: transport should support addSubscription
-        const result = (this.pubSubTransport as any).subscribe?.(clientId, event as string[]);
-        return { subscribed: result, event, clientId };
+      const session = this.pubSubTransport.getSessionFromReq?.(_req);
+      if (session) {
+        this.pubSubTransport.subscribe(session, Array.isArray(event) ? event : [event]);
+        return { forward: true, subscribed: true, event, clientId: session.clientId };
       } else {
-        throwError('event and a valid client request are required', 'sub', ErrorCode.InvalidArgument)
+        console.warn('No session found for request or transport does not support dynamic subscription', 'sub');
+        return { forward: true, event };
       }
+    } else {
+      throwError('event is required', 'sub', ErrorCode.InvalidArgument);
     }
   }
 
@@ -124,17 +125,16 @@ export class EventServer extends ResServerTools {
     }
 
     if (event) {
-      this.unforward(event)
-      const { remoteAddress, remotePort } = _req.socket;
-      if (event && remoteAddress && remotePort) {
-        const clientId = `${remoteAddress}:${remotePort}`;
-        // TODO: transport should support removeSubscription
-        const result = (this.pubSubTransport as any).unsubscribe?.(clientId, event as string[]);
-        return { unsubscribed: result, event, clientId };
-      } else {
-        throwError('event and a valid client request are required', 'unsub', ErrorCode.InvalidArgument)
-      }
+      this.unforward(event);
+      const session = this.pubSubTransport.getSessionFromReq?.(_req);
 
+      if (session) {
+        this.pubSubTransport.unsubscribe(session, Array.isArray(event) ? event : [event]);
+        return { forward: false, subscribed: false, event, clientId: session.clientId };
+      } else {
+        console.warn('Could not find a valid client session for the request or transport does not support dynamic subscription', 'unsub');
+        return { forward: false, event };
+      }
     } else {
       throwError('event is required', 'unsub', ErrorCode.InvalidArgument)
     }
