@@ -154,4 +154,13 @@ export interface IPubSubServerTransport {
       ctx?: PubSubCtx
     ) => void
   ) => void;
+
+  /**
+   * Optional. Finds and returns a session based on a request object.
+   * This is used by higher-level tools to find the correct session
+   * for operations like adding a subscription via a generic RPC call.
+   * @param req The request object (e.g., http.IncomingMessage or Electron.IpcMainEvent).
+   * @returns The corresponding session, or undefined if not found.
+   */
+  getSessionFromReq?: (req: any) => PubSubServerSession | undefined;
 }
