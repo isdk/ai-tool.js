@@ -45,6 +45,10 @@ export class SSEChannel {
   options: Record<string, any>
   pingTimer?: NodeJS.Timeout
 
+  /**
+   * Gets the active status of the channel.
+   * @returns True if the channel is active, false otherwise.
+   */
   get active() {
     return this._active
   }
@@ -76,6 +80,13 @@ export class SSEChannel {
   /**
    * Creates a new SSE channel.
    * @param options - The options for the SSE channel.
+   * @param options.pingInterval - Interval in milliseconds to send ping messages (default: 3000).
+   * @param options.maxStreamDuration - Maximum duration of a client connection in milliseconds (default: 30000).
+   * @param options.clientRetryInterval - Interval in milliseconds for clients to retry connection (default: 1000).
+   * @param options.startId - Starting ID for messages (default: 1).
+   * @param options.historySize - Maximum number of messages to keep in history (default: 100).
+   * @param options.rewind - Number of historical messages to send to new clients (default: 0).
+   * @param options.cors - Whether to enable CORS headers (default: false).
    */
   constructor(options?: Record<string, any>) {
     this.options = Object.assign(
@@ -207,14 +218,14 @@ export class SSEChannel {
   }
 
   /**
-   * Subscribes a client to the SSE channel.
+   * Establishes a new SSE connection with a client and adds it to the channel.
    *
-   * @param req The incoming HTTP request.
-   * @param res The server response.
-   * @param events An array of event names or patterns to subscribe to.
-   * @param clientId An optional unique ID for the client. If not provided, a new UUID will be generated.
-   * @returns The newly created client object.
-   * @throws An error if the channel is closed or the clientId is already in use.
+   * @param req The incoming HTTP request from the client.
+   * @param res The server response object used to send events to the client.
+   * @param events An array of event names or patterns that the client wants to subscribe to.
+   * @param clientId An optional unique identifier for the client. If not provided, one will be generated based on the client's IP and port.
+   * @returns The newly created client object representing the connected client.
+   * @throws An error if the channel is closed or if a client ID cannot be determined.
    */
   connect(req: IncomingMessage, res: ServerResponse, events?: Events, clientId?: string) {
     if (!this.active) throwError('Channel closed', 'SSEChannel', SSEChannelAlreadyClosedErrCode);
@@ -281,14 +292,17 @@ export class SSEChannel {
   }
 
   /**
-   * Unsubscribes a client from the SSE channel.
-   * @param c - The client to unsubscribe.
+   * Disconnects a client from the SSE channel and cleans up resources.
+   * @param c - The client to disconnect.
    */
   disconnect(c: SSEClient) {
     c.res.end()
     this.clients.delete(c.clientId)
   }
 
+  /**
+   * Disconnects all clients from the SSE channel.
+   */
   clearClients() {
     this.clients.forEach(c => c.res.end())
     this.clients.clear()
