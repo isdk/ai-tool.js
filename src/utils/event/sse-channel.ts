@@ -6,7 +6,7 @@ type Events = (string | RegExp)[];
 /**
  * Represents a client connected to the SSE channel.
  */
-type SSEClient = {
+export type SSEClient = {
   /** The incoming HTTP request from the client. */
   req: IncomingMessage;
   /** The server response object used to send events to the client. */
@@ -218,6 +218,20 @@ export class SSEChannel {
   }
 
   /**
+   * Finds a client instance by its originating HTTP request.
+   * @param req The incoming HTTP request.
+   * @returns The matching SSEClient, or undefined if not found.
+   */
+  getClientByReq(req: IncomingMessage): SSEClient | undefined {
+    for (const client of this.clients.values()) {
+      if (client.req === req) {
+        return client;
+      }
+    }
+    return undefined;
+  }
+
+  /**
    * Establishes a new SSE connection with a client and adds it to the channel.
    *
    * @param req The incoming HTTP request from the client.
@@ -332,3 +346,4 @@ export class SSEChannel {
     return this.clients.size
   }
 }
+
