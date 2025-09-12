@@ -19,6 +19,12 @@ export interface EventServerFuncParams extends ServerFuncParams {
 }
 
 export class EventServer extends ResServerTools {
+  /**
+   * Controls whether to forward events published by clients to the server-side event bus.
+   * Defaults to false for security. Must be explicitly enabled for 'client:' prefixed events to be emitted.
+   */
+  public static forwardClientPublishes = false;
+
   private static _boundEbListener?: (this: Event, ...data: any[]) => any;
 
   static _pubSubTransport: IPubSubServerTransport | undefined
@@ -108,13 +114,15 @@ export class EventServer extends ResServerTools {
     if (event) {
       this.forward(event);
 
-      const session = this.pubSubTransport.getSessionFromReq?.(_req);
+      const session = _req && this.pubSubTransport.getSessionFromReq?.(_req);
       if (session) {
         this.pubSubTransport.subscribe(session, Array.isArray(event) ? event : [event]);
         return { forward: true, subscribed: true, event, clientId: session.clientId };
       } else {
         if (this.pubSubTransport.getSessionFromReq) {
           console.warn('$sub: No session found for request');
+        } else if (!_req) {
+          console.warn(`$sub: missing _req`);
         } else {
           console.warn(`$sub: The ${this.pubSubTransport.name} Transport does not support dynamic subscription`);
         }
@@ -132,7 +140,7 @@ export class EventServer extends ResServerTools {
 
     if (event) {
       this.unforward(event);
-      const session = this.pubSubTransport.getSessionFromReq?.(_req);
+      const session = _req && this.pubSubTransport.getSessionFromReq?.(_req);
 
       if (session) {
         this.pubSubTransport.unsubscribe(session, Array.isArray(event) ? event : [event]);
@@ -140,6 +148,8 @@ export class EventServer extends ResServerTools {
       } else {
         if (this.pubSubTransport.getSessionFromReq) {
           console.warn('$unsub: No session found for request');
+        } else if (!_req) {
+          console.warn(`$sub: missing _req`);
         } else {
           console.warn(`$unsub: The ${this.pubSubTransport.name} Transport does not support dynamic subscription`);
         }
@@ -154,16 +164,20 @@ export class EventServer extends ResServerTools {
     if (events && data) {
       // Get the session and clientId from the transport, not from the client payload.
       // This is a critical security measure to prevent impersonation.
-      const session = this.pubSubTransport?.getSessionFromReq?.(_req);
+      const session = _req && this.pubSubTransport?.getSessionFromReq?.(_req);
       const senderId = session?.clientId;
+      const ctor = this.constructor as typeof EventServer;
 
       if (typeof events === 'string') {
         events = [events]
       }
       for (const event of events) {
-        // Emit the prefixed event on the server-side bus for internal listeners.
-        // A listener for 'my-event' will NOT receive 'client:my-event'.
-        eventBus.emit(ClientEventPrefix + event, data, { sender: session });
+        // Only forward to internal bus if the feature is enabled.
+        if (ctor.forwardClientPublishes) {
+          // Emit the prefixed event on the server-side bus for internal listeners.
+          // A listener for 'my-event' will NOT receive 'client:my-event'.
+          eventBus.emit(ClientEventPrefix + event, data, {event, sender: session });
+        }
 
         // Broadcast the ORIGINAL event name to other clients, as they are not
         // aware of the server's internal prefixing convention.
