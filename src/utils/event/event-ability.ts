@@ -10,7 +10,8 @@ export const EventBusName = 'event-bus'
 export type EventListenerFn = (this: Event, name: string, ...args: any) => any;
 export type EventErrorListenerFn = (this: Event, err: Error, name: string, ...args: any) => any;
 
-function getEventableClass(Backend: any) {
+function getEventableClass(Backend: any, options?: {eventBusName?: string}) {
+  const eventBusName = options?.eventBusName || EventBusName;
 
   class BackendEventable {
     declare name: string
@@ -21,7 +22,7 @@ function getEventableClass(Backend: any) {
 
     static get emitter() {
       if (!this._emitter) {
-        const emitter = (this as unknown as typeof ToolFunc).get(EventBusName)?.emitter
+        const emitter = (this as unknown as typeof ToolFunc).get(eventBusName)?.emitter
         if (emitter) {
           this._emitter = emitter;
           this.prototype._events = emitter._events;
