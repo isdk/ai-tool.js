@@ -7,17 +7,17 @@ export interface RpcMethodsClientFuncParams {
 }
 
 export class RpcMethodsClientTool extends ClientTools {
-  async fetch(options: RpcMethodsClientFuncParams, action: ActionName, subName?: any) {
+  async fetch(options: RpcMethodsClientFuncParams, action: ActionName, subName?: any, fetchOptions?: any) {
     if (!options) {options = {} as any}
     if (action?.startsWith('$')) {
       options.act = action
       action = 'post'
     }
-    return await super.fetch(options, action, subName)
+    return await super.fetch(options, action, subName, fetchOptions)
   }
 
-  async _func(action: ActionName, options: RpcMethodsClientFuncParams) {
-    const result = await this.fetch(options, action);
+  async _func(action: ActionName, options: RpcMethodsClientFuncParams, fetchOptions?: any) {
+    const result = await this.fetch(options, action, null, fetchOptions);
     return result;
   }
 

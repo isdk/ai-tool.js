@@ -94,9 +94,8 @@ export interface RemoteFuncItem extends BaseFuncItem {
    */
   action?: ActionName
   /**
-   * Options to be passed to the underlying `fetch` call in an HTTP transport.
+   * Addtional options to be passed to the underlying `fetch` call in a transport.
    * @type {any}
-   * @deprecated Use `transport` instead.
    */
   fetchOptions?: any
 }

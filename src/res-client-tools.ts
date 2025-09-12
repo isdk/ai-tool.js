@@ -15,7 +15,7 @@ export interface ResClientTools {
 }
 
 export class ResClientTools extends RpcMethodsClientTool {
-  async fetch(options: ResClientFuncParams, action: ActionName) {
+  async fetch(options: ResClientFuncParams, action: ActionName, ...args: any[]) {
     if (!options) {options = {} as any}
     if (action && this.action === 'res') {
       if (action === 'get' || action === 'delete') {
@@ -31,6 +31,6 @@ export class ResClientTools extends RpcMethodsClientTool {
         action = 'post'
       }
     }
-    return await super.fetch(options, action)
+    return await super.fetch(options, action, ...args)
   }
 }

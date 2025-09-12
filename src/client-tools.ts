@@ -2,6 +2,7 @@ import { throwError } from "./utils/base-error";
 import { Funcs, ToolFunc } from "./tool-func";
 import { RemoteToolFuncSchema, type RemoteFuncItem, type ActionName } from "./utils/consts";
 import type { IClientToolTransport } from "./transports/client";
+import { defaultsDeep } from "lodash-es";
 
 /**
  * Declaration merging to extend the `ClientTools` class with `ClientFuncItem` properties.
@@ -111,10 +112,11 @@ export class ClientTools extends ToolFunc {
     return ctor.apiRoot
   }
 
-  async fetch(objParam?: any, act?: ActionName, subName?: any) {
+  async fetch(objParam?: any, act?: ActionName, subName?: any, fetchOptions?: any) {
     const ctor = this.constructor as typeof ClientTools
     if (ctor._transport) {
-      return ctor._transport.fetch(this.name!, objParam, act, subName, this.fetchOptions)
+      fetchOptions = defaultsDeep(fetchOptions, this.fetchOptions)
+      return ctor._transport.fetch(this.name!, objParam, act, subName, fetchOptions)
     } else {
       throwError(NoTransportErrorMsg, 'ClientTools');
     }
