@@ -42,9 +42,10 @@ export class SseServerPubSubTransport implements IPubSubServerTransport {
   }
 
   getSessionFromReq(req: IncomingMessage): PubSubServerSession | undefined {
-    const client = this.channel.getClientByReq(req);
-    if (client) {
-      return this.sessions.get(client.clientId);
+    const clientId = req.headers['x-client-id'] as string;
+    if (clientId) {
+      const result = this.sessions.get(clientId);
+      return result;
     }
     return undefined;
   }
