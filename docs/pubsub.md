@@ -112,6 +112,203 @@ async function main() {
 }
 ```
 
+## Example: Electron IPC for Real-time Desktop Apps
+
+For desktop applications built with Electron, the event system can operate over the built-in Inter-Process Communication (IPC) channels. This provides a highly efficient, real-time backend within your application shell without needing an HTTP server.
+
+We will cover two scenarios: using IPC for Pub/Sub only, and a fully integrated approach where both RPC and Pub/Sub use IPC.
+
+### Scenario 1: Standalone Pub/Sub over IPC
+
+This approach is ideal if you only need a real-time eventing layer or if your main RPC communication uses a different transport (e.g., HTTP).
+
+#### Main Process Setup (`main.ts`)
+
+You only need to set up the `ElectronServerPubSubTransport` and tell it to start listening.
+
+```typescript
+// In your main Electron process (e.g., main.ts)
+import { EventServer, ElectronServerPubSubTransport } from '@isdk/ai-tool';
+
+// 1. Define a unique namespace for your pub/sub channels.
+const pubSubNamespace = 'my-app-events';
+
+// 2. Create an instance of the server transport.
+const serverTransport = new ElectronServerPubSubTransport(pubSubNamespace);
+
+// 3. Set the transport for the global EventServer.
+EventServer.setPubSubTransport(serverTransport);
+
+// 4. **Crucial Step: Activate the transport's IPC listeners.**
+serverTransport.listen();
+
+// Now the EventServer is ready. You can publish events from anywhere
+// in the main process, and they will be sent to subscribed renderers.
+console.log('[Main] Pub/Sub transport listening...');
+setInterval(() => {
+  EventServer.publish('server-tick', { timestamp: Date.now() });
+}, 5000);
+```
+
+#### Renderer Process Setup (`renderer.ts`)
+
+The client setup is also straightforward. You must configure the `EventClient` with the same namespace.
+
+```typescript
+// In your client-side code (e.g., renderer.ts)
+import { EventClient, eventClient, ElectronClientPubSubTransport, backendEventable } from '@isdk/ai-tool';
+
+// 1. Use the same namespace as the server.
+const pubSubNamespace = 'my-app-events';
+
+// 2. Set the PubSub transport for the client.
+EventClient.setPubSubTransport(new ElectronClientPubSubTransport());
+
+// 3. **Crucial Step: Configure the EventClient with the namespace.**
+// This is used as the 'apiRoot' to determine which IPC channels to use.
+EventClient.apiRoot = pubSubNamespace;
+
+// 4. Make the client eventable and register it.
+backendEventable(EventClient);
+eventClient.register();
+
+// 5. Subscribe to events. This automatically triggers the connection to the main process.
+await eventClient.subscribe('server-tick');
+
+eventClient.on('server-tick', (data) => {
+  console.log('Received tick from main process:', data);
+  document.body.innerHTML = `Tick received at: ${data.timestamp}`;
+});
+```
+> **Note on Security**: This simple example assumes `contextIsolation` is disabled. For modern, secure Electron apps, please see the integrated example below which includes a `preload.js` script.
+
+### Scenario 2: Integrated RPC and Pub/Sub over IPC
+
+This is the recommended, fully-native approach for Electron apps. It provides both request-response (RPC) and real-time events over the same efficient IPC foundation. This requires a `preload.js` script to securely bridge the main and renderer processes.
+
+#### Part 1: Preload Script (`preload.ts`)
+
+This script acts as a secure bridge, exposing only the necessary IPC functions to the renderer process. Your `BrowserWindow` webPreferences should point to this file.
+
+```typescript
+// preload.ts
+import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
+
+// Define the API that will be exposed to the renderer process via `window.electronApi`
+const electronApi = {
+  // For RPC (invoke/handle)
+  invoke: (channel: string, ...args: any[]) => ipcRenderer.invoke(channel, ...args),
+  
+  // For Pub/Sub (send/on)
+  send: (channel: string, ...args: any[]) => ipcRenderer.send(channel, ...args),
+  on: (channel: string, listener: (event: IpcRendererEvent, ...args: any[]) => void) => {
+    ipcRenderer.on(channel, listener);
+  },
+  off: (channel: string, listener: (...args: any[]) => void) => {
+    ipcRenderer.removeListener(channel, listener);
+  },
+};
+
+// Securely expose the API to the renderer's window object
+contextBridge.exposeInMainWorld('electronApi', electronApi);
+
+// Optional: Define a type for your exposed API for better TypeScript support
+export type ElectronApi = typeof electronApi;
+```
+
+#### Part 2: Main Process Setup (`main.ts`)
+
+Here, we set up both the `IpcServerToolTransport` for RPC and the `ElectronServerPubSubTransport` for Pub/Sub.
+
+```typescript
+// main.ts
+import { IpcServerToolTransport } from '@isdk/ai-tool';
+import { ElectronServerPubSubTransport } from '@isdk/ai-tool';
+import { EventServer, ResServerTools, eventServer } from '@isdk/ai-tool';
+
+// Use a single, consistent namespace for all IPC channels
+const channelNamespace = 'my-app';
+
+// --- 1. Setup IPC for standard RPC ---
+const rpcTransport = new IpcServerToolTransport();
+// This sets up handlers for 'my-app:discover' and 'my-app:rpc'.
+rpcTransport.mount(ResServerTools, channelNamespace); 
+rpcTransport.start();
+console.log(`[Main] RPC transport started on namespace: ${channelNamespace}`);
+
+// --- 2. Setup IPC for Pub/Sub ---
+const pubsubTransport = new ElectronServerPubSubTransport(channelNamespace);
+EventServer.setPubSubTransport(pubsubTransport);
+pubsubTransport.listen(); // Activate the pub/sub listeners
+console.log(`[Main] Pub/Sub transport listening on namespace: ${channelNamespace}`);
+
+// --- 3. Register Tools ---
+// Register the eventServer so its methods (sub, unsub) can be called via RPC
+eventServer.register();
+```
+
+#### Part 3: Renderer Process Setup (`renderer.ts`)
+
+The renderer will use the `electronApi` exposed by the preload script. To make this work seamlessly, you can create simple wrapper classes for your transports that use the bridged API instead of the raw `ipcRenderer`.
+
+```typescript
+// renderer.ts
+import { IpcClientToolTransport, ElectronClientPubSubTransport, EventClient, ResClientTools, eventClient, backendEventable } from '@isdk/ai-tool';
+import type { ElectronApi } from './preload';
+
+// Make the bridged API available on the window object for TypeScript
+declare global {
+  interface Window { electronApi: ElectronApi; }
+}
+
+// --- Custom Transports Using the Secure Bridge ---
+
+// 1. Create a custom RPC transport that uses the bridged `invoke` method.
+class SecureIpcRpcTransport extends IpcClientToolTransport {
+  async _fetch(name: string, args?: any, act?: any, subName?: any) {
+    const payload = { toolId: name, params: args || {}, act, id: subName };
+    return window.electronApi.invoke(this.channels.rpc, payload);
+  }
+  async loadApis() {
+    return window.electronApi.invoke(this.channels.discover);
+  }
+}
+
+// 2. Create a custom Pub/Sub transport that uses the bridged API.
+// This pattern requires that the base transport class allows for dependency injection.
+class SecureIpcPubSubTransport extends ElectronClientPubSubTransport {
+  constructor() {
+    // Pass the bridged API to the constructor instead of letting it use the global ipcRenderer
+    super(window.electronApi as any);
+  }
+}
+
+// --- Application Setup ---
+async function main() {
+  const channelNamespace = 'my-app';
+
+  // Use the secure RPC transport
+  const rpcTransport = new SecureIpcRpcTransport();
+  await rpcTransport.mount(ResClientTools, channelNamespace);
+
+  // Use the secure Pub/Sub transport
+  const pubsubTransport = new SecureIpcPubSubTransport();
+  EventClient.setPubSubTransport(pubsubTransport);
+  EventClient.apiRoot = channelNamespace;
+
+  backendEventable(EventClient);
+  eventClient.register();
+
+  // Now you can use RPC and Pub/Sub together seamlessly and securely!
+  await eventClient.subscribe('server-time');
+  eventClient.on('server-time', (data) => {
+    console.log('Received time from main:', data);
+  });
+}
+
+main();
+```
+
 ---
 
 ## General Usage (Transport-Agnostic)

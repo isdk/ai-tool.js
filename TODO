@@ -21,3 +21,4 @@ bugs:
   ✔ 当多任务被阻塞的时候，如果被abort，会出问题？因为这个时候，是在信号量的Promise中的，所以，这个任务不会被立马取消，而是继续等待，直到在执行该任务的时候。这是个bug. @done(24-07-26 09:18)
   ✔ 新增 `TaskAbortController::throwRejected`用于在任务中正确判断是否该终止执行(因为abort)，因为在semaphore中，会`reject()`，如果不正确判断会导致二次`reject`. @done(24-07-26 10:09)
   ☐ splitSentence: 对于纯文本是否忽略空行？目前是忽略的。应该不能忽略。
+  ☐ EventClient initEventStream 后马上 subscribe (http)似乎拿不到session. 目前无影响，因为在init时就已经订阅了。
