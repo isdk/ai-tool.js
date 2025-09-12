@@ -361,16 +361,45 @@ function sendDirectMessage(clientId: string, message: string) {
 }
 ```
 
-### Receiving Client Events
+### Receiving and Distinguishing Events on the Server
 
-You can listen for events that were published or forwarded from a client on the global `eventBus`.
+A key design feature of the event system is the clear, safe separation between events originating from the server's internal logic and events published by clients. This is achieved by automatically prefixing all client-originated events with `client:`.
+
+This mechanism prevents clients from accidentally or maliciously triggering sensitive internal events, and allows server-side plugins to focus on business logic without needing to manually check the origin of every event.
+
+#### Example 1: Listening for an Internal Server Event
+
+This is the standard way to listen for events that are part of the server's own workflow. This listener will **never** be triggered by a client publishing an event with the same name.
 
 ```typescript
 import { event } from '@isdk/ai-tool/funcs/event';
 const eventBus = event.runSync();
 
-eventBus.on('client-action', (data: any, event: any) => {
-  console.log(`Received event "${event.type}" from a client:`, data);
+// Listens for an event triggered only by server-side logic.
+// e.g., eventBus.emit('data-updated', { id: 123 });
+eventBus.on('data-updated', (data) => {
+  console.log('Internal data has been updated. Refreshing cache...');
+  // ...purely internal business logic
+});
+```
+
+#### Example 2: Listening for a Client-Originated Event
+
+To react to an event published by a client, you must explicitly listen for the event name with the `client:` prefix. The listener will also receive a metadata object containing the trusted, server-verified `clientId`.
+
+```typescript
+import { event } from '@isdk/ai-tool/funcs/event';
+const eventBus = event.runSync();
+
+// A client publishes an event like:
+// eventClient.publish({ event: 'user-action', data: { ... } });
+
+// The server-side listener must use the 'client:' prefix.
+eventBus.on('client:user-action', (data, meta) => {
+  // The 'meta' object contains the trusted clientId from the transport layer.
+  const { clientId } = meta;
+  console.log(`User ${clientId} performed an action with data:`, data);
+  // ...logic to handle the client interaction
 });
 ```
 
@@ -385,6 +414,9 @@ eventClient.on('user-updated', (data: any) => {
 });
 
 // **Publish an Event to the Server**
+// This sends the event to the server. On the server's internal event bus,
+// it will be prefixed and emitted as 'client:client-action'.
+// Other clients will receive it as the original 'client-action'.
 eventClient.publish({
     event: 'client-action',
     data: { action: 'button-click', value: 123 }
@@ -394,6 +426,8 @@ eventClient.publish({
 eventClient.forwardEvent(['user-settings-changed']);
 
 function onSettingsSave(newSettings: any) {
+    // This emits the event on the local event bus. Because it was forwarded,
+    // it will also be published to the server.
     eventClient.emit('user-settings-changed', newSettings);
 }
 ```

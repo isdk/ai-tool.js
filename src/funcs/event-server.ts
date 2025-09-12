@@ -9,6 +9,8 @@ import type { IPubSubServerTransport } from '../transports/pubsub/server';
 // the singleton instance of event-bus
 const eventBus = event.runSync()
 
+export const ClientEventPrefix = 'client:'
+
 export interface EventServerFuncParams extends ServerFuncParams {
   event?: string | string[]
   data?: any
@@ -60,7 +62,7 @@ export class EventServer extends ResServerTools {
     return (this.constructor as any).publish(event, data)
   }
 
-  // forward the events on the event-bus to client
+  // forward the events on the server event-bus to client
   forward(events: string|string[]) {
     if (!Array.isArray(events)) {
       events = [events]
@@ -148,15 +150,26 @@ export class EventServer extends ResServerTools {
     }
   }
 
-  $publish({event: events, data}: EventServerFuncParams) {
+  $publish({event: events, data, _req}: EventServerFuncParams) {
     if (events && data) {
+      // Get the session and clientId from the transport, not from the client payload.
+      // This is a critical security measure to prevent impersonation.
+      const session = this.pubSubTransport?.getSessionFromReq?.(_req);
+      const senderId = session?.clientId;
+
       if (typeof events === 'string') {
         events = [events]
       }
       for (const event of events) {
+        // Emit the prefixed event on the server-side bus for internal listeners.
+        // A listener for 'my-event' will NOT receive 'client:my-event'.
+        eventBus.emit(ClientEventPrefix + event, data, { sender: session });
+
+        // Broadcast the ORIGINAL event name to other clients, as they are not
+        // aware of the server's internal prefixing convention.
         this.publishServerEvent(event, data)
       }
-      return {event: events}
+      return {event: events, senderId} // Return the trusted clientId
     } else {
       throwError('event or data is required', 'pub', ErrorCode.InvalidArgument)
     }
