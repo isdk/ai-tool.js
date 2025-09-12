@@ -1,8 +1,8 @@
 // @vitest-environment node
-// import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi, beforeAll, afterAll } from 'vitest'
 import { ServerTools } from "../src/server-tools"
 import { ClientTools } from '../src/client-tools'
-import { EventServer, EventClient, event, EventToolFunc } from '../src/funcs'
+import { EventServer, EventClient, event, EventToolFunc, ClientEventPrefix } from '../src/funcs'
 import { EventBusName, EventName, backendEventable } from "../src/utils/event"
 import { sleep } from '../src/utils'
 import { findPort } from '../src/utils/find-port'
@@ -10,10 +10,8 @@ import { Funcs, ToolFunc } from '../src/tool-func'
 import { HttpServerToolTransport, HttpClientToolTransport } from '../src/transports'
 import { SseClientPubSubTransport, SseServerPubSubTransport } from "../src/transports/pubsub"
 
-backendEventable(EventClient)
-backendEventable(EventServer)
-
-const event4Client = new EventToolFunc(EventBusName)
+const EventBusClientName = 'event-bus-client'
+const event4Client = new EventToolFunc(EventBusClientName)
 
 describe('Event Server api', () => {
   let apiRoot: string // = 'http://localhost:3000/api'
@@ -29,6 +27,10 @@ describe('Event Server api', () => {
     ClientTools.items = ClientToolItems
 
     ClientTools.register(event4Client)
+
+    backendEventable(EventClient, {eventBusName: EventBusClientName})
+    backendEventable(EventServer)
+
 
     const params = { "a": "number", b: "any" }
     const eventServer = new EventServer('event')
@@ -130,7 +132,7 @@ describe('Event Server api', () => {
       await sleep(10)
       expect(t1).toBe(2)
     } finally {
-      event.active = false
+      await event.setActive(false)
       es.close()
     }
     // expect(await event.run({a: 10})).toStrictEqual(10)
@@ -173,7 +175,7 @@ describe('Event Server api', () => {
       await sleep(1)
       expect(t1).toBe(3)
     } finally {
-      event.active = false
+      await event.setActive(false)
     }
   })
   it('should publish event via static EventServer.publish', async () => {
@@ -198,7 +200,51 @@ describe('Event Server api', () => {
       expect(t3).toBe(1)
       expect(receivedData).toEqual(eventData)
     } finally {
-      event.active = false
+      await event.setActive(false)
     }
   })
+
+  it('should control client event forwarding via forwardClientPublishes toggle', async () => {
+    const eventClient = ClientTools.get('event') as EventClient;
+    const eventBus = event.runSync();
+    const serverListener = vi.fn();
+    const eventName = 'test-forward-event';
+    const prefixedEventName = ClientEventPrefix + eventName;
+
+    eventBus.on(prefixedEventName, serverListener);
+    await eventClient.setActive(true);
+
+    // Ensure client is connected
+    await eventClient.subscribe('init-conn');
+    await sleep(50);
+
+    try {
+      // 1. Test with forwarding disabled (default)
+      EventServer.forwardClientPublishes = false;
+      await eventClient.publish({ event: eventName, data: { value: 1 } });
+      await sleep(50);
+      expect(serverListener, 'Listener should not be called when forwarding is disabled').not.toHaveBeenCalled();
+
+      // 2. Test with forwarding enabled
+      EventServer.forwardClientPublishes = true;
+      await eventClient.publish({ event: eventName, data: { value: 2 } });
+      await sleep(50);
+
+      // Assert it was called
+      expect(serverListener, 'Listener should be called once when forwarding is enabled').toHaveBeenCalledTimes(1);
+
+      // Assert the content is correct
+      const [data, meta] = serverListener.mock.calls[0];
+      expect(data).toEqual({ value: 2 });
+      expect(meta, 'Meta object should exist').toBeDefined();
+      expect(meta.sender, 'Sender object in meta should exist').toBeDefined();
+      expect(meta.sender.clientId, 'Trusted clientId should exist on sender object').toBeDefined();
+
+    } finally {
+      // Cleanup
+      EventServer.forwardClientPublishes = false; // Reset for other tests
+      eventBus.off(prefixedEventName, serverListener);
+      eventClient.close();
+    }
+  });
 });
