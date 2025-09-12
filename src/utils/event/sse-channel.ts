@@ -1,5 +1,6 @@
 import { IncomingMessage, ServerResponse } from "http";
 import { throwError } from "../base-error";
+import { uuid } from "../hash";
 
 type Events = (string | RegExp)[];
 
@@ -218,17 +219,12 @@ export class SSEChannel {
   }
 
   /**
-   * Finds a client instance by its originating HTTP request.
-   * @param req The incoming HTTP request.
+   * Finds a client instance by its unique ID.
+   * @param clientId The unique ID of the client.
    * @returns The matching SSEClient, or undefined if not found.
    */
-  getClientByReq(req: IncomingMessage): SSEClient | undefined {
-    for (const client of this.clients.values()) {
-      if (client.req === req) {
-        return client;
-      }
-    }
-    return undefined;
+  getClient(clientId: string): SSEClient | undefined {
+    return this.clients.get(clientId);
   }
 
   /**
@@ -244,19 +240,9 @@ export class SSEChannel {
   connect(req: IncomingMessage, res: ServerResponse, events?: Events, clientId?: string) {
     if (!this.active) throwError('Channel closed', 'SSEChannel', SSEChannelAlreadyClosedErrCode);
 
-    let finalClientId = clientId;
-    if (!finalClientId) {
-      const { remoteAddress, remotePort } = req.socket;
-      if (remoteAddress && remotePort) {
-        finalClientId = `${remoteAddress}:${remotePort}`;
-      } else {
-        // Cannot identify client with a predictable ID.
-        throw new Error('Cannot determine a predictable client ID for the connection from request.');
-      }
-    }
+    // Server always generates a new UUID to ensure security.
+    const finalClientId = uuid();
 
-    // Handle collisions: if a client with this ID already exists, disconnect the old one.
-    // This is better than throwing an error, as it handles legitimate reconnects.
     if (this.clients.has(finalClientId)) {
       const oldClient = this.clients.get(finalClientId);
       if (oldClient) {
@@ -274,10 +260,10 @@ export class SSEChannel {
     const headers: any = {
       "Content-Type": "text/event-stream",
       "Cache-Control": cacheControl,
-      "Connection": "keep-alive"
+      "Connection": "keep-alive",
     }
     if (this.options.cors) {
-      headers['access-control-allow-origin'] = "*";
+      headers['Access-Control-Allow-Origin'] = "*";
     }
     c.req.socket.setNoDelay(true);
     c.res.writeHead(200, headers);
@@ -293,6 +279,14 @@ export class SSEChannel {
 
     c.res.write(body);
     this.clients.set(c.clientId, c);
+
+    // Send a welcome message with the server-assigned clientId.
+    // This is the most reliable way to give the client its ID with the standard EventSource API.
+    this.publish(
+      { clientId: finalClientId },
+      'welcome',
+      { clientId: finalClientId }
+    );
 
     if (maxStreamDuration > 0) {
       setTimeout(() => {
