@@ -1,6 +1,6 @@
 import type { IPubSubClientTransport, PubSubClientStream } from './client';
 import type { PubSubCtx } from './base';
-import { genUrlParamsStr } from '../../utils';
+import { genUrlParamsStr, uuid } from '../../utils';
 
 export class SseClientPubSubTransport implements IPubSubClientTransport {
   private apiRoot: string = '';
@@ -9,21 +9,36 @@ export class SseClientPubSubTransport implements IPubSubClientTransport {
     this.apiRoot = apiRoot;
   }
 
-  connect(url: string, params?: any): PubSubClientStream {
+  async connect(url: string, params?: any) {
     if (!this.apiRoot && !url.startsWith('http')) {
       throw new Error('SseClientPubSubTransport requires apiRoot to be set or a full URL to be provided.');
     }
 
+    // Combine params with the new clientId
+    const connectParams = {
+      ...params,
+    };
+
     // url can be a full URL or a path relative to apiRoot
     let finalUrl = url.startsWith('http') ? url : `${this.apiRoot}/${url}`;
 
-    if (params) {
-      const qs = genUrlParamsStr(params as any, true);
+    if (connectParams) {
+      const qs = genUrlParamsStr(connectParams as any, true);
       if (qs) {
         finalUrl += (finalUrl.includes('?') ? '&' : '?') + qs;
       }
     }
     const es = new EventSource(finalUrl);
+    const welcome = new Promise<{ clientId: string }>((resolve) => {
+      const handle = (e) => {
+        es.removeEventListener('welcome', handle);
+        const raw = (e as any).data;
+        const data = raw ? (typeof raw === 'string' ? JSON.parse(raw) : raw) : undefined;
+        resolve(data);
+      };
+      es.addEventListener('welcome', handle);
+    });
+    const clientId = (await welcome).clientId;
 
     // 包装监听器映射，确保 off 能卸载
     const wrapMap = new Map<string, Map<Function, EventListener>>();
@@ -51,6 +66,7 @@ export class SseClientPubSubTransport implements IPubSubClientTransport {
     };
 
     const stream: PubSubClientStream = {
+      clientId,
       protocol: 'sse',
       get readyState() { return es.readyState; },
       on, off,
