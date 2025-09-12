@@ -2,6 +2,7 @@ import { EventName } from '../utils'
 import type { Event } from 'events-ex'
 import { ResClientTools } from '../res-client-tools'
 import { PubSubCtx, IPubSubClientTransport, PubSubClientStream } from '../transports/pubsub'
+import { defaultsDeep } from 'lodash-es'
 
 export interface EventClientFuncParams {
   event?: string | string[]
@@ -12,6 +13,7 @@ export interface EventClientFuncParams {
 
 export class EventClient extends ResClientTools {
   static _pubSubTransport: IPubSubClientTransport | undefined
+
   static setPubSubTransport(t?: IPubSubClientTransport) {
     if (t?.setApiRoot && this.apiRoot) {
       // Automatically configure the transport with the static apiRoot
@@ -30,10 +32,14 @@ export class EventClient extends ResClientTools {
    _sseListeners: Record<string, (data:any, ctx?: PubSubCtx)=>void> = {}
   _forwardEvents: Set<string> = new Set()
 
-  get evtSource() {
+  get clientId() {
+    return this._stream?.clientId
+  }
+
+  async getEvtSource() {
     let result = this._stream
     if (!result || result.readyState === 2 /* CLOSED */) {
-      result = this.initEventStream(this._streamEvents)
+      result = await this.initEventStream(this._streamEvents)
     }
     return result as PubSubClientStream
   }
@@ -42,10 +48,10 @@ export class EventClient extends ResClientTools {
     return !!this._stream && (this._stream.readyState !== 2 /* CLOSED */)
   }
 
-  set active(v : boolean) {
+  async setActive(v : boolean) {
     if (v !== this.active) {
       if (v) {
-        this.initEventStream(this._streamEvents)
+        await this.initEventStream(this._streamEvents)
       } else if (this._stream) {
         this.close()
       }
@@ -54,7 +60,7 @@ export class EventClient extends ResClientTools {
 
   description = 'subscribe server event'
 
-  initEventStream(events?: string|string[]) {
+  async initEventStream(events?: string|string[]) {
     const list = typeof events === 'string' ? [events] : events
     if (this._stream && this._stream.readyState !== 2 /* CLOSED */) {
       if (!this._streamEvents || (list && list.every(e => this._streamEvents!.includes(e)))) {
@@ -66,7 +72,12 @@ export class EventClient extends ResClientTools {
     const params = list ? {event: list} : undefined
     // Pass the relative path (this.name) to the transport.
     // The transport is responsible for combining it with the apiRoot.
-    const stream = this._stream = (this.constructor as typeof EventClient).pubSubTransport.connect(this.name!, params)
+    const stream = this._stream = await (this.constructor as typeof EventClient).pubSubTransport.connect(this.name!, params)
+    if (stream.clientId) {
+      this.fetchOptions = defaultsDeep({clientId: stream.clientId}, this.fetchOptions)
+    }
+
+
     // 重新挂载已订阅事件
     Object.entries(this._sseListeners).forEach(([event, listener]) => {
       stream.on(event, listener)
@@ -101,13 +112,13 @@ export class EventClient extends ResClientTools {
    */
   async subscribe(events: string|string[]) {
     if (!this.active) {
-      this.initEventStream(events)
+      await this.initEventStream(events)
     }
     const result = await this.sub({event: events})
     if (typeof events === 'string') {
       events = [events]
     }
-    const evtSource = this.evtSource
+    const evtSource = await this.getEvtSource()
     for (const event of events) {
       if (!this._sseListeners[event]) {
         const listener = this._sseListeners[event] = (data:any, ctx?: PubSubCtx) => this.esListener(event, data, ctx);
@@ -126,7 +137,7 @@ export class EventClient extends ResClientTools {
       events = [events]
     }
     const result = await this.unsub({event: events})
-    const evtSource = this.evtSource
+    const evtSource = await this.getEvtSource()
     for (const event of events) {
       const listener = this._sseListeners[event]
       if (listener) {
@@ -179,8 +190,8 @@ export class EventClient extends ResClientTools {
 
   async init(events: string|string[]) {
     // close eventsource and re-init event source
-    this.active = false
-    this.initEventStream(events)
+    this.setActive(false)
+    await this.initEventStream(events)
     if (events) {return await this.subscribe(events)}
   }
 
