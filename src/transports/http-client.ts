@@ -34,6 +34,16 @@ export class HttpClientToolTransport extends ClientToolTransport {
         ...fetchOptions.headers,
       }
     }
+
+    // Translate clientId from options to a request header
+    if (fetchOptions?.clientId) {
+      if (!fetchOptions.headers) {
+        fetchOptions.headers = {};
+      }
+      fetchOptions.headers['x-client-id'] = fetchOptions.clientId;
+      delete fetchOptions.clientId;
+    }
+
     if (args?.stream && !fetchOptions.headers.Connection) {
       fetchOptions.headers.Connection = 'keep-alive'
     }
