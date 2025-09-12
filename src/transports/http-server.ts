@@ -12,7 +12,6 @@ import { ServerTools } from '../server-tools';
 export class HttpServerToolTransport extends ServerToolTransport {
   public server: http.Server;
   private discoveryHandlerInfo: { prefix: string; handler: () => any } | null = null;
-  private rpcHandlerInfo: { prefix: string, serverTools: typeof ServerTools, options?: any } | null = null;
 
   constructor(options?: http.ServerOptions) {
     super();
@@ -49,7 +48,7 @@ export class HttpServerToolTransport extends ServerToolTransport {
     }
 
     // RPC Handler
-    if (this.rpcHandlerInfo && url.startsWith(this.rpcHandlerInfo.prefix)) {
+    if (this.apiRoot && url.startsWith(this.apiRoot)) {
         await this.handleRpcRequest(req, res);
         return;
     }
@@ -68,18 +67,19 @@ export class HttpServerToolTransport extends ServerToolTransport {
     if (!apiPrefix.endsWith('/')) {
       apiPrefix += '/';
     }
-    this.rpcHandlerInfo = { prefix: apiPrefix, serverTools, options };
+    this.apiRoot = apiPrefix;
     console.log(`[HttpServerTransport] Mapped RPC calls for prefix ${apiPrefix}`);
   }
 
   private async handleRpcRequest(request: http.IncomingMessage, reply: http.ServerResponse) {
-    if (!this.rpcHandlerInfo || !request.url) {
+    const serverTools = this.Tools;
+    if (!serverTools || !request.url) {
         reply.statusCode = 500;
         reply.setHeader('Content-Type', 'application/json');
         reply.end(JSON.stringify({ error: 'RPC handler not configured' }));
         return;
     }
-    const { serverTools, prefix } = this.rpcHandlerInfo;
+    const prefix = this.apiRoot;
 
     // remove query string from url before splitting
     const urlPath = request.url.split('?')[0].substring(prefix.length);
