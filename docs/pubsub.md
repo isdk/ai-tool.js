@@ -367,6 +367,22 @@ A key design feature of the event system is the clear, safe separation between e
 
 This mechanism prevents clients from accidentally or maliciously triggering sensitive internal events, and allows server-side plugins to focus on business logic without needing to manually check the origin of every event.
 
+#### Enabling/Disabling Client Event Forwarding
+
+By default, events published by clients are **not** forwarded to the server's internal event bus. This is a security-first approach that prevents unwanted side effects.
+
+To enable this feature, you must set the static `forwardClientPublishes` property to `true` during your server setup.
+
+```typescript
+// In your server entry file
+import { EventServer } from '@isdk/ai-tool';
+
+// Set to true to allow client events to be emitted on the server bus.
+EventServer.forwardClientPublishes = true;
+```
+
+Only when this is set to `true` will the server emit `client:` prefixed events on its internal bus.
+
 #### Example 1: Listening for an Internal Server Event
 
 This is the standard way to listen for events that are part of the server's own workflow. This listener will **never** be triggered by a client publishing an event with the same name.
