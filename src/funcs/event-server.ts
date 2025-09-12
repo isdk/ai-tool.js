@@ -111,7 +111,11 @@ export class EventServer extends ResServerTools {
         this.pubSubTransport.subscribe(session, Array.isArray(event) ? event : [event]);
         return { forward: true, subscribed: true, event, clientId: session.clientId };
       } else {
-        console.warn('No session found for request or transport does not support dynamic subscription', 'sub');
+        if (this.pubSubTransport.getSessionFromReq) {
+          console.warn('$sub: No session found for request');
+        } else {
+          console.warn(`$sub: The ${this.pubSubTransport.name} Transport does not support dynamic subscription`);
+        }
         return { forward: true, event };
       }
     } else {
@@ -132,7 +136,11 @@ export class EventServer extends ResServerTools {
         this.pubSubTransport.unsubscribe(session, Array.isArray(event) ? event : [event]);
         return { forward: false, subscribed: false, event, clientId: session.clientId };
       } else {
-        console.warn('Could not find a valid client session for the request or transport does not support dynamic subscription', 'unsub');
+        if (this.pubSubTransport.getSessionFromReq) {
+          console.warn('$unsub: No session found for request');
+        } else {
+          console.warn(`$unsub: The ${this.pubSubTransport.name} Transport does not support dynamic subscription`);
+        }
         return { forward: false, event };
       }
     } else {
