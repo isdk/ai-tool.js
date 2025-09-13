@@ -2,12 +2,9 @@
 
 ## Overview
 
-`ToolFunc` is a robust framework for creating and managing reusable functions in JavaScript/TypeScript. Its design features a single class with a dual responsibility:
+`ToolFunc` is a robust framework for creating and managing reusable functions in JavaScript/TypeScript. It is built around a single class with a dual purpose: its static interface serves as a global registry for discovery and management, while its instances encapsulate the executable function logic and metadata.
 
-1. **The Static Class:** Acts as a **global registry and manager** for all function instances, providing a central point of discovery and access.
-2. **The Instances:** encapsulate the **business logic, metadata, and execution behavior** of each individual function.
-
-This intentional design—**combining a manager with the entities it manages** within one class—provides unparalleled convenience for building modular and discoverable systems. It is specifically optimized for scenarios like AI agent toolkits and plugin systems, where the ability to dynamically find and invoke any function from anywhere in the application is a critical requirement.
+This deliberate design —*combining the manager and the managed in one class*— prioritizes ease of discovery and dynamism. It is an intentional trade-off, ideal for building modular systems like AI agent toolkits where the ability to dynamically find and invoke any function is a critical requirement.
 
 ## Key Features
 
