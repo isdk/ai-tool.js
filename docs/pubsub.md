@@ -6,13 +6,107 @@ This guide provides a comprehensive overview of the `EventServer` and `EventClie
 
 ## Core Concept: The Unified Event Bus
 
-The primary goal of this system is to create a seamless event bus that spans both the server and the client. It uses an abstract, pluggable PubSub transport for server-to-client messages and standard RPC calls for client-to-server messages.
+The primary goal of this system is to create a seamless, bidirectional event bus that spans server and client — enabling decoupled communication across your application.
 
-The key feature is the ability to **"forward"** events. You can configure the server to automatically listen for events on its internal, global `eventBus` and relay them to clients. Likewise, you can configure the client to forward its local events to the server. This creates a powerful, decoupled architecture where different parts of your application can communicate without direct dependencies.
+It separates **control** and **data** planes:
+
+* 🛠️ **Control Plane (RPC)**: Client-to-server event forwarding is **opt-in per event**. Call `eventClient.forwardEvent('event.name')` to enable it. Afterwards, `.emit('event.name', data)` automatically triggers an RPC call (via primary transport), sending the **original event name** (e.g., `'ui.click'`). The server **automatically prefixes it with `client:`** (e.g., `'client:ui.click'`) when processing, to avoid naming conflicts and enforce namespace isolation.
+* 📡 **Data Plane (PubSub)**: Event payloads — whether originating from the server or resulting from client events processed by the server — are delivered asynchronously to clients via a dedicated, abstract, pluggable PubSub transport.
+
+The key feature is **configurable event forwarding**:
+
+* 🔁 The server can be configured to listen to its internal global `eventBus` and automatically relay selected events to subscribed clients via PubSub.
+* 🔁 **Client → Server event forwarding requires two explicit, independent opt-ins:**
+  1. **Client-side**: Call `eventClient.forwardEvent('event.name')` to enable RPC publishing for that specific event.
+  2. **Server-side**: Set `EventServer.forwardClientPublishes = true` to allow received events (after being prefixed with `client:`) to be emitted on the server’s internal event bus.
+
+    ```ts
+    // Step 1: Client enables forwarding for a specific event
+    eventClient.forwardEvent('ui.click');
+
+    // Step 2: Server enables processing of client-originated events
+    EventServer.forwardClientPublishes = true;
+    ```
+
+    ⚠️ **Note**: Both `EventClient` and `EventServer` must be **injected with** event-emitting capabilities via `backendEventable(...)` before `.on()`, `.off()`, or `.emit()` can be called. Attempting to call these methods before injection will throw a `TypeError` — as event handling is not part of their native interface.
+
+This creates a powerful, loosely-coupled architecture — components communicate through events without direct dependencies, location transparency, or transport concerns. Event capabilities on both client and server are injected via AOP (`backendEventable`) for maximum flexibility, testability, and explicit opt-in behavior.
+
+```md
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                                                                              │
+│  ┌──────────────┐     uses       ┌─────────────────────┐                     │
+│  │ EventClient  │ ──────────────▶ │ ClientTransport     │                    │
+│  │ - 注入事件方法 │  (RPC 调用)     │ (HTTP/WebSocket RPC)│                     │
+│  │ - forwardEvent│ ◀─────────────▶ │                     │                   │
+│  └──────────────┘                 └──────────┬──────────┘                    │
+│                                              │  RPC: publish('client:xxx')   │
+│                                              ▼                               │
+│                                    ┌─────────────────────┐                   │
+│                                    │ ServerTransport     │                   │
+│                                    │ (HTTP/WebSocket RPC)│                   │
+│                                    └──────────┬──────────┘                   │
+│                                               │                              │
+│                                               ▼                              │
+│                                    ┌─────────────────────┐                   │
+│                                    │   EventServer       │                   │
+│                                    │ - 注入事件方法        │                   │
+│                                    │ - forwardClientPub= │                   │
+│                                    └──────────┬──────────┘                   │
+│                                               │  .emit() → 广播               │
+│                                               ▼                              │
+│                                    ┌─────────────────────┐                   │
+│                                    │PubSubServerTransport│                   │
+│                                    │ (WebSocket/MQTT)    │                   │
+│                                    └──────────┬──────────┘                   │
+│                                               │  PubSub 消息                  │
+│                                               ▼                              │
+│                                    ┌─────────────────────┐                   │
+│                                    │PubSubClientTransport│                   │
+│                                    │ (WebSocket/MQTT)    │                   │
+│                                    └──────────┬──────────┘                   │
+│                                               │  事件分发                     │
+│                                               ▼                              │
+│                                    ┌─────────────────────┐                   │
+│                                    │   EventClient       │                   │
+│                                    │ ← 接收并触发本地事件   │                   │
+│                                    └─────────────────────┘                   │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+```
+
+```mermaid
+graph TD
+    %% ========== Client Side ==========
+    EC[EventClient<br><i>需 backendEventable 注入 .on/.off/.emit</i>]
+    CT[ClientTransport<br><i>RPC: 发起 publish/subscribe</i>]
+    PCT[PubSubClientTransport<br><i>接收服务端广播事件</i>]
+
+    %% ========== Server Side ==========
+    ES[EventServer<br><i>需 backendEventable 注入 .on/.off/.emit</i>]
+    ST[ServerTransport<br><i>RPC: 接收 publish/subscribe</i>]
+    PST[PubSubServerTransport<br><i>向客户端广播事件</i>]
+
+    %% ========== Connections ==========
+    EC -- "RPC: publish（'client:xxx', data）（需 forwardEvent）" --> CT
+    CT -- "→ RPC 请求" --> ST
+    ST -- "→ 交由 EventServer 处理" --> ES
+
+    ES -- "PubSub: 广播事件" --> PST
+    PST -- "→ PubSub 消息" --> PCT
+    PCT -- "→ 交由 EventClient 分发" --> EC
+
+    class EC client
+    class ES server
+    class CT,ST rpc
+    class PCT,PST pubsub
+```
 
 ### Aspect-Oriented Programming (AoP) and Event Emitters
 
 A crucial concept is that `EventClient` (and `ClientTools` in general) can be enhanced with event emitter capabilities. By using a library like `events-ex`, you can give your client-side tool instances standard `on`, `off`, and `emit` methods. This allows `EventClient` to act as a local event bus that is transparently synchronized with the server.
+
+> 💡 Event listening and emitting capabilities are injected into `EventClient` via the AOP-style `backendEventable(EventClient)` function, keeping the core class transport-agnostic and easily testable.
 
 ## Example: HTTP and Server-Sent Events (SSE)
 
@@ -180,6 +274,7 @@ eventClient.on('server-tick', (data) => {
   document.body.innerHTML = `Tick received at: ${data.timestamp}`;
 });
 ```
+
 > **Note on Security**: This simple example assumes `contextIsolation` is disabled. For modern, secure Electron apps, please see the integrated example below which includes a `preload.js` script.
 
 ### Scenario 2: Integrated RPC and Pub/Sub over IPC
@@ -198,7 +293,7 @@ import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
 const electronApi = {
   // For RPC (invoke/handle)
   invoke: (channel: string, ...args: any[]) => ipcRenderer.invoke(channel, ...args),
-  
+
   // For Pub/Sub (send/on)
   send: (channel: string, ...args: any[]) => ipcRenderer.send(channel, ...args),
   on: (channel: string, listener: (event: IpcRendererEvent, ...args: any[]) => void) => {
@@ -232,7 +327,7 @@ const channelNamespace = 'my-app';
 // --- 1. Setup IPC for standard RPC ---
 const rpcTransport = new IpcServerToolTransport();
 // This sets up handlers for 'my-app:discover' and 'my-app:rpc'.
-rpcTransport.mount(ResServerTools, channelNamespace); 
+rpcTransport.mount(ResServerTools, channelNamespace);
 rpcTransport.start();
 console.log(`[Main] RPC transport started on namespace: ${channelNamespace}`);
 
