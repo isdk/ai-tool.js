@@ -1,6 +1,6 @@
 # Developer's Guide: Real-time Events with EventServer & EventClient
 
-This guide provides a comprehensive overview of the `EventServer` and `EventClient` tools, a powerful system for real-time, bidirectional communication. It is built on a **pluggable PubSub transport layer**, making it independent of the underlying communication protocol. You can use Server-Sent Events (SSE), WebSockets, IPC, or any other protocol by providing a corresponding transport implementation.
+This guide provides a comprehensive overview of the `EventServer` and `EventClient` system, a powerful solution for building real-time, bidirectional communication channels. Its core architecture is built on a **pluggable PubSub transport layer**, making it completely independent of any specific communication protocol. You can seamlessly use Server-Sent Events (SSE), WebSockets, IPC, or any other protocol by simply providing a compatible transport implementation.
 
 **Prerequisite:** This document assumes you understand the base transport layer. If not, please review the [`transport.md`](./transport.md) first.
 
@@ -28,9 +28,9 @@ The key feature is **configurable event forwarding**:
     EventServer.forwardClientPublishes = true;
     ```
 
-    ⚠️ **Note**: Both `EventClient` and `EventServer` must be **injected with** event-emitting capabilities via `backendEventable(...)` before `.on()`, `.off()`, or `.emit()` can be called. Attempting to call these methods before injection will throw a `TypeError` — as event handling is not part of their native interface.
+    ⚠️ **Important**: The event handling methods (`.on()`, `.off()`, `.emit()` etc) are **not native** to `EventClient` and `EventServer`. Their event capabilities must be **injected via the `backendEventable(...)` function**. Attempting to call these methods before injection will result in a `TypeError`.
 
-This creates a powerful, loosely-coupled architecture — components communicate through events without direct dependencies, location transparency, or transport concerns. Event capabilities on both client and server are injected via AOP (`backendEventable`) for maximum flexibility, testability, and explicit opt-in behavior.
+This design creates a powerful, loosely-coupled architecture where components communicate through events without direct dependencies, location transparency, or transport concerns. The use of AOP (backendEventable) for capability injection ensures maximum flexibility, testability, and explicit opt-in behavior.
 
 ```md
 ┌──────────────────────────────────────────────────────────────────────────────┐
