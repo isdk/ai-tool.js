@@ -35,12 +35,12 @@ This design creates a powerful, loosely-coupled architecture where components co
 ```md
 ┌──────────────────────────────────────────────────────────────────────────────┐
 │                                                                              │
-│  ┌──────────────┐     uses       ┌─────────────────────┐                     │
-│  │ EventClient  │ ──────────────▶ │ ClientTransport     │                    │
-│  │ - 注入事件方法 │  (RPC 调用)     │ (HTTP/WebSocket RPC)│                     │
-│  │ - forwardEvent│ ◀─────────────▶ │                     │                   │
-│  └──────────────┘                 └──────────┬──────────┘                    │
-│                                              │  RPC: publish('client:xxx')   │
+│  ┌────────────────┐     uses        ┌─────────────────────┐                  │
+│  │ EventClient    │ ──────────────▶ │ ClientTransport     │                  │
+│  │ - InjectEmitter│  (RPC Call)     │ (HTTP/WebSocket RPC)│                  │
+│  │ - forwardEvent │ ◀─────────────▶ │                     │                  │
+│  └────────────────┘                 └────────┬────────────┘                  │
+│                                              │  RPC: publish('my.event')     │
 │                                              ▼                               │
 │                                    ┌─────────────────────┐                   │
 │                                    │ ServerTransport     │                   │
@@ -48,29 +48,31 @@ This design creates a powerful, loosely-coupled architecture where components co
 │                                    └──────────┬──────────┘                   │
 │                                               │                              │
 │                                               ▼                              │
-│                                    ┌─────────────────────┐                   │
-│                                    │   EventServer       │                   │
-│                                    │ - 注入事件方法        │                   │
-│                                    │ - forwardClientPub= │                   │
-│                                    └──────────┬──────────┘                   │
-│                                               │  .emit() → 广播               │
+│                                    ┌─────────────────────────────┐           │
+│                                    │   EventServer               │           │
+│                                    │ - Inject Emitter            │           │
+│                                    │ - forwardClientPublishes    │           │
+│                                    │     emit('client:ui.click') │           │
+│                                    └──────────┬──────────────────┘           │
+│                                               │  Broadcast                   │
 │                                               ▼                              │
 │                                    ┌─────────────────────┐                   │
 │                                    │PubSubServerTransport│                   │
 │                                    │ (WebSocket/MQTT)    │                   │
 │                                    └──────────┬──────────┘                   │
-│                                               │  PubSub 消息                  │
+│                                               │  PubSub Message              │
 │                                               ▼                              │
 │                                    ┌─────────────────────┐                   │
 │                                    │PubSubClientTransport│                   │
 │                                    │ (WebSocket/MQTT)    │                   │
 │                                    └──────────┬──────────┘                   │
-│                                               │  事件分发                     │
+│                                               │  Deliver Message             │
 │                                               ▼                              │
-│                                    ┌─────────────────────┐                   │
-│                                    │   EventClient       │                   │
-│                                    │ ← 接收并触发本地事件   │                   │
-│                                    └─────────────────────┘                   │
+│                                    ┌───────────────────────┐                 │
+│                                    │   EventClient         │                 │
+│                                    │ → Receive and trigger │                 │
+│                                    │   local events        │                 │
+│                                    └───────────────────────┘                 │
 │                                                                              │
 └──────────────────────────────────────────────────────────────────────────────┘
 ```
