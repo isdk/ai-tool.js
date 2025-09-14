@@ -20,10 +20,10 @@ export interface EventServerFuncParams extends ServerFuncParams {
 
 export class EventServer extends ResServerTools {
   /**
-   * Controls whether to forward events published by clients to the server-side event bus.
+   * Controls whether the client-published events are auto-emitted on server's localBus.
    * Defaults to false for security. Must be explicitly enabled for 'client:' prefixed events to be emitted.
    */
-  public static forwardClientPublishes = false;
+  public static autoInjectToLocalBus = false;
 
   private static _boundEbListener?: (this: Event, ...data: any[]) => any;
 
@@ -173,7 +173,7 @@ export class EventServer extends ResServerTools {
       }
       for (const event of events) {
         // Only forward to internal bus if the feature is enabled.
-        if (ctor.forwardClientPublishes) {
+        if (ctor.autoInjectToLocalBus) {
           // Emit the prefixed event on the server-side bus for internal listeners.
           // A listener for 'my-event' will NOT receive 'client:my-event'.
           eventBus.emit(ClientEventPrefix + event, data, {event, sender: session });
