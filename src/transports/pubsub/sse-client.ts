@@ -1,6 +1,6 @@
 import type { IPubSubClientTransport, PubSubClientStream } from './client';
 import type { PubSubCtx } from './base';
-import { genUrlParamsStr, uuid } from '../../utils';
+import { genUrlParamsStr} from '../../utils';
 
 export class SseClientPubSubTransport implements IPubSubClientTransport {
   private apiRoot: string = '';
