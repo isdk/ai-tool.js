@@ -15,10 +15,13 @@ feat:
       ServerTool 是一个基类 同时也是一个工厂类, 从 ServerTool 派生的工具默认只有一个远程调用(`func`), 而 RpcServerTool 则是通过约定`func`的对象参数`method`实现多个远程调用的, 那么 我的问题是RpcServerTool是否是最合适的命名,你有没有更好的推荐
       RpcServerMethods 这个名没有ServerTool
       RpcMethodsServerTool
-      ☐ refactor: rename `ResServerTools` to `ResServerTool`, `ResClientTools` to `ResHttpClientTool`, `ClientTools` to `HttpClientTools` 是否加`http`??
+      ✔ The new transport mechanism support for ServerTools/ClientTools @done(25-09-02 12:21)
+      ~~☐ refactor: rename `ResServerTools` to `ResServerTool`, `ResClientTools` to `ResHttpClientTool`, `ClientTools` to `HttpClientTools` 是否加`http`??~~
       ☐ refactor: xxhash using async function(hash-wasm) instead of sync function(xxhashjs)
+      ☐ EventServer 是否需要增加限制客户端pubsub事件转发到server本地事件总线的具体限制，目前EventServer只有一个总开关(autoInjectToLocalBus)。
 bugs:
   ✔ 当多任务被阻塞的时候，如果被abort，会出问题？因为这个时候，是在信号量的Promise中的，所以，这个任务不会被立马取消，而是继续等待，直到在执行该任务的时候。这是个bug. @done(24-07-26 09:18)
   ✔ 新增 `TaskAbortController::throwRejected`用于在任务中正确判断是否该终止执行(因为abort)，因为在semaphore中，会`reject()`，如果不正确判断会导致二次`reject`. @done(24-07-26 10:09)
   ☐ splitSentence: 对于纯文本是否忽略空行？目前是忽略的。应该不能忽略。
-  ☐ EventClient initEventStream 后马上 subscribe (http)似乎拿不到session. 目前无影响，因为在init时就已经订阅了。
+  ✔ EventClient initEventStream 后马上 subscribe (http)似乎拿不到session, 因为这是来自RPC的req. @done(25-09-14 12:02)
+  ☐ EventClient/EventServer pubsub 事件应该检测避免死循环.
