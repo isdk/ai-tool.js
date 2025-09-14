@@ -204,7 +204,7 @@ describe('Event Server api', () => {
     }
   })
 
-  it('should control client event forwarding via forwardClientPublishes toggle', async () => {
+  it('should control client event forwarding via autoInjectToLocalBus toggle', async () => {
     const eventClient = ClientTools.get('event') as EventClient;
     const eventBus = event.runSync();
     const serverListener = vi.fn();
@@ -220,13 +220,13 @@ describe('Event Server api', () => {
 
     try {
       // 1. Test with forwarding disabled (default)
-      EventServer.forwardClientPublishes = false;
+      EventServer.autoInjectToLocalBus = false;
       await eventClient.publish({ event: eventName, data: { value: 1 } });
       await sleep(50);
       expect(serverListener, 'Listener should not be called when forwarding is disabled').not.toHaveBeenCalled();
 
       // 2. Test with forwarding enabled
-      EventServer.forwardClientPublishes = true;
+      EventServer.autoInjectToLocalBus = true;
       await eventClient.publish({ event: eventName, data: { value: 2 } });
       await sleep(50);
 
@@ -242,7 +242,7 @@ describe('Event Server api', () => {
 
     } finally {
       // Cleanup
-      EventServer.forwardClientPublishes = false; // Reset for other tests
+      EventServer.autoInjectToLocalBus = false; // Reset for other tests
       eventBus.off(prefixedEventName, serverListener);
       eventClient.close();
     }
