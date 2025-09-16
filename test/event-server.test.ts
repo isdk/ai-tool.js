@@ -98,14 +98,14 @@ describe('Event Server api', () => {
 
       event.on('t2', function (...data: any[]) {
         t2++
-        expect(data).toMatch(`["event", 4, 5, 6, ]`)
+        expect(data).toMatch(`[ 4, 5, 6, ]`)
       })
 
       let t2j = 0
       // listen all the events from server
       es.addEventListener('t2', function (e: MessageEvent) {
         t2j++
-        expect(e.data).toMatch(`["event",4,5,6]`)
+        expect(e.data).toMatch(`[4,5,6]`)
       })
       es.onmessage = function (e: any) {
         // it should not be here
@@ -228,6 +228,43 @@ describe('Event Server api', () => {
       // 2. Test with forwarding enabled
       EventServer.autoInjectToLocalBus = true;
       await eventClient.publish({ event: eventName, data: { value: 2 } });
+      await sleep(50);
+
+      // Assert it was called
+      expect(serverListener, 'Listener should be called once when forwarding is enabled').toHaveBeenCalledTimes(1);
+
+      // Assert the content is correct
+      const [data, meta] = serverListener.mock.calls[0];
+      expect(data).toEqual({ value: 2 });
+      expect(meta, 'Meta object should exist').toBeDefined();
+      expect(meta.sender, 'Sender object in meta should exist').toBeDefined();
+      expect(meta.sender.clientId, 'Trusted clientId should exist on sender object').toBeDefined();
+
+    } finally {
+      // Cleanup
+      EventServer.autoInjectToLocalBus = false; // Reset for other tests
+      eventBus.off(prefixedEventName, serverListener);
+      eventClient.close();
+    }
+  });
+
+  it('should emit forward events', async () => {
+    const eventClient = ClientTools.get('event') as EventClient;
+    const eventBus = event.runSync();
+    const serverListener = vi.fn();
+    const eventName = 'test-forward-event';
+    const prefixedEventName = ClientEventPrefix + eventName;
+
+    eventBus.on(prefixedEventName, serverListener);
+    await eventClient.setActive(true);
+
+    await sleep(50);
+
+    try {
+      EventServer.autoInjectToLocalBus = true;
+      eventClient.forwardEvent(eventName);
+      eventClient.emit(eventName, { value: 2 });
+      // await eventClient.publish({ event: eventName, data: { value: 2 } });
       await sleep(50);
 
       // Assert it was called
