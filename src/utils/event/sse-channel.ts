@@ -139,6 +139,9 @@ export class SSEChannel {
           data = JSON.stringify(data);
         }
       }
+      if (data && typeof data !== "string") {
+        data = '' + data;
+      }
       data = data ? data.split(/[\r\n]+/).map((str: string) => 'data: ' + str).join('\n') : '';
       output = (
         "id: " + id + "\n" +
