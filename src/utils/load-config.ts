@@ -17,6 +17,9 @@ export function loadConfigFile(filename: string, searchPaths: string[] = ['.']) 
 
 export function expandConfig(config: any, defaultConfig?: any) {
   const processEnv = { ...process.env, ...defaultConfig }
+  if (!processEnv.HOME) {
+    processEnv.HOME = process.env.USERPROFILE
+  }
 
   return expandObjEnv(config, {
     processEnv,
