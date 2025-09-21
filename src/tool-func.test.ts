@@ -3,7 +3,7 @@ import { funcGetMeta, funcWithMeta, FuncMetaSymbol, ToolFunc } from './tool-func
 
 describe('funcWithMeta', () => {
   it('should return the function with merged metadata when meta is an object', () => {
-    const testFn = () => {};
+    const testFn: any = () => {};
     const meta = { key: 'value' };
 
     const result = funcWithMeta(testFn, meta);
