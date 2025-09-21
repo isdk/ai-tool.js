@@ -2,6 +2,70 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.8.0](https://github.com/isdk/ai-tool.js/compare/v0.7.1...v0.8.0) (2025-09-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* rename static member name forwardClientPublishes to autoInjectToLocalBus
+* init is async now
+* connect is async now
+* reorder the arguments order for EventServer.publish
+* use this.name instead
+* remove unused methods
+* remove unused mount
+
+### Features
+
+* add an eventBusName option to backendEventable ([a10e453](https://github.com/isdk/ai-tool.js/commit/a10e45388297e5dc28c7a2d4463e36366c0becc2))
+* add clientId to PubSubClientStream ([ac1dad1](https://github.com/isdk/ai-tool.js/commit/ac1dad153b0610e674d556bac1ad69102618cf1e))
+* add getClientByReq ([cf0858f](https://github.com/isdk/ai-tool.js/commit/cf0858ff1deac398c3b488463b490295847ea45b))
+* add getSessionFromReq ([0620990](https://github.com/isdk/ai-tool.js/commit/062099046bd974985251a49bbd9f459b188f5b1a))
+* add getSessionFromReq decl ([8a7b120](https://github.com/isdk/ai-tool.js/commit/8a7b120a5be850bc77128759ad5e2d507e9fe251))
+* add nanoid ([682040b](https://github.com/isdk/ai-tool.js/commit/682040bbee83ad967788cd007429721fda23071c))
+* add optional omitQuestionMark If true, omits the leading '?' from the result. Defaults to false. ([57a8a4e](https://github.com/isdk/ai-tool.js/commit/57a8a4e639fb0b11701f70fceabd7e7cbacfbfb9))
+* add uuid to create clientId and pass it into welcome event ([05f5782](https://github.com/isdk/ai-tool.js/commit/05f5782b9d61209384ad3fcc409e236d86fa2305))
+* forward the published event from client to the server event-bus with "client:" prefix ([6c28aa6](https://github.com/isdk/ai-tool.js/commit/6c28aa670d3634945019286e66ce0eb5565ce66a))
+* pass fetchOptions.clientId as headers["x-client-id"] ([6181a7c](https://github.com/isdk/ai-tool.js/commit/6181a7c6e1e601900bd7706698729eb3b47f9290))
+
+
+### Bug Fixes
+
+* $sub/$unsub/$publish getSessionFromReq ([b9da913](https://github.com/isdk/ai-tool.js/commit/b9da9139b5a38c23808577e07e1b512f24bc1e2b))
+* can not get method name from act ([07b78af](https://github.com/isdk/ai-tool.js/commit/07b78afe466a7eb874aee6b77704e200e492c281))
+* connect should use the params(init events) ([3a93624](https://github.com/isdk/ai-tool.js/commit/3a936245d8bf1087260e968a7b47a7bd747257e2))
+* emit standard params and non-standard ([36ac48c](https://github.com/isdk/ai-tool.js/commit/36ac48c9446810b32eb6281298da95d1e84ab5be))
+* encode uuid not work ([4d774ad](https://github.com/isdk/ai-tool.js/commit/4d774ad8f0631d602ff0f12543881d90ce16e84b))
+* events could be a sigle value ([b38e727](https://github.com/isdk/ai-tool.js/commit/b38e727acca0087b604347dbe025184484686f91))
+* **expandConfig:** add HOME for windows if not exists ([078726d](https://github.com/isdk/ai-tool.js/commit/078726d2c76dde75bfb823561b4544e0a23b788e))
+* forget to wait server.close ([4fc91d1](https://github.com/isdk/ai-tool.js/commit/4fc91d10eddf6f26a878ab8a56bdef6244a831a2))
+* should check apiRoot exists first to apply ([08fa8c2](https://github.com/isdk/ai-tool.js/commit/08fa8c21a29d58bd2db83d73be9e513b2b1425e3))
+* subscribe should check active first for dynamic subscription ([cfecd7e](https://github.com/isdk/ai-tool.js/commit/cfecd7e7dee00c8c935f2aeecc25db2cecb9bc84))
+* the data is not string ([151b942](https://github.com/isdk/ai-tool.js/commit/151b9423911dcedad034452674390568508829ce))
+
+
+### Refactor
+
+* connect is async now ([f2d4c95](https://github.com/isdk/ai-tool.js/commit/f2d4c95612c6a0806102610d860706a34d3d6936))
+* **getSessionFromReq:** get clientId from req header x-client-id ([002b66d](https://github.com/isdk/ai-tool.js/commit/002b66dd9f054d6474257123d792abbb4760a530))
+* init is async now ([b201e2d](https://github.com/isdk/ai-tool.js/commit/b201e2d763ad3efd74323c7cc148089e264b0cc5))
+* make EventServer support dynamic subscription ([94d002f](https://github.com/isdk/ai-tool.js/commit/94d002f3d1121de31a9cb73c96aa522cb4e6729f))
+* optimize code ([e3ac093](https://github.com/isdk/ai-tool.js/commit/e3ac093e6e029682d9649428a06b98956bea3d41))
+* output warn detail ([2b341e1](https://github.com/isdk/ai-tool.js/commit/2b341e1da0e96e7b2b95d266b1e7dd89624bb8a5))
+* pass fetchOptions argument to fetch ([1fc5d58](https://github.com/isdk/ai-tool.js/commit/1fc5d5872b105ca264354ef0bd75f01434fad3a9))
+* pass the params(init events) to pubSubTransport.connect(url, params) ([a48af37](https://github.com/isdk/ai-tool.js/commit/a48af376a9cc9cceae16e82c2bd39b9b7149f0db))
+* remove unused export type instead of PubSubServerSession ([b18416d](https://github.com/isdk/ai-tool.js/commit/b18416d9044377d21f0d7a875a170527e3796f3b))
+* remove unused methods ([3030409](https://github.com/isdk/ai-tool.js/commit/303040922ec62e26a0891220ee64ad4bbd239815))
+* remove unused mount ([4a4eb1f](https://github.com/isdk/ai-tool.js/commit/4a4eb1facfee154b9612af9d3c4f7ad349d20325))
+* rename Client to SSEClient ([59cde46](https://github.com/isdk/ai-tool.js/commit/59cde468fcb0b9285a523c89ebee1d05e5659cb7))
+* rename static member name forwardClientPublishes to autoInjectToLocalBus ([05a8ce0](https://github.com/isdk/ai-tool.js/commit/05a8ce07d6492fa691a6b6182ff035df8b1b46b8))
+* rename subscribe to connect ([3a0e698](https://github.com/isdk/ai-tool.js/commit/3a0e6987fa608dcecc159f94b70e42d19466f0e8))
+* rename subscribe to connect, unsubscribe to disconnect ([000ad61](https://github.com/isdk/ai-tool.js/commit/000ad6197c4b46f6866550b506380709a31d24a9))
+* reorder the arguments order for EventServer.publish ([1344340](https://github.com/isdk/ai-tool.js/commit/13443402ac6a61029943f6758b2e20aefa8d4710))
+* **ts:** change the params type for connect ([1255787](https://github.com/isdk/ai-tool.js/commit/1255787097fb01953f3a5adddd50f4653d9e9084))
+* use the neww getSessionFromReq to get clientId for $sub/$unsub ([bf79ccc](https://github.com/isdk/ai-tool.js/commit/bf79ccc6406e7c7df77e29ac0a80349386defd17))
+* use this.name instead ([85f4c35](https://github.com/isdk/ai-tool.js/commit/85f4c35eccd52466ed1476e1e953d049c7f89b50))
+
 ## [0.7.1](https://github.com/isdk/ai-tool.js/compare/v0.7.0...v0.7.1) (2025-09-07)
 
 
