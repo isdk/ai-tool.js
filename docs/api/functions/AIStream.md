@@ -1,0 +1,56 @@
+[**@isdk/ai-tool**](../README.md)
+
+***
+
+[@isdk/ai-tool](../globals.md) / AIStream
+
+# Function: AIStream()
+
+> **AIStream**\<`T`, `TOptions`\>(`response`, `customParser?`): `ReadableStream`\<[`AIResult`](../interfaces/AIResult.md)\<`T`, `TOptions`\>\>
+
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/stream/ai-stream.ts:120](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/utils/stream/ai-stream.ts#L120)
+
+Returns a ReadableStream created from the response, parsed and handled with custom logic.
+The stream goes through two transformation stages, first parsing the events and then
+invoking the provided callbacks.
+
+For 2xx HTTP responses:
+- The function continues with standard stream processing.
+
+For non-2xx HTTP responses:
+- If the response body is defined, it asynchronously extracts and decodes the response body.
+- It then creates a custom ReadableStream to propagate a detailed error message.
+
+## Type Parameters
+
+### T
+
+`T` = `any`
+
+### TOptions
+
+`TOptions` = `any`
+
+## Parameters
+
+### response
+
+`Response`
+
+The response.
+
+### customParser?
+
+[`AIStreamParser`](../interfaces/AIStreamParser.md)\<`T`, `TOptions`\>
+
+The custom parser function.
+
+## Returns
+
+`ReadableStream`\<[`AIResult`](../interfaces/AIResult.md)\<`T`, `TOptions`\>\>
+
+The AIStream.
+
+## Throws
+
+Will throw an error if the response is not OK.
