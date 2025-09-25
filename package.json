@@ -24,8 +24,8 @@
   "dependencies": {
     "@huggingface/transformers": "^3.7.2",
     "@isdk/common-error": "^0.2.0",
-    "@isdk/detect-text-language": "workspace:*",
-    "@isdk/template-engines": "workspace:*",
+    "@isdk/detect-text-language": "workspace:^0.1.2",
+    "@isdk/template-engines": "workspace:^0.6.6",
     "@isdk/util": "^0.3.2",
     "abstract-error": "^2.0.0",
     "base32768": "^5.0.0",
