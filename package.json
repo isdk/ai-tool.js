@@ -1,6 +1,6 @@
 {
   "name": "@isdk/ai-tool",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "author": "Riceball LEE <snowyu.lee@gmail.com>",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -82,6 +82,7 @@
   "bug": "https://github.com/isdk/ai-tool.js/issues",
   "description": "AI tools",
   "files": [
+    ".cache",
     "docs",
     "dist"
   ],
