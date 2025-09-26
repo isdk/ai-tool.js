@@ -8,7 +8,7 @@
 
 > **calcPerplexity**(`probabilities`, `options?`): `undefined` \| `number`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/calc-perplexity.ts:97](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/utils/calc-perplexity.ts#L97)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/calc-perplexity.ts:97](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/calc-perplexity.ts#L97)
 
 Calculates the perplexity of a given list of probability items.
 Perplexity is a measurement used in natural language processing (NLP)

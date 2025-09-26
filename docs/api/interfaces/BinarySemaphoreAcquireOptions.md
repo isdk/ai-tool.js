@@ -6,7 +6,7 @@
 
 # Interface: BinarySemaphoreAcquireOptions
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:28](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/utils/async-semaphore.ts#L28)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:28](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/async-semaphore.ts#L28)
 
 ## Extended by
 
@@ -22,4 +22,4 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:28](ht
 
 > `optional` **signal**: `AbortSignal`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:29](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/utils/async-semaphore.ts#L29)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:29](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/async-semaphore.ts#L29)

@@ -6,7 +6,7 @@
 
 # Interface: SemaphoreOptions
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:42](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/utils/async-semaphore.ts#L42)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:42](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/async-semaphore.ts#L42)
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:42](ht
 
 > `optional` **capacity**: `number`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:25](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/utils/async-semaphore.ts#L25)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:25](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/async-semaphore.ts#L25)
 
 #### Inherited from
 
@@ -30,7 +30,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:25](ht
 
 > `optional` **initFn**: () => `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:22](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/utils/async-semaphore.ts#L22)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:22](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/async-semaphore.ts#L22)
 
 #### Returns
 
@@ -46,7 +46,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:22](ht
 
 > `optional` **isReadyFn**: [`SemaphoreIsReadyFuncType`](../type-aliases/SemaphoreIsReadyFuncType.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:44](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/utils/async-semaphore.ts#L44)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:44](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/async-semaphore.ts#L44)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:44](ht
 
 > `optional` **maxConcurrency**: `number`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:43](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/utils/async-semaphore.ts#L43)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:43](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/async-semaphore.ts#L43)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:43](ht
 
 > `optional` **pauseFn**: () => `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:23](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/utils/async-semaphore.ts#L23)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:23](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/async-semaphore.ts#L23)
 
 #### Returns
 
@@ -78,7 +78,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:23](ht
 
 > `optional` **resumeFn**: () => `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:24](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/utils/async-semaphore.ts#L24)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:24](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/async-semaphore.ts#L24)
 
 #### Returns
 

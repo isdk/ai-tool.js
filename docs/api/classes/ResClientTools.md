@@ -6,7 +6,7 @@
 
 # Class: ResClientTools
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:9](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/res-client-tools.ts#L9)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:9](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/res-client-tools.ts#L9)
 
 Represents a client-side proxy for a remote tool function.
 
@@ -35,7 +35,7 @@ These tools are typically created dynamically by loading definitions from a serv
 
 > **new ResClientTools**(`name`, `options?`): `ResClientTools`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:571](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L571)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:571](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L571)
 
 Initializes a new `ToolFunc` instance.
 
@@ -79,7 +79,7 @@ Defined in: [property-manager.js/src/advance.d.ts:5](https://github.com/snowyu/p
 
 > `optional` **action**: `"get"` \| `"post"` \| `"put"` \| `"delete"` \| `"patch"` \| `"list"` \| `"res"`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/consts.ts:95](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/utils/consts.ts#L95)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/consts.ts:95](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/consts.ts#L95)
 
 The action to be used for the remote call. This typically represents an RPC method name.
 Only for RESTful HTTP transports, it might be mapped to a standard HTTP method (e.g., GET, POST)
@@ -94,7 +94,7 @@ Only for RESTful HTTP transports, it might be mapped to a standard HTTP method (
 
 > `optional` **alias**: `string` \| `string`[]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:130](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L130)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:130](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L130)
 
 Optional aliases for the function name.
 
@@ -108,7 +108,7 @@ Optional aliases for the function name.
 
 > `optional` **asyncFeatures**: `number`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:144](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L144)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:144](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L144)
 
 A bitmask representing asynchronous features supported by the function, built from `AsyncFeatureBits`.
 This allows the system to understand if a function supports capabilities like cancellation or multi-tasking.
@@ -170,7 +170,7 @@ The default options for export and assign
 
 > `optional` **depends**: `object`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:167](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L167)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:167](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L167)
 
 A map of dependencies this function has on other tool functions.
 Declaring dependencies ensures that they are automatically registered when this function is registered.
@@ -209,7 +209,7 @@ mainFunc.register();
 
 > `optional` **description**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:172](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L172)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:172](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L172)
 
 A detailed description of what the function does.
 
@@ -223,7 +223,7 @@ A detailed description of what the function does.
 
 > `optional` **fetchOptions**: `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/consts.ts:100](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/utils/consts.ts#L100)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/consts.ts:100](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/consts.ts#L100)
 
 Addtional options to be passed to the underlying `fetch` call in a transport.
 
@@ -237,7 +237,7 @@ Addtional options to be passed to the underlying `fetch` call in a transport.
 
 > `optional` **isApi**: `boolean`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:119](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L119)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:119](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L119)
 
 If true, indicates that this function should be treated as a server-side API.
 
@@ -251,7 +251,7 @@ If true, indicates that this function should be treated as a server-side API.
 
 > `optional` **name**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:76](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L76)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:76](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L76)
 
 The unique name of the function.
 
@@ -279,7 +279,7 @@ the property with the default prefix '$' will not be exported.
 
 > `optional` **params**: [`FuncParams`](../interfaces/FuncParams.md) \| [`FuncParam`](../interfaces/FuncParam.md)[]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:81](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L81)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:81](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L81)
 
 Parameter definitions, which can be an object mapping names to definitions or an array for positional parameters.
 
@@ -293,7 +293,7 @@ Parameter definitions, which can be an object mapping names to definitions or an
 
 > `optional` **result**: `string` \| `Record`\<`string`, `any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:86](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L86)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:86](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L86)
 
 The expected return type of the function, described as a string or a JSON schema object.
 
@@ -307,7 +307,7 @@ The expected return type of the function, described as a string or a JSON schema
 
 > `optional` **scope**: `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:91](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L91)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:91](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L91)
 
 The execution scope or context (`this`) for the function.
 
@@ -321,7 +321,7 @@ The execution scope or context (`this`) for the function.
 
 > `optional` **setup**: (`this`, `options?`) => `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:114](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L114)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:114](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L114)
 
 A lifecycle hook called once during the `ToolFunc` instance's initialization.
 It allows for initial setup, state configuration, or property modification on the instance
@@ -367,7 +367,7 @@ console.log(myFunc.customState); // Outputs: 'configured'
 
 > `optional` **stream**: `boolean`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:125](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L125)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:125](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L125)
 
 If true, indicates that the function has the *capability* to stream its output.
 Whether a specific call is streamed is determined by a `stream` property in the runtime parameters.
@@ -382,7 +382,7 @@ Whether a specific call is streamed is determined by a `stream` property in the 
 
 > `optional` **tags**: `string` \| `string`[]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:96](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L96)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:96](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L96)
 
 Tags for grouping or filtering functions.
 
@@ -396,7 +396,7 @@ Tags for grouping or filtering functions.
 
 > `optional` **title**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:177](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L177)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:177](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L177)
 
 A concise, human-readable title for the function, often used in UI or by AI.
 
@@ -410,7 +410,7 @@ A concise, human-readable title for the function, often used in UI or by AI.
 
 > `static` `optional` **action**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:33](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/client-tools.ts#L33)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:33](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/client-tools.ts#L33)
 
 #### Inherited from
 
@@ -422,7 +422,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:33](https://git
 
 > `static` **aliases**: `object` = `{}`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:305](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L305)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:305](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L305)
 
 A static map of aliases to their corresponding function names.
 
@@ -440,7 +440,7 @@ A static map of aliases to their corresponding function names.
 
 > `static` **dataPath**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:312](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L312)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:312](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L312)
 
 A conventional property to designate a file path for saving the registered `ToolFunc` data.
 Note: The `ToolFunc` class itself does not implement persistence logic. It is up to the
@@ -456,7 +456,7 @@ developer to use this path to save and load the `ToolFunc.items` registry if nee
 
 > `static` **items**: [`Funcs`](../interfaces/Funcs.md) = `{}`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:300](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L300)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:300](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L300)
 
 A static registry of all `ToolFunc` instances, indexed by name.
 
@@ -472,7 +472,7 @@ A static registry of all `ToolFunc` instances, indexed by name.
 
 > **get** **apiRoot**(): `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:110](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/client-tools.ts#L110)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:110](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/client-tools.ts#L110)
 
 Gets the root URL for API endpoints from the configured transport.
 This is used as the base for constructing request URLs.
@@ -499,7 +499,7 @@ Use `transport` instead.
 
 > **get** `static` **apiRoot**(): `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:41](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/client-tools.ts#L41)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:41](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/client-tools.ts#L41)
 
 Gets the root URL for API endpoints from the configured transport.
 This is used as the base for constructing request URLs.
@@ -520,7 +520,7 @@ This is used as the base for constructing request URLs.
 
 > **get** `static` **transport**(): [`IClientToolTransport`](../interfaces/IClientToolTransport.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:61](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/client-tools.ts#L61)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:61](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/client-tools.ts#L61)
 
 ##### Returns
 
@@ -536,7 +536,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:61](https://git
 
 > **\_func**(`action`, `options`, `fetchOptions?`): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:19](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/rpc-methods-client-tool.ts#L19)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:19](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/rpc-methods-client-tool.ts#L19)
 
 #### Parameters
 
@@ -566,7 +566,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:19](
 
 > **arr2ObjParams**(`params`): `any`[]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:629](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L629)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:629](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L629)
 
 Converts an array of positional arguments into a named parameters object.
 This is used internally to support functions defined with named parameters.
@@ -627,7 +627,7 @@ this object
 
 > **assignMethods**(`methods`): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:32](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/rpc-methods-client-tool.ts#L32)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:32](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/rpc-methods-client-tool.ts#L32)
 
 #### Parameters
 
@@ -867,7 +867,7 @@ the defined attributes of the object
 
 > `optional` **delete**(`__namedParameters`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:13](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/res-client-tools.ts#L13)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:13](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/res-client-tools.ts#L13)
 
 #### Parameters
 
@@ -917,7 +917,7 @@ the dest object.
 
 > **fetch**(`options`, `action`, ...`args`): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:18](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/res-client-tools.ts#L18)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:18](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/res-client-tools.ts#L18)
 
 #### Parameters
 
@@ -947,7 +947,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:18](https:/
 
 > **func**(`options`): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:24](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/rpc-methods-client-tool.ts#L24)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:24](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/rpc-methods-client-tool.ts#L24)
 
 The core implementation for a client-side tool. When a `ClientTools` instance
 is "run", this `func` method is executed. It delegates the call to the
@@ -975,7 +975,7 @@ The result from the remote tool.
 
 > `optional` **get**(`__namedParameters`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/res-client-tools.ts#L10)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:10](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/res-client-tools.ts#L10)
 
 #### Parameters
 
@@ -993,7 +993,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:10](https:/
 
 > **getFunc**(`name?`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:720](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L720)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:720](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L720)
 
 Gets a bound function reference for execution with named parameters.
 If a name is provided, it retrieves a different function from the registry.
@@ -1023,7 +1023,7 @@ A function reference or `undefined` if not found.
 
 > **getFuncWithPos**(`name?`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:777](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L777)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:777](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L777)
 
 Gets a bound function reference suitable for positional argument execution.
 If a name is provided, it retrieves a different function from the registry.
@@ -1073,7 +1073,7 @@ the descriptors of properties object
 
 > **hasAsyncFeature**(`feature`): `boolean`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:787](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L787)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:787](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L787)
 
 Checks if the current function instance supports a specific async feature.
 
@@ -1209,7 +1209,7 @@ The source object
 
 > **isStream**(`params`): `undefined` \| `boolean`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:805](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L805)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:805](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L805)
 
 Determines if a function call should produce a stream.
 
@@ -1243,7 +1243,7 @@ The runtime parameters passed to the function call.
 
 > `optional` **list**(`options?`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/res-client-tools.ts#L14)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:14](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/res-client-tools.ts#L14)
 
 #### Parameters
 
@@ -1293,7 +1293,7 @@ the dest object.
 
 > **obj2ArrParams**(`params?`): `any`[]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:648](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L648)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:648](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L648)
 
 Converts a named parameters object into an array of positional arguments.
 This is used for functions defined with positional parameters.
@@ -1322,7 +1322,7 @@ An array of positional arguments.
 
 > `optional` **post**(`options`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:11](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/res-client-tools.ts#L11)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:11](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/res-client-tools.ts#L11)
 
 #### Parameters
 
@@ -1366,7 +1366,7 @@ A property name.
 
 > `optional` **put**(`__namedParameters`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:12](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/res-client-tools.ts#L12)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:12](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/res-client-tools.ts#L12)
 
 #### Parameters
 
@@ -1384,7 +1384,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:12](https:/
 
 > **register**(): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:602](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L602)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:602](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L602)
 
 Registers the current `ToolFunc` instance into the static registry.
 Also registers any declared dependencies.
@@ -1405,7 +1405,7 @@ The instance itself upon successful registration, or `false` if it already exist
 
 > **run**(`params?`): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:686](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L686)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:686](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L686)
 
 Executes the function asynchronously with a named parameters object.
 
@@ -1433,7 +1433,7 @@ A promise that resolves with the function's result.
 
 > **runAs**(`name`, `params?`): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:697](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L697)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:697](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L697)
 
 Asynchronously executes another registered function by name.
 This method delegates to `runAsSync()` internally.
@@ -1468,7 +1468,7 @@ A promise that resolves with the result of the function execution.
 
 > **runAsSync**(`name`, `params?`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:708](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L708)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:708](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L708)
 
 Synchronously executes another registered function by name.
 This is a convenience method that forwards the call to the static `runSync()` method.
@@ -1503,7 +1503,7 @@ The result of the function execution.
 
 > **runSync**(`params?`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:667](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L667)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:667](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L667)
 
 Executes the function synchronously with a named parameters object.
 
@@ -1535,7 +1535,7 @@ Will throw an error if an array of parameters is passed to a function that expec
 
 > **runWithPos**(...`params`): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:755](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L755)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:755](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L755)
 
 Executes the function asynchronously using positional arguments.
 Delegates to `runWithPosSync()` internally.
@@ -1564,7 +1564,7 @@ A promise that resolves with the result of the function execution.
 
 > **runWithPosAs**(`name`, ...`params`): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:766](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L766)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:766](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L766)
 
 Asynchronously executes another function by name using positional arguments.
 Delegates to `runWithPosAsSync()` internally.
@@ -1599,7 +1599,7 @@ A promise that resolves with the result of the function execution.
 
 > **runWithPosAsSync**(`name`, ...`params`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:745](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L745)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:745](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L745)
 
 Synchronously executes another function by name using positional arguments.
 This is a convenience wrapper around the static `runWithPosSync()` method.
@@ -1634,7 +1634,7 @@ The result of the function execution.
 
 > **runWithPosSync**(...`params`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:731](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L731)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:731](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L731)
 
 Executes the function synchronously using positional arguments.
 If the function expects named parameters, it converts the arguments automatically.
@@ -1741,7 +1741,7 @@ Returns a string representation of an object.
 
 > **unregister**(): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:619](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L619)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:619](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L619)
 
 Removes the current `ToolFunc` instance from the static registry.
 
@@ -2157,7 +2157,7 @@ Object that contains the properties and methods. This can be an object that you 
 
 > `static` **fetch**(`name`, `objParam?`, ...`args?`): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:99](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/client-tools.ts#L99)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:99](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/client-tools.ts#L99)
 
 #### Parameters
 
@@ -2343,7 +2343,7 @@ An iterable object that contains key-value entries for properties and methods.
 
 > `static` **get**(`name`): [`ToolFunc`](ToolFunc.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:319](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L319)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:319](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L319)
 
 Retrieves a registered function by its name or alias.
 
@@ -2371,7 +2371,7 @@ The `ToolFunc` instance if found, otherwise `undefined`.
 
 > `static` **getAllByTag**(`tagName`): [`ToolFunc`](ToolFunc.md)[]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:365](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L365)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:365](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L365)
 
 Retrieves all registered functions that have a specific tag.
 
@@ -2399,7 +2399,7 @@ An array of matching `ToolFunc` instances.
 
 > `static` **getByTag**(`tagName`): `undefined` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:340](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L340)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:340](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L340)
 
 Finds the first registered function that has a specific tag.
 
@@ -2427,7 +2427,7 @@ The first matching `ToolFunc` instance, or `undefined` if none is found.
 
 > `static` **getFunc**(`name`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:431](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L431)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:431](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L431)
 
 Retrieves a bound, runnable function reference for a registered function.
 This reference is suitable for execution with an object of named parameters.
@@ -2456,7 +2456,7 @@ A bound function reference, or `undefined` if not found.
 
 > `static` **getFuncWithPos**(`name`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:472](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L472)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:472](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L472)
 
 Retrieves a bound, runnable function reference for a registered function.
 This reference is suitable for execution with positional arguments.
@@ -2647,7 +2647,7 @@ The object that references the prototype.
 
 > `static` **hasAsyncFeature**(`feature`): `boolean`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:388](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L388)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:388](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L388)
 
 Checks if any registered function has a specific asynchronous feature.
 
@@ -2867,7 +2867,7 @@ Object that contains the properties and methods. This can be an object that you 
 
 > `static` **list**(): [`Funcs`](../interfaces/Funcs.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:331](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L331)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:331](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L331)
 
 Returns the complete map of all registered functions.
 
@@ -2887,7 +2887,7 @@ The map of `ToolFunc` instances.
 
 > `static` **loadFrom**(`items?`): `Promise`\<[`Funcs`](../interfaces/Funcs.md)\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:69](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/client-tools.ts#L69)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:69](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/client-tools.ts#L69)
 
 Loads tool definitions from the remote server via the configured transport.
 This method populates the local `ToolFunc` registry with `ClientTools` stubs.
@@ -2912,7 +2912,7 @@ This method populates the local `ToolFunc` registry with `ClientTools` stubs.
 
 > `static` **loadFromSync**(`items`): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:85](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/client-tools.ts#L85)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:85](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/client-tools.ts#L85)
 
 Synchronously loads tool definitions from a provided object, registering
 each one as a `ClientTools` instance.
@@ -2973,7 +2973,7 @@ Object to make non-extensible.
 
 > `static` **register**(`name`, `options`): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:495](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L495)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:495](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L495)
 
 Registers a new tool function.
 
@@ -3005,7 +3005,7 @@ The new `ToolFunc` instance, or `false` if a function with that name already exi
 
 > `static` **register**(`func`, `options`): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:496](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L496)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:496](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L496)
 
 Registers a new tool function.
 
@@ -3037,7 +3037,7 @@ The new `ToolFunc` instance, or `false` if a function with that name already exi
 
 > `static` **register**(`name`, `options?`): `boolean` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:497](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L497)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:497](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L497)
 
 Registers a new tool function.
 
@@ -3071,7 +3071,7 @@ The new `ToolFunc` instance, or `false` if a function with that name already exi
 
 > `static` **run**(`name`, `params?`): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:402](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L402)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:402](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L402)
 
 Asynchronously executes a registered function by name with named parameters.
 
@@ -3109,7 +3109,7 @@ If the function with the given name is not found.
 
 > `static` **runSync**(`name`, `params?`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:417](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L417)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:417](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L417)
 
 Synchronously executes a registered function by name with named parameters.
 
@@ -3147,7 +3147,7 @@ If the function with the given name is not found.
 
 > `static` **runWithPos**(`name`, ...`params`): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:443](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L443)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:443](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L443)
 
 Asynchronously executes a function using positional arguments.
 
@@ -3185,7 +3185,7 @@ If the function with the given name is not found.
 
 > `static` **runWithPosSync**(`name`, ...`params`): `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:458](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L458)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:458](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L458)
 
 Synchronously executes a function using positional arguments.
 
@@ -3287,7 +3287,7 @@ The value of the new prototype or null.
 
 > `static` **setTransport**(`transport`): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:51](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/client-tools.ts#L51)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:51](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/client-tools.ts#L51)
 
 Injects the client-side transport implementation. This is a crucial step
 to enable communication with the server.
@@ -3314,7 +3314,7 @@ The transport instance to use for all client-server communication.
 
 > `static` **unregister**(`name`): `undefined` \| [`ToolFunc`](ToolFunc.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:547](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/tool-func.ts#L547)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:547](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/tool-func.ts#L547)
 
 Unregisters a function by its name, also removing any associated aliases.
 

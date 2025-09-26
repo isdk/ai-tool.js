@@ -8,4 +8,4 @@
 
 > `const` **event**: [`EventToolFunc`](../classes/EventToolFunc.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/funcs/event.ts:21](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/funcs/event.ts#L21)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/funcs/event.ts:21](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/funcs/event.ts#L21)

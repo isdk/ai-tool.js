@@ -6,7 +6,7 @@
 
 # Class: SignalGate\<T\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:20](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/utils/async-signal-gate.ts#L20)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:20](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/async-signal-gate.ts#L20)
 
 An asynchronous signal gate that blocks operations until a signal is emitted.
 This class allows multiple awaiters to wait for a signal and resolves all pending promises with the emitted value.
@@ -46,7 +46,7 @@ valueGate.signal(42); // Must provide a number value
 
 > `protected` **\_isSignaled**: `boolean` = `false`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:21](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/utils/async-signal-gate.ts#L21)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:21](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/async-signal-gate.ts#L21)
 
 ***
 
@@ -54,7 +54,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:21](
 
 > `protected` **\_signalValue**: `undefined` \| `T`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:22](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/utils/async-signal-gate.ts#L22)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:22](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/async-signal-gate.ts#L22)
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:22](
 
 > `protected` **waitQueue**: `object`[] = `[]`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:23](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/utils/async-signal-gate.ts#L23)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:23](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/async-signal-gate.ts#L23)
 
 #### reject()
 
@@ -100,7 +100,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:23](
 
 > **get** **signaled**(): `boolean`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:28](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/utils/async-signal-gate.ts#L28)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:28](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/async-signal-gate.ts#L28)
 
 ##### Returns
 
@@ -112,7 +112,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:28](
 
 > **abort**(`reason?`): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:65](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/utils/async-signal-gate.ts#L65)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:65](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/async-signal-gate.ts#L65)
 
 Aborts all pending waits, rejecting their promises with an error.
 This does **not** reset the signal state (the gate remains signaled or unsignaled).
@@ -135,7 +135,7 @@ The reason for aborting the waits.
 
 > **reset**(): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:53](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/utils/async-signal-gate.ts#L53)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:53](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/async-signal-gate.ts#L53)
 
 Resets the gate to its initial state, allowing a new signal to be emitted.
 
@@ -149,7 +149,7 @@ Resets the gate to its initial state, allowing a new signal to be emitted.
 
 > **signal**(`value?`): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:38](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/utils/async-signal-gate.ts#L38)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:38](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/async-signal-gate.ts#L38)
 
 Emits the signal with an optional value, resolving all pending [wait](../variables/wait.md) promises.
 Subsequent calls have no effect until [reset](#reset) is called.
@@ -172,7 +172,7 @@ The value to emit with the signal (only required if T is not void).
 
 > **wait**(): `Promise`\<`T`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:83](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/utils/async-signal-gate.ts#L83)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:83](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/async-signal-gate.ts#L83)
 
 Returns a promise that resolves with the emitted signal value.
 If called after the signal has been emitted, resolves immediately with the stored value.

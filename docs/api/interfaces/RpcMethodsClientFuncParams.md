@@ -6,7 +6,7 @@
 
 # Interface: RpcMethodsClientFuncParams
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:4](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/rpc-methods-client-tool.ts#L4)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:4](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/rpc-methods-client-tool.ts#L4)
 
 ## Extended by
 
@@ -22,4 +22,4 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:4](h
 
 > `optional` **act**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:5](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/rpc-methods-client-tool.ts#L5)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:5](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/rpc-methods-client-tool.ts#L5)

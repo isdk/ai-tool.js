@@ -6,7 +6,7 @@
 
 # Interface: ResClientFuncParams
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:5](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/res-client-tools.ts#L5)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:5](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/res-client-tools.ts#L5)
 
 ## Extends
 
@@ -22,7 +22,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:5](https://
 
 > `optional` **act**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:5](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/rpc-methods-client-tool.ts#L5)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:5](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/rpc-methods-client-tool.ts#L5)
 
 #### Inherited from
 
@@ -34,4 +34,4 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-client-tool.ts:5](h
 
 > `optional` **id**: `string` \| `number`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:6](https://github.com/isdk/ai-tool.js/blob/d0765f898f217d97c57c6949502b4a7bef5dce5e/src/res-client-tools.ts#L6)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/res-client-tools.ts:6](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/res-client-tools.ts#L6)
