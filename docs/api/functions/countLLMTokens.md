@@ -8,7 +8,7 @@
 
 > **countLLMTokens**(`text`, `modelId`): `Promise`\<`number`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/llm-tokenizer.ts:74](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/llm-tokenizer.ts#L74)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/llm-tokenizer.ts:74](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/llm-tokenizer.ts#L74)
 
 ## Parameters
 

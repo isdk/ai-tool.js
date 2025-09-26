@@ -8,7 +8,7 @@
 
 > **beforeShutdown**(`listener`): `undefined` \| [`BeforeShutdownListener`](../type-aliases/BeforeShutdownListener.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/node/before-shutdown.ts:95](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/node/before-shutdown.ts#L95)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/node/before-shutdown.ts:95](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/node/before-shutdown.ts#L95)
 
 Registers a new shutdown listener to be invoked before exiting
 the main process. Listener handlers are guaranteed to be called in the order

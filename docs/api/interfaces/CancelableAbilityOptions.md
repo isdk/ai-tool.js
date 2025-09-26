@@ -6,7 +6,7 @@
 
 # Interface: CancelableAbilityOptions
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:29](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/cancelable-ability.ts#L29)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:29](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/cancelable-ability.ts#L29)
 
 ## Extends
 
@@ -22,7 +22,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:29]
 
 > `optional` **asyncFeatures**: [`AsyncFeatures`](../enumerations/AsyncFeatures.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:30](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/cancelable-ability.ts#L30)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:30](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/cancelable-ability.ts#L30)
 
 ***
 
@@ -78,7 +78,7 @@ Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_module
 
 > `optional` **isReadyFn**: [`SemaphoreIsReadyFuncType`](../type-aliases/SemaphoreIsReadyFuncType.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:32](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/cancelable-ability.ts#L32)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:32](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/cancelable-ability.ts#L32)
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:32]
 
 > `optional` **maxTaskConcurrency**: `number`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:31](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/cancelable-ability.ts#L31)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:31](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/cancelable-ability.ts#L31)
 
 ***
 

@@ -6,7 +6,7 @@
 
 # Interface: BinarySemaphoreReleaserFunc()
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:38](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/async-semaphore.ts#L38)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:38](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/async-semaphore.ts#L38)
 
 ## Extends
 
@@ -14,7 +14,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:38](ht
 
 > **BinarySemaphoreReleaserFunc**(): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:39](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/async-semaphore.ts#L39)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:39](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/async-semaphore.ts#L39)
 
 ## Returns
 
@@ -30,7 +30,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:39](ht
 
 > `optional` **token**: `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:34](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/async-semaphore.ts#L34)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-semaphore.ts:34](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/async-semaphore.ts#L34)
 
 #### Inherited from
 

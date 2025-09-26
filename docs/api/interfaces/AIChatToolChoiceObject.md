@@ -6,7 +6,7 @@
 
 # Interface: AIChatToolChoiceObject
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/chat.ts:144](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/chat.ts#L144)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/chat.ts:144](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/chat.ts#L144)
 
 ## Extended by
 
@@ -22,4 +22,4 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/chat.ts:144](https://gith
 
 > **type**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/chat.ts:145](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/chat.ts#L145)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/chat.ts:145](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/chat.ts#L145)

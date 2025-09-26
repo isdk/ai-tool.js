@@ -6,7 +6,7 @@
 
 # Interface: IPubSubServerTransport
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:54](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/transports/pubsub/server.ts#L54)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:54](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/transports/pubsub/server.ts#L54)
 
 Defines the interface for a server-side PubSub transport layer.
 
@@ -21,7 +21,7 @@ connections, subscriptions, and message passing.
 
 > **connect**: (`options?`) => [`PubSubServerSession`](PubSubServerSession.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:74](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/transports/pubsub/server.ts#L74)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:74](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/transports/pubsub/server.ts#L74)
 
 Connects a client, establishing a persistent communication channel.
 
@@ -63,7 +63,7 @@ A `PubSubServerSession` object representing the newly connected client session.
 
 > `optional` **getSessionFromReq**: (`req`) => `undefined` \| [`PubSubServerSession`](PubSubServerSession.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:165](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/transports/pubsub/server.ts#L165)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:165](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/transports/pubsub/server.ts#L165)
 
 Optional. Finds and returns a session based on a request object.
 This is used by higher-level tools to find the correct session
@@ -89,7 +89,7 @@ The corresponding session, or undefined if not found.
 
 > `readonly` **name**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:58](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/transports/pubsub/server.ts#L58)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:58](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/transports/pubsub/server.ts#L58)
 
 A unique, human-readable name for the transport (e.g., 'sse', 'websocket').
 
@@ -99,7 +99,7 @@ A unique, human-readable name for the transport (e.g., 'sse', 'websocket').
 
 > **onConnection**: (`cb`) => `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:134](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/transports/pubsub/server.ts#L134)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:134](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/transports/pubsub/server.ts#L134)
 
 Registers a callback to be invoked when a new client connection is established
 and a session is created.
@@ -122,7 +122,7 @@ The callback function that receives the new `PubSubServerSession`.
 
 > **onDisconnect**: (`cb`) => `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:141](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/transports/pubsub/server.ts#L141)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:141](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/transports/pubsub/server.ts#L141)
 
 Registers a callback to be invoked when a client disconnects.
 
@@ -145,7 +145,7 @@ The callback function that receives the `PubSubServerSession` of the
 
 > `optional` **onMessage**: (`cb`) => `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:149](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/transports/pubsub/server.ts#L149)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:149](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/transports/pubsub/server.ts#L149)
 
 Optional. Registers a callback to handle incoming messages from clients.
 This is only necessary for bidirectional transport protocols like WebSockets or IPC.
@@ -168,7 +168,7 @@ The callback function that receives the session, event name, data, and context.
 
 > `readonly` **protocol**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:62](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/transports/pubsub/server.ts#L62)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:62](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/transports/pubsub/server.ts#L62)
 
 The protocol identifier.
 
@@ -178,7 +178,7 @@ The protocol identifier.
 
 > **publish**: (`event`, `data`, `target?`, `ctx?`) => `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:122](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/transports/pubsub/server.ts#L122)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:122](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/transports/pubsub/server.ts#L122)
 
 Publishes an event from the server to connected clients.
 
@@ -227,7 +227,7 @@ Optional context for the PubSub operation.
 
 > **subscribe**: (`session`, `events`) => `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:94](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/transports/pubsub/server.ts#L94)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:94](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/transports/pubsub/server.ts#L94)
 
 Subscribes a client session to one or more events.
 
@@ -259,7 +259,7 @@ An array of event names to subscribe to.
 
 > **unsubscribe**: (`session`, `events`) => `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:106](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/transports/pubsub/server.ts#L106)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:106](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/transports/pubsub/server.ts#L106)
 
 Unsubscribes a client session from one or more events.
 

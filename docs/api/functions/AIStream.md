@@ -8,7 +8,7 @@
 
 > **AIStream**\<`T`, `TOptions`\>(`response`, `customParser?`): `ReadableStream`\<[`AIResult`](../interfaces/AIResult.md)\<`T`, `TOptions`\>\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/stream/ai-stream.ts:120](https://github.com/isdk/ai-tool.js/blob/fb1809b53cc75a30928176c26910792b6b8a96e1/src/utils/stream/ai-stream.ts#L120)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/stream/ai-stream.ts:120](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/stream/ai-stream.ts#L120)
 
 Returns a ReadableStream created from the response, parsed and handled with custom logic.
 The stream goes through two transformation stages, first parsing the events and then
