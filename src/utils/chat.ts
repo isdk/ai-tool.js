@@ -44,6 +44,16 @@ export const AIChatRoles = ['user', 'assistant', 'system', 'tool', 'tool_calls']
 export const StrangeHumanName = '陌生人'
 export type AIChatRole = (typeof AIChatRoles[number]) & string
 
+export interface AIChatToolDefinition {
+  name?: string;
+  type: 'function',
+  function: {
+    name: string;
+    description?: string;
+    parameters?: any; // JSON Schema
+  },
+}
+
 export type AIChatMessageParam =
   | AIChatMessageParamBase
   | AIChatSystemMessageParam
@@ -52,14 +62,14 @@ export type AIChatMessageParam =
   | AIChatToolMessageParam
 
 export interface AIChatMessageParamBase {
-    role: string
-    toRole?: string|string[]|Record<string,  Partial<AIChatMessageParam>>
-    replies?: Record<string, Partial<AIChatMessageParam>>
-    private?: boolean
-    tools?: Record<string, string>
-    thinking?: string
-    [name: string]: any
-  }
+  role: AIChatRole
+  toRole?: string|string[]|Record<string,  Partial<AIChatMessageParam>>
+  replies?: Record<string, Partial<AIChatMessageParam>>
+  private?: boolean
+  tools?: AIChatToolDefinition[]
+  thinking?: string
+  [name: string]: any
+}
 
 export interface AIChatSystemMessageParam extends AIChatMessageParamBase{
   role: 'system';
@@ -81,17 +91,23 @@ export interface AIChatUserMessageParam extends AIChatMessageParamBase {
 }
 
 export type AIChatContentPart =
+  | AIChatContentPartBase
   | AIChatContentPartText
   | AIChatContentPartImage;
 
-export interface AIChatContentPartImage {
+export interface AIChatContentPartBase {
+  type: 'text' | 'image_url' | string;
+  [name: string]: any;
+}
+
+export interface AIChatContentPartImage extends AIChatContentPartBase {
   type: 'image_url';
   image_url: {
     url: string;
   };
 }
 
-export interface AIChatContentPartText {
+export interface AIChatContentPartText extends AIChatContentPartBase {
   type: 'text';
   text: string;
 }
@@ -108,17 +124,18 @@ export interface AIChatAssistantMessageParam extends AIChatMessageParamBase {
 
 export interface AIChatMessageToolCall {
   type: 'function';
-  id: string;
+  id?: string;
   function: {
-    arguments: string;
     name: string;
+    arguments?: string;
+    description?: string;
   };
 }
 
 export interface AIChatToolMessageParam extends AIChatMessageParamBase {
   role: 'tool';
   content: string;
-  tool_call_id: string;
+  tool_call_id?: string;
   templateFormat?: string;
 }
 
