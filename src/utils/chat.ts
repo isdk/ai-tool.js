@@ -37,10 +37,10 @@ export interface AIResult<TValue = any, TOptions = any> {
 export const AIMessageTypes = ['human', 'ai', 'generic', 'system', 'tool'] as const
 export type AIMessageType = typeof AIMessageTypes[number]
 
-// tool: return the result of the tool called. {name: 'the tool name', content: 'the tool result', tool_call_id: ""}
-// tool_calls: the tool calls in the message, eg, [{type: "function", function: {name: "getCurrentLocation", arguments: "{}"}, id: "123"}
+// the tool calls in the message, eg, {role: 'assistant', tool_calls: [{type: "function", function: {name: "getCurrentLocation", arguments: "{}"}, id: "123"}}
+// the result of the tool called: {role: 'tool', , tool_call_id: "", name: 'the tool name', content: JSON.stringify(tool_result)}}
 // https://github.com/openai/openai-node/blob/master/README.md
-export const AIChatRoles = ['user', 'assistant', 'system', 'tool', 'tool_calls'] as const
+export const AIChatRoles = ['user', 'assistant', 'system', 'tool'] as const
 export type AIChatRole = (typeof AIChatRoles[number]) | (string & {})
 export const StrangeHumanName = '陌生人'
 
