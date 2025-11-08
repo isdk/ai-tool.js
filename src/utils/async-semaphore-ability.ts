@@ -1,5 +1,5 @@
 import createAbilityInjector from "custom-ability";
-import { BinarySemaphoreAcquireOptions, Semaphore, SemaphoreOptions, SemaphoreTaskItem } from "./async-semaphore";
+import { BinarySemaphoreAcquireOptions, Semaphore, SemaphoreOptions, SemaphoreTaskItem } from "@isdk/util";
 
 
 // TODO: not ready
