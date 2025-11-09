@@ -28,6 +28,8 @@
     "@isdk/hash": "workspace:^",
     "@isdk/template-engines": "workspace:^",
     "@isdk/tool-func": "workspace:^",
+    "@isdk/tool-rpc": "workspace:^",
+    "@isdk/tool-event": "workspace:^",
     "@isdk/util": "^0.3.3",
     "abstract-error": "^2.0.0",
     "base32768": "^5.0.0",

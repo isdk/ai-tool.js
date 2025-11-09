@@ -1,10 +1,8 @@
-import { event } from "./event";
+import { event } from "@isdk/tool-event";
 import { lrucache } from "./lrucache";
 
-export * from './event';
+export * from '@isdk/tool-event';
 export * from './lrucache';
-export * from './event-client';
-export * from './event-server';
 
 export function registerCoreTools() {
   event.register();
