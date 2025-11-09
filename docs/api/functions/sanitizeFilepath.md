@@ -8,7 +8,7 @@
 
 > **sanitizeFilepath**(`filepath`, `options?`): `string`
 
-Defined in: @isdk/util/dist/index.d.ts:427
+Defined in: @isdk/util/dist/index.d.ts:429
 
 Sanitizes each part of a file path and reassembles it, ensuring the path is valid according to provided options.
 

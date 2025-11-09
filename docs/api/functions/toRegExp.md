@@ -8,7 +8,7 @@
 
 > **toRegExp**(`value`): `RegExp`
 
-Defined in: @isdk/ai-tools/node\_modules/.pnpm/util-ex@2.3.0/node\_modules/util-ex/lib/to-regexp.d.ts:9
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/util-ex@2.4.0/node\_modules/util-ex/lib/to-regexp.d.ts:9
 
 create or clone RegExp
 

@@ -1,1 +1,0 @@
-export { BaseFunc, BaseFuncItem, Funcs, FuncParam, FuncItem, FuncParams, FuncParamType, funcGetMeta, funcWithMeta, TFunc, ToolFunc, ToolFuncPackage, ToolFuncSchema, FuncMetaSymbol } from '@isdk/tool-func'

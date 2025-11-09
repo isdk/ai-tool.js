@@ -8,7 +8,7 @@
 
 > **sanitizeFilename**(`filename`, `options?`): `string`
 
-Defined in: @isdk/util/dist/index.d.ts:420
+Defined in: @isdk/util/dist/index.d.ts:422
 
 Sanitizes a given filename by replacing invalid characters with a specified replacement character or a default.
 

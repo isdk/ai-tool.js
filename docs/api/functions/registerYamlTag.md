@@ -8,7 +8,7 @@
 
 > **registerYamlTag**(`tags`): `void`
 
-Defined in: @isdk/util/dist/index.d.ts:279
+Defined in: @isdk/util/dist/index.d.ts:281
 
 Registers custom YAML tags to be used in parsing and stringifying YAML content.
 
@@ -18,7 +18,7 @@ Registers custom YAML tags to be used in parsing and stringifying YAML content.
 
 A single tag or an array of tags to register.
 
-`"map"` | `"binary"` | `"null"` | `ScalarTag` | `CollectionTag` | `"bool"` | `"float"` | `"floatExp"` | `"floatNaN"` | `"floatTime"` | `"int"` | `"intHex"` | `"intOct"` | `"intTime"` | `"merge"` | `"omap"` | `"pairs"` | `"seq"` | `"set"` | `"timestamp"` | `Tags`
+`"map"` | `"null"` | `"binary"` | `ScalarTag` | `CollectionTag` | `"bool"` | `"float"` | `"floatExp"` | `"floatNaN"` | `"floatTime"` | `"int"` | `"intHex"` | `"intOct"` | `"intTime"` | `"merge"` | `"omap"` | `"pairs"` | `"seq"` | `"set"` | `"timestamp"` | `Tags`
 
 ## Returns
 

@@ -6,7 +6,7 @@
 
 # Class: IntSet
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/intset.ts:6](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/intset.ts#L6)
+Defined in: @isdk/util/dist/index.d.ts:558
 
 Represents a set of integers using a bit field.
 Each bit in the bit field represents an integer starting from 0,
@@ -16,15 +16,15 @@ where the flag value 0 represents the 0th bit, 1 represents the 1st bit, and so 
 
 ### Constructor
 
-> **new IntSet**(`bitField`): `IntSet`
+> **new IntSet**(`bitField?`): `IntSet`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/intset.ts:21](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/intset.ts#L21)
+Defined in: @isdk/util/dist/index.d.ts:563
 
 #### Parameters
 
-##### bitField
+##### bitField?
 
-`number` = `0`
+`number`
 
 #### Returns
 
@@ -34,9 +34,9 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/intset.ts:21](https://git
 
 ### add()
 
-> **add**(`flag`): `IntSet`
+> **add**(`flag`): `this`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/intset.ts:29](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/intset.ts#L29)
+Defined in: @isdk/util/dist/index.d.ts:570
 
 Adds an element to the set.
 
@@ -51,29 +51,29 @@ The flag value representing the bit position to set.
 
 #### Returns
 
-`IntSet`
+`this`
 
 ***
 
 ### clear()
 
-> **clear**(): `IntSet`
+> **clear**(): `this`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/intset.ts:57](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/intset.ts#L57)
+Defined in: @isdk/util/dist/index.d.ts:587
 
 Clears all elements from the set.
 
 #### Returns
 
-`IntSet`
+`this`
 
 ***
 
 ### delete()
 
-> **delete**(`flag`): `IntSet`
+> **delete**(`flag`): `this`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/intset.ts:39](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/intset.ts#L39)
+Defined in: @isdk/util/dist/index.d.ts:576
 
 Removes an element from the set.
 
@@ -87,7 +87,7 @@ The flag value representing the bit position to set. 0 represents the 0th bit
 
 #### Returns
 
-`IntSet`
+`this`
 
 ***
 
@@ -95,7 +95,7 @@ The flag value representing the bit position to set. 0 represents the 0th bit
 
 > **has**(`flag`): `boolean`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/intset.ts:50](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/intset.ts#L50)
+Defined in: @isdk/util/dist/index.d.ts:583
 
 Determines whether an element is in the set.
 
@@ -119,7 +119,7 @@ true if the element is in the set; otherwise, false.
 
 > **toJSON**(): `number`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/intset.ts:70](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/intset.ts#L70)
+Defined in: @isdk/util/dist/index.d.ts:590
 
 #### Returns
 
@@ -131,7 +131,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/intset.ts:70](https://git
 
 > **toString**(): `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/intset.ts:66](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/intset.ts#L66)
+Defined in: @isdk/util/dist/index.d.ts:589
 
 #### Returns
 
@@ -143,7 +143,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/intset.ts:66](https://git
 
 > **valueOf**(): `number`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/intset.ts:62](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/intset.ts#L62)
+Defined in: @isdk/util/dist/index.d.ts:588
 
 #### Returns
 
@@ -155,7 +155,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/intset.ts:62](https://git
 
 > `static` **add**(`bitField`, `flag`): `number`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/intset.ts:12](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/intset.ts#L12)
+Defined in: @isdk/util/dist/index.d.ts:561
 
 #### Parameters
 
@@ -177,7 +177,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/intset.ts:12](https://git
 
 > `static` **delete**(`bitField`, `flag`): `number`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/intset.ts:16](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/intset.ts#L16)
+Defined in: @isdk/util/dist/index.d.ts:562
 
 #### Parameters
 
@@ -199,7 +199,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/intset.ts:16](https://git
 
 > `static` **has**(`bitField`, `flag`): `boolean`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/intset.ts:8](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/intset.ts#L8)
+Defined in: @isdk/util/dist/index.d.ts:560
 
 #### Parameters
 

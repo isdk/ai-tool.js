@@ -6,7 +6,11 @@
 
 # Interface: HashAlgoParams
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/hash.ts:10](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/hash/hash.ts#L10)
+Defined in: @isdk/ai-tools/packages/hash/dist/index.d.ts:153
+
+Defines the parameters for a hashing operation.
+
+ HashAlgoParams
 
 ## Properties
 
@@ -14,15 +18,34 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/hash.ts:10](https://
 
 > `optional` **hashAlgo**: [`HashAlgorithm`](../enumerations/HashAlgorithm.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/hash.ts:11](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/hash/hash.ts#L11)
+Defined in: @isdk/ai-tools/packages/hash/dist/index.d.ts:160
+
+The hashing algorithm to use.
+
+#### Default
+
+```ts
+HashAlgorithm.xxhash64
+```
 
 ***
 
 ### outputType?
 
-> `optional` **outputType**: `"string"` \| `"hex"` \| `"binary"`
+> `optional` **outputType**: `"string"` \| `"binary"` \| `"hex"`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/hash.ts:13](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/hash/hash.ts#L13)
+Defined in: @isdk/ai-tools/packages/hash/dist/index.d.ts:177
+
+The desired output type for the hash.
+- `hex`: A hexadecimal string.
+- `binary`: A Uint8Array.
+- `string`: A base32768 encoded string (default).
+
+#### Default
+
+```ts
+'string'
+```
 
 ***
 
@@ -30,4 +53,12 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/hash.ts:13](https://
 
 > `optional` **seed**: `number`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/hash.ts:12](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/hash/hash.ts#L12)
+Defined in: @isdk/ai-tools/packages/hash/dist/index.d.ts:167
+
+The seed for the hashing algorithm. Used by algorithms like xxhash.
+
+#### Default
+
+```ts
+SEED
+```

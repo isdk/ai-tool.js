@@ -6,7 +6,7 @@
 
 # Interface: AIChatToolFuncParam
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/chat.ts:130](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/chat.ts#L130)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/chat.ts:147](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/chat.ts#L147)
 
 ## Extends
 
@@ -22,7 +22,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/chat.ts:130](https://gith
 
 > **function**: [`AIChatToolFunc`](AIChatToolFunc.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/chat.ts:132](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/chat.ts#L132)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/chat.ts:149](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/chat.ts#L149)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/chat.ts:132](https://gith
 
 > **type**: `"function"`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/chat.ts:131](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/chat.ts#L131)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/chat.ts:148](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/chat.ts#L148)
 
 #### Overrides
 

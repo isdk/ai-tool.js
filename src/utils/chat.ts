@@ -1,5 +1,5 @@
+import type { AsyncTaskId } from '@isdk/tool-func';
 import { toDateTime, dateToText } from './to-datetime';
-import type { AsyncTaskId } from './cancelable-ability';
 
 export const AITextGenerationFinishReasons = [
   'stop',           // model generated stop sequence

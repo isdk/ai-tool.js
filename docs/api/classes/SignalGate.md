@@ -6,7 +6,7 @@
 
 # Class: SignalGate\<T\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:20](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/async-signal-gate.ts#L20)
+Defined in: @isdk/util/dist/index.d.ts:894
 
 An asynchronous signal gate that blocks operations until a signal is emitted.
 This class allows multiple awaiters to wait for a signal and resolves all pending promises with the emitted value.
@@ -44,9 +44,9 @@ valueGate.signal(42); // Must provide a number value
 
 ### \_isSignaled
 
-> `protected` **\_isSignaled**: `boolean` = `false`
+> `protected` **\_isSignaled**: `boolean`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:21](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/async-signal-gate.ts#L21)
+Defined in: @isdk/util/dist/index.d.ts:895
 
 ***
 
@@ -54,15 +54,15 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:21](
 
 > `protected` **\_signalValue**: `undefined` \| `T`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:22](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/async-signal-gate.ts#L22)
+Defined in: @isdk/util/dist/index.d.ts:896
 
 ***
 
 ### waitQueue
 
-> `protected` **waitQueue**: `object`[] = `[]`
+> `protected` **waitQueue**: `object`[]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:23](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/async-signal-gate.ts#L23)
+Defined in: @isdk/util/dist/index.d.ts:897
 
 #### reject()
 
@@ -100,7 +100,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:23](
 
 > **get** **signaled**(): `boolean`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:28](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/async-signal-gate.ts#L28)
+Defined in: @isdk/util/dist/index.d.ts:901
 
 ##### Returns
 
@@ -112,7 +112,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:28](
 
 > **abort**(`reason?`): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:65](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/async-signal-gate.ts#L65)
+Defined in: @isdk/util/dist/index.d.ts:919
 
 Aborts all pending waits, rejecting their promises with an error.
 This does **not** reset the signal state (the gate remains signaled or unsignaled).
@@ -135,7 +135,7 @@ The reason for aborting the waits.
 
 > **reset**(): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:53](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/async-signal-gate.ts#L53)
+Defined in: @isdk/util/dist/index.d.ts:912
 
 Resets the gate to its initial state, allowing a new signal to be emitted.
 
@@ -149,7 +149,7 @@ Resets the gate to its initial state, allowing a new signal to be emitted.
 
 > **signal**(`value?`): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:38](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/async-signal-gate.ts#L38)
+Defined in: @isdk/util/dist/index.d.ts:908
 
 Emits the signal with an optional value, resolving all pending [wait](../variables/wait.md) promises.
 Subsequent calls have no effect until [reset](#reset) is called.
@@ -172,7 +172,7 @@ The value to emit with the signal (only required if T is not void).
 
 > **wait**(): `Promise`\<`T`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/async-signal-gate.ts:83](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/async-signal-gate.ts#L83)
+Defined in: @isdk/util/dist/index.d.ts:926
 
 Returns a promise that resolves with the emitted signal value.
 If called after the signal has been emitted, resolves immediately with the stored value.

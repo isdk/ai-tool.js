@@ -8,7 +8,7 @@
 
 > `const` **RemoteToolFuncSchema**: `object`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/consts.ts:40](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/consts.ts#L40)
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:18
 
 **`Internal`**
 
@@ -28,7 +28,7 @@ to corresponding HTTP methods. Defaults to 'post'.
 
 #### action.type
 
-> **type**: `string` = `'string'`
+> **type**: `string`
 
 #### action.assign()
 
@@ -69,7 +69,7 @@ This is a server-side setting.
 
 #### allowExportFunc.type
 
-> **type**: `string` = `'boolean'`
+> **type**: `string`
 
 ### ~~fetchOptions~~
 
@@ -83,4 +83,4 @@ Use `transport` instead.
 
 #### fetchOptions.type
 
-> **type**: `string` = `'object'`
+> **type**: `string`

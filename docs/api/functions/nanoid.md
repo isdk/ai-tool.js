@@ -8,7 +8,7 @@
 
 > **nanoid**\<`Type`\>(`size?`): `Type`
 
-Defined in: @isdk/ai-tools/node\_modules/.pnpm/nanoid@5.1.5/node\_modules/nanoid/index.d.ts:28
+Defined in: @isdk/ai-tools/node\_modules/.pnpm/nanoid@5.1.6/node\_modules/nanoid/index.d.ts:28
 
 Generate secure URL-friendly unique ID.
 

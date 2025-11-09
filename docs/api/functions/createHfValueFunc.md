@@ -8,7 +8,7 @@
 
 > **createHfValueFunc**(`fn`): (`_data`) => `Function`
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:610
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:614
 
 ## Parameters
 

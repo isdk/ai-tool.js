@@ -1,6 +1,6 @@
 import { Cache as _Cache } from 'secondary-cache'
 import type { ICacheOptions } from 'secondary-cache'
-import { ToolFunc } from '../tool-func'
+import { ToolFunc } from '@isdk/tool-func'
 
 export {LRUCache} from 'secondary-cache'
 export const SecondaryCache = _Cache

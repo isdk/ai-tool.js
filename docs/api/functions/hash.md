@@ -6,9 +6,13 @@
 
 # Function: hash()
 
-> **hash**(`value`, `__namedParameters`): `Promise`\<`string` \| `Uint8Array`\<`ArrayBufferLike`\>\>
+> **hash**(`value`, `options?`): `Promise`\<`string` \| `Uint8Array`\<`ArrayBufferLike`\>\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/hash.ts:31](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/hash/hash.ts#L31)
+Defined in: @isdk/ai-tools/packages/hash/dist/index.d.ts:218
+
+Hashes a given value.
+
+The value can be a string, Buffer, ArrayBuffer, or any other type supported by `hash-wasm`.
 
 ## Parameters
 
@@ -16,10 +20,27 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/hash.ts:31](https://
 
 `IDataType`
 
-### \_\_namedParameters
+The value to hash.
 
-[`HashAlgoParams`](../interfaces/HashAlgoParams.md) = `{}`
+### options?
+
+[`HashAlgoParams`](../interfaces/HashAlgoParams.md)
+
+Hashing options.
 
 ## Returns
 
 `Promise`\<`string` \| `Uint8Array`\<`ArrayBufferLike`\>\>
+
+A promise that resolves to the hash result.
+
+## Example
+
+```typescript
+const textHash = await hash('hello world');
+
+const textHashAsHex = await hash('hello world', {
+  hashAlgo: HashAlgorithm.sha256,
+  outputType: 'hex'
+});
+```

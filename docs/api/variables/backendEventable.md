@@ -4,8 +4,28 @@
 
 [@isdk/ai-tool](../globals.md) / backendEventable
 
-# Variable: backendEventable
+# Variable: backendEventable()
 
-> `const` **backendEventable**: `ClassAbilityFn`\<(`Backend`, `options?`) => *typeof* `BackendEventable`\>
+> `const` **backendEventable**: \<`T`\>(`targetClass?`, `options?`) => `T` & *typeof* `getEventableClass` & `T` *extends* (...`args`) => `any` ? `InstanceType`\<`T`\> : `T`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/event/event-ability.ts:83](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/event/event-ability.ts#L83)
+Defined in: @isdk/ai-tools/packages/tool-event/dist/index.d.ts:31
+
+## Type Parameters
+
+### T
+
+`T` *extends* `Function` \| (...`args`) => `any`
+
+## Parameters
+
+### targetClass?
+
+`T`
+
+### options?
+
+`custom_ability.AbilityOptions`
+
+## Returns
+
+`T` & *typeof* `getEventableClass` & `T` *extends* (...`args`) => `any` ? `InstanceType`\<`T`\> : `T`

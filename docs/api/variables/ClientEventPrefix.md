@@ -6,6 +6,6 @@
 
 # Variable: ClientEventPrefix
 
-> `const` **ClientEventPrefix**: `"client:"` = `'client:'`
+> `const` **ClientEventPrefix**: `"client:"` = `"client:"`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/funcs/event-server.ts:12](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/funcs/event-server.ts#L12)
+Defined in: @isdk/ai-tools/packages/tool-event/dist/index.d.ts:209

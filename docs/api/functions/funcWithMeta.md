@@ -8,7 +8,7 @@
 
 > **funcWithMeta**(`fn`, `meta`, `ignoreExists?`): `undefined` \| `Function` \| [`ToolFunc`](../classes/ToolFunc.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:886](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/tool-func.ts#L886)
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:705
 
 Attaches metadata to a function or `ToolFunc` object.
 
@@ -30,7 +30,7 @@ The metadata object to attach. The operation is skipped if this is not a non-nul
 
 ### ignoreExists?
 
-`boolean` = `true`
+`boolean`
 
 If `true`, new metadata overwrites existing keys. If `false`, it merges deeply, preserving existing values.
 

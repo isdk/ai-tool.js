@@ -6,9 +6,14 @@
 
 # Function: hashStream()
 
-> **hashStream**(`stream`, `__namedParameters`): `Promise`\<`string` \| `Uint8Array`\<`ArrayBufferLike`\>\>
+> **hashStream**(`stream`, `options?`): `Promise`\<`string` \| `Uint8Array`\<`ArrayBufferLike`\>\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/hash.ts:16](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/hash/hash.ts#L16)
+Defined in: @isdk/ai-tools/packages/hash/dist/index.d.ts:198
+
+Hashes a readable stream of data.
+
+This function is useful for hashing large files or data streams without loading the entire
+content into memory.
 
 ## Parameters
 
@@ -16,10 +21,26 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/hash.ts:16](https://
 
 `ReadableStream`
 
-### \_\_namedParameters
+The readable stream to hash.
 
-[`HashAlgoParams`](../interfaces/HashAlgoParams.md) = `{}`
+### options?
+
+[`HashAlgoParams`](../interfaces/HashAlgoParams.md)
+
+Hashing options.
 
 ## Returns
 
 `Promise`\<`string` \| `Uint8Array`\<`ArrayBufferLike`\>\>
+
+A promise that resolves to the hash result.
+
+## Example
+
+```typescript
+// In Node.js
+import { createReadStream } from 'fs';
+const stream = createReadStream('path/to/file');
+const fileHash = await hashStream(stream);
+console.log(fileHash);
+```

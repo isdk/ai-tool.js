@@ -8,7 +8,7 @@
 
 > **RpcMethodHandler** = (`params`, `context?`) => `Promise`\<`any`\> \| `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/base.ts:14](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/transports/base.ts#L14)
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:79
 
 The generic handler for a remote procedure call (RPC) method.
 It receives the parameters and returns the result.

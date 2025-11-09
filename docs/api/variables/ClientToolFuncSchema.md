@@ -8,7 +8,7 @@
 
 > `const` **ClientToolFuncSchema**: `object`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/client-tools.ts:149](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/client-tools.ts#L149)
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:213
 
 **`Internal`**
 
@@ -20,14 +20,9 @@ The schema definition for `ClientTools` properties.
 
 > **action**: `object`
 
-The action for the remote call. This is primarily interpreted as an RPC method name.
-For HTTP transports, it defaults to being sent as a custom RPC method name (e.g., via POST).
-Only specific RESTful server implementations might map certain 'action' values (like 'get', 'delete')
-to corresponding HTTP methods. Defaults to 'post'.
-
 #### action.type
 
-> **type**: `string` = `'string'`
+> **type**: `string`
 
 #### action.assign()
 
@@ -63,23 +58,14 @@ to corresponding HTTP methods. Defaults to 'post'.
 
 > **allowExportFunc**: `object`
 
-If true, allows the function's body to be exported to the client for local execution.
-This is a server-side setting.
-
 #### allowExportFunc.type
 
-> **type**: `string` = `'boolean'`
+> **type**: `string`
 
-### ~~fetchOptions~~
+### fetchOptions
 
 > **fetchOptions**: `object`
 
-Optional fetch options, primarily for use with HTTP-based transports.
-
-#### Deprecated
-
-Use `transport` instead.
-
 #### fetchOptions.type
 
-> **type**: `string` = `'object'`
+> **type**: `string`

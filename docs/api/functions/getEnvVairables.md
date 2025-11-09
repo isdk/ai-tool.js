@@ -8,7 +8,7 @@
 
 > **getEnvVairables**(`value`): `string`[]
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:674
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:678
 
 ## Parameters
 

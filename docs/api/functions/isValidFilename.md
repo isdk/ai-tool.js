@@ -8,7 +8,7 @@
 
 > **isValidFilename**(`filename`): `boolean` \| `""`
 
-Defined in: @isdk/util/dist/index.d.ts:400
+Defined in: @isdk/util/dist/index.d.ts:402
 
 Validates if a given string is a valid filename.
 

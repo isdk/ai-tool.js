@@ -8,7 +8,7 @@
 
 > **extNameLevel**(`extName`): `number`
 
-Defined in: @isdk/util/dist/index.d.ts:449
+Defined in: @isdk/util/dist/index.d.ts:451
 
 Calculates the level of an extension name.
 

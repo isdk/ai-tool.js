@@ -6,7 +6,7 @@
 
 # Interface: RpcMethodsServerFuncParams
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-server-tool.ts:6](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/rpc-methods-server-tool.ts#L6)
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index.d.ts:24
 
 Defines the structure for parameters passed to a `ServerTools` function.
 By convention, it includes optional `_req` and `_res` properties for direct
@@ -30,7 +30,7 @@ access to the underlying transport's request and response objects (e.g., from No
 
 > `optional` **\_req**: `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/server-tools.ts:15](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/server-tools.ts#L15)
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:236
 
 The underlying request object from the transport layer (e.g., `IncomingMessage`).
 
@@ -44,7 +44,7 @@ The underlying request object from the transport layer (e.g., `IncomingMessage`)
 
 > `optional` **\_res**: `any`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/server-tools.ts:20](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/server-tools.ts#L20)
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:241
 
 The underlying response or reply object from the transport layer (e.g., `ServerResponse`).
 
@@ -58,4 +58,4 @@ The underlying response or reply object from the transport layer (e.g., `ServerR
 
 > `optional` **act**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/rpc-methods-server-tool.ts:7](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/rpc-methods-server-tool.ts#L7)
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index.d.ts:25

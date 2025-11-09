@@ -8,7 +8,7 @@
 
 > **genUrlParamsStr**(`objParam`, `omitQuestionMark?`): `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/gen-url-params.ts:7](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/gen-url-params.ts#L7)
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:333
 
 Utility to serialize an object into a URL query parameter string.
 

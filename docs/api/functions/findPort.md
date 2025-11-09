@@ -6,9 +6,9 @@
 
 # Function: findPort()
 
-> **findPort**(`port`, `portRetryCount`): `Promise`\<`number`\>
+> **findPort**(`port`, `portRetryCount?`): `Promise`\<`number`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/find-port.ts:3](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/find-port.ts#L3)
+Defined in: @isdk/util/dist/index.d.ts:929
 
 ## Parameters
 
@@ -16,9 +16,9 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/find-port.ts:3](https://g
 
 `string` | `number`
 
-### portRetryCount
+### portRetryCount?
 
-`number` = `10`
+`number`
 
 ## Returns
 

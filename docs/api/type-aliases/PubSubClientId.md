@@ -8,7 +8,7 @@
 
 > **PubSubClientId** = `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/transports/pubsub/server.ts:7](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/transports/pubsub/server.ts#L7)
+Defined in: @isdk/ai-tools/packages/tool-event/dist/transports/pubsub.d.ts:110
 
 Represents the unique identifier for a client connected to the PubSub transport.
 This ID is used for targeted message publishing.

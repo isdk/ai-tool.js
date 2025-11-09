@@ -6,7 +6,11 @@
 
 # Enumeration: HashAlgorithm
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:5](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/hash/const.ts#L5)
+Defined in: @isdk/ai-tools/packages/hash/dist/index.d.ts:41
+
+Enum representing the supported hashing algorithms.
+
+Each member is assigned a unique numeric value.
 
 ## Enumeration Members
 
@@ -14,7 +18,9 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:5](https://
 
 > **md5**: `1`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:6](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/hash/const.ts#L6)
+Defined in: @isdk/ai-tools/packages/hash/dist/index.d.ts:43
+
+MD5 (Message-Digest Algorithm 5)
 
 ***
 
@@ -22,7 +28,9 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:6](https://
 
 > **ripemd**: `3`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:8](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/hash/const.ts#L8)
+Defined in: @isdk/ai-tools/packages/hash/dist/index.d.ts:47
+
+RIPEMD-160 (RACE Integrity Primitives Evaluation Message Digest)
 
 ***
 
@@ -30,7 +38,9 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:8](https://
 
 > **sha1**: `2`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:7](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/hash/const.ts#L7)
+Defined in: @isdk/ai-tools/packages/hash/dist/index.d.ts:45
+
+SHA-1 (Secure Hash Algorithm 1)
 
 ***
 
@@ -38,7 +48,9 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:7](https://
 
 > **sha224**: `11`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:12](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/hash/const.ts#L12)
+Defined in: @isdk/ai-tools/packages/hash/dist/index.d.ts:55
+
+SHA-224 (Secure Hash Algorithm 224)
 
 ***
 
@@ -46,7 +58,9 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:12](https:/
 
 > **sha256**: `8`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:9](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/hash/const.ts#L9)
+Defined in: @isdk/ai-tools/packages/hash/dist/index.d.ts:49
+
+SHA-256 (Secure Hash Algorithm 256)
 
 ***
 
@@ -54,7 +68,9 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:9](https://
 
 > **sha384**: `9`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:10](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/hash/const.ts#L10)
+Defined in: @isdk/ai-tools/packages/hash/dist/index.d.ts:51
+
+SHA-384 (Secure Hash Algorithm 384)
 
 ***
 
@@ -62,7 +78,9 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:10](https:/
 
 > **sha512**: `10`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:11](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/hash/const.ts#L11)
+Defined in: @isdk/ai-tools/packages/hash/dist/index.d.ts:53
+
+SHA-512 (Secure Hash Algorithm 512)
 
 ***
 
@@ -70,7 +88,9 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:11](https:/
 
 > **xxhash**: `111`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:13](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/hash/const.ts#L13)
+Defined in: @isdk/ai-tools/packages/hash/dist/index.d.ts:57
+
+Generic XXHash (defaults to xxhash64 in some contexts)
 
 ***
 
@@ -78,7 +98,9 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:13](https:/
 
 > **xxhash128**: `113`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:16](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/hash/const.ts#L16)
+Defined in: @isdk/ai-tools/packages/hash/dist/index.d.ts:63
+
+XXHash128 (128-bit XXHash)
 
 ***
 
@@ -86,7 +108,9 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:16](https:/
 
 > **xxhash32**: `112`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:15](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/hash/const.ts#L15)
+Defined in: @isdk/ai-tools/packages/hash/dist/index.d.ts:61
+
+XXHash32 (32-bit XXHash)
 
 ***
 
@@ -94,4 +118,6 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:15](https:/
 
 > **xxhash64**: `111`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/const.ts:14](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/hash/const.ts#L14)
+Defined in: @isdk/ai-tools/packages/hash/dist/index.d.ts:59
+
+XXHash64 (64-bit XXHash)

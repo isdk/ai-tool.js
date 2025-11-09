@@ -6,24 +6,45 @@
 
 # Function: xxhashAsStr()
 
-> **xxhashAsStr**(`value`, `hashAlgo`, `seed`): `string`
+> **xxhashAsStr**(`value`, `hashAlgo?`, `seed?`): `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/xxhash.ts:40](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/hash/xxhash.ts#L40)
+Defined in: @isdk/ai-tools/packages/hash/dist/index.d.ts:144
+
+Computes an XXHash for a given value and returns the result as a base32768 encoded string.
+
+This function is a convenience wrapper around `xxhash` that automatically encodes the
+resulting byte array into a compact, URL-friendly string.
 
 ## Parameters
 
 ### value
 
+The value to hash (string or Uint8Array).
+
 `string` | `Uint8Array`\<`ArrayBufferLike`\>
 
-### hashAlgo
+### hashAlgo?
 
-[`HashAlgorithm`](../enumerations/HashAlgorithm.md) = `HashAlgorithm.xxhash64`
+[`HashAlgorithm`](../enumerations/HashAlgorithm.md)
 
-### seed
+The XXHash algorithm to use (xxhash32 or xxhash64).
 
-`number` = `SEED`
+### seed?
+
+`number`
+
+The seed for the hashing algorithm.
 
 ## Returns
 
 `string`
+
+The XXHash result as a base32768 encoded string.
+
+## Example
+
+```typescript
+const data = 'hello world';
+const hashString = xxhashAsStr(data, HashAlgorithm.xxhash64);
+console.log(hashString); // Base32768 encoded string
+```

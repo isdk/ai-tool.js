@@ -6,20 +6,38 @@
 
 # Function: xxhash64()
 
-> **xxhash64**(`value`, `radix`): `string`
+> **xxhash64**(`value`, `radix?`): `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/hash/xxhash.ts:15](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/hash/xxhash.ts#L15)
+Defined in: @isdk/ai-tools/packages/hash/dist/index.d.ts:99
+
+Computes a 64-bit XXHash for a given string or object.
+
+If the input is an object, it will be canonicalized to a JSON string before hashing.
+The result is returned as a hexadecimal string.
 
 ## Parameters
 
 ### value
 
+The string or object to hash.
+
 `string` | `object`
 
-### radix
+### radix?
 
-`number` = `16`
+`number`
+
+The radix for the output string (e.g., 16 for hexadecimal).
 
 ## Returns
 
 `string`
+
+The 64-bit XXHash as a string.
+
+## Example
+
+```typescript
+const hash1 = xxhash64('hello world'); // '0b411719060a480a'
+const hash2 = xxhash64({ a: 1, b: 2 }); // Consistent hash for objects
+```

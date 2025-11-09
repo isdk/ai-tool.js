@@ -8,7 +8,7 @@
 
 > **getResponseErrorReadableStream**(`body?`): `ReadableStream`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/stream/error-readable-stream.ts:12](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/stream/error-readable-stream.ts#L12)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/stream/error-readable-stream.ts:12](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/stream/error-readable-stream.ts#L12)
 
 ## Parameters
 

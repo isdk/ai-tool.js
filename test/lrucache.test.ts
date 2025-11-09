@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { ToolFunc } from "../src/tool-func"
+import { ToolFunc } from "@isdk/tool-func"
 import { lrucache } from '../src/funcs/lrucache'
 
 ToolFunc.register(lrucache)

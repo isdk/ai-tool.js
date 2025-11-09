@@ -8,7 +8,7 @@
 
 > `const` **ToolFuncSchema**: `object`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/tool-func.ts:821](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/tool-func.ts#L821)
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:647
 
 **`Internal`**
 
@@ -31,7 +31,7 @@ This controls how properties are assigned and exported.
 
 #### asyncFeatures.type
 
-> **type**: `string` = `'number'`
+> **type**: `string`
 
 ### depends
 
@@ -39,11 +39,11 @@ This controls how properties are assigned and exported.
 
 #### depends.exported
 
-> **exported**: `boolean` = `false`
+> **exported**: `boolean`
 
 #### depends.type
 
-> **type**: `string` = `'object'`
+> **type**: `string`
 
 ### description
 
@@ -51,7 +51,7 @@ This controls how properties are assigned and exported.
 
 #### description.type
 
-> **type**: `string` = `'string'`
+> **type**: `string`
 
 ### func
 
@@ -59,7 +59,7 @@ This controls how properties are assigned and exported.
 
 #### func.type
 
-> **type**: `string` = `'function'`
+> **type**: `string`
 
 #### func.assign()
 
@@ -97,7 +97,7 @@ This controls how properties are assigned and exported.
 
 #### isApi.type
 
-> **type**: `string` = `'boolean'`
+> **type**: `string`
 
 ### name
 
@@ -105,7 +105,7 @@ This controls how properties are assigned and exported.
 
 #### name.type
 
-> **type**: `string` = `'string'`
+> **type**: `string`
 
 ### params
 
@@ -113,7 +113,7 @@ This controls how properties are assigned and exported.
 
 #### params.type
 
-> **type**: `string` = `'object'`
+> **type**: `string`
 
 ### result
 
@@ -121,7 +121,7 @@ This controls how properties are assigned and exported.
 
 #### result.type
 
-> **type**: `string` = `'any'`
+> **type**: `string`
 
 ### setup
 
@@ -129,7 +129,7 @@ This controls how properties are assigned and exported.
 
 #### setup.type
 
-> **type**: `string` = `'function'`
+> **type**: `string`
 
 ### stream
 
@@ -137,7 +137,7 @@ This controls how properties are assigned and exported.
 
 #### stream.type
 
-> **type**: `string` = `'boolean'`
+> **type**: `string`
 
 ### tags
 
@@ -153,4 +153,4 @@ This controls how properties are assigned and exported.
 
 #### title.type
 
-> **type**: `string` = `'string'`
+> **type**: `string`

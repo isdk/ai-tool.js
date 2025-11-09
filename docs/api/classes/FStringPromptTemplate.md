@@ -6,7 +6,7 @@
 
 # Class: FStringPromptTemplate
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:641
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:645
 
 The `StringTemplate` class is a versatile template engine that supports dynamic template creation,
 formatting, and partial data processing. It extends the `BaseFactory` class and provides methods
@@ -87,7 +87,7 @@ console.log(template instanceof TestStringTemplate); // Output: true
 
 > **compiledTemplate**: `FStringTemplateNode`[]
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:642
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:646
 
 Declares the compiled template instance.
 
@@ -315,7 +315,7 @@ The Root Factory class
 
 > **\_format**(`data`): `string`
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:647
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:651
 
 Placeholder method for formatting the template. Must be implemented by subclasses.
 
@@ -343,7 +343,7 @@ A formatted string or a promise resolving to the formatted string.
 
 > **\_initialize**(`options?`): `void`
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:646
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:650
 
 Placeholder method for initializing the template. Must be implemented by subclasses.
 
@@ -446,7 +446,7 @@ console.log(result); // Output: "Hello"
 
 > **getVariables**(`template?`): `string`[]
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:645
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:649
 
 #### Parameters
 
@@ -1110,7 +1110,7 @@ the unique name in the factory
 
 > `static` **isTemplate**(`templateOpt`): `boolean`
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:644
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:648
 
 Determines whether the given options represent a valid template.
 
@@ -1148,7 +1148,7 @@ console.log(isValid); // Output: true
 
 > `static` **matchTemplateSegment**(`template`, `index?`): `undefined` \| `RegExpExecArray`
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:643
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:647
 
 Matches and extracts a single template segment from the provided template options.
 This method is designed to identify individual segments of a template string.

@@ -6,7 +6,7 @@
 
 # Class: GolangPromptTemplate
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:650
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:654
 
 The `StringTemplate` class is a versatile template engine that supports dynamic template creation,
 formatting, and partial data processing. It extends the `BaseFactory` class and provides methods
@@ -315,7 +315,7 @@ The Root Factory class
 
 > **\_format**(`data`): `string`
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:654
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:658
 
 Placeholder method for formatting the template. Must be implemented by subclasses.
 
@@ -343,7 +343,7 @@ A formatted string or a promise resolving to the formatted string.
 
 > **\_initialize**(`options?`): `void`
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:653
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:657
 
 Placeholder method for initializing the template. Must be implemented by subclasses.
 
@@ -446,7 +446,7 @@ console.log(result); // Output: "Hello"
 
 > **getVariables**(`template`): `string`[]
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:652
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:656
 
 #### Parameters
 
@@ -1148,7 +1148,7 @@ console.log(isValid); // Output: true
 
 > `static` **matchTemplateSegment**(`template`, `index?`): `undefined` \| `RegExpExecArray`
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:651
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:655
 
 Matches and extracts a single template segment from the provided template options.
 This method is designed to identify individual segments of a template string.

@@ -4,8 +4,28 @@
 
 [@isdk/ai-tool](../globals.md) / makeToolFuncCancelable
 
-# Variable: makeToolFuncCancelable
+# Variable: makeToolFuncCancelable()
 
-> `const` **makeToolFuncCancelable**: `ClassAbilityFn`\<*typeof* [`CancelableAbility`](../classes/CancelableAbility.md)\>
+> `const` **makeToolFuncCancelable**: \<`T`\>(`targetClass?`, `options?`) => `T` & *typeof* [`CancelableAbility`](../classes/CancelableAbility.md) & `T` *extends* (...`args`) => `any` ? `InstanceType`\<`T`\> : `T` & [`CancelableAbility`](../classes/CancelableAbility.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/cancelable-ability.ts:428](https://github.com/isdk/ai-tool.js/blob/e883e341c67e937e7d3a3e95e8bc56844896f5a3/src/utils/cancelable-ability.ts#L428)
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:113
+
+## Type Parameters
+
+### T
+
+`T` *extends* `Function` \| (...`args`) => `any`
+
+## Parameters
+
+### targetClass?
+
+`T`
+
+### options?
+
+`AbilityOptions`
+
+## Returns
+
+`T` & *typeof* [`CancelableAbility`](../classes/CancelableAbility.md) & `T` *extends* (...`args`) => `any` ? `InstanceType`\<`T`\> : `T` & [`CancelableAbility`](../classes/CancelableAbility.md)
