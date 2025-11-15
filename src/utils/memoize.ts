@@ -1,5 +1,5 @@
 import _memoize, {type Options} from 'memoizee'
-import { xxhashAsStr } from './hash'
+import { xxhashAsStr } from '@isdk/hash'
 import { canonicalize } from 'json-canonicalize'
 
 // export interface IMemoizeFnOptions {
