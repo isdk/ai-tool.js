@@ -51,8 +51,6 @@
     "secondary-cache": "^2.0.1",
     "secure-json-parse": "^4.0.0",
     "util-ex": "^2.4.0",
-    "uuid": "^11.1.0",
-    "xxhashjs": "^0.2.2",
     "yaml": "^2.8.1",
     "yaml-types": "^0.4.0"
   },
