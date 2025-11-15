@@ -1,6 +1,6 @@
+export type { SemaphoreIsReadyFuncType, BinarySemaphoreOptions, BinarySemaphoreAcquireOptions, BinarySemaphoreReleaseOptions, SemaphoreOptions, SemaphoreTaskItem } from '@isdk/util'
 export {
   DefaultAsyncSemaphoreCapacity,
-  SemaphoreIsReadyFuncType, BinarySemaphoreOptions, BinarySemaphoreAcquireOptions, BinarySemaphoreReleaseOptions, SemaphoreOptions, SemaphoreTaskItem,
   BinarySemaphore, Semaphore,
   RateLimit,
 } from '@isdk/util'
