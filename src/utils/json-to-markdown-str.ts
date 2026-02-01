@@ -24,9 +24,9 @@ export function jsonToMarkdownStr(mem: any, options?: {level?: number, visiting?
           result = ['[Circular]'];
         }
       }; break;
-      case 'string': {
-        return mem;
-      };
+      // case 'string': {
+      //   return mem;
+      // };
       default: {
         return JSON.stringify(mem);
       }
