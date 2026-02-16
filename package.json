@@ -30,7 +30,7 @@
     "@isdk/tool-func": "workspace:^",
     "@isdk/tool-rpc": "workspace:^",
     "@isdk/tool-event": "workspace:^",
-    "@isdk/util": "^0.3.3",
+    "@isdk/util": "^0.3.7",
     "abstract-error": "^2.0.0",
     "base32768": "^5.0.0",
     "custom-ability": "^2.0.1",
