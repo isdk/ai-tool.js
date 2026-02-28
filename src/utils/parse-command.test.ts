@@ -370,7 +370,7 @@ describe('restoreFromPlacehoders', () => {
 
   test('restores no palceholders', () => {
     const contentWithPlaceholders = "Hello world!";
-    const originalSubstrings = [];
+    const originalSubstrings: any[] = [];
     const restoredContent = restoreFromPlacehoders(contentWithPlaceholders, originalSubstrings);
     expect(restoredContent).toBe("Hello world!");
   });
