@@ -2,6 +2,7 @@ import { newFunction } from "util-ex";
 import { filterValidFnScope } from "../parse-js-json";
 import { ParserOptions, ArgContext, UNRESOLVED_SYMBOL, PROCESSOR_RESULT } from "./types";
 import { get as getByPath } from "lodash-es";
+import { isQuoted } from "./utils";
 
 /**
  * 评估一个参数的值。
@@ -98,13 +99,10 @@ export async function evaluateExpression(code: string, scope: any, options: Pars
     }
 
     // 处理带引号的字符串脱壳 (Unquoting)
-    if ((trimmed.startsWith('"') && trimmed.endsWith('"')) ||
-        (trimmed.startsWith("'") && trimmed.endsWith("'")) ||
-        (trimmed.startsWith('`') && trimmed.endsWith('`'))) {
+    if (isQuoted(trimmed)) {
       try {
         // 使用 newFunction 安全地解开字符串字面量转义
         const unescapeFn = newFunction(`return ${trimmed};`);
-        console.log('🚀 ~ file: evaluator.ts:107 ~ unescapeFn:', unescapeFn)
         return unescapeFn();
       } catch (e) {
         // 解开失败则回退到简单的 substring
