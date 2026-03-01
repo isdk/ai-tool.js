@@ -1,6 +1,6 @@
 import { pick } from 'lodash-es'
 import { newFunction } from 'util-ex'
-import { parseObjectArguments } from './parse-command'
+import { parseObjectArguments } from './command-parser'
 
 /**
  * Parses a JavaScript string into a JSON object.
