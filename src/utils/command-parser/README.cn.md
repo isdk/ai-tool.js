@@ -9,13 +9,14 @@
 解析器提供两个核心入口函数：`parseCommand` (解析完整命令) 和 `parseObjectArguments` (仅解析参数部分)。
 
 ### 1. 基础解析 (Level 1)
+
 最简单的用法是解析位置参数或基础类型。
 
 ```typescript
 import { parseObjectArguments } from '@isdk/ai-tool';
 
 // 解析位置参数 -> 返回数组 (自动应用纯位置数组化)
-const res1 = await parseObjectArguments('123, "hello", true'); 
+const res1 = await parseObjectArguments('123, "hello", true');
 // [123, "hello", true]
 
 // 解析单值 -> 直接返回值 (自动应用单值化)
@@ -24,6 +25,7 @@ const res2 = await parseObjectArguments('"only-one"');
 ```
 
 ### 2. 命名参数与自动收敛 (Level 2)
+
 支持 `key=value` 语法。
 
 ```typescript
@@ -38,6 +40,7 @@ const res4 = await parseObjectArguments('id', { id: 101 });
 ```
 
 ### 3. 使用作用域注入 (Level 3)
+
 可以传入 `scope` 对象，使解析器能够识别变量。
 
 ```typescript
@@ -47,6 +50,7 @@ const res5 = await parseObjectArguments('user.id, enabled=flag', scope);
 ```
 
 ### 4. 完整命令解析 (Level 4)
+
 解析形如 `cmd(args)` 的字符串。
 
 ```typescript
@@ -64,16 +68,18 @@ const { command, args } = await parseCommand('search(query="sky", limit=10)');
 解析器的输出形态非常灵活，会根据参数的数量和命名情况自动“坍缩”为最直观的形式。
 
 ### 核心简化策略
+
 默认情况下，解析器遵循以下三种策略（按顺序）：
 
-1.  **等值对简化 (Identical Pair)**：当结果中仅有两个条目（位置 0 和一个命名 Key）且值完全相等时，直接返回该值。
-    *   例如：`age=25` -> `25`
-2.  **单值化 (Single Value)**：当只有一个位置参数且没有命名参数时，直接返回该值。
-    *   例如：`"hello"` -> `"hello"`
-3.  **纯位置数组化 (Pure Positional)**：当没有任何命名参数且有多个位置参数时，返回纯数组。
-    *   例如：`1, 2, 3` -> `[1, 2, 3]`
+1. **等值对简化 (Identical Pair)**：当结果中仅有两个条目（位置 0 和一个命名 Key）且值完全相等时，直接返回该值。
+    * 例如：`age=25` -> `25`
+2. **单值化 (Single Value)**：当只有一个位置参数且没有命名参数时，直接返回该值。
+    * 例如：`"hello"` -> `"hello"`
+3. **纯位置数组化 (Pure Positional)**：当没有任何命名参数且有多个位置参数时，返回纯数组。
+    * 例如：`1, 2, 3` -> `[1, 2, 3]`
 
 ### 精细化控制
+
 你可以通过 `simplify` 选项来调整这些行为：
 
 ```typescript
@@ -87,22 +93,24 @@ const options = {
 ```
 
 #### `mode` 形态强制约束
-*   `'auto'`: 默认的智能简化逻辑。
-*   `'array'`: 始终返回位置参数数组。**命名参数将作为该数组的 `.kvArgs` 非枚举属性附带。**
-*   `'object'`: 始终返回一个合并后的对象（包含数字索引键和字符串键）。
-*   `'map'`: 始终返回原始结构 `{ args: any[], kvArgs: Record<string, any> }`。
+
+* `'auto'`: 默认的智能简化逻辑。
+* `'array'`: 始终返回位置参数数组。**命名参数将作为该数组的 `.kvArgs` 非枚举属性附带。**
+* `'object'`: 始终返回一个合并后的对象（包含数字索引键和字符串键）。
+* `'map'`: 始终返回原始结构 `{ args: any[], kvArgs: Record<string, any> }`。
 
 ---
 
 ## 工具函数 (Utilities)
 
 ### `ObjectArgsToArgsInfo`
+
 规范化工具，将任何简化后的结果（单值、数组等）还原为标准的 `{ args, kvArgs }` 结构。这对于下游函数统一处理参数非常有用。
 
 ```typescript
 import { ObjectArgsToArgsInfo } from '@isdk/ai-tool';
 
-const info = ObjectArgsToArgsInfo(101); 
+const info = ObjectArgsToArgsInfo(101);
 // { args: [101] }
 
 const info2 = ObjectArgsToArgsInfo({ name: 'John' });
@@ -114,11 +122,13 @@ const info2 = ObjectArgsToArgsInfo({ name: 'John' });
 ## 核心语法与规则
 
 ### 1. 类型支持
-*   **字面量**：支持 `"`, `'`, 或 `` ` `` 包裹的字符串（支持转义）、数字、布尔值、`null`, `undefined`。
-*   **JS 表达式**：支持基础运算和简单语法，如 `1 + 2`, `(a, b) => a + b`。
-*   **变量/路径**：不带引号的文本视为变量，解析器会从 `scope` 中查找。
+
+* **字面量**：支持 `"`, `'`, 或 `` ` `` 包裹的字符串（支持转义）、数字、布尔值、`null`, `undefined`。
+* **JS 表达式**：支持基础运算和简单语法，如 `1 + 2`, `(a, b) => a + b`。
+* **变量/路径**：不带引号的文本视为变量，解析器会从 `scope` 中查找。
 
 ### 2. 变量保护 (`preserveUnresolvedName`)
+
 开启此选项后，如果变量在 `scope` 中未定义，解析器不会返回 `undefined`，而是原样返回原始字符串（如 `hello-world`）。这在编写 DSL 时非常有用。
 
 ---
@@ -128,11 +138,14 @@ const info2 = ObjectArgsToArgsInfo({ name: 'John' });
 处理器允许你在解析过程中拦截原始文本并按业务逻辑进行转换。
 
 ### 内置 AI 处理器 (`AIArgProcessor`)
+
 提供了一些专为 AI 场景设计的增强语法：
-*   **模板插值**：`msg="Hello {{name}}"` -> 渲染后的字符串。
-*   **管道选择器**：`|apple|pear:2` -> 一个配置对象 `{ items: ['apple', 'pear'], maxPick: 2 }`。
+
+* **模板插值**：`msg="Hello {{name}}"` -> 渲染后的字符串。
+* **管道选择器**：`|apple|pear:2` -> 一个配置对象 `{ items: ['apple', 'pear'], maxPick: 2 }`。
 
 ### 自定义处理器
+
 通过实现 `ArgProcessor` 函数，你可以定义自己的参数转换逻辑，甚至返回一个带有 `PROCESSOR_RESULT` Symbol 的对象来控制参数的分发策略。
 
 ---
