@@ -219,6 +219,12 @@ describe('parseObjectArguments', async () => {
     expect(result).toEqual({"0": "arg1", arg2: 'value2', arg3: 'value3', arg4: 'random1', random: 'random1'});
   });
 
+  test('should parse templates', async () => {
+    const scope = { name: 'World' };
+    const result = await parseObjectArguments('msg="Hello {{name}}"', scope, {argProcessor: TemplateArgProcessor});
+    expect(result).toHaveProperty('msg', 'Hello World');
+  });
+
 });
 
 describe('parseCommand function', async () => {
