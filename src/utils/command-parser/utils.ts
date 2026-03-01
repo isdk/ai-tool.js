@@ -1,3 +1,5 @@
+import { FLAG_SYMBOL } from './types';
+
 export interface ReplacePlacehoderOptions {
   startChar?: string|string[]
   endChar?: string|string[]
@@ -26,8 +28,44 @@ export const PATH_IDENTIFIER_REGEX = /^[$_\p{ID_Start}][$_\p{ID_Continue}]*(?:\.
 /**
  * 判断字符串是否为合法的 JS 标识符且非保留字。
  */
-export function isIdentifier(s: string) {
-  return IDENTIFIER_REGEX.test(s) && !RESERVED_WORDS.includes(s.toLowerCase());
+export function isIdentifier(s: string, options?: { flagPrefix?: string | string[] }) {
+  let name = s;
+  if (options?.flagPrefix) {
+    const prefixes = Array.isArray(options.flagPrefix) ? options.flagPrefix : [options.flagPrefix];
+    const prefix = prefixes.find(p => s.startsWith(p));
+    if (prefix) {
+      name = s.slice(prefix.length);
+    }
+  }
+  return IDENTIFIER_REGEX.test(name) && !RESERVED_WORDS.includes(name.toLowerCase());
+}
+
+/**
+ * 将值包装为带有 Flag 标记的对象。
+ * 对于简单类型 (Boolean, String, Number)，使用包装类以支持挂载不可枚举属性。
+ */
+export function wrapFlagValue(value: any, prefix: string) {
+  let wrapped = value;
+  const type = typeof value;
+
+  if (type === 'boolean') {
+    wrapped = new Boolean(value);
+  } else if (type === 'string') {
+    wrapped = new String(value);
+  } else if (type === 'number') {
+    wrapped = new Number(value);
+  }
+
+  if (wrapped && (typeof wrapped === 'object' || typeof wrapped === 'function')) {
+    Object.defineProperty(wrapped, FLAG_SYMBOL, {
+      value: prefix,
+      enumerable: false,
+      configurable: true,
+      writable: true
+    });
+  }
+
+  return wrapped;
 }
 
 /**

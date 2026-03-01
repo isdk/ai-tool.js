@@ -1,6 +1,6 @@
 import { Lexer } from './lexer';
 import { Token, TokenType, ParserOptions, ParseResult, PROCESSOR_RESULT, ArgContext, UNRESOLVED_SYMBOL, ProcessorResultOptions } from './types';
-import { isIdentifier, isPathIdentifier } from './utils';
+import { isIdentifier, isPathIdentifier, wrapFlagValue } from './utils';
 import { evaluate } from './evaluator';
 
 /**
@@ -34,6 +34,7 @@ export class Parser {
   async parse(): Promise<ParseResult> {
     const args: any[] = [];
     const kvArgs: Record<string, any> = {};
+    const flags: Record<string, any> = {};
     const namedIndices = new Set<number>();
     let positionalIndex = 0;
 
@@ -51,9 +52,23 @@ export class Parser {
         continue;
       }
 
-      // 2. 尝试识别命名参数形态 (k=v)
-      const { name, valueTokens } = this.splitNamedArgument(tokens);
+      // 1.5 识别特殊参数简写 ( !debug )
+      if (this.options.flagPrefix && tokens.length === 1 && tokens[0].type === TokenType.RAW) {
+          const raw = tokens[0].value;
+          const prefixes = Array.isArray(this.options.flagPrefix) ? this.options.flagPrefix : [this.options.flagPrefix];
+          const prefix = prefixes.find(p => raw.startsWith(p));
+          if (prefix && isIdentifier(raw, { flagPrefix: this.options.flagPrefix })) {
+              const flagName = raw.slice(prefix.length);
+              flags[flagName] = wrapFlagValue(true, prefix);
+              if (this.consumeDelimiter() === TokenType.EOF) break;
+              continue;
+          }
+      }
+
+      // 2. 尝试识别命名参数形态 (k=v) 或特殊参数赋值 (!k=v)
+      const { name, valueTokens, flagPrefix } = this.splitNamedArgument(tokens);
       const isNamed = name !== undefined;
+      const isFlag = flagPrefix !== undefined;
       
       // 3. 预检位置参数是否符合标识符/路径格式 (用于 idAsName)
       let potentialId: string | undefined;
@@ -112,39 +127,43 @@ export class Parser {
       }
 
       // 6. 最终分发逻辑
-      const effectiveName = name || processorSuggestedName;
-      const excludePositional = processorOptions?.excludePositional;
-
-      if (effectiveName) {
-        // A. 显式指定了名称（直接赋值或通过 Processor）
-        kvArgs[effectiveName] = finalValue;
-        
-        if (!this.options.namedExcludePositional && !excludePositional) {
-          // 如果选项允许，同时存入位置索引
-          args[positionalIndex] = finalValue;
-          namedIndices.add(positionalIndex);
-          positionalIndex++;
-        }
-        // 注意：若命名参数不占位，positionalIndex 不增加
+      if (isFlag && name) {
+          flags[name] = wrapFlagValue(finalValue, flagPrefix);
       } else {
-        // B. 纯位置参数
-        if (!excludePositional) {
-            args[positionalIndex] = finalValue;
-            
-            // 自动映射：如果位置参数是 Id 且未发生 ReferenceError 降级
-            if (this.options.idAsName && potentialId && !isUnresolved) {
-              kvArgs[potentialId] = finalValue;
-              namedIndices.add(positionalIndex);
-            }
+          const effectiveName = name || processorSuggestedName;
+          const excludePositional = processorOptions?.excludePositional;
 
-            positionalIndex++;
-        }
+          if (effectiveName) {
+            // A. 显式指定了名称（直接赋值或通过 Processor）
+            kvArgs[effectiveName] = finalValue;
+            
+            if (!this.options.namedExcludePositional && !excludePositional) {
+              // 如果选项允许，同时存入位置索引
+              args[positionalIndex] = finalValue;
+              namedIndices.add(positionalIndex);
+              positionalIndex++;
+            }
+            // 注意：若命名参数不占位，positionalIndex 不增加
+          } else {
+            // B. 纯位置参数
+            if (!excludePositional) {
+                args[positionalIndex] = finalValue;
+                
+                // 自动映射：如果位置参数是 Id 且未发生 ReferenceError 降级
+                if (this.options.idAsName && potentialId && !isUnresolved) {
+                  kvArgs[potentialId] = finalValue;
+                  namedIndices.add(positionalIndex);
+                }
+
+                positionalIndex++;
+            }
+          }
       }
 
       if (this.consumeDelimiter() === TokenType.EOF) break;
     }
 
-    return { args, kvArgs, namedIndices };
+    return { args, kvArgs, flags, namedIndices };
   }
 
   /**
@@ -171,13 +190,22 @@ export class Parser {
   }
 
   /**
-   * 尝试从 Token 序列中拆分出命名的 Key (k=v)
+   * 尝试从 Token 序列中拆分出命名的 Key (k=v) 或 Flag ( !k=v )
    */
-  private splitNamedArgument(tokens: Token[]): { name?: string, valueTokens: Token[] } {
+  private splitNamedArgument(tokens: Token[]): { name?: string, valueTokens: Token[], flagPrefix?: string } {
     if (tokens.length >= 2 && tokens[0].type === TokenType.RAW && tokens[1].type === TokenType.ASSIGN) {
-      const name = tokens[0].value;
-      if (isIdentifier(name)) {
-        return { name, valueTokens: tokens.slice(2) };
+      const rawName = tokens[0].value;
+      if (isIdentifier(rawName, { flagPrefix: this.options.flagPrefix })) {
+        let name = rawName;
+        let flagPrefix: string | undefined;
+        if (this.options.flagPrefix) {
+          const prefixes = Array.isArray(this.options.flagPrefix) ? this.options.flagPrefix : [this.options.flagPrefix];
+          flagPrefix = prefixes.find(p => rawName.startsWith(p));
+          if (flagPrefix) {
+            name = rawName.slice(flagPrefix.length);
+          }
+        }
+        return { name, valueTokens: tokens.slice(2), flagPrefix };
       }
     }
     return { valueTokens: tokens };

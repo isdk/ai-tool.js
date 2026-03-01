@@ -61,6 +61,17 @@ const { command, args } = await parseCommand('search(query="sky", limit=10)');
 // args: { query: "sky", limit: 10 }
 ```
 
+### 5. 特殊参数 (Flags) (Level 5)
+
+支持通过前缀（如 `!` 或 `#`）定义特殊参数，这些参数会与普通参数隔离。
+
+```typescript
+const options = { flagPrefix: '!' };
+const { args, flags } = await parseCommand('search(query="sky", !fast, !cache=true)', {}, options);
+// args: { query: "sky" }
+// flags: { fast: true, cache: true } (包装后的对象，带 FLAG_SYMBOL 元数据)
+```
+
 ---
 
 ## 结果形态与简化 (Simplification)
@@ -95,9 +106,9 @@ const options = {
 #### `mode` 形态强制约束
 
 * `'auto'`: 默认的智能简化逻辑。
-* `'array'`: 始终返回位置参数数组。**命名参数将作为该数组的 `.kvArgs` 非枚举属性附带。**
-* `'object'`: 始终返回一个合并后的对象（包含数字索引键和字符串键）。
-* `'map'`: 始终返回原始结构 `{ args: any[], kvArgs: Record<string, any> }`。
+* `'array'`: 始终返回位置参数数组。**命名参数和特殊参数将分别作为该数组的 `.kvArgs` 和 `.flags` 非枚举属性附带。**
+* `'object'`: 始终返回一个合并后的对象（包含数字索引键、字符串键和隐藏的 `flags`）。
+* `'map'`: 始终返回原始结构 `{ args: any[], kvArgs: Record<string, any>, flags?: Record<string, any> }`。
 
 ---
 
@@ -125,11 +136,12 @@ const info2 = ObjectArgsToArgsInfo({ name: 'John' });
 
 * **字面量**：支持 `"`, `'`, 或 `` ` `` 包裹的字符串（支持转义）、数字、布尔值、`null`, `undefined`。
 * **JS 表达式**：支持基础运算和简单语法，如 `1 + 2`, `(a, b) => a + b`。
-* **变量/路径**：不带引号的文本视为变量，解析器会从 `scope` 中查找。
+* **变量/路径**：不带引号的文本视为变量，解析器会从 `scope` 中查找。支持 **Unicode (如中文)** 和 `$` 作为标识符。
 
-### 2. 变量保护 (`preserveUnresolvedName`)
+### 2. 变量保护与错误控制
 
-开启此选项后，如果变量在 `scope` 中未定义，解析器不会返回 `undefined`，而是原样返回原始字符串（如 `hello-world`）。这在编写 DSL 时非常有用。
+*   **`preserveUnresolvedName`**: 如果变量在 `scope` 中未定义且非合法标识符，解析器会原样返回原始字符串（如 `!notAFlag`）。
+*   **`raiseReferenceError`**: 专门控制是否在变量未定义时抛出错误，默认遵循 `raiseError`。
 
 ---
 
@@ -156,7 +168,10 @@ const info2 = ObjectArgsToArgsInfo({ name: 'John' });
 | :--- | :--- | :--- | :--- |
 | `simplify` | `boolean \| SimplifyOptions` | `true` | 是否开启结果简化。 |
 | `idAsName` | `boolean` | `true` | 位置参数若是标识符，是否自动映射为同名命名参数。 |
+| `flagPrefix` | `string \| string[]` | - | 特殊参数前缀 (如 `!`, `#`)。 |
 | `scope` | `Record` | `{}` | 变量评估的作用域。 |
 | `argProcessor` | `Function` | - | 自定义参数处理器。 |
 | `preserveUnresolvedName` | `boolean` | `false` | 未定义变量是否原样返回字符串。 |
 | `namedExcludePositional` | `boolean` | `true` | 显式命名参数是否不占用位置索引。 |
+| `raiseError` | `boolean` | `false` | 遇到语法等错误时是否抛出。 |
+| `raiseReferenceError` | `boolean` | - | 变量未定义时是否抛出，默认遵循 `raiseError`。 |

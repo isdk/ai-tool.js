@@ -2,7 +2,7 @@ import { newFunction } from "util-ex";
 import { filterValidFnScope } from "../parse-js-json";
 import { ParserOptions, ArgContext, UNRESOLVED_SYMBOL, PROCESSOR_RESULT } from "./types";
 import { get as getByPath } from "lodash-es";
-import { isQuoted } from "./utils";
+import { isQuoted, isIdentifier, isPathIdentifier } from "./utils";
 
 /**
  * 评估一个参数的值。
@@ -90,13 +90,18 @@ export async function evaluateExpression(code: string, scope: any, options: Pars
     }
     return result;
   } catch (err) {
-    if (options.raiseError) throw err;
-
-    // 处理 ReferenceError (变量未定义)
-    if (err instanceof ReferenceError && options.preserveUnresolvedName) {
-      // 返回带 Symbol 标记的对象，以便 Parser 识别并跳过 idAsName 逻辑
-      return { [UNRESOLVED_SYMBOL]: trimmed };
+    if (err instanceof ReferenceError) {
+      if (options.raiseReferenceError ?? options.raiseError) throw err;
+      
+      if (options.preserveUnresolvedName) {
+        // 返回带 Symbol 标记的对象，以便 Parser 识别并跳过 idAsName 逻辑
+        return { [UNRESOLVED_SYMBOL]: trimmed };
+      }
+      // 如果是简单的标识符或路径查找失败，返回 undefined；否则视为普通字符串回退
+      return (isIdentifier(trimmed, options) || isPathIdentifier(trimmed)) ? undefined : trimmed;
     }
+
+    if (options.raiseError) throw err;
 
     // 处理带引号的字符串脱壳 (Unquoting)
     if (isQuoted(trimmed)) {
@@ -108,11 +113,6 @@ export async function evaluateExpression(code: string, scope: any, options: Pars
         // 解开失败则回退到简单的 substring
         return trimmed.substring(1, trimmed.length - 1);
       }
-    }
-
-    // 默认行为：如果是 ReferenceError 则返回 undefined（除非显式开启 preserveUnresolvedName）
-    if (err instanceof ReferenceError) {
-      return undefined;
     }
 
     // 其它无法识别的情况返回原始文本

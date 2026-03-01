@@ -68,4 +68,38 @@ describe('command-parser', () => {
       expect(result).toEqual({ a: 1, 0: undefined, b: 2 });
     });
   });
+
+  describe('Unicode and Special Identifiers', () => {
+    it('should support $中文 as a parameter name', async () => {
+      const result = await parseObjectArguments('$参数="值", $another="value"');
+      expect(result).toEqual({
+        '$参数': '值',
+        '$another': 'value'
+      });
+    });
+
+    it('should support 中文 (without $) as a parameter name', async () => {
+      const result = await parseObjectArguments('中文="值"');
+      expect(result).toEqual({ '中文': '值' });
+    });
+
+    it('should support Unicode characters in identifiers (idAsName)', async () => {
+      const scope = { '$变量': '实际值', '中文变量': 123 };
+      const result1 = await parseObjectArguments('$变量', scope);
+      expect(result1).toBe('实际值');
+
+      const result2 = await parseObjectArguments('中文变量', scope);
+      expect(result2).toBe(123);
+    });
+
+    it('should support mixed Unicode identifiers in parseCommand', async () => {
+      const commandStr = 'test($参数="值", 中文="another")';
+      const result = await parseCommand(commandStr);
+      expect(result?.command).toBe('test');
+      expect(result?.args).toEqual({
+        '$参数': '值',
+        '中文': 'another'
+      });
+    });
+  });
 });

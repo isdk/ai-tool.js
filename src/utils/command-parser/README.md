@@ -59,6 +59,17 @@ const { command, args } = await parseCommand('search(query="sky", limit=10)');
 // args: { query: "sky", limit: 10 }
 ```
 
+### 5. Special Parameters (Flags) (Level 5)
+
+Support for defining special parameters with prefixes (e.g., `!` or `#`), isolated from normal arguments.
+
+```typescript
+const options = { flagPrefix: '!' };
+const { args, flags } = await parseCommand('search(query="sky", !fast, !cache=true)', {}, options);
+// args: { query: "sky" }
+// flags: { fast: true, cache: true } (Boxed primitives with FLAG_SYMBOL metadata)
+```
+
 ---
 
 ## Result Shapes & Simplification
@@ -90,9 +101,9 @@ const options = {
 #### `mode` Constraints
 
 * `'auto'`: Default smart simplification logic.
-* `'array'`: Always return a positional arguments array. **Named arguments are attached as a `.kvArgs` non-enumerable property.**
-* `'object'`: Always return a merged object (indexed + named).
-* `'map'`: Always return the original structure `{ args: any[], kvArgs: Record<string, any> }`.
+* `'array'`: Always return a positional arguments array. **Named and flag arguments are attached as `.kvArgs` and `.flags` non-enumerable properties.**
+* `'object'`: Always return a merged object (indexed + named + hidden flags).
+* `'map'`: Always return the original structure `{ args: any[], kvArgs: Record<string, any>, flags?: Record<string, any> }`.
 
 ---
 
@@ -116,9 +127,16 @@ const info2 = ObjectArgsToArgsInfo({ name: 'John' });
 
 ## Core Syntax & Rules
 
+### 1. Type Support
+
 * **Literals**: Strings (three quote types), numbers, booleans, `null`, `undefined`.
 * **JS Expressions**: Basic math and simple logic supported (e.g., `1 + 2`).
-* **Variable Protection**: Use `preserveUnresolvedName` to return raw strings for undefined variables.
+* **Variables/Paths**: Unquoted text is treated as a variable, searched in `scope`. Supports **Unicode (e.g., Chinese)** and `$` as identifiers.
+
+### 2. Variable Protection & Error Control
+
+*   **`preserveUnresolvedName`**: If a variable is undefined in `scope` and is not a valid identifier, the parser returns the original string (e.g., `!notAFlag`).
+*   **`raiseReferenceError`**: Specifically controls whether to throw an error when a variable is undefined, defaults to `raiseError`.
 
 ---
 
@@ -128,3 +146,19 @@ const info2 = ObjectArgsToArgsInfo({ name: 'John' });
 
 * **Templates**: `msg="Hello {{name}}"`
 * **Pipes**: `|apple|pear:2` -> `{ items: ['apple', 'pear'], maxPick: 2 }`
+
+---
+
+## Configuration (ParserOptions)
+
+| Option | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `simplify` | `boolean \| SimplifyOptions` | `true` | Enable/disable result simplification. |
+| `idAsName` | `boolean` | `true` | Map positional identifier to same-named argument. |
+| `flagPrefix` | `string \| string[]` | - | Special parameter prefixes (e.g., `!`, `#`). |
+| `scope` | `Record` | `{}` | Scope for variable evaluation. |
+| `argProcessor` | `Function` | - | Custom argument processor. |
+| `preserveUnresolvedName` | `boolean` | `false` | Return raw string for undefined variables. |
+| `namedExcludePositional` | `boolean` | `true` | Exclude named args from positional indices. |
+| `raiseError` | `boolean` | `false` | Throw on syntax or evaluation errors. |
+| `raiseReferenceError` | `boolean` | - | Throw specifically on ReferenceError (variable undefined). |

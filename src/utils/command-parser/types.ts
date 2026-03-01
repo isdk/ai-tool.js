@@ -10,6 +10,12 @@ export const PROCESSOR_RESULT = Symbol('PROCESSOR_RESULT');
 export const UNRESOLVED_SYMBOL = Symbol('UNRESOLVED');
 
 /**
+ * 用于标记特殊参数 (Flags) 的包装对象。
+ * 存储在包装对象上的不可枚举属性，其值为所使用的前缀字符。
+ */
+export const FLAG_SYMBOL = Symbol('flag');
+
+/**
  * 词法标记类型
  */
 export enum TokenType {
@@ -122,6 +128,8 @@ export interface ParserOptions {
   delimiter?: string;
   /** 赋值操作符，默认 '=' */
   assigner?: string;
+  /** 特殊参数前缀，如 '!' 或 ['!', '#'] */
+  flagPrefix?: string | string[];
   /** 自定义参数处理器 */
   argProcessor?: ArgProcessor;
   /** 是否仅返回合并后的对象（包含数字索引键） */
@@ -144,6 +152,8 @@ export interface ParserOptions {
   simplify?: boolean | SimplifyOptions;
   /** 遇到错误时是否抛出异常 */
   raiseError?: boolean;
+  /** 遇到变量未定义错误 (ReferenceError) 时是否抛出异常，默认遵循 raiseError */
+  raiseReferenceError?: boolean;
   /** 评估作用域 */
   scope?: Record<string, any>;
   /** 内部递归标记 */
@@ -170,8 +180,10 @@ export interface AIChoiceConfig {
 export interface ParseResult {
   /** 位置参数数组 (按出现顺序，可能会有 hole) */
   args: any[];
-  /** 命名参数键值对（包含显式命名、Processor 命名和自动标识符映射） */
+  /** 命名参数键值对（包含显式命名、Processor 命名 and 自动标识符映射） */
   kvArgs: Record<string, any>;
+  /** 特殊参数 (Flags) 键值对，不计入 args 和 kvArgs */
+  flags: Record<string, any>;
   /** 已经被命名的位置参数索引集合（用于 ignoreIndexNamed 逻辑） */
   namedIndices: Set<number>;
 }

@@ -69,59 +69,81 @@ export function simplifyResult(result: ParseResult, options?: ParserOptions): an
     ? { ...defaultSimplify, ...simplify }
     : defaultSimplify;
 
-  const { args, kvArgs } = result;
+  const { args, kvArgs, flags } = result;
   const mode = config.mode || 'auto';
+  let res: any;
+  let isSimplified = false;
 
   // 1. 强制模式处理
   if (mode === 'map') {
-    return { args, kvArgs };
+    const mapResult: any = { args, kvArgs };
+    if (flags && Object.keys(flags).length > 0) {
+      mapResult.flags = flags;
+    }
+    return mapResult;
   }
 
   if (mode === 'array') {
-    const arr = [...args];
-    Object.defineProperty(arr, 'kvArgs', {
+    res = [...args];
+    isSimplified = true;
+    Object.defineProperty(res, 'kvArgs', {
       value: { ...kvArgs },
       enumerable: false,
       writable: true,
       configurable: true
     });
-    return arr;
-  }
+  } else if (mode === 'object') {
+    res = toMergedObject(result, options);
+    isSimplified = true;
+  } else {
+    // 2. 自动收敛 (mode === 'auto')
+    const merged = toMergedObject(result, options);
+    const keys = Object.keys(merged);
+    const kvKeys = Object.keys(kvArgs);
 
-  if (mode === 'object') {
-    return toMergedObject(result, options);
-  }
-
-  // 2. 自动收敛 (mode === 'auto')
-  const merged = toMergedObject(result, options);
-  const keys = Object.keys(merged);
-  const kvKeys = Object.keys(kvArgs);
-
-  // [等值对简化] (identicalPair)
-  // 必须正好只有 2 个 Entry，一个是索引 0，一个是命名 Key，且值相等
-  if (config.identicalPair && keys.length === 2 && kvKeys.length === 1) {
-    const hasZero = '0' in merged || 0 in merged;
-    if (hasZero) {
-      const otherKey = kvKeys[0];
-      if (merged[0] === merged[otherKey]) {
-        return merged[0];
+    // [等值对简化] (identicalPair)
+    // 必须正好只有 2 个 Entry，一个是索引 0，一个是命名 Key，且值相等
+    if (config.identicalPair && keys.length === 2 && kvKeys.length === 1) {
+      const hasZero = '0' in merged || 0 in merged;
+      if (hasZero) {
+        const otherKey = kvKeys[0];
+        if (merged[0] === merged[otherKey]) {
+          res = merged[0];
+          isSimplified = true;
+        }
       }
     }
+
+    // [纯位置参数处理]
+    if (!isSimplified && kvKeys.length === 0) {
+      // [单值化] (singleValue)
+      if (config.singleValue && args.length === 1) {
+        res = args[0];
+        isSimplified = true;
+      } else if (config.purePositionalAsArray) {
+        // [纯位置数组化] (purePositionalAsArray)
+        res = args.filter((_, i) => i in args);
+        isSimplified = true;
+      }
+    }
+
+    if (!isSimplified) {
+      res = merged;
+    }
   }
 
-  // [纯位置参数处理]
-  if (kvKeys.length === 0) {
-    // [单值化] (singleValue)
-    if (config.singleValue && args.length === 1) {
-      return args[0];
-    }
-    // [纯位置数组化] (purePositionalAsArray)
-    if (config.purePositionalAsArray) {
-      return args.filter((_, i) => i in args);
+  if (res !== undefined && res !== null && (typeof res === 'object' || typeof res === 'function')) {
+    if (Object.keys(flags).length > 0) {
+      Object.defineProperty(res, 'flags', {
+        value: { ...flags },
+        enumerable: false,
+        writable: true,
+        configurable: true
+      });
     }
   }
 
-  return merged;
+  return res;
 }
 
 /**
@@ -202,7 +224,7 @@ export function ObjectArgsToArgsInfo(args: any): {args: any[], kvArgs?: Record<s
  * @param commandStr 命令字符串，如 'myCmd(arg1, k=v)'
  * @param scope 评估作用域
  * @param options 解析配置选项
- * @returns { command: string, args: any }
+ * @returns { command: string, args: any, flags?: Record<string, any> }
  */
 export async function parseCommand(commandStr: string, scope?: Record<string, any>, options?: ParserOptions) {
   const pattern = /^([^(]+)(?:\((.*)\))?$/;
@@ -215,9 +237,24 @@ export async function parseCommand(commandStr: string, scope?: Record<string, an
 
   const [, commandName, rawArgs] = match;
   let args: any;
+  let flags: Record<string, any> | undefined;
+
   if (rawArgs) {
-    args = await parseObjectArguments(rawArgs, scope, options);
+    const lexer = new Lexer(rawArgs, options);
+    const parser = new Parser(lexer, { ...options, scope });
+    const result = await parser.parse();
+
+    flags = result.flags;
+    if (options?.returnArrayOnly) {
+      args = toMergedObject(result, options);
+    } else {
+      args = simplifyResult(result, options);
+    }
   }
 
-  return { command: commandName.trim(), args };
+  const result: any = { command: commandName.trim(), args };
+  if (flags && Object.keys(flags).length > 0) {
+    result.flags = flags;
+  }
+  return result;
 }
