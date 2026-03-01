@@ -1,120 +1,149 @@
 # Command Parser (命令参数解析器)
 
-`command-parser` 是一个功能强大的结构化参数解析工具，旨在将类命令字符串（如 `cmd(arg1, k=v, |a|b)`）解析为可直接使用的 JS 对象或数组。它在支持标准 JS 语法约定的基础上，通过“处理器（Processor）协议”提供了高度的类型扩展能力。
-
-## 核心业务逻辑
-
-解析器遵循一套严谨的解析与分发逻辑，确保参数的识别既符合 JS 直觉又兼顾 DSL 的灵活性。
-
-### 1. 类型约定与评估
-
-解析器对参数值的评估遵循“统一样律”：
-
-* **引号即字符串**：任何被 `"`, `'`, 或 `` ` `` 包裹的内容均视为字符串常量（字面量）。解析器会自动处理内部转义。
-* **标识符与变量**：不带引号且符合 JS 标识符格式（支持 Unicode）的内容视为变量名或路径。
-  * 如果在 `scope` 中存在，则评估为其对应的值。
-  * 如果不存在，默认评估为 `undefined`。
-* **表达式运算**：支持复杂的 JS 表达式（如 `1 + 2`, `(a, b) => a + b`）和 JSON 风格的对象/数组。
-* **字面量常量**：`true`, `false`, `null`, `undefined`, `NaN`, `Infinity` 等按 JS 语义处理，不作为标识符映射。
-
-### 2. 参数分发规则
-
-解析结果包含 `args` (位置参数数组) 和 `kvArgs` (命名参数键值对)。
-
-* **显式命名 (`namedExcludePositional: true`)**：
-  * 形如 `key=value` 的参数直接存入 `kvArgs.key`。
-  * **默认不占用**位置索引位，确保位置参数索引的稳定性。
-* **位置标识符自动映射 (`idAsName: true`)**：
-  * 如果一个位置参数是简单的标识符（如 `user`）且成功解析为变量值，它会同时存入 `args[i]` 和 `kvArgs.user`。
-* **未解析变量保护 (`preserveUnresolvedName`)**：
-  * 当开启此选项且 JS 变量未定义时，解析器不再返回 `undefined`，而是原样返回原始字符串（例如 `hello-world` 这种原本会被视为减法表达式的文本）。
-  * **重要**：被保护的未解析标识符**不会**触发 `idAsName` 映射，确保其仅作为字符串常量存在。
-
-### 3. 结果简化 (Simplification)
-
-当开启 `simplify` 选项（默认开启）时，解析器会根据以下规则收敛结果：
-
-* **同值收敛**：如果结果中仅有两个 entry，一个是数字索引 `0`，另一个是字符串键（如 `name`），且它们的值**严格相等**，则直接返回该单值。
-* **单值收敛**：如果没有任何命名参数且只有一个位置参数，返回该单值。
-* **多值收敛**：如果没有命名参数但有多个位置参数，返回 `args` 数组。
+`command-parser` 是一个功能强大的结构化参数解析工具，旨在将类命令字符串（如 `cmd(arg1, k=v, |a|b)`）解析为可直接使用的 JS 对象、数组或单值。它支持标准 JS 语法约定，并通过“处理器（Processor）协议”提供高度的语法扩展能力。
 
 ---
 
-## 处理器 (Processor) 协议规范
+## 快速开始 (Quick Start)
 
-处理器允许在解析过程中拦截原始文本并按特定业务逻辑转换类型。
+解析器提供两个核心入口函数：`parseCommand` (解析完整命令) 和 `parseObjectArguments` (仅解析参数部分)。
 
-### 1. 处理器输入：`ArgContext`
-
-每个参数在评估前都会封装为上下文对象传递给处理器：
+### 1. 基础解析 (Level 1)
+最简单的用法是解析位置参数或基础类型。
 
 ```typescript
-{
-  isNamed: boolean;      // 是否是显式命名参数 (k=v)
-  rawValue: string;      // 原始文本字符串
-  name?: string;         // 显式指定的名称 (k)
-  potentialId?: string;  // 潜在的标识符名称
-  tokens: Token[];       // 词法标记序列
-  index: number;         // 当前位置索引
-  scope?: Record<string, any>;
-  parser: Parser;        // Parser 实例，支持递归调用
-}
+import { parseObjectArguments } from '@isdk/ai-tool';
+
+// 解析位置参数 -> 返回数组 (自动应用纯位置数组化)
+const res1 = await parseObjectArguments('123, "hello", true'); 
+// [123, "hello", true]
+
+// 解析单值 -> 直接返回值 (自动应用单值化)
+const res2 = await parseObjectArguments('"only-one"');
+// "only-one"
 ```
 
-### 2. 处理器输出与二次评估
+### 2. 命名参数与自动收敛 (Level 2)
+支持 `key=value` 语法。
 
-处理器可以控制返回结果的类型和分发策略：
+```typescript
+// 命名参数 -> 返回对象
+const res3 = await parseObjectArguments('name="John", age=30');
+// { name: "John", age: 30 }
 
-#### 形态 A：直接返回值 (Direct Value)
+// 等值对收敛：如果位置参数 0 与某个命名参数的值完全一致
+// 场景：id 是位置参数，通过 idAsName 自动映射到了 kvArgs.id
+const res4 = await parseObjectArguments('id', { id: 101 });
+// 101 (内部形态为 {0: 101, id: 101}，被自动简化)
+```
 
-* 返回 **非字符串类型**（如数字、对象、null）：解析器将其作为**最终解析结果**，不再进行任何处理。
-* 返回 **字符串类型**：解析器将其视为一个**“待评估的表达式字符串”**。解析器会对其再次应用上述的**类型约定**进行二次评估（例如：带引号则视为字符串常量，不带引号则尝试作为变量解析）。
+### 3. 使用作用域注入 (Level 3)
+可以传入 `scope` 对象，使解析器能够识别变量。
 
-#### 形态 B：带协议的结果对象 (`PROCESSOR_RESULT`)
+```typescript
+const scope = { user: { id: 1, name: 'Bob' }, flag: true };
+const res5 = await parseObjectArguments('user.id, enabled=flag', scope);
+// { 0: 1, enabled: true }
+```
 
-返回 `{ [PROCESSOR_RESULT]: [value, name?, options?] }` 以获得精细控制：
+### 4. 完整命令解析 (Level 4)
+解析形如 `cmd(args)` 的字符串。
 
-* **`value`**：可以是最终值，也可以是待评估的表达式字符串（逻辑同上）。
-* **`name` (建议名称)**：为参数建议一个 Key。**优先级**：显式名称 > 处理器建议名称 > 自动标识符映射。
-* **`options.excludePositional`**：如果为 `true`，该参数即使是位置形态也不进入 `args` 数组且不增加索引。
+```typescript
+import { parseCommand } from '@isdk/ai-tool';
+
+const { command, args } = await parseCommand('search(query="sky", limit=10)');
+// command: "search"
+// args: { query: "sky", limit: 10 }
+```
 
 ---
 
-## 内置处理器说明
+## 结果形态与简化 (Simplification)
 
-### 1. ChoiceArgProcessor (选项选择器)
+解析器的输出形态非常灵活，会根据参数的数量和命名情况自动“坍缩”为最直观的形式。
 
-解析特殊的管道符语法：`|apple|pear:2:separator=";"`
+### 核心简化策略
+默认情况下，解析器遵循以下三种策略（按顺序）：
 
-* **行为**：自动将结果映射到命名参数 `choice` 中，且**不占用**位置索引。
-* **结果**：返回解析后的配置对象。由于返回的是对象，它被视为**最终值**。
+1.  **等值对简化 (Identical Pair)**：当结果中仅有两个条目（位置 0 和一个命名 Key）且值完全相等时，直接返回该值。
+    *   例如：`age=25` -> `25`
+2.  **单值化 (Single Value)**：当只有一个位置参数且没有命名参数时，直接返回该值。
+    *   例如：`"hello"` -> `"hello"`
+3.  **纯位置数组化 (Pure Positional)**：当没有任何命名参数且有多个位置参数时，返回纯数组。
+    *   例如：`1, 2, 3` -> `[1, 2, 3]`
 
-### 2. TemplateArgProcessor (模板处理器)
+### 精细化控制
+你可以通过 `simplify` 选项来调整这些行为：
 
-处理字符串插值：`msg="Hello {{user.name}}"`
+```typescript
+const options = {
+  simplify: {
+    singleValue: false,      // 禁用单值化，始终返回数组 [ "val" ]
+    identicalPair: false,    // 禁用等值对简化，返回 { 0: 1, id: 1 }
+    mode: 'array'            // 强制约束输出形态
+  }
+};
+```
 
-* **行为**：使用 `PromptTemplate` 渲染。
-* **核心约定**：如果渲染结果是纯文本且不带引号，它会自动为其包裹引号（使用 `JSON.stringify`）。
-* **逻辑**：它返回的是一个带引号的**表达式字符串**。根据二次评估规则，它最终会被解析为字符串字面量常量，从而避免被误认为未定义的变量。
-
-### 3. AIArgProcessor (AI 综合处理器)
-
-组合处理器，依次尝试 `Choice` 和 `Template` 逻辑。
+#### `mode` 形态强制约束
+*   `'auto'`: 默认的智能简化逻辑。
+*   `'array'`: 始终返回位置参数数组。**命名参数将作为该数组的 `.kvArgs` 非枚举属性附带。**
+*   `'object'`: 始终返回一个合并后的对象（包含数字索引键和字符串键）。
+*   `'map'`: 始终返回原始结构 `{ args: any[], kvArgs: Record<string, any> }`。
 
 ---
 
-## 使用示例
+## 工具函数 (Utilities)
 
-### 基础解析
-
-```typescript
-const { args, kvArgs } = await parseCommand('login(user, token="abc")');
-// args: [ userValue ], kvArgs: { user: userValue, token: "abc" }
-```
-
-### 自动简化
+### `ObjectArgsToArgsInfo`
+规范化工具，将任何简化后的结果（单值、数组等）还原为标准的 `{ args, kvArgs }` 结构。这对于下游函数统一处理参数非常有用。
 
 ```typescript
-const result = await parseObjectArguments('age', { age: 25 });
-// 内部中间态: { 0: 25, age: 25 } -> 最终输出: 25
+import { ObjectArgsToArgsInfo } from '@isdk/ai-tool';
+
+const info = ObjectArgsToArgsInfo(101); 
+// { args: [101] }
+
+const info2 = ObjectArgsToArgsInfo({ name: 'John' });
+// { args: [], kvArgs: { name: 'John' } }
 ```
+
+---
+
+## 核心语法与规则
+
+### 1. 类型支持
+*   **字面量**：支持 `"`, `'`, 或 `` ` `` 包裹的字符串（支持转义）、数字、布尔值、`null`, `undefined`。
+*   **JS 表达式**：支持基础运算和简单语法，如 `1 + 2`, `(a, b) => a + b`。
+*   **变量/路径**：不带引号的文本视为变量，解析器会从 `scope` 中查找。
+
+### 2. 变量保护 (`preserveUnresolvedName`)
+开启此选项后，如果变量在 `scope` 中未定义，解析器不会返回 `undefined`，而是原样返回原始字符串（如 `hello-world`）。这在编写 DSL 时非常有用。
+
+---
+
+## 高级：处理器 (Processor) 协议
+
+处理器允许你在解析过程中拦截原始文本并按业务逻辑进行转换。
+
+### 内置 AI 处理器 (`AIArgProcessor`)
+提供了一些专为 AI 场景设计的增强语法：
+*   **模板插值**：`msg="Hello {{name}}"` -> 渲染后的字符串。
+*   **管道选择器**：`|apple|pear:2` -> 一个配置对象 `{ items: ['apple', 'pear'], maxPick: 2 }`。
+
+### 自定义处理器
+通过实现 `ArgProcessor` 函数，你可以定义自己的参数转换逻辑，甚至返回一个带有 `PROCESSOR_RESULT` Symbol 的对象来控制参数的分发策略。
+
+---
+
+## 配置参考 (ParserOptions)
+
+| 选项 | 类型 | 默认值 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `simplify` | `boolean \| SimplifyOptions` | `true` | 是否开启结果简化。 |
+| `idAsName` | `boolean` | `true` | 位置参数若是标识符，是否自动映射为同名命名参数。 |
+| `scope` | `Record` | `{}` | 变量评估的作用域。 |
+| `argProcessor` | `Function` | - | 自定义参数处理器。 |
+| `preserveUnresolvedName` | `boolean` | `false` | 未定义变量是否原样返回字符串。 |
+| `namedExcludePositional` | `boolean` | `true` | 显式命名参数是否不占用位置索引。 |

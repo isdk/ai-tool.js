@@ -79,6 +79,42 @@ export interface ArgContext {
 export type ArgProcessor = (ctx: ArgContext) => any | Promise<any>;
 
 /**
+ * 结果简化选项，用于精细控制解析结果的收敛行为。
+ */
+export interface SimplifyOptions {
+  /** 
+   * [单值化] 当且仅当只有一个位置参数且无命名参数时，直接返回该值。
+   * 示例：parse("123") -> 123 (而非 [123])
+   * 默认：true
+   */
+  singleValue?: boolean;
+
+  /** 
+   * [等值对简化] 当结果中仅有两个 Entry（一个位置 0，一个命名 Key），且值完全相等时，收敛为单值。
+   * 示例：parse("age=25") 在 idAsName 开启时产生 {0: 25, age: 25} -> 25
+   * 默认：true
+   */
+  identicalPair?: boolean;
+
+  /** 
+   * [纯位置数组化] 当无命名参数且有多个位置参数时，返回纯数组。
+   * 示例：parse("1, 2, 3") -> [1, 2, 3] (而非 {0:1, 1:2, 2:3})
+   * 默认：true
+   */
+  purePositionalAsArray?: boolean;
+
+  /**
+   * [输出形态强制约束]
+   * 'auto': 遵循上述三个开关的智能简化逻辑（默认）。
+   * 'array': 始终返回位置参数数组。命名参数将作为该数组的 .kvArgs 属性附带（非枚举属性）。
+   * 'object': 始终返回一个合并后的对象（数字索引 + 字符串键）。
+   * 'map': 始终返回原始结构 { args: any[], kvArgs: Record<string, any> }。
+   * 默认：'auto'
+   */
+  mode?: 'auto' | 'array' | 'object' | 'map';
+}
+
+/**
  * 解析器配置选项
  */
 export interface ParserOptions {
@@ -104,8 +140,8 @@ export interface ParserOptions {
   idAsName?: boolean;
   /** 是否跳过 JS 表达式评估，仅返回原始文本 */
   skipExpression?: boolean;
-  /** 是否开启结果简化逻辑（单参数时直接返回值而非数组/对象），默认 true */
-  simplify?: boolean;
+  /** 是否开启结果简化逻辑，可以是布尔值或详细配置对象，默认 true */
+  simplify?: boolean | SimplifyOptions;
   /** 遇到错误时是否抛出异常 */
   raiseError?: boolean;
   /** 评估作用域 */

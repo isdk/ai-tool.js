@@ -1,10 +1,10 @@
 import { Lexer } from './lexer';
 import { Parser } from './parser';
-import { ParserOptions, ParseResult } from './types';
+import { ParserOptions, ParseResult, SimplifyOptions } from './types';
 
 /**
  * 解析对象风格的参数字符串。
- * 
+ *
  * @param argsStr 参数字符串，如 '1, name="John", age=25'
  * @param scope 评估作用域，用于解析变量
  * @param options 解析配置选项
@@ -12,21 +12,21 @@ import { ParserOptions, ParseResult } from './types';
  */
 export async function parseObjectArguments(argsStr: string, scope?: Record<string, any>, options?: ParserOptions): Promise<any> {
   if (!argsStr || !argsStr.trim()) return undefined;
-  
+
   const lexer = new Lexer(argsStr, options);
   const parser = new Parser(lexer, { ...options, scope });
   const result = await parser.parse();
-  
+
   if (options?.returnArrayOnly) {
     return toMergedObject(result, options);
   }
-  
+
   return simplifyResult(result, options);
 }
 
 /**
  * 将解析结果合并为一个扁平化的对象。
- * 
+ *
  * 逻辑：
  * 1. 复制所有命名参数到结果。
  * 2. 遍历位置参数，如果 ignoreIndexNamed 为 true，则跳过已命名的索引位。
@@ -46,40 +46,81 @@ export function toMergedObject(result: ParseResult, options?: ParserOptions): an
 
 /**
  * 简化解析结果。
- * 
- * 收敛规则：
- * 1. 当 simplify 为 true 时：
- * 2. 如果结果中仅包含两个 entry，且一个是索引 0，另一个是字符串键，且它们的值严格相等，则收敛为该值。
- *    (例如：{ 0: 25, age: 25 } -> 25)
- * 3. 如果没有命名参数，且只有一个位置参数，返回该参数值。
- * 4. 如果没有命名参数，且有多个位置参数，返回位置参数数组。
- * 5. 其它情况返回合并后的对象。
+ *
+ * 收敛逻辑受 options.simplify 配置影响。
  */
 export function simplifyResult(result: ParseResult, options?: ParserOptions): any {
-  if (options?.simplify === false) {
+  const simplify = options?.simplify;
+
+  // 如果显式设置为 false，则退化为返回合并对象
+  if (simplify === false) {
     return toMergedObject(result, options);
   }
 
+  // 默认简化配置
+  const defaultSimplify: SimplifyOptions = {
+    singleValue: true,
+    identicalPair: true,
+    purePositionalAsArray: true,
+    mode: 'auto'
+  };
+
+  const config: SimplifyOptions = typeof simplify === 'object'
+    ? { ...defaultSimplify, ...simplify }
+    : defaultSimplify;
+
+  const { args, kvArgs } = result;
+  const mode = config.mode || 'auto';
+
+  // 1. 强制模式处理
+  if (mode === 'map') {
+    return { args, kvArgs };
+  }
+
+  if (mode === 'array') {
+    const arr = [...args];
+    Object.defineProperty(arr, 'kvArgs', {
+      value: { ...kvArgs },
+      enumerable: false,
+      writable: true,
+      configurable: true
+    });
+    return arr;
+  }
+
+  if (mode === 'object') {
+    return toMergedObject(result, options);
+  }
+
+  // 2. 自动收敛 (mode === 'auto')
   const merged = toMergedObject(result, options);
   const keys = Object.keys(merged);
+  const kvKeys = Object.keys(kvArgs);
 
-  // 特殊情况：单值同值收敛 (例如：{ 0: 20, age: 20 })
-  if (keys.length === 2) {
+  // [等值对简化] (identicalPair)
+  // 必须正好只有 2 个 Entry，一个是索引 0，一个是命名 Key，且值相等
+  if (config.identicalPair && keys.length === 2 && kvKeys.length === 1) {
     const hasZero = '0' in merged || 0 in merged;
     if (hasZero) {
-      const otherKey = keys.find(k => k !== '0');
-      if (otherKey !== undefined && isNaN(Number(otherKey)) && merged[0] === merged[otherKey]) {
+      const otherKey = kvKeys[0];
+      if (merged[0] === merged[otherKey]) {
         return merged[0];
       }
     }
   }
 
-  // 位置参数兜底
-  if (Object.keys(result.kvArgs).length === 0) {
-    if (result.args.length === 1) return result.args[0];
-    return result.args.filter((_, i) => i in result.args);
+  // [纯位置参数处理]
+  if (kvKeys.length === 0) {
+    // [单值化] (singleValue)
+    if (config.singleValue && args.length === 1) {
+      return args[0];
+    }
+    // [纯位置数组化] (purePositionalAsArray)
+    if (config.purePositionalAsArray) {
+      return args.filter((_, i) => i in args);
+    }
   }
-  
+
   return merged;
 }
 
@@ -125,6 +166,8 @@ export function ObjectArgsToArgsInfo(args: any): {args: any[], kvArgs?: Record<s
     if (entries.length === 1) {
       if (args[0] !== undefined) {
         args = [args[0]]
+      } else {
+        args = {args: [], kvArgs: args}
       }
     } else if (keys.every(k => !isNaN(parseInt(k))) && isIncreasing(keys.map(k => parseInt(k)))) {
       args = Object.values(args)
@@ -147,13 +190,15 @@ export function ObjectArgsToArgsInfo(args: any): {args: any[], kvArgs?: Record<s
   }
   if (Array.isArray(args)) {
     args = {args}
+  } else if (!args || typeof args !== 'object' || args.args === undefined) {
+    args = {args: args === undefined ? [] : [args]}
   }
   return args
 }
 
 /**
  * 解析命令字符串。
- * 
+ *
  * @param commandStr 命令字符串，如 'myCmd(arg1, k=v)'
  * @param scope 评估作用域
  * @param options 解析配置选项
