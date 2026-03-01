@@ -5,7 +5,7 @@ import { get as getByPath } from "lodash-es";
 
 /**
  * 评估一个参数的值。
- * 
+ *
  * 优先级：
  * 1. 尝试调用自定义处理器 (ArgProcessor)。
  * 2. 如果处理器返回的是源码字符串，递归调用 evaluateExpression。
@@ -23,7 +23,7 @@ export async function evaluate(ctx: ArgContext): Promise<any> {
       if (typeof result === 'string') {
         return await evaluateExpression(result, scope, options);
       }
-      
+
       // B. 如果是带 Symbol 协议的结果对象
       if (result && typeof result === 'object' && result[PROCESSOR_RESULT]) {
           const [val, name, pOptions] = result[PROCESSOR_RESULT];
@@ -33,7 +33,7 @@ export async function evaluate(ctx: ArgContext): Promise<any> {
               return { [PROCESSOR_RESULT]: [evaluatedVal, name, pOptions] };
           }
       }
-      
+
       return result;
     }
   }
@@ -44,7 +44,7 @@ export async function evaluate(ctx: ArgContext): Promise<any> {
 
 /**
  * 评估一个表达式字符串的值。
- * 
+ *
  * 逻辑顺序：
  * 1. 检查是否跳过评估。
  * 2. 匹配简单的 JS 字面量 (true, false, null, undefined, NaN, Infinity)。
@@ -70,7 +70,7 @@ export async function evaluateExpression(code: string, scope: any, options: Pars
   if (lower === 'undefined') return undefined;
   if (lower === 'nan') return NaN;
   if (lower === 'infinity') return Infinity;
-  
+
   const num = Number(trimmed);
   if (!isNaN(num) && trimmed !== '') return num;
 
@@ -90,7 +90,7 @@ export async function evaluateExpression(code: string, scope: any, options: Pars
     return result;
   } catch (err) {
     if (options.raiseError) throw err;
-    
+
     // 处理 ReferenceError (变量未定义)
     if (err instanceof ReferenceError && options.preserveUnresolvedName) {
       // 返回带 Symbol 标记的对象，以便 Parser 识别并跳过 idAsName 逻辑
@@ -98,12 +98,13 @@ export async function evaluateExpression(code: string, scope: any, options: Pars
     }
 
     // 处理带引号的字符串脱壳 (Unquoting)
-    if ((trimmed.startsWith('"') && trimmed.endsWith('"')) || 
+    if ((trimmed.startsWith('"') && trimmed.endsWith('"')) ||
         (trimmed.startsWith("'") && trimmed.endsWith("'")) ||
         (trimmed.startsWith('`') && trimmed.endsWith('`'))) {
       try {
         // 使用 newFunction 安全地解开字符串字面量转义
-        const unescapeFn = newFunction([], `return ${trimmed};`);
+        const unescapeFn = newFunction(`return ${trimmed};`);
+        console.log('🚀 ~ file: evaluator.ts:107 ~ unescapeFn:', unescapeFn)
         return unescapeFn();
       } catch (e) {
         // 解开失败则回退到简单的 substring

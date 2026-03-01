@@ -1,15 +1,15 @@
 import { Parser } from './parser';
 import { Lexer } from './lexer';
-import { ParserOptions, AIChoiceConfig, PROCESSOR_RESULT, ArgContext } from './types';
+import { AIChoiceConfig, PROCESSOR_RESULT, ArgContext } from './types';
 import { PromptTemplate } from "../prompt";
 import { omitBy } from "lodash-es";
 import { isQuoted } from './utils';
 
 /**
  * 选项选择处理器 (ChoiceArgProcessor)。
- * 
+ *
  * 语法：|项1|项2:maxPick=2:separator=";"
- * 
+ *
  * 逻辑：
  * 1. 识别以 | 开头的位置参数。
  * 2. 递归使用 Parser 解析后续的配置项（以 : 为分隔符）。
@@ -24,7 +24,7 @@ export async function ChoiceArgProcessor(ctx: ArgContext) {
     // 递归调用 Parser 处理选择项内部的配置
     const choiceParser = new Parser(new Lexer(rawValue, { ...options, delimiter: ':' }), { ...options, isInternal: true });
     const { args, kvArgs } = await choiceParser.parse();
-    
+
     const choice: AIChoiceConfig = { ...kvArgs };
     for (const val of args) {
       if (typeof val === 'string' && val.startsWith('|')) {
@@ -41,7 +41,7 @@ export async function ChoiceArgProcessor(ctx: ArgContext) {
         }
       }
     }
-    
+
     // 使用协议返回结构化数据
     return {
       [PROCESSOR_RESULT]: [choice, 'choice', { excludePositional: true }]
@@ -51,9 +51,9 @@ export async function ChoiceArgProcessor(ctx: ArgContext) {
 
 /**
  * 模板变量处理器 (TemplateArgProcessor)。
- * 
+ *
  * 语法：msg="Hello {{name}}"
- * 
+ *
  * 逻辑：
  * 1. 调用 PromptTemplate.formatIf 进行变量替换。
  * 2. 如果替换后的结果是裸字符串（不带引号且非 JS 类型源码），则对其进行 JSON.stringify 转义，
@@ -68,7 +68,7 @@ export async function TemplateArgProcessor(ctx: ArgContext) {
     data,
     templateFormat: options?.templateFormat
   });
-  
+
   if (templateResult !== undefined && templateResult !== rawValue) {
     // 渲染结果作为源码返回。
     // 如果渲染结果是纯文本字符串且不带引号，则为其补上引号以遵循类型约定。
