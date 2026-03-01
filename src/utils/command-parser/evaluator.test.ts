@@ -71,4 +71,21 @@ describe('Evaluator', () => {
     const result = await evaluate(createCtx('unresolved', {}, { preserveUnresolvedName: true }));
     expect(result[UNRESOLVED_SYMBOL]).toBe('unresolved');
   });
+
+  it('should handle quoted string unquoting fallback when first evaluation fails', async () => {
+    // Case 1: First evaluation fails due to scope error, but unquoting succeeds
+    const scope = {};
+    Object.defineProperty(scope, 'err', {
+      get() { throw new Error('scope error'); },
+      enumerable: true
+    });
+    // This will trigger the catch block in evaluateExpression because filterValidFnScope(scope) will throw
+    const result1 = await evaluate(createCtx('"hello"', scope));
+    expect(result1).toBe('hello');
+
+    // Case 2: First evaluation fails, and unquoting also fails (SyntaxError in "loosely quoted" string)
+    // isQuoted returns true for '"a" "b"', but it's not a valid JS string literal
+    const result2 = await evaluate(createCtx('"a" "b"'));
+    expect(result2).toBe('a" "b');
+  });
 });
