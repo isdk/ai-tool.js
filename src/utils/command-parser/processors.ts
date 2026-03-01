@@ -23,9 +23,9 @@ export async function ChoiceArgProcessor(ctx: ArgContext) {
   if (!isNamed && rawValue.startsWith('|')) {
     // Recursively invoke Parser to handle configuration inside choice items
     const choiceParser = new Parser(new Lexer(rawValue, { ...options, delimiter: ':' }), { ...options, isInternal: true });
-    const { args, kvArgs } = await choiceParser.parse();
+    const { args, namedArgs } = await choiceParser.parse();
 
-    const choice: AIChoiceConfig = { ...kvArgs };
+    const choice: AIChoiceConfig = { ...namedArgs };
     for (const val of args) {
       if (typeof val === 'string' && val.startsWith('|')) {
         choice.items = val.split('|').filter(Boolean);
@@ -56,7 +56,7 @@ export async function ChoiceArgProcessor(ctx: ArgContext) {
  *
  * Logic:
  * 1. Calls PromptTemplate.formatIf for variable substitution.
- * 2. If the substitution results in a bare string (no quotes and not JS literal source), 
+ * 2. If the substitution results in a bare string (no quotes and not JS literal source),
  *    it is JSON-escaped to ensure it's recognized as a string literal in subsequent evaluation.
  * 3. Returns the substituted source string for re-evaluation by the Evaluator.
  */

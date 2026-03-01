@@ -5,7 +5,7 @@ import { evaluate } from './evaluator';
 
 /**
  * Structured command argument parser.
- * Supports positional arguments, named arguments (k=v), nested structures, 
+ * Supports positional arguments, named arguments (k=v), nested structures,
  * and Symbol-based extension protocols.
  */
 export class Parser {
@@ -15,26 +15,26 @@ export class Parser {
   constructor(lexer: Lexer, options?: ParserOptions) {
     this.lexer = lexer;
     // Default to intuitive configurations
-    this.options = { 
-      namedExcludePositional: true, 
-      idAsName: true, 
-      ...options 
+    this.options = {
+      namedExcludePositional: true,
+      idAsName: true,
+      ...options
     };
   }
 
   /**
    * Executes the parsing process.
-   * 
+   *
    * Core logic priority:
    * 1. Collect top-level arguments (respecting bracket nesting depth).
    * 2. Identify explicit named arguments (k=v) or flag shorthands.
    * 3. Pre-check if a positional argument fits identifier/path format for auto-mapping.
    * 4. Invoke Evaluator to get the value and unpack any Symbol Protocols.
-   * 5. Distribute results to 'args' and 'kvArgs', maintaining index consistency.
+   * 5. Distribute results to 'args' and 'namedArgs', maintaining index consistency.
    */
   async parse(): Promise<ParseResult> {
     const args: any[] = [];
-    const kvArgs: Record<string, any> = {};
+    const namedArgs: Record<string, any> = {};
     const flags: Record<string, any> = {};
     const namedIndices = new Set<number>();
     let positionalIndex = 0;
@@ -70,13 +70,13 @@ export class Parser {
       const { name, valueTokens, flagPrefix } = this.splitNamedArgument(tokens);
       const isNamed = name !== undefined;
       const isFlag = flagPrefix !== undefined;
-      
+
       // 3. Pre-check if a positional argument matches identifier/path format (for idAsName)
-      let potentialId: string | undefined;
+      let identifierAsName: string | undefined;
       if (!isNamed && valueTokens.length === 1 && valueTokens[0].type === TokenType.RAW) {
         const val = valueTokens[0].value;
         if (isPathIdentifier(val)) {
-          potentialId = val;
+          identifierAsName = val;
         }
       }
 
@@ -90,7 +90,7 @@ export class Parser {
           const context: ArgContext = {
             isNamed,
             name,
-            potentialId,
+            identifierAsName,
             rawValue,
             tokens: valueTokens,
             index: positionalIndex,
@@ -136,8 +136,8 @@ export class Parser {
 
           if (effectiveName) {
             // A. Explicit name specified (direct assignment or via Processor)
-            kvArgs[effectiveName] = finalValue;
-            
+            namedArgs[effectiveName] = finalValue;
+
             if (!this.options.namedExcludePositional && !excludePositional) {
               // If options allow, also store in the positional index
               args[positionalIndex] = finalValue;
@@ -149,10 +149,10 @@ export class Parser {
             // B. Pure positional argument
             if (!excludePositional) {
                 args[positionalIndex] = finalValue;
-                
+
                 // Auto-mapping: If positional argument is an Id and no ReferenceError fallback occurred
-                if (this.options.idAsName && potentialId && !isUnresolved) {
-                  kvArgs[potentialId] = finalValue;
+                if (this.options.idAsName && identifierAsName && !isUnresolved) {
+                  namedArgs[identifierAsName] = finalValue;
                   namedIndices.add(positionalIndex);
                 }
 
@@ -164,7 +164,7 @@ export class Parser {
       if (this.consumeDelimiter() === TokenType.EOF) break;
     }
 
-    return { args, kvArgs, flags, namedIndices };
+    return { args, namedArgs, flags, namedIndices };
   }
 
   /**

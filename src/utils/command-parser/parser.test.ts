@@ -20,8 +20,8 @@ describe('Parser (Structural Logic)', () => {
     const parser = new Parser(lexer);
     const result = await parser.parse();
     // Reassembled RAW value should preserve exact spaces from input slice
-    expect(result.kvArgs.arr).toBe('[1, 2]');
-    expect(result.kvArgs.obj).toBe('{a: 1, b: 2}');
+    expect(result.namedArgs.arr).toBe('[1, 2]');
+    expect(result.namedArgs.obj).toBe('{a: 1, b: 2}');
     // Named arguments are excluded from positional args by default
     expect(result.args).toEqual([]);
   });
@@ -31,12 +31,12 @@ describe('Parser (Structural Logic)', () => {
     const parser = new Parser(lexer);
     const result = await parser.parse();
     // name = key, value = original slice including quotes
-    expect(result.kvArgs.key).toBe('"value"');
-    
-    // posArg is positional, but also an identifier, so it maps to kvArgs too
+    expect(result.namedArgs.key).toBe('"value"');
+
+    // posArg is positional, but also an identifier, so it maps to namedArgs too
     expect(result.args[0]).toBe('posArg');
-    expect(result.kvArgs.posArg).toBe('posArg');
-    
+    expect(result.namedArgs.posArg).toBe('posArg');
+
     // Total positional args: 1 (key was excluded)
     expect(result.args.length).toBe(1);
   });
@@ -45,10 +45,10 @@ describe('Parser (Structural Logic)', () => {
     const lexer = new Lexer('a, , b');
     const parser = new Parser(lexer);
     const result = await parser.parse();
-    // 'a' and 'b' are IDs, so they also appear in kvArgs
+    // 'a' and 'b' are IDs, so they also appear in namedArgs
     expect(result.args).toEqual(['a', undefined, 'b']);
-    expect(result.kvArgs.a).toBe('a');
-    expect(result.kvArgs.b).toBe('b');
+    expect(result.namedArgs.a).toBe('a');
+    expect(result.namedArgs.b).toBe('b');
   });
 
   it('should handle complex nested structures', async () => {
@@ -56,8 +56,8 @@ describe('Parser (Structural Logic)', () => {
     const parser = new Parser(lexer);
     const result = await parser.parse();
     // Original slice preserves inner spaces
-    expect(result.kvArgs.a).toBe('(1 + (2, 3))');
-    expect(result.kvArgs.b).toBe('[{c: [1, 2]}, 3]');
+    expect(result.namedArgs.a).toBe('(1 + (2, 3))');
+    expect(result.namedArgs.b).toBe('[{c: [1, 2]}, 3]');
     expect(result.args).toEqual([]);
   });
 });

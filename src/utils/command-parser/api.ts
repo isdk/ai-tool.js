@@ -10,18 +10,18 @@ import { ParserOptions, ParseResult, SimplifyOptions } from './types';
  * @param scope Optional evaluation scope for resolving variables.
  * @param options Parser configuration options.
  * @returns The parsed and simplified result.
- * 
+ *
  * @example
  * ```ts
  * // 1. Simple positional
  * await parseObjectArguments("123") // returns 123
- * 
+ *
  * // 2. Multiple positional
  * await parseObjectArguments("1, 2, 3") // returns [1, 2, 3]
- * 
+ *
  * // 3. Named arguments
  * await parseObjectArguments("name='John', age=25") // returns {name: 'John', age: 25}
- * 
+ *
  * // 4. Mixed (idAsName enabled by default)
  * await parseObjectArguments("John, age=25") // returns {0: 'John', John: 'John', age: 25}
  * ```
@@ -32,10 +32,6 @@ export async function parseObjectArguments(argsStr: string, scope?: Record<strin
   const lexer = new Lexer(argsStr, options);
   const parser = new Parser(lexer, { ...options, scope });
   const result = await parser.parse();
-
-  if (options?.returnArrayOnly) {
-    return toMergedObject(result, options);
-  }
 
   return simplifyResult(result, options);
 }
@@ -49,10 +45,10 @@ export async function parseObjectArguments(argsStr: string, scope?: Record<strin
  * @returns A merged object containing all arguments.
  */
 export function toMergedObject(result: ParseResult, options?: ParserOptions): any {
-  const merged: any = { ...result.kvArgs };
+  const merged: any = { ...result.namedArgs };
   result.args.forEach((val, i) => {
     if (val !== undefined || (i in result.args)) {
-      if (options?.ignoreIndexNamed && result.namedIndices.has(i)) {
+      if (options?.excludeAutoNamedFromPositional && result.namedIndices.has(i)) {
         return; // Skip indices that are already named
       }
       merged[i] = val;
@@ -80,7 +76,7 @@ export function simplifyResult(result: ParseResult, options?: ParserOptions): an
   // Default simplification configuration
   const defaultSimplify: SimplifyOptions = {
     singleValue: true,
-    identicalPair: true,
+    identicalPairSingular: true,
     purePositionalAsArray: true,
     mode: 'auto'
   };
@@ -89,14 +85,14 @@ export function simplifyResult(result: ParseResult, options?: ParserOptions): an
     ? { ...defaultSimplify, ...simplify }
     : defaultSimplify;
 
-  const { args, kvArgs, flags } = result;
+  const { args, namedArgs, flags } = result;
   const mode = config.mode || 'auto';
   let res: any;
   let isSimplified = false;
 
   // 1. Mandatory mode handling
   if (mode === 'map') {
-    const mapResult: any = { args, kvArgs };
+    const mapResult: any = { args, namedArgs };
     if (flags && Object.keys(flags).length > 0) {
       mapResult.flags = flags;
     }
@@ -106,8 +102,8 @@ export function simplifyResult(result: ParseResult, options?: ParserOptions): an
   if (mode === 'array') {
     res = [...args];
     isSimplified = true;
-    Object.defineProperty(res, 'kvArgs', {
-      value: { ...kvArgs },
+    Object.defineProperty(res, 'namedArgs', {
+      value: { ...namedArgs },
       enumerable: false,
       writable: true,
       configurable: true
@@ -119,11 +115,11 @@ export function simplifyResult(result: ParseResult, options?: ParserOptions): an
     // 2. Automatic convergence (mode === 'auto')
     const merged = toMergedObject(result, options);
     const keys = Object.keys(merged);
-    const kvKeys = Object.keys(kvArgs);
+    const kvKeys = Object.keys(namedArgs);
 
     // [Identical Pair Simplification]
     // Converge to a single value if we have {0: val, key: val}
-    if (config.identicalPair && keys.length === 2 && kvKeys.length === 1) {
+    if (config.identicalPairSingular && keys.length === 2 && kvKeys.length === 1) {
       const hasZero = '0' in merged || 0 in merged;
       if (hasZero) {
         const otherKey = kvKeys[0];
@@ -198,16 +194,16 @@ function isIncreasing(arr: number[]) {
 }
 
 /**
- * Normalizes various simplified result formats back into an `{args, kvArgs}` info structure.
- * 
+ * Normalizes various simplified result formats back into an `{args, namedArgs}` info structure.
+ *
  * @example
  * ```ts
  * ObjectArgsToArgsInfo("val") // returns {args: ["val"]}
  * ObjectArgsToArgsInfo([1, 2]) // returns {args: [1, 2]}
- * ObjectArgsToArgsInfo({name: "John"}) // returns {args: [], kvArgs: {name: "John"}}
+ * ObjectArgsToArgsInfo({name: "John"}) // returns {args: [], namedArgs: {name: "John"}}
  * ```
  */
-export function ObjectArgsToArgsInfo(args: any): {args: any[], kvArgs?: Record<string, any>} {
+export function ObjectArgsToArgsInfo(args: any): {args: any[], namedArgs?: Record<string, any>} {
   if (args && !Array.isArray(args) && typeof args === 'object') {
     const entries = Object.entries(args)
     const keys = Object.keys(args)
@@ -216,25 +212,25 @@ export function ObjectArgsToArgsInfo(args: any): {args: any[], kvArgs?: Record<s
       if (args[0] !== undefined) {
         args = [args[0]]
       } else {
-        args = {args: [], kvArgs: args}
+        args = {args: [], namedArgs: args}
       }
     } else if (keys.every(k => !isNaN(parseInt(k))) && isIncreasing(keys.map(k => parseInt(k)))) {
       args = Object.values(args)
     } else if (nums[0] === '0' && isIncreasing(nums.map(k => parseInt(k)))) {
-      const kvArgs = entries.filter(([k, v]) => isNaN(parseInt(k)))
+      const namedArgs = entries.filter(([k, v]) => isNaN(parseInt(k)))
       args = entries.filter(([k, v]) => !isNaN(parseInt(k))).map(([k, v]) => v)
       let i = 0
       const canDeleted: number[] = []
-      while (i < kvArgs.length && kvArgs[i][1] === args[i]) {
+      while (i < namedArgs.length && namedArgs[i][1] === args[i]) {
         canDeleted.push(i)
         i++
       }
       while (canDeleted.length) {
-        kvArgs.splice(canDeleted.pop()!, 1)
+        namedArgs.splice(canDeleted.pop()!, 1)
       }
-      args = {args, kvArgs: Object.fromEntries(kvArgs)}
+      args = {args, namedArgs: Object.fromEntries(namedArgs)}
     } else {
-      args = {args: [], kvArgs: args}
+      args = {args: [], namedArgs: args}
     }
   }
   if (Array.isArray(args)) {
@@ -252,7 +248,7 @@ export function ObjectArgsToArgsInfo(args: any): {args: any[], kvArgs?: Record<s
  * @param scope Evaluation scope.
  * @param options Parser configuration options.
  * @returns An object containing the command name, parsed args, and optional flags.
- * 
+ *
  * @example
  * ```ts
  * await parseCommand("sum(1, 2)") // returns {command: "sum", args: [1, 2]}
@@ -278,11 +274,7 @@ export async function parseCommand(commandStr: string, scope?: Record<string, an
     const result = await parser.parse();
 
     flags = result.flags;
-    if (options?.returnArrayOnly) {
-      args = toMergedObject(result, options);
-    } else {
-      args = simplifyResult(result, options);
-    }
+    args = simplifyResult(result, options);
   }
 
   const result: any = { command: commandName.trim(), args };

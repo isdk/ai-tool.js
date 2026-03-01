@@ -127,7 +127,7 @@ describe('Legacy Compatibility Tests (from original parse-command.test.ts)', () 
 
     test('should parse one argument with scope and do not extract', async () => {
       const argsStr = 'arg1';
-      const result = await parseObjectArguments(argsStr, {arg1: '123'}, {returnArrayOnly: true});
+      const result = await parseObjectArguments(argsStr, {arg1: '123'}, {simplify: false});
       expect(result).toEqual({0: '123', arg1: '123'});
     });
 
@@ -165,11 +165,11 @@ describe('Legacy Compatibility Tests (from original parse-command.test.ts)', () 
       const argsStr = 'test.a';
       let result = await parseObjectArguments(argsStr, {test: {a:1,b:2}});
       expect(result).toEqual(1);
-      result = await parseObjectArguments(argsStr, {test: {a:1,b:2}}, {returnArrayOnly: true});
+      result = await parseObjectArguments(argsStr, {test: {a:1,b:2}}, {simplify: false});
       expect(result).toEqual({0: 1, "test.a": 1});
       result = ObjectArgsToArgsInfo(result)
       expect(result.args).toMatchObject([1])
-      expect(result.kvArgs).toMatchObject({})
+      expect(result.namedArgs).toMatchObject({})
     });
 
     test('should parse json func expression arguments', async () => {
@@ -204,7 +204,7 @@ describe('Legacy Compatibility Tests (from original parse-command.test.ts)', () 
       expect(result).toEqual({0:'arg1,f', 1: "value2", arg2: 'value2', 2: 'value3', arg3: 'value3', arg4: 'random1', 3: 'random1', random: 'random1'});
       result = ObjectArgsToArgsInfo(result)
       expect(result.args).toStrictEqual(['arg1,f', 'value2', 'value3', 'random1'])
-      expect(result.kvArgs).toMatchObject({arg4: 'random1'})
+      expect(result.namedArgs).toMatchObject({arg4: 'random1'})
     });
 
     test('should return undefined if no arguments are provided', async () => {
@@ -213,17 +213,17 @@ describe('Legacy Compatibility Tests (from original parse-command.test.ts)', () 
       expect(result).toBeUndefined();
     });
 
-    test('should handle arguments with scope and ignoreIndexNamed', async () => {
+    test('should handle arguments with scope and excludeAutoNamedFromPositional', async () => {
       const argsStr = '"arg1", arg2, arg3,arg4=random, random';
       const scope = { arg2: 'value2', arg3: 'value3', random: 'random1' };
-      const result = await parseObjectArguments(argsStr, scope, {ignoreIndexNamed: true});
+      const result = await parseObjectArguments(argsStr, scope, {excludeAutoNamedFromPositional: true});
       expect(result).toEqual({"0": "arg1", arg2: 'value2', arg3: 'value3', arg4: 'random1', random: 'random1'});
     });
 
     test('should handle arguments with custom delimiter and assigner', async () => {
       const argsStr = '"arg1"; arg2; arg3;arg4:random; random';
       const scope = { arg2: 'value2', arg3: 'value3', random: 'random1' };
-      const result = await parseObjectArguments(argsStr, scope, {ignoreIndexNamed: true, delimiter: ';', assigner: ':'});
+      const result = await parseObjectArguments(argsStr, scope, {excludeAutoNamedFromPositional: true, delimiter: ';', assigner: ':'});
       expect(result).toEqual({"0": "arg1", arg2: 'value2', arg3: 'value3', arg4: 'random1', random: 'random1'});
     });
 

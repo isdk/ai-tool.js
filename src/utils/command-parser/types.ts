@@ -1,7 +1,7 @@
 /**
  * Symbol used to mark a result object returned by an ArgProcessor.
  * The processor should return an object where this Symbol is the key.
- * 
+ *
  * @example
  * ```ts
  * return {
@@ -12,9 +12,9 @@
 export const PROCESSOR_RESULT = Symbol('PROCESSOR_RESULT');
 
 /**
- * Internal Symbol used to mark values that have fallen back to their raw string 
+ * Internal Symbol used to mark values that have fallen back to their raw string
  * representation due to a ReferenceError (undefined variable).
- * This allows the Parser to distinguish between a deliberate string "undefined" 
+ * This allows the Parser to distinguish between a deliberate string "undefined"
  * and a failed variable lookup.
  */
 export const UNRESOLVED_SYMBOL = Symbol('UNRESOLVED');
@@ -22,7 +22,7 @@ export const UNRESOLVED_SYMBOL = Symbol('UNRESOLVED');
 /**
  * Symbol used to mark special parameters (Flags) in a wrapped object.
  * Stored as a non-enumerable property on the wrapped value (e.g., Boolean, String).
- * 
+ *
  * @example
  * ```ts
  * const flagValue = flags['debug'];
@@ -78,15 +78,18 @@ export interface Token {
  * Options for processors to control how the parsed value is distributed in the final result.
  */
 export interface ProcessorResultOptions {
-  /** 
+  /**
    * If true, the argument will be excluded from the positional `args` array.
    * Useful when a positional argument is intended to be treated as a named parameter only.
    */
   excludePositional?: boolean;
 }
 
+import type { Parser } from './parser';
+
 /**
- * Context object provided to an ArgProcessor, containing the state of the current argument.
+ * Symbol used to mark a result object returned by an ArgProcessor.
+...
  */
 export interface ArgContext {
   /** True if the argument was explicitly assigned using an assigner (e.g., k=v) */
@@ -99,7 +102,7 @@ export interface ArgContext {
    * If the argument is positional and its raw text is a valid identifier, 
    * this holds that identifier name (used for auto-mapping).
    */
-  potentialId?: string;
+  identifierAsName?: string;
   /** All lexical tokens belonging to this argument */
   tokens: Token[];
   /** The 0-based index of this argument in the positional sequence */
@@ -109,8 +112,9 @@ export interface ArgContext {
   /** The configuration options used by the Parser */
   options: ParserOptions;
   /** Reference to the Parser instance for recursive parsing */
-  parser: any;
+  parser: Parser;
 }
+
 
 /**
  * Type definition for an argument processor function.
@@ -122,7 +126,7 @@ export type ArgProcessor = (ctx: ArgContext) => any | Promise<any>;
  * Detailed configuration for result simplification (convergence).
  */
 export interface SimplifyOptions {
-  /** 
+  /**
    * [Single Value Simplification]
    * If there is exactly one positional argument and no named arguments, return the value directly.
    * @example parse("123") -> 123 (instead of [123])
@@ -131,15 +135,15 @@ export interface SimplifyOptions {
   singleValue?: boolean;
 
   /** 
-   * [Identical Pair Simplification]
-   * If there are exactly two entries (index 0 and a named key) and their values are identical, return the value.
-   * This often happens when `idAsName` is enabled.
+   * [Identical Pair Singularization]
+   * If there are exactly two entries (index 0 and a named key) and their values are identical, 
+   * collapse them into a single value. This often happens when `idAsName` is enabled.
    * @example parse("name=John") -> "John" (instead of {0: "John", name: "John"})
    * @default true
    */
-  identicalPair?: boolean;
+  identicalPairSingular?: boolean;
 
-  /** 
+  /**
    * [Pure Positional as Array]
    * If there are multiple positional arguments and no named arguments, return a pure array.
    * @example parse("1, 2, 3") -> [1, 2, 3] (instead of {0: 1, 1: 2, 2: 3})
@@ -150,9 +154,9 @@ export interface SimplifyOptions {
   /**
    * [Output Mode]
    * - 'auto': Apply the simplification flags above (default).
-   * - 'array': Always return an array of positional args. Named args are hidden in the '.kvArgs' property.
+   * - 'array': Always return an array of positional args. Named args are hidden in the '.namedArgs' property.
    * - 'object': Always return a merged object with both numeric and string keys.
-   * - 'map': Always return the full structure { args: [], kvArgs: {}, flags: {} }.
+   * - 'map': Always return the full structure { args: [], namedArgs: {}, flags: {} }.
    * @default 'auto'
    */
   mode?: 'auto' | 'array' | 'object' | 'map';
@@ -162,37 +166,42 @@ export interface SimplifyOptions {
  * Configuration options for the Parser and main API functions.
  */
 export interface ParserOptions {
-  /** 
-   * Character used to separate arguments. 
-   * @example delimiter: ';' -> "arg1; arg2" 
-   * @default ',' 
+  /**
+   * Character used to separate arguments.
+   * @example delimiter: ';' -> "arg1; arg2"
+   * @default ','
    */
   delimiter?: string;
-  /** 
-   * Character used for name-value assignment. 
-   * @example assigner: ':' -> "key:value" 
-   * @default '=' 
+  /**
+   * Character used for name-value assignment.
+   * @example assigner: ':' -> "key:value"
+   * @default '='
    */
   assigner?: string;
-  /** 
-   * Prefix(es) for special parameters (Flags). 
-   * @example flagPrefix: '!' -> "!debug, !verbose=false" 
+  /**
+   * Prefix(es) for special parameters (Flags).
+   * @example flagPrefix: '!' -> "!debug, !verbose=false"
    */
   flagPrefix?: string | string[];
   /** Custom logic to process each argument before standard evaluation */
   argProcessor?: ArgProcessor;
-  /** If true, simplification is bypassed and a merged object is returned */
-  returnArrayOnly?: boolean;
   /** Format used by TemplateArgProcessor (e.g., 'mustache') */
   templateFormat?: string;
   /** Additional data for template variable substitution */
   templateData?: Record<string, any>;
-  /** If true, skip positional indexing for arguments that are already explicitly named */
-  ignoreIndexNamed?: boolean;
+  /** 
+   * If true, the positional index of an argument that has been automatically 
+   * mapped as a named argument (via `idAsName`) will be excluded from the 
+   * merged result object.
+   * 
+   * @example parse("John") -> {John: "John"} (instead of {0: "John", John: "John"})
+   */
+  excludeAutoNamedFromPositional?: boolean;
   /** If true, return the variable name as a string when it's not found in scope instead of undefined */
   preserveUnresolvedName?: boolean;
   /** 
-   * If true, named arguments (k=v) do not occupy a slot in the positional `args` array.
+   * If true, explicitly named arguments (e.g., `k=v`) do not occupy a slot 
+   * in the positional `args` array.
    * @default true
    */
   namedExcludePositional?: boolean;
@@ -204,7 +213,7 @@ export interface ParserOptions {
   idAsName?: boolean;
   /** If true, JS expressions (like arithmetic or function calls) are not evaluated */
   skipExpression?: boolean;
-  /** Control the simplification of the final result. Set to `false` to disable. */
+  /** Control the simplification of the final result. Set to `false` to disable (returns a merged object). */
   simplify?: boolean | SimplifyOptions;
   /** If true, any parsing or evaluation error will be thrown */
   raiseError?: boolean;
@@ -218,7 +227,7 @@ export interface ParserOptions {
 
 /**
  * Configuration for AI selection logic (used by ChoiceArgProcessor).
- * 
+ *
  * @example "|item1|item2:maxPick=2"
  */
 export interface AIChoiceConfig {
@@ -247,7 +256,7 @@ export interface ParseResult {
   /** Positional arguments array. Indices correspond to the appearance order. */
   args: any[];
   /** Named arguments map, combining explicit `k=v`, auto-mapped IDs, and Processor results. */
-  kvArgs: Record<string, any>;
+  namedArgs: Record<string, any>;
   /** Special parameters (Flags) map. Values are usually Boolean but can be any type. */
   flags: Record<string, any>;
   /** A set of numeric indices that were populated by explicitly named arguments. */

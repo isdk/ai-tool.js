@@ -18,7 +18,7 @@ export async function parseJsJson(input: string, scope?: Record<string, any>) {
   if (scope) {
     input = input.trim()
     if (input.startsWith('{') && input.endsWith('}')) {
-      const result = await parseObjectArguments(input.slice(1, -1), scope,{assigner: ':', ignoreIndexNamed: true})
+      const result = await parseObjectArguments(input.slice(1, -1), scope,{assigner: ':', excludeAutoNamedFromPositional: true})
       return result
     }
   }

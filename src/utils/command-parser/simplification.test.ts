@@ -4,26 +4,26 @@ import { parseObjectArguments, ObjectArgsToArgsInfo, simplifyObjectArguments } f
 describe('command-parser new simplification logic', () => {
   describe('granular simplify options', () => {
     it('should respect singleValue: false', async () => {
-      const result = await parseObjectArguments('123', undefined, { 
-        simplify: { singleValue: false } 
+      const result = await parseObjectArguments('123', undefined, {
+        simplify: { singleValue: false }
       });
       // Should be [123] instead of 123
       expect(result).toEqual([123]);
     });
 
-    it('should respect identicalPair: false', async () => {
+    it('should respect identicalPairSingular: false', async () => {
       const scope = { id: 101 };
       // Using 'id' instead of 'id=101' to trigger idAsName (positional -> named mapping)
-      const result = await parseObjectArguments('id', scope, { 
-        simplify: { identicalPair: false } 
+      const result = await parseObjectArguments('id', scope, {
+        simplify: { identicalPairSingular: false }
       });
       // Should be { 0: 101, id: 101 } instead of 101
       expect(result).toEqual({ 0: 101, id: 101 });
     });
 
     it('should respect purePositionalAsArray: false', async () => {
-      const result = await parseObjectArguments('1, 2', undefined, { 
-        simplify: { purePositionalAsArray: false } 
+      const result = await parseObjectArguments('1, 2', undefined, {
+        simplify: { purePositionalAsArray: false }
       });
       // Should be { 0: 1, 1: 2 } instead of [1, 2]
       expect(result).toEqual({ 0: 1, 1: 2 });
@@ -31,54 +31,54 @@ describe('command-parser new simplification logic', () => {
   });
 
   describe('mode: array', () => {
-    it('should return array and attach kvArgs as non-enumerable', async () => {
-      const result = await parseObjectArguments('123, name="John"', undefined, { 
-        simplify: { mode: 'array' } 
+    it('should return array and attach namedArgs as non-enumerable', async () => {
+      const result = await parseObjectArguments('123, name="John"', undefined, {
+        simplify: { mode: 'array' }
       });
-      
+
       expect(Array.isArray(result)).toBe(true);
       expect(result).toEqual([123]);
-      expect(result.kvArgs).toEqual({ name: 'John' });
-      
+      expect(result.namedArgs).toEqual({ name: 'John' });
+
       // Verify non-enumerable
-      expect(Object.keys(result)).not.toContain('kvArgs');
+      expect(Object.keys(result)).not.toContain('namedArgs');
     });
 
     it('should include positional index if idAsName is true (default)', async () => {
         const scope = { id: 101 };
-        const result = await parseObjectArguments('id', scope, { 
-          simplify: { mode: 'array' } 
+        const result = await parseObjectArguments('id', scope, {
+          simplify: { mode: 'array' }
         });
         expect(result).toEqual([101]);
-        expect(result.kvArgs).toEqual({ id: 101 });
+        expect(result.namedArgs).toEqual({ id: 101 });
     });
   });
 
   describe('mode: object', () => {
     it('should return merged object', async () => {
-      const result = await parseObjectArguments('123, name="John"', undefined, { 
-        simplify: { mode: 'object' } 
+      const result = await parseObjectArguments('123, name="John"', undefined, {
+        simplify: { mode: 'object' }
       });
       expect(result).toEqual({ 0: 123, name: 'John' });
     });
   });
 
   describe('mode: map', () => {
-    it('should return { args, kvArgs }', async () => {
-      const result = await parseObjectArguments('123, name="John"', undefined, { 
-        simplify: { mode: 'map' } 
+    it('should return { args, namedArgs }', async () => {
+      const result = await parseObjectArguments('123, name="John"', undefined, {
+        simplify: { mode: 'map' }
       });
       expect(result).toEqual({
         args: [123],
-        kvArgs: { name: 'John' }
+        namedArgs: { name: 'John' }
       });
     });
   });
 
   describe('mode: array edge cases', () => {
     it('should handle sparse arrays', async () => {
-      const result = await parseObjectArguments('123, , 456', undefined, { 
-        simplify: { mode: 'array' } 
+      const result = await parseObjectArguments('123, , 456', undefined, {
+        simplify: { mode: 'array' }
       });
       expect(result.length).toBe(3);
       expect(result[0]).toBe(123);
@@ -87,30 +87,30 @@ describe('command-parser new simplification logic', () => {
     });
 
     it('should handle empty arguments', async () => {
-      const result = await parseObjectArguments('', undefined, { 
-        simplify: { mode: 'array' } 
+      const result = await parseObjectArguments('', undefined, {
+        simplify: { mode: 'array' }
       });
       // parseObjectArguments returns undefined for empty string before simplifyResult
       expect(result).toBeUndefined();
     });
   });
 
-  describe('ignoreIndexNamed option', () => {
-    it('should exclude positional index if it is already named and ignoreIndexNamed is true', async () => {
+  describe('excludeAutoNamedFromPositional option', () => {
+    it('should exclude positional index if it is already named and excludeAutoNamedFromPositional is true', async () => {
       const scope = { id: 101 };
-      const result = await parseObjectArguments('id', scope, { 
-        ignoreIndexNamed: true,
+      const result = await parseObjectArguments('id', scope, {
+        excludeAutoNamedFromPositional: true,
         simplify: { mode: 'object' }
       });
-      // 0: 101 should be ignored because 'id' (which is at index 0) is already in kvArgs
+      // 0: 101 should be ignored because 'id' (which is at index 0) is already in namedArgs
       expect(result).toEqual({ id: 101 });
       expect(result[0]).toBeUndefined();
     });
 
-    it('should NOT exclude positional index if ignoreIndexNamed is false', async () => {
+    it('should NOT exclude positional index if excludeAutoNamedFromPositional is false', async () => {
       const scope = { id: 101 };
-      const result = await parseObjectArguments('id', scope, { 
-        ignoreIndexNamed: false,
+      const result = await parseObjectArguments('id', scope, {
+        excludeAutoNamedFromPositional: false,
         simplify: { mode: 'object' }
       });
       expect(result).toEqual({ 0: 101, id: 101 });
@@ -131,20 +131,20 @@ describe('command-parser new simplification logic', () => {
     it('should restore merged object with identical pairs', () => {
       // simulate the object before simplification: {0: 101, id: 101}
       const info = ObjectArgsToArgsInfo({ 0: 101, id: 101 });
-      expect(info).toEqual({ args: [101], kvArgs: {} });
+      expect(info).toEqual({ args: [101], namedArgs: {} });
     });
 
     it('should restore complex mixed object', () => {
       const info = ObjectArgsToArgsInfo({ 0: 'pos0', name: 'John', age: 30 });
-      expect(info).toEqual({ 
-        args: ['pos0'], 
-        kvArgs: { name: 'John', age: 30 } 
+      expect(info).toEqual({
+        args: ['pos0'],
+        namedArgs: { name: 'John', age: 30 }
       });
     });
 
     it('should restore object with only named arguments', () => {
         const info = ObjectArgsToArgsInfo({ name: 'John' });
-        expect(info).toEqual({ args: [], kvArgs: { name: 'John' } });
+        expect(info).toEqual({ args: [], namedArgs: { name: 'John' } });
     });
   });
 

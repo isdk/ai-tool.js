@@ -14,7 +14,7 @@ describe('Edge Cases and Complex Scenarios', () => {
     // In JS source, we need to escape the backslashes to represent the above input.
     const argsStr = 's1="\\\\\\"", s2=\'it\\\'s "cool"\'';
     const result = await parseObjectArguments(argsStr);
-    
+
     // s1: "\\" (escaped \) + "\"" (escaped ") -> literal \"
     expect(result.s1).toBe('\\"');
     // s2: "it" + "\'s" (escaped ') + " \"cool\"" -> literal it's "cool"
@@ -31,14 +31,14 @@ describe('Edge Cases and Complex Scenarios', () => {
     const obj = { 0: 'a', 1: 'b', name: 'c' };
     const info = ObjectArgsToArgsInfo(obj);
     expect(info.args).toEqual(['a', 'b']);
-    expect(info.kvArgs).toEqual({ name: 'c' });
+    expect(info.namedArgs).toEqual({ name: 'c' });
   });
 
   it('should handle ObjectArgsToArgsInfo deduplication', () => {
     const obj = { 0: 'a', name: 'a' }; // name equals positional 0
     const info = ObjectArgsToArgsInfo(obj);
     expect(info.args).toEqual(['a']);
-    expect(info.kvArgs).toEqual({}); // 'name' should be removed as it matches args[0]
+    expect(info.namedArgs).toEqual({}); // 'name' should be removed as it matches args[0]
   });
 
   it('should handle complex path expressions in scope', async () => {

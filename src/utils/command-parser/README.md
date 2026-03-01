@@ -34,7 +34,7 @@ const res3 = await parseObjectArguments('name="John", age=30');
 // { name: "John", age: 30 }
 
 // Identical Pair convergence: If positional arg 0 matches a named arg
-// Scene: 'id' is a positional arg, automatically mapped to kvArgs.id via idAsName
+// Scene: 'id' is a positional arg, automatically mapped to namedArgs.id via idAsName
 const res4 = await parseObjectArguments('id', { id: 101 });
 // 101 (Internal form: {0: 101, id: 101}, simplified to 101)
 ```
@@ -80,7 +80,7 @@ The output shape is flexible and automatically "collapses" into the most intuiti
 
 By default, the parser follows these strategies in order:
 
-1. **Identical Pair**: If there are only two entries (positional 0 and a named Key) and their values are strictly equal, it returns the value directly.
+1. **Identical Pair Singularization**: If there are only two entries (positional 0 and a named Key) and their values are strictly equal, it collapses them into a single value.
 2. **Single Value**: If there is only one positional argument and no named arguments, it returns the value directly.
 3. **Pure Positional**: If there are no named arguments and multiple positional arguments, it returns an array.
 
@@ -91,9 +91,9 @@ You can adjust these behaviors via the `simplify` option:
 ```typescript
 const options = {
   simplify: {
-    singleValue: false,      // Always return [ "val" ]
-    identicalPair: false,    // Return { 0: 1, id: 1 }
-    mode: 'array'            // Constraint output mode
+    singleValue: false,              // Always return [ "val" ]
+    identicalPairSingular: false,    // Return { 0: 1, id: 1 }
+    mode: 'array'                    // Constraint output mode
   }
 };
 ```
@@ -101,9 +101,9 @@ const options = {
 #### `mode` Constraints
 
 * `'auto'`: Default smart simplification logic.
-* `'array'`: Always return a positional arguments array. **Named and flag arguments are attached as `.kvArgs` and `.flags` non-enumerable properties.**
+* `'array'`: Always return a positional arguments array. **Named and flag arguments are attached as `.namedArgs` and `.flags` non-enumerable properties.**
 * `'object'`: Always return a merged object (indexed + named + hidden flags).
-* `'map'`: Always return the original structure `{ args: any[], kvArgs: Record<string, any>, flags?: Record<string, any> }`.
+* `'map'`: Always return the original structure `{ args: any[], namedArgs: Record<string, any>, flags?: Record<string, any> }`.
 
 ---
 
@@ -111,7 +111,7 @@ const options = {
 
 ### `ObjectArgsToArgsInfo`
 
-A normalization utility that converts any simplified result (single value, array, etc.) back into a standard `{ args, kvArgs }` structure.
+A normalization utility that converts any simplified result (single value, array, etc.) back into a standard `{ args, namedArgs }` structure.
 
 ```typescript
 import { ObjectArgsToArgsInfo } from '@isdk/ai-tool';
@@ -120,7 +120,7 @@ const info = ObjectArgsToArgsInfo(101);
 // { args: [101] }
 
 const info2 = ObjectArgsToArgsInfo({ name: 'John' });
-// { args: [], kvArgs: { name: 'John' } }
+// { args: [], namedArgs: { name: 'John' } }
 ```
 
 ---
@@ -153,12 +153,16 @@ const info2 = ObjectArgsToArgsInfo({ name: 'John' });
 
 | Option | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `simplify` | `boolean \| SimplifyOptions` | `true` | Enable/disable result simplification. |
-| `idAsName` | `boolean` | `true` | Map positional identifier to same-named argument. |
+| `simplify` | `boolean \| SimplifyOptions` | `true` | Enable result simplification. If `false`, returns a merged object with indices and names. |
+| `idAsName` | `boolean` | `true` | Auto-map positional identifier to named argument. |
+| `excludeAutoNamedFromPositional` | `boolean` | `false` | **Auto-mapping Exclusion**: If `true`, exclude numeric indices from auto-mapped arguments. |
+| `namedExcludePositional` | `boolean` | `true` | **Explicit Name Exclusion**: If `true`, explicit `k=v` args don't occupy slots in `args` array. |
+| `delimiter` | `string` | `','` | Argument separator. e.g., set to `;` for `arg1; arg2`. |
+| `assigner` | `string` | `'='` | Assignment operator. e.g., set to `:` for `key:value`. |
 | `flagPrefix` | `string \| string[]` | - | Special parameter prefixes (e.g., `!`, `#`). |
-| `scope` | `Record` | `{}` | Scope for variable evaluation. |
-| `argProcessor` | `Function` | - | Custom argument processor. |
-| `preserveUnresolvedName` | `boolean` | `false` | Return raw string for undefined variables. |
-| `namedExcludePositional` | `boolean` | `true` | Exclude named args from positional indices. |
+| `scope` | `Record` | `{}` | Evaluation scope for resolving variables. |
+| `argProcessor` | `Function` | - | Custom logic to process each argument (supports async). |
+| `preserveUnresolvedName` | `boolean` | `false` | Return variable name as string if not found in scope. |
+| `skipExpression` | `boolean` | `false` | Disable JS expression evaluation (e.g., math, functions). |
 | `raiseError` | `boolean` | `false` | Throw on syntax or evaluation errors. |
-| `raiseReferenceError` | `boolean` | - | Throw specifically on ReferenceError (variable undefined). |
+| `raiseReferenceError` | `boolean` | - | Throw on undefined variables, defaults to `raiseError`. |

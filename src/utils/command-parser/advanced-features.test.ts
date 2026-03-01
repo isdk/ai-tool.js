@@ -24,8 +24,8 @@ describe('Advanced Features and ES6+ Support', () => {
     expect(result).toEqual({ a: 1 });
   });
 
-  it('should support ignoreIndexNamed option', async () => {
-    const result = await parseObjectArguments('1, name="John"', undefined, { ignoreIndexNamed: true });
+  it('should support excludeAutoNamedFromPositional option', async () => {
+    const result = await parseObjectArguments('1, name="John"', undefined, { excludeAutoNamedFromPositional: true });
     // Should NOT contain index 0
     expect(result).toEqual({0: 1, name: 'John' });
   });
@@ -40,13 +40,13 @@ describe('Advanced Features and ES6+ Support', () => {
   it('should handle complex mixed options', async () => {
     const result = await parseObjectArguments('a=1, {{name}}, 3', { name: 'val' }, {
       simplify: false,
-      ignoreIndexNamed: true,
+      excludeAutoNamedFromPositional: true,
       argProcessor: async (ctx) => {
          if (!ctx.isNamed && ctx.rawValue.includes('{{')) return { [PROCESSOR_RESULT]: ['name', 'tmp', { excludePositional: true }] };
       },
 
     });
-    // ignoreIndexNamed: true -> no indices (0, 1) in the final toMergedObject output
+    // excludeAutoNamedFromPositional: true -> no indices (0, 1) in the final toMergedObject output
     // simplify: false -> return full merged object
     // 'a=1' is named -> { a: 1 }
     // 'processed' is excludePositional and no name -> so ignored

@@ -34,7 +34,7 @@ const res3 = await parseObjectArguments('name="John", age=30');
 // { name: "John", age: 30 }
 
 // 等值对收敛：如果位置参数 0 与某个命名参数的值完全一致
-// 场景：id 是位置参数，通过 idAsName 自动映射到了 kvArgs.id
+// 场景：id 是位置参数，通过 idAsName 自动映射到了 namedArgs.id
 const res4 = await parseObjectArguments('id', { id: 101 });
 // 101 (内部形态为 {0: 101, id: 101}，被自动简化)
 ```
@@ -82,7 +82,7 @@ const { args, flags } = await parseCommand('search(query="sky", !fast, !cache=tr
 
 默认情况下，解析器遵循以下三种策略（按顺序）：
 
-1. **等值对简化 (Identical Pair)**：当结果中仅有两个条目（位置 0 和一个命名 Key）且值完全相等时，直接返回该值。
+1. **等值对单值化 (Identical Pair Singularization)**：当结果中仅有两个条目（位置 0 和一个命名 Key）且值完全相等时，直接返回该值。
     * 例如：`age=25` -> `25`
 2. **单值化 (Single Value)**：当只有一个位置参数且没有命名参数时，直接返回该值。
     * 例如：`"hello"` -> `"hello"`
@@ -96,9 +96,9 @@ const { args, flags } = await parseCommand('search(query="sky", !fast, !cache=tr
 ```typescript
 const options = {
   simplify: {
-    singleValue: false,      // 禁用单值化，始终返回数组 [ "val" ]
-    identicalPair: false,    // 禁用等值对简化，返回 { 0: 1, id: 1 }
-    mode: 'array'            // 强制约束输出形态
+    singleValue: false,              // 禁用单值化，始终返回数组 [ "val" ]
+    identicalPairSingular: false,    // 禁用等值对简化，返回 { 0: 1, id: 1 }
+    mode: 'array'                    // 强制约束输出形态
   }
 };
 ```
@@ -106,9 +106,9 @@ const options = {
 #### `mode` 形态强制约束
 
 * `'auto'`: 默认的智能简化逻辑。
-* `'array'`: 始终返回位置参数数组。**命名参数和特殊参数将分别作为该数组的 `.kvArgs` 和 `.flags` 非枚举属性附带。**
+* `'array'`: 始终返回位置参数数组。**命名参数和特殊参数将分别作为该数组的 `.namedArgs` 和 `.flags` 非枚举属性附带。**
 * `'object'`: 始终返回一个合并后的对象（包含数字索引键、字符串键和隐藏的 `flags`）。
-* `'map'`: 始终返回原始结构 `{ args: any[], kvArgs: Record<string, any>, flags?: Record<string, any> }`。
+* `'map'`: 始终返回原始结构 `{ args: any[], namedArgs: Record<string, any>, flags?: Record<string, any> }`。
 
 ---
 
@@ -116,7 +116,7 @@ const options = {
 
 ### `ObjectArgsToArgsInfo`
 
-规范化工具，将任何简化后的结果（单值、数组等）还原为标准的 `{ args, kvArgs }` 结构。这对于下游函数统一处理参数非常有用。
+规范化工具，将任何简化后的结果（单值、数组等）还原为标准的 `{ args, namedArgs }` 结构。这对于下游函数统一处理参数非常有用。
 
 ```typescript
 import { ObjectArgsToArgsInfo } from '@isdk/ai-tool';
@@ -125,7 +125,7 @@ const info = ObjectArgsToArgsInfo(101);
 // { args: [101] }
 
 const info2 = ObjectArgsToArgsInfo({ name: 'John' });
-// { args: [], kvArgs: { name: 'John' } }
+// { args: [], namedArgs: { name: 'John' } }
 ```
 
 ---
@@ -166,12 +166,16 @@ const info2 = ObjectArgsToArgsInfo({ name: 'John' });
 
 | 选项 | 类型 | 默认值 | 说明 |
 | :--- | :--- | :--- | :--- |
-| `simplify` | `boolean \| SimplifyOptions` | `true` | 是否开启结果简化。 |
-| `idAsName` | `boolean` | `true` | 位置参数若是标识符，是否自动映射为同名命名参数。 |
-| `flagPrefix` | `string \| string[]` | - | 特殊参数前缀 (如 `!`, `#`)。 |
-| `scope` | `Record` | `{}` | 变量评估的作用域。 |
-| `argProcessor` | `Function` | - | 自定义参数处理器。 |
-| `preserveUnresolvedName` | `boolean` | `false` | 未定义变量是否原样返回字符串。 |
-| `namedExcludePositional` | `boolean` | `true` | 显式命名参数是否不占用位置索引。 |
-| `raiseError` | `boolean` | `false` | 遇到语法等错误时是否抛出。 |
-| `raiseReferenceError` | `boolean` | - | 变量未定义时是否抛出，默认遵循 `raiseError`。 |
+| `simplify` | `boolean \| SimplifyOptions` | `true` | 是否开启结果简化。设为 `false` 则返回包含数字索引和命名参数的合并对象。 |
+| `idAsName` | `boolean` | `true` | 位置参数若是合法标识符，是否自动映射为同名命名参数。 |
+| `excludeAutoNamedFromPositional` | `boolean` | `false` | **自动映射排除**：若为 `true`，由 `idAsName` 产生的重复位置索引将从最终合并对象中剔除。 |
+| `namedExcludePositional` | `boolean` | `true` | **显式命名排除**：显式 `k=v` 参数是否不占用位置索引 `args` 数组。 |
+| `delimiter` | `string` | `','` | 参数分隔符。例如设为 `;` 则支持 `arg1; arg2`。 |
+| `assigner` | `string` | `'='` | 命名参数赋值符。例如设为 `:` 则支持 `key:value`。 |
+| `flagPrefix` | `string \| string[]` | - | 特殊参数（Flags）前缀。例如 `!` 支持 `!debug`。 |
+| `scope` | `Record` | `{}` | 变量评估的作用域，用于解析不带引号的文本。 |
+| `argProcessor` | `Function` | - | 自定义参数处理器，支持异步转换和协议扩展。 |
+| `preserveUnresolvedName` | `boolean` | `false` | 当变量在 `scope` 中未定义时，是否将其原样作为字符串返回（而非 `undefined`）。 |
+| `skipExpression` | `boolean` | `false` | 是否禁用 JS 表达式（如算术运算、函数调用）的评估。 |
+| `raiseError` | `boolean` | `false` | 遇到语法或评估错误时是否抛出异常。 |
+| `raiseReferenceError` | `boolean` | - | 变量未定义时是否抛出异常，默认遵循 `raiseError`。 |

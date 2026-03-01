@@ -17,20 +17,20 @@ describe('New Logic Implementation', () => {
       const result = await parseObjectArguments('user', scope, { idAsName: false });
       // Only positional 0 exists
       expect(result).toBe('John');
-      // If we use returnArrayOnly to see the structure:
-      const raw = await parseObjectArguments('user', scope, { idAsName: false, returnArrayOnly: true });
+      // If we use simplify=false to see the structure:
+      const raw = await parseObjectArguments('user', scope, { idAsName: false, simplify: false });
       expect(raw).toEqual({ 0: 'John' });
     });
   });
 
   describe('namedExcludePositional', () => {
     it('should NOT count named arguments in positional index', async () => {
-      const result = await parseObjectArguments('k1="v1", "pos1"', undefined, { namedExcludePositional: true, returnArrayOnly: true });
+      const result = await parseObjectArguments('k1="v1", "pos1"', undefined, { namedExcludePositional: true, simplify: false });
       expect(result).toEqual({ k1: 'v1', 0: 'pos1' });
     });
 
     it('should count named arguments if namedExcludePositional is false', async () => {
-      const result = await parseObjectArguments('k1="v1", "pos1"', undefined, { namedExcludePositional: false, returnArrayOnly: true });
+      const result = await parseObjectArguments('k1="v1", "pos1"', undefined, { namedExcludePositional: false, simplify: false });
       // k1 is at index 0, pos1 is at index 1
       expect(result).toEqual({ k1: 'v1', 0: 'v1', 1: 'pos1' });
     });
@@ -55,7 +55,7 @@ describe('New Logic Implementation', () => {
     it('should still evaluate valid expressions when others are unresolved', async () => {
       const scope = { a: 10 };
       const result = await parseObjectArguments('a + 5, unresolved', scope, { preserveUnresolvedName: true });
-      // unresolved should NOT be in kvArgs via idAsName because it's an unresolved fallback
+      // unresolved should NOT be in namedArgs via idAsName because it's an unresolved fallback
       // Since no named arguments exist, it simplifies to an array
       expect(result).toEqual([ 15, 'unresolved' ]);
     });
@@ -69,7 +69,7 @@ describe('New Logic Implementation', () => {
         };
       };
       // 'anything' is an ID, but since processor suggests 'customKey', it should skip idAsName
-      const result = await parseObjectArguments('anything', undefined, { argProcessor: mockProcessor, returnArrayOnly: true });
+      const result = await parseObjectArguments('anything', undefined, { argProcessor: mockProcessor, simplify: false });
       expect(result).toEqual({ customKey: undefined });
       expect(result.anything).toBeUndefined(); // Verification of priority
     });
@@ -81,7 +81,7 @@ describe('New Logic Implementation', () => {
         };
       };
       // 'anything' is an ID, but since processor suggests 'customKey', it should skip idAsName
-      const result = await parseObjectArguments('anything', undefined, { argProcessor: mockProcessor, returnArrayOnly: true, preserveUnresolvedName: true });
+      const result = await parseObjectArguments('anything', undefined, { argProcessor: mockProcessor, simplify: false, preserveUnresolvedName: true });
       expect(result).toEqual({ customKey: 'customValue' });
       expect(result.anything).toBeUndefined(); // Verification of priority
     });
