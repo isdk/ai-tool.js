@@ -1,8 +1,8 @@
 import { Token, TokenType, ParserOptions } from './types';
 
 /**
- * 命令参数词法分析器。
- * 负责将原始字符串分解为基本的 Token 序列。
+ * Lexical analyzer for command arguments.
+ * Responsible for breaking down the raw input string into a sequence of basic tokens.
  */
 export class Lexer {
   public input: string;
@@ -17,7 +17,7 @@ export class Lexer {
   }
 
   /**
-   * 查看下一个 Token 但不消耗位置。
+   * Peeks at the next token without consuming it.
    */
   peekToken(): Token {
     const savedPos = this.pos;
@@ -27,7 +27,7 @@ export class Lexer {
   }
 
   /**
-   * 获取下一个 Token 并移动位置指针。
+   * Retrieves the next token and advances the position pointer.
    */
   nextToken(): Token {
     this.skipWhitespace();
@@ -38,12 +38,12 @@ export class Lexer {
     const char = this.input[this.pos];
     const start = this.pos;
 
-    // 1. 处理引号字符串 (支持转义)
+    // 1. Handle quoted strings (supports escaping)
     if (char === '"' || char === "'" || char === '`') {
       return this.readString(char);
     }
 
-    // 2. 处理单字符符号
+    // 2. Handle single-character symbols
     if (char === '(') { this.pos++; return { type: TokenType.L_PAREN, value: '(', start, end: this.pos }; }
     if (char === ')') { this.pos++; return { type: TokenType.R_PAREN, value: ')', start, end: this.pos }; }
     if (char === '[') { this.pos++; return { type: TokenType.L_BRACKET, value: '[', start, end: this.pos }; }
@@ -51,29 +51,29 @@ export class Lexer {
     if (char === '{') { this.pos++; return { type: TokenType.L_BRACE, value: '{', start, end: this.pos }; }
     if (char === '}') { this.pos++; return { type: TokenType.R_BRACE, value: '}', start, end: this.pos }; }
     
-    // 3. 处理自定义分隔符
+    // 3. Handle custom delimiter
     if (char === this.delimiter) { 
       this.pos++; 
       return { type: TokenType.COMMA, value: char, start, end: this.pos }; 
     }
     
-    // 4. 处理自定义赋值符
+    // 4. Handle custom assigner
     if (char === this.assigner) {
       this.pos++;
       return { type: TokenType.ASSIGN, value: char, start, end: this.pos };
     }
 
-    // 5. 默认作为 RAW 文本读取 (直至遇到符号或空白)
+    // 5. Default to reading as RAW text (until a symbol or whitespace is encountered)
     return this.readRaw();
   }
 
   /**
-   * 读取带转义支持的引号字符串。
+   * Reads a quoted string with escape support.
    */
   private readString(quote: string): Token {
     const start = this.pos;
     let value = quote;
-    this.pos++; // 跳过起始引号
+    this.pos++; // Skip opening quote
     
     while (this.pos < this.input.length) {
       const char = this.input[this.pos];
@@ -97,11 +97,11 @@ export class Lexer {
   }
 
   /**
-   * 读取原始文本段。
+   * Reads a raw text segment.
    */
   private readRaw(): Token {
     const start = this.pos;
-    // 停止字符：任何可能开启新 Token 的符号
+    // Stop characters: any symbol that could start a new token
     const symbols = ['(', ')', '[', ']', '{', '}', this.delimiter, this.assigner, '"', "'", '`'];
     
     while (this.pos < this.input.length) {
@@ -111,9 +111,10 @@ export class Lexer {
     }
     
     let value = this.input.substring(start, this.pos);
-    // 注意：这里的 value 会保持其原始形态，由 Evaluator 进一步处理
+    // Note: 'value' remains in its raw form, to be processed further by the Evaluator.
     return { type: TokenType.RAW, value, start, end: this.pos };
   }
+
 
   private skipWhitespace() {
     while (this.pos < this.input.length && /\s/.test(this.input[this.pos])) {

@@ -10,23 +10,24 @@ export interface ReplacePlacehoderOptions {
 const defaultPlaceholderName = '__PlacEhoLdeR_'
 
 /**
- * JS 保留字列表，用于过滤不应作为自动名称映射的标识符。
+ * List of JS reserved words used to filter identifiers that should not be automatically mapped to names.
  */
 export const RESERVED_WORDS = ['true', 'false', 'null', 'undefined', 'nan', 'infinity'];
 
 /** 
- * 支持 Unicode 的 JS 标识符正则 (ES2015+ u flag)。
- * 允许 $、_ 以及 Unicode 标识符字符。
+ * Unicode-aware JS identifier regex (ES2015+ u flag).
+ * Allows $, _, and Unicode identifier start/continue characters.
  */
 export const IDENTIFIER_REGEX = /^[$_\p{ID_Start}][$_\p{ID_Continue}]*$/u;
 
 /**
- * 支持点号分隔的路径标识符正则 (如 test.a.b)。
+ * Regex for dot-separated path identifiers (e.g., test.a.b).
  */
 export const PATH_IDENTIFIER_REGEX = /^[$_\p{ID_Start}][$_\p{ID_Continue}]*(?:\.[$_\p{ID_Start}][$_\p{ID_Continue}]*)*$/u;
 
 /**
- * 判断字符串是否为合法的 JS 标识符且非保留字。
+ * Checks if a string is a valid JS identifier and not a reserved word.
+ * Supports optional flag prefix stripping.
  */
 export function isIdentifier(s: string, options?: { flagPrefix?: string | string[] }) {
   let name = s;
@@ -41,8 +42,9 @@ export function isIdentifier(s: string, options?: { flagPrefix?: string | string
 }
 
 /**
- * 将值包装为带有 Flag 标记的对象。
- * 对于简单类型 (Boolean, String, Number)，使用包装类以支持挂载不可枚举属性。
+ * Wraps a value with a Flag Symbol.
+ * For primitive types (Boolean, String, Number), uses wrapper objects to support 
+ * non-enumerable property attachment.
  */
 export function wrapFlagValue(value: any, prefix: string) {
   let wrapped = value;
@@ -69,16 +71,16 @@ export function wrapFlagValue(value: any, prefix: string) {
 }
 
 /**
- * 判断字符串是否为合法的路径标识符 (点号分隔)。
+ * Checks if a string is a valid path identifier (dot-separated identifiers).
  */
 export function isPathIdentifier(s: string) {
-  // 整体匹配路径格式，且每一部分都不是保留字
+  // Matches the overall path format and ensures no segment is a reserved word.
   return PATH_IDENTIFIER_REGEX.test(s) && s.split('.').every(part => !RESERVED_WORDS.includes(part.toLowerCase()));
 }
 
 /**
- * 判断字符串是否被引号包裹 (支持 ", ', `)。
- * 会自动忽略首尾空白。
+ * Checks if a string is wrapped in quotes (", ', `).
+ * Leading and trailing whitespace are ignored.
  */
 export function isQuoted(s: string) {
   if (typeof s !== 'string') return false;
@@ -89,7 +91,7 @@ export function isQuoted(s: string) {
 }
 
 /**
- * 判断字符串是否被指定的成对字符包裹。
+ * Checks if a string is wrapped by specified character pairs.
  */
 export function isStrWrapped(s: string, pairs = ['""', "''", '{}', '``']) {
   const trimmed = s.trim();
@@ -97,7 +99,7 @@ export function isStrWrapped(s: string, pairs = ['""', "''", '{}', '``']) {
 }
 
 /**
- * 确保字符串被引号包裹。
+ * Ensures a string is wrapped in quotes.
  */
 export function ensureQuoted(s: string, quoteChar = '"') {
   if (!isQuoted(s)) {
@@ -107,16 +109,17 @@ export function ensureQuoted(s: string, quoteChar = '"') {
 }
 
 /**
- * 转义并用引号包裹字符串。
- * 避免重复转义。
+ * Escapes and wraps a string in double quotes.
+ * Avoids redundant escaping.
  */
 export function quoteStr(str: string) {
-  // 转义内部的双引号
+  // Escape internal double quotes
   return '"' + str.replace(/(?<!\\)"/g, '\\"') + '"';
 }
 
 /**
- * 将内容中的特定包裹字符串替换为占位符。
+ * Replaces specific wrapped substrings within a string with placeholders.
+ * Useful for processing strings while ignoring quoted or bracketed content.
  */
 export function replaceWithPlaceholder(content: string, options?: ReplacePlacehoderOptions) {
   let start = options?.startChar ? (Array.isArray(options.startChar) ? options.startChar : [options.startChar]) : ['"', "'"]
@@ -153,9 +156,10 @@ export function replaceWithPlaceholder(content: string, options?: ReplacePlaceho
 }
 
 /**
- * 从占位符恢复原始字符串内容。
+ * Restores original string content from placeholders.
  */
 export function restoreFromPlacehoders(content: string, placehoders: string[], options?: ReplacePlacehoderOptions) {
   const placeholderName = options?.placeholder ?? defaultPlaceholderName
   return placehoders.reduce((acc, original, i) => acc.replace(new RegExp(placeholderName + i, 'g'), original), content)
 }
+

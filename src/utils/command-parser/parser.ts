@@ -4,8 +4,9 @@ import { isIdentifier, isPathIdentifier, wrapFlagValue } from './utils';
 import { evaluate } from './evaluator';
 
 /**
- * 结构化命令参数解析器。
- * 支持位置参数、命名参数 (k=v)、嵌套结构以及基于 Symbol 的扩展协议。
+ * Structured command argument parser.
+ * Supports positional arguments, named arguments (k=v), nested structures, 
+ * and Symbol-based extension protocols.
  */
 export class Parser {
   private lexer: Lexer;
@@ -13,7 +14,7 @@ export class Parser {
 
   constructor(lexer: Lexer, options?: ParserOptions) {
     this.lexer = lexer;
-    // 默认开启直觉化的配置
+    // Default to intuitive configurations
     this.options = { 
       namedExcludePositional: true, 
       idAsName: true, 
@@ -22,14 +23,14 @@ export class Parser {
   }
 
   /**
-   * 执行解析流程。
+   * Executes the parsing process.
    * 
-   * 核心逻辑优先级：
-   * 1. 分割顶层参数（考虑括号嵌套深度）。
-   * 2. 识别显式命名参数 (k=v)。
-   * 3. 预检位置参数是否符合标识符/路径格式。
-   * 4. 调用评估器 (Evaluator) 获取结果，并解包 PROCESSOR_RESULT 协议。
-   * 5. 分发结果到 args 和 kvArgs，并维护索引计数。
+   * Core logic priority:
+   * 1. Collect top-level arguments (respecting bracket nesting depth).
+   * 2. Identify explicit named arguments (k=v) or flag shorthands.
+   * 3. Pre-check if a positional argument fits identifier/path format for auto-mapping.
+   * 4. Invoke Evaluator to get the value and unpack any Symbol Protocols.
+   * 5. Distribute results to 'args' and 'kvArgs', maintaining index consistency.
    */
   async parse(): Promise<ParseResult> {
     const args: any[] = [];
@@ -42,17 +43,17 @@ export class Parser {
       const nextToken = this.lexer.peekToken();
       if (nextToken.type === TokenType.EOF) break;
 
-      // 1. 收集直到下一个分隔符的所有 Token（保持括号平衡）
+      // 1. Collect all tokens until the next delimiter (balancing brackets)
       const tokens = this.collectUntilDelimiter();
       if (tokens.length === 0) {
-        // 空参数：占位并增加索引
+        // Empty argument: placehold with undefined and increment index
         args[positionalIndex] = undefined;
         this.consumeDelimiter();
         positionalIndex++;
         continue;
       }
 
-      // 1.5 识别特殊参数简写 ( !debug )
+      // 1.5 Identify special parameter shorthands (e.g., !debug)
       if (this.options.flagPrefix && tokens.length === 1 && tokens[0].type === TokenType.RAW) {
           const raw = tokens[0].value;
           const prefixes = Array.isArray(this.options.flagPrefix) ? this.options.flagPrefix : [this.options.flagPrefix];
@@ -65,12 +66,12 @@ export class Parser {
           }
       }
 
-      // 2. 尝试识别命名参数形态 (k=v) 或特殊参数赋值 (!k=v)
+      // 2. Attempt to identify named argument (k=v) or special assignment (!k=v)
       const { name, valueTokens, flagPrefix } = this.splitNamedArgument(tokens);
       const isNamed = name !== undefined;
       const isFlag = flagPrefix !== undefined;
       
-      // 3. 预检位置参数是否符合标识符/路径格式 (用于 idAsName)
+      // 3. Pre-check if a positional argument matches identifier/path format (for idAsName)
       let potentialId: string | undefined;
       if (!isNamed && valueTokens.length === 1 && valueTokens[0].type === TokenType.RAW) {
         const val = valueTokens[0].value;
@@ -83,7 +84,7 @@ export class Parser {
       if (valueTokens.length > 0) {
           const startToken = valueTokens[0];
           const endToken = valueTokens[valueTokens.length - 1];
-          // 截取原始文本以便 Processor 使用
+          // Capture raw text for Processor usage
           const rawValue = this.lexer.input.substring(startToken.start, endToken.end).trim();
 
           const context: ArgContext = {
@@ -98,17 +99,17 @@ export class Parser {
             parser: this
           };
 
-          // 4. 执行评估逻辑
+          // 4. Execute evaluation logic
           value = await evaluate(context);
       }
 
-      // 5. 解包 Symbol 协议 (PROCESSOR_RESULT 或 UNRESOLVED_SYMBOL)
+      // 5. Unpack Symbol Protocols (PROCESSOR_RESULT or UNRESOLVED_SYMBOL)
       let finalValue = value;
       let processorSuggestedName: string | undefined;
       let processorOptions: ProcessorResultOptions | undefined;
       let isUnresolved = false;
 
-      /** 内部辅助：递归解包由 ReferenceError 产生的未解析标记 */
+      /** Internal helper: Recursively unwrap unresolved marker produced by ReferenceError */
       const unwrapUnresolved = (val: any) => {
           if (val && typeof val === 'object' && val[UNRESOLVED_SYMBOL]) {
               isUnresolved = true;
@@ -126,7 +127,7 @@ export class Parser {
         }
       }
 
-      // 6. 最终分发逻辑
+      // 6. Final distribution logic
       if (isFlag && name) {
           flags[name] = wrapFlagValue(finalValue, flagPrefix);
       } else {
@@ -134,22 +135,22 @@ export class Parser {
           const excludePositional = processorOptions?.excludePositional;
 
           if (effectiveName) {
-            // A. 显式指定了名称（直接赋值或通过 Processor）
+            // A. Explicit name specified (direct assignment or via Processor)
             kvArgs[effectiveName] = finalValue;
             
             if (!this.options.namedExcludePositional && !excludePositional) {
-              // 如果选项允许，同时存入位置索引
+              // If options allow, also store in the positional index
               args[positionalIndex] = finalValue;
               namedIndices.add(positionalIndex);
               positionalIndex++;
             }
-            // 注意：若命名参数不占位，positionalIndex 不增加
+            // Note: If named arguments do not occupy a position, positionalIndex does not increment
           } else {
-            // B. 纯位置参数
+            // B. Pure positional argument
             if (!excludePositional) {
                 args[positionalIndex] = finalValue;
                 
-                // 自动映射：如果位置参数是 Id 且未发生 ReferenceError 降级
+                // Auto-mapping: If positional argument is an Id and no ReferenceError fallback occurred
                 if (this.options.idAsName && potentialId && !isUnresolved) {
                   kvArgs[potentialId] = finalValue;
                   namedIndices.add(positionalIndex);
@@ -167,7 +168,7 @@ export class Parser {
   }
 
   /**
-   * 收集 Token 直到遇到顶层分隔符
+   * Collects tokens until a top-level delimiter is encountered.
    */
   private collectUntilDelimiter(): Token[] {
     const tokens: Token[] = [];
@@ -190,7 +191,7 @@ export class Parser {
   }
 
   /**
-   * 尝试从 Token 序列中拆分出命名的 Key (k=v) 或 Flag ( !k=v )
+   * Attempts to split a named key (k=v) or flag (!k=v) from the token sequence.
    */
   private splitNamedArgument(tokens: Token[]): { name?: string, valueTokens: Token[], flagPrefix?: string } {
     if (tokens.length >= 2 && tokens[0].type === TokenType.RAW && tokens[1].type === TokenType.ASSIGN) {
@@ -220,7 +221,7 @@ export class Parser {
   }
 
   /**
-   * 消费掉当前分隔符
+   * Consumes the current delimiter token.
    */
   private consumeDelimiter(): TokenType {
     const token = this.lexer.peekToken();
@@ -230,3 +231,4 @@ export class Parser {
     return token.type;
   }
 }
+

@@ -3,12 +3,28 @@ import { Parser } from './parser';
 import { ParserOptions, ParseResult, SimplifyOptions } from './types';
 
 /**
- * 解析对象风格的参数字符串。
+ * Parses an object-style argument string into a structured result.
+ * Supports positional args, named args, JS expressions, and custom processors.
  *
- * @param argsStr 参数字符串，如 '1, name="John", age=25'
- * @param scope 评估作用域，用于解析变量
- * @param options 解析配置选项
- * @returns 解析后的结果。可能是单值、数组或对象（取决于 simplify 选项）。
+ * @param argsStr The argument string to parse.
+ * @param scope Optional evaluation scope for resolving variables.
+ * @param options Parser configuration options.
+ * @returns The parsed and simplified result.
+ * 
+ * @example
+ * ```ts
+ * // 1. Simple positional
+ * await parseObjectArguments("123") // returns 123
+ * 
+ * // 2. Multiple positional
+ * await parseObjectArguments("1, 2, 3") // returns [1, 2, 3]
+ * 
+ * // 3. Named arguments
+ * await parseObjectArguments("name='John', age=25") // returns {name: 'John', age: 25}
+ * 
+ * // 4. Mixed (idAsName enabled by default)
+ * await parseObjectArguments("John, age=25") // returns {0: 'John', John: 'John', age: 25}
+ * ```
  */
 export async function parseObjectArguments(argsStr: string, scope?: Record<string, any>, options?: ParserOptions): Promise<any> {
   if (!argsStr || !argsStr.trim()) return undefined;
@@ -25,18 +41,19 @@ export async function parseObjectArguments(argsStr: string, scope?: Record<strin
 }
 
 /**
- * 将解析结果合并为一个扁平化的对象。
+ * Merges parsing results into a single flattened object.
+ * Numeric indices are used for positional arguments.
  *
- * 逻辑：
- * 1. 复制所有命名参数到结果。
- * 2. 遍历位置参数，如果 ignoreIndexNamed 为 true，则跳过已命名的索引位。
+ * @param result The raw parse result.
+ * @param options Parser configuration options.
+ * @returns A merged object containing all arguments.
  */
 export function toMergedObject(result: ParseResult, options?: ParserOptions): any {
   const merged: any = { ...result.kvArgs };
   result.args.forEach((val, i) => {
     if (val !== undefined || (i in result.args)) {
       if (options?.ignoreIndexNamed && result.namedIndices.has(i)) {
-        return; // 跳过已经被命名的索引位
+        return; // Skip indices that are already named
       }
       merged[i] = val;
     }
@@ -45,19 +62,22 @@ export function toMergedObject(result: ParseResult, options?: ParserOptions): an
 }
 
 /**
- * 简化解析结果。
+ * Simplifies the raw parsing result into a more intuitive format.
+ * The behavior is controlled by `options.simplify`.
  *
- * 收敛逻辑受 options.simplify 配置影响。
+ * @param result The raw parse result.
+ * @param options Parser configuration options.
+ * @returns A simplified value, array, or object.
  */
 export function simplifyResult(result: ParseResult, options?: ParserOptions): any {
   const simplify = options?.simplify;
 
-  // 如果显式设置为 false，则退化为返回合并对象
+  // If explicitly set to false, fall back to returning a merged object
   if (simplify === false) {
     return toMergedObject(result, options);
   }
 
-  // 默认简化配置
+  // Default simplification configuration
   const defaultSimplify: SimplifyOptions = {
     singleValue: true,
     identicalPair: true,
@@ -74,7 +94,7 @@ export function simplifyResult(result: ParseResult, options?: ParserOptions): an
   let res: any;
   let isSimplified = false;
 
-  // 1. 强制模式处理
+  // 1. Mandatory mode handling
   if (mode === 'map') {
     const mapResult: any = { args, kvArgs };
     if (flags && Object.keys(flags).length > 0) {
@@ -96,13 +116,13 @@ export function simplifyResult(result: ParseResult, options?: ParserOptions): an
     res = toMergedObject(result, options);
     isSimplified = true;
   } else {
-    // 2. 自动收敛 (mode === 'auto')
+    // 2. Automatic convergence (mode === 'auto')
     const merged = toMergedObject(result, options);
     const keys = Object.keys(merged);
     const kvKeys = Object.keys(kvArgs);
 
-    // [等值对简化] (identicalPair)
-    // 必须正好只有 2 个 Entry，一个是索引 0，一个是命名 Key，且值相等
+    // [Identical Pair Simplification]
+    // Converge to a single value if we have {0: val, key: val}
     if (config.identicalPair && keys.length === 2 && kvKeys.length === 1) {
       const hasZero = '0' in merged || 0 in merged;
       if (hasZero) {
@@ -114,14 +134,14 @@ export function simplifyResult(result: ParseResult, options?: ParserOptions): an
       }
     }
 
-    // [纯位置参数处理]
+    // [Pure Positional Argument Handling]
     if (!isSimplified && kvKeys.length === 0) {
-      // [单值化] (singleValue)
+      // [Single Value Simplification]
       if (config.singleValue && args.length === 1) {
         res = args[0];
         isSimplified = true;
       } else if (config.purePositionalAsArray) {
-        // [纯位置数组化] (purePositionalAsArray)
+        // [Pure Positional as Array]
         res = args.filter((_, i) => i in args);
         isSimplified = true;
       }
@@ -132,6 +152,7 @@ export function simplifyResult(result: ParseResult, options?: ParserOptions): an
     }
   }
 
+  // Attach non-enumerable flags property if present
   if (res !== undefined && res !== null && (typeof res === 'object' || typeof res === 'function')) {
     if (Object.keys(flags).length > 0) {
       Object.defineProperty(res, 'flags', {
@@ -147,8 +168,8 @@ export function simplifyResult(result: ParseResult, options?: ParserOptions): an
 }
 
 /**
- * 深度简化对象风格的参数。
- * 主要用于在获取最终 args 后的二次收敛。
+ * Deeply simplifies object-style arguments (recursive convergence).
+ * Useful for normalizing complex argument structures.
  */
 export function simplifyObjectArguments(args: any) {
   if (args && !Array.isArray(args) && typeof args === 'object') {
@@ -177,8 +198,14 @@ function isIncreasing(arr: number[]) {
 }
 
 /**
- * 将解析得到的对象转换为 args 和 kvArgs 的信息结构。
- * 兼容处理各种简化后的形态。
+ * Normalizes various simplified result formats back into an `{args, kvArgs}` info structure.
+ * 
+ * @example
+ * ```ts
+ * ObjectArgsToArgsInfo("val") // returns {args: ["val"]}
+ * ObjectArgsToArgsInfo([1, 2]) // returns {args: [1, 2]}
+ * ObjectArgsToArgsInfo({name: "John"}) // returns {args: [], kvArgs: {name: "John"}}
+ * ```
  */
 export function ObjectArgsToArgsInfo(args: any): {args: any[], kvArgs?: Record<string, any>} {
   if (args && !Array.isArray(args) && typeof args === 'object') {
@@ -219,12 +246,18 @@ export function ObjectArgsToArgsInfo(args: any): {args: any[], kvArgs?: Record<s
 }
 
 /**
- * 解析命令字符串。
+ * Parses a full command string including the command name and its parenthesized arguments.
  *
- * @param commandStr 命令字符串，如 'myCmd(arg1, k=v)'
- * @param scope 评估作用域
- * @param options 解析配置选项
- * @returns { command: string, args: any, flags?: Record<string, any> }
+ * @param commandStr The command string, e.g., 'myCmd(arg1, k=v, !flag)'
+ * @param scope Evaluation scope.
+ * @param options Parser configuration options.
+ * @returns An object containing the command name, parsed args, and optional flags.
+ * 
+ * @example
+ * ```ts
+ * await parseCommand("sum(1, 2)") // returns {command: "sum", args: [1, 2]}
+ * await parseCommand("search(query='abc', !caseSensitive)") // returns {command: "search", args: {query: 'abc'}, flags: {caseSensitive: true}}
+ * ```
  */
 export async function parseCommand(commandStr: string, scope?: Record<string, any>, options?: ParserOptions) {
   const pattern = /^([^(]+)(?:\((.*)\))?$/;
@@ -258,3 +291,5 @@ export async function parseCommand(commandStr: string, scope?: Record<string, an
   }
   return result;
 }
+
+

@@ -135,8 +135,8 @@ const info2 = ObjectArgsToArgsInfo({ name: 'John' });
 
 ### 2. Variable Protection & Error Control
 
-*   **`preserveUnresolvedName`**: If a variable is undefined in `scope` and is not a valid identifier, the parser returns the original string (e.g., `!notAFlag`).
-*   **`raiseReferenceError`**: Specifically controls whether to throw an error when a variable is undefined, defaults to `raiseError`.
+* **`preserveUnresolvedName`**: If a variable is undefined in `scope` and is not a valid identifier, the parser returns the original string (e.g., `!notAFlag`).
+* **`raiseReferenceError`**: Specifically controls whether to throw an error when a variable is undefined, defaults to `raiseError`.
 
 ---
 

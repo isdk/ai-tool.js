@@ -140,8 +140,8 @@ const info2 = ObjectArgsToArgsInfo({ name: 'John' });
 
 ### 2. 变量保护与错误控制
 
-*   **`preserveUnresolvedName`**: 如果变量在 `scope` 中未定义且非合法标识符，解析器会原样返回原始字符串（如 `!notAFlag`）。
-*   **`raiseReferenceError`**: 专门控制是否在变量未定义时抛出错误，默认遵循 `raiseError`。
+* **`preserveUnresolvedName`**: 如果变量在 `scope` 中未定义且非合法标识符，解析器会原样返回原始字符串（如 `!notAFlag`）。
+* **`raiseReferenceError`**: 专门控制是否在变量未定义时抛出错误，默认遵循 `raiseError`。
 
 ---
 

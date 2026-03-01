@@ -6,22 +6,22 @@ import { omitBy } from "lodash-es";
 import { isQuoted } from './utils';
 
 /**
- * 选项选择处理器 (ChoiceArgProcessor)。
+ * Choice argument processor (ChoiceArgProcessor).
  *
- * 语法：|项1|项2:maxPick=2:separator=";"
+ * Syntax: |item1|item2:maxPick=2:separator=";"
  *
- * 逻辑：
- * 1. 识别以 | 开头的位置参数。
- * 2. 递归使用 Parser 解析后续的配置项（以 : 为分隔符）。
- * 3. 构造 AIChoiceConfig 对象。
- * 4. 返回带 Symbol 协议的结果，命名为 'choice' 且排除在位置索引外。
+ * Logic:
+ * 1. Identifies positional arguments starting with '|'.
+ * 2. Recursively uses the Parser to parse subsequent configuration items (delimited by ':').
+ * 3. Constructs an AIChoiceConfig object.
+ * 4. Returns the result using the Symbol Protocol, named 'choice' and excluded from positional indexing.
  */
 export async function ChoiceArgProcessor(ctx: ArgContext) {
   const { isNamed, rawValue, options } = ctx;
   if (options?.isInternal) return;
 
   if (!isNamed && rawValue.startsWith('|')) {
-    // 递归调用 Parser 处理选择项内部的配置
+    // Recursively invoke Parser to handle configuration inside choice items
     const choiceParser = new Parser(new Lexer(rawValue, { ...options, delimiter: ':' }), { ...options, isInternal: true });
     const { args, kvArgs } = await choiceParser.parse();
 
@@ -42,7 +42,7 @@ export async function ChoiceArgProcessor(ctx: ArgContext) {
       }
     }
 
-    // 使用协议返回结构化数据
+    // Return structured data using the Protocol
     return {
       [PROCESSOR_RESULT]: [choice, 'choice', { excludePositional: true }]
     };
@@ -50,15 +50,15 @@ export async function ChoiceArgProcessor(ctx: ArgContext) {
 }
 
 /**
- * 模板变量处理器 (TemplateArgProcessor)。
+ * Template variable processor (TemplateArgProcessor).
  *
- * 语法：msg="Hello {{name}}"
+ * Syntax: msg="Hello {{name}}"
  *
- * 逻辑：
- * 1. 调用 PromptTemplate.formatIf 进行变量替换。
- * 2. 如果替换后的结果是裸字符串（不带引号且非 JS 类型源码），则对其进行 JSON.stringify 转义，
- *    以确保其在后续的评估步骤中被正确识别为字符串字面量。
- * 3. 返回替换后的源码字符串，供 Evaluator 二次评估。
+ * Logic:
+ * 1. Calls PromptTemplate.formatIf for variable substitution.
+ * 2. If the substitution results in a bare string (no quotes and not JS literal source), 
+ *    it is JSON-escaped to ensure it's recognized as a string literal in subsequent evaluation.
+ * 3. Returns the substituted source string for re-evaluation by the Evaluator.
  */
 export async function TemplateArgProcessor(ctx: ArgContext) {
   const { scope, options, rawValue } = ctx;
@@ -70,8 +70,8 @@ export async function TemplateArgProcessor(ctx: ArgContext) {
   });
 
   if (templateResult !== undefined && templateResult !== rawValue) {
-    // 渲染结果作为源码返回。
-    // 如果渲染结果是纯文本字符串且不带引号，则为其补上引号以遵循类型约定。
+    // Result is returned as source code for re-evaluation.
+    // Ensure plain text results are quoted to follow type conventions.
     const trimmedResult = typeof templateResult === 'string' ? templateResult.trim() : templateResult;
     const val = (typeof trimmedResult === 'string' && !isQuoted(trimmedResult)) ? JSON.stringify(trimmedResult) : trimmedResult;
     return {
@@ -81,8 +81,8 @@ export async function TemplateArgProcessor(ctx: ArgContext) {
 }
 
 /**
- * 组合 AI 处理器 (AIArgProcessor)。
- * 依次尝试选项选择和模板变量处理。
+ * Combined AI processor (AIArgProcessor).
+ * Sequentially attempts choice selection and template variable processing.
  */
 export async function AIArgProcessor(ctx: ArgContext) {
   let result = await ChoiceArgProcessor(ctx);
@@ -91,3 +91,4 @@ export async function AIArgProcessor(ctx: ArgContext) {
   }
   return result;
 }
+
