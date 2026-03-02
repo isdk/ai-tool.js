@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { parseObjectArguments, parseCommand, AIArgProcessor } from './index';
 
-describe('command-CmdArgParser', () => {
+describe('command-parser', () => {
   describe('parseObjectArguments', () => {
     it('should parse basic arguments', async () => {
       const result = await parseObjectArguments('123, "hello", true, null');

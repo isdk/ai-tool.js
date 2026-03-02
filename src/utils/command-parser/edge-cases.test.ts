@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseObjectArguments, ObjectArgsToArgsInfo } from './index';
+import { parseObjectArguments, ObjectArgsToArgsInfo, parseCommand } from './index';
 
 describe('Edge Cases and Complex Scenarios', () => {
   it('should handle extreme nesting of different types', async () => {
@@ -45,5 +45,16 @@ describe('Edge Cases and Complex Scenarios', () => {
     const scope = { a: { b: { c: 42 } } };
     const result = await parseObjectArguments('a.b.c', scope);
     expect(result).toBe(42);
+  });
+
+  it('should support parseCommand without args', async () => {
+    const commandStr = 'test';
+    let result = await parseCommand(commandStr);
+    expect(result?.command).toBe('test');
+    expect(result?.args).toBeUndefined();
+
+    result = await parseCommand('test()');
+    expect(result?.command).toBe('test');
+    expect(result?.args).toBeUndefined();
   });
 });
