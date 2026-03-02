@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseObjectArguments, PROCESSOR_RESULT } from './index';
+import { parseObjectArguments, CMD_ARG_PROCESSOR_RESULT } from './index';
 
 describe('Advanced Features and ES6+ Support', () => {
   it('should parse complex arrow functions', async () => {
@@ -42,7 +42,7 @@ describe('Advanced Features and ES6+ Support', () => {
       simplify: false,
       excludeAutoNamedFromPositional: true,
       argProcessor: async (ctx) => {
-         if (!ctx.isNamed && ctx.rawValue.includes('{{')) return { [PROCESSOR_RESULT]: ['name', 'tmp', { excludePositional: true }] };
+         if (!ctx.isNamed && ctx.rawValue.includes('{{')) return { [CMD_ARG_PROCESSOR_RESULT]: ['name', 'tmp', { excludePositional: true }] };
       },
 
     });

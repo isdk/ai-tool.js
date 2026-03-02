@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { parseObjectArguments, ObjectArgsToArgsInfo, simplifyObjectArguments } from './index';
 
-describe('command-parser new simplification logic', () => {
+describe('command-CmdArgParser new simplification logic', () => {
   describe('granular simplify options', () => {
     it('should respect singleValue: false', async () => {
       const result = await parseObjectArguments('123', undefined, {

@@ -1,6 +1,6 @@
-# Command Parser (命令参数解析器)
+# Command CmdArgParser (命令参数解析器)
 
-`command-parser` 是一个功能强大的结构化参数解析工具，旨在将类命令字符串（如 `cmd(arg1, k=v, |a|b)`）解析为可直接使用的 JS 对象、数组或单值。它支持标准 JS 语法约定，并通过“处理器（Processor）协议”提供高度的语法扩展能力。
+`command-CmdArgParser` 是一个功能强大的结构化参数解析工具，旨在将类命令字符串（如 `cmd(arg1, k=v, |a|b)`）解析为可直接使用的 JS 对象、数组或单值。它支持标准 JS 语法约定，并通过“处理器（Processor）协议”提供高度的语法扩展能力。
 
 ---
 
@@ -51,12 +51,13 @@ const res5 = await parseObjectArguments('user.id, enabled=flag', scope);
 
 ### 4. 完整命令解析 (Level 4)
 
-解析形如 `cmd(args)` 的字符串。
+解析形如 `cmd(args)` 的字符串，返回 `CmdArgParsedCommand` 对象。
 
 ```typescript
-import { parseCommand } from '@isdk/ai-tool';
+import { parseCommand, CmdArgParsedCommand } from '@isdk/ai-tool';
 
-const { command, args } = await parseCommand('search(query="sky", limit=10)');
+const result: CmdArgParsedCommand = await parseCommand('search(query="sky", limit=10)');
+const { command, args } = result;
 // command: "search"
 // args: { query: "sky", limit: 10 }
 ```
@@ -69,7 +70,7 @@ const { command, args } = await parseCommand('search(query="sky", limit=10)');
 const options = { flagPrefix: '!' };
 const { args, flags } = await parseCommand('search(query="sky", !fast, !cache=true)', {}, options);
 // args: { query: "sky" }
-// flags: { fast: true, cache: true } (包装后的对象，带 FLAG_SYMBOL 元数据)
+// flags: { fast: true, cache: true } (包装后的对象，带 CMD_ARG_FLAG_SYMBOL 元数据)
 ```
 
 ---
@@ -108,7 +109,7 @@ const options = {
 * `'auto'`: 默认的智能简化逻辑。
 * `'array'`: 始终返回位置参数数组。**命名参数和特殊参数将分别作为该数组的 `.namedArgs` 和 `.flags` 非枚举属性附带。**
 * `'object'`: 始终返回一个合并后的对象（包含数字索引键、字符串键和隐藏的 `flags`）。
-* `'map'`: 始终返回原始结构 `{ args: any[], namedArgs: Record<string, any>, flags?: Record<string, any> }`。
+* `'map'`: 始终返回原始结构 `CmdArgMapResult` (包含 `{ args, namedArgs, flags? }`)。
 
 ---
 
@@ -116,7 +117,7 @@ const options = {
 
 ### `ObjectArgsToArgsInfo`
 
-规范化工具，将任何简化后的结果（单值、数组等）还原为标准的 `{ args, namedArgs }` 结构。这对于下游函数统一处理参数非常有用。
+规范化工具，将任何简化后的结果（单值、数组等）还原为标准的 `CmdArgArgsInfo` (即 `{ args, namedArgs }`) 结构。这对于下游函数统一处理参数非常有用。
 
 ```typescript
 import { ObjectArgsToArgsInfo } from '@isdk/ai-tool';
@@ -158,15 +159,15 @@ const info2 = ObjectArgsToArgsInfo({ name: 'John' });
 
 ### 自定义处理器
 
-通过实现 `ArgProcessor` 函数，你可以定义自己的参数转换逻辑，甚至返回一个带有 `PROCESSOR_RESULT` Symbol 的对象来控制参数的分发策略。
+通过实现 `ArgProcessor` 函数，你可以定义自己的参数转换逻辑，甚至返回一个带有 `CMD_ARG_PROCESSOR_RESULT` Symbol 的对象来控制参数的分发策略。
 
 ---
 
-## 配置参考 (ParserOptions)
+## 配置参考 (CmdArgParserOptions)
 
 | 选项 | 类型 | 默认值 | 说明 |
 | :--- | :--- | :--- | :--- |
-| `simplify` | `boolean \| SimplifyOptions` | `true` | 是否开启结果简化。设为 `false` 则返回包含数字索引和命名参数的合并对象。 |
+| `simplify` | `boolean \| CmdArgSimplifyOptions` | `true` | 是否开启结果简化。设为 `false` 则返回包含数字索引和命名参数的合并对象。 |
 | `idAsName` | `boolean` | `true` | 位置参数若是合法标识符，是否自动映射为同名命名参数。 |
 | `excludeAutoNamedFromPositional` | `boolean` | `false` | **自动映射排除**：若为 `true`，由 `idAsName` 产生的重复位置索引将从最终合并对象中剔除。 |
 | `namedExcludePositional` | `boolean` | `true` | **显式命名排除**：显式 `k=v` 参数是否不占用位置索引 `args` 数组。 |

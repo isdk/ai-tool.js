@@ -1,4 +1,4 @@
-import { FLAG_SYMBOL } from './types';
+import { CMD_ARG_FLAG_SYMBOL } from './types';
 
 export interface ReplacePlacehoderOptions {
   startChar?: string|string[]
@@ -14,7 +14,7 @@ const defaultPlaceholderName = '__PlacEhoLdeR_'
  */
 export const RESERVED_WORDS = ['true', 'false', 'null', 'undefined', 'nan', 'infinity'];
 
-/** 
+/**
  * Unicode-aware JS identifier regex (ES2015+ u flag).
  * Allows $, _, and Unicode identifier start/continue characters.
  */
@@ -43,7 +43,7 @@ export function isIdentifier(s: string, options?: { flagPrefix?: string | string
 
 /**
  * Wraps a value with a Flag Symbol.
- * For primitive types (Boolean, String, Number), uses wrapper objects to support 
+ * For primitive types (Boolean, String, Number), uses wrapper objects to support
  * non-enumerable property attachment.
  */
 export function wrapFlagValue(value: any, prefix: string) {
@@ -59,7 +59,7 @@ export function wrapFlagValue(value: any, prefix: string) {
   }
 
   if (wrapped && (typeof wrapped === 'object' || typeof wrapped === 'function')) {
-    Object.defineProperty(wrapped, FLAG_SYMBOL, {
+    Object.defineProperty(wrapped, CMD_ARG_FLAG_SYMBOL, {
       value: prefix,
       enumerable: false,
       configurable: true,

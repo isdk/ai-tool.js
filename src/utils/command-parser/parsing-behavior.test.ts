@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { parseObjectArguments, parseCommand } from './index';
-import { PROCESSOR_RESULT } from './types';
+import { CMD_ARG_PROCESSOR_RESULT } from './types';
 
 describe('New Logic Implementation', () => {
   describe('idAsName and Simplification', () => {
@@ -62,10 +62,10 @@ describe('New Logic Implementation', () => {
   });
 
   describe('Symbol Protocol for Processors', () => {
-    it('should handle PROCESSOR_RESULT with [value, name]', async () => {
+    it('should handle CMD_ARG_PROCESSOR_RESULT with [value, name]', async () => {
       const mockProcessor = async (ctx: any) => {
         return {
-          [PROCESSOR_RESULT]: ['customValue', 'customKey']
+          [CMD_ARG_PROCESSOR_RESULT]: ['customValue', 'customKey']
         };
       };
       // 'anything' is an ID, but since processor suggests 'customKey', it should skip idAsName
@@ -74,10 +74,10 @@ describe('New Logic Implementation', () => {
       expect(result.anything).toBeUndefined(); // Verification of priority
     });
 
-    it('should handle PROCESSOR_RESULT with [value, name] with preserveUnresolvedName', async () => {
+    it('should handle CMD_ARG_PROCESSOR_RESULT with [value, name] with preserveUnresolvedName', async () => {
       const mockProcessor = async (ctx: any) => {
         return {
-          [PROCESSOR_RESULT]: ['customValue', 'customKey']
+          [CMD_ARG_PROCESSOR_RESULT]: ['customValue', 'customKey']
         };
       };
       // 'anything' is an ID, but since processor suggests 'customKey', it should skip idAsName

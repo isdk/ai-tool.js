@@ -1,13 +1,13 @@
 import { describe, it, expect } from 'vitest';
 import { parseCommand, parseObjectArguments } from './api';
-import { FLAG_SYMBOL } from './types';
+import { CMD_ARG_FLAG_SYMBOL } from './types';
 
-describe('command-parser flags', () => {
+describe('command-CmdArgParser flags', () => {
   it('should support simple boolean flags with default prefix !', async () => {
     const result = await parseCommand('cmd(!debug, query="test")', undefined, { flagPrefix: '!' });
     expect(result?.flags).toBeDefined();
     expect(result?.flags?.debug).toBeTruthy();
-    expect(result?.flags?.debug[FLAG_SYMBOL]).toBe('!');
+    expect(result?.flags?.debug[CMD_ARG_FLAG_SYMBOL]).toBe('!');
     expect(result?.args).toEqual({ query: 'test' });
   });
 
@@ -15,16 +15,16 @@ describe('command-parser flags', () => {
     const result = await parseCommand('cmd(!mode="fast", !count=10)', undefined, { flagPrefix: '!' });
     expect(result?.flags?.mode.toString()).toBe('fast');
     expect(result?.flags?.count.valueOf()).toBe(10);
-    expect(result?.flags?.mode[FLAG_SYMBOL]).toBe('!');
-    expect(result?.flags?.count[FLAG_SYMBOL]).toBe('!');
+    expect(result?.flags?.mode[CMD_ARG_FLAG_SYMBOL]).toBe('!');
+    expect(result?.flags?.count[CMD_ARG_FLAG_SYMBOL]).toBe('!');
   });
 
   it('should support multiple flag prefixes', async () => {
     const result = await parseCommand('cmd(!debug, #cache=true)', undefined, { flagPrefix: ['!', '#'] });
     expect(result?.flags?.debug).toBeTruthy();
-    expect(result?.flags?.debug[FLAG_SYMBOL]).toBe('!');
+    expect(result?.flags?.debug[CMD_ARG_FLAG_SYMBOL]).toBe('!');
     expect(result?.flags?.cache).toBeTruthy();
-    expect(result?.flags?.cache[FLAG_SYMBOL]).toBe('#');
+    expect(result?.flags?.cache[CMD_ARG_FLAG_SYMBOL]).toBe('#');
   });
 
   it('should isolate flags from normal arguments', async () => {

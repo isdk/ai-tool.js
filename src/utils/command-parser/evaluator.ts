@@ -1,6 +1,6 @@
 import { newFunction } from "util-ex";
 import { filterValidFnScope } from "../parse-js-json";
-import { ParserOptions, ArgContext, UNRESOLVED_SYMBOL, PROCESSOR_RESULT } from "./types";
+import { CmdArgParserOptions, CmdArgContext, CMD_ARG_UNRESOLVED_SYMBOL, CMD_ARG_PROCESSOR_RESULT } from "./types";
 import { get as getByPath } from "lodash-es";
 import { isQuoted, isIdentifier, isPathIdentifier } from "./utils";
 
@@ -12,7 +12,7 @@ import { isQuoted, isIdentifier, isPathIdentifier } from "./utils";
  * 2. If the processor returns a source string, recursively call evaluateExpression.
  * 3. Default to evaluateExpression (handles literals, scope variables, and JS expressions).
  */
-export async function evaluate(ctx: ArgContext): Promise<any> {
+export async function cmdArgEvaluate(ctx: CmdArgContext): Promise<any> {
   const { scope, options, rawValue } = ctx;
   const { argProcessor } = options;
 
@@ -26,12 +26,12 @@ export async function evaluate(ctx: ArgContext): Promise<any> {
       }
 
       // B. If it's a result object following the Symbol Protocol
-      if (result && typeof result === 'object' && result[PROCESSOR_RESULT]) {
-          const [val, name, pOptions] = result[PROCESSOR_RESULT];
+      if (result && typeof result === 'object' && result[CMD_ARG_PROCESSOR_RESULT]) {
+          const [val, name, pOptions] = result[CMD_ARG_PROCESSOR_RESULT];
           // If the wrapped value is a string, it also needs re-evaluation (e.g., template rendering result)
           if (typeof val === 'string') {
               const evaluatedVal = await evaluateExpression(val, scope, options);
-              return { [PROCESSOR_RESULT]: [evaluatedVal, name, pOptions] };
+              return { [CMD_ARG_PROCESSOR_RESULT]: [evaluatedVal, name, pOptions] };
           }
       }
 
@@ -55,7 +55,7 @@ export async function evaluate(ctx: ArgContext): Promise<any> {
  * 6. Catch ReferenceError: Decide whether to fall back to raw text or return undefined based on options.
  * 7. Final fallback: Handle unquoting for quoted strings.
  */
-export async function evaluateExpression(code: string, scope: any, options: ParserOptions) {
+export async function evaluateExpression(code: string, scope: any, options: CmdArgParserOptions) {
   const trimmed = code.trim();
   if (!trimmed) return undefined;
 
@@ -92,10 +92,10 @@ export async function evaluateExpression(code: string, scope: any, options: Pars
   } catch (err) {
     if (err instanceof ReferenceError) {
       if (options.raiseReferenceError ?? options.raiseError) throw err;
-      
+
       if (options.preserveUnresolvedName) {
-        // Return an object with a Symbol marker so the Parser can skip idAsName logic
-        return { [UNRESOLVED_SYMBOL]: trimmed };
+        // Return an object with a Symbol marker so the CmdArgParser can skip idAsName logic
+        return { [CMD_ARG_UNRESOLVED_SYMBOL]: trimmed };
       }
       // Return undefined if it's a simple identifier or path lookup failure; otherwise, fall back to raw string
       return (isIdentifier(trimmed, options) || isPathIdentifier(trimmed)) ? undefined : trimmed;

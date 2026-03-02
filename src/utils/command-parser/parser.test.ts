@@ -1,23 +1,23 @@
 import { describe, it, expect, vi } from 'vitest';
-import { Parser } from './parser';
-import { Lexer } from './lexer';
+import { CmdArgParser } from './parser';
+import { CmdArgLexer } from './lexer';
 
-// Mock evaluator to test Parser structural logic in isolation
+// Mock evaluator to test CmdArgParser structural logic in isolation
 vi.mock('./evaluator', () => ({
-  evaluate: async (ctx: any) => ctx.rawValue
+  cmdArgEvaluate: async (ctx: any) => ctx.rawValue
 }));
 
-describe('Parser (Structural Logic)', () => {
+describe('CmdArgParser (Structural Logic)', () => {
   it('should split top-level arguments correctly', async () => {
-    const lexer = new Lexer('1, 2, 3');
-    const parser = new Parser(lexer);
+    const lexer = new CmdArgLexer('1, 2, 3');
+    const parser = new CmdArgParser(lexer);
     const result = await parser.parse();
     expect(result.args).toEqual(['1', '2', '3']);
   });
 
   it('should handle balanced brackets (nested structures)', async () => {
-    const lexer = new Lexer('arr=[1, 2], obj={a: 1, b: 2}');
-    const parser = new Parser(lexer);
+    const lexer = new CmdArgLexer('arr=[1, 2], obj={a: 1, b: 2}');
+    const parser = new CmdArgParser(lexer);
     const result = await parser.parse();
     // Reassembled RAW value should preserve exact spaces from input slice
     expect(result.namedArgs.arr).toBe('[1, 2]');
@@ -27,8 +27,8 @@ describe('Parser (Structural Logic)', () => {
   });
 
   it('should correctly identify named arguments and auto-name positional identifiers', async () => {
-    const lexer = new Lexer('key="value", posArg');
-    const parser = new Parser(lexer);
+    const lexer = new CmdArgLexer('key="value", posArg');
+    const parser = new CmdArgParser(lexer);
     const result = await parser.parse();
     // name = key, value = original slice including quotes
     expect(result.namedArgs.key).toBe('"value"');
@@ -42,8 +42,8 @@ describe('Parser (Structural Logic)', () => {
   });
 
   it('should handle empty arguments', async () => {
-    const lexer = new Lexer('a, , b');
-    const parser = new Parser(lexer);
+    const lexer = new CmdArgLexer('a, , b');
+    const parser = new CmdArgParser(lexer);
     const result = await parser.parse();
     // 'a' and 'b' are IDs, so they also appear in namedArgs
     expect(result.args).toEqual(['a', undefined, 'b']);
@@ -52,8 +52,8 @@ describe('Parser (Structural Logic)', () => {
   });
 
   it('should handle complex nested structures', async () => {
-    const lexer = new Lexer('a=(1 + (2, 3)), b=[{c: [1, 2]}, 3]');
-    const parser = new Parser(lexer);
+    const lexer = new CmdArgLexer('a=(1 + (2, 3)), b=[{c: [1, 2]}, 3]');
+    const parser = new CmdArgParser(lexer);
     const result = await parser.parse();
     // Original slice preserves inner spaces
     expect(result.namedArgs.a).toBe('(1 + (2, 3))');

@@ -1,6 +1,6 @@
-import { Parser } from './parser';
-import { Lexer } from './lexer';
-import { AIChoiceConfig, PROCESSOR_RESULT, ArgContext } from './types';
+import { CmdArgParser } from './parser';
+import { CmdArgLexer } from './lexer';
+import { CmdArgAIChoiceConfig, CMD_ARG_PROCESSOR_RESULT, CmdArgContext } from './types';
 import { PromptTemplate } from "../prompt";
 import { omitBy } from "lodash-es";
 import { isQuoted } from './utils';
@@ -12,20 +12,20 @@ import { isQuoted } from './utils';
  *
  * Logic:
  * 1. Identifies positional arguments starting with '|'.
- * 2. Recursively uses the Parser to parse subsequent configuration items (delimited by ':').
- * 3. Constructs an AIChoiceConfig object.
+ * 2. Recursively uses the CmdArgParser to parse subsequent configuration items (delimited by ':').
+ * 3. Constructs an CmdArgAIChoiceConfig object.
  * 4. Returns the result using the Symbol Protocol, named 'choice' and excluded from positional indexing.
  */
-export async function ChoiceArgProcessor(ctx: ArgContext) {
+export async function ChoiceArgProcessor(ctx: CmdArgContext) {
   const { isNamed, rawValue, options } = ctx;
   if (options?.isInternal) return;
 
   if (!isNamed && rawValue.startsWith('|')) {
-    // Recursively invoke Parser to handle configuration inside choice items
-    const choiceParser = new Parser(new Lexer(rawValue, { ...options, delimiter: ':' }), { ...options, isInternal: true });
+    // Recursively invoke CmdArgParser to handle configuration inside choice items
+    const choiceParser = new CmdArgParser(new CmdArgLexer(rawValue, { ...options, delimiter: ':' }), { ...options, isInternal: true });
     const { args, namedArgs } = await choiceParser.parse();
 
-    const choice: AIChoiceConfig = { ...namedArgs };
+    const choice: CmdArgAIChoiceConfig = { ...namedArgs };
     for (const val of args) {
       if (typeof val === 'string' && val.startsWith('|')) {
         choice.items = val.split('|').filter(Boolean);
@@ -44,7 +44,7 @@ export async function ChoiceArgProcessor(ctx: ArgContext) {
 
     // Return structured data using the Protocol
     return {
-      [PROCESSOR_RESULT]: [choice, 'choice', { excludePositional: true }]
+      [CMD_ARG_PROCESSOR_RESULT]: [choice, 'choice', { excludePositional: true }]
     };
   }
 }
@@ -60,7 +60,7 @@ export async function ChoiceArgProcessor(ctx: ArgContext) {
  *    it is JSON-escaped to ensure it's recognized as a string literal in subsequent evaluation.
  * 3. Returns the substituted source string for re-evaluation by the Evaluator.
  */
-export async function TemplateArgProcessor(ctx: ArgContext) {
+export async function TemplateArgProcessor(ctx: CmdArgContext) {
   const { scope, options, rawValue } = ctx;
   const data = { ...omitBy(scope || {}, (v, k) => !k || k[0] === '_' || typeof v === 'function'), ...options?.templateData };
   const templateResult = await PromptTemplate.formatIf({
@@ -75,7 +75,7 @@ export async function TemplateArgProcessor(ctx: ArgContext) {
     const trimmedResult = typeof templateResult === 'string' ? templateResult.trim() : templateResult;
     const val = (typeof trimmedResult === 'string' && !isQuoted(trimmedResult)) ? JSON.stringify(trimmedResult) : trimmedResult;
     return {
-      [PROCESSOR_RESULT]: [val]
+      [CMD_ARG_PROCESSOR_RESULT]: [val]
     };
   }
 }
@@ -84,7 +84,7 @@ export async function TemplateArgProcessor(ctx: ArgContext) {
  * Combined AI processor (AIArgProcessor).
  * Sequentially attempts choice selection and template variable processing.
  */
-export async function AIArgProcessor(ctx: ArgContext) {
+export async function AIArgProcessor(ctx: CmdArgContext) {
   let result = await ChoiceArgProcessor(ctx);
   if (result === undefined) {
     result = await TemplateArgProcessor(ctx);

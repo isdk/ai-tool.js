@@ -1,12 +1,12 @@
-# Command Parser
+# Command CmdArgParser
 
-`command-parser` is a powerful structured argument parsing tool designed to parse command-like strings (e.g., `cmd(arg1, k=v, |a|b)`) into directly usable JS objects, arrays, or single values. It supports standard JS syntax conventions and provides high extensibility through the "Processor protocol."
+`command-CmdArgParser` is a powerful structured argument parsing tool designed to parse command-like strings (e.g., `cmd(arg1, k=v, |a|b)`) into directly usable JS objects, arrays, or single values. It supports standard JS syntax conventions and provides high extensibility through the "Processor protocol."
 
 ---
 
 ## Quick Start
 
-The parser provides two core entry functions: `parseCommand` (for full commands) and `parseObjectArguments` (for argument strings only).
+The CmdArgParser provides two core entry functions: `parseCommand` (for full commands) and `parseObjectArguments` (for argument strings only).
 
 ### 1. Basic Parsing (Level 1)
 
@@ -41,7 +41,7 @@ const res4 = await parseObjectArguments('id', { id: 101 });
 
 ### 3. Using Scopes (Level 3)
 
-Pass a `scope` object to let the parser recognize variables.
+Pass a `scope` object to let the CmdArgParser recognize variables.
 
 ```typescript
 const scope = { user: { id: 1, name: 'Bob' }, flag: true };
@@ -51,10 +51,13 @@ const res5 = await parseObjectArguments('user.id, enabled=flag', scope);
 
 ### 4. Full Command Parsing (Level 4)
 
-```typescript
-import { parseCommand } from '@isdk/ai-tool';
+Parses strings like `cmd(args)` and returns a `CmdArgParsedCommand` object.
 
-const { command, args } = await parseCommand('search(query="sky", limit=10)');
+```typescript
+import { parseCommand, CmdArgParsedCommand } from '@isdk/ai-tool';
+
+const result: CmdArgParsedCommand = await parseCommand('search(query="sky", limit=10)');
+const { command, args } = result;
 // command: "search"
 // args: { query: "sky", limit: 10 }
 ```
@@ -67,7 +70,7 @@ Support for defining special parameters with prefixes (e.g., `!` or `#`), isolat
 const options = { flagPrefix: '!' };
 const { args, flags } = await parseCommand('search(query="sky", !fast, !cache=true)', {}, options);
 // args: { query: "sky" }
-// flags: { fast: true, cache: true } (Boxed primitives with FLAG_SYMBOL metadata)
+// flags: { fast: true, cache: true } (Boxed primitives with CMD_ARG_FLAG_SYMBOL metadata)
 ```
 
 ---
@@ -78,7 +81,7 @@ The output shape is flexible and automatically "collapses" into the most intuiti
 
 ### Core Simplification Strategies
 
-By default, the parser follows these strategies in order:
+By default, the CmdArgParser follows these strategies in order:
 
 1. **Identical Pair Singularization**: If there are only two entries (positional 0 and a named Key) and their values are strictly equal, it collapses them into a single value.
 2. **Single Value**: If there is only one positional argument and no named arguments, it returns the value directly.
@@ -103,7 +106,7 @@ const options = {
 * `'auto'`: Default smart simplification logic.
 * `'array'`: Always return a positional arguments array. **Named and flag arguments are attached as `.namedArgs` and `.flags` non-enumerable properties.**
 * `'object'`: Always return a merged object (indexed + named + hidden flags).
-* `'map'`: Always return the original structure `{ args: any[], namedArgs: Record<string, any>, flags?: Record<string, any> }`.
+* `'map'`: Always return the original `CmdArgMapResult` structure (containing `{ args, namedArgs, flags? }`).
 
 ---
 
@@ -111,7 +114,7 @@ const options = {
 
 ### `ObjectArgsToArgsInfo`
 
-A normalization utility that converts any simplified result (single value, array, etc.) back into a standard `{ args, namedArgs }` structure.
+A normalization utility that converts any simplified result (single value, array, etc.) back into a standard `CmdArgArgsInfo` (i.e., `{ args, namedArgs }`) structure.
 
 ```typescript
 import { ObjectArgsToArgsInfo } from '@isdk/ai-tool';
@@ -135,7 +138,7 @@ const info2 = ObjectArgsToArgsInfo({ name: 'John' });
 
 ### 2. Variable Protection & Error Control
 
-* **`preserveUnresolvedName`**: If a variable is undefined in `scope` and is not a valid identifier, the parser returns the original string (e.g., `!notAFlag`).
+* **`preserveUnresolvedName`**: If a variable is undefined in `scope` and is not a valid identifier, the CmdArgParser returns the original string (e.g., `!notAFlag`).
 * **`raiseReferenceError`**: Specifically controls whether to throw an error when a variable is undefined, defaults to `raiseError`.
 
 ---
@@ -149,11 +152,11 @@ const info2 = ObjectArgsToArgsInfo({ name: 'John' });
 
 ---
 
-## Configuration (ParserOptions)
+## Configuration (CmdArgParserOptions)
 
 | Option | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
-| `simplify` | `boolean \| SimplifyOptions` | `true` | Enable result simplification. If `false`, returns a merged object with indices and names. |
+| `simplify` | `boolean \| CmdArgSimplifyOptions` | `true` | Enable result simplification. If `false`, returns a merged object with indices and names. |
 | `idAsName` | `boolean` | `true` | Auto-map positional identifier to named argument. |
 | `excludeAutoNamedFromPositional` | `boolean` | `false` | **Auto-mapping Exclusion**: If `true`, exclude numeric indices from auto-mapped arguments. |
 | `namedExcludePositional` | `boolean` | `true` | **Explicit Name Exclusion**: If `true`, explicit `k=v` args don't occupy slots in `args` array. |

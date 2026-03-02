@@ -5,19 +5,19 @@
  * @example
  * ```ts
  * return {
- *   [PROCESSOR_RESULT]: [parsedValue, 'suggestedName', { excludePositional: true }]
+ *   [CMD_ARG_PROCESSOR_RESULT]: [parsedValue, 'suggestedName', { excludePositional: true }]
  * };
  * ```
  */
-export const PROCESSOR_RESULT = Symbol('PROCESSOR_RESULT');
+export const CMD_ARG_PROCESSOR_RESULT = Symbol('CMD_ARG_PROCESSOR_RESULT');
 
 /**
  * Internal Symbol used to mark values that have fallen back to their raw string
  * representation due to a ReferenceError (undefined variable).
- * This allows the Parser to distinguish between a deliberate string "undefined"
+ * This allows the CmdArgParser to distinguish between a deliberate string "undefined"
  * and a failed variable lookup.
  */
-export const UNRESOLVED_SYMBOL = Symbol('UNRESOLVED');
+export const CMD_ARG_UNRESOLVED_SYMBOL = Symbol('UNRESOLVED');
 
 /**
  * Symbol used to mark special parameters (Flags) in a wrapped object.
@@ -25,16 +25,35 @@ export const UNRESOLVED_SYMBOL = Symbol('UNRESOLVED');
  *
  * @example
  * ```ts
- * const flagValue = flags['debug'];
- * const prefix = flagValue[FLAG_SYMBOL]; // returns '!'
+ * const CmdArgFlagValue = flags['debug'];
+ * const prefix = CmdArgFlagValue[CMD_ARG_FLAG_SYMBOL]; // returns '!'
  * ```
  */
-export const FLAG_SYMBOL = Symbol('flag');
+export const CMD_ARG_FLAG_SYMBOL = Symbol('flag');
 
 /**
- * Token types for lexical analysis.
+ * Metadata attached to flag values.
  */
-export enum TokenType {
+export interface CmdArgFlagMetadata {
+  /** The prefix used to define this flag (e.g., '!', '#') */
+  [CMD_ARG_FLAG_SYMBOL]: string;
+}
+
+/**
+ * A flag value is a wrapped primitive (Boolean, String, Number) or object
+ * that carries its prefix metadata via CMD_ARG_FLAG_SYMBOL.
+ */
+export type CmdArgFlagValue = (Boolean | String | Number | any) & CmdArgFlagMetadata;
+
+/**
+ * A map of flag names to their wrapped values.
+ */
+export type CmdArgFlagsRecord = Record<string, CmdArgFlagValue>;
+
+/**
+ * CmdArgToken types for lexical analysis.
+ */
+export enum CmdArgTokenType {
   EOF = 'EOF',
   /** Argument delimiter (default: ',') */
   COMMA = 'COMMA',
@@ -61,12 +80,12 @@ export enum TokenType {
 }
 
 /**
- * Represents a lexical token with its type, value, and source position.
+ * Represents a lexical CmdArgToken with its type, value, and source position.
  */
-export interface Token {
-  /** The type of the token */
-  type: TokenType;
-  /** The literal string value of the token */
+export interface CmdArgToken {
+  /** The type of the CmdArgToken */
+  type: CmdArgTokenType;
+  /** The literal string value of the CmdArgToken */
   value: string;
   /** Starting index in the input string */
   start: number;
@@ -77,7 +96,7 @@ export interface Token {
 /**
  * Options for processors to control how the parsed value is distributed in the final result.
  */
-export interface ProcessorResultOptions {
+export interface CmdArgProcessorResultOptions {
   /**
    * If true, the argument will be excluded from the positional `args` array.
    * Useful when a positional argument is intended to be treated as a named parameter only.
@@ -85,34 +104,34 @@ export interface ProcessorResultOptions {
   excludePositional?: boolean;
 }
 
-import type { Parser } from './parser';
+import type { CmdArgParser } from './parser';
 
 /**
  * Symbol used to mark a result object returned by an ArgProcessor.
 ...
  */
-export interface ArgContext {
+export interface CmdArgContext {
   /** True if the argument was explicitly assigned using an assigner (e.g., k=v) */
   isNamed: boolean;
   /** The raw input substring of this argument (after stripping the name and assigner if present) */
   rawValue: string;
   /** The explicitly specified name (k) in a `k=v` pair */
   name?: string;
-  /** 
-   * If the argument is positional and its raw text is a valid identifier, 
+  /**
+   * If the argument is positional and its raw text is a valid identifier,
    * this holds that identifier name (used for auto-mapping).
    */
   identifierAsName?: string;
   /** All lexical tokens belonging to this argument */
-  tokens: Token[];
+  tokens: CmdArgToken[];
   /** The 0-based index of this argument in the positional sequence */
   index: number;
   /** The evaluation scope containing variables and functions */
   scope?: Record<string, any>;
-  /** The configuration options used by the Parser */
-  options: ParserOptions;
-  /** Reference to the Parser instance for recursive parsing */
-  parser: Parser;
+  /** The configuration options used by the CmdArgParser */
+  options: CmdArgParserOptions;
+  /** Reference to the CmdArgParser instance for recursive parsing */
+  CmdArgParser: CmdArgParser;
 }
 
 
@@ -120,12 +139,12 @@ export interface ArgContext {
  * Type definition for an argument processor function.
  * It can return a plain value (for standard evaluation) or a Protocol-compliant object.
  */
-export type ArgProcessor = (ctx: ArgContext) => any | Promise<any>;
+export type ArgProcessor = (ctx: CmdArgContext) => any | Promise<any>;
 
 /**
  * Detailed configuration for result simplification (convergence).
  */
-export interface SimplifyOptions {
+export interface CmdArgSimplifyOptions {
   /**
    * [Single Value Simplification]
    * If there is exactly one positional argument and no named arguments, return the value directly.
@@ -134,9 +153,9 @@ export interface SimplifyOptions {
    */
   singleValue?: boolean;
 
-  /** 
+  /**
    * [Identical Pair Singularization]
-   * If there are exactly two entries (index 0 and a named key) and their values are identical, 
+   * If there are exactly two entries (index 0 and a named key) and their values are identical,
    * collapse them into a single value. This often happens when `idAsName` is enabled.
    * @example parse("name=John") -> "John" (instead of {0: "John", name: "John"})
    * @default true
@@ -163,9 +182,9 @@ export interface SimplifyOptions {
 }
 
 /**
- * Configuration options for the Parser and main API functions.
+ * Configuration options for the CmdArgParser and main API functions.
  */
-export interface ParserOptions {
+export interface CmdArgParserOptions {
   /**
    * Character used to separate arguments.
    * @example delimiter: ';' -> "arg1; arg2"
@@ -189,24 +208,24 @@ export interface ParserOptions {
   templateFormat?: string;
   /** Additional data for template variable substitution */
   templateData?: Record<string, any>;
-  /** 
-   * If true, the positional index of an argument that has been automatically 
-   * mapped as a named argument (via `idAsName`) will be excluded from the 
+  /**
+   * If true, the positional index of an argument that has been automatically
+   * mapped as a named argument (via `idAsName`) will be excluded from the
    * merged result object.
-   * 
+   *
    * @example parse("John") -> {John: "John"} (instead of {0: "John", John: "John"})
    */
   excludeAutoNamedFromPositional?: boolean;
   /** If true, return the variable name as a string when it's not found in scope instead of undefined */
   preserveUnresolvedName?: boolean;
-  /** 
-   * If true, explicitly named arguments (e.g., `k=v`) do not occupy a slot 
+  /**
+   * If true, explicitly named arguments (e.g., `k=v`) do not occupy a slot
    * in the positional `args` array.
    * @default true
    */
   namedExcludePositional?: boolean;
-  /** 
-   * If true, a positional argument that is a valid identifier (e.g., "John") 
+  /**
+   * If true, a positional argument that is a valid identifier (e.g., "John")
    * is automatically mapped as a named argument (e.g., {John: "John"}).
    * @default true
    */
@@ -214,7 +233,7 @@ export interface ParserOptions {
   /** If true, JS expressions (like arithmetic or function calls) are not evaluated */
   skipExpression?: boolean;
   /** Control the simplification of the final result. Set to `false` to disable (returns a merged object). */
-  simplify?: boolean | SimplifyOptions;
+  simplify?: boolean | CmdArgSimplifyOptions;
   /** If true, any parsing or evaluation error will be thrown */
   raiseError?: boolean;
   /** If true, ReferenceErrors (missing variables) will be thrown. Defaults to `raiseError`. */
@@ -230,7 +249,7 @@ export interface ParserOptions {
  *
  * @example "|item1|item2:maxPick=2"
  */
-export interface AIChoiceConfig {
+export interface CmdArgAIChoiceConfig {
   /** List of items to choose from */
   items?: string[]
   /** Maximum number of items that can be picked */
@@ -252,15 +271,55 @@ export interface AIChoiceConfig {
 /**
  * The internal structured result of the parsing process.
  */
-export interface ParseResult {
+export interface CmdArgParseResult {
   /** Positional arguments array. Indices correspond to the appearance order. */
   args: any[];
   /** Named arguments map, combining explicit `k=v`, auto-mapped IDs, and Processor results. */
   namedArgs: Record<string, any>;
   /** Special parameters (Flags) map. Values are usually Boolean but can be any type. */
-  flags: Record<string, any>;
+  flags: CmdArgFlagsRecord;
   /** A set of numeric indices that were populated by explicitly named arguments. */
   namedIndices: Set<number>;
+}
+
+/**
+ * Simplified argument result.
+ * Could be a single value, an array, or an object based on CmdArgSimplifyOptions.
+ */
+export type SimplifiedResultType = any;
+
+/**
+ * Result structure when mode is 'map'.
+ */
+export interface CmdArgMapResult {
+  /** Positional arguments array */
+  args: any[];
+  /** Named arguments map */
+  namedArgs: Record<string, any>;
+  /** Special parameters (Flags) map */
+  flags?: CmdArgFlagsRecord;
+}
+
+/**
+ * The full structure of a parsed command.
+ */
+export interface CmdArgParsedCommand {
+  /** The command name (the identifier before the parentheses) */
+  command: string;
+  /** The parsed arguments, either simplified or in map format */
+  args: SimplifiedResultType | CmdArgMapResult;
+  /** Special parameters (Flags) map (if present) */
+  flags?: CmdArgFlagsRecord;
+}
+
+/**
+ * Normalized argument information, typically used for final consumption.
+ */
+export interface CmdArgArgsInfo {
+  /** Positional arguments array */
+  args: any[];
+  /** Named arguments map */
+  namedArgs?: Record<string, any>;
 }
 
 

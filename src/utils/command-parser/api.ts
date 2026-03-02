@@ -1,6 +1,6 @@
-import { Lexer } from './lexer';
-import { Parser } from './parser';
-import { ParserOptions, ParseResult, SimplifyOptions } from './types';
+import { CmdArgLexer } from './lexer';
+import { CmdArgParser } from './parser';
+import { CmdArgParserOptions, CmdArgParseResult, CmdArgSimplifyOptions, SimplifiedResultType, CmdArgMapResult, CmdArgParsedCommand, CmdArgArgsInfo, CmdArgFlagsRecord } from './types';
 
 /**
  * Parses an object-style argument string into a structured result.
@@ -8,7 +8,7 @@ import { ParserOptions, ParseResult, SimplifyOptions } from './types';
  *
  * @param argsStr The argument string to parse.
  * @param scope Optional evaluation scope for resolving variables.
- * @param options Parser configuration options.
+ * @param options CmdArgParser configuration options.
  * @returns The parsed and simplified result.
  *
  * @example
@@ -26,11 +26,11 @@ import { ParserOptions, ParseResult, SimplifyOptions } from './types';
  * await parseObjectArguments("John, age=25") // returns {0: 'John', John: 'John', age: 25}
  * ```
  */
-export async function parseObjectArguments(argsStr: string, scope?: Record<string, any>, options?: ParserOptions): Promise<any> {
+export async function parseObjectArguments(argsStr: string, scope?: Record<string, any>, options?: CmdArgParserOptions): Promise<SimplifiedResultType | CmdArgMapResult | undefined> {
   if (!argsStr || !argsStr.trim()) return undefined;
 
-  const lexer = new Lexer(argsStr, options);
-  const parser = new Parser(lexer, { ...options, scope });
+  const lexer = new CmdArgLexer(argsStr, options);
+  const parser = new CmdArgParser(lexer, { ...options, scope });
   const result = await parser.parse();
 
   return simplifyResult(result, options);
@@ -41,11 +41,11 @@ export async function parseObjectArguments(argsStr: string, scope?: Record<strin
  * Numeric indices are used for positional arguments.
  *
  * @param result The raw parse result.
- * @param options Parser configuration options.
+ * @param options CmdArgParser configuration options.
  * @returns A merged object containing all arguments.
  */
-export function toMergedObject(result: ParseResult, options?: ParserOptions): any {
-  const merged: any = { ...result.namedArgs };
+export function cmdArgsToMergedObject(result: CmdArgParseResult, options?: CmdArgParserOptions): Record<string | number, any> {
+  const merged: Record<string | number, any> = { ...result.namedArgs };
   result.args.forEach((val, i) => {
     if (val !== undefined || (i in result.args)) {
       if (options?.excludeAutoNamedFromPositional && result.namedIndices.has(i)) {
@@ -62,26 +62,26 @@ export function toMergedObject(result: ParseResult, options?: ParserOptions): an
  * The behavior is controlled by `options.simplify`.
  *
  * @param result The raw parse result.
- * @param options Parser configuration options.
+ * @param options CmdArgParser configuration options.
  * @returns A simplified value, array, or object.
  */
-export function simplifyResult(result: ParseResult, options?: ParserOptions): any {
+export function simplifyResult(result: CmdArgParseResult, options?: CmdArgParserOptions): SimplifiedResultType | CmdArgMapResult {
   const simplify = options?.simplify;
 
   // If explicitly set to false, fall back to returning a merged object
   if (simplify === false) {
-    return toMergedObject(result, options);
+    return cmdArgsToMergedObject(result, options);
   }
 
   // Default simplification configuration
-  const defaultSimplify: SimplifyOptions = {
+  const defaultSimplify: CmdArgSimplifyOptions = {
     singleValue: true,
     identicalPairSingular: true,
     purePositionalAsArray: true,
     mode: 'auto'
   };
 
-  const config: SimplifyOptions = typeof simplify === 'object'
+  const config: CmdArgSimplifyOptions = typeof simplify === 'object'
     ? { ...defaultSimplify, ...simplify }
     : defaultSimplify;
 
@@ -92,7 +92,7 @@ export function simplifyResult(result: ParseResult, options?: ParserOptions): an
 
   // 1. Mandatory mode handling
   if (mode === 'map') {
-    const mapResult: any = { args, namedArgs };
+    const mapResult: CmdArgMapResult = { args, namedArgs };
     if (flags && Object.keys(flags).length > 0) {
       mapResult.flags = flags;
     }
@@ -109,11 +109,11 @@ export function simplifyResult(result: ParseResult, options?: ParserOptions): an
       configurable: true
     });
   } else if (mode === 'object') {
-    res = toMergedObject(result, options);
+    res = cmdArgsToMergedObject(result, options);
     isSimplified = true;
   } else {
     // 2. Automatic convergence (mode === 'auto')
-    const merged = toMergedObject(result, options);
+    const merged = cmdArgsToMergedObject(result, options);
     const keys = Object.keys(merged);
     const kvKeys = Object.keys(namedArgs);
 
@@ -167,7 +167,7 @@ export function simplifyResult(result: ParseResult, options?: ParserOptions): an
  * Deeply simplifies object-style arguments (recursive convergence).
  * Useful for normalizing complex argument structures.
  */
-export function simplifyObjectArguments(args: any) {
+export function simplifyObjectArguments(args: any): SimplifiedResultType {
   if (args && !Array.isArray(args) && typeof args === 'object') {
     const entries = Object.entries(args)
     const keys = Object.keys(args)
@@ -203,42 +203,51 @@ function isIncreasing(arr: number[]) {
  * ObjectArgsToArgsInfo({name: "John"}) // returns {args: [], namedArgs: {name: "John"}}
  * ```
  */
-export function ObjectArgsToArgsInfo(args: any): {args: any[], namedArgs?: Record<string, any>} {
+export function ObjectArgsToArgsInfo(args: any): CmdArgArgsInfo {
+  let result: CmdArgArgsInfo;
   if (args && !Array.isArray(args) && typeof args === 'object') {
     const entries = Object.entries(args)
     const keys = Object.keys(args)
     const nums = keys.filter(k => !isNaN(parseInt(k)))
     if (entries.length === 1) {
       if (args[0] !== undefined) {
-        args = [args[0]]
+        result = { args: [args[0]] }
       } else {
-        args = {args: [], namedArgs: args}
+        result = {args: [], namedArgs: args}
       }
     } else if (keys.every(k => !isNaN(parseInt(k))) && isIncreasing(keys.map(k => parseInt(k)))) {
-      args = Object.values(args)
+      result = { args: Object.values(args) }
     } else if (nums[0] === '0' && isIncreasing(nums.map(k => parseInt(k)))) {
       const namedArgs = entries.filter(([k, v]) => isNaN(parseInt(k)))
-      args = entries.filter(([k, v]) => !isNaN(parseInt(k))).map(([k, v]) => v)
+      const posArgs = entries.filter(([k, v]) => !isNaN(parseInt(k))).map(([k, v]) => v)
       let i = 0
       const canDeleted: number[] = []
-      while (i < namedArgs.length && namedArgs[i][1] === args[i]) {
+      while (i < namedArgs.length && namedArgs[i][1] === posArgs[i]) {
         canDeleted.push(i)
         i++
       }
       while (canDeleted.length) {
         namedArgs.splice(canDeleted.pop()!, 1)
       }
-      args = {args, namedArgs: Object.fromEntries(namedArgs)}
+      result = {args: posArgs, namedArgs: Object.fromEntries(namedArgs)}
     } else {
-      args = {args: [], namedArgs: args}
+      result = {args: [], namedArgs: args}
+    }
+  } else {
+    result = { args: [] }; // Initial default
+  }
+
+  if (Array.isArray(args)) {
+    result = {args}
+  } else if (!result || result.args === undefined || (result.args.length === 0 && result.namedArgs === undefined)) {
+    // If it wasn't an object or didn't match any of the above patterns
+    if (args !== undefined && typeof args !== 'object') {
+       result = {args: [args]}
+    } else if (!result || result.args === undefined) {
+       result = {args: args === undefined ? [] : [args]}
     }
   }
-  if (Array.isArray(args)) {
-    args = {args}
-  } else if (!args || typeof args !== 'object' || args.args === undefined) {
-    args = {args: args === undefined ? [] : [args]}
-  }
-  return args
+  return result
 }
 
 /**
@@ -246,7 +255,7 @@ export function ObjectArgsToArgsInfo(args: any): {args: any[], namedArgs?: Recor
  *
  * @param commandStr The command string, e.g., 'myCmd(arg1, k=v, !flag)'
  * @param scope Evaluation scope.
- * @param options Parser configuration options.
+ * @param options CmdArgParser configuration options.
  * @returns An object containing the command name, parsed args, and optional flags.
  *
  * @example
@@ -255,7 +264,7 @@ export function ObjectArgsToArgsInfo(args: any): {args: any[], namedArgs?: Recor
  * await parseCommand("search(query='abc', !caseSensitive)") // returns {command: "search", args: {query: 'abc'}, flags: {caseSensitive: true}}
  * ```
  */
-export async function parseCommand(commandStr: string, scope?: Record<string, any>, options?: ParserOptions) {
+export async function parseCommand(commandStr: string, scope?: Record<string, any>, options?: CmdArgParserOptions): Promise<CmdArgParsedCommand | undefined> {
   const pattern = /^([^(]+)(?:\((.*)\))?$/;
   const match = commandStr.match(pattern);
 
@@ -265,19 +274,19 @@ export async function parseCommand(commandStr: string, scope?: Record<string, an
   }
 
   const [, commandName, rawArgs] = match;
-  let args: any;
-  let flags: Record<string, any> | undefined;
+  let args: SimplifiedResultType | CmdArgMapResult | undefined;
+  let flags: CmdArgFlagsRecord | undefined;
 
   if (rawArgs) {
-    const lexer = new Lexer(rawArgs, options);
-    const parser = new Parser(lexer, { ...options, scope });
+    const lexer = new CmdArgLexer(rawArgs, options);
+    const parser = new CmdArgParser(lexer, { ...options, scope });
     const result = await parser.parse();
 
     flags = result.flags;
     args = simplifyResult(result, options);
   }
 
-  const result: any = { command: commandName.trim(), args };
+  const result: CmdArgParsedCommand = { command: commandName.trim(), args };
   if (flags && Object.keys(flags).length > 0) {
     result.flags = flags;
   }

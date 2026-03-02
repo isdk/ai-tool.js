@@ -1,18 +1,18 @@
-import { Lexer } from './lexer';
-import { Token, TokenType, ParserOptions, ParseResult, PROCESSOR_RESULT, ArgContext, UNRESOLVED_SYMBOL, ProcessorResultOptions } from './types';
+import { CmdArgLexer } from './lexer';
+import { CmdArgToken, CmdArgTokenType, CmdArgParserOptions, CmdArgParseResult, CMD_ARG_PROCESSOR_RESULT, CmdArgContext, CMD_ARG_UNRESOLVED_SYMBOL, CmdArgProcessorResultOptions } from './types';
 import { isIdentifier, isPathIdentifier, wrapFlagValue } from './utils';
-import { evaluate } from './evaluator';
+import { cmdArgEvaluate } from './evaluator';
 
 /**
- * Structured command argument parser.
+ * Structured command argument CmdArgParser.
  * Supports positional arguments, named arguments (k=v), nested structures,
  * and Symbol-based extension protocols.
  */
-export class Parser {
-  private lexer: Lexer;
-  private options: ParserOptions;
+export class CmdArgParser {
+  private lexer: CmdArgLexer;
+  private options: CmdArgParserOptions;
 
-  constructor(lexer: Lexer, options?: ParserOptions) {
+  constructor(lexer: CmdArgLexer, options?: CmdArgParserOptions) {
     this.lexer = lexer;
     // Default to intuitive configurations
     this.options = {
@@ -32,7 +32,7 @@ export class Parser {
    * 4. Invoke Evaluator to get the value and unpack any Symbol Protocols.
    * 5. Distribute results to 'args' and 'namedArgs', maintaining index consistency.
    */
-  async parse(): Promise<ParseResult> {
+  async parse(): Promise<CmdArgParseResult> {
     const args: any[] = [];
     const namedArgs: Record<string, any> = {};
     const flags: Record<string, any> = {};
@@ -41,7 +41,7 @@ export class Parser {
 
     while (true) {
       const nextToken = this.lexer.peekToken();
-      if (nextToken.type === TokenType.EOF) break;
+      if (nextToken.type === CmdArgTokenType.EOF) break;
 
       // 1. Collect all tokens until the next delimiter (balancing brackets)
       const tokens = this.collectUntilDelimiter();
@@ -54,14 +54,14 @@ export class Parser {
       }
 
       // 1.5 Identify special parameter shorthands (e.g., !debug)
-      if (this.options.flagPrefix && tokens.length === 1 && tokens[0].type === TokenType.RAW) {
+      if (this.options.flagPrefix && tokens.length === 1 && tokens[0].type === CmdArgTokenType.RAW) {
           const raw = tokens[0].value;
           const prefixes = Array.isArray(this.options.flagPrefix) ? this.options.flagPrefix : [this.options.flagPrefix];
           const prefix = prefixes.find(p => raw.startsWith(p));
           if (prefix && isIdentifier(raw, { flagPrefix: this.options.flagPrefix })) {
               const flagName = raw.slice(prefix.length);
               flags[flagName] = wrapFlagValue(true, prefix);
-              if (this.consumeDelimiter() === TokenType.EOF) break;
+              if (this.consumeDelimiter() === CmdArgTokenType.EOF) break;
               continue;
           }
       }
@@ -73,7 +73,7 @@ export class Parser {
 
       // 3. Pre-check if a positional argument matches identifier/path format (for idAsName)
       let identifierAsName: string | undefined;
-      if (!isNamed && valueTokens.length === 1 && valueTokens[0].type === TokenType.RAW) {
+      if (!isNamed && valueTokens.length === 1 && valueTokens[0].type === CmdArgTokenType.RAW) {
         const val = valueTokens[0].value;
         if (isPathIdentifier(val)) {
           identifierAsName = val;
@@ -87,7 +87,7 @@ export class Parser {
           // Capture raw text for Processor usage
           const rawValue = this.lexer.input.substring(startToken.start, endToken.end).trim();
 
-          const context: ArgContext = {
+          const context: CmdArgContext = {
             isNamed,
             name,
             identifierAsName,
@@ -96,31 +96,31 @@ export class Parser {
             index: positionalIndex,
             scope: this.options.scope,
             options: this.options,
-            parser: this
+            CmdArgParser: this
           };
 
           // 4. Execute evaluation logic
-          value = await evaluate(context);
+          value = await cmdArgEvaluate(context);
       }
 
-      // 5. Unpack Symbol Protocols (PROCESSOR_RESULT or UNRESOLVED_SYMBOL)
+      // 5. Unpack Symbol Protocols (CMD_ARG_PROCESSOR_RESULT or CMD_ARG_UNRESOLVED_SYMBOL)
       let finalValue = value;
       let processorSuggestedName: string | undefined;
-      let processorOptions: ProcessorResultOptions | undefined;
+      let processorOptions: CmdArgProcessorResultOptions | undefined;
       let isUnresolved = false;
 
       /** Internal helper: Recursively unwrap unresolved marker produced by ReferenceError */
       const unwrapUnresolved = (val: any) => {
-          if (val && typeof val === 'object' && val[UNRESOLVED_SYMBOL]) {
+          if (val && typeof val === 'object' && val[CMD_ARG_UNRESOLVED_SYMBOL]) {
               isUnresolved = true;
-              return val[UNRESOLVED_SYMBOL];
+              return val[CMD_ARG_UNRESOLVED_SYMBOL];
           }
           return val;
       }
 
       if (value && typeof value === 'object') {
-        if (value[PROCESSOR_RESULT]) {
-          [finalValue, processorSuggestedName, processorOptions] = value[PROCESSOR_RESULT];
+        if (value[CMD_ARG_PROCESSOR_RESULT]) {
+          [finalValue, processorSuggestedName, processorOptions] = value[CMD_ARG_PROCESSOR_RESULT];
           finalValue = unwrapUnresolved(finalValue);
         } else {
           finalValue = unwrapUnresolved(value);
@@ -161,7 +161,7 @@ export class Parser {
           }
       }
 
-      if (this.consumeDelimiter() === TokenType.EOF) break;
+      if (this.consumeDelimiter() === CmdArgTokenType.EOF) break;
     }
 
     return { args, namedArgs, flags, namedIndices };
@@ -170,17 +170,17 @@ export class Parser {
   /**
    * Collects tokens until a top-level delimiter is encountered.
    */
-  private collectUntilDelimiter(): Token[] {
-    const tokens: Token[] = [];
+  private collectUntilDelimiter(): CmdArgToken[] {
+    const tokens: CmdArgToken[] = [];
     let depth = 0;
 
     while (true) {
-      const token = this.lexer.peekToken();
-      if (token.type === TokenType.EOF) break;
-      if (token.type === TokenType.COMMA && depth === 0) break;
+      const CmdArgToken = this.lexer.peekToken();
+      if (CmdArgToken.type === CmdArgTokenType.EOF) break;
+      if (CmdArgToken.type === CmdArgTokenType.COMMA && depth === 0) break;
 
-      if (this.isLeftBracket(token.type)) depth++;
-      if (this.isRightBracket(token.type)) {
+      if (this.isLeftBracket(CmdArgToken.type)) depth++;
+      if (this.isRightBracket(CmdArgToken.type)) {
         depth--;
         if (depth < 0) depth = 0;
       }
@@ -191,10 +191,10 @@ export class Parser {
   }
 
   /**
-   * Attempts to split a named key (k=v) or flag (!k=v) from the token sequence.
+   * Attempts to split a named key (k=v) or flag (!k=v) from the CmdArgToken sequence.
    */
-  private splitNamedArgument(tokens: Token[]): { name?: string, valueTokens: Token[], flagPrefix?: string } {
-    if (tokens.length >= 2 && tokens[0].type === TokenType.RAW && tokens[1].type === TokenType.ASSIGN) {
+  private splitNamedArgument(tokens: CmdArgToken[]): { name?: string, valueTokens: CmdArgToken[], flagPrefix?: string } {
+    if (tokens.length >= 2 && tokens[0].type === CmdArgTokenType.RAW && tokens[1].type === CmdArgTokenType.ASSIGN) {
       const rawName = tokens[0].value;
       if (isIdentifier(rawName, { flagPrefix: this.options.flagPrefix })) {
         let name = rawName;
@@ -212,23 +212,23 @@ export class Parser {
     return { valueTokens: tokens };
   }
 
-  private isLeftBracket(type: TokenType): boolean {
-    return type === TokenType.L_PAREN || type === TokenType.L_BRACKET || type === TokenType.L_BRACE;
+  private isLeftBracket(type: CmdArgTokenType): boolean {
+    return type === CmdArgTokenType.L_PAREN || type === CmdArgTokenType.L_BRACKET || type === CmdArgTokenType.L_BRACE;
   }
 
-  private isRightBracket(type: TokenType): boolean {
-    return type === TokenType.R_PAREN || type === TokenType.R_BRACKET || type === TokenType.R_BRACE;
+  private isRightBracket(type: CmdArgTokenType): boolean {
+    return type === CmdArgTokenType.R_PAREN || type === CmdArgTokenType.R_BRACKET || type === CmdArgTokenType.R_BRACE;
   }
 
   /**
-   * Consumes the current delimiter token.
+   * Consumes the current delimiter CmdArgToken.
    */
-  private consumeDelimiter(): TokenType {
-    const token = this.lexer.peekToken();
-    if (token.type === TokenType.COMMA) {
+  private consumeDelimiter(): CmdArgTokenType {
+    const CmdArgToken = this.lexer.peekToken();
+    if (CmdArgToken.type === CmdArgTokenType.COMMA) {
       this.lexer.nextToken();
     }
-    return token.type;
+    return CmdArgToken.type;
   }
 }
 
