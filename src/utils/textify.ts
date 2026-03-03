@@ -1,4 +1,34 @@
 /**
+ * 行内化样式模式
+ * - 'auto': 根据阈值自动决定
+ * - 'always': 始终行内化 (除非包含换行符)
+ * - 'never': 始终使用块状样式
+ */
+export type TextifyInlineStyleMode = 'auto' | 'always' | 'never';
+
+/**
+ * 字符串引用策略 (是否用引号包裹)
+ * - 'auto': 遇到特殊字符、保留字或数字外观时自动加引号
+ * - 'always': 所有字符串始终加引号
+ * - 'never': 尽可能不加引号
+ */
+export type TextifyStringQuoting = 'auto' | 'always' | 'never';
+
+/**
+ * 行内化详细配置
+ */
+export interface TextifyInlineOptions {
+  /** 模式 (默认：'auto') */
+  mode?: TextifyInlineStyleMode;
+  /** 自动行内化的字符长度阈值 (默认：40) */
+  threshold?: number;
+  /** 逗号和冒号后是否保留空格 (默认：true) */
+  spaceAfterSeparator?: boolean;
+  /** 括号/大括号内侧是否保留空格 (默认：false) */
+  spaceInBraces?: boolean;
+}
+
+/**
  * 文本化配置选项
  *
  * @description
@@ -15,10 +45,10 @@
  *
  * 3. **多行字符串对齐**: 自动计算前缀和键名的长度，确保多行文本的后续行与首行左对齐。
  *
- * **暂不支持的特性 (Limitations):**
- * - 紧凑行内式 (Flow Style): 如 `[1, 2, 3]` 或 `{a: 1}` 的单行 JSON 风格表示。
- * - 紧凑嵌套式 (Dash-Dash Style): 如 `- - item`。
- * - 混合行内化: 暂不会根据数组长度自动决定是否行内化显示。
+ * **高级特性：**
+ * - **智能行内化 (Inline Style)**: 自动将短对象或数组转换为 `{a: 1}` 格式。
+ * - **混合模式 (Mixed Mode)**: 根据内容长度自动决定嵌套项是行内还是块状显示。
+ * - **自动引用 (Auto Quoting)**: 智能识别需要引号包裹的字符串（包含特殊字符、保留字或数字外观）。
  */
 export interface TextifyOptions {
   /** 缩进单位，可以是空格数或具体的字符串 (默认：2 个空格) */
@@ -34,10 +64,21 @@ export interface TextifyOptions {
    * (默认：false)
    */
   ensureNewLineForMultiline?: boolean;
+  /**
+   * 行内化配置
+   * - 'auto': 基于阈值自动切换 (默认)
+   * - 'always': 强制行内化 (遇到换行符除外)
+   * - 'never': 强制块状化
+   */
+  inlineStyle?: TextifyInlineStyleMode | TextifyInlineOptions;
+  /**
+   * 字符串引用策略 (是否加双引号)
+   * - 'auto': 遇到特殊字符 (:, #, [, ], {, }, *, -, ")、首尾空格、保留字或数字外观时自动加引号 (默认)
+   * - 'always': 所有字符串始终加引号
+   * - 'never': 除非结构必须，否则不加引号
+   */
+  stringQuoting?: TextifyStringQuoting;
 }
-
-/** @deprecated 请改用 TextifyOptions */
-export type StringifyOptions = TextifyOptions;
 
 interface ResolvedOptions {
   indent: string;
@@ -45,6 +86,8 @@ interface ResolvedOptions {
   objectPrefix: string;
   maxDepth: number;
   ensureNewLineForMultiline: boolean;
+  inline: Required<TextifyInlineOptions>;
+  stringQuoting: TextifyStringQuoting;
 }
 
 enum DataType {
@@ -66,6 +109,11 @@ class Serializer {
 
   constructor(options: TextifyOptions) {
     this.seen = new WeakSet();
+
+    const inlineOpt = typeof options.inlineStyle === 'string'
+      ? { mode: options.inlineStyle }
+      : (options.inlineStyle ?? {});
+
     this.options = {
       indent: typeof options.indent === 'number'
         ? ' '.repeat(options.indent)
@@ -74,6 +122,13 @@ class Serializer {
       objectPrefix: options.objectPrefix ?? '*',
       maxDepth: options.maxDepth ?? 10,
       ensureNewLineForMultiline: options.ensureNewLineForMultiline ?? false,
+      stringQuoting: options.stringQuoting ?? 'auto',
+      inline: {
+        mode: inlineOpt.mode ?? 'auto',
+        threshold: inlineOpt.threshold ?? 40,
+        spaceAfterSeparator: inlineOpt.spaceAfterSeparator ?? true,
+        spaceInBraces: inlineOpt.spaceInBraces ?? false,
+      },
     };
   }
 
@@ -113,6 +168,36 @@ class Serializer {
     );
   }
 
+  private shouldQuote(value: string): boolean {
+    const q = this.options.stringQuoting;
+    if (q === 'always') return true;
+    if (q === 'never') return false;
+
+    // auto 模式
+    if (value === '') return true;
+
+    // 1. 结构分隔符或引用，在任何位置都必须包裹 (由于行内化 Flow Style 需求)
+    // 注意：已移除 * 和 -，它们仅在出现在开头且冲突时才需要包裹
+    if (/[:#,[\]{}"]/.test(value)) return true;
+
+    // 2. 检查开头冲突 (由用户建议：更精确的判定，避免“偷懒”式全局检查)
+    // 只有当字符串以当前配置的前缀开头时，才为了避免解析歧义而加引号
+    const ap = this.options.arrayPrefix.trim();
+    const op = this.options.objectPrefix.trim();
+    if (ap.length && value.startsWith(ap)) return true;
+    if (op.length && value.startsWith(op)) return true;
+
+    // 3. 首尾空格
+    if (value !== value.trim()) return true;
+    // 保留字
+    const reserved = ['true', 'false', 'null', 'undefined', 'nan', 'infinity'];
+    if (reserved.includes(value.toLowerCase())) return true;
+    // 看起来像数字 (且非空)
+    if (value.length > 0 && !isNaN(Number(value))) return true;
+
+    return false;
+  }
+
   private serializePrimitive(value: any): string {
     const type = this.getDataType(value);
 
@@ -123,8 +208,10 @@ class Serializer {
       case DataType.BOOLEAN:
       case DataType.NUMBER:
         return String(value);
-      case DataType.STRING:
-        return value;
+      case DataType.STRING: {
+        const str = value as string;
+        return this.shouldQuote(str) ? `"${str.replace(/"/g, '\\"')}"` : str;
+      }
       case DataType.FUNCTION:
         return `[Function: ${value.name || 'anonymous'}]`;
       case DataType.SYMBOL:
@@ -134,6 +221,64 @@ class Serializer {
       default:
         return String(value);
     }
+  }
+
+  private serializeInline(value: any, depth: number): string | null {
+    if (depth >= this.options.maxDepth) return '[Max Depth Exceeded]';
+
+    const type = this.getDataType(value);
+
+    if (type === DataType.ARRAY) {
+      const arr = value as any[];
+      if (arr.length === 0) return '[]';
+      if (this.seen.has(arr)) return '[Circular]';
+      this.seen.add(arr);
+
+      const items: string[] = [];
+      for (const item of arr) {
+        const s = this.serializeInline(item, depth + 1);
+        if (s === null) {
+          this.seen.delete(arr);
+          return null;
+        }
+        items.push(s);
+      }
+      this.seen.delete(arr);
+
+      const space = this.options.inline.spaceInBraces ? ' ' : '';
+      const sep = this.options.inline.spaceAfterSeparator ? ', ' : ',';
+      return `[${space}${items.join(sep)}${space}]`;
+    }
+
+    if (type === DataType.OBJECT) {
+      const obj = value as Record<string, any>;
+      const keys = Object.keys(obj);
+      if (keys.length === 0) return '{}';
+      if (this.seen.has(obj)) return '[Circular]';
+      this.seen.add(obj);
+
+      const pairs: string[] = [];
+      for (const key of keys) {
+        const val = obj[key];
+        const s = this.serializeInline(val, depth + 1);
+        if (s === null) {
+          this.seen.delete(obj);
+          return null;
+        }
+        const sep = this.options.inline.spaceAfterSeparator ? ': ' : ':';
+        pairs.push(`${key}${sep}${s}`);
+      }
+      this.seen.delete(obj);
+
+      const space = this.options.inline.spaceInBraces ? ' ' : '';
+      const sep = this.options.inline.spaceAfterSeparator ? ', ' : ',';
+      return `{${space}${pairs.join(sep)}${space}}`;
+    }
+
+    // 原始类型
+    const str = this.serializePrimitive(value);
+    // 如果原始类型本身包含换行符，则无法行内化
+    return str.includes('\n') ? null : str;
   }
 
   private serializeArray(value: any[], depth: number): string {
@@ -151,18 +296,21 @@ class Serializer {
       const isSpecial =
         itemStr.startsWith('[Circular]') || itemStr.startsWith('[Max Depth');
 
+      // 判定是否为行内化后的容器
+      const isInlined = !isSpecial && !isEmpty && (itemStr[0] === '{' || itemStr[0] === '[') && !itemStr.includes('\n');
+
       const p = this.options.arrayPrefix;
-      // 对于非空的嵌套数组，采用阶梯式 (Block Style) 显示，更易读
-      if (type === DataType.ARRAY && !isEmpty && !isSpecial) {
+      // 对于非空的嵌套数组，且非行内化时，采用阶梯式 (Block Style) 显示
+      if (type === DataType.ARRAY && !isEmpty && !isSpecial && !isInlined) {
         // 只有前缀非空时才换行，否则直接返回缩进后的内容
         return p.length
           ? `${p}\n${this.indentText(itemStr, this.options.indent)}`
           : this.indentText(itemStr, this.options.indent);
       } else {
-        // 普通项或紧凑对象：前缀 + 空格(如果需要) + 内容
-        const separator = (p.length && !p.endsWith(' ')) ? ' ' : '';
+        // 普通项、行内容器或紧凑对象 (- a: 1)：前缀 + 空格(如果需要) + 内容
+        const hasSpace = this.options.inline.spaceAfterSeparator;
+        const separator = (p.length && !p.endsWith(' ') && hasSpace) ? ' ' : '';
         const prefixed = `${p}${separator}${itemStr}`;
-        // 如果 itemStr 为空，trimEnd 移除多余的分隔符空格
         const result = itemStr.length ? prefixed : prefixed.trimEnd();
         return this.padSubsequentLines(result, p.length + separator.length);
       }
@@ -194,20 +342,23 @@ class Serializer {
       const isEmpty = valStr === '{}' || valStr === '[]';
       const isSpecial =
         valStr.startsWith('[Circular]') || valStr.startsWith('[Max Depth');
-      const isComplex =
-        (valType === DataType.OBJECT || valType === DataType.ARRAY) &&
-        !isEmpty &&
-        !isSpecial;
+
+      // 判定是否为行内化后的容器
+      const isInlined = !isSpecial && !isEmpty && (valStr[0] === '{' || valStr[0] === '[') && !valStr.includes('\n');
+
+      // 判定是否为需要换行的复杂块状容器 (Block Style)
+      const isBlockContainer = (valType === DataType.OBJECT || valType === DataType.ARRAY) && !isEmpty && !isSpecial && !isInlined;
 
       const prefixPart = (p.length && !p.endsWith(' ')) ? `${p} ` : p;
+      const hasSpace = this.options.inline.spaceAfterSeparator;
 
-      if (isComplex) {
-        // 复杂容器值换行，冒号后不加空格
+      if (isBlockContainer) {
+        // 块状容器值换行，冒号后不加空格
         const header = `${prefixPart}${key}:`;
         return `${header}\n${this.indentText(valStr, this.options.indent)}`;
       } else {
-        // 简单值紧跟在 key 后面
-        const header = `${prefixPart}${key}: `;
+        // 简单值或行内化容器紧跟在 key 后面
+        const header = `${prefixPart}${key}:${hasSpace ? ' ' : ''}`;
         const result = valStr.length ? header + valStr : header.trimEnd();
         return this.padSubsequentLines(result, header.length);
       }
@@ -223,7 +374,21 @@ class Serializer {
     isInsideArray: boolean = false,
   ): string {
     const type = this.getDataType(value);
+    const isContainer = type === DataType.ARRAY || type === DataType.OBJECT;
 
+    // 1. 对于容器项，尝试进行行内化 (Flow Style)
+    if (isContainer && this.options.inline.mode !== 'never') {
+      const inlineResult = this.serializeInline(value, depth);
+      if (inlineResult !== null) {
+        const shouldInline =
+          this.options.inline.mode === 'always' ||
+          inlineResult.length <= this.options.inline.threshold;
+
+        if (shouldInline) return inlineResult;
+      }
+    }
+
+    // 2. 如果不满足行内化条件，回退到块状显示 (Block Style)
     if (type === DataType.ARRAY) {
       return this.serializeArray(value, depth);
     }
