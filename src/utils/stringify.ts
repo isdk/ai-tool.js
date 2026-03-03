@@ -1,5 +1,24 @@
 /**
  * 字符串化配置选项
+ *
+ * @description
+ * 该工具旨在生成易于人类阅读的、类 YAML 格式的文本表示。
+ *
+ * **核心渲染规则：**
+ * 1. **对象数组 (Object Array)**: 采用 YAML 风格的紧凑模式。
+ *    当对象作为数组项时，会忽略对象自身的 `objectPrefix`，并将第一个键值对紧跟在数组前缀 `-` 后。
+ *    示例：`[{a: 1, b: 2}]` -> `- a: 1\n  b: 2`
+ *
+ * 2. **嵌套数组 (Nested Array)**: 采用阶梯式 (Block Style)。
+ *    内层数组会从新的一行开始，并相对于父级缩进。
+ *    示例：`[[1, 2]]` -> `-\n  - 1\n  - 2`
+ *
+ * 3. **多行字符串对齐**: 自动计算前缀和键名的长度，确保多行文本的后续行与首行左对齐。
+ *
+ * **暂不支持的特性 (Limitations):**
+ * - 紧凑行内式 (Flow Style): 如 `[1, 2, 3]` 或 `{a: 1}` 的单行 JSON 风格表示。
+ * - 紧凑嵌套式 (Dash-Dash Style): 如 `- - item`。
+ * - 混合行内化: 暂不会根据数组长度自动决定是否行内化显示。
  */
 export interface StringifyOptions {
   /** 缩进单位，可以是空格数或具体的字符串 (默认：2 个空格) */
@@ -214,6 +233,22 @@ class Serializer {
   }
 }
 
+/**
+ * 将任意数据转换为易读的类 YAML 字符串
+ *
+ * @param data - 要转换的数据
+ * @param options - 配置选项
+ * @returns 格式化后的字符串
+ *
+ * @example
+ * ```ts
+ * const text = stringify([{ name: 'Alice', age: 20 }, { name: 'Bob' }]);
+ * // 输出:
+ * // - name: Alice
+ * //   age: 20
+ * // - name: Bob
+ * ```
+ */
 export function stringify(data: any, options?: StringifyOptions): string {
   const serializer = new Serializer(options ?? {});
   let result = serializer.serialize(data);
