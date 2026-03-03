@@ -4,9 +4,9 @@
 export interface StringifyOptions {
   /** 缩进单位，可以是空格数或具体的字符串 (默认：2 个空格) */
   indent?: string | number;
-  /** 数组项前缀 (默认：'- ') */
+  /** 数组项前缀 (默认：'-') */
   arrayPrefix?: string;
-  /** 对象键值对前缀 (默认：'* ') */
+  /** 对象键值对前缀 (默认：'*') */
   objectPrefix?: string;
   /** 最大递归深度，防止过深 (默认：10) */
   maxDepth?: number;
@@ -48,8 +48,8 @@ class Serializer {
       indent: typeof options.indent === 'number'
         ? ' '.repeat(options.indent)
         : (options.indent ?? '  '),
-      arrayPrefix: options.arrayPrefix ?? '- ',
-      objectPrefix: options.objectPrefix ?? '* ',
+      arrayPrefix: options.arrayPrefix ?? '-',
+      objectPrefix: options.objectPrefix ?? '*',
       maxDepth: options.maxDepth ?? 10,
       ensureNewLineForMultiline: options.ensureNewLineForMultiline ?? false,
     };
@@ -129,16 +129,20 @@ class Serializer {
       const isSpecial =
         itemStr.startsWith('[Circular]') || itemStr.startsWith('[Max Depth');
 
+      const p = this.options.arrayPrefix;
       // 对于非空的嵌套数组，采用阶梯式 (Block Style) 显示，更易读
       if (type === DataType.ARRAY && !isEmpty && !isSpecial) {
-        return `${this.options.arrayPrefix}\n${this.indentText(
-          itemStr,
-          this.options.indent,
-        )}`;
+        // 只有前缀非空时才换行，否则直接返回缩进后的内容
+        return p.length
+          ? `${p}\n${this.indentText(itemStr, this.options.indent)}`
+          : this.indentText(itemStr, this.options.indent);
       } else {
-        // 普通项或紧凑对象：前缀 + 内容，后续行补齐前缀长度以保持左对齐
-        const prefixed = `${this.options.arrayPrefix}${itemStr}`;
-        return this.padSubsequentLines(prefixed, this.options.arrayPrefix.length);
+        // 普通项或紧凑对象：前缀 + 空格(如果需要) + 内容
+        const separator = (p.length && !p.endsWith(' ')) ? ' ' : '';
+        const prefixed = `${p}${separator}${itemStr}`;
+        // 如果 itemStr 为空，trimEnd 移除多余的分隔符空格
+        const result = itemStr.length ? prefixed : prefixed.trimEnd();
+        return this.padSubsequentLines(result, p.length + separator.length);
       }
     });
 
@@ -158,7 +162,7 @@ class Serializer {
     if (depth >= this.options.maxDepth) return '[Max Depth Exceeded]';
 
     // 如果该对象是在数组内直接显示的，则省略对象前缀（YAML 风格）
-    const effectivePrefix = isInsideArray ? '' : this.options.objectPrefix;
+    const p = isInsideArray ? '' : this.options.objectPrefix;
 
     const lines = keys.map((key) => {
       const val = value[key];
@@ -173,14 +177,17 @@ class Serializer {
         !isEmpty &&
         !isSpecial;
 
+      const prefixPart = (p.length && !p.endsWith(' ')) ? `${p} ` : p;
+
       if (isComplex) {
-        // 复杂容器值换行并整体缩进
-        const header = `${effectivePrefix}${key}:`;
+        // 复杂容器值换行，冒号后不加空格
+        const header = `${prefixPart}${key}:`;
         return `${header}\n${this.indentText(valStr, this.options.indent)}`;
       } else {
-        // 简单值或空容器紧跟在 key 后面
-        const header = `${effectivePrefix}${key}: `;
-        return this.padSubsequentLines(header + valStr, header.length);
+        // 简单值紧跟在 key 后面
+        const header = `${prefixPart}${key}: `;
+        const result = valStr.length ? header + valStr : header.trimEnd();
+        return this.padSubsequentLines(result, header.length);
       }
     });
 

@@ -63,9 +63,9 @@ describe('stringify', () => {
       // -
       //   - 2
       const lines = res.split('\n');
-      expect(lines[0]).toBe('- ');
+      expect(lines[0]).toBe('-');
       expect(lines[1]).toBe('  - 1');
-      expect(lines[2]).toBe('- ');
+      expect(lines[2]).toBe('-');
       expect(lines[3]).toBe('  - 2');
     });
 
@@ -91,7 +91,7 @@ describe('stringify', () => {
       expect(lines[0]).toBe('- 1');
       expect(lines[1]).toBe('- str');
       expect(lines[2]).toBe('- a: 1'); // YAML 风格
-      expect(lines[3]).toBe('- ');      // 嵌套数组阶梯式
+      expect(lines[3]).toBe('-');      // 嵌套数组阶梯式
       expect(lines[4]).toBe('  - 2');
     });
   });
@@ -239,7 +239,7 @@ describe('stringify', () => {
       expect(lines[4]).toBe('      - b');
       expect(lines[5]).toBe('    * note: first');
       expect(lines[6]).toBe('            second'); // 补齐 "* note: " 的长度
-      expect(lines[7]).toBe('- ');
+      expect(lines[7]).toBe('-');
       expect(lines[8]).toBe('  - item: nested-obj');
     });
 
