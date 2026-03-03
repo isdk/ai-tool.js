@@ -1,5 +1,5 @@
 /**
- * 字符串化配置选项
+ * 文本化配置选项
  *
  * @description
  * 该工具旨在生成易于人类阅读的、类 YAML 格式的文本表示。
@@ -20,7 +20,7 @@
  * - 紧凑嵌套式 (Dash-Dash Style): 如 `- - item`。
  * - 混合行内化: 暂不会根据数组长度自动决定是否行内化显示。
  */
-export interface StringifyOptions {
+export interface TextifyOptions {
   /** 缩进单位，可以是空格数或具体的字符串 (默认：2 个空格) */
   indent?: string | number;
   /** 数组项前缀 (默认：'-') */
@@ -35,6 +35,9 @@ export interface StringifyOptions {
    */
   ensureNewLineForMultiline?: boolean;
 }
+
+/** @deprecated 请改用 TextifyOptions */
+export type StringifyOptions = TextifyOptions;
 
 interface ResolvedOptions {
   indent: string;
@@ -61,7 +64,7 @@ class Serializer {
   private seen: WeakSet<object>;
   private options: ResolvedOptions;
 
-  constructor(options: StringifyOptions) {
+  constructor(options: TextifyOptions) {
     this.seen = new WeakSet();
     this.options = {
       indent: typeof options.indent === 'number'
@@ -234,22 +237,22 @@ class Serializer {
 }
 
 /**
- * 将任意数据转换为易读的类 YAML 字符串
+ * 将任意数据转换为易读的类 YAML 文本
  *
  * @param data - 要转换的数据
  * @param options - 配置选项
- * @returns 格式化后的字符串
+ * @returns 格式化后的文本字符串
  *
  * @example
  * ```ts
- * const text = stringify([{ name: 'Alice', age: 20 }, { name: 'Bob' }]);
+ * const text = textify([{ name: 'Alice', age: 20 }, { name: 'Bob' }]);
  * // 输出:
  * // - name: Alice
  * //   age: 20
  * // - name: Bob
  * ```
  */
-export function stringify(data: any, options?: StringifyOptions): string {
+export function textify(data: any, options?: TextifyOptions): string {
   const serializer = new Serializer(options ?? {});
   let result = serializer.serialize(data);
 
