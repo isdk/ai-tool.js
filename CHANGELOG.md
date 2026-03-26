@@ -2,6 +2,58 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.9.0](https://github.com/isdk/ai-tool.js/compare/v0.8.2...v0.9.0) (2026-03-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* extract prompt-template.ts from index.ts
+
+### Features
+
+* add AIChatTemplateCaps type ([9f7b11e](https://github.com/isdk/ai-tool.js/commit/9f7b11e167e67e50183478dae8d12df0536c11cb))
+* add prependNewlineIfMultiline func ([0759856](https://github.com/isdk/ai-tool.js/commit/07598564c790fe8a63468fcba0cc62428f14617d))
+* add stringify func ([d5e97ba](https://github.com/isdk/ai-tool.js/commit/d5e97ba696d786675d6a99099012681f3f1de429))
+* **command-parser:** add support for flags and improve unicode/error handling ([8b26d65](https://github.com/isdk/ai-tool.js/commit/8b26d658ff62899769f733cfb0a226edc748a49d))
+* **command-parser:** Recursive Descent Command Arguments parser ([51588e2](https://github.com/isdk/ai-tool.js/commit/51588e22b95091f50fffc7c1f49457bf82318c8c))
+* **command-parser:** support granular simplification control and output modes ([768a585](https://github.com/isdk/ai-tool.js/commit/768a5858fa0551c6cdcdd2009008ad333f083922))
+* export extractCodeBlock ([b532f2c](https://github.com/isdk/ai-tool.js/commit/b532f2c65672625d9cc097d8567b4402e31faba3))
+* **textify:** implement smart inlining, mixed mode and quoting strategy ([a91c3e2](https://github.com/isdk/ai-tool.js/commit/a91c3e23fe05cda5f61880c05a902274f20674d6))
+* **textify:** optimize single-item container simplification and update docs ([a224471](https://github.com/isdk/ai-tool.js/commit/a224471285f73e3dce5c779210ce1f7fe60bd285))
+* **utils:** rename stringify to textify and improve formatting logic ([59acb40](https://github.com/isdk/ai-tool.js/commit/59acb4071be82abfdea957046be136d20b7f542d))
+
+
+### Bug Fixes
+
+* **build:** update nodejs versions ([d296108](https://github.com/isdk/ai-tool.js/commit/d296108757a56dd076fa22eafe4c5a0546dd89f2))
+* **stringify:** arrayPrefix and objectPrefix should only char no space in it ([81d83da](https://github.com/isdk/ai-tool.js/commit/81d83da8f700b78882a42bb9fc208f5a488a7230))
+* ts decl ([1cdd245](https://github.com/isdk/ai-tool.js/commit/1cdd2453c897e6ddb376e579eefdb380f67835f4))
+* **ts:** should re-export hash to keep compatibility ([9d99213](https://github.com/isdk/ai-tool.js/commit/9d99213fe19bc5332c529fd30fab63a018d77079))
+* **ts:** should seperate types and delcarations for export ([097c7ba](https://github.com/isdk/ai-tool.js/commit/097c7ba9b0c09d543ee9210636e392284c505477))
+* use isQuoted func ([eb69d2c](https://github.com/isdk/ai-tool.js/commit/eb69d2c87d5bc912ad8a4600699a6ec44aaf5b2f))
+* **utils:** ensure strings are stringified in jsonToMarkdownStr ([e7854bf](https://github.com/isdk/ai-tool.js/commit/e7854bf748d68d76578d4401b3b88a2922079f1f))
+
+
+### Refactor
+
+* add CmdArg prefix to name ([37ae433](https://github.com/isdk/ai-tool.js/commit/37ae433a1e9d538c94b0f24d1d144ddd0dc33e44))
+* **build:** update packages ([2fe2f68](https://github.com/isdk/ai-tool.js/commit/2fe2f68d02acb0081e5d8ea886bd18147779801c))
+* **command-parser:** rename options for clarity and remove redundant parameters ([4d9b45c](https://github.com/isdk/ai-tool.js/commit/4d9b45c61e7b0130be3ab79ac00023435c021505))
+* extrach hash to @isdk/hash package ([189bcd7](https://github.com/isdk/ai-tool.js/commit/189bcd7189d50015940b6e3a9abe73a4baf9dca6))
+* extract Deque, BinarySemaphore, Semaphore, SignalGate class to @isdk/util package ([b6ae748](https://github.com/isdk/ai-tool.js/commit/b6ae748a3563a697f213b435de5094228a7f3b83))
+* extract event, EventServer/EventClient to @isdk/tool-event ([2338c1b](https://github.com/isdk/ai-tool.js/commit/2338c1b330227e1f03e156c01f50117017aef779))
+* extract findPort func to @isdk/util ([51b04f8](https://github.com/isdk/ai-tool.js/commit/51b04f8b642c9045f53ee0ebfcfab873fa9c1632))
+* extract IntSet class to @isdk/util ([0f2559b](https://github.com/isdk/ai-tool.js/commit/0f2559b2185f624745e4ba70577b05f76a68c5fb))
+* extract prompt-template.ts from index.ts ([d9da561](https://github.com/isdk/ai-tool.js/commit/d9da561d51e433e0755a93bf71f26b3ea4feb277))
+* extract sleep func to @isdk/util ([23053c2](https://github.com/isdk/ai-tool.js/commit/23053c2048a6aa71207358732f972958de16a8e6))
+* extract to @isdk/tool-rpc and [@isdk-tool-event](https://github.com/isdk-tool-event) ([8ad2243](https://github.com/isdk/ai-tool.js/commit/8ad2243bc8b6ef06e7cc8ce2a389d8ee5fb14eb2))
+* extract ToolFunc to @isdk/tool-func package ([86f305d](https://github.com/isdk/ai-tool.js/commit/86f305d5d25415b8ead337a0926ddb0bfd3c3e19))
+* follow upstream changed ([3dc5096](https://github.com/isdk/ai-tool.js/commit/3dc5096c059fa230858ee1bb4ec5fdbc4e768353))
+* **parseJsJson:** use new command-parser ([00a4894](https://github.com/isdk/ai-tool.js/commit/00a48944a36514c55b2ee04056f409040e20a78e))
+* remove tool_calls as standard role ([4d0e4e9](https://github.com/isdk/ai-tool.js/commit/4d0e4e90f63f1fc3d20cd7211b87d4219df6dc6d))
+* update tool def etc ([22c5225](https://github.com/isdk/ai-tool.js/commit/22c5225703e6dea7995a8cd88228ee719294252c))
+* xxhashAsStr from @isdk/hash now ([d3c0b2c](https://github.com/isdk/ai-tool.js/commit/d3c0b2cd2658d95c8f5a0ad0c5a579c691cf9930))
+
 ## [0.8.2](https://github.com/isdk/ai-tool.js/compare/v0.8.1...v0.8.2) (2025-09-26)
 
 ## [0.8.1](https://github.com/isdk/ai-tool.js/compare/v0.8.0...v0.8.1) (2025-09-26)
