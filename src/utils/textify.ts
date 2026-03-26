@@ -384,7 +384,25 @@ class Serializer {
           this.options.inline.mode === 'always' ||
           inlineResult.length <= this.options.inline.threshold;
 
-        if (shouldInline) return inlineResult;
+        if (shouldInline) {
+          // 判定是否为单项容器 (单 key 对象或单 item 数组)
+          const isSingle = type === DataType.ARRAY
+            ? (value as any[]).length === 1
+            : Object.keys(value).length === 1;
+
+          // 核心优化判定：
+          // 1. 如果是对象：在根路径 (depth === 0) 或处于数组内部 (isInsideArray)，
+          //    跳过 Flow Style 包裹，回退到更简洁的 Block Style (key: value)。
+          // 2. 如果是数组：仅在根路径 (depth === 0) 跳过，简化为 (- item)。
+          //    在嵌套数组中 (isInsideArray) 保持容器特征，不跳过 Flow Style。
+          const shouldSkipFlow = type === DataType.OBJECT
+            ? (depth === 0 || isInsideArray)
+            : (depth === 0);
+
+          if (!isSingle || !shouldSkipFlow) {
+            return inlineResult;
+          }
+        }
       }
     }
 

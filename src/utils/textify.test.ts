@@ -357,6 +357,37 @@ describe('textify', () => {
         inlineStyle: { mode: 'always', spaceInBraces: true }
       })).toBe('[ 1, 2 ]');
     });
+
+    it('should handle auto inlining (One key in object)', () => {
+      const data = {
+        list: [
+          { msg: 'ok' },
+          { msg: 'error' },
+          { msg: 'retry' },
+          { msg: 'fail' }
+        ],
+        long_item: { text: 'this is a very long text that will exceed the default threshold' }
+      };
+      const res = textify(data);
+      const lines = res.split('\n');
+
+      expect(lines[0]).toBe('* list:');
+      expect(lines[1]).toBe('  - msg: ok');
+      expect(lines[2]).toBe('  - msg: error');
+      expect(lines[3]).toBe('  - msg: retry');
+      expect(lines[4]).toBe('  - msg: fail');
+
+      expect(lines[5]).toBe('* long_item:');
+      expect(lines[6]).toBe('  * text: this is a very long text that will exceed the default threshold');
+    });
+
+    it('should handle auto inlining (One item in array)', () => {
+      const data = [
+        'good',
+      ]
+      const res = textify(data);
+      expect(res).toBe('- good');
+    });
   });
 
   describe('String Quoting Strategy', () => {
@@ -398,7 +429,7 @@ describe('textify', () => {
       expect(textify(['a,b'], {
         stringQuoting: 'never',
         inlineStyle: 'always'
-      })).toBe('[a,b]');
+      })).toBe('- a,b');
       // 注意：[a,b] 在某些 YAML 解析器中会有歧义，但用户选择了 never，我们尊重。
     });
 
@@ -458,7 +489,7 @@ describe('textify', () => {
     it('should handle maxDepth in inline mode', () => {
       const data = { a: { b: { c: 1 } } };
       const res = textify(data, { inlineStyle: 'always', maxDepth: 1 });
-      expect(res).toBe('{a: [Max Depth Exceeded]}');
+      expect(res).toBe('* a: [Max Depth Exceeded]');
     });
 
     it('should combine ensureNewLineForMultiline with mixed inline styles', () => {
@@ -474,6 +505,69 @@ describe('textify', () => {
       const data = { a: 1, b: [1, 2, { c: 3 }] };
       const res = textify(data, { inlineStyle: { threshold: 1000 } });
       expect(res).toBe('{a: 1, b: [1, 2, {c: 3}]}');
+    });
+  });
+
+  describe('Single Item Container Simplification (Optimization)', () => {
+    it('should simplify root single-key object', () => {
+      // 以前: {a: 1} -> 现在: * a: 1
+      expect(textify({ a: 1 })).toBe('* a: 1');
+    });
+
+    it('should simplify root single-item array', () => {
+      // 以前: [1] -> 现在: - 1
+      expect(textify([1])).toBe('- 1');
+    });
+
+    it('should simplify single-key objects inside an array', () => {
+      const data = [{ a: 1 }, { b: 2 }];
+      // 强制 threshold 为 0 以测试 Block Style 下的简化
+      const res = textify(data, { inlineStyle: { threshold: 0 } });
+      expect(res).toBe('- a: 1\n- b: 2');
+    });
+
+    it('should simplify single-key object with nested object inside array', () => {
+      const data = [{ a: { b: 1 } }];
+      // 结果: - a: {b: 1}
+      // 外层数组单项 -> 简化。内层对象 {a: ...} 在 depth=1, isInsideArray=true -> 简化。
+      // 最内层 {b: 1} 在 depth=2, isInsideArray=false -> 不简化，保持 {b: 1} 以维持单行。
+      expect(textify(data)).toBe('- a: {b: 1}');
+    });
+
+    it('should simplify nested single-key objects (root and first level)', () => {
+      const data = { a: { b: 1 } };
+      // 根节点对象单 key 简化 -> * a: ...
+      // 内部对象 {b: 1} 此时 depth=1, isInsideArray=false -> 保持 {b: 1}
+      expect(textify(data)).toBe('* a: {b: 1}');
+    });
+
+    it('should handle single-item array inside array (Block Style for outer)', () => {
+      const data = [[1], [2]];
+      // 强制 threshold 为 0。
+      // 内部 [1] 是数组项 (isInsideArray=true)。
+      // 数组内部不跳过 Flow，但 threshold 为 0 导致 fallback 为 Block，得到正常的阶梯结构。
+      const res = textify(data, { inlineStyle: { threshold: 0 } });
+      const lines = res.split('\n');
+      expect(lines[0]).toBe('-');
+      expect(lines[1]).toBe('  - 1');
+      expect(lines[2]).toBe('-');
+      expect(lines[3]).toBe('  - 2');
+    });
+
+    it('should handle root single-item array containing another single-item array', () => {
+      const data = [[1]];
+      // 根 [[1]] depth=0, isSingle=true -> 跳过 Flow。
+      // 内部 [1] depth=1, isInsideArray=true -> 不跳过 Flow。
+      // 最终结果: - [1]
+      expect(textify(data)).toBe('- [1]');
+    });
+
+    it('should not simplify if object has multiple keys', () => {
+      expect(textify({ a: 1, b: 2 })).toBe('{a: 1, b: 2}');
+    });
+
+    it('should not simplify if array has multiple items', () => {
+      expect(textify([1, 2])).toBe('[1, 2]');
     });
   });
 });
