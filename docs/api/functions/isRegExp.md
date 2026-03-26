@@ -8,7 +8,7 @@
 
 > **isRegExp**(`value`): `boolean`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/isRegExp.ts:21](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/isRegExp.ts#L21)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/isRegExp.ts:21](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/isRegExp.ts#L21)
 
 Checks if the provided value is a regular expression.
 

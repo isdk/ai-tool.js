@@ -6,7 +6,7 @@
 
 # Interface: ToolFuncPackage
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:316
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:368
 
 Describes a package of tool functions, including methods for registration and unregistration.
 
@@ -16,7 +16,7 @@ Describes a package of tool functions, including methods for registration and un
 
 > **name**: `string`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:321
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:373
 
 The name of the tool function package.
 
@@ -26,7 +26,7 @@ The name of the tool function package.
 
 > **register**: (`data?`) => `void`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:326
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:378
 
 A method to register all functions within the package.
 
@@ -48,7 +48,7 @@ Optional data to pass to the registration process.
 
 > `optional` **unregister**: () => `void`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:330
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:382
 
 An optional method to unregister all functions within the package.
 

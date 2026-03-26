@@ -6,7 +6,7 @@
 
 # Enumeration: AsyncFeatureBits
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:45
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:95
 
 ## Enumeration Members
 
@@ -14,7 +14,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:45
 
 > **Cancelable**: `1`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:47
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:97
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:47
 
 > **MultiTask**: `0`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:46
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:96
 
 ***
 
@@ -30,4 +30,4 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:46
 
 > **Priority**: `2`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:48
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:98

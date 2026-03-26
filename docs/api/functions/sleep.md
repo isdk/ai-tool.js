@@ -8,7 +8,7 @@
 
 > **sleep**(`ms`): `Promise`\<`void`\>
 
-Defined in: @isdk/util/dist/index.d.ts:604
+Defined in: @isdk/util/dist/index.d.ts:603
 
 Suspends execution for a specified number of milliseconds
 

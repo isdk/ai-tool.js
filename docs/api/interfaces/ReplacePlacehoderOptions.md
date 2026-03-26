@@ -6,7 +6,7 @@
 
 # Interface: ReplacePlacehoderOptions
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:464](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/parse-command.ts#L464)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/command-parser/utils.ts:3](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/command-parser/utils.ts#L3)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:464](htt
 
 > `optional` **endChar**: `string` \| `string`[]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:466](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/parse-command.ts#L466)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/command-parser/utils.ts:5](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/command-parser/utils.ts#L5)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:466](htt
 
 > `optional` **placehoders**: `string`[]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:468](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/parse-command.ts#L468)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/command-parser/utils.ts:7](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/command-parser/utils.ts#L7)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:468](htt
 
 > `optional` **placeholder**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:467](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/parse-command.ts#L467)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/command-parser/utils.ts:6](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/command-parser/utils.ts#L6)
 
 ***
 
@@ -38,4 +38,4 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:467](htt
 
 > `optional` **startChar**: `string` \| `string`[]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:465](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/parse-command.ts#L465)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/command-parser/utils.ts:4](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/command-parser/utils.ts#L4)

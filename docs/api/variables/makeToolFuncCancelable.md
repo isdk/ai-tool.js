@@ -8,7 +8,7 @@
 
 > `const` **makeToolFuncCancelable**: \<`T`\>(`targetClass?`, `options?`) => `T` & *typeof* [`CancelableAbility`](../classes/CancelableAbility.md) & `T` *extends* (...`args`) => `any` ? `InstanceType`\<`T`\> : `T` & [`CancelableAbility`](../classes/CancelableAbility.md)
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:113
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1072
 
 ## Type Parameters
 

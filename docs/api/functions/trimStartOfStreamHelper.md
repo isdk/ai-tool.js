@@ -8,7 +8,7 @@
 
 > **trimStartOfStreamHelper**(): (`text`) => `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/stream/ai-stream.ts:90](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/stream/ai-stream.ts#L90)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/stream/ai-stream.ts:90](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/stream/ai-stream.ts#L90)
 
 Returns a stateful function that, when invoked, trims leading whitespace
 from the input text. The trimming only occurs on the first invocation, ensuring that

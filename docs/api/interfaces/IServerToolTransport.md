@@ -6,7 +6,7 @@
 
 # Interface: IServerToolTransport
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:339
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:407
 
 Defines the public interface for a server-side transport,
 responsible for exposing ServerTools to the network.
@@ -25,7 +25,7 @@ responsible for exposing ServerTools to the network.
 
 > **apiRoot**: `string`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:86
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:127
 
 The root endpoint for the remote service.
 For HTTP, this is a URL. For IPC, it could be a channel name.
@@ -40,7 +40,7 @@ For HTTP, this is a URL. For IPC, it could be a channel name.
 
 > `optional` **options**: `any`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:90
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:131
 
 Additional options for the transport start or fetch, passed by mount.
 
@@ -54,7 +54,7 @@ Additional options for the transport start or fetch, passed by mount.
 
 > **Tools**: *typeof* [`ToolFunc`](../classes/ToolFunc.md)
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:81
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:122
 
 #### Inherited from
 
@@ -66,7 +66,7 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:81
 
 > `optional` **getRaw**(): `any`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:367
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:435
 
 Gets the underlying raw server instance.
 
@@ -80,7 +80,7 @@ Gets the underlying raw server instance.
 
 > **mount**(`serverTools`, `apiPrefix?`, `options?`): `void`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:352
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:420
 
 Mounts the ServerTools registry, creating the necessary API routes.
 
@@ -123,7 +123,7 @@ A container for transport-specific options. For example,
 
 > **start**(`options?`): `Promise`\<`any`\>
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:357
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:425
 
 Starts the transport layer, making it listen for incoming connections.
 
@@ -145,7 +145,7 @@ Protocol-specific options (e.g., { port, host }).
 
 > **stop**(`force?`): `Promise`\<`void`\>
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:363
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:431
 
 Stops the server instance gracefully.
 

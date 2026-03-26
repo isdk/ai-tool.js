@@ -6,18 +6,18 @@
 
 # Function: createCallbacksTransformer()
 
-> **createCallbacksTransformer**\<`I`, `O`\>(`cb`): `TransformStream`\<`I`, `O`\>
+> **createCallbacksTransformer**\<`I`, `O`\>(`cb?`): `TransformStream`\<`I`, `O`\>
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:40
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:90
 
-Creates a transform stream that invokes optional callback functions.
-The transform stream uses the provided callbacks to execute custom logic at different stages of the stream's lifecycle.
-- `onStart`: Called once when the stream is initialized.
-- `onTransform`: Called for each tokenized message.
-- `onCompletion`: Called every time an AIStream completion message is received. This can occur multiple times when using e.g. OpenAI functions
-- `onFinal`: Called once when the stream is closed with the final completion message.
+Creates a transform stream that invokes optional callback functions during its lifecycle.
 
-This function is useful when you want to process a stream of messages and perform specific actions during the stream's lifecycle.
+### Key Features:
+- **Unified Cleanup**: The `onClose` hook ensures resource recovery happens once and only once.
+- **Zero-Copy Optimization**: If `onTransform` is omitted, it leverages the engine's internal
+  optimized identity path for maximum throughput.
+- **Cancellation Support**: Explicitly handles the `cancel` hook, critical for Web/RPC scenarios.
+- **Robustness**: Protects the stream lifecycle even if callbacks themselves throw errors.
 
 ## Type Parameters
 
@@ -31,23 +31,27 @@ This function is useful when you want to process a stream of messages and perfor
 
 ## Parameters
 
-### cb
+### cb?
 
-`undefined` | [`StreamCallbacksAndOptions`](../interfaces/StreamCallbacksAndOptions.md)\<`I`, `O`\>
+[`StreamCallbacksAndOptions`](../interfaces/StreamCallbacksAndOptions.md)\<`I`, `O`\>
+
+An object containing optional lifecycle callbacks.
 
 ## Returns
 
 `TransformStream`\<`I`, `O`\>
 
-A transform stream that encodes input messages as Uint8Array and allows the execution of custom logic through callbacks.
+A TransformStream that allows the execution of custom logic through callbacks.
 
 ## Example
 
-```ts
-const callbacks = {
-  onStart: async () => console.log('Stream started'),
-  onTransform: async (chunk) => console.log('Token:',chunk),
-  onFinal: async () => data.close()
-};
-const transformer = createCallbacksTransformer(callbacks);
+```typescript
+const transformer = createCallbacksTransformer({
+  onStart: (c) => c.enqueue("START_OF_STREAM"),
+  onTransform: (chunk) => chunk.toUpperCase(),
+  onClose: (status, reason) => {
+    console.log(`Stream closed with status: ${status}`);
+    myTaskHandle.release(); // Guaranteed cleanup
+  }
+});
 ```

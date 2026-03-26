@@ -6,7 +6,7 @@
 
 # Interface: FuncParams
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:158
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:184
 
 A map of function parameters, where each key is the parameter name.
 The value can be either a detailed `FuncParam` object or a simple type string.

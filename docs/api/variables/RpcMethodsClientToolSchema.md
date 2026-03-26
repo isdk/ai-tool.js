@@ -8,7 +8,7 @@
 
 > `const` **RpcMethodsClientToolSchema**: `object`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index.d.ts:17
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index.d.ts:18
 
 ## Type Declaration
 

@@ -8,7 +8,7 @@
 
 > **genUrlParamsStr**(`objParam`, `omitQuestionMark?`): `string`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:333
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:401
 
 Utility to serialize an object into a URL query parameter string.
 

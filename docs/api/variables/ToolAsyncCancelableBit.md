@@ -8,4 +8,4 @@
 
 > `const` **ToolAsyncCancelableBit**: `1` = `1`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:43
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:93

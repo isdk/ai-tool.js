@@ -6,7 +6,7 @@
 
 # Interface: ServerFuncItem
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:248
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:312
 
 Configuration interface for a `ServerTools` item.
 Extends `RemoteFuncItem` with server-specific options.
@@ -25,7 +25,7 @@ Extends `RemoteFuncItem` with server-specific options.
 
 > `optional` **action**: `"get"` \| `"post"` \| `"put"` \| `"delete"` \| `"patch"` \| `"list"` \| `"res"`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:60
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:82
 
 The action to be used for the remote call. This typically represents an RPC method name.
 Only for RESTful HTTP transports, it might be mapped to a standard HTTP method (e.g., GET, POST)
@@ -40,7 +40,7 @@ Only for RESTful HTTP transports, it might be mapped to a standard HTTP method (
 
 > `optional` **alias**: `string` \| `string`[]
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:232
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:258
 
 Optional aliases for the function name.
 
@@ -54,7 +54,7 @@ Optional aliases for the function name.
 
 > `optional` **allowExportFunc**: `boolean`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:255
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:319
 
 If set to true, the body of the function (`func`) will be serialized and sent
 to the client when tools are loaded. This allows the client to execute the
@@ -66,7 +66,7 @@ function locally instead of making a remote call. Defaults to false.
 
 > `optional` **apiRoot**: `string`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:54
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:76
 
 The root endpoint for the remote service.
 
@@ -84,7 +84,7 @@ Use `transport` instead.
 
 > `optional` **asyncFeatures**: `number`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:246
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:272
 
 A bitmask representing asynchronous features supported by the function, built from `AsyncFeatureBits`.
 This allows the system to understand if a function supports capabilities like cancellation or multi-tasking.
@@ -114,7 +114,7 @@ const func = new ToolFunc({
 
 > `optional` **depends**: `object`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:269
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:295
 
 A map of dependencies this function has on other tool functions.
 Declaring dependencies ensures that they are automatically registered when this function is registered.
@@ -153,7 +153,7 @@ mainFunc.register();
 
 > `optional` **description**: `string`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:276
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:302
 
 A detailed description of what the function does.
 
@@ -163,11 +163,25 @@ A detailed description of what the function does.
 
 ***
 
+### expectedDuration?
+
+> `optional` **expectedDuration**: `number`
+
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:102
+
+The expected duration of the remote call in milliseconds.
+
+#### Inherited from
+
+[`RemoteFuncItem`](RemoteFuncItem.md).[`expectedDuration`](RemoteFuncItem.md#expectedduration)
+
+***
+
 ### fetchOptions?
 
 > `optional` **fetchOptions**: `any`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:65
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:87
 
 Addtional options to be passed to the underlying `fetch` call in a transport.
 
@@ -181,7 +195,7 @@ Addtional options to be passed to the underlying `fetch` call in a transport.
 
 > `optional` **isApi**: `boolean`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:221
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:247
 
 If true, indicates that this function should be treated as a server-side API.
 
@@ -195,7 +209,7 @@ If true, indicates that this function should be treated as a server-side API.
 
 > `optional` **name**: `string`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:178
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:204
 
 The unique name of the function.
 
@@ -209,7 +223,7 @@ The unique name of the function.
 
 > `optional` **params**: [`FuncParams`](FuncParams.md) \| [`FuncParam`](FuncParam.md)[]
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:183
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:209
 
 Parameter definitions, which can be an object mapping names to definitions or an array for positional parameters.
 
@@ -223,7 +237,7 @@ Parameter definitions, which can be an object mapping names to definitions or an
 
 > `optional` **result**: `string` \| `Record`\<`string`, `any`\>
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:188
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:214
 
 The expected return type of the function, described as a string or a JSON schema object.
 
@@ -237,7 +251,7 @@ The expected return type of the function, described as a string or a JSON schema
 
 > `optional` **scope**: `any`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:193
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:219
 
 The execution scope or context (`this`) for the function.
 
@@ -251,7 +265,7 @@ The execution scope or context (`this`) for the function.
 
 > `optional` **setup**: (`this`, `options?`) => `void`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:216
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:242
 
 A lifecycle hook called once during the `ToolFunc` instance's initialization.
 It allows for initial setup, state configuration, or property modification on the instance
@@ -297,10 +311,9 @@ console.log(myFunc.customState); // Outputs: 'configured'
 
 > `optional` **stream**: `boolean`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:227
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:106
 
-If true, indicates that the function has the *capability* to stream its output.
-Whether a specific call is streamed is determined by a `stream` property in the runtime parameters.
+Whether the tool returns a stream.
 
 #### Inherited from
 
@@ -312,7 +325,7 @@ Whether a specific call is streamed is determined by a `stream` property in the 
 
 > `optional` **tags**: `string` \| `string`[]
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:198
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:224
 
 Tags for grouping or filtering functions.
 
@@ -322,11 +335,49 @@ Tags for grouping or filtering functions.
 
 ***
 
+### timeout?
+
+> `optional` **timeout**: `number` \| \{ `keepAliveOnTimeout?`: `boolean`; `streamIdleTimeout?`: `number`; `value`: `number`; \}
+
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:91
+
+The timeout configuration for the remote call.
+
+#### Type Declaration
+
+`number`
+
+\{ `keepAliveOnTimeout?`: `boolean`; `streamIdleTimeout?`: `number`; `value`: `number`; \}
+
+#### keepAliveOnTimeout?
+
+> `optional` **keepAliveOnTimeout**: `boolean`
+
+Whether to keep the server-side function running after a timeout.
+
+#### streamIdleTimeout?
+
+> `optional` **streamIdleTimeout**: `number`
+
+The idle timeout for streaming responses in milliseconds.
+
+#### value
+
+> **value**: `number`
+
+The hard timeout in milliseconds.
+
+#### Inherited from
+
+[`RemoteFuncItem`](RemoteFuncItem.md).[`timeout`](RemoteFuncItem.md#timeout)
+
+***
+
 ### title?
 
 > `optional` **title**: `string`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:281
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:307
 
 A concise, human-readable title for the function, often used in UI or by AI.
 

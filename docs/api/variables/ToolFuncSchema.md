@@ -8,7 +8,7 @@
 
 > `const` **ToolFuncSchema**: `object`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:647
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:936
 
 **`Internal`**
 

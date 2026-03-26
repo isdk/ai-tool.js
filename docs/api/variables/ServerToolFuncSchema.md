@@ -8,7 +8,7 @@
 
 > `const` **ServerToolFuncSchema**: `object`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:314
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:373
 
 **`Internal`**
 
@@ -62,6 +62,14 @@ The schema definition for `ServerTools` properties.
 
 > **type**: `string`
 
+### expectedDuration
+
+> **expectedDuration**: `object`
+
+#### expectedDuration.type
+
+> **type**: `string`
+
 ### fetchOptions
 
 > **fetchOptions**: `object`
@@ -69,3 +77,19 @@ The schema definition for `ServerTools` properties.
 #### fetchOptions.type
 
 > **type**: `string`
+
+### stream
+
+> **stream**: `object`
+
+#### stream.type
+
+> **type**: `string`
+
+### timeout
+
+> **timeout**: `object`
+
+#### timeout.type
+
+> **type**: `string`[]

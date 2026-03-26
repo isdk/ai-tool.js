@@ -6,9 +6,9 @@
 
 # Function: funcWithMeta()
 
-> **funcWithMeta**(`fn`, `meta`, `ignoreExists?`): `undefined` \| `Function` \| [`ToolFunc`](../classes/ToolFunc.md)
+> **funcWithMeta**(`fn`, `meta`, `ignoreExists?`): `Function` \| [`ToolFunc`](../classes/ToolFunc.md) \| `undefined`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:705
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:994
 
 Attaches metadata to a function or `ToolFunc` object.
 
@@ -36,6 +36,6 @@ If `true`, new metadata overwrites existing keys. If `false`, it merges deeply, 
 
 ## Returns
 
-`undefined` \| `Function` \| [`ToolFunc`](../classes/ToolFunc.md)
+`Function` \| [`ToolFunc`](../classes/ToolFunc.md) \| `undefined`
 
 The updated function or `ToolFunc` with metadata, or `undefined` if the operation was skipped.

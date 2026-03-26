@@ -6,9 +6,9 @@
 
 # Function: createEndWithRepetitionDetector()
 
-> **createEndWithRepetitionDetector**(`repetitionThreshold`): (`value`) => `null` \| `RegExpExecArray`
+> **createEndWithRepetitionDetector**(`repetitionThreshold`): (`value`) => `RegExpExecArray` \| `null`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/end-with-repeated-sequence.ts:3](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/end-with-repeated-sequence.ts#L3)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/end-with-repeated-sequence.ts:3](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/end-with-repeated-sequence.ts#L3)
 
 ## Parameters
 
@@ -18,7 +18,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/end-with-repeated-sequenc
 
 ## Returns
 
-> (`value`): `null` \| `RegExpExecArray`
+> (`value`): `RegExpExecArray` \| `null`
 
 ### Parameters
 
@@ -28,4 +28,4 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/end-with-repeated-sequenc
 
 ### Returns
 
-`null` \| `RegExpExecArray`
+`RegExpExecArray` \| `null`

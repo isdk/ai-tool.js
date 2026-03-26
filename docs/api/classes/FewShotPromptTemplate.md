@@ -6,7 +6,7 @@
 
 # Class: FewShotPromptTemplate\<T\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:39](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/prompt/few-shot-prompt-template.ts#L39)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:39](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/prompt/few-shot-prompt-template.ts#L39)
 
 The `StringTemplate` class is a versatile template engine that supports dynamic template creation,
 formatting, and partial data processing. It extends the `BaseFactory` class and provides methods
@@ -51,7 +51,7 @@ console.log(result); // Output: "Formatted: Hello World"
 
 > **new FewShotPromptTemplate**\<`T`\>(`options`): `FewShotPromptTemplate`\<`T`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:50](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/prompt/few-shot-prompt-template.ts#L50)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:50](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/prompt/few-shot-prompt-template.ts#L50)
 
 #### Parameters
 
@@ -73,7 +73,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-te
 
 > **compiledTemplate**: `any`
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:54
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:55
 
 Declares the compiled template instance.
 
@@ -85,9 +85,9 @@ Declares the compiled template instance.
 
 ### data
 
-> **data**: `undefined` \| `Record`\<`string`, `any`\>
+> **data**: `Record`\<`string`, `any`\> \| `undefined`
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:66
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:67
 
 Declares the data object used for template interpolation.
 
@@ -99,9 +99,9 @@ Declares the data object used for template interpolation.
 
 ### examplePrompt
 
-> **examplePrompt**: `undefined` \| [`PromptTemplate`](PromptTemplate.md)
+> **examplePrompt**: [`PromptTemplate`](PromptTemplate.md) \| `undefined`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:41](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/prompt/few-shot-prompt-template.ts#L41)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:41](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/prompt/few-shot-prompt-template.ts#L41)
 
 ***
 
@@ -109,7 +109,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-te
 
 > **examples**: [`PromptExamples`](../type-aliases/PromptExamples.md)\<`T`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:40](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/prompt/few-shot-prompt-template.ts#L40)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:40](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/prompt/few-shot-prompt-template.ts#L40)
 
 ***
 
@@ -117,15 +117,15 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-te
 
 > **exampleSeparator**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:43](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/prompt/few-shot-prompt-template.ts#L43)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:43](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/prompt/few-shot-prompt-template.ts#L43)
 
 ***
 
 ### inputVariables
 
-> **inputVariables**: `undefined` \| `string`[]
+> **inputVariables**: `string`[] \| `undefined`
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:70
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:71
 
 Declares the list of input variables expected by the template.
 
@@ -139,7 +139,21 @@ Declares the list of input variables expected by the template.
 
 > **prefix**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:44](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/prompt/few-shot-prompt-template.ts#L44)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:44](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/prompt/few-shot-prompt-template.ts#L44)
+
+***
+
+### raw
+
+> **raw**: `boolean` \| `undefined`
+
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:75
+
+Declares whether to return the raw value if the template is a pure placeholder.
+
+#### Inherited from
+
+[`PromptTemplate`](PromptTemplate.md).[`raw`](PromptTemplate.md#raw)
 
 ***
 
@@ -147,7 +161,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-te
 
 > **suffix**: `string`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:42](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/prompt/few-shot-prompt-template.ts#L42)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:42](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/prompt/few-shot-prompt-template.ts#L42)
 
 ***
 
@@ -155,7 +169,7 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-te
 
 > **template**: `string`
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:58
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:59
 
 Declares the raw template string.
 
@@ -167,9 +181,9 @@ Declares the raw template string.
 
 ### templateFormat
 
-> **templateFormat**: `undefined` \| `string`
+> **templateFormat**: `string` \| `undefined`
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:62
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:63
 
 Declares the format of the template (e.g., 'default').
 
@@ -339,9 +353,9 @@ The Root Factory class
 
 ### \_format()
 
-> **\_format**(`data`): `Promise`\<`string`\>
+> **\_format**(`data`): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:69](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/prompt/few-shot-prompt-template.ts#L69)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:69](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/prompt/few-shot-prompt-template.ts#L69)
 
 Placeholder method for formatting the template. Must be implemented by subclasses.
 
@@ -355,7 +369,7 @@ The data object used for interpolation.
 
 #### Returns
 
-`Promise`\<`string`\>
+`Promise`\<`any`\>
 
 A formatted string or a promise resolving to the formatted string.
 
@@ -369,7 +383,7 @@ A formatted string or a promise resolving to the formatted string.
 
 > **\_initialize**(`options?`): `void`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:54](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/prompt/few-shot-prompt-template.ts#L54)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:54](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/prompt/few-shot-prompt-template.ts#L54)
 
 Placeholder method for initializing the template. Must be implemented by subclasses.
 
@@ -395,7 +409,7 @@ Configuration options for initialization.
 
 > **filterData**(`data`): `Record`\<`string`, `any`\>
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:172
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:237
 
 Filters the input data to include only the specified input variables.
 
@@ -431,9 +445,9 @@ console.log(filteredData); // Output: { name: "Alice" }
 
 ### format()
 
-> **format**(`data?`): `Promise`\<`string`\>
+> **format**(`data?`, `visited?`): `Promise`\<`any`\>
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:219
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:284
 
 Formats the template using the provided data, supporting asynchronous processing.
 
@@ -445,9 +459,13 @@ Formats the template using the provided data, supporting asynchronous processing
 
 The data object used for interpolation.
 
+##### visited?
+
+`Set`\<`any`\>
+
 #### Returns
 
-`Promise`\<`string`\>
+`Promise`\<`any`\>
 
 A promise that resolves to the formatted template string.
 
@@ -468,11 +486,31 @@ console.log(result); // Output: "Hello"
 
 ***
 
+### getPurePlaceholderVariable()
+
+> **getPurePlaceholderVariable**(): `string` \| `undefined`
+
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:200
+
+Returns the variable name if this template instance is a pure placeholder.
+
+#### Returns
+
+`string` \| `undefined`
+
+The variable name if the template is a pure placeholder, undefined otherwise.
+
+#### Inherited from
+
+[`PromptTemplate`](PromptTemplate.md).[`getPurePlaceholderVariable`](PromptTemplate.md#getpureplaceholdervariable)
+
+***
+
 ### initialize()
 
 > **initialize**(`options?`): `void`
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:197
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:262
 
 Initializes the template instance with the provided options.
 
@@ -494,11 +532,31 @@ Configuration options for initialization.
 
 ***
 
+### isPurePlaceholder()
+
+> **isPurePlaceholder**(): `boolean`
+
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:222
+
+Checks if this template instance is a pure placeholder.
+
+#### Returns
+
+`boolean`
+
+True if the template is a pure placeholder, false otherwise.
+
+#### Inherited from
+
+[`PromptTemplate`](PromptTemplate.md).[`isPurePlaceholder`](PromptTemplate.md#ispureplaceholder)
+
+***
+
 ### partial()
 
 > **partial**(`data`): [`PromptTemplate`](PromptTemplate.md)
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:247
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:312
 
 Creates a new `StringTemplate` instance with partially filled data.
 This is useful for pre-filling some variables while leaving others to be filled later.
@@ -545,11 +603,51 @@ console.log(dateResult.date instanceof Date); // Output: true
 
 ***
 
+### renderRawValue()
+
+> **renderRawValue**(`value`, `data`, `visited?`): `Promise`\<`any`\>
+
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:214
+
+Renders the raw value recursively, resolving any nested templates.
+
+#### Parameters
+
+##### value
+
+`any`
+
+The value to render.
+
+##### data
+
+`Record`\<`string`, `any`\>
+
+The data object used for interpolation.
+
+##### visited?
+
+`Set`\<`any`\>
+
+A set to track visited objects to avoid infinite recursion.
+
+#### Returns
+
+`Promise`\<`any`\>
+
+A promise that resolves to the rendered raw value.
+
+#### Inherited from
+
+[`PromptTemplate`](PromptTemplate.md).[`renderRawValue`](PromptTemplate.md#renderrawvalue)
+
+***
+
 ### toJSON()
 
 > **toJSON**(`options`): [`FewShotPromptTemplateOptions`](../interfaces/FewShotPromptTemplateOptions.md)\<`T`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:94](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/prompt/few-shot-prompt-template.ts#L94)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:94](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/prompt/few-shot-prompt-template.ts#L94)
 
 Serializes the `StringTemplate` instance into a JSON-compatible object.
 
@@ -587,7 +685,7 @@ console.log(serialized);
 
 ### \_findRootFactory()
 
-> `static` **\_findRootFactory**(`aClass`): `undefined` \| *typeof* `BaseFactory`
+> `static` **\_findRootFactory**(`aClass`): *typeof* `BaseFactory` \| `undefined`
 
 Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:99
 
@@ -605,7 +703,7 @@ the abstract root factory class
 
 #### Returns
 
-`undefined` \| *typeof* `BaseFactory`
+*typeof* `BaseFactory` \| `undefined`
 
 #### Inherited from
 
@@ -685,7 +783,7 @@ remove all aliases of the registered item or itself
 
 the registered item or name
 
-`undefined` | `string` | *typeof* `BaseFactory`
+`string` | *typeof* `BaseFactory` | `undefined`
 
 #### Returns
 
@@ -699,7 +797,7 @@ the registered item or name
 
 ### createObject()
 
-> `static` **createObject**(`aName`, `aOptions`): `undefined` \| `BaseFactory`
+> `static` **createObject**(`aName`, `aOptions`): `BaseFactory` \| `undefined`
 
 Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:241
 
@@ -717,7 +815,7 @@ Create a new object instance of Factory
 
 #### Returns
 
-`undefined` \| `BaseFactory`
+`BaseFactory` \| `undefined`
 
 #### Inherited from
 
@@ -727,7 +825,7 @@ Create a new object instance of Factory
 
 ### findRootFactory()
 
-> `abstract` `static` **findRootFactory**(): `undefined` \| *typeof* `BaseFactory`
+> `abstract` `static` **findRootFactory**(): *typeof* `BaseFactory` \| `undefined`
 
 Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:92
 
@@ -740,7 +838,7 @@ or set _Factory directly.
 
 #### Returns
 
-`undefined` \| *typeof* `BaseFactory`
+*typeof* `BaseFactory` \| `undefined`
 
 the root factory class
 
@@ -762,7 +860,7 @@ executes a provided callback function once for each registered element.
 
 ##### cb
 
-(`ctor`, `name`) => `undefined` \| `string`
+(`ctor`, `name`) => `string` \| `undefined`
 
 the forEach callback function
 
@@ -778,9 +876,9 @@ the forEach callback function
 
 ### format()
 
-> `static` **format**(`options`): `Promise`\<`string`\>
+> `static` **format**(`options`): `Promise`\<`any`\>
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:102
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:107
 
 Formats a template using the provided options.
 
@@ -794,7 +892,7 @@ Configuration options for the template.
 
 #### Returns
 
-`Promise`\<`string`\>
+`Promise`\<`any`\>
 
 A promise that resolves to the formatted template string.
 
@@ -817,9 +915,9 @@ console.log(result); // Output: "Hello"
 
 ### formatIf()
 
-> `static` **formatIf**(`options`): `Promise`\<`undefined` \| `string`\>
+> `static` **formatIf**(`options`): `Promise`\<`any`\>
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:118
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:123
 
 Formats a template if the provided options represent a valid template.
 
@@ -833,7 +931,7 @@ Configuration options to check and format.
 
 #### Returns
 
-`Promise`\<`undefined` \| `string`\>
+`Promise`\<`any`\>
 
 A promise that resolves to the formatted template string if valid; otherwise, undefined.
 
@@ -918,7 +1016,7 @@ the name to register
 
 > `static` **from**\<`T`\>(`options`): `FewShotPromptTemplate`\<`T`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:46](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/prompt/few-shot-prompt-template.ts#L46)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/prompt/few-shot-prompt-template.ts:46](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/prompt/few-shot-prompt-template.ts#L46)
 
 Creates a new instance of the `StringTemplate` class.
 
@@ -960,7 +1058,7 @@ console.log(template instanceof TestStringTemplate); // Output: true
 
 ### get()
 
-> `static` **get**(`name`): `undefined` \| *typeof* `BaseFactory`
+> `static` **get**(`name`): *typeof* `BaseFactory` \| `undefined`
 
 Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:233
 
@@ -974,7 +1072,7 @@ Get the registered class via name
 
 #### Returns
 
-`undefined` \| *typeof* `BaseFactory`
+*typeof* `BaseFactory` \| `undefined`
 
 return the registered class if found the name
 
@@ -998,7 +1096,7 @@ get the aliases of the aClass
 
 the class or name to get aliases, means itself if no aClass specified
 
-`undefined` | `string` | *typeof* `BaseFactory`
+`string` | *typeof* `BaseFactory` | `undefined`
 
 #### Returns
 
@@ -1014,7 +1112,7 @@ aliases
 
 ### getDisplayName()
 
-> `static` **getDisplayName**(`aClass`): `undefined` \| `string`
+> `static` **getDisplayName**(`aClass`): `string` \| `undefined`
 
 Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:206
 
@@ -1026,11 +1124,11 @@ Get the display name from aClass
 
 the class, name or itself, means itself if no aClass
 
-`undefined` | `string` | `Function`
+`string` | `Function` | `undefined`
 
 #### Returns
 
-`undefined` \| `string`
+`string` \| `undefined`
 
 #### Inherited from
 
@@ -1064,6 +1162,42 @@ the unique name in the factory
 
 ***
 
+### getPurePlaceholderVariable()
+
+> `static` **getPurePlaceholderVariable**(`templateOpt`): `string` \| `undefined`
+
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:176
+
+Returns the variable name if the template is a pure placeholder.
+
+#### Parameters
+
+##### templateOpt
+
+The template options or template string to check.
+
+`string` | [`PromptTemplateOptions`](../interfaces/PromptTemplateOptions.md)
+
+#### Returns
+
+`string` \| `undefined`
+
+The variable name if the template is a pure placeholder, undefined otherwise.
+
+#### Example
+
+```typescript
+StringTemplate.getPurePlaceholderVariable("{{text}}"); // "text"
+StringTemplate.getPurePlaceholderVariable("  {{text}}  "); // "text"
+StringTemplate.getPurePlaceholderVariable("Hello {{text}}"); // undefined
+```
+
+#### Inherited from
+
+[`PromptTemplate`](PromptTemplate.md).[`getPurePlaceholderVariable`](PromptTemplate.md#getpureplaceholdervariable-2)
+
+***
+
 ### getRealName()
 
 > `static` **getRealName**(`name`): `any`
@@ -1088,7 +1222,7 @@ Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_module
 
 ### getRealNameFromAlias()
 
-> `static` **getRealNameFromAlias**(`alias`): `undefined` \| `string`
+> `static` **getRealNameFromAlias**(`alias`): `string` \| `undefined`
 
 Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-factory@2.3.0/node\_modules/custom-factory/lib/base-factory.d.ts:106
 
@@ -1104,7 +1238,7 @@ the alias name
 
 #### Returns
 
-`undefined` \| `string`
+`string` \| `undefined`
 
 the unique name in the factory
 
@@ -1114,11 +1248,49 @@ the unique name in the factory
 
 ***
 
+### isPurePlaceholder()
+
+> `static` **isPurePlaceholder**(`templateOpt`): `boolean`
+
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:192
+
+Checks if the template string is a pure placeholder (optionally surrounded by whitespace).
+A pure placeholder means the template contains only one template segment and no other text.
+
+#### Parameters
+
+##### templateOpt
+
+The template options or template string to check.
+
+`string` | [`PromptTemplateOptions`](../interfaces/PromptTemplateOptions.md)
+
+#### Returns
+
+`boolean`
+
+True if the template is a pure placeholder, false otherwise.
+
+#### Example
+
+```typescript
+StringTemplate.isPurePlaceholder("{{text}}"); // true
+StringTemplate.isPurePlaceholder("  {{text}}  "); // true
+StringTemplate.isPurePlaceholder("Hello {{text}}"); // false
+StringTemplate.isPurePlaceholder("{{text1}}{{text2}}"); // false
+```
+
+#### Inherited from
+
+[`PromptTemplate`](PromptTemplate.md).[`isPurePlaceholder`](PromptTemplate.md#ispureplaceholder-2)
+
+***
+
 ### isTemplate()
 
 > `static` **isTemplate**(`templateOpt`): `any`
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:133
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:138
 
 Determines whether the given options represent a valid template.
 
@@ -1154,9 +1326,9 @@ console.log(isValid); // Output: true
 
 ### matchTemplateSegment()
 
-> `static` **matchTemplateSegment**(`templateOpt`, `index?`): `undefined` \| `RegExpExecArray`
+> `static` **matchTemplateSegment**(`templateOpt`, `index?`): `RegExpExecArray` \| `undefined`
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:157
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:162
 
 Matches and extracts a single template segment from the provided template options.
 This method is designed to identify individual segments of a template string.
@@ -1178,7 +1350,7 @@ The default starting position in the template string to begin matching (default:
 
 #### Returns
 
-`undefined` \| `RegExpExecArray`
+`RegExpExecArray` \| `undefined`
 
 A `RegExpExecArray` representing the matched template segment, or `undefined` if no match is found.
          The `index` property of the result can be used to calculate the next position for iteration.
@@ -1240,7 +1412,7 @@ Check the name, alias or itself whether registered.
 
 the class name
 
-`undefined` | `string`
+`string` | `undefined`
 
 #### Returns
 
@@ -1294,7 +1466,7 @@ set alias to a class
 
 the class to set alias
 
-`undefined` | `string` | *typeof* `BaseFactory`
+`string` | *typeof* `BaseFactory` | `undefined`
 
 ##### alias
 
@@ -1324,7 +1496,7 @@ set aliases to a class
 
 the class to set aliases
 
-`undefined` | `string` | *typeof* `BaseFactory`
+`string` | *typeof* `BaseFactory` | `undefined`
 
 ##### aAliases
 
@@ -1366,7 +1538,7 @@ Set the display name to the aClass
 
 the class, name or itself, means itself if no aClass
 
-`undefined` | `string` | `Function`
+`string` | `Function` | `undefined`
 
 ##### aDisplayName
 
@@ -1398,7 +1570,7 @@ unregister this class in the factory
 
 the registered name or class, no name means unregister itself.
 
-`undefined` | `string` | `Function`
+`string` | `Function` | `undefined`
 
 #### Returns
 

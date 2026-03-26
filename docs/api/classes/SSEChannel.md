@@ -207,7 +207,7 @@ The client to disconnect.
 
 ### getClient()
 
-> **getClient**(`clientId`): `undefined` \| [`SSEClient`](../type-aliases/SSEClient.md)
+> **getClient**(`clientId`): [`SSEClient`](../type-aliases/SSEClient.md) \| `undefined`
 
 Defined in: @isdk/ai-tools/packages/tool-event/dist/index.d.ts:112
 
@@ -223,7 +223,7 @@ The unique ID of the client.
 
 #### Returns
 
-`undefined` \| [`SSEClient`](../type-aliases/SSEClient.md)
+[`SSEClient`](../type-aliases/SSEClient.md) \| `undefined`
 
 The matching SSEClient, or undefined if not found.
 
@@ -263,7 +263,7 @@ Lists the clients connected to the SSE channel grouped by IP address.
 
 ### publish()
 
-> **publish**(`data?`, `eventName?`, `target?`): `undefined` \| `number`
+> **publish**(`data?`, `eventName?`, `target?`): `number` \| `undefined`
 
 Defined in: @isdk/ai-tools/packages/tool-event/dist/index.d.ts:90
 
@@ -293,7 +293,7 @@ Optional. If provided, the message will be sent only to clients with matching `c
 
 #### Returns
 
-`undefined` \| `number`
+`number` \| `undefined`
 
 The ID of the message, or `undefined` if no message was sent.
 

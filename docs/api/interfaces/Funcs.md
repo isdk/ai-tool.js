@@ -6,7 +6,7 @@
 
 # Interface: Funcs
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:309
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:361
 
 A map of registered `ToolFunc` instances, indexed by their names.
 

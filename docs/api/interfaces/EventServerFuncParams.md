@@ -26,7 +26,7 @@ access to the underlying transport's request and response objects (e.g., from No
 
 > `optional` **\_req**: `any`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:236
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:295
 
 The underlying request object from the transport layer (e.g., `IncomingMessage`).
 
@@ -40,13 +40,27 @@ The underlying request object from the transport layer (e.g., `IncomingMessage`)
 
 > `optional` **\_res**: `any`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:241
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:300
 
 The underlying response or reply object from the transport layer (e.g., `ServerResponse`).
 
 #### Inherited from
 
 [`ServerFuncParams`](ServerFuncParams.md).[`_res`](ServerFuncParams.md#_res)
+
+***
+
+### \_signal?
+
+> `optional` **\_signal**: `AbortSignal`
+
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:305
+
+The AbortSignal to monitor for cancellation or timeout.
+
+#### Inherited from
+
+[`ServerFuncParams`](ServerFuncParams.md).[`_signal`](ServerFuncParams.md#_signal)
 
 ***
 

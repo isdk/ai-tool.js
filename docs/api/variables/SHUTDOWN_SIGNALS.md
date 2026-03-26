@@ -8,7 +8,7 @@
 
 > `const` **SHUTDOWN\_SIGNALS**: `string`[]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/node/before-shutdown.ts:21](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/node/before-shutdown.ts#L21)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/node/before-shutdown.ts:21](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/node/before-shutdown.ts#L21)
 
 System signals the app will listen to initiate shutdown.
 

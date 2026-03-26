@@ -6,7 +6,7 @@
 
 # Interface: CancelableAbilityOptions
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:57
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1004
 
 ## Extends
 
@@ -22,7 +22,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:57
 
 > `optional` **asyncFeatures**: [`AsyncFeatures`](../enumerations/AsyncFeatures.md)
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:58
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1005
 
 ***
 
@@ -78,7 +78,7 @@ Defined in: @isdk/ai-tools/node\_modules/.pnpm/custom-ability@2.0.1/node\_module
 
 > `optional` **isReadyFn**: [`SemaphoreIsReadyFuncType`](../type-aliases/SemaphoreIsReadyFuncType.md)
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:60
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1007
 
 ***
 
@@ -86,7 +86,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:60
 
 > `optional` **maxTaskConcurrency**: `number`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:59
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1006
 
 ***
 

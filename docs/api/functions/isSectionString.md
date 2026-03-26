@@ -6,9 +6,9 @@
 
 # Function: isSectionString()
 
-> **isSectionString**(`text`, `options?`): `null` \| `RegExpExecArray`
+> **isSectionString**(`text`, `options?`): `RegExpExecArray` \| `null`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/split-sentence.ts:197](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/split-sentence.ts#L197)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/split-sentence.ts:197](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/split-sentence.ts#L197)
 
 ## Parameters
 
@@ -22,4 +22,4 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/split-sentence.ts:197](ht
 
 ## Returns
 
-`null` \| `RegExpExecArray`
+`RegExpExecArray` \| `null`

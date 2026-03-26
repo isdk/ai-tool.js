@@ -8,4 +8,4 @@
 
 > `const` **ToolAsyncMultiTaskBit**: `0` = `0`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:42
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:92

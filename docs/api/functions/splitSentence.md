@@ -8,7 +8,7 @@
 
 > **splitSentence**(`text`, `best`): `string`[]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/split-sentence.ts:44](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/split-sentence.ts#L44)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/split-sentence.ts:44](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/split-sentence.ts#L44)
 
 Splits a text into sentences.
 This function is used to split a text into separate sentences, based on punctuation marks such as '.', '?', or '!' and other rules.

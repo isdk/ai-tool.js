@@ -8,6 +8,6 @@
 
 > `const` **ActionNames**: readonly \[`"get"`, `"post"`, `"put"`, `"delete"`, `"patch"`, `"list"`, `"res"`\]
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:8
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:10
 
 A tuple of supported action names for remote tool interactions.

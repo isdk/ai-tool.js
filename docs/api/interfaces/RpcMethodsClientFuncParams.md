@@ -6,7 +6,7 @@
 
 # Interface: RpcMethodsClientFuncParams
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index.d.ts:7
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index.d.ts:8
 
 ## Extended by
 
@@ -22,4 +22,4 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index.d.ts:7
 
 > `optional` **act**: `string`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index.d.ts:8
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index.d.ts:9

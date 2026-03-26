@@ -6,7 +6,7 @@
 
 # Class: TaskAbortController
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:62
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1009
 
 ## Extends
 
@@ -18,7 +18,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:62
 
 > **new TaskAbortController**(`parent`): `TaskAbortController`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:67
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1014
 
 #### Parameters
 
@@ -40,7 +40,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:67
 
 > `optional` **id**: [`AsyncTaskId`](../type-aliases/AsyncTaskId.md)
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:63
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1010
 
 ***
 
@@ -48,7 +48,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:63
 
 > **parent**: [`CancelableAbility`](CancelableAbility.md)
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:66
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1013
 
 ***
 
@@ -72,7 +72,7 @@ Returns the AbortSignal object associated with this object.
 
 > `optional` **streamController**: `ReadableStreamDefaultController`\<`any`\>
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:65
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1012
 
 ***
 
@@ -80,7 +80,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:65
 
 > `optional` **timeoutId**: `any`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:64
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1011
 
 ## Methods
 
@@ -88,7 +88,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:64
 
 > **abort**(`reason?`, `data?`): `void`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:68
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1015
 
 Invoking this method will set this object's AbortSignal's aborted flag and signal to any observers that the associated activity is to be aborted.
 
@@ -114,11 +114,11 @@ Invoking this method will set this object's AbortSignal's aborted flag and signa
 
 ***
 
-### throwRejected()
+### throwIfAborted()
 
-> **throwRejected**(`alreadyRejected?`): `undefined` \| `true`
+> **throwIfAborted**(`alreadyRejected?`): `true` \| `undefined`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:69
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1016
 
 #### Parameters
 
@@ -128,4 +128,26 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:69
 
 #### Returns
 
-`undefined` \| `true`
+`true` \| `undefined`
+
+***
+
+### ~~throwRejected()~~
+
+> **throwRejected**(`alreadyRejected?`): `true` \| `undefined`
+
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1020
+
+#### Parameters
+
+##### alreadyRejected?
+
+`boolean`
+
+#### Returns
+
+`true` \| `undefined`
+
+#### Deprecated
+
+use throwIfAborted instead

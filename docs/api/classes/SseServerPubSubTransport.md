@@ -107,7 +107,7 @@ A `PubSubServerSession` object representing the newly connected client session.
 
 ### getSessionFromReq()
 
-> **getSessionFromReq**(`req`): `undefined` \| [`PubSubServerSession`](../interfaces/PubSubServerSession.md)
+> **getSessionFromReq**(`req`): [`PubSubServerSession`](../interfaces/PubSubServerSession.md) \| `undefined`
 
 Defined in: @isdk/ai-tools/packages/tool-event/dist/transports/pubsub.d.ts:262
 
@@ -125,7 +125,7 @@ The request object (e.g., http.IncomingMessage or Electron.IpcMainEvent).
 
 #### Returns
 
-`undefined` \| [`PubSubServerSession`](../interfaces/PubSubServerSession.md)
+[`PubSubServerSession`](../interfaces/PubSubServerSession.md) \| `undefined`
 
 The corresponding session, or undefined if not found.
 

@@ -8,9 +8,10 @@
 
 > **replaceWithPlaceholder**(`content`, `options?`): \[`string`, `string`[]\]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:487](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/parse-command.ts#L487)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/command-parser/utils.ts:124](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/command-parser/utils.ts#L124)
 
-Replaces substrings in the given content with placeholders.
+Replaces specific wrapped substrings within a string with placeholders.
+Useful for processing strings while ignoring quoted or bracketed content.
 
 ## Parameters
 
@@ -18,26 +19,10 @@ Replaces substrings in the given content with placeholders.
 
 `string`
 
-The string content to process.
-
 ### options?
 
 [`ReplacePlacehoderOptions`](../interfaces/ReplacePlacehoderOptions.md)
 
-Optional configuration object with the following properties:
-  - `startChar` - The starting character(s) of the substrings to replace. Can be a single character or an array of characters. Defaults to `["\"", "'"]`.
-  - `endChar` - The ending character(s) of the substrings to replace. Can be a single character or an array of characters. Defaults to the value of `startChar`.
-  - `placeholder` - The prefix for the placeholder names. Defaults to `defaultPlaceholderName`.
-  - `placehoders` - An array of placeholders to use instead of generating new one.
-
 ## Returns
 
 \[`string`, `string`[]\]
-
-An array containing:
-  - `content` - The modified content with placeholders.
-  - `placehoders` - An array of the original substrings that were replaced.
-
-## Throws
-
-If the lengths of `startChar` and `endChar` are not the same.

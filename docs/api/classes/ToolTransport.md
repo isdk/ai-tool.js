@@ -6,7 +6,7 @@
 
 # Abstract Class: ToolTransport
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:94
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:135
 
 ## Extended by
 
@@ -33,7 +33,7 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:94
 
 > **apiRoot**: `string`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:95
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:136
 
 The root endpoint for the remote service.
 For HTTP, this is a URL. For IPC, it could be a channel name.
@@ -48,7 +48,7 @@ For HTTP, this is a URL. For IPC, it could be a channel name.
 
 > `optional` **options**: `any`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:97
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:138
 
 Additional options for the transport start or fetch, passed by mount.
 
@@ -62,7 +62,7 @@ Additional options for the transport start or fetch, passed by mount.
 
 > **Tools**: *typeof* [`ToolFunc`](ToolFunc.md)
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:96
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:137
 
 #### Implementation of
 
@@ -74,7 +74,7 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:96
 
 > `abstract` **\_mount**(`Tools`, `apiRoot`, `options?`): `any`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:100
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:141
 
 #### Parameters
 
@@ -100,7 +100,7 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:100
 
 > **mount**(`Tools`, `apiRoot?`, `options?`): `any`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:99
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:140
 
 #### Parameters
 
@@ -130,7 +130,7 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:99
 
 > **setApiRoot**(`apiRoot`): `void`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:98
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:139
 
 #### Parameters
 

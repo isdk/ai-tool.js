@@ -8,6 +8,6 @@
 
 > **FuncParamType** = `string`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:118
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:109
 
 Represents the data type of a function parameter as a string (e.g., `'string'`, `'number'`).

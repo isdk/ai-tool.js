@@ -8,7 +8,7 @@
 
 > **getMultiLevelExtname**(`filename`, `level?`): `string`
 
-Defined in: @isdk/util/dist/index.d.ts:193
+Defined in: @isdk/util/dist/index.d.ts:192
 
 Retrieves multi-level file extension
 

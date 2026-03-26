@@ -58,6 +58,14 @@ Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:17
 
 ***
 
+### raw?
+
+> `optional` **raw**: `boolean`
+
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:21
+
+***
+
 ### template?
 
 > `optional` **template**: `string`

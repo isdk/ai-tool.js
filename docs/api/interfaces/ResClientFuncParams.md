@@ -6,7 +6,7 @@
 
 # Interface: ResClientFuncParams
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index.d.ts:47
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index.d.ts:51
 
 ## Extends
 
@@ -22,7 +22,7 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index.d.ts:47
 
 > `optional` **act**: `string`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index.d.ts:8
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index.d.ts:9
 
 #### Inherited from
 
@@ -34,4 +34,4 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index.d.ts:8
 
 > `optional` **id**: `string` \| `number`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index.d.ts:48
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index.d.ts:52

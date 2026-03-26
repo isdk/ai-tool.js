@@ -6,9 +6,9 @@
 
 # Function: matchUrlProtocol()
 
-> **matchUrlProtocol**(`name`): `undefined` \| `string`
+> **matchUrlProtocol**(`name`): `string` \| `undefined`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/match-url-protocol.ts:23](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/match-url-protocol.ts#L23)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/match-url-protocol.ts:23](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/match-url-protocol.ts#L23)
 
 Extracts the protocol part from a URL-like string.
 
@@ -26,7 +26,7 @@ The string to inspect, expected to contain a URL.
 
 ## Returns
 
-`undefined` \| `string`
+`string` \| `undefined`
 
 - The protocol part if '://' is found; otherwise, undefined.
 

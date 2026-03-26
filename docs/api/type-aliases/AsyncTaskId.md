@@ -8,4 +8,4 @@
 
 > **AsyncTaskId** = `string` \| `number`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:56
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1003

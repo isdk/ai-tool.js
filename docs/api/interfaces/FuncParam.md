@@ -6,7 +6,7 @@
 
 # Interface: FuncParam
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:123
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:149
 
 Describes a single function parameter, including its name, type, and description.
 
@@ -16,7 +16,7 @@ Describes a single function parameter, including its name, type, and description
 
 > `optional` **description**: `string`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:143
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:169
 
 A description of the parameter, explaining its purpose and usage.
 
@@ -26,7 +26,7 @@ A description of the parameter, explaining its purpose and usage.
 
 > `optional` **name**: `string`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:128
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:154
 
 The name of the parameter.
 
@@ -36,7 +36,7 @@ The name of the parameter.
 
 > `optional` **required**: `boolean`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:138
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:164
 
 Indicates whether the parameter is required.
 
@@ -46,6 +46,6 @@ Indicates whether the parameter is required.
 
 > `optional` **type**: `string`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:133
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:159
 
 The data type of the parameter, represented as a string identifier (e.g., 'string', 'number').

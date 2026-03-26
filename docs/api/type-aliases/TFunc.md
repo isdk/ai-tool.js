@@ -8,7 +8,7 @@
 
 > **TFunc** = (`this`, ...`params`) => `any`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:168
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:194
 
 Defines the signature for a tool function's implementation.
 

@@ -8,4 +8,4 @@
 
 > `const` **ToolAsyncPriorityBit**: `2` = `2`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:44
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:94

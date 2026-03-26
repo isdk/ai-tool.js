@@ -6,7 +6,7 @@
 
 # Class: HttpServerToolTransport
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:409
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:485
 
 A concrete server transport implementation using Node.js's built-in HTTP server.
 
@@ -20,7 +20,7 @@ A concrete server transport implementation using Node.js's built-in HTTP server.
 
 > **new HttpServerToolTransport**(`options?`): `HttpServerToolTransport`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:412
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:488
 
 #### Parameters
 
@@ -42,7 +42,7 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:412
 
 > **apiRoot**: `string`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:374
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:442
 
 The root endpoint for the remote service.
 For HTTP, this is a URL. For IPC, it could be a channel name.
@@ -57,7 +57,7 @@ For HTTP, this is a URL. For IPC, it could be a channel name.
 
 > `optional` **options**: `any`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:376
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:444
 
 Additional options for the transport start or fetch, passed by mount.
 
@@ -71,7 +71,7 @@ Additional options for the transport start or fetch, passed by mount.
 
 > **server**: `Server`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:410
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:486
 
 ***
 
@@ -79,7 +79,7 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:410
 
 > **Tools**: *typeof* [`ServerTools`](ServerTools.md)
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:375
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:443
 
 #### Inherited from
 
@@ -91,7 +91,7 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:375
 
 > **\_mount**(`Tools`, `apiPrefix`, `options?`): `void`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:377
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:445
 
 #### Parameters
 
@@ -121,7 +121,7 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:377
 
 > **\_start**(`options`): `Promise`\<`void`\>
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:418
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:494
 
 #### Parameters
 
@@ -149,7 +149,7 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:418
 
 > **addDiscoveryHandler**(`apiPrefix`, `handler`): `void`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:414
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:490
 
 #### Parameters
 
@@ -175,7 +175,7 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:414
 
 > **addRpcHandler**(`serverTools`, `apiPrefix`, `options?`): `void`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:415
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:491
 
 #### Parameters
 
@@ -205,7 +205,7 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:415
 
 > **getRaw**(): `Server`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:423
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:499
 
 Gets the underlying raw server instance.
 
@@ -223,7 +223,7 @@ Gets the underlying raw server instance.
 
 > **mount**(`Tools`, `apiRoot?`, `options?`): `any`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:99
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:140
 
 Mounts the ServerTools registry, creating the necessary API routes.
 
@@ -266,7 +266,7 @@ A container for transport-specific options. For example,
 
 > **setApiRoot**(`apiRoot`): `void`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:98
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:139
 
 #### Parameters
 
@@ -288,7 +288,7 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:98
 
 > **start**(`options?`): `Promise`\<`any`\>
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:378
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:446
 
 Starts the transport layer, making it listen for incoming connections.
 
@@ -314,7 +314,7 @@ Protocol-specific options (e.g., { port, host }).
 
 > **stop**(`force?`): `Promise`\<`void`\>
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:422
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:498
 
 Stops the server instance gracefully.
 

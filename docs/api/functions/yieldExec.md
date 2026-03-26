@@ -8,7 +8,7 @@
 
 > **yieldExec**(): `Promise`\<`void`\>
 
-Defined in: @isdk/util/dist/index.d.ts:617
+Defined in: @isdk/util/dist/index.d.ts:616
 
 Yields execution control to the event loop, allowing pending I/O operations
 and scheduled tasks to run before continuing.

@@ -8,7 +8,10 @@
 
 > **SemaphoreIsReadyFuncType** = () => `Promise`\<`boolean`\> \| `boolean`
 
-Defined in: @isdk/util/dist/index.d.ts:620
+Defined in: @isdk/util/dist/index.d.ts:627
+
+就绪检查函数的类型定义。
+可以是同步或异步函数。返回 `true` 表示信号量已准备好接受新请求。
 
 ## Returns
 

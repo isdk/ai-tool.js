@@ -8,4 +8,4 @@
 
 > `const` **AIChatRoles**: readonly \[`"user"`, `"assistant"`, `"system"`, `"tool"`\]
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/chat.ts:43](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/chat.ts#L43)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/chat.ts:43](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/chat.ts#L43)

@@ -6,9 +6,9 @@
 
 # Function: isModelNameMatched()
 
-> **isModelNameMatched**(`modelName`, `rule?`): `undefined` \| `string` \| `RegExpExecArray`
+> **isModelNameMatched**(`modelName`, `rule?`): `string` \| `RegExpExecArray` \| `undefined`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/is-model-name-matched.ts:21](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/is-model-name-matched.ts#L21)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/is-model-name-matched.ts:21](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/is-model-name-matched.ts#L21)
 
 Checks if the provided model name matches the given rule.
 
@@ -28,7 +28,7 @@ An optional rule that can be a string, an array of strings, a regular expression
 
 ## Returns
 
-`undefined` \| `string` \| `RegExpExecArray`
+`string` \| `RegExpExecArray` \| `undefined`
 
 matched result if the model name matches the rule, undefined otherwise.
 

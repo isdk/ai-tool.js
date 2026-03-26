@@ -6,7 +6,7 @@
 
 # Class: SignalGate\<T\>
 
-Defined in: @isdk/util/dist/index.d.ts:894
+Defined in: @isdk/util/dist/index.d.ts:998
 
 An asynchronous signal gate that blocks operations until a signal is emitted.
 This class allows multiple awaiters to wait for a signal and resolves all pending promises with the emitted value.
@@ -46,15 +46,15 @@ valueGate.signal(42); // Must provide a number value
 
 > `protected` **\_isSignaled**: `boolean`
 
-Defined in: @isdk/util/dist/index.d.ts:895
+Defined in: @isdk/util/dist/index.d.ts:999
 
 ***
 
 ### \_signalValue
 
-> `protected` **\_signalValue**: `undefined` \| `T`
+> `protected` **\_signalValue**: `T` \| `undefined`
 
-Defined in: @isdk/util/dist/index.d.ts:896
+Defined in: @isdk/util/dist/index.d.ts:1000
 
 ***
 
@@ -62,7 +62,7 @@ Defined in: @isdk/util/dist/index.d.ts:896
 
 > `protected` **waitQueue**: `object`[]
 
-Defined in: @isdk/util/dist/index.d.ts:897
+Defined in: @isdk/util/dist/index.d.ts:1001
 
 #### reject()
 
@@ -100,7 +100,7 @@ Defined in: @isdk/util/dist/index.d.ts:897
 
 > **get** **signaled**(): `boolean`
 
-Defined in: @isdk/util/dist/index.d.ts:901
+Defined in: @isdk/util/dist/index.d.ts:1005
 
 ##### Returns
 
@@ -112,7 +112,7 @@ Defined in: @isdk/util/dist/index.d.ts:901
 
 > **abort**(`reason?`): `void`
 
-Defined in: @isdk/util/dist/index.d.ts:919
+Defined in: @isdk/util/dist/index.d.ts:1023
 
 Aborts all pending waits, rejecting their promises with an error.
 This does **not** reset the signal state (the gate remains signaled or unsignaled).
@@ -135,7 +135,7 @@ The reason for aborting the waits.
 
 > **reset**(): `void`
 
-Defined in: @isdk/util/dist/index.d.ts:912
+Defined in: @isdk/util/dist/index.d.ts:1016
 
 Resets the gate to its initial state, allowing a new signal to be emitted.
 
@@ -149,7 +149,7 @@ Resets the gate to its initial state, allowing a new signal to be emitted.
 
 > **signal**(`value?`): `void`
 
-Defined in: @isdk/util/dist/index.d.ts:908
+Defined in: @isdk/util/dist/index.d.ts:1012
 
 Emits the signal with an optional value, resolving all pending [wait](../variables/wait.md) promises.
 Subsequent calls have no effect until [reset](#reset) is called.
@@ -172,7 +172,7 @@ The value to emit with the signal (only required if T is not void).
 
 > **wait**(): `Promise`\<`T`\>
 
-Defined in: @isdk/util/dist/index.d.ts:926
+Defined in: @isdk/util/dist/index.d.ts:1030
 
 Returns a promise that resolves with the emitted signal value.
 If called after the signal has been emitted, resolves immediately with the stored value.

@@ -6,7 +6,7 @@
 
 # Interface: TaskPromise\<T\>
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:74
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1025
 
 ## Extends
 
@@ -36,7 +36,7 @@ Defined in: @isdk/ai-tools/node\_modules/.pnpm/typescript@5.7.3/node\_modules/ty
 
 > `optional` **task**: [`TaskAbortController`](../classes/TaskAbortController.md)
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:75
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1026
 
 ## Methods
 
@@ -60,7 +60,7 @@ Attaches a callback for only the rejection of the Promise.
 
 The callback to execute when the Promise is rejected.
 
-`null` | (`reason`) => `TResult` \| `PromiseLike`\<`TResult`\>
+(`reason`) => `TResult` \| `PromiseLike`\<`TResult`\> | `null`
 
 #### Returns
 
@@ -89,7 +89,7 @@ resolved value cannot be modified from the callback.
 
 The callback to execute when the Promise is settled (fulfilled or rejected).
 
-`null` | () => `void`
+() => `void` | `null`
 
 #### Returns
 
@@ -127,13 +127,13 @@ Attaches callbacks for the resolution and/or rejection of the Promise.
 
 The callback to execute when the Promise is resolved.
 
-`null` | (`value`) => `TResult1` \| `PromiseLike`\<`TResult1`\>
+(`value`) => `TResult1` \| `PromiseLike`\<`TResult1`\> | `null`
 
 ##### onrejected?
 
 The callback to execute when the Promise is rejected.
 
-`null` | (`reason`) => `TResult2` \| `PromiseLike`\<`TResult2`\>
+(`reason`) => `TResult2` \| `PromiseLike`\<`TResult2`\> | `null`
 
 #### Returns
 

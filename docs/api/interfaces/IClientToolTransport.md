@@ -6,7 +6,7 @@
 
 # Interface: IClientToolTransport
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:107
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:148
 
 Defines the public interface for a client-side transport,
 responsible for communicating with a ServerTransport.
@@ -25,7 +25,7 @@ responsible for communicating with a ServerTransport.
 
 > **apiRoot**: `string`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:86
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:127
 
 The root endpoint for the remote service.
 For HTTP, this is a URL. For IPC, it could be a channel name.
@@ -40,7 +40,7 @@ For HTTP, this is a URL. For IPC, it could be a channel name.
 
 > `optional` **options**: `any`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:90
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:131
 
 Additional options for the transport start or fetch, passed by mount.
 
@@ -54,7 +54,7 @@ Additional options for the transport start or fetch, passed by mount.
 
 > **Tools**: *typeof* [`ToolFunc`](../classes/ToolFunc.md)
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:81
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:122
 
 #### Inherited from
 
@@ -64,9 +64,9 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:81
 
 ### fetch()
 
-> **fetch**(`name`, `args?`, `act?`, `subName?`, `options?`): `any`
+> **fetch**(`name`, `args?`, `act?`, `subName?`, `options?`, `toolTimeout?`): `any`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:123
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:166
 
 Fetches data from the server.
 
@@ -102,6 +102,12 @@ The name of the sub-resource to fetch.
 
 Additional options for the fetch call.
 
+##### toolTimeout?
+
+`any`
+
+Optional timeout from tool metadata.
+
 #### Returns
 
 `any`
@@ -112,11 +118,19 @@ A promise that resolves with the fetched data.
 
 ### loadApis()
 
-> **loadApis**(): `Promise`\<[`Funcs`](Funcs.md)\>
+> **loadApis**(`options?`): `Promise`\<[`Funcs`](Funcs.md)\>
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:112
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:154
 
 Connects to the server's discovery endpoint to get the list of available tools.
+
+#### Parameters
+
+##### options?
+
+`any`
+
+Additional options for the discovery call.
 
 #### Returns
 
@@ -130,13 +144,13 @@ A promise that resolves to a map of tool function metadata.
 
 > **mount**(`clientTools`, `apiPrefix?`, `options?`): `any`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:113
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:155
 
 #### Parameters
 
 ##### clientTools
 
-*typeof* [`ClientTools`](../classes/ClientTools.md)
+*typeof* [`ClientTools`](../@isdk/namespaces/ClientTools/README.md)
 
 ##### apiPrefix?
 

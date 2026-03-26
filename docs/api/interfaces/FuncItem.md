@@ -6,7 +6,7 @@
 
 # Interface: FuncItem
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:287
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:313
 
 Extends `BaseFuncItem` to include the actual function implementation.
 
@@ -14,13 +14,17 @@ Extends `BaseFuncItem` to include the actual function implementation.
 
 - [`BaseFuncItem`](BaseFuncItem.md)
 
+## Extended by
+
+- [`RegisterOptions`](RegisterOptions.md)
+
 ## Properties
 
 ### alias?
 
 > `optional` **alias**: `string` \| `string`[]
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:232
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:258
 
 Optional aliases for the function name.
 
@@ -34,7 +38,7 @@ Optional aliases for the function name.
 
 > `optional` **asyncFeatures**: `number`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:246
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:272
 
 A bitmask representing asynchronous features supported by the function, built from `AsyncFeatureBits`.
 This allows the system to understand if a function supports capabilities like cancellation or multi-tasking.
@@ -64,7 +68,7 @@ const func = new ToolFunc({
 
 > `optional` **depends**: `object`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:269
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:295
 
 A map of dependencies this function has on other tool functions.
 Declaring dependencies ensures that they are automatically registered when this function is registered.
@@ -103,7 +107,7 @@ mainFunc.register();
 
 > `optional` **description**: `string`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:276
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:302
 
 A detailed description of what the function does.
 
@@ -117,7 +121,7 @@ A detailed description of what the function does.
 
 > `optional` **func**: [`TFunc`](../type-aliases/TFunc.md)
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:292
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:318
 
 The implementation of the tool function.
 
@@ -127,7 +131,7 @@ The implementation of the tool function.
 
 > `optional` **isApi**: `boolean`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:221
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:247
 
 If true, indicates that this function should be treated as a server-side API.
 
@@ -141,7 +145,7 @@ If true, indicates that this function should be treated as a server-side API.
 
 > `optional` **name**: `string`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:178
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:204
 
 The unique name of the function.
 
@@ -155,7 +159,7 @@ The unique name of the function.
 
 > `optional` **params**: [`FuncParams`](FuncParams.md) \| [`FuncParam`](FuncParam.md)[]
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:183
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:209
 
 Parameter definitions, which can be an object mapping names to definitions or an array for positional parameters.
 
@@ -169,7 +173,7 @@ Parameter definitions, which can be an object mapping names to definitions or an
 
 > `optional` **result**: `string` \| `Record`\<`string`, `any`\>
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:188
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:214
 
 The expected return type of the function, described as a string or a JSON schema object.
 
@@ -183,7 +187,7 @@ The expected return type of the function, described as a string or a JSON schema
 
 > `optional` **scope**: `any`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:193
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:219
 
 The execution scope or context (`this`) for the function.
 
@@ -197,7 +201,7 @@ The execution scope or context (`this`) for the function.
 
 > `optional` **setup**: (`this`, `options?`) => `void`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:216
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:242
 
 A lifecycle hook called once during the `ToolFunc` instance's initialization.
 It allows for initial setup, state configuration, or property modification on the instance
@@ -243,7 +247,7 @@ console.log(myFunc.customState); // Outputs: 'configured'
 
 > `optional` **stream**: `boolean`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:227
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:253
 
 If true, indicates that the function has the *capability* to stream its output.
 Whether a specific call is streamed is determined by a `stream` property in the runtime parameters.
@@ -258,7 +262,7 @@ Whether a specific call is streamed is determined by a `stream` property in the 
 
 > `optional` **tags**: `string` \| `string`[]
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:198
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:224
 
 Tags for grouping or filtering functions.
 
@@ -272,7 +276,7 @@ Tags for grouping or filtering functions.
 
 > `optional` **title**: `string`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:281
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:307
 
 A concise, human-readable title for the function, often used in UI or by AI.
 

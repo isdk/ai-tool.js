@@ -8,7 +8,7 @@
 
 > `const` **RemoteToolFuncSchema**: `object`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:18
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:20
 
 **`Internal`**
 
@@ -71,6 +71,17 @@ This is a server-side setting.
 
 > **type**: `string`
 
+### expectedDuration
+
+> **expectedDuration**: `object`
+
+The expected duration of the remote call in milliseconds.
+Used for UX improvements like progress bars.
+
+#### expectedDuration.type
+
+> **type**: `string`
+
 ### ~~fetchOptions~~
 
 > **fetchOptions**: `object`
@@ -84,3 +95,24 @@ Use `transport` instead.
 #### fetchOptions.type
 
 > **type**: `string`
+
+### stream
+
+> **stream**: `object`
+
+If true, indicate the tool function will return a stream.
+
+#### stream.type
+
+> **type**: `string`
+
+### timeout
+
+> **timeout**: `object`
+
+The timeout configuration for the remote call.
+Can be a number (milliseconds) or an object for fine-grained control.
+
+#### timeout.type
+
+> **type**: `string`[]

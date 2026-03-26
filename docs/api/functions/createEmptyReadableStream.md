@@ -8,7 +8,7 @@
 
 > **createEmptyReadableStream**(): `ReadableStream`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/stream/create-empty-stream.ts:8](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/stream/create-empty-stream.ts#L8)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/stream/create-empty-stream.ts:8](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/stream/create-empty-stream.ts#L8)
 
 Creates an empty ReadableStream that immediately closes upon creation.
 This function is used as a fallback for creating a ReadableStream when the response body is null or undefined,

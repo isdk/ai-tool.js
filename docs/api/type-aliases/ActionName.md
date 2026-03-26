@@ -8,6 +8,6 @@
 
 > **ActionName** = *typeof* [`ActionNames`](../variables/ActionNames.md)\[`number`\]
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:12
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:14
 
 Represents a valid action name for a remote tool, derived from the `ActionNames` tuple.

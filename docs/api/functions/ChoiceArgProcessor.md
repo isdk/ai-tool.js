@@ -6,28 +6,26 @@
 
 # Function: ChoiceArgProcessor()
 
-> **ChoiceArgProcessor**(`argInfo`, `_ix`, `scope?`, `options?`): `undefined` \| `string`
+> **ChoiceArgProcessor**(`ctx`): `Promise`\<\{ `[CMD_ARG_PROCESSOR_RESULT]`: (`string` \| [`CmdArgAIChoiceConfig`](../interfaces/CmdArgAIChoiceConfig.md) \| \{ `excludePositional`: `boolean`; \})[]; \} \| `undefined`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:155](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/parse-command.ts#L155)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/command-parser/processors.ts:19](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/command-parser/processors.ts#L19)
+
+Choice argument processor (ChoiceArgProcessor).
+
+Syntax: |item1|item2:maxPick=2:separator=";"
+
+Logic:
+1. Identifies positional arguments starting with '|'.
+2. Recursively uses the CmdArgParser to parse subsequent configuration items (delimited by ':').
+3. Constructs an CmdArgAIChoiceConfig object.
+4. Returns the result using the Symbol Protocol, named 'choice' and excluded from positional indexing.
 
 ## Parameters
 
-### argInfo
+### ctx
 
-`ArgInfo`
-
-### \_ix
-
-`number`
-
-### scope?
-
-`Record`\<`string`, `any`\>
-
-### options?
-
-[`ParseObjectArgumentOptions`](../interfaces/ParseObjectArgumentOptions.md)
+[`CmdArgContext`](../interfaces/CmdArgContext.md)
 
 ## Returns
 
-`undefined` \| `string`
+`Promise`\<\{ `[CMD_ARG_PROCESSOR_RESULT]`: (`string` \| [`CmdArgAIChoiceConfig`](../interfaces/CmdArgAIChoiceConfig.md) \| \{ `excludePositional`: `boolean`; \})[]; \} \| `undefined`\>

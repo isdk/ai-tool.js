@@ -8,7 +8,7 @@
 
 > **funcGetMeta**(`fn`): `any`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:712
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1001
 
 Retrieves metadata associated with a function or `ToolFunc` instance.
 

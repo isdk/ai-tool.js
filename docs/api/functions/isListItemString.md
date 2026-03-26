@@ -6,9 +6,9 @@
 
 # Function: isListItemString()
 
-> **isListItemString**(`text`): `null` \| `RegExpExecArray`
+> **isListItemString**(`text`): `RegExpExecArray` \| `null`
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/split-sentence.ts:223](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/split-sentence.ts#L223)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/split-sentence.ts:223](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/split-sentence.ts#L223)
 
 ## Parameters
 
@@ -18,4 +18,4 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/split-sentence.ts:223](ht
 
 ## Returns
 
-`null` \| `RegExpExecArray`
+`RegExpExecArray` \| `null`

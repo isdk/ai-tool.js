@@ -8,7 +8,7 @@
 
 > `const` **FuncMetaSymbol**: unique `symbol`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:694
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:983
 
 **`Internal`**
 

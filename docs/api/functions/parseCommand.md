@@ -6,9 +6,11 @@
 
 # Function: parseCommand()
 
-> **parseCommand**(`commandStr`, `scope?`, `options?`): `Promise`\<`undefined` \| \{ `args?`: `Record`\<`string`, `any`\>; `command`: `string`; \}\>
+> **parseCommand**(`commandStr`, `scope?`, `options?`): `Promise`\<[`CmdArgParsedCommand`](../interfaces/CmdArgParsedCommand.md) \| `undefined`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:446](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/parse-command.ts#L446)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/command-parser/api.ts:267](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/command-parser/api.ts#L267)
+
+Parses a full command string including the command name and its parenthesized arguments.
 
 ## Parameters
 
@@ -16,14 +18,29 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:446](htt
 
 `string`
 
+The command string, e.g., 'myCmd(arg1, k=v, !flag)'
+
 ### scope?
 
 `Record`\<`string`, `any`\>
 
+Evaluation scope.
+
 ### options?
 
-[`ParseObjectArgumentOptions`](../interfaces/ParseObjectArgumentOptions.md)
+[`CmdArgParserOptions`](../interfaces/CmdArgParserOptions.md)
+
+CmdArgParser configuration options.
 
 ## Returns
 
-`Promise`\<`undefined` \| \{ `args?`: `Record`\<`string`, `any`\>; `command`: `string`; \}\>
+`Promise`\<[`CmdArgParsedCommand`](../interfaces/CmdArgParsedCommand.md) \| `undefined`\>
+
+An object containing the command name, parsed args, and optional flags.
+
+## Example
+
+```ts
+await parseCommand("sum(1, 2)") // returns {command: "sum", args: [1, 2]}
+await parseCommand("search(query='abc', !caseSensitive)") // returns {command: "search", args: {query: 'abc'}, flags: {caseSensitive: true}}
+```

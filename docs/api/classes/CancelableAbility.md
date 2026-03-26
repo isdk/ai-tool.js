@@ -6,7 +6,7 @@
 
 # Class: CancelableAbility
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:77
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1028
 
 ## Indexable
 
@@ -26,17 +26,17 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:77
 
 ### \_\_task\_aborter
 
-> **\_\_task\_aborter**: `undefined` \| [`TaskAbortControllers`](../interfaces/TaskAbortControllers.md) \| [`TaskAbortController`](TaskAbortController.md)
+> **\_\_task\_aborter**: [`TaskAbortControllers`](../interfaces/TaskAbortControllers.md) \| [`TaskAbortController`](TaskAbortController.md) \| `undefined`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:86
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1037
 
 ***
 
 ### \_\_task\_semaphore
 
-> **\_\_task\_semaphore**: `undefined` \| [`Semaphore`](Semaphore.md)
+> **\_\_task\_semaphore**: [`Semaphore`](Semaphore.md) \| `undefined`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:87
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1038
 
 ***
 
@@ -44,7 +44,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:87
 
 > `optional` **\_asyncFeatures**: `number`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:78
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1029
 
 ***
 
@@ -52,15 +52,15 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:78
 
 > `optional` **\_isReadyFn**: [`SemaphoreIsReadyFuncType`](../type-aliases/SemaphoreIsReadyFuncType.md)
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:80
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1031
 
 ***
 
 ### \_maxTaskConcurrency
 
-> **\_maxTaskConcurrency**: `undefined` \| `number`
+> **\_maxTaskConcurrency**: `number` \| `undefined`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:79
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1030
 
 ***
 
@@ -68,7 +68,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:79
 
 > **cleanMultiTaskAborter**: (`id`, `aborters`) => `void`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:85
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1036
 
 #### Parameters
 
@@ -90,7 +90,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:85
 
 > **generateAsyncTaskId**: (`taskId?`, `aborters?`) => [`AsyncTaskId`](../type-aliases/AsyncTaskId.md)
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:84
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1035
 
 #### Parameters
 
@@ -112,13 +112,13 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:84
 
 #### Get Signature
 
-> **get** **maxTaskConcurrency**(): `undefined` \| `number`
+> **get** **maxTaskConcurrency**(): `number` \| `undefined`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:88
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1039
 
 ##### Returns
 
-`undefined` \| `number`
+`number` \| `undefined`
 
 ***
 
@@ -126,13 +126,13 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:88
 
 #### Get Signature
 
-> **get** **semaphore**(): `undefined` \| [`Semaphore`](Semaphore.md)
+> **get** **semaphore**(): `any`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:89
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1040
 
 ##### Returns
 
-`undefined` \| [`Semaphore`](Semaphore.md)
+`any`
 
 ## Methods
 
@@ -140,7 +140,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:89
 
 > **\_cleanMultiTaskAborter**(`id`, `aborters`): `void`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:101
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1052
 
 #### Parameters
 
@@ -162,7 +162,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:101
 
 > **\_generateAsyncTaskId**(`taskId?`, `aborters?`): [`AsyncTaskId`](../type-aliases/AsyncTaskId.md)
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:96
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1047
 
 #### Parameters
 
@@ -180,11 +180,59 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:96
 
 ***
 
+### $\_prepareContext()
+
+> **$\_prepareContext**(`params?`, `ctx?`): [`ToolFuncContext`](../interfaces/ToolFuncContext.md)
+
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1070
+
+Method overloading for ToolFunc._prepareContext
+
+#### Parameters
+
+##### params?
+
+`any`
+
+##### ctx?
+
+[`ToolFuncContext`](../interfaces/ToolFuncContext.md)
+
+#### Returns
+
+[`ToolFuncContext`](../interfaces/ToolFuncContext.md)
+
+***
+
+### $\_shouldIsolate()
+
+> **$\_shouldIsolate**(`params?`, `ctx?`): `boolean`
+
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1066
+
+Method overloading for ToolFunc._shouldIsolate
+
+#### Parameters
+
+##### params?
+
+`any`
+
+##### ctx?
+
+[`ToolFuncContext`](../interfaces/ToolFuncContext.md)
+
+#### Returns
+
+`boolean`
+
+***
+
 ### $cleanMultiTaskAborter()
 
 > **$cleanMultiTaskAborter**(`id`, `aborters`): `void`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:99
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1050
 
 #### Parameters
 
@@ -204,9 +252,9 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:99
 
 ### $generateAsyncTaskId()
 
-> **$generateAsyncTaskId**(`taskId?`, `aborters?`): `undefined` \| [`AsyncTaskId`](../type-aliases/AsyncTaskId.md)
+> **$generateAsyncTaskId**(`taskId?`, `aborters?`): [`AsyncTaskId`](../type-aliases/AsyncTaskId.md) \| `undefined`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:97
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1048
 
 #### Parameters
 
@@ -220,7 +268,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:97
 
 #### Returns
 
-`undefined` \| [`AsyncTaskId`](../type-aliases/AsyncTaskId.md)
+[`AsyncTaskId`](../type-aliases/AsyncTaskId.md) \| `undefined`
 
 ***
 
@@ -228,7 +276,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:97
 
 > **abort**(`reason?`, `data?`): `void`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:111
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1062
 
 #### Parameters
 
@@ -250,7 +298,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:111
 
 > **cleanTaskAborter**(`aborter`): `void`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:100
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1051
 
 #### Parameters
 
@@ -266,9 +314,9 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:100
 
 ### createAborter()
 
-> **createAborter**(`params?`, `taskId?`, `raiseError?`): [`TaskAbortController`](TaskAbortController.md)
+> **createAborter**(`params?`, `taskId?`, `raiseError?`, `ctx?`): [`TaskAbortController`](TaskAbortController.md)
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:98
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1049
 
 #### Parameters
 
@@ -284,6 +332,10 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:98
 
 `boolean`
 
+##### ctx?
+
+[`ToolFuncContext`](../interfaces/ToolFuncContext.md)
+
 #### Returns
 
 [`TaskAbortController`](TaskAbortController.md)
@@ -294,7 +346,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:98
 
 > **createTaskPromise**\<`Output`\>(`runTask`, `params`, `options?`): [`TaskPromise`](../interfaces/TaskPromise.md)\<`Output`\>
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:102
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1053
 
 #### Type Parameters
 
@@ -330,9 +382,9 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:102
 
 ### getRunningTask()
 
-> **getRunningTask**(`taskId?`): `undefined` \| [`TaskAbortController`](TaskAbortController.md)
+> **getRunningTask**(`taskId?`): [`TaskAbortController`](TaskAbortController.md) \| `undefined`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:94
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1045
 
 #### Parameters
 
@@ -342,7 +394,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:94
 
 #### Returns
 
-`undefined` \| [`TaskAbortController`](TaskAbortController.md)
+[`TaskAbortController`](TaskAbortController.md) \| `undefined`
 
 ***
 
@@ -350,7 +402,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:94
 
 > **getRunningTaskCount**(): `number`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:95
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1046
 
 #### Returns
 
@@ -360,9 +412,9 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:95
 
 ### getSemaphore()
 
-> **getSemaphore**(`isReadyFn?`): `undefined` \| [`Semaphore`](Semaphore.md)
+> **getSemaphore**(`isReadyFn?`): `any`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:90
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1041
 
 #### Parameters
 
@@ -372,7 +424,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:90
 
 #### Returns
 
-`undefined` \| [`Semaphore`](Semaphore.md)
+`any`
 
 ***
 
@@ -380,7 +432,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:90
 
 > **hasAsyncFeature**(`feature`): `boolean`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:92
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1043
 
 #### Parameters
 
@@ -398,7 +450,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:92
 
 > **isAborted**(`taskId?`): `boolean`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:93
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1044
 
 #### Parameters
 
@@ -416,7 +468,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:93
 
 > **runAsyncCancelableTask**\<`Output`\>(`params`, `runTask`, `options?`): [`TaskPromise`](../interfaces/TaskPromise.md)\<`Output`\>
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:106
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1057
 
 #### Type Parameters
 
@@ -428,7 +480,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:106
 
 ##### params
 
-`undefined` | `Record`\<`string`, `any`\>
+`Record`\<`string`, `any`\> | `undefined`
 
 ##### runTask
 
@@ -458,7 +510,7 @@ Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:106
 
 > `static` **hasAsyncFeature**(`feature`): `boolean`
 
-Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:91
+Defined in: @isdk/ai-tools/packages/tool-func/dist/index.d.ts:1042
 
 #### Parameters
 

@@ -8,7 +8,7 @@
 
 > **registerYamlTag**(`tags`): `void`
 
-Defined in: @isdk/util/dist/index.d.ts:281
+Defined in: @isdk/util/dist/index.d.ts:280
 
 Registers custom YAML tags to be used in parsing and stringifying YAML content.
 

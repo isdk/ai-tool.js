@@ -6,45 +6,26 @@
 
 # Class: Semaphore
 
-Defined in: @isdk/util/dist/index.d.ts:820
+Defined in: @isdk/util/dist/index.d.ts:903
 
-A Semaphore implementation for managing concurrency in asynchronous operations.
-Semaphores allow a fixed number of resources to be accessed concurrently.
-This class extends BinarySemaphore and adds support for a maximum concurrency limit and an optional readiness check.
+计数信号量（Semaphore）实现。
+扩展自二进制信号量，允许指定最大并发数（`maxConcurrency`）。
+支持可选的就绪检查（`isReadyFn`）。
 
-Example usage:
+示例用法：
 
 ```typescript
-const semaphore = new Semaphore(5); // Allows 5 concurrent operations.
+const semaphore = new Semaphore(5); // 允许 5 个并发操作
 
-const semaphore = new Semaphore(
-  4, // Allow 4 concurrent async calls
-  {
-    capacity: 100, // Prealloc space for 100 tokens
-    isReadyFn: async () => {
-      // Check if the system is ready to handle more requests
-      return true;
-    },
-    pauseFn: () => {
-      console.log('Pausing the stream');
-    },
-    resumeFn: () => {
-      console.log('Resuming the stream');
-    }
-  }
-);
-
-async function fetchData(x) {
-  await semaphore.acquire()
+async function fetchData(id) {
+  const release = await semaphore.acquire();
   try {
-    console.log(semaphore.pendingCount() + ' calls to fetch are waiting')
-    // ... do some async stuff with x
+    console.log(`正在获取数据 ${id}, 等待中: ${semaphore.pendingCount}`);
+    // ... 异步操作
   } finally {
-    semaphore.release();
+    release();
   }
 }
-
-const data = await Promise.all(array.map(fetchData));
 ```
 
 ## Extends
@@ -57,15 +38,15 @@ const data = await Promise.all(array.map(fetchData));
 
 > **new Semaphore**(`maxConcurrency`, `options?`): `Semaphore`
 
-Defined in: @isdk/util/dist/index.d.ts:837
+Defined in: @isdk/util/dist/index.d.ts:917
 
-Creates a semaphore object. The first argument is the maximum concurrently number and the second argument is optional.
+创建一个计数信号量实例。
 
 #### Parameters
 
 ##### maxConcurrency
 
-The maximum number of callers allowed to acquire the semaphore concurrently.
+最大并发数，或者包含并发设置的配置对象。
 
 `number` | [`SemaphoreOptions`](../interfaces/SemaphoreOptions.md)
 
@@ -73,9 +54,15 @@ The maximum number of callers allowed to acquire the semaphore concurrently.
 
 [`SemaphoreOptions`](../interfaces/SemaphoreOptions.md)
 
+配置选项。
+
 #### Returns
 
 `Semaphore`
+
+#### Throws
+
+如果未指定有效并发数则抛出错误。
 
 #### Overrides
 
@@ -87,7 +74,9 @@ The maximum number of callers allowed to acquire the semaphore concurrently.
 
 > `protected` **\_activeCount**: `number`
 
-Defined in: @isdk/util/dist/index.d.ts:686
+Defined in: @isdk/util/dist/index.d.ts:764
+
+记录当前活跃的（已获取但未释放）操作总数。
 
 #### Inherited from
 
@@ -99,7 +88,9 @@ Defined in: @isdk/util/dist/index.d.ts:686
 
 > `protected` **emitter**: [`EventEmitter`](EventEmitter.md)
 
-Defined in: @isdk/util/dist/index.d.ts:680
+Defined in: @isdk/util/dist/index.d.ts:752
+
+内部事件触发器，用于协调释放和分发逻辑。
 
 #### Inherited from
 
@@ -111,7 +102,9 @@ Defined in: @isdk/util/dist/index.d.ts:680
 
 > `protected` **free**: `Deque`\<`any`\>
 
-Defined in: @isdk/util/dist/index.d.ts:822
+Defined in: @isdk/util/dist/index.d.ts:907
+
+存储空闲令牌的队列。
 
 #### Overrides
 
@@ -123,7 +116,9 @@ Defined in: @isdk/util/dist/index.d.ts:822
 
 > `protected` **initTokenFn**: (`token?`) => `void`
 
-Defined in: @isdk/util/dist/index.d.ts:684
+Defined in: @isdk/util/dist/index.d.ts:760
+
+令牌初始化函数。
 
 #### Parameters
 
@@ -145,7 +140,9 @@ Defined in: @isdk/util/dist/index.d.ts:684
 
 > `readonly` **maxConcurrency**: `number`
 
-Defined in: @isdk/util/dist/index.d.ts:821
+Defined in: @isdk/util/dist/index.d.ts:905
+
+最大并发限制。
 
 ***
 
@@ -153,7 +150,9 @@ Defined in: @isdk/util/dist/index.d.ts:821
 
 > `protected` **paused**: `boolean`
 
-Defined in: @isdk/util/dist/index.d.ts:685
+Defined in: @isdk/util/dist/index.d.ts:762
+
+记录当前是否处于暂停状态。
 
 #### Inherited from
 
@@ -165,7 +164,9 @@ Defined in: @isdk/util/dist/index.d.ts:685
 
 > `protected` `optional` **pauseFn**: () => `void`
 
-Defined in: @isdk/util/dist/index.d.ts:682
+Defined in: @isdk/util/dist/index.d.ts:756
+
+获取积压时的暂停回调。
 
 #### Returns
 
@@ -181,7 +182,9 @@ Defined in: @isdk/util/dist/index.d.ts:682
 
 > `protected` `optional` **resumeFn**: () => `void`
 
-Defined in: @isdk/util/dist/index.d.ts:683
+Defined in: @isdk/util/dist/index.d.ts:758
+
+恢复处理的回调。
 
 #### Returns
 
@@ -197,7 +200,9 @@ Defined in: @isdk/util/dist/index.d.ts:683
 
 > `protected` **useDefaultTokens**: `boolean`
 
-Defined in: @isdk/util/dist/index.d.ts:681
+Defined in: @isdk/util/dist/index.d.ts:754
+
+标记是否使用默认的令牌初始化函数。
 
 #### Inherited from
 
@@ -207,9 +212,11 @@ Defined in: @isdk/util/dist/index.d.ts:681
 
 ### waiting
 
-> `readonly` **waiting**: `Deque`\<`undefined` \| [`SemaphoreTaskItem`](../interfaces/SemaphoreTaskItem.md)\>
+> `readonly` **waiting**: `Deque`\<[`SemaphoreTaskItem`](../interfaces/SemaphoreTaskItem.md) \| `undefined`\>
 
-Defined in: @isdk/util/dist/index.d.ts:678
+Defined in: @isdk/util/dist/index.d.ts:748
+
+存储等待获取令牌的任务队列。
 
 #### Inherited from
 
@@ -223,19 +230,18 @@ Defined in: @isdk/util/dist/index.d.ts:678
 
 > **get** **activeCount**(): `number`
 
-Defined in: @isdk/util/dist/index.d.ts:772
+Defined in: @isdk/util/dist/index.d.ts:874
 
-Get the total count of all active operations.
-
-This method returns the number of operations that are either:
-- Waiting in the queue to acquire the semaphore (`pendingCount`).
-- Already acquired the semaphore but have not yet released it.
+获取所有活跃操作的总数。
+包含：
+- 正在队列中等待获取信号量的操作（`pendingCount`）。
+- 已经成功获取信号量但尚未释放的操作。
 
 ##### Returns
 
 `number`
 
-The total count of active operations, including both waiting and ongoing tasks.
+活跃操作的总数。
 
 #### Inherited from
 
@@ -249,15 +255,15 @@ The total count of active operations, including both waiting and ongoing tasks.
 
 > **get** **pendingCount**(): `number`
 
-Defined in: @isdk/util/dist/index.d.ts:778
+Defined in: @isdk/util/dist/index.d.ts:880
 
-Get the number of callers waiting on the semaphore, i.e. the number of pending promises.
+获取当前在等待队列中的调用方数量。
 
 ##### Returns
 
 `number`
 
-The number of waiters in the waiting list.
+等待中的 Promise 数量。
 
 #### Inherited from
 
@@ -269,7 +275,11 @@ The number of waiters in the waiting list.
 
 > **\_dispatchTask**(`task`, `options?`): `void`
 
-Defined in: @isdk/util/dist/index.d.ts:738
+Defined in: @isdk/util/dist/index.d.ts:805
+
+**`Internal`**
+
+将令牌分发给等待的任务。
 
 #### Parameters
 
@@ -277,9 +287,13 @@ Defined in: @isdk/util/dist/index.d.ts:738
 
 [`SemaphoreTaskItem`](../interfaces/SemaphoreTaskItem.md)
 
+等待中的任务项。
+
 ##### options?
 
 [`BinarySemaphoreReleaseOptions`](../interfaces/BinarySemaphoreReleaseOptions.md)
+
+释放时传递的选项。
 
 #### Returns
 
@@ -295,7 +309,12 @@ Defined in: @isdk/util/dist/index.d.ts:738
 
 > **\_newReleaser**(`options?`): `BinarySemaphoreReleaserFunc`
 
-Defined in: @isdk/util/dist/index.d.ts:737
+Defined in: @isdk/util/dist/index.d.ts:797
+
+**`Internal`**
+
+创建一个新的释放函数。
+确保释放逻辑只被执行一次，并携带相关的释放选项。
 
 #### Parameters
 
@@ -303,9 +322,13 @@ Defined in: @isdk/util/dist/index.d.ts:737
 
 [`BinarySemaphoreReleaseOptions`](../interfaces/BinarySemaphoreReleaseOptions.md)
 
+释放选项。
+
 #### Returns
 
 `BinarySemaphoreReleaserFunc`
+
+返回一个可调用的释放函数。
 
 #### Inherited from
 
@@ -317,13 +340,18 @@ Defined in: @isdk/util/dist/index.d.ts:737
 
 > **abort**(`reason?`): `void`
 
-Defined in: @isdk/util/dist/index.d.ts:762
+Defined in: @isdk/util/dist/index.d.ts:865
+
+中止所有正在等待的任务。
+所有在等待队列中的 Promise 将被拒绝并抛出 `AbortError`。
 
 #### Parameters
 
 ##### reason?
 
 `any`
+
+中止的原因。
 
 #### Returns
 
@@ -339,9 +367,18 @@ Defined in: @isdk/util/dist/index.d.ts:762
 
 > **acquire**(`options?`): `Promise`\<`BinarySemaphoreReleaserFunc`\>
 
-Defined in: @isdk/util/dist/index.d.ts:752
+Defined in: @isdk/util/dist/index.d.ts:842
 
-Acquire a token from the semaphore, thus decrement the number of available execution slots. If initFn is not used then the return value of the function can be discarded.
+获取信号量。
+如果信号量当前可用，将立即解析。否则，调用方将被加入等待队列，
+直到有令牌被释放。
+
+逻辑流程：
+1. 增加活跃计数。
+2. 尝试通过 `tryAcquire` 立即获取令牌。
+3. 如果 `tryAcquire` 返回的是异步结果（通过 `isAsync` 判断），则等待其解析。
+4. 如果最终未获得令牌，则将任务推入 `waiting` 队列，并处理可选的 `AbortSignal`。
+5. 如果此时是队列中的第一个任务且定义了 `pauseFn`，则触发暂停回调。
 
 #### Parameters
 
@@ -349,11 +386,13 @@ Acquire a token from the semaphore, thus decrement the number of available execu
 
 [`BinarySemaphoreAcquireOptions`](../interfaces/BinarySemaphoreAcquireOptions.md)
 
+获取选项，可包含 `signal` 用于取消。
+
 #### Returns
 
 `Promise`\<`BinarySemaphoreReleaserFunc`\>
 
-A promise that resolves to a release function when a token is acquired. If the semaphore is full, the caller will be added to a waiting queue.
+解析为释放函数（`BinarySemaphoreReleaserFunc`）的 Promise。
 
 #### Inherited from
 
@@ -365,13 +404,16 @@ A promise that resolves to a release function when a token is acquired. If the s
 
 > **drain**(): `Promise`\<`any`[]\>
 
-Defined in: @isdk/util/dist/index.d.ts:842
+Defined in: @isdk/util/dist/index.d.ts:948
 
-Drains the semaphore and returns all the initialized tokens in an array. Draining is an ideal way to ensure there are no pending async tasks, for example before a process will terminate.
+消耗掉所有并发槽位，确保当前没有其他操作正在运行。
+常用于在关键操作前清空并发环境。
 
 #### Returns
 
 `Promise`\<`any`[]\>
+
+解析为包含所有令牌数组的 Promise。
 
 #### Overrides
 
@@ -383,13 +425,17 @@ Drains the semaphore and returns all the initialized tokens in an array. Drainin
 
 > **init**(`options`): `void`
 
-Defined in: @isdk/util/dist/index.d.ts:736
+Defined in: @isdk/util/dist/index.d.ts:788
+
+初始化事件监听。在构造函数中被调用。
 
 #### Parameters
 
 ##### options
 
 [`BinarySemaphoreOptions`](../interfaces/BinarySemaphoreOptions.md)
+
+配置选项。
 
 #### Returns
 
@@ -405,13 +451,17 @@ Defined in: @isdk/util/dist/index.d.ts:736
 
 > **initFree**(`options`): `void`
 
-Defined in: @isdk/util/dist/index.d.ts:838
+Defined in: @isdk/util/dist/index.d.ts:922
+
+初始化令牌池，填充至最大并发数。
 
 #### Parameters
 
 ##### options
 
 [`SemaphoreOptions`](../interfaces/SemaphoreOptions.md)
+
+配置选项。
 
 #### Returns
 
@@ -427,7 +477,9 @@ Defined in: @isdk/util/dist/index.d.ts:838
 
 > **lock**(`options?`): `any`
 
-Defined in: @isdk/util/dist/index.d.ts:841
+Defined in: @isdk/util/dist/index.d.ts:941
+
+从空闲令牌池中取出一个令牌。
 
 #### Parameters
 
@@ -435,9 +487,13 @@ Defined in: @isdk/util/dist/index.d.ts:841
 
 [`BinarySemaphoreAcquireOptions`](../interfaces/BinarySemaphoreAcquireOptions.md)
 
+获取选项。
+
 #### Returns
 
 `any`
+
+如果池中不为空则返回一个令牌，否则返回 undefined。
 
 #### Overrides
 
@@ -449,13 +505,18 @@ Defined in: @isdk/util/dist/index.d.ts:841
 
 > **onReleased**(`options?`): `void`
 
-Defined in: @isdk/util/dist/index.d.ts:735
+Defined in: @isdk/util/dist/index.d.ts:783
+
+当信号量被释放时执行的内部处理逻辑。
+检查等待队列，如果有任务则分发令牌；否则将令牌归还至空闲池，并视情况调用 `resumeFn`。
 
 #### Parameters
 
 ##### options?
 
 [`BinarySemaphoreReleaseOptions`](../interfaces/BinarySemaphoreReleaseOptions.md)
+
+释放选项，可能包含令牌。
 
 #### Returns
 
@@ -471,15 +532,19 @@ Defined in: @isdk/util/dist/index.d.ts:735
 
 > **release**(`options?`): `void`
 
-Defined in: @isdk/util/dist/index.d.ts:757
+Defined in: @isdk/util/dist/index.d.ts:850
 
-Releases the semaphore, incrementing the number of free execution slots. If there are tasks in the waiting queue, the next task will be dispatched.
+释放信号量，增加可用执行槽位。
+如果等待队列中有任务，将触发下一个任务的执行。
+此方法会减少 `activeCount` 并发出 'release' 事件。
 
 #### Parameters
 
 ##### options?
 
 [`BinarySemaphoreReleaseOptions`](../interfaces/BinarySemaphoreReleaseOptions.md)
+
+释放选项。
 
 #### Returns
 
@@ -495,9 +560,10 @@ Releases the semaphore, incrementing the number of free execution slots. If ther
 
 > **tryAcquire**(`options?`): `any`
 
-Defined in: @isdk/util/dist/index.d.ts:839
+Defined in: @isdk/util/dist/index.d.ts:930
 
-Attempt to acquire a token from the semaphore, if one is available immediately. Otherwise, return undefined.
+尝试获取令牌，包含就绪状态检查。
+如果定义了 `isReadyFn`，将先调用它。
 
 #### Parameters
 
@@ -505,11 +571,13 @@ Attempt to acquire a token from the semaphore, if one is available immediately. 
 
 [`BinarySemaphoreAcquireOptions`](../interfaces/BinarySemaphoreAcquireOptions.md)
 
+获取选项。
+
 #### Returns
 
 `any`
 
-Returns a token if the semaphore is not full; otherwise, returns `undefined`.
+可能返回令牌、Promise（当就绪检查为异步时）或 undefined。
 
 #### Overrides
 
@@ -521,13 +589,17 @@ Returns a token if the semaphore is not full; otherwise, returns `undefined`.
 
 > **unlock**(`token?`): `void`
 
-Defined in: @isdk/util/dist/index.d.ts:840
+Defined in: @isdk/util/dist/index.d.ts:935
+
+将令牌归还至空闲令牌池。
 
 #### Parameters
 
 ##### token?
 
 `any`
+
+要归还的令牌。
 
 #### Returns
 

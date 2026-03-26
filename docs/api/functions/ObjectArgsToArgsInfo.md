@@ -6,9 +6,11 @@
 
 # Function: ObjectArgsToArgsInfo()
 
-> **ObjectArgsToArgsInfo**(`args`): `object`
+> **ObjectArgsToArgsInfo**(`args`): [`CmdArgArgsInfo`](../interfaces/CmdArgArgsInfo.md)
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:86](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/parse-command.ts#L86)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/command-parser/api.ts:206](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/command-parser/api.ts#L206)
+
+Normalizes various simplified result formats back into an `{args, namedArgs}` info structure.
 
 ## Parameters
 
@@ -18,12 +20,12 @@ Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:86](http
 
 ## Returns
 
-`object`
+[`CmdArgArgsInfo`](../interfaces/CmdArgArgsInfo.md)
 
-### args
+## Example
 
-> **args**: `any`[]
-
-### kvArgs?
-
-> `optional` **kvArgs**: `Record`\<`string`, `any`\>
+```ts
+ObjectArgsToArgsInfo("val") // returns {args: ["val"]}
+ObjectArgsToArgsInfo([1, 2]) // returns {args: [1, 2]}
+ObjectArgsToArgsInfo({name: "John"}) // returns {args: [], namedArgs: {name: "John"}}
+```

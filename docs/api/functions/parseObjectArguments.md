@@ -8,9 +8,10 @@
 
 > **parseObjectArguments**(`argsStr`, `scope?`, `options?`): `Promise`\<`any`\>
 
-Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/parse-command.ts:71](https://github.com/isdk/ai-tool.js/blob/2338c1b330227e1f03e156c01f50117017aef779/src/utils/parse-command.ts#L71)
+Defined in: [@isdk/ai-tools/packages/ai-tool/src/utils/command-parser/api.ts:29](https://github.com/isdk/ai-tool.js/blob/d10fb4cda65fc1975152a2c3ab327ecab008dea1/src/utils/command-parser/api.ts#L29)
 
-Asynchronously parses a string of object arguments into an actual object.
+Parses an object-style argument string into a structured result.
+Supports positional args, named args, JS expressions, and custom processors.
 
 ## Parameters
 
@@ -18,55 +19,38 @@ Asynchronously parses a string of object arguments into an actual object.
 
 `string`
 
-The string of arguments to be parsed.
+The argument string to parse.
 
 ### scope?
 
 `Record`\<`string`, `any`\>
 
-An optional scope object that provides values for variables during parsing.
+Optional evaluation scope for resolving variables.
 
 ### options?
 
-[`ParseObjectArgumentOptions`](../interfaces/ParseObjectArgumentOptions.md)
+[`CmdArgParserOptions`](../interfaces/CmdArgParserOptions.md)
 
-An optional configuration object containing the delimiter and argument processor.
+CmdArgParser configuration options.
 
 ## Returns
 
 `Promise`\<`any`\>
 
-The parsed object or undefined.
-
-This function first parses the argument string into an object string and then converts it
-into a proper JavaScript/JSON object based on the parsing results and configuration options.
-It handles the conversion of single objects, arrays, and key-value pairs. The default delimiter
-between parameters is a comma (`,`), but this can be customized using the `options.delimiter`.
-Parameter assignment always uses an equal sign (`=`) and cannot be modified.
-
-The function returns:
-- An object if the input string represents a set of key-value pairs.
-- An array if the input string represents a sequence of elements, where each element can be
-  parsed as a number (indices are used as keys).
-- A single value if the input string represents a single value or a single key-value pair.
-- `undefined` if the input string is empty or cannot be parsed into a valid object.
+The parsed and simplified result.
 
 ## Example
 
-```typescript
-// Example call with default delimiter
-const result = await parseObjectArguments("name=John,age=30");
-console.log(result); // Output: { name: 'John', age: '30' }
+```ts
+// 1. Simple positional
+await parseObjectArguments("123") // returns 123
 
-// Example call with custom delimiter
-const resultCustomDelimiter = await parseObjectArguments("name=John|age=30", undefined, { delimiter: '|' });
-console.log(resultCustomDelimiter); // Output: { name: 'John', age: '30' }
+// 2. Multiple positional
+await parseObjectArguments("1, 2, 3") // returns [1, 2, 3]
 
-// Example with a single value
-const singleValue = await parseObjectArguments("42");
-console.log(singleValue); // Output: 42
+// 3. Named arguments
+await parseObjectArguments("name='John', age=25") // returns {name: 'John', age: 25}
 
-// Example with an array
-const arrayResult = await parseObjectArguments("1,2,3");
-console.log(arrayResult); // Output: [1, 2, 3]
+// 4. Mixed (idAsName enabled by default)
+await parseObjectArguments("John, age=25") // returns {0: 'John', John: 'John', age: 25}
 ```

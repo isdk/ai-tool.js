@@ -8,7 +8,7 @@
 
 > **expandEnv**(`options`): `DotenvExpandOptions`
 
-Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:709
+Defined in: @isdk/ai-tools/packages/template-engines/dist/index.d.ts:782
 
 Expand environment variables in the parsed object
 

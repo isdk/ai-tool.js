@@ -6,7 +6,7 @@
 
 # Class: HttpClientToolTransport
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:389
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:457
 
 A concrete client transport implementation that uses the browser/node `fetch` API.
 
@@ -20,7 +20,7 @@ A concrete client transport implementation that uses the browser/node `fetch` AP
 
 > **new HttpClientToolTransport**(`apiRoot`): `HttpClientToolTransport`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:132
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:175
 
 #### Parameters
 
@@ -42,7 +42,7 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:132
 
 > **apiRoot**: `string`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:130
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:173
 
 The root endpoint for the remote service.
 For HTTP, this is a URL. For IPC, it could be a channel name.
@@ -57,7 +57,7 @@ For HTTP, this is a URL. For IPC, it could be a channel name.
 
 > `optional` **options**: `any`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:97
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:138
 
 Additional options for the transport start or fetch, passed by mount.
 
@@ -69,9 +69,9 @@ Additional options for the transport start or fetch, passed by mount.
 
 ### Tools
 
-> **Tools**: *typeof* [`ClientTools`](ClientTools.md)
+> **Tools**: *typeof* [`ClientTools`](../@isdk/namespaces/ClientTools/README.md)
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:131
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:174
 
 #### Inherited from
 
@@ -81,9 +81,9 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:131
 
 ### \_fetch()
 
-> **\_fetch**(`name`, `args?`, `act?`, `subName?`, `fetchOptions?`): `Promise`\<`Response`\>
+> **\_fetch**(`name`, `args?`, `act?`, `subName?`, `fetchOptions?`): `Promise`\<`any`\>
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:395
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:464
 
 #### Parameters
 
@@ -109,7 +109,7 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:395
 
 #### Returns
 
-`Promise`\<`Response`\>
+`Promise`\<`any`\>
 
 #### Overrides
 
@@ -121,13 +121,13 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:395
 
 > **\_mount**(`clientTools`, `apiPrefix`, `options?`): `Promise`\<[`Funcs`](../interfaces/Funcs.md)\>
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:133
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:176
 
 #### Parameters
 
 ##### clientTools
 
-*typeof* [`ClientTools`](ClientTools.md)
+*typeof* [`ClientTools`](../@isdk/namespaces/ClientTools/README.md)
 
 ##### apiPrefix
 
@@ -151,7 +151,7 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:133
 
 > **errorFrom**(`name`, `res`): `Promise`\<[`CommonError`](CommonError.md)\>
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:402
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:478
 
 **`Internal`**
 
@@ -179,9 +179,9 @@ A structured error object.
 
 ### fetch()
 
-> **fetch**(`name`, `args?`, `act?`, `subName?`, `fetchOptions?`): `Promise`\<`any`\>
+> **fetch**(`name`, `args?`, `act?`, `subName?`, `fetchOptions?`, `toolTimeout?`): `Promise`\<`any`\>
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:139
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:183
 
 Fetches data from the server.
 
@@ -215,6 +215,12 @@ The name of the sub-resource to fetch.
 
 `any`
 
+##### toolTimeout?
+
+`any`
+
+Optional timeout from tool metadata.
+
 #### Returns
 
 `Promise`\<`any`\>
@@ -229,11 +235,19 @@ A promise that resolves with the fetched data.
 
 ### loadApis()
 
-> **loadApis**(): `Promise`\<[`Funcs`](../interfaces/Funcs.md)\>
+> **loadApis**(`options?`): `Promise`\<[`Funcs`](../interfaces/Funcs.md)\>
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:394
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:463
 
 Connects to the server's discovery endpoint to get the list of available tools.
+
+#### Parameters
+
+##### options?
+
+`any`
+
+Additional options for the discovery call.
 
 #### Returns
 
@@ -251,7 +265,7 @@ A promise that resolves to a map of tool function metadata.
 
 > **mount**(`Tools`, `apiRoot?`, `options?`): `any`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:99
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:140
 
 #### Parameters
 
@@ -281,7 +295,7 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:99
 
 > **setApiRoot**(`apiRoot`): `void`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:98
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:139
 
 #### Parameters
 
@@ -303,7 +317,7 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:98
 
 > **toObject**(`res`, `args?`): `Promise`\<`any`\>
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:403
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:479
 
 #### Parameters
 

@@ -6,7 +6,7 @@
 
 # Interface: IToolTransport
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:80
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:121
 
 ## Extended by
 
@@ -23,7 +23,7 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:80
 
 > **apiRoot**: `string`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:86
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:127
 
 The root endpoint for the remote service.
 For HTTP, this is a URL. For IPC, it could be a channel name.
@@ -34,7 +34,7 @@ For HTTP, this is a URL. For IPC, it could be a channel name.
 
 > `optional` **options**: `any`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:90
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:131
 
 Additional options for the transport start or fetch, passed by mount.
 
@@ -44,7 +44,7 @@ Additional options for the transport start or fetch, passed by mount.
 
 > **Tools**: *typeof* [`ToolFunc`](../classes/ToolFunc.md)
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:81
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:122
 
 ## Methods
 
@@ -52,7 +52,7 @@ Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:81
 
 > **mount**(`Tools`, `apiRoot?`, `options?`): `any`
 
-Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-Bh16e\_Wg.d.ts:91
+Defined in: @isdk/ai-tools/packages/tool-rpc/dist/index-359784IS.d.ts:132
 
 #### Parameters
 
