@@ -50,7 +50,7 @@
     "property-manager": "^3.0.3",
     "secondary-cache": "^2.0.1",
     "secure-json-parse": "^4.0.0",
-    "util-ex": "^2.5.1",
+    "util-ex": "^2.5.2",
     "yaml": "^2.8.1",
     "yaml-types": "^0.4.0"
   },
