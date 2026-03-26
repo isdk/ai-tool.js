@@ -22,7 +22,7 @@
     }
   },
   "dependencies": {
-    "@huggingface/transformers": "^3.7.2",
+    "@huggingface/transformers": "^3.8.1",
     "@isdk/common-error": "^0.2.0",
     "@isdk/detect-text-language": "workspace:^",
     "@isdk/hash": "workspace:^",
