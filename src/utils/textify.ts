@@ -447,3 +447,8 @@ export function textify(data: any, options?: TextifyOptions): string {
 
   return result;
 }
+
+export function textifyNewLine(data: any, options: TextifyOptions = {}): string {
+  options.ensureNewLineForMultiline = true;
+  return textify(data, options);
+}
