@@ -206,6 +206,34 @@ describe('textify', () => {
       expect(res.startsWith('\n')).toBe(true);
       expect(res).toBe('\n* a: 1\n* b: 2');
     });
+
+    it('should add newline for multi-line string', () => {
+      const data = 'hello\nworld';
+      const res = textify(data, { ensureNewLineForMultiline: true, inlineStyle: 'never' });
+      expect(res.startsWith('\n')).toBe(true);
+      expect(res).toBe('\nhello\nworld');
+    });
+
+    it('should not add newline for one-line string', () => {
+      const data = 'hello world';
+      const res = textify(data, { ensureNewLineForMultiline: true, inlineStyle: 'never' });
+      expect(res.startsWith('\n')).toBe(false);
+      expect(res).toBe('hello world');
+    });
+
+    it('should not add newline for multi-line string when ensureNewLineForMultiline is false', () => {
+      const data = 'hello\nworld';
+      const res = textify(data, { ensureNewLineForMultiline: false, inlineStyle: 'never' });
+      expect(res.startsWith('\n')).toBe(false);
+      expect(res).toBe('hello\nworld');
+    });
+
+    it('should add newline for array', () => {
+      const data = ['hello', 'world'];
+      const res = textify(data, { ensureNewLineForMultiline: true, inlineStyle: 'never' });
+      expect(res.startsWith('\n')).toBe(true);
+      expect(res).toBe('\n- hello\n- world');
+    });
   });
 
   describe('Comprehensive Stress Tests', () => {
@@ -294,8 +322,8 @@ describe('textify', () => {
     it('should handle nested auto inlining (Mixed Mode / Option B)', () => {
       const data = {
         list: [
-          { id: 1, msg: 'ok' }, 
-          { id: 2, msg: 'error' }, 
+          { id: 1, msg: 'ok' },
+          { id: 2, msg: 'error' },
           { id: 3, msg: 'retry' },
           { id: 4, msg: 'fail' }
         ],
@@ -305,13 +333,13 @@ describe('textify', () => {
       // 但每个对象项长度约 16，会保持行内化
       const res = textify(data);
       const lines = res.split('\n');
-      
+
       expect(lines[0]).toBe('* list:');
       expect(lines[1]).toBe('  - {id: 1, msg: ok}');
       expect(lines[2]).toBe('  - {id: 2, msg: error}');
       expect(lines[3]).toBe('  - {id: 3, msg: retry}');
       expect(lines[4]).toBe('  - {id: 4, msg: fail}');
-      
+
       expect(lines[5]).toBe('* long_item:');
       expect(lines[6]).toBe('  * text: this is a very long text that will exceed the default threshold');
     });
