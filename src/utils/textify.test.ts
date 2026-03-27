@@ -26,6 +26,12 @@ describe('textify', () => {
       expect(textify('', { stringQuoting: 'never' })).toBe('');
     });
 
+    it('should handle multi-line string', () => {
+      const str = 'hello: world\nkey: value';
+      expect(textify(str)).toBe(`"${str}"`);
+      expect(textify(str, {stringQuoting: 'never'})).toBe(str);
+    });
+
     it('should handle symbol', () => {
       const sym = Symbol('test');
       expect(textify(sym)).toBe('Symbol(test)');
