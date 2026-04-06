@@ -52,4 +52,8 @@ describe('prependNewlineIfMultiline', () => {
     expect(prependNewlineIfMultiline(' \t first\nsecond')).toBe('\n \t first\nsecond');
     expect(prependNewlineIfMultiline('\n \t first\nsecond')).toBe('\n \t first\nsecond');
   });
+
+  it('should handle strings with indented multiline text', () => {
+    expect(prependNewlineIfMultiline('first\nsecond', 2)).toBe('\n  first\n  second');
+  })
 });

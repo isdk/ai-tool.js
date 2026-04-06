@@ -6,6 +6,7 @@
  * a newline character will be added at the beginning of the text.
  *
  * @param text - The input string to check and potentially modify.
+ * @param indent - The number of spaces or a string to use as indentation for the each line.
  * @returns The processed string, which may have a prepended newline if conditions are met.
  *
  * @example
@@ -15,14 +16,22 @@
  * console.log(prependNewlineIfMultiline("single line")); // Output: "single line" (unchanged)
  * ```
  */
-export function prependNewlineIfMultiline(text: string): string {
+export function prependNewlineIfMultiline(text: string, indent?: number | string): string {
   if (typeof text === 'string') {
+    if (typeof indent === 'number') {
+      indent = ' '.repeat(indent);
+    }
+    if (typeof indent === 'string') {
+      text = text.split('\n').map(line => indent + line).join('\n');
+    }
+
     const isMultiline = text.includes('\n');
     const startsWithNewline = /^[ \t]*\r?\n/.test(text);
     if (isMultiline && !startsWithNewline) {
       text = '\n' + text;
     }
   }
+
 
   return text;
 }
