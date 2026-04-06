@@ -22,7 +22,7 @@ export function prependNewlineIfMultiline(text: string, indent?: number | string
       indent = ' '.repeat(indent);
     }
     if (typeof indent === 'string') {
-      text = text.split('\n').map(line => indent + line).join('\n');
+      text = text.split('\n').map(line => line ? indent + line : line).join('\n');
     }
 
     const isMultiline = text.includes('\n');
