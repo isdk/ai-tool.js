@@ -4,6 +4,8 @@ import {
   expandEnv, expandObjEnv, defaultTemplateFormat, getEnvVairables,
   createHfValueFunc,
   StringTemplateFinalValue,
+  isStringTemplateFormatable,
+  pickStringTemplateData,
   // HFTemplate,
 } from '@isdk/template-engines'
 
@@ -13,6 +15,8 @@ export {
   expandEnv, expandObjEnv, defaultTemplateFormat, getEnvVairables,
   createHfValueFunc,
   StringTemplateFinalValue,
+  isStringTemplateFormatable,
+  pickStringTemplateData,
 }
 export type {StringTemplateOptions as PromptTemplateOptions} from '@isdk/template-engines'
 
