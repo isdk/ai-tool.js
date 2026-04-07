@@ -3,6 +3,7 @@ import {
   EnvStringTemplate as EnvPromptTemplate, FStringTemplate as FStringPromptTemplate, GolangStringTemplate as GolangPromptTemplate,
   expandEnv, expandObjEnv, defaultTemplateFormat, getEnvVairables,
   createHfValueFunc,
+  StringTemplateFinalValue,
   // HFTemplate,
 } from '@isdk/template-engines'
 
@@ -11,6 +12,7 @@ export {
   EnvPromptTemplate, FStringPromptTemplate, GolangPromptTemplate,
   expandEnv, expandObjEnv, defaultTemplateFormat, getEnvVairables,
   createHfValueFunc,
+  StringTemplateFinalValue,
 }
 export type {StringTemplateOptions as PromptTemplateOptions} from '@isdk/template-engines'
 
