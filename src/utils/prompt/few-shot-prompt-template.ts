@@ -58,6 +58,7 @@ export class FewShotPromptTemplate<T = any> extends PromptTemplate {
       if (options.prefix) {this.prefix = options.prefix}
       if (options.examplePrompt) {
         this.examplePrompt = options.examplePrompt instanceof PromptTemplate ? options.examplePrompt : PromptTemplate.from(options.examplePrompt)
+        this.examplePrompt.expandValue = false
       }
       if (options.examples) {this.examples = options.examples}
     }

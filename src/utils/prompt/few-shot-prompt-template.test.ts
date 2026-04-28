@@ -1,3 +1,4 @@
+import {describe, expect, it} from 'vitest'
 import { FewShotPromptTemplate } from './few-shot-prompt-template'
 import { PromptTemplate } from './index'
 import { PromptExampleSelector, PromptExamples } from './prompt-example-selector';
