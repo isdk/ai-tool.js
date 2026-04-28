@@ -1,3 +1,4 @@
+import {describe, expect, it} from 'vitest'
 import { jsonToMarkdownStr } from './json-to-markdown-str';
 
 describe('jsonToMarkdownStr', () => {
@@ -11,6 +12,12 @@ describe('jsonToMarkdownStr', () => {
     const arr = ['value1', 'value2'];
     const result = jsonToMarkdownStr(arr);
     expect(result).toEqual('- "value1"\n- "value2"');
+  });
+
+  it('should convert an array with one item as markdown string', () => {
+    const arr = ['value1'];
+    const result = jsonToMarkdownStr(arr);
+    expect(result).toEqual('"value1"');
   });
 
   it('should handle circular references', () => {

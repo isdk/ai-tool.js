@@ -16,6 +16,9 @@ export function jsonToMarkdownStr(mem: any, options?: {level?: number, visiting?
         if (!visiting.has(mem)) {
           visiting.add(mem)
           if (Array.isArray(mem)) {
+            if (mem.length === 1) {
+              return jsonToMarkdownStr(mem[0], {...options, level: level+1, visiting});
+            }
             result = mem.map(item => arrayTag + processItem(item, mem));
           } else {
             result = Object.entries(mem).map(([key, value]) => objectTag + ' `' + key + '`:' + processItem(value, mem));
