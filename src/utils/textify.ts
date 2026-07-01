@@ -436,8 +436,13 @@ class Serializer {
  * ```
  */
 export function textify(data: any, options?: TextifyOptions): string {
-  const serializer = new Serializer(options ?? {});
-  let result = serializer.serialize(data);
+  let result: string
+  if (typeof data === 'string' && options?.stringQuoting !== 'always') {
+    result = data
+  } else {
+    const serializer = new Serializer(options ?? {});
+    result = serializer.serialize(data);
+  }
 
   if (options?.ensureNewLineForMultiline) {
     if (result.includes('\n') && !result.startsWith('\n')) {

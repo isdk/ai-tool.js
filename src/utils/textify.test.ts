@@ -28,7 +28,7 @@ describe('textify', () => {
 
     it('should handle multi-line string', () => {
       const str = 'hello: world\nkey: value';
-      expect(textify(str)).toBe(`"${str}"`);
+      expect(textify(str, {stringQuoting: 'always'})).toBe(`"${str}"`);
       expect(textify(str, {stringQuoting: 'never'})).toBe(str);
     });
 
@@ -398,28 +398,28 @@ describe('textify', () => {
 
   describe('String Quoting Strategy', () => {
     it('should quote special characters in auto mode', () => {
-      expect(textify('user: admin')).toBe('"user: admin"');
-      expect(textify('a,b')).toBe('"a,b"');
-      expect(textify('[test]')).toBe('"[test]"');
-      expect(textify('{test}')).toBe('"{test}"');
-      expect(textify('#comment')).toBe('"#comment"');
-      expect(textify('*star')).toBe('"*star"');
-      expect(textify('-dash')).toBe('"-dash"');
+      expect(textify(['user: admin'])).toBe('- "user: admin"');
+      expect(textify(['a,b'])).toBe('- "a,b"');
+      expect(textify(['[test]'])).toBe('- "[test]"');
+      expect(textify(['{test}'])).toBe('- "{test}"');
+      expect(textify(['#comment'])).toBe('- "#comment"');
+      expect(textify(['*star'])).toBe('- "*star"');
+      expect(textify(['-dash'])).toBe('- "-dash"');
     });
 
     it('should quote reserved words in auto mode', () => {
-      expect(textify('true')).toBe('"true"');
-      expect(textify('NULL')).toBe('"NULL"');
-      expect(textify('NaN')).toBe('"NaN"');
+      expect(textify(['true'])).toBe('- "true"');
+      expect(textify(['NULL'])).toBe('- "NULL"');
+      expect(textify(['NaN'])).toBe('- "NaN"');
     });
 
     it('should quote numeric strings in auto mode', () => {
-      expect(textify('123')).toBe('"123"');
-      expect(textify('-0.5')).toBe('"-0.5"');
+      expect(textify(['123'])).toBe('- "123"');
+      expect(textify(['-0.5'])).toBe('- "-0.5"');
     });
 
     it('should quote strings with leading/trailing spaces', () => {
-      expect(textify('  space  ')).toBe('"  space  "');
+      expect(textify(['  space  '])).toBe('- "  space  "');
     });
 
     it('should handle always quoting', () => {
@@ -440,7 +440,7 @@ describe('textify', () => {
     });
 
     it('should escape double quotes inside strings', () => {
-      expect(textify('He said "Hello"')).toBe('"He said \\"Hello\\""');
+      expect(textify('He said "Hello"', {stringQuoting: 'always'})).toBe('"He said \\"Hello\\""');
     });
   });
 
@@ -449,8 +449,8 @@ describe('textify', () => {
       const options = { arrayPrefix: '>> ', objectPrefix: '!! ' };
       // 默认的 - 不再触发引号，而 >> 触发
       expect(textify('- item', options)).toBe('- item');
-      expect(textify('>> item', options)).toBe('">> item"');
-      expect(textify('!! item', options)).toBe('"!! item"');
+      expect(textify(['>> item'], options)).toBe('>> ">> item"');
+      expect(textify(['!! item'], options)).toBe('>> "!! item"');
     });
 
     it('should support extreme compactness (No spaces, No quotes, No inlining)', () => {
